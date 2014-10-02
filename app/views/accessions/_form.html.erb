@@ -1,0 +1,59 @@
+<%= javascript "ui.tabs.paging", "tabs", "doctors", "panels" %>
+
+<fieldset class="<%= @accession.reported_at.blank? %>">
+  <% if @accession.id %>
+    <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
+  <% end %>
+  <% labeled_form_for shallow_args(@patient, @accession), :html => { :novalidate => "" } do |f| %>
+    <%= f.error_messages %>
+    <h2><%= t('.order_details') %></h2>
+    <%= f.text_field :doctor_name, :label => t('.doctor'), :placeholder => t('.walk_in'), :autocorrect => "off" %>
+    <%= f.text_field :icd9, :label => t('.icd9'), :placeholder => t('.icd9_placeholder'), :autocorrect => "off" %>
+    <% if mobile_user_agent? %>
+      <%= f.datetime_ios_select :drawn_at, :label => t('.drawn_at'), :end_year => Time.now.year, :value => @accession.drawn_at.try(:to_s, :w3cdtf) %>
+    <% else %>
+      <%= f.datetime_select :drawn_at, :label => t('.drawn_at'), :end_year => Time.now.year %>
+    <% end %>
+    <%=h f.collection_select :drawer_id, User.all, :id, :username, :label => t('.drawn_by') %>
+    <% if mobile_user_agent? %>
+      <%= f.datetime_ios_select :received_at, :label => t('.received_at'), :end_year => Time.now.year, :value => @accession.received_at.try(:to_s, :w3cdtf) %>
+    <% else %>
+      <%= f.datetime_select :received_at, :label => t('.received_at'), :end_year => Time.now.year %>
+    <% end %>
+    <%=h f.collection_select :receiver_id, User.all, :id, :username, :label => t('.received_by') %>
+    <% if @accession.reported_at? %>
+      <% if mobile_user_agent? %>
+        <%= f.datetime_ios_select :reported_at, :label => t('.reported_at'), :end_year => Time.now.year, :value => @accession.received_at.try(:to_s, :w3cdtf) %>
+      <% else %>
+        <%= f.datetime_select :reported_at, :label => t('.reported_at'), :end_year => Time.now.year %>
+      <% end %>
+    <%=h f.collection_select :reporter_id, User.all, :id, :username, :label => t('.reported_by') %>
+    <% end %>
+
+    <h2><%= t('.order_panels') %></h2>
+    <div id="panels">
+      <%= f.many_check_boxes :panel_ids, Panel.sorted, :id, :name_with_description %>
+    </div>
+    <h2><%= t('.order_tests') %></h2>
+    <div id="order_tests">
+      <ul>
+        <% for department in @departments %>
+          <li><a href="#<%=h department.id %>"><%= department.name %></a></li>
+        <% end %>
+      </ul>
+      <% for department in @departments %>
+        <div id="<%= department.id %>">
+          <%= f.many_check_boxes :lab_test_ids, department.lab_tests, :id, :name_with_description %>
+        </div>
+      <% end %>
+    </div>
+    <div class="buttonbar">
+      <%= f.submit t('.submit') %> <%= t('.or') %> 
+      <% if @patient %>
+        <%= link_to t('.cancel'), patient_accessions_path(@patient) %>
+      <% else %>
+        <%= link_to t('.cancel'), accession_path %>
+      <% end %>
+    </div>
+  <% end %>
+</fieldset>

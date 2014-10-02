@@ -1,0 +1,38 @@
+<% title "Reference Ranges" %>
+
+<h3>If there is a max age value, there must be a min age value. In the future, the program will validate this.</h3>
+
+<table>
+  <tr>
+    <th>Test</th>
+    <th>Min</th>
+    <th>Max</th>
+    <th>Gender</th>
+    <th>Min Age</th>
+    <th>Max Age</th>
+    <th>Age Unit</th>
+    <th>Animal Type</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% for reference_range in @reference_ranges %>
+    <tr>
+      <td><%=h reference_range.lab_test.name_with_description %></td>
+      <td><%=h reference_range.min %></td>
+      <td><%=h reference_range.max %></td>
+      <td><%=h reference_range.gender %></td>
+      <td><%=h reference_range.min_age %></td>
+      <td><%=h reference_range.max_age %></td>
+      <td><%=h reference_range.age_unit %></td>
+      <td><%=h reference_range.animal_type_name %></td>
+      <td><%=h reference_range.description %></td>
+      <td><%= link_to "Show", [:admin, reference_range] %></td>
+      <td><%= link_to "Edit", edit_admin_reference_range_path(reference_range) %></td>
+      <td><%= link_to "Destroy", [:admin, reference_range], :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Reference Range", new_admin_reference_range_path %></p>

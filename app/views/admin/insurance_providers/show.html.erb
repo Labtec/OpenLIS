@@ -1,0 +1,16 @@
+<% title "Insurance Provider" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @insurance_provider.name %>
+</p>
+<p>
+  <strong>Price List:</strong>
+  <%=h @insurance_provider.price_list.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_insurance_provider_path(@insurance_provider) %> |
+  <%= link_to "Destroy", [:admin, @insurance_provider], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", admin_insurance_providers_path %>
+</p>

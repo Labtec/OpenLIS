@@ -1,0 +1,22 @@
+<% for panel in Panel.all %>
+  var panel = <%= panel.id.to_json %>;
+
+  if ($('#panel_' + panel).is(':checked')) {
+    var labTests = <%= panel.lab_test_ids.to_json %>;
+    for (i=0;i<labTests.length;i++) {
+      $('#lab_test_' + labTests[i]).prop('checked', true);
+      $('#lab_test_' + labTests[i]).prop('disabled', true);
+    }
+    $(document).on('change', '#panel_' + panel, function(){
+      var labTests = <%= panel.lab_test_ids.to_json %>;
+      for (i=0;i<labTests.length;i++) {
+        $('#lab_test_' + labTests[i]).removeAttr('disabled');
+      }
+    });
+  }
+
+  $('#form').submit(function() {
+    $('input').removeAttr('disabled');
+    return true;
+  });
+<% end %>

@@ -1,0 +1,9 @@
+<div id="tabs">
+  <%= navigation [:admin_users, t('.users')], [:admin_doctors, t('.doctors')], [:admin_insurance_providers, t('.insurance_providers')], [:admin_departments, t('.departments')], [:admin_lab_tests, t('.lab_tests')], [:admin_panels, t('.panels')], [:admin_units, t('.units')], [:admin_lab_test_values, t('.lab_test_values')], [:admin_reference_ranges, t('.reference_ranges')] %>
+</div>
+
+<% flash.each do |name, msg| %>
+  <div id="flash" class="flash_<%= name %>">
+    <%=h msg %>
+  </div>
+<% end %>

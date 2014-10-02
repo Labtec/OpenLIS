@@ -1,0 +1,71 @@
+<% title t('.title') %>
+
+<fieldset class="<%=h @accession.reported_at.blank? %>">
+  <h1><%= t('.accession') %><%=h @accession.id.to_s %></h1>
+  <%= t('.doctor') %>
+  <strong><%=h doctor_name(@accession.doctor) %></strong><br />
+  <% if @accession.drawn_at %>
+    <%= t('.drawn_at') %>
+    <strong><%=h l(@accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <%= t('.by') %>
+    <strong><%=h @accession.drawer.initials %></strong><br />
+  <% end %>
+  <% if @accession.received_at %>
+    <%= t('.received_at') %>
+    <strong><%=h l(@accession.received_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <%= t('.by') %>
+    <strong><%=h @accession.receiver.initials %></strong><br />
+  <% end %>
+  <% if @accession.reported_at %>
+    <%= t('.reported_at') %>
+    <strong><%=h l(@accession.reported_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <%= t('.by') %>
+    <strong><%=h @accession.reporter.initials %></strong>
+  <% end %>
+
+<% form_for @accession, :html => { :novalidate => "" } do |a| %>
+  <%= a.error_messages %>
+  <% a.object.results.group_by(&:department).each do |department, results| %>
+    <h2><%= department.name %></h2>
+    <table class="results">
+      <% reset_cycle("alternating_row_colors") %>
+      <% results.each do |result| %>
+        <% fields_for "accession[result_attributes][]", result do |r| %>
+          <tr class="<%= cycle("even", "odd", :name => "alternating_row_colors") %>">
+            <td class="lab_test <%= flag_color result %>"><%= r.label :value, result.lab_test.name %></td>
+            <td class="result <%= flag_color result %>">
+              <% if result.lab_test.derivation %>
+                <%= text_field_tag :value, format_value(result), :size => 10, :disabled => true %>
+              <% else %>
+                <% if result.lab_test.lab_test_values.blank? %>
+                  <% if result.lab_test.also_numeric || result.lab_test.ratio || result.lab_test.range || result.lab_test.fraction || result.lab_test.text_length %>
+                    <%= r.text_field :value, :size => 10, :pattern => "\\d*" %>
+                  <% else%>
+                    <%= r.number_field :value, :size => 10, :step => "#{10.0 ** -(result.lab_test.decimals || 0)}" %>
+                  <% end %>
+                <% else %>
+                  <%=h r.collection_select :lab_test_value_id, LabTest.find(result.lab_test_id).lab_test_values, :id, :value, { :include_blank => true } %>
+                  <%= r.text_field :value, :size => 10, :pattern => "\\d*" if result.lab_test.also_numeric || result.lab_test.ratio || result.lab_test.range || result.lab_test.fraction || result.lab_test.text_length %>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="symbol <%= flag_color result %>"><%=h flag_name result %></td>
+            <td class="units"><%=h result.lab_test.unit.name if result.lab_test.unit %></td>
+            <td class="ranges"><%=h ranges_table result.ranges %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <% a.fields_for :notes do |note_form| %>
+      <% if note_form.object.department == department %>
+        <br /><em><%= t('.notes') %></em><br />
+        <%= note_form.text_area :content, :rows => 3 %><br/><br />
+        <%= note_form.hidden_field :department_id %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <div class="buttonbar">
+    <%= a.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), accession_path(@accession) %>
+  </div>
+<% end %>
+</fieldset>

@@ -1,0 +1,16 @@
+<% form_for [:admin, @lab_test_value] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </p>
+  <p>
+    <%= f.label :flag %><br />
+    <%= f.text_field :flag %>
+  </p>
+  <p>
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

@@ -1,0 +1,20 @@
+<% labeled_form_for @user do |f| %>
+  <fieldset>
+    <%= f.error_messages %>
+    <%= f.text_field :username, :label => t('.username'), :required => true %>
+    <%= f.text_field :initials, :label => t('.initials'), :required => true %>
+    <%= f.select :language, [['Español', 'es'], ['English','en']], :label => t('.language') %>
+    <%= f.password_field :password, :label => t('.password') %>
+    <%= f.password_field :password_confirmation, :label => t('.password_confirmation') %>
+    <h2><%= t('.personal_information') %></h2>
+    <%= f.text_field :prefix, :label => t('.prefix') %>
+    <%= f.text_field :first_name, :label => t('.first_name'), :required => true %>
+    <%= f.text_field :last_name, :label => t('.last_name'), :required => true %>
+    <%= f.text_field :suffix, :label => t('.suffix') %>
+    <%= f.text_field :email, :label => t('.email') %>
+    <%= f.text_field :register, :label => t('.register') %>
+    <div class="buttonbar">
+      <%= f.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), root_url %>
+    </div>
+  </fieldset>
+<% end %>

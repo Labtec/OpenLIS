@@ -1,0 +1,34 @@
+<div class="log">
+  <% if (@reported_accessions.blank? && @pending_accessions.blank?) %>
+    <%= t('.no_requisitions_yet') %><br />
+    <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
+  <% end %>
+
+  <% unless @pending_accessions.blank? %>
+    <h3 class="overdue"><%= t('.pending_requisitions') %></h3>
+    <ul class="overdue">
+      <%= render @pending_accessions %>
+    </ul>
+  <% end %>
+
+  <div id='pending_paginate'>
+    <%= twill_paginate @pending_accessions, :class => 'pending_pagination', :param_name => 'pending_page' %>
+    <div id="pending_paging" style="display:none">  
+      <%= image_tag("loading.gif", :size => "16x16") %>
+    </div>
+  </div>
+
+  <% unless @reported_accessions.blank? %>
+    <h3 class="done"><%= t('.requisition_history') %></h3>
+    <ul>
+      <%= render @reported_accessions %>
+    </ul>
+  <% end %>
+
+  <div id='paginate'>
+    <%= twill_paginate @reported_accessions %>
+    <div id="paging" style="display:none">  
+      <%= image_tag("loading.gif", :size => "16x16") %>
+    </div>
+  </div>
+</div>

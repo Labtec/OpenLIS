@@ -1,0 +1,10 @@
+<fieldset>
+  <legend>Prices</legend>
+  <% f.fields_for :prices do |p| %>
+  <div class="price_list">
+    <%=h p.collection_select :price_list_id, PriceList.all, :id, :name %>
+    <%= p.text_field :amount %>
+  </div>
+  <% end %>
+</fieldset>
+

@@ -1,0 +1,83 @@
+<%= form_for @patient, html: { novalidate: "" } do |f| %>
+  <%#= f.error_messages %>
+
+  <div class="given_name">
+    <%= f.label :given_name, t('.given_name'), class: 'required' %>
+    <%= f.text_field :given_name, autocorrect: "off" %>
+  </div>
+
+  <div class="middle_name">
+    <%= f.label :middle_name, t('.middle_name') %>
+    <%= f.text_field :middle_name, autocorrect: "off" %>
+  </div>
+
+  <div class="family_name">
+    <%= f.label :family_name, t('.family_name'), class: 'required' %>
+    <%= f.text_field :family_name, autocorrect: "off" %>
+  </div>
+
+  <div class="family_name2">
+    <%= f.label :family_name2, t('.family_name2') %>
+    <%= f.text_field :family_name2, autocorrect: "off" %>
+  </div>
+
+  <div class="gender">
+    <%= f.label :gender, t('.gender'), class: 'required' %>
+    <%= f.select :gender, Patient::GENDERS, prompt: t('.prompt_gender') %>
+  </div>
+
+  <div class="birthdate">
+  <% if mobile_user_agent? %>
+    <%= f.label :birthdate, t('.birthdate'), class: 'required' %>
+    <%= f.date_ios_select :birthdate %>
+  <% else %>
+    <%= f.label :birthdate, t('.birthdate'), class: 'required' %>
+    <%= f.date_select :birthdate, start_year: Time.now.year, end_year: 1900,
+      prompt: {day: t('.day'), month: t('.month'), year: t('.year')} %>
+  <% end %>
+  </div>
+
+  <div class="identifier">
+    <%= f.label :identifier, t('.identifier') %>
+    <%= f.text_field :identifier, autocorrect: "off", pattern: "\\d*" %>
+  </div>
+
+  <div class="email">
+    <%= f.label :email, t('.email') %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="phone">
+    <%= f.label :phone, t('.phone') %>
+    <%= f.telephone_field :phone %>
+  </div>
+
+  <h2><%= t('.additional_information') %></h2>
+
+  <div class="address">
+    <%= f.label :address, t('.address') %>
+    <%= f.text_area :address, rows: 3 %>
+  </div>
+
+  <div class="animal_type">
+    <%= f.label :animal_type, t('.type') %>
+    <%= f.select :animal_type, Patient::TYPES, include_blank: true %>
+  </div>
+
+  <div class="insurance_provider_id">
+    <%= f.label :insurance_provider_id, t('.insurance_provider') %>
+    <%= f.collection_select :insurance_provider_id, InsuranceProvider.all, :id,
+      :name, { include_blank: true } %>
+  </div>
+
+  <div class="policy_number">
+    <%= f.label :policy_number, t('.policy_number') %>
+    <%= f.text_field :policy_number, autocorrect: "off", pattern: "\\d*" %>
+  </div>
+
+  <div class="buttonbar">
+    <%= f.submit t('.submit') %>
+    <%= t('.or') %>
+    <%= link_to t('.cancel'), patients_path %>
+  </div>
+<% end %>

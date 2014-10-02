@@ -1,0 +1,64 @@
+<% title "Lab Test" %>
+
+<p>
+  <strong>Department:</strong>
+  <%=h @lab_test.department.name %>
+</p>
+<p>
+  <strong>Code:</strong>
+  <%=h @lab_test.code %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%=h sanitize @lab_test.name %>
+</p>
+<p>
+  <strong>CPT Code:</strong>
+  <%=h @lab_test.procedure %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h @lab_test.description %>
+</p>
+<p>
+  <strong>Decimals:</strong>
+  <%=h @lab_test.decimals %>
+</p>
+<p>
+  <strong>Units:</strong>
+  <%=h @lab_test.unit.name unless @lab_test.unit.nil? %>
+</p>
+<p>
+  <strong>Also allow Numeric:</strong>
+  <%=h @lab_test.also_numeric %>
+</p>
+<p>
+  <strong>Is Ratio:</strong>
+  <%=h @lab_test.ratio %>
+</p>
+<p>
+  <strong>Is Range:</strong>
+  <%=h @lab_test.range %>
+</p>
+<p>
+  <strong>Is Fraction:</strong>
+  <%=h @lab_test.fraction %>
+</p>
+<p>
+  <strong>Text Length:</strong>
+  <%=h @lab_test.text_length %>
+</p>
+<p>
+  <strong>Lab Test Values:</strong>
+  <ul>
+  <% for lab_test_value in @lab_test.lab_test_values %>
+    <li><%= lab_test_value.value %></li>
+  <% end %>
+  </ul>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_lab_test_path(@lab_test) %> |
+  <%= link_to "Destroy", [:admin, @lab_test], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", admin_lab_tests_path %>
+</p>

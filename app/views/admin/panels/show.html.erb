@@ -1,0 +1,24 @@
+<% title "Panel" %>
+
+<p>
+  <strong>Code:</strong>
+  <%=h @panel.code %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%=h sanitize @panel.name %>
+</p>
+<p>
+  <strong>CPT:</strong>
+  <%=h @panel.procedure %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h sanitize @panel.description %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_panel_path(@panel) %> |
+  <%= link_to "Destroy", [:admin, @panel], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", admin_panels_path %>
+</p>

@@ -1,7 +1,5 @@
 class Accession < ActiveRecord::Base
 
-  attr_accessible :drawn_at, :drawer_id, :received_at, :receiver_id, :doctor_name, :icd9, :lab_test_ids, :panel_ids, :result_attributes, :notes_attributes, :reporter_id, :reported_at
-
   belongs_to :patient
   belongs_to :doctor
   belongs_to :receiver, :class_name => 'User'
@@ -27,17 +25,17 @@ class Accession < ActiveRecord::Base
   validate :received_at_cant_be_in_the_future
   validate :reported_at_cant_be_in_the_future
 
-  named_scope :recently, :order => 'updated_at DESC'
-  named_scope :queued, :order => 'drawn_at ASC'
-  named_scope :pending, :conditions => 'reported_at IS NULL', :include => [{:results => [:lab_test, :lab_test_value]}, :drawer, :doctor]
-  named_scope :reported, :conditions => 'reported_at IS NOT NULL', :include => [:lab_tests, :panels, :reporter, :doctor]
-  named_scope :with_insurance_provider, {
-    :select => "accessions.*",
-    :joins => "INNER JOIN patients ON patients.id = accessions.patient_id",
-    :conditions=>"patients.insurance_provider_id IS NOT NULL",
-    :order => 'id ASC'
-  }
-  named_scope :within_claim_period, lambda { |time| { :conditions => ["drawn_at > ?", 4.months.ago] } }
+  scope :recently, -> { order(updated_at: :desc) }
+  scope :queued, -> { order(drawn_at: :asc) }
+  scope :pending, -> { where(reported_at: nil) } #, :include => [{:results => [:lab_test, :lab_test_value]}, :drawer, :doctor]
+  scope :reported, -> { where.not(reported_at: nil) } #, :include => [:lab_tests, :panels, :reporter, :doctor]
+  #scope :with_insurance_provider, {
+  #  :select => "accessions.*",
+  #  :joins => "INNER JOIN patients ON patients.id = accessions.patient_id",
+  #  :conditions=>"patients.insurance_provider_id IS NOT NULL",
+  #  :order => 'id ASC'
+  #}
+  #scope :within_claim_period, lambda { |time| { :conditions => ["drawn_at > ?", 4.months.ago] } }
 
   after_update :save_results
 

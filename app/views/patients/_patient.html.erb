@@ -1,0 +1,24 @@
+<div class='panel' id='summary'>
+  <% if patient.animal_type %>
+    <span class="avatar"><%= image_tag("avatar_#{patient.animal_type}.png") %></span>
+  <% else %>
+    <span class="avatar"><%= image_tag("avatar_#{patient.gender}.png") %></span>
+  <% end %>
+  <h4><%= link_to patient.full_name, patient_accessions_path(patient) %></h4>
+  <div>
+    <%=h patient.identifier %><br />
+    <%=h pluralize patient.age_to_display, patient.age_units %>
+  </div>
+  <div>
+    <%= t('.address') %> <%=h patient.address %><br />
+    <%= t('.phone') %> <b><%=h patient.phone %></b>
+  </div>
+  <div>
+    <%= t('.email') %> <b><%= mail_to patient.email %></b>
+  </div>
+  <div class="bottom_card">
+    <%= image_tag("axa.svg", :size => "15x15") if patient.insurance_provider %>
+    <%= patient.policy_number %>
+    <div class="edit_patient_card"><%= link_to t('.edit'), edit_patient_path(patient) %></div>
+  </div>
+</div>

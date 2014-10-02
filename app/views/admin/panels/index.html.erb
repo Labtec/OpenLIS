@@ -1,0 +1,25 @@
+<% title "Panels" %>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>CPT</th>
+    <th>Description</th>
+    <th>Lab Tests</th>
+  </tr>
+  <% for panel in @panels %>
+    <tr>
+      <td><%=h panel.code %></td>
+      <td><%=h sanitize panel.name %></td>
+      <td><%=h panel.procedure %></td>
+      <td><%=h panel.description %></td>
+      <td><%=h panel.lab_test_code_list %></td>
+      <td><%= link_to "Show", [:admin, panel] %></td>
+      <td><%= link_to "Edit", edit_admin_panel_path(panel) %></td>
+      <td><%= link_to "Destroy", [:admin, panel], :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Panel", new_admin_panel_path %></p>

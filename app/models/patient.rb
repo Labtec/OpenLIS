@@ -14,37 +14,35 @@ class Patient < ActiveRecord::Base
     [ I18n.translate('patients.other'),  0 ]
   ]
 
-  attr_accessible :given_name, :middle_name, :family_name, :family_name2, :gender, :birthdate, :identifier, :email, :phone, :address, :animal_type, :insurance_provider_id, :policy_number
-  
   validates_presence_of :given_name, :family_name, :birthdate
-  validates_inclusion_of :gender, :in => GENDERS.map {|disp, value| value}
+  validates_inclusion_of :gender, in: GENDERS.map {|disp, value| value}
   validate :birthdate_cant_be_in_the_future
-  validates_uniqueness_of :identifier, :allow_blank => true
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :allow_blank => true
-  validates_uniqueness_of :policy_number, :allow_blank => true
-  
+  validates_uniqueness_of :identifier, allow_blank: true
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, allow_blank: true
+  validates_uniqueness_of :policy_number, allow_blank: true
+
   belongs_to :insurance_provider
-  has_many :accessions, :dependent => :destroy
-  has_many :notes, :as => :noticeable
-  
-  accepts_nested_attributes_for :accessions, :allow_destroy => true
-  
-  named_scope :recent, :order => 'updated_at DESC', :limit => 10
-  named_scope :sorted, :order => 'family_name ASC'
-  named_scope :ordered, lambda { |*order|
-    { :order => order.flatten.first || 'created_at DESC' }
-  }
-  
+  has_many :accessions, dependent: :destroy
+  has_many :notes, as: :noticeable
+
+  accepts_nested_attributes_for :accessions, allow_destroy: true
+
+  scope :recent, -> { order(updated_at: :desc).limit(10) }
+  scope :sorted, -> { order(family_name: :asc) }
+  # scope :ordered, lambda { |*order|
+  #   { order: order.flatten.first || 'created_at DESC' }
+  # }
+
   before_save :titleize_names
 
   def self.search(query, page)
-    sql_string = '(given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?)'
-    terms = query.to_s.split
-    conditions = [(sql_string.to_a * terms.size).join(" AND ")]
-    terms.each do |term|
-      conditions << "%#{term}%".to_a * 5 # number of ?s in `sql_string`
-    end
-    paginate :per_page => 10, :page => page, :conditions => conditions.flatten
+    #sql_string = '(given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?)'
+    #terms = query.to_s.split
+    #conditions = [([sql_string] * terms.size).join(" AND ")]
+    #terms.each do |term|
+    #  conditions << "%#{term}%".to_a * 5 # number of ?s in `sql_string`
+    #end
+    paginate per_page: 10, page: page#, conditions: conditions.flatten
   end
 
   def full_name

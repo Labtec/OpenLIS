@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
   protect_from_forgery with: :exception
+  helper :all # include all helpers, all the time
 
   before_filter :set_user_language
   before_filter :set_active_tab
@@ -22,7 +22,7 @@ private
 
   def current_user
     return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.record
+    @current_user = current_user_session && current_user_session.user
   end
 
   def require_user
@@ -59,7 +59,7 @@ private
     if current_user
       I18n.locale = current_user.language
     else
-      I18n.locale = "es"
+      I18n.locale = "en"
     end
   end
 end

@@ -1,0 +1,40 @@
+<% form_for [:admin, @reference_range] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :lab_test_id %><br />
+    <%=h f.collection_select :lab_test_id, LabTest.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :min %><br />
+    <%= f.text_field :min %>
+  </p>
+  <p>
+    <%= f.label :max %><br />
+    <%= f.text_field :max %>
+  </p>
+  <p>
+    <%= f.label :gender %><br />
+    <%= f.select :gender, ReferenceRange::GENDERS %>
+  </p>
+  <p>
+    <%= f.label :min_age %><br />
+    <%= f.text_field :min_age %>
+  </p>
+  <p>
+    <%= f.label :max_age %><br />
+    <%= f.text_field :max_age %>
+  </p>
+  <p>
+    <%= f.label :age_unit %><br />
+    <%= f.select :age_unit, ReferenceRange::AGE_UNITS, :prompt => "Select" %>
+  </p>
+  <p>
+    <%= f.label :animal_type %><br />
+    <%= f.select :animal_type, ReferenceRange::ANIMAL_TYPES %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

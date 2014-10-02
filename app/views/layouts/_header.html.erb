@@ -1,0 +1,18 @@
+<div id="header">
+  <div id="welcome">
+    <% if @current_user %>
+      <span><%=h @current_user.name_to_display %></span>
+      <span>&nbsp;&nbsp;</span>
+
+      <%= link_to t('.profile'), profile_path %> |
+      <% if @current_user.admin? %>
+        <%= link_to t('.admin'), admin_path %> |
+      <% end %>
+      <%= link_to t('.logout'), logout_path %>
+    <% else %>
+      <%= link_to "Login", login_path %> |
+      <%= link_to "About", "#about" %>
+    <% end %>
+  </div>
+  <h3><%= link_to "MasterLab", root_path %></h3>
+</div>

@@ -1,0 +1,12 @@
+<% form_for [:admin, @insurance_provider] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :price_list_id %><br />
+    <%=h f.collection_select :price_list_id, PriceList.all, :id, :name, { :include_blank => true } %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

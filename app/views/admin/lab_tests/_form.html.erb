@@ -1,0 +1,57 @@
+<% labeled_form_for [:admin, @lab_test] do |f| %>
+  <%= f.error_messages %>
+  <%=h f.collection_select :department_id, Department.all, :id, :name %>
+  <%= f.text_field :code %>
+  <%= f.text_field :name %>
+  <%=h f.collection_select :unit_id, Unit.all, :id, :name, :include_blank => true, :label => "Units"%>
+  <%= f.text_field :decimals %>
+  <%= f.check_box :derivation %>
+  <%= f.text_field :procedure %>
+  <%= f.text_area :description %>
+
+  <fieldset>
+    <legend>Also Allow</legend>
+    <div class="also_allow">
+      <%= f.radio_button :also_allow, :also_numeric %>
+      <%= label_tag 'lab_test_also_allow_also_numeric', 'Numeric' %>
+    </div>
+    <div class="also_allow">
+      <%= f.radio_button :also_allow, :ratio %>
+      <%= label_tag 'lab_test_also_allow_ratio', 'N:N' %>
+    </div>
+    <div class="also_allow">
+      <%= f.radio_button :also_allow, :range %>
+      <%= label_tag 'lab_test_also_allow_range', 'N–N' %>
+    </div>
+    <div class="also_allow">
+      <%= f.radio_button :also_allow, :fraction %>
+      <%= label_tag 'lab_test_also_allow_fraction', 'N ⁄ N' %>
+    </div>
+    <div class="also_allow">
+      <%= f.radio_button :also_allow, :none %>
+      <%= label_tag 'lab_test_also_allow_none', 'None' %>
+    </div>
+    <div class="text_length">
+      <%= f.text_field :text_length, :label => 'Text' %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Values</legend>
+      <div class="values">
+        <%= f.many_check_boxes :lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag %>
+      </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Prices</legend>
+    <% f.object.prices.each do |price| %>
+      <%= price.price_list.name %>:
+      <%= number_to_currency price.amount %>
+      <%= link_to "Edit", edit_admin_price_path(price.id) %><br />
+    <% end %>
+    <p><%= link_to "New Price", new_admin_lab_test_price_path(@lab_test) %></p>
+  </fieldset>
+  
+  <%= f.submit "Submit" %>
+<% end %>

@@ -1,0 +1,12 @@
+<% title "Doctor" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @doctor.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_doctor_path(@doctor) %> |
+  <%= link_to "Destroy", [:admin, @doctor], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", admin_doctors_path %>
+</p>

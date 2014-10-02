@@ -1,0 +1,7 @@
+<tr class="<%= cycle("even", "odd", :name => "alternating_row_colors") %>">
+  <td class="lab_test <%= flag_color result %>"><%=h sanitize result.lab_test.name %></td>
+  <td class="result <%= flag_color result %>"><%=h sanitize format_value result %></td>
+  <td class="symbol <%= flag_color result %>"><%=h flag_name result %></td>
+  <td class="units"><%=h result.units %></td>
+  <td class="ranges"><%=h ranges_table result.ranges %></td>
+</tr>

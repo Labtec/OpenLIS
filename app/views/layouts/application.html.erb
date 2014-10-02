@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Patient4</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title><%= h(yield(:title) || "Untitled") %></title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= yield(:head) %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav>
+      <%= render 'layouts/header' %>
+      <%= render 'layouts/tabs' %>
+    </nav>
 
-<%= yield %>
+    <section>
+      <%= render 'sidebar' %>
+    </section>
 
-</body>
+    <section class='main'>
+      <%= yield %>
+    </section>
+
+    <footer id='footer'>
+      Powered by <a href="http://www.labtecsa.com" onclick="window.open(this.href);return false;">OpenLIS</a>
+      © 2008-2014 by MasterLab
+      | <a href="#about" rel="facebox">About</a>
+    </footer>
+  </body>
 </html>

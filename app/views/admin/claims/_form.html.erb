@@ -1,0 +1,15 @@
+<fieldset>
+<% labeled_form_for [:admin, @claim] do |f| %>
+  <%= f.error_messages %>
+  <h2>
+    <%= f.object.accession.patient.name_last_comma_first_mi %>
+    (<%= f.object.accession_id %>)
+  </h2>
+  <%= f.hidden_field :accession_id %>
+  <%= f.text_field :external_number %>
+  <%= f.text_field :number %>
+  <div class="buttonbar">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+</fieldset>

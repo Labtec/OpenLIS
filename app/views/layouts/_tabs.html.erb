@@ -1,0 +1,7 @@
+<div id="tabs">
+  <%= navigation [:patients, t('.patients')], [:accessions, t('.requisitions')] %>
+</div>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag(:div, msg, :class => "flash_#{name}") %>
+<% end %>

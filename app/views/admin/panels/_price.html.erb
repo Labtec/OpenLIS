@@ -1,0 +1,4 @@
+<div class="price">
+  <%=h f.collection_select :price_list_id, PriceList.all, :id, :name, :include_blank => true %>
+  <%= f.text_field :amount %>
+</div>

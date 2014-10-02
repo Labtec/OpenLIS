@@ -1,0 +1,25 @@
+<% labeled_form_for [:admin, @panel] do |f| %>
+  <%= f.error_messages %>
+    <%= f.text_field :code %>
+    <%= f.text_field :name %>
+    <%= f.text_field :procedure %>
+    <%= f.text_field :description %>
+
+  <fieldset>
+    <legend>Values</legend>
+      <div class="values">
+        <%= f.many_check_boxes :lab_test_ids, LabTest.all, :id, :name %>
+      </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Prices</legend>
+    <% f.object.prices.each do |price| %>
+      <%= price.price_list.name %>:
+      <%= number_to_currency price.amount %><br />
+    <% end %>
+    <p><%= link_to "New Price", new_admin_panel_price_path(@panel) %></p>
+  </fieldset>
+
+  <p><%= f.submit "Submit" %></p>
+<% end %>

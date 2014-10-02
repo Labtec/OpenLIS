@@ -1,0 +1,17 @@
+<% title "Units" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for unit in @units %>
+    <tr>
+      <td><%= unit.name %></td>
+      <td><%= link_to "Show", [:admin, unit] %></td>
+      <td><%= link_to "Edit", edit_admin_unit_path(unit) %></td>
+      <td><%= link_to "Destroy", [:admin, unit], :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "Unit", new_admin_unit_path %></p>

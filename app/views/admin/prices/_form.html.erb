@@ -1,0 +1,12 @@
+<fieldset>
+  <h2><%= @priceable.name if @priceable %></h2>
+  <% labeled_form_for [:admin, @priceable, @price] do |f| %>
+    <%= f.error_messages %>
+    <%=h f.collection_select :price_list_id, PriceList.all, :id, :name, :include_blank => true %>
+    <%= f.text_field :amount %>
+    <div class="buttonbar">
+      <%= f.submit "Submit" %>
+      <%= link_to "Cancel", admin_prices_path %>
+    </div>
+  <% end %>
+</fieldset>

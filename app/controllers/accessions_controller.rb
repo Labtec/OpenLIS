@@ -1,6 +1,6 @@
 class AccessionsController < ApplicationController
   before_filter :require_user
-  before_filter :set_recent_patients_list, :except => [:destroy]
+  before_filter :set_recent_patients_list, except: [:destroy]
 
   def index
     if params[:patient_id]
@@ -28,7 +28,7 @@ class AccessionsController < ApplicationController
       redirect_to accessions_url
     end
   end
-      
+
   def new
     @patient = Patient.find(params[:patient_id])
     @accession = @patient.accessions.build
@@ -38,10 +38,10 @@ class AccessionsController < ApplicationController
     @accession.receiver_id = current_user.id
     @departments = Department.all(:order => "lab_tests.position", :include => :lab_tests)
   end
-  
+
   def create
     @patient = Patient.find(params[:patient_id])
-    @accession = @patient.accessions.build(params[:accession])
+    @accession = @patient.accessions.build(accession_params)
     @departments = Department.all(:order => "lab_tests.position", :include => :lab_tests)
     if @accession.save
       flash[:notice] = t('flash.accession.create')
@@ -50,18 +50,18 @@ class AccessionsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
     @departments = Department.all(:order => "lab_tests.position", :include => :lab_tests)
     $update_action = 'edit'
   end
-  
+
   def update
     @accession = Accession.find(params[:id])
     @departments = Department.all(:order => "lab_tests.position", :include => :lab_tests)
-    if @accession.update_attributes(params[:accession])
+    if @accession.update_attributes(accession_params)
       # TODO: This should be by result, not by accession!
       if !@current_user.admin?
         @accession.update_attributes(:reporter_id => current_user.id, :reported_at => Time.now) if @accession.reported_at
@@ -72,7 +72,7 @@ class AccessionsController < ApplicationController
       render :action => $update_action
     end
   end
-  
+
   def destroy
     @accession = Accession.find(params[:id])
     @accession.destroy
@@ -89,7 +89,7 @@ class AccessionsController < ApplicationController
     end
     $update_action = 'edit_results'
   end
-  
+
   def report
     @accession = Accession.find(params[:id])
     if @accession.complete?
@@ -103,9 +103,15 @@ class AccessionsController < ApplicationController
     end
   end
 
-  private
+  protected
 
   def set_recent_patients_list
     @recent ||= Patient.recent
+  end
+
+  private
+
+  def accession_params
+    params.require(:accession).permit(:drawn_at, :drawer_id, :received_at, :receiver_id, :doctor_name, :icd9, :lab_test_ids, :panel_ids, :result_attributes, :notes_attributes, :reporter_id, :reported_at)
   end
 end

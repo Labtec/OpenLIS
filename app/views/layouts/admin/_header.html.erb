@@ -1,0 +1,12 @@
+<div id="header">
+  <div id="welcome">
+    <span><%=h @current_user.name_to_display %></span>
+    <span>&nbsp;&nbsp;</span>
+    
+    <%= link_to "Profile", profile_path %> |
+    <%= link_to "Back to OpenLIS", root_path %> |
+    <%= link_to "Logout", logout_path %>
+    <%= render "layouts/jumpbox" %>
+  </div>
+  <h3><%= link_to "MasterLab", root_path %></h3>
+</div>

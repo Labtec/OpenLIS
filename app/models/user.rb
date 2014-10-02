@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :accessions
 
-  validates_presence_of :first_name, :last_name, :initials
-  validates_uniqueness_of :initials
+  validates :first_name, :last_name, :initials, presence: true
+  validates :initials, uniqueness: true
 
   def name_to_display
     full_name = [prefix, first_name, last_name].join(' ').squeeze(' ').strip

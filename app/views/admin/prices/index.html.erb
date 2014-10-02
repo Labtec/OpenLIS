@@ -1,0 +1,23 @@
+<% title "Prices" %>
+
+<table>
+  <tr>
+    <th><%= 'Price list' unless params[:price_list] %></th>
+    <th>Lab Test/Panel</th>
+    <th>CPT</th>
+    <th>Amount</th>
+  </tr>
+
+<% @prices.each do |price| %>
+  <tr>
+    <td><%= price.price_list.name unless params[:price_list] %></td>
+    <td><%= price.priceable.name %></td>
+    <td><%= price.priceable.procedure %></td>
+    <td><%= number_to_currency price.amount %></td>
+    <td><%= link_to 'Show', [:admin, price] %></td>
+    <td><%= link_to 'Edit', edit_admin_price_path(price) %></td>
+    <td><%= link_to 'Destroy', [:admin, price], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+

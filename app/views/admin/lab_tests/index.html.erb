@@ -1,0 +1,25 @@
+<% title "Lab Tests" %>
+
+<% javascript "lab_tests" %>
+
+<ul class="lab_tests">
+  <% @lab_tests.each do |department, lab_tests| %>
+    <h3><%=h department %></h3>
+    <% for lab_test in lab_tests %>
+      <% content_tag_for :li, lab_test do %>
+        <div class="handle">[handle]</div>
+        <%=h sanitize lab_test.name %>
+        <%=h "(#{lab_test.description})" if lab_test.description.present? %>
+        — <%=h lab_test.code %>
+        <%=h "(#{lab_test.procedure})" if lab_test.procedure.present? %>
+        <%=h "0." + "0" * lab_test.decimals if lab_test.decimals %>
+        <%=h lab_test.unit.name if lab_test.unit.present? %>
+        <%= link_to "Show", [:admin, lab_test] %>
+        <%= link_to "Edit", edit_admin_lab_test_path(lab_test) %>
+        <%= link_to "Destroy", [:admin, lab_test], :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
+
+<p><%= link_to "New Lab Test", new_admin_lab_test_path %></p>

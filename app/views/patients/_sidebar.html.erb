@@ -1,0 +1,27 @@
+<div class="sidebar">
+  <div class="filters">
+    <div style="margin: 0px 0px 6px 0px">
+      <%= form_tag patients_path, method: 'get' do %>
+        <%= search_field_tag :search, params[:search], size: 23, results: 5,
+          autocorrect: 'off', placeholder: t('.search_patients') %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="panel" id="recent">
+    <div class="caption"><%= t('.recent_patients') %></div>
+    <ul>
+    <% if @recent %>
+    <% for patient in @recent %>
+      <li>
+        <dt>
+          <%= link_to truncate(patient.full_name, length: 15),
+            patient_accessions_path(patient), title: patient.full_name %>
+        </dt>
+        <tt><%= t('.patient') %></tt>
+      </li>
+    <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
