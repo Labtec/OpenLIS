@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'login' => 'user_sessions#new'
   get 'logout' => 'user_sessions#destroy'
-  resources :user_sessions, as: 'try_again'
+  resources :user_sessions
 
   resources :users
   get 'profile' => 'users#edit'
