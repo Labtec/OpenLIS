@@ -51,8 +51,8 @@ body.login {
 }
 
 h1 a {
-  background: url(/images/logo.png) no-repeat center center;
-  background: rgba(0,0,0,0) url(/images/logo.svg) no-repeat center center;
+  background: image-url("logo.png") no-repeat center center;
+  background: rgba(0,0,0,0) image-url("logo.svg") no-repeat center center;
   width: 326px;
   height: 130px;
   text-indent: -9999px;
