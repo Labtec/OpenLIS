@@ -44,7 +44,7 @@ private
   def store_location
     session[:return_to] =
     if request.get?
-      request.request_uri
+      #request.request_uri
     else
       request.referer
     end
