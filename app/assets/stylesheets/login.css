@@ -1,0 +1,89 @@
+* { margin: 0; padding: 0; }
+
+body.login {
+  font: 11px "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
+  background: whitesmoke;
+}
+
+#new_user_session {
+  margin-left: 8px;
+  padding: 16px 16px 40px 16px;
+  font-weight: normal;
+  -moz-border-radius: 11px;
+  -khtml-border-radius: 11px;
+  -webkit-border-radius: 11px;
+  border-radius: 11px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  -moz-box-shadow: rgba(200,200,200,1) 0 4px 18px;
+  -webkit-box-shadow: rgba(200,200,200,1) 0 4px 18px;
+  -khtml-box-shadow: rgba(200,200,200,1) 0 4px 18px;
+  box-shadow: rgba(200,200,200,1) 0 4px 18px;
+}
+
+#user_session_submit {
+  -webkit-appearance: none;
+  float: right;
+  font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #993399;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #993399;
+  -moz-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: -3px;
+}
+
+#new_user_session p {
+  margin-bottom: 0;
+}
+
+#login label {
+  color: #777;
+  font-size: 13px;
+}
+
+h1 a {
+  background: url(/images/logo.png) no-repeat center center;
+  background: rgba(0,0,0,0) url(/images/logo.svg) no-repeat center center;
+  width: 326px;
+  height: 130px;
+  text-indent: -9999px;
+  overflow: hidden;
+  padding-bottom: 15px;
+  display: block;
+}
+
+#login { width: 320px; margin: 7em auto; }
+
+#login_error, .message, .errorExplanation {
+  margin: 0 0 16px 8px;
+  color: rgb(51, 51, 51);
+  background-color: rgb(255, 235, 232);
+  border-color: #f40011;
+  border-width: 1px;
+  border-style: solid;
+  padding: 12px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+#user_session_username, #user_session_password {
+  font-size: 24px;
+  width: 97%;
+  padding: 3px;
+  margin-top: 2px;
+  margin-right: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #e5e5e5;
+  background: #fbfbfb;
+}
