@@ -1,23 +1,273 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  user_sessions:
+    new:
+      username: "Username"
+      password: "Password"
+      submit: "Log In"
+      
+  users:
+    form:
+      username: "Username:"
+      initials: "Initials:"
+      language: "Language:"
+      password: "Password:"
+      password_confirmation: "Password confirmation:"
+      admin: "The user is Administrator"
+      personal_information: "Personal Information"
+      prefix: "Prefix:"
+      first_name: "First name:"
+      last_name: "Last name:"
+      suffix: "Suffix:"
+      email: "Email:"
+      register: "Registration:"
+      submit: "Save User"
+      or: "or"
+      cancel: "Cancel"
+      
+  layouts:
+    header:
+      quick_find: "Quick find"
+      profile: "Profile"
+      admin: "Admin"
+      logout: "Logout"
+    tabs:
+      patients: "Patients"
+      requisitions: "Requisitions"
+    admin:
+      tabs:
+        users: "Users"
+        lab_tests: "Lab Tests"
+        panels: "Panels"
+        doctors: "Doctors"
+        insurance_providers: "Providers"
+        departments: "Departments"
+        units: "Units"
+        reference_ranges: "Ranges"
+        lab_test_values: "Values"
+      
+  will_paginate:
+    next: "Next »"
+    previous: "« Previous"
+    
+  patients:
+    female: "Femenino"
+    male: "Masculino"
+    unknown: "Desconocido"
+    canine: "Perro"
+    feline: "Gato"
+    equine: "Caballo"
+    other: "Otro"
+    year: "year"
+    month: "month"
+    day: "day"
+    sidebar:
+      search_patients: "Search patients"
+      search: "Search"
+      recent_patients: "Recent Patients"
+      patient: "Patient:"
+    index:
+      title: "Patients"
+      new_patient: "New Patient"
+      options: "Options"
+    patients:
+      not_found: "No patients found"
+      edit: "Edit"
+      delete?: "Delete?"
+      confirm_destroy: "Are you sure?"
+      phone: "Phone:"
+      year: "year"
+    new:
+      title: "New Patient"
+    show:
+      title: "Patient Info"
+    edit:
+      title: "Edit Patient Info"
+    form:
+      given_name: "Given name:"
+      middle_name: "Middle name:"
+      family_name: "Last name:"
+      family_name2: "Mother's maiden name:"
+      gender: "Sex:"
+      prompt_gender: "Select Sex:"
+      birthdate: "Birth date:"
+      day: "Day:"
+      month: "Month:"
+      year: "Year:"
+      identifier: "National ID:"
+      email: "Email:"
+      phone: "Phone:"
+      additional_information: "Additional Information"
+      address: "Address:"
+      type: "Type:"
+      insurance_provider: "Insurance provider:"
+      policy_number: "Policy Number:"
+      insured: "Insured's Name:"
+      insured_placeholder: "Leave blank if primary"
+      submit: "Save Patient"
+      or: "or"
+      cancel: "Cancel"
+    patient:
+      gender: "Sex:"
+      age: "Age:"
+      identifier: "National ID:"
+      address: "Address:"
+      accessions: "Accessions"
+      year: "year"
+      phone: "Phone:"
+      email: "Email:"
+      edit: "Edit"
+      delete: "Delete"
+      confirm_destroy: "Are you sure?"
+      
+  accessions:
+    index:
+      title: "Requisitions"
+      order_tests: "Order Tests"
+    edit:
+      title: "Change Order"
+    new:
+      title: "New Order"
+    show:
+      title: "Accession"
+      accession: "Accession #"
+      doctor: "Doctor: "
+      walk_in: "Walk-in"
+      drawn_at: "Collected at: "
+      received_at: "Received at: "
+      reported_at: "Reported at: "
+      by: " by: "
+      change_accession: "Change Order"
+      enter_results: "Enter Results"
+      change_results: "Change Results"
+      report: "Report"
+      print_report: "Print Report (PDF)"
+      notes: "Notes:"
+    form:
+      order_details: "Order Details"
+      accession: "Accession #"
+      doctor: "Ordering Doctor:"
+      walk_in: "Leave blank if walk-in"
+      icd9: "Diagnosis Codes:"
+      icd9_placeholder: "Separated by commas"
+      labels: "Labels"
+      drawn_at: "Collected at:"
+      drawn_by: "Collected by:"
+      received_at: "Received at:"
+      received_by: "Received by:"
+      reported_at: "Reported at:"
+      reported_by: "Reported by:"
+      order_panels: "Order Panels"
+      order_tests: "Order Tests"
+      submit: "Save Accession"
+      or: "or"
+      cancel: "Cancel"
+    sidebar:
+      year: "year"
+      phone: "Phone:"
+      address: "Address:"
+      email: "Email:"
+      recent_patients: "Recent Patients"
+      patient: "Patient:"
+    edit_results:
+      title: "Enter Results"
+      accession: "Accession #"
+      doctor: "Doctor: "
+      walk_in: "Walk-in"
+      drawn_at: "Collected at: "
+      received_at: "Received at: "
+      reported_at: "Reported at: "
+      by: " by: "
+      submit: "Save Results"
+      or: "or"
+      cancel: "Cancel"
+      notes: "Notes:"
+    accession:
+      accession: "Accession"
+      reported_at: "Reported at: "
+      by: "by: "
+      ordered_by: "Ordered by: "
+      walk_in: "Walk-in"
+      drawn_at: "Drawn at: "
+      tests_ordered: "Tests ordered: "
+      tests_pending: "Tests pending: "
+      enter_results: "Enter Results"
+      change_results: "Change Results"
+      change_requisition: "Change Requisition"
+      delete?: "Delete?"
+      confirm_destroy: "Are you sure?"
+    accessions:
+      no_requisitions_yet: "No requisitions history"
+      pending_requisitions: "Pending Requisitions"
+      requisition_history: "Requisition History"
+      order_tests: "Order Tests"
+      
+  results:
+    low: "L"
+    high: "H"
+    abnormal: "A"
+    index:
+      preliminary: "Preliminary"
+      full_name: "Name:"
+      identifier: "ID:"
+      doctor: "Doctor:"
+      walk_in: "Walk-in"
+      phone: "Phone:"
+      type: "Type:"
+      age: "Age:"
+      year: "year"
+      years: "years"
+      gender: "Sex:"
+      accession: "Accession:"
+      drawn_at: "Collected Date:"
+      received_at: "Received in Lab:"
+      lab_test: "Test Name"
+      result: "Result"
+      units: "Units"
+      flag: "Flag"
+      range: "Reference Range"
+      run_by: "Run By:"
+      on_date: "on"
+      reviewed_by: "Reviewed By:"
+      date: "Date:"
+      reported_at: "Reported On:"
+      printed_at: "Printed:"
+      page: "Page"
+      of: "of"
+      results_of: "Lab Results For:"
+      notes: "Notes:"
+      register: "Registration "
+    sidebar:
+      year: "year"
+      phone: "Phone:"
+      address: "Address:"
+      email: "Email:"
+      recent_patients: "Recent Patients"
+      patient: "Patient:"
+          
+  flash:
+    login:
+      hello: "Hello "
+      last_login_at: " Your last login was on "
+      last_login_at_format: "%b %d, at %I:%M%p"
+    patient:
+      create: "Successfully created patient."
+      update: "Successfully updated patient."
+      destroy: "Successfully removed patient."
+      birthday_cant_be_in_the_future: "cannot be in the future"
+    accession:
+      create: "Successfully created requisition."
+      update: "Successfully updated requisition."
+      destroy: "Successfully removed requisition."
+      report: "Reported requisition."
+      report_error: "There are still pending results."
+      patient_not_found: "Patient record no longer available."
+      accession_not_found: "Requisition accession no longer available."
+      at_least_one_panel_or_test_selected: "Must have at least one panel or test selected."
+      cant_be_in_the_future: "cannot be in the future"
+    accessions:
+      at_least_one_panel_or_test_selected: "Must have at least one panel or test selected."
+    results:
+      range: "must be N–N, <N or >N."
+      fraction: "must be N ⁄ N."
+      ratio: "must be N∶N."
+
