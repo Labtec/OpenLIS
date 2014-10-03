@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002074232) do
+ActiveRecord::Schema.define(version: 20141003113152) do
 
   create_table "accession_panels", force: true do |t|
     t.integer  "accession_id"
@@ -254,27 +254,39 @@ ActiveRecord::Schema.define(version: 20141002074232) do
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "email"
-    t.string   "crypted_password",                             null: false
-    t.string   "password_salt",                                null: false
-    t.string   "persistence_token",                            null: false
+    t.string   "encrypted_password",                                 null: false
     t.string   "initials"
     t.string   "language"
     t.datetime "last_request_at"
-    t.datetime "last_login_at"
-    t.datetime "current_login_at"
-    t.string   "last_login_ip"
-    t.string   "current_login_ip"
-    t.integer  "login_count",                  default: 0,     null: false
-    t.string   "first_name",        limit: 32
-    t.string   "last_name",         limit: 32
-    t.string   "prefix",            limit: 16
-    t.string   "suffix",            limit: 16
-    t.boolean  "admin",                        default: false, null: false
+    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at"
+    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip"
+    t.integer  "sign_in_count",                      default: 0,     null: false
+    t.string   "first_name",             limit: 32
+    t.string   "last_name",              limit: 32
+    t.string   "prefix",                 limit: 16
+    t.string   "suffix",                 limit: 16
+    t.boolean  "admin",                              default: false, null: false
     t.string   "register"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "confirmation_token",     limit: 255
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "reset_password_token",   limit: 255
+    t.datetime "reset_password_sent_at"
+    t.string   "remember_token",         limit: 255
+    t.datetime "remember_created_at"
+    t.string   "unlock_token",           limit: 255
+    t.datetime "locked_at"
+    t.integer  "failed_attempts",                    default: 0
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

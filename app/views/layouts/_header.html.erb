@@ -1,16 +1,16 @@
 <div id="header">
   <div id="welcome">
-    <% if @current_user %>
-      <span><%=h @current_user.name_to_display %></span>
+    <% if current_user %>
+      <span><%= current_user.name_to_display %></span>
       <span>&nbsp;&nbsp;</span>
 
       <%= link_to t('.profile'), profile_path %> |
-      <% if @current_user.admin? %>
+      <% if current_user.admin? %>
         <%= link_to t('.admin'), admin_path %> |
       <% end %>
-      <%= link_to t('.logout'), logout_path %>
+      <%= link_to t('.logout'), destroy_user_session_path, method: :delete %>
     <% else %>
-      <%= link_to "Login", login_path %> |
+      <%= link_to "Login", user_session_path %> |
       <%= link_to "About", "#about" %>
     <% end %>
   </div>

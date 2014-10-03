@@ -5,7 +5,7 @@ body.login {
   background: whitesmoke;
 }
 
-#new_user_session {
+.new_user {
   margin-left: 8px;
   padding: 16px 16px 40px 16px;
   font-weight: normal;
@@ -21,7 +21,54 @@ body.login {
   box-shadow: rgba(200,200,200,1) 0 4px 18px;
 }
 
-#user_session_submit {
+.new_user p {
+  margin-bottom: 0;
+}
+
+h1 a {
+  background: image-url("logo.png") no-repeat center center;
+  background: rgba(0,0,0,0) image-url("logo.svg") no-repeat center center;
+  width: 326px;
+  height: 130px;
+  text-indent: -9999px;
+  overflow: hidden;
+  padding-bottom: 15px;
+  display: block;
+}
+
+#login { width: 320px; margin: 7em auto; }
+
+.errors {
+  margin: 0 0 16px 8px;
+  color: rgb(51, 51, 51);
+  background-color: rgb(255, 235, 232);
+  border-color: #f40011;
+  border-width: 1px;
+  border-style: solid;
+  padding: 12px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+label {
+  color: #777;
+  font-size: 13px;
+}
+
+input[type=email], input[type=password] {
+  font-size: 24px;
+  width: 97%;
+  padding: 3px;
+  margin-top: 2px;
+  margin-right: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #e5e5e5;
+  background: #fbfbfb;
+}
+
+.submit {
   -webkit-appearance: none;
   float: right;
   font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
@@ -39,51 +86,4 @@ body.login {
   cursor: pointer;
   text-decoration: none;
   margin-top: -3px;
-}
-
-#new_user_session p {
-  margin-bottom: 0;
-}
-
-#login label {
-  color: #777;
-  font-size: 13px;
-}
-
-h1 a {
-  background: image-url("logo.png") no-repeat center center;
-  background: rgba(0,0,0,0) image-url("logo.svg") no-repeat center center;
-  width: 326px;
-  height: 130px;
-  text-indent: -9999px;
-  overflow: hidden;
-  padding-bottom: 15px;
-  display: block;
-}
-
-#login { width: 320px; margin: 7em auto; }
-
-#login_error, .message, .errorExplanation {
-  margin: 0 0 16px 8px;
-  color: rgb(51, 51, 51);
-  background-color: rgb(255, 235, 232);
-  border-color: #f40011;
-  border-width: 1px;
-  border-style: solid;
-  padding: 12px;
-  -moz-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-}
-
-#user_session_username, #user_session_password {
-  font-size: 24px;
-  width: 97%;
-  padding: 3px;
-  margin-top: 2px;
-  margin-right: 6px;
-  margin-bottom: 16px;
-  border: 1px solid #e5e5e5;
-  background: #fbfbfb;
 }

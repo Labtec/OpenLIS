@@ -1,6 +1,4 @@
 class ResultsController < ApplicationController
-  before_filter :require_user
-
   def index
     @accession = Accession.find(params[:accession_id])
     @results = @accession.results.all(:order => "lab_tests.position", :include => [{:accession => :patient}, {:lab_test => [:department, :unit]}, :lab_test_value]).group_by(&:department)

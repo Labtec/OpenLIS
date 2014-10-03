@@ -1,5 +1,4 @@
 class AccessionsController < ApplicationController
-  before_filter :require_user
   before_filter :set_recent_patients_list, except: [:destroy]
 
   def index
