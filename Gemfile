@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0.beta2'
 
+gem 'acts_as_list'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', github: 'plataformatec/devise', branch: 'lm-rails-4-2'
 gem 'jbuilder', '~> 2.0'
