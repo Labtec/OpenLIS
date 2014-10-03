@@ -10,8 +10,8 @@ class Panel < ActiveRecord::Base
   validates_presence_of :code
   validates_uniqueness_of :code
 
-  named_scope :with_price, :include => :prices, :conditions => ["prices.amount IS NOT NULL"]
-  named_scope :sorted, :order => :name
+  scope :with_price, -> { where('prices.amount IS NOT NULL').include(:prices) }
+  scope :sorted, -> { order(name: :asc) }
 
   def lab_test_code_list
     list = []

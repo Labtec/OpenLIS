@@ -132,7 +132,7 @@ private
 
   def at_least_one_panel_or_test_selected
     if panel_ids.blank? && lab_test_ids.blank?
-      errors.add_to_base I18n.t('flash.accessions.at_least_one_panel_or_test_selected')
+      errors.add(:accession, I18n.t('flash.accessions.at_least_one_panel_or_test_selected'))
     end
   end
 end
