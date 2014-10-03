@@ -1,7 +1,9 @@
 <div class="log">
   <% if (@reported_accessions.blank? && @pending_accessions.blank?) %>
     <%= t('.no_requisitions_yet') %><br />
-    <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
+    <% if @patient %>
+      <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
+    <% end %>
   <% end %>
 
   <% unless @pending_accessions.blank? %>
@@ -12,9 +14,9 @@
   <% end %>
 
   <div id='pending_paginate'>
-    <%= twill_paginate @pending_accessions, :class => 'pending_pagination', :param_name => 'pending_page' %>
-    <div id="pending_paging" style="display:none">  
-      <%= image_tag("loading.gif", :size => "16x16") %>
+    <%= twill_paginate @pending_accessions, class: 'pending_pagination', param_name: :pending_page %>
+    <div id="pending_paging" style="display:none">
+      <%= image_tag('loading.gif', size: '16x16') %>
     </div>
   </div>
 
@@ -28,7 +30,7 @@
   <div id='paginate'>
     <%= twill_paginate @reported_accessions %>
     <div id="paging" style="display:none">  
-      <%= image_tag("loading.gif", :size => "16x16") %>
+      <%= image_tag('loading.gif', size: '16x16') %>
     </div>
   </div>
 </div>
