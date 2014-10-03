@@ -27,7 +27,7 @@ module ApplicationHelper
       items.delete_at(2)
       items.insert(2, content_tag(:li, link_to(t('.insurance_providers'), :admin_insurance_providers), :class => "active"))
     end
-    content_tag :ul, items
+    content_tag :ul, safe_join(items)
   end
 
   def twill_paginate(collection = nil, options = {})
