@@ -1,6 +1,4 @@
 class DoctorsController < ApplicationController
-  before_filter :require_user
-
   def index
     @doctors = Doctor.limit(10).search_for_name(params[:term])
 

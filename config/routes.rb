@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  root 'patients#index'
+  devise_for :users, path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+  }
 
-  get 'login' => 'user_sessions#new'
-  get 'logout' => 'user_sessions#destroy'
-  resources :user_sessions
+  root 'patients#index'
 
   resources :users
   get 'profile' => 'users#edit'
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # map :admin, controller: 'admin/users', action: :index
+  get 'admin', controller: 'admin/users', action: :index
 
   namespace :admin do
     resources :users

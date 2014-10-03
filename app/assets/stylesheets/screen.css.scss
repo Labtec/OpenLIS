@@ -85,6 +85,8 @@ form {
   form div.first_name,
   form div.last_name {
     width: 172px; }
+  form div.register {
+    width: 150px; }
   form div.given_name input,
   form div.middle_name input,
   form div.family_name input,
@@ -109,6 +111,8 @@ form {
   form div.first_name input,
   form div.last_name input {
     width: 172px; }
+  form div.register input {
+    width: 150px; }
   form div.insured input {
     width: 216px; }
   form div.admin input,
@@ -575,13 +579,13 @@ td.range{
   width: 50px;
   height: 50px; }
 
-.avatar_0 { background: url(/images/avatars.png) 0px -150px no-repeat; }
-.avatar_1 { background: url(/images/avatars.png) 0px 0px no-repeat; }
-.avatar_2 { background: url(/images/avatars.png) 0px -30px no-repeat; }
-.avatar_3 { background: url(/images/avatars.png) 0px -60px no-repeat; }
-.avatar_F { background: url(/images/avatars.png) 0px -90px no-repeat; }
-.avatar_M { background: url(/images/avatars.png) 0px -120px no-repeat; }
-.avatar_U { background: url(/images/avatars.png) 0px -150px no-repeat; }
+.avatar_0 { background: image-url('avatars.png') 0px -150px no-repeat; }
+.avatar_1 { background: image-url('avatars.png') 0px 0px no-repeat; }
+.avatar_2 { background: image-url('avatars.png') 0px -30px no-repeat; }
+.avatar_3 { background: image-url('avatars.png') 0px -60px no-repeat; }
+.avatar_F { background: image-url('avatars.png') 0px -90px no-repeat; }
+.avatar_M { background: image-url('avatars.png') 0px -120px no-repeat; }
+.avatar_U { background: image-url('avatars.png') 0px -150px no-repeat; }
 
 .bottom_card{
   height: 15px;
@@ -786,7 +790,7 @@ td.range{
     padding: 4px 15px;
     text-decoration: none; }
   .menu a:hover {
-    background: mediumblue //#006;
+    background: mediumblue #006;
     color: #fff; }
 
 .errorExplanation {
@@ -810,10 +814,12 @@ td.range{
       list-style-type: disc;
       padding: 0px; }
 
-.fieldWithErrors input {
+.fieldWithErrors input,
+.field_with_errors input {
   background: seashell; }
 
-.fieldWithErrors label {
+.fieldWithErrors label,
+.field_with_errors label {
   color: salmon; }
 
 .flash_warning, .flash_error, .flash_alert {
