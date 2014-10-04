@@ -5,7 +5,8 @@
     <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
   <% end %>
   <%= form_for shallow_args(@patient, @accession), html: { novalidate: '' } do |f| %>
-    <%#= f.error_messages %>
+    <%= render 'shared/error_messages', object: @accession %>
+
     <h2><%= t('.order_details') %></h2>
 
     <div class="doctor_name">

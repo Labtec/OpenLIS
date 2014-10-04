@@ -1,5 +1,5 @@
 <%= form_for [:admin, @panel] do |f| %>
-  <%#= f.error_messages %>
+  <%= render 'shared/error_messages', object: @panel %>
 
   <div class="code">
     <%= f.label :code %>

@@ -1,5 +1,5 @@
 <%= form_for @patient, html: { novalidate: "" } do |f| %>
-  <%#= f.error_messages %>
+  <%= render 'shared/error_messages', object: @patient %>
 
   <div class="given_name">
     <%= f.label :given_name, t('.given_name'), class: 'required' %>

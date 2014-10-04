@@ -1,5 +1,5 @@
 <%= form_for [:admin, @lab_test_value] do |f| %>
-  <%#= f.error_messages %>
+  <%= render 'shared/error_messages', object: @lab_test_value %>
 
   <div class="value">
     <%= f.label :value %>

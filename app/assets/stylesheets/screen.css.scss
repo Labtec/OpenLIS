@@ -793,32 +793,33 @@ td.range{
     background: mediumblue #006;
     color: #fff; }
 
-.errorExplanation {
+.error_explanation {
   background-color: seashell;
   border: 2px solid salmon;
   font-size: 12px;
   padding: 8px;
   margin: 8px 13px 0px 13px; }
-  .errorExplanation h2 {
+  .error_explanation h2 {
     background: salmon;
     color: white;
     font-size: 12px;
     font-weight: bold;
     margin: -8px;
     padding: 5px; }
-  .errorExplanation ul {
+  .error_explanation ul {
     margin-left: 30px; }
-    .errorExplanation ul li {
+    .error_explanation ul li {
       border: none;
       font-size: 12px;
       list-style-type: disc;
       padding: 0px; }
 
-.fieldWithErrors input,
+.field_with_errors {
+  margin: 0px;
+}
 .field_with_errors input {
   background: seashell; }
 
-.fieldWithErrors label,
 .field_with_errors label {
   color: salmon; }
 

@@ -1,0 +1,11 @@
+<% if object.errors.any? %>
+  <div class="error_explanation">
+    <h2><%= t('activerecord.errors.template.header', count: object.errors.count, model: object.model_name.human) %></h2>
+    <p><%= t('activerecord.errors.template.body') %></p>
+    <ul>
+      <% object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

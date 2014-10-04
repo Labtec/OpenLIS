@@ -1,5 +1,6 @@
 <%= form_for [:admin, @reference_range] do |f| %>
-  <%#= f.error_messages %>
+  <%= render 'shared/error_messages', object: @reference_range %>
+
   <div class="lab_test_id">
     <%= f.label :lab_test_id %>
     <%= f.collection_select :lab_test_id, LabTest.all, :id, :name %>

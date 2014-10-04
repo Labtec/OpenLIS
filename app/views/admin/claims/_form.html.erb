@@ -1,6 +1,6 @@
 <fieldset>
 <% labeled_form_for [:admin, @claim] do |f| %>
-  <%= f.error_messages %>
+  <%= render 'shared/error_messages', object: @claim %>
   <h2>
     <%= f.object.accession.patient.name_last_comma_first_mi %>
     (<%= f.object.accession_id %>)
