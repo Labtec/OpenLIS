@@ -29,20 +29,20 @@ class Patient < ActiveRecord::Base
 
   scope :recent, -> { order(updated_at: :desc).limit(10) }
   scope :sorted, -> { order(family_name: :asc) }
-  # scope :ordered, lambda { |*order|
-  #   { order: order.flatten.first || 'created_at DESC' }
-  # }
+  scope :ordered, lambda { |*order|
+    { order: order.flatten.first || 'created_at DESC' }
+  }
 
   before_save :titleize_names
 
   def self.search(query, page)
-    #sql_string = '(given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?)'
-    #terms = query.to_s.split
-    #conditions = [([sql_string] * terms.size).join(" AND ")]
-    #terms.each do |term|
-    #  conditions << "%#{term}%".to_a * 5 # number of ?s in `sql_string`
-    #end
-    paginate per_page: 10, page: page#, conditions: conditions.flatten
+    sql_string = '(given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?)'
+    terms = query.to_s.split
+    conditions = [([sql_string] * terms.size).join(" AND ")]
+    terms.each do |term|
+      conditions << Array("%#{term}%") * 5 # number of ?s in `sql_string`
+    end
+    paginate(per_page: 10, page: page).where(conditions.flatten)
   end
 
   def full_name
