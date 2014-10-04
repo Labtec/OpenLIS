@@ -1,16 +1,22 @@
-<% form_for [:admin, @lab_test_value] do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :value %><br />
+<%= form_for [:admin, @lab_test_value] do |f| %>
+  <%#= f.error_messages %>
+
+  <div class="value">
+    <%= f.label :value %>
     <%= f.text_field :value %>
-  </p>
-  <p>
-    <%= f.label :flag %><br />
+  </div>
+
+  <div class="flag">
+    <%= f.label :flag %>
     <%= f.text_field :flag %>
-  </p>
-  <p>
-    <%= f.label :note %><br />
+  </div>
+
+  <div class="note">
+    <%= f.label :note %>
     <%= f.text_area :note %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+  </div>
+
+  <div class="buttonbar">
+    <%= f.submit 'Submit' %>
+  </div>
 <% end %>
