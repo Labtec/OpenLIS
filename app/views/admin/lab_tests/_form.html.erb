@@ -1,13 +1,45 @@
-<% labeled_form_for [:admin, @lab_test] do |f| %>
-  <%= f.error_messages %>
-  <%=h f.collection_select :department_id, Department.all, :id, :name %>
-  <%= f.text_field :code %>
-  <%= f.text_field :name %>
-  <%=h f.collection_select :unit_id, Unit.all, :id, :name, :include_blank => true, :label => "Units"%>
-  <%= f.text_field :decimals %>
-  <%= f.check_box :derivation %>
-  <%= f.text_field :procedure %>
-  <%= f.text_area :description %>
+<%= form_for [:admin, @lab_test] do |f| %>
+  <%#= f.error_messages %>
+
+  <div class="department_id">
+    <%= f.label :department_id %>
+    <%= f.collection_select :department_id, Department.all, :id, :name %>
+  </div>
+
+  <div class="code">
+    <%= f.label :code %>
+    <%= f.text_field :code %>
+  </div>
+
+  <div class="name">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="unit_id">
+    <%= f.label :unit_id, 'Units' %>
+    <%= f.collection_select :unit_id, Unit.all, :id, :name, include_blank: true %>
+  </div>
+
+  <div class="decimals">
+    <%= f.label :decimals %>
+    <%= f.text_field :decimals %>
+  </div>
+
+  <div class="derivation">
+    <%= f.label :derivation %>
+    <%= f.check_box :derivation %>
+  </div>
+
+  <div class="procedure">
+    <%= f.label :procedure %>
+    <%= f.text_field :procedure %>
+  </div>
+
+  <div class="description">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
 
   <fieldset>
     <legend>Also Allow</legend>
@@ -39,19 +71,21 @@
   <fieldset>
     <legend>Values</legend>
       <div class="values">
-        <%= f.many_check_boxes :lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag %>
+        <%#= f.many_check_boxes :lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag %>
       </div>
   </fieldset>
 
+  <% unless @lab_test.new_record? %>
   <fieldset>
     <legend>Prices</legend>
     <% f.object.prices.each do |price| %>
       <%= price.price_list.name %>:
       <%= number_to_currency price.amount %>
-      <%= link_to "Edit", edit_admin_price_path(price.id) %><br />
+      <%= link_to 'Edit', edit_admin_price_path(price.id) %><br />
     <% end %>
-    <p><%= link_to "New Price", new_admin_lab_test_price_path(@lab_test) %></p>
+    <p><%= link_to 'New Price', new_admin_lab_test_price_path(@lab_test) %></p>
   </fieldset>
-  
-  <%= f.submit "Submit" %>
+  <% end %>
+
+  <%= f.submit 'Submit' %>
 <% end %>

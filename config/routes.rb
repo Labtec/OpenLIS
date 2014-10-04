@@ -41,8 +41,11 @@ Rails.application.routes.draw do
     resources :lab_test_values
     resources :lab_test_value_options
     resources :reference_ranges
-    resources :lab_tests, collection: { sort: :patch } do
+    resources :lab_tests do
       resources :prices
+      collection do
+        patch 'sort'
+      end
     end
     resources :units
     resources :departments

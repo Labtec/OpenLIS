@@ -5,25 +5,25 @@ class LabTest < ActiveRecord::Base
   belongs_to :department
   belongs_to :unit
   has_many :reference_ranges
-  has_many :lab_test_panels, :dependent => :destroy
-  has_many :panels, :through => :lab_test_panels
-  has_many :results, :dependent => :destroy
-  has_many :accessions, :through => :results
-  has_many :lab_test_value_option_joints, :dependent => :destroy
-  has_many :lab_test_values, :through => :lab_test_value_option_joints
-  has_many :prices, :as => :priceable, :dependent => :destroy
-  accepts_nested_attributes_for :prices, :allow_destroy => true
+  has_many :lab_test_panels, dependent: :destroy
+  has_many :panels, through: :lab_test_panels
+  has_many :results, dependent: :destroy
+  has_many :accessions, through: :results
+  has_many :lab_test_value_option_joints, dependent: :destroy
+  has_many :lab_test_values, through: :lab_test_value_option_joints
+  has_many :prices, as: :priceable, dependent: :destroy
+  accepts_nested_attributes_for :prices, allow_destroy: true
 
   validates_presence_of :code
   validates_uniqueness_of :code
 
-  acts_as_list :scope => :department
+  acts_as_list scope: :department
 
-  #default_scope :order => "position ASC"
+  default_scope { order(position: :asc) }
 
   scope :sorted, -> { order(name: :asc) }
   scope :with_price, -> { where('prices.amount IS NOT NULL').include(:prices) }
-  #scope :with_code, lambda { |code| { :conditions => ["code = ?", code] } }
+  #scope :with_code, lambda { |code| { conditions: ["code = ?", code] } }
 
   def also_allow=(also_allow)
     if also_allow == 'also_numeric'
