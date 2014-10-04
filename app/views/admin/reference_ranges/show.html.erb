@@ -1,44 +1,44 @@
-<% title "Reference Range" %>
+<% title 'Reference Range' %>
 
 <p>
   <strong>Test:</strong>
-  <%=h @reference_range.lab_test.name %>
+  <%= @reference_range.lab_test.name %>
 </p>
 <p>
   <strong>Min:</strong>
-  <%=h @reference_range.min %>
+  <%= @reference_range.min %>
 </p>
 <p>
   <strong>Max:</strong>
-  <%=h @reference_range.max %>
+  <%= @reference_range.max %>
 </p>
 <p>
   <strong>Gender:</strong>
-  <%=h @reference_range.gender %>
+  <%= @reference_range.gender %>
 </p>
 <p>
   <strong>Min Age:</strong>
-  <%=h @reference_range.min_age %>
+  <%= @reference_range.min_age %>
 </p>
 <p>
   <strong>Max Age:</strong>
-  <%=h @reference_range.max_age %>
+  <%= @reference_range.max_age %>
 </p>
 <p>
   <strong>Age Unit:</strong>
-  <%=h @reference_range.age_unit %>
+  <%= @reference_range.age_unit %>
 </p>
 <p>
   <strong>Animal Type:</strong>
-  <%=h @reference_range.animal_type_name %>
+  <%= @reference_range.animal_type_name %>
 </p>
 <p>
   <strong>Description:</strong>
-  <%=h @reference_range.description %>
+  <%= @reference_range.description %>
 </p>
 
 <p>
-  <%= link_to "Edit", edit_admin_reference_range_path(@reference_range) %> |
-  <%= link_to "Destroy", [:admin, @reference_range], :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", admin_reference_ranges_path %>
+  <%= link_to 'Edit', edit_admin_reference_range_path(@reference_range) %> |
+  <%= link_to 'Destroy', [:admin, @reference_range], method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'View All', admin_reference_ranges_path %>
 </p>

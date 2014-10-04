@@ -1,40 +1,51 @@
-<% form_for [:admin, @reference_range] do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :lab_test_id %><br />
-    <%=h f.collection_select :lab_test_id, LabTest.all, :id, :name %>
-  </p>
-  <p>
-    <%= f.label :min %><br />
+<%= form_for [:admin, @reference_range] do |f| %>
+  <%#= f.error_messages %>
+  <div class="lab_test_id">
+    <%= f.label :lab_test_id %>
+    <%= f.collection_select :lab_test_id, LabTest.all, :id, :name %>
+  </div>
+
+  <div class="min">
+    <%= f.label :min %>
     <%= f.text_field :min %>
-  </p>
-  <p>
-    <%= f.label :max %><br />
+  </div>
+
+  <div class="max">
+    <%= f.label :max %>
     <%= f.text_field :max %>
-  </p>
-  <p>
-    <%= f.label :gender %><br />
+  </div>
+
+  <div class="gender">
+    <%= f.label :gender %>
     <%= f.select :gender, ReferenceRange::GENDERS %>
-  </p>
-  <p>
-    <%= f.label :min_age %><br />
+  </div>
+
+  <div class="min_age">
+    <%= f.label :min_age %>
     <%= f.text_field :min_age %>
-  </p>
-  <p>
-    <%= f.label :max_age %><br />
+  </div>
+
+  <div class="max_age">
+    <%= f.label :max_age %>
     <%= f.text_field :max_age %>
-  </p>
-  <p>
-    <%= f.label :age_unit %><br />
+  </div>
+
+  <div class="age_unit">
+    <%= f.label :age_unit %>
     <%= f.select :age_unit, ReferenceRange::AGE_UNITS, :prompt => "Select" %>
-  </p>
-  <p>
-    <%= f.label :animal_type %><br />
+  </div>
+
+  <div class="animal_type">
+    <%= f.label :animal_type %>
     <%= f.select :animal_type, ReferenceRange::ANIMAL_TYPES %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
+  </div>
+
+  <div class="description">
+    <%= f.label :description %>
     <%= f.text_field :description %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+  </div>
+
+  <div class="buttonbar">
+    <%= f.submit 'Submit' %>
+  </div>
 <% end %>

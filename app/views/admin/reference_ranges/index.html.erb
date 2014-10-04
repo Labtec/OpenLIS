@@ -1,6 +1,7 @@
-<% title "Reference Ranges" %>
+<% title 'Reference Ranges' %>
 
-<h3>If there is a max age value, there must be a min age value. In the future, the program will validate this.</h3>
+<h3>If there is a max age value, there must be a min age value.
+  In the future, the program will validate this.</h3>
 
 <table>
   <tr>
@@ -17,22 +18,24 @@
     <th></th>
     <th></th>
   </tr>
-  <% for reference_range in @reference_ranges %>
+  <% @reference_ranges.each do |reference_range| %>
     <tr>
-      <td><%=h reference_range.lab_test.name_with_description %></td>
-      <td><%=h reference_range.min %></td>
-      <td><%=h reference_range.max %></td>
-      <td><%=h reference_range.gender %></td>
-      <td><%=h reference_range.min_age %></td>
-      <td><%=h reference_range.max_age %></td>
-      <td><%=h reference_range.age_unit %></td>
-      <td><%=h reference_range.animal_type_name %></td>
-      <td><%=h reference_range.description %></td>
-      <td><%= link_to "Show", [:admin, reference_range] %></td>
-      <td><%= link_to "Edit", edit_admin_reference_range_path(reference_range) %></td>
-      <td><%= link_to "Destroy", [:admin, reference_range], :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= reference_range.lab_test.name_with_description %></td>
+      <td><%= reference_range.min %></td>
+      <td><%= reference_range.max %></td>
+      <td><%= reference_range.gender %></td>
+      <td><%= reference_range.min_age %></td>
+      <td><%= reference_range.max_age %></td>
+      <td><%= reference_range.age_unit %></td>
+      <td><%= reference_range.animal_type_name %></td>
+      <td><%= reference_range.description %></td>
+      <td><%= link_to 'Show', [:admin, reference_range] %></td>
+      <td><%= link_to 'Edit', edit_admin_reference_range_path(reference_range) %></td>
+      <td>
+        <%= link_to 'Destroy', [:admin, reference_range], method: :delete,
+          data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Reference Range", new_admin_reference_range_path %></p>
+<p><%= link_to 'New Reference Range', new_admin_reference_range_path %></p>
