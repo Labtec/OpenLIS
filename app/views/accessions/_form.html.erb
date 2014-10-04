@@ -69,7 +69,12 @@
     <h2><%= t('.order_panels') %></h2>
 
     <div id="panels">
-      <%#= f.many_check_boxes :panel_ids, Panel.sorted, :id, :name_with_description %>
+      <%= f.collection_check_boxes(:panel_ids, Panel.sorted, :id, :name_with_description) do |b| %>
+        <div class="panel">
+          <%= b.check_box %>
+          <%= b.label(class: 'checkbox') %>
+        </div>
+      <% end %>
     </div>
 
     <h2><%= t('.order_tests') %></h2>
@@ -82,7 +87,12 @@
       </ul>
       <% for department in @departments %>
         <div id="<%= department.id %>">
-          <%#= f.many_check_boxes :lab_test_ids, department.lab_tests, :id, :name_with_description %>
+          <%= f.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |b| %>
+            <div class="lab_test">
+              <%= b.check_box %>
+              <%= b.label(class: 'checkbox') %>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>

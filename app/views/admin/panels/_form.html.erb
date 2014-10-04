@@ -24,7 +24,12 @@
   <fieldset>
     <legend>Values</legend>
       <div class="values">
-        <%#= f.many_check_boxes :lab_test_ids, LabTest.all, :id, :name %>
+        <%= f.collection_check_boxes(:lab_test_ids, LabTest.all, :id, :name) do |b| %>
+          <div class="lab_test">
+            <%= b.check_box %>
+            <%= b.label(class: 'checkbox') %>
+          </div>
+        <% end %>
       </div>
   </fieldset>
 
