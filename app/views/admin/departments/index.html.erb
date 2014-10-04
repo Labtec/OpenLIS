@@ -1,26 +1,26 @@
-<% title "Departments" %>
+<% title 'Departments' %>
 
-<% javascript "tabs", "ui.tabs.paging" %>
+<% javascript 'tabs', 'ui.tabs.paging' %>
 
 <div id="departments">
   <ul>
-    <% for department in @departments %>
-      <li><%= link_to department.name, admin_departments_url(:anchor => department.id) %></li>
+    <% @departments.each do |department| %>
+      <li><%= link_to department.name, admin_departments_url(anchor: department.id) %></li>
     <% end %>
-    <li><%= link_to "+", new_admin_department_path %></li>
+    <li><%= link_to '+', new_admin_department_path %></li>
   </ul>
-  
-  <% for department in @departments %>
+
+  <% @departments.each do |department| %>
     <div id="<%= department.id %>">
       <ul>
-      <% for lab_test in department.lab_tests %>
-        <li><%=h sanitize lab_test.name %></li>
+      <% department.lab_tests.each do |lab_test| %>
+        <li><%= sanitize lab_test.name %></li>
       <% end %>
       </ul>
       <div class="buttonbar">
         <p>
-          <%= link_to "Edit", edit_admin_department_path(department) %> |
-          <%= link_to "Delete", [:admin, department], :confirm => 'Are you sure?', :method => :delete %>
+          <%= link_to 'Edit', edit_admin_department_path(department) %> |
+          <%= link_to 'Delete', [:admin, department], method: :delete, data: { confirm: 'Are you sure?' } %>
         </p>
       </div>
     </div>
