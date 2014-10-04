@@ -1,8 +1,12 @@
-<% form_for [:admin, @unit] do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
+<%= form_for [:admin, @unit] do |f| %>
+  <%#= f.error_messages %>
+
+  <div class="name">
+    <%= f.label :name %>
     <%= f.text_field :name %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+  </div>
+
+  <div class="buttonbar">
+    <%= f.submit 'Submit' %>
+  </div>
 <% end %>

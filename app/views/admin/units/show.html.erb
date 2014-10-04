@@ -1,12 +1,12 @@
-<% title "Unit" %>
+<% title 'Unit' %>
 
 <p>
   <strong>Name:</strong>
-  <%=h @unit.name %>
+  <%= @unit.name %>
 </p>
 
 <p>
-  <%= link_to "Edit", edit_admin_unit_path(@unit) %> |
-  <%= link_to "Destroy", [:admin, @unit], :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", admin_units_path %>
+  <%= link_to 'Edit', edit_admin_unit_path(@unit) %> |
+  <%= link_to 'Destroy', [:admin, @unit], method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'View All', admin_units_path %>
 </p>
