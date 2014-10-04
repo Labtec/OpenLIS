@@ -1,4 +1,4 @@
-<% title "Doctors" %>
+<% title 'Doctors' %>
 
 <h3>If you erase a Doctor, all its requisitions will be gone!</h3>
 
@@ -8,12 +8,15 @@
   </tr>
   <% for doctor in @doctors %>
     <tr>
-      <td><%=h doctor.name %></td>
-      <td><%= link_to "Show", [:admin, doctor] %></td>
-      <td><%= link_to "Edit", edit_admin_doctor_path(doctor) %></td>
-      <td><%= link_to "Destroy", [:admin, doctor], :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= doctor.name %></td>
+      <td><%= link_to 'Show', [:admin, doctor] %></td>
+      <td><%= link_to 'Edit', edit_admin_doctor_path(doctor) %></td>
+      <td>
+        <%= link_to 'Destroy', [:admin, doctor], method: :delete,
+          data: { confirm: 'Are you sure?' } %>
+      </td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Doctor", new_admin_doctor_path %></p>
+<p><%= link_to 'New Doctor', new_admin_doctor_path %></p>
