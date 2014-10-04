@@ -1,25 +1,43 @@
-<% labeled_form_for [:admin, @panel] do |f| %>
-  <%= f.error_messages %>
+<%= form_for [:admin, @panel] do |f| %>
+  <%#= f.error_messages %>
+
+  <div class="code">
+    <%= f.label :code %>
     <%= f.text_field :code %>
+  </div>
+
+  <div class="name">
+    <%= f.label :name %>
     <%= f.text_field :name %>
+  </div>
+
+  <div class="procedure">
+    <%= f.label :procedure %>
     <%= f.text_field :procedure %>
+  </div>
+
+  <div class="description">
+    <%= f.label :description %>
     <%= f.text_field :description %>
+  </div>
 
   <fieldset>
     <legend>Values</legend>
       <div class="values">
-        <%= f.many_check_boxes :lab_test_ids, LabTest.all, :id, :name %>
+        <%#= f.many_check_boxes :lab_test_ids, LabTest.all, :id, :name %>
       </div>
   </fieldset>
 
+  <% unless @panel.new_record? %>
   <fieldset>
     <legend>Prices</legend>
     <% f.object.prices.each do |price| %>
       <%= price.price_list.name %>:
       <%= number_to_currency price.amount %><br />
     <% end %>
-    <p><%= link_to "New Price", new_admin_panel_price_path(@panel) %></p>
+    <p><%= link_to 'New Price', new_admin_panel_price_path(@panel) %></p>
   </fieldset>
+  <% end %>
 
-  <p><%= f.submit "Submit" %></p>
+  <p><%= f.submit 'Submit' %></p>
 <% end %>

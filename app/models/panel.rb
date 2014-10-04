@@ -1,11 +1,11 @@
 class Panel < ActiveRecord::Base
   # Consider caching this model
   has_many :lab_test_panels
-  has_many :lab_tests, :through => :lab_test_panels
+  has_many :lab_tests, through: :lab_test_panels
   has_many :accession_panels
-  has_many :accessions, :through => :accession_panels
-  has_many :prices, :as => :priceable, :dependent => :destroy
-  accepts_nested_attributes_for :prices, :allow_destroy => true
+  has_many :accessions, through: :accession_panels
+  has_many :prices, as: :priceable, dependent: :destroy
+  accepts_nested_attributes_for :prices, allow_destroy: true
 
   validates_presence_of :code
   validates_uniqueness_of :code

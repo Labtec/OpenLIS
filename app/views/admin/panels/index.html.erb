@@ -1,4 +1,4 @@
-<% title "Panels" %>
+<% title 'Panels' %>
 
 <table>
   <tr>
@@ -8,18 +8,21 @@
     <th>Description</th>
     <th>Lab Tests</th>
   </tr>
-  <% for panel in @panels %>
+  <% @panels.each do |panel| %>
     <tr>
-      <td><%=h panel.code %></td>
-      <td><%=h sanitize panel.name %></td>
-      <td><%=h panel.procedure %></td>
-      <td><%=h panel.description %></td>
-      <td><%=h panel.lab_test_code_list %></td>
-      <td><%= link_to "Show", [:admin, panel] %></td>
-      <td><%= link_to "Edit", edit_admin_panel_path(panel) %></td>
-      <td><%= link_to "Destroy", [:admin, panel], :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= panel.code %></td>
+      <td><%= sanitize panel.name %></td>
+      <td><%= panel.procedure %></td>
+      <td><%= panel.description %></td>
+      <td><%= panel.lab_test_code_list %></td>
+      <td><%= link_to 'Show', [:admin, panel] %></td>
+      <td><%= link_to 'Edit', edit_admin_panel_path(panel) %></td>
+      <td>
+        <%= link_to 'Destroy', [:admin, panel], method: :delete,
+          data: { confirm: 'Are you sure?' } %>
+      </td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Panel", new_admin_panel_path %></p>
+<p><%= link_to 'New Panel', new_admin_panel_path %></p>

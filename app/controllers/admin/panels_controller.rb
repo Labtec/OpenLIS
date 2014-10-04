@@ -1,44 +1,50 @@
 class Admin::PanelsController < Admin::ApplicationController
   def index
-    @panels = Panel.all(:include => :lab_tests)
+    @panels = Panel.all #(include: :lab_tests)
   end
-  
+
   def show
     @panel = Panel.find(params[:id])
   end
-  
+
   def new
     @panel = Panel.new
   end
-  
+
   def create
-    @panel = Panel.new(params[:panel])
+    @panel = Panel.new(panel_params)
     if @panel.save
-      flash[:notice] = "Successfully created panel."
-      redirect_to [:admin, @panel], :only_path => true
+      flash[:notice] = 'Successfully created panel.'
+      redirect_to [:admin, @panel]
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
-  
+
   def edit
     @panel = Panel.find(params[:id])
   end
-  
+
   def update
     @panel = Panel.find(params[:id])
-    if @panel.update_attributes(params[:panel])
-      flash[:notice] = "Successfully updated panel."
-      redirect_to [:admin, @panel], :only_path => true
+    if @panel.update_attributes(panel_params)
+      flash[:notice] = 'Successfully updated panel.'
+      redirect_to [:admin, @panel]
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
-  
+
   def destroy
     @panel = Panel.find(params[:id])
     @panel.destroy
-    flash[:notice] = "Successfully destroyed panel."
+    flash[:notice] = 'Successfully destroyed panel.'
     redirect_to admin_panels_url
+  end
+
+  private
+
+  def panel_params
+    params.require(:panel).permit(:code, :name, :description, :procedure)
   end
 end
