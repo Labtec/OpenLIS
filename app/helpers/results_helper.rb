@@ -82,9 +82,9 @@ module ResultsHelper
   def registration_number(inline = false)
     if current_user.register.present?
       if inline
-        " / #{t('.register')} #{current_user.register}"
+        " / #{t('results.index.register')} #{current_user.register}"
       else
-        "#{t('.register')} #{current_user.register}"
+        "#{t('results.index.register')} #{current_user.register}"
       end
     else
       ''
