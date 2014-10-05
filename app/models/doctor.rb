@@ -6,15 +6,13 @@ class Doctor < ActiveRecord::Base
 
   before_save :purge_trailing_spaces
 
-  #scope :limit, lambda { |limit| {:limit => limit} }
-  #scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.try(:downcase)}%"]} }
+  scope :search_for_name, ->(term) { where(['lower(name) LIKE ?', "%#{term.try(:downcase)}%"]) }
 
   default_scope { order(name: :asc) }
 
 private
 
   def purge_trailing_spaces
-    self.name = name.squeeze(' ').strip if name
+    self.name = name.squish if name
   end
-
 end

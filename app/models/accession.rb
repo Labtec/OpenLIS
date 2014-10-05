@@ -78,7 +78,7 @@ class Accession < ActiveRecord::Base
     if name.blank?
       self.doctor_id = nil
     else
-      self.doctor = Doctor.find_or_create_by_name(name)
+      self.doctor = Doctor.where(name: name).first_or_create
     end
   end
 
