@@ -119,7 +119,6 @@ class Result < ActiveRecord::Base
   # with min and max methods for arrays.
   def has_ranges?
     if reference_ranges.present?
-      ranges = []
       @base_ranges ||= reference_ranges.for_its_type(patient.animal_type).for_its_gender(accession.patient.gender).for_its_age_in_units(accession.patient_age[:days], accession.patient_age[:weeks], accession.patient_age[:months], accession.patient_age[:years])
       @range_min ||= @base_ranges.map(&:min).compact.min if @base_ranges
       @range_max ||= @base_ranges.map(&:max).compact.max if @base_ranges
@@ -217,13 +216,13 @@ class Result < ActiveRecord::Base
     #range_max = range[2].to_number unless range[1] == Result::RANGE_SYMBOL_GE
     min = @range_min || -1/0.0
     max = @range_max || 1/0.0
-    if numeric_value == max && @range_min.nil?
+    if numeric_value.to_f == max.to_f && @range_min.nil?
       return "H"
     end
-    case numeric_value
-      when -1/0.0...min then "L"
-      when min..max then nil
-      when max..1/0.0 then "H"
+    case numeric_value.to_f
+    when -1/0.0...min.to_f then "L"
+    when min.to_f..max.to_f then nil
+    when max.to_f..1/0.0 then "H"
     end
   end
 
