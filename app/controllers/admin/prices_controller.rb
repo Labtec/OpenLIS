@@ -2,10 +2,14 @@ class Admin::PricesController < Admin::ApplicationController
   def index
     @priceable = find_priceable
     if @priceable
-      @prices = @priceable.prices(:include => [:price_list, :priceable])
+      @prices = @priceable.prices #(include: [:price_list, :priceable])
     else
-      @prices = Price.all(:include => [:price_list, :priceable])
+      @prices = Price.all # (include: [:price_list, :priceable])
     end
+
+    pdf = LabPriceList.new(@prices, view_context)
+    send_data(pdf.render, filename: 'lista_de_precios.pdf',
+      type: 'application/pdf', disposition: 'inline')
   end
 
   def show
@@ -24,22 +28,22 @@ class Admin::PricesController < Admin::ApplicationController
 
   def create
     @priceable = find_priceable
-    @price = @priceable.prices.build(params[:price])
+    @price = @priceable.prices.build(price_params)
 
     if @price.save
-      redirect_to(admin_prices_url, :notice => 'Price was successfully created.')
+      redirect_to(admin_prices_url, notice: 'Price was successfully created.')
     else
-      render :action => "new"
+      render action: 'new'
     end
   end
 
   def update
     @price = Price.find(params[:id])
 
-    if @price.update_attributes(params[:price])
-      redirect_to [:admin, @price], :notice => 'Price was successfully updated.', :only_path => true
+    if @price.update_attributes(price_params)
+      redirect_to [:admin, @price], notice: 'Price was successfully updated.'
     else
-      render :action => "edit"
+      render action: 'edit'
     end
   end
 
@@ -50,7 +54,7 @@ class Admin::PricesController < Admin::ApplicationController
     redirect_to(admin_prices_url)
   end
 
-private
+  protected
 
   def find_priceable
     params.each do |name, value|
@@ -59,5 +63,11 @@ private
       end
     end
     nil
+  end
+
+  private
+
+  def price_params
+    params.require(:price).permit(:price_list_id, :amount)
   end
 end
