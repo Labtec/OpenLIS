@@ -1,5 +1,3 @@
-<%= javascript 'panels' %>
-
 <fieldset class="<%= @accession.reported_at.blank? %>">
   <% if @accession.id %>
     <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>

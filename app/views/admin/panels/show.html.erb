@@ -16,6 +16,14 @@
   <strong>Description:</strong>
   <%= sanitize @panel.description %>
 </p>
+<p>
+  <strong>Lab Tests:</strong>
+  <ul>
+    <% @panel.lab_tests.each do |lab_test| %>
+      <li><%= sanitize(lab_test.name) %></li>
+    <% end %>
+  </ul>
+</p>
 
 <p>
   <%= link_to 'Edit', edit_admin_panel_path(@panel) %> |

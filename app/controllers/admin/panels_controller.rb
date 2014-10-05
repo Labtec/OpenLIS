@@ -45,6 +45,6 @@ class Admin::PanelsController < Admin::ApplicationController
   private
 
   def panel_params
-    params.require(:panel).permit(:code, :name, :description, :procedure)
+    params.require(:panel).permit(:code, :name, :description, :procedure, { lab_test_ids: [] })
   end
 end
