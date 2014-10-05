@@ -19,18 +19,18 @@ module ResultsHelper
     end
   end
 
-  def format_value result
+  def format_value(result)
     if result.lab_test.derivation?
-      number_with_precision(result.derived_value, :precision => result.lab_test.decimals, :delimiter => ',')
+      number_with_precision(result.derived_value, precision: result.lab_test.decimals, delimiter: ',')
     elsif result.lab_test_value && !result.value.blank?
       result.lab_test_value.value +
-      " [" +
-      number_with_precision(result.value, :precision => result.lab_test.decimals, :delimiter => ',') +
-      "]"
+      ' [' +
+      number_with_precision(result.value, precision: result.lab_test.decimals, delimiter: ',') +
+      ']'
     elsif result.lab_test_value
       result.lab_test_value.value
     elsif result.value.blank?
-      "pend."
+      'pend.'
     elsif result.lab_test.ratio?
       result.value.gsub(/[:]/, '&ratio;')
     elsif result.lab_test.range?
@@ -40,7 +40,7 @@ module ResultsHelper
     elsif result.lab_test.text_length?
       result.value
     else
-      number_with_precision(result.value, :precision => result.lab_test.decimals, :delimiter => ',')
+      number_with_precision(result.value, precision: result.lab_test.decimals, delimiter: ',')
     end
   end
 
@@ -72,11 +72,11 @@ module ResultsHelper
     tbody = content_tag :tbody do
       ranges.collect { |range|
         content_tag :tr do
-          content_tag :td, range, :class => "range"
+          content_tag :td, safe_join(range), class: 'range'
         end
       }.join().html_safe
     end
-    content_tag :table, tbody
+    content_tag :table, sanitize(tbody)
   end
 
   def registration_number(inline = false)

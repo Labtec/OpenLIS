@@ -2,40 +2,47 @@
 
 <fieldset class="<%= @accession.reported_at.blank? %>">
   <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
+
   <%= doctor_name @accession.doctor %><br />
+
   <% if @accession.drawn_at %>
     <%= t('.drawn_at') %>
-    <strong><%=h l(@accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></strong>
     <%= t('.by') %>
-    <strong><%=h @accession.drawer.initials %></strong><br />
+    <strong><%= @accession.drawer.initials %></strong><br />
   <% end %>
+
   <% if @accession.received_at %>
     <%= t('.received_at') %>
-    <strong><%=h l(@accession.received_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.received_at, :format => '%e %b %Y %l:%M%p') %></strong>
     <%= t('.by') %>
-    <strong><%=h @accession.receiver.initials %></strong><br />
+    <strong><%= @accession.receiver.initials %></strong><br />
   <% end %>
+
   <% if @accession.reported_at %>
     <%= t('.reported_at') %>
-    <strong><%=h l(@accession.reported_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.reported_at, :format => '%e %b %Y %l:%M%p') %></strong>
     <%= t('.by') %>
-    <strong><%=h @accession.reporter.initials %></strong>
+    <strong><%= @accession.reporter.initials %></strong>
   <% end %>
 
   <% @results.each do |department, results| %>
     <h2><%= department.name %></h2>
+
     <table class="results">
       <% reset_cycle("alternating_row_colors") %>
       <%= render results %>
     </table>
+
     <% if @accession.notes.find_by_department_id(department).try(:content).present? %>
       <br />
       <br />
       <em><%= t('.notes') %></em>
-      <%=h @accession.notes.find_by_department_id(department).content %>
+      <%= @accession.notes.find_by_department_id(department).content %>
       <br /><br />
     <% end %>
   <% end %>
+
   <div class="buttonbar">
     <%= link_to t('.change_accession'), edit_accession_path(@accession) %> |
     <% if @accession.reported_at %>

@@ -1,23 +1,22 @@
 class Accession < ActiveRecord::Base
-
   belongs_to :patient
   belongs_to :doctor
-  belongs_to :receiver, :class_name => 'User'
-  belongs_to :drawer, :class_name => 'User'
-  belongs_to :reporter, :class_name => 'User'
-  has_many :results, :dependent => :destroy
-  has_many :lab_tests, :through => :results
-  has_many :accession_panels, :dependent => :destroy
-  has_many :panels, :through => :accession_panels
-  has_many :notes, :as => :noticeable
-  has_one :claim, :dependent => :destroy
+  belongs_to :receiver, class_name: 'User'
+  belongs_to :drawer, class_name: 'User'
+  belongs_to :reporter, class_name: 'User'
+  has_many :results, dependent: :destroy
+  has_many :lab_tests, through: :results
+  has_many :accession_panels, dependent: :destroy
+  has_many :panels, through: :accession_panels
+  has_many :notes, as: :noticeable
+  has_one :claim, dependent: :destroy
 
-  accepts_nested_attributes_for :results, :allow_destroy => true
-  accepts_nested_attributes_for :accession_panels, :allow_destroy => true
-  accepts_nested_attributes_for :notes, :allow_destroy => true, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :results, allow_destroy: true
+  accepts_nested_attributes_for :accession_panels, allow_destroy: true
+  accepts_nested_attributes_for :notes, allow_destroy: true, reject_if: lambda { |a| a[:content].blank? }, allow_destroy: true
 
   validates_presence_of :patient_id
-  validates_presence_of :icd9, :if => Proc.new { |accession| accession.patient.try(:insurance_provider) }
+  validates_presence_of :icd9, if: Proc.new { |accession| accession.patient.try(:insurance_provider) }
   validates_presence_of :drawn_at
   validates_presence_of :received_at
   validate :at_least_one_panel_or_test_selected
@@ -27,17 +26,17 @@ class Accession < ActiveRecord::Base
 
   scope :recently, -> { order(updated_at: :desc) }
   scope :queued, -> { order(drawn_at: :asc) }
-  scope :pending, -> { where(reported_at: nil) } #, :include => [{:results => [:lab_test, :lab_test_value]}, :drawer, :doctor]
-  scope :reported, -> { where.not(reported_at: nil) } #, :include => [:lab_tests, :panels, :reporter, :doctor]
-  #scope :with_insurance_provider, {
-  #  :select => "accessions.*",
-  #  :joins => "INNER JOIN patients ON patients.id = accessions.patient_id",
-  #  :conditions=>"patients.insurance_provider_id IS NOT NULL",
-  #  :order => 'id ASC'
-  #}
-  #scope :within_claim_period, lambda { |time| { :conditions => ["drawn_at > ?", 4.months.ago] } }
+  scope :pending, -> { where(reported_at: nil) } #, include: [{results: [:lab_test, :lab_test_value]}, :drawer, :doctor]
+  scope :reported, -> { where.not(reported_at: nil) } #, include: [:lab_tests, :panels, :reporter, :doctor]
+  scope :with_insurance_provider, {
+    select: "accessions.*",
+    joins: "INNER JOIN patients ON patients.id = accessions.patient_id",
+    conditions: "patients.insurance_provider_id IS NOT NULL",
+    order: 'id ASC'
+  }
+  scope :within_claim_period, ->(time) { where(["drawn_at > ?", 4.months.ago]) }
 
-  after_update :save_results
+  #after_update :save_results
 
   def result_attributes=(result_attributes)
     results.reject(&:new_record?).each do |result|
@@ -64,7 +63,7 @@ class Accession < ActiveRecord::Base
     age_in_years = (age_in_days / days_per_year).floor
     age_in_days = (age_in_days * 10).round / 10
 
-    { :days => age_in_days, :weeks => age_in_weeks, :months => age_in_months, :years => age_in_years }
+    { days: age_in_days, weeks: age_in_weeks, months: age_in_months, years: age_in_years }
   end
 
   def patient_age_in_days
@@ -124,11 +123,11 @@ private
     results.find_by_lab_test_id(lab_tests.with_code(code).first).try(:value).try(:to_d)
   end
 
-  def save_results
-    results.each do |result|
-      result.save(false)
-    end
-  end
+  #def save_results
+  #  results.each do |result|
+  #    result.save(false)
+  #  end
+  #end
 
   def at_least_one_panel_or_test_selected
     if panel_ids.blank? && lab_test_ids.blank?

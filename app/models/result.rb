@@ -197,9 +197,9 @@ class Result < ActiveRecord::Base
     elsif lab_test_value.present?
       lab_test_value.flag
     elsif value.present?
-      check_reference_range(value.to_number) if has_ranges?
+      check_reference_range(value.to_d) if has_ranges?
     elsif lab_test.also_numeric?
-      check_reference_range(value.to_number)
+      check_reference_range(value.to_d)
     elsif lab_test.range?
       value =~ /\A((<|>)|(\d+)(-))(\d+)\Z/
       check_reference_range([$3, $5].map {|n| n.to_i}.try(:max))
