@@ -44,11 +44,12 @@ es:
         units: "Unidades"
         reference_ranges: "Rangos"
         lab_test_values: "Valores"
-      
+
   will_paginate:
     next: "Siguiente »"
     previous: "« Anterior"
-    
+    page_gap: "…"
+
   patients:
     female: "Femenino"
     male: "Masculino"

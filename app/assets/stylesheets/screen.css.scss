@@ -875,7 +875,7 @@ div.auto_complete {
   float: right;
   font-size: 11px;
   margin: 6px 0px 0px 0px; }
-  .pagination a, .pagination span {
+  .pagination a, .pagination span, .pagination em {
     padding: .2em .5em;
     display: block;
     float: left;
@@ -883,7 +883,8 @@ div.auto_complete {
   .pagination span.disabled {
     color: #999;
     border: 1px solid #DDD; }
-  .pagination span.current {
+  .pagination em.current {
+    font-style: normal;
     font-weight: bold;
     background: #2E6AB1;
     color: white;
@@ -902,7 +903,7 @@ div.auto_complete {
   float: right;
   font-size: 11px;
   margin: 6px 0px 0px 0px; }
-  .pending_pagination a, .pending_pagination span {
+  .pending_pagination a, .pending_pagination span, .pending_pagination em {
     padding: .2em .5em;
     display: block;
     float: left;
@@ -910,7 +911,8 @@ div.auto_complete {
   .pending_pagination span.disabled {
     color: #999;
     border: 1px solid #DDD; }
-  .pending_pagination span.current {
+  .pending_pagination em.current {
+    font-style: normal;
     font-weight: bold;
     background: #B12E2E;
     color: white;
