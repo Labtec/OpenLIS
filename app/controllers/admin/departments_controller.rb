@@ -5,6 +5,7 @@ class Admin::DepartmentsController < Admin::ApplicationController
 
   def new
     @department = Department.new
+    render layout: false
   end
 
   def create

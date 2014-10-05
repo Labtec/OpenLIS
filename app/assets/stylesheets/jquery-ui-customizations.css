@@ -1,0 +1,72 @@
+.ui-tabs .ui-tabs-nav li {
+  height: 24px;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  padding-bottom: none;
+}
+
+.ui-widget-content {
+  border: none;
+  background: none;
+}
+
+.ui-widget-header {
+  border: none;
+  border-bottom: 1px solid silver;
+  background: none;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  border: 1px solid #e6e6e6;
+  background: #e6e6e6;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 1px solid #dadada;
+  background: #dadada;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  border: 1px solid silver;
+  background: whitesmoke;
+  font-weight: bold;
+}
+
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-left,
+.ui-corner-tl {
+  border-top-left-radius: 3px;
+}
+
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-right,
+.ui-corner-tr {
+  border-top-right-radius: 3px;
+}
+
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-left,
+.ui-corner-bl {
+  border-bottom-left-radius: 0px;
+}
+
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {
+  border-bottom-right-radius: 0px;
+}
