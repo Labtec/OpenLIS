@@ -63,10 +63,10 @@
       <% end %>
     </table>
 
-    <% a.fields_for :notes do |note_form| %>
+    <%= a.fields_for :notes do |note_form| %>
       <% if note_form.object.department == department %>
         <br /><em><%= t('.notes') %></em><br />
-        <%= note_form.text_area :content, rows: 3 %><br/><br />
+        <%= note_form.text_area :content, rows: 3, cols:40 %><br /><br />
         <%= note_form.hidden_field :department_id %>
       <% end %>
     <% end %>
