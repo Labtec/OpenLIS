@@ -28,13 +28,13 @@ class Accession < ActiveRecord::Base
   scope :queued, -> { order(drawn_at: :asc) }
   scope :pending, -> { where(reported_at: nil) } #, include: [{results: [:lab_test, :lab_test_value]}, :drawer, :doctor]
   scope :reported, -> { where.not(reported_at: nil) } #, include: [:lab_tests, :panels, :reporter, :doctor]
-  scope :with_insurance_provider, {
-    select: "accessions.*",
-    joins: "INNER JOIN patients ON patients.id = accessions.patient_id",
-    conditions: "patients.insurance_provider_id IS NOT NULL",
-    order: 'id ASC'
+  scope :with_insurance_provider, -> {
+    select("accessions.*")
+      .joins("INNER JOIN patients ON patients.id = accessions.patient_id")
+      .where("patients.insurance_provider_id IS NOT NULL")
+      .order(id: :asc)
   }
-  scope :within_claim_period, ->(time) { where(["drawn_at > ?", 4.months.ago]) }
+  scope :within_claim_period, -> { where('drawn_at > :claim_period', { claim_period: 4.months.ago }) }
 
   #after_update :save_results
 

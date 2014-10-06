@@ -12,23 +12,24 @@ class Admin::ClaimsController < Admin::ApplicationController
 
   def show
     @claim = Claim.find(params[:id])
-    respond_to do |format|
-      format.pdf { render :layout => false }
-    end
+
+    pdf = ClaimPreview.new(@claim, view_context)
+    send_data(pdf.render, filename: "claim_#{@claim.try(:external_number)}.pdf",
+      type: 'application/pdf', disposition: 'inline')
   end
 
   def new
     @accession = Accession.find(params[:accession_id])
-    @claim = @accession.build_claim(:insurance_provider_id => 1)
+    @claim = @accession.build_claim(insurance_provider_id: 1)
   end
 
   def create
-    @claim = Claim.new(params[:claim])
+    @claim = Claim.new(claim_params)
     if @claim.save
       flash[:notice] = "Successfully created claim."
       redirect_to admin_claims_url
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -38,24 +39,24 @@ class Admin::ClaimsController < Admin::ApplicationController
 
   def update
     @claim = Claim.find(params[:id])
-    if @claim.update_attributes(params[:claim])
+    if @claim.update_attributes(claim_params)
       flash[:notice] = "Successfully updated claim."
       respond_to do |format|
         format.html { redirect_to admin_claims_url}
         format.js
       end
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def submit
     @claim = Claim.find(params[:id])
     if @claim.valid_submission?
-      @claim.update_attributes(:claimed_at => Time.now, :insurance_provider_id => 1)
-      redirect_to admin_claims_url, :notice => "Successfully submitted claim."
+      @claim.update_attributes(claimed_at: Time.now, insurance_provider_id: 1)
+      redirect_to admin_claims_url, notice: "Successfully submitted claim."
     else
-      redirect_to admin_claims_url, :alert => t('flash.claim.submit_alert')
+      redirect_to admin_claims_url, alert: t('flash.claim.submit_alert')
     end
   end
 
@@ -63,21 +64,30 @@ class Admin::ClaimsController < Admin::ApplicationController
     if params[:unsubmitted_claim_ids]
       @claims = Claim.find(params[:unsubmitted_claim_ids])
       @claims.each do |claim|
-        claim.update_attributes!(:claimed_at => Time.now, :insurance_provider_id => 1)
+        claim.update_attributes!(claimed_at: Time.now, insurance_provider_id: 1)
       end
-      redirect_to admin_claims_url, :notice => "Successfully submitted claims."
+      redirect_to admin_claims_url, notice: "Successfully submitted claims."
     else
-      redirect_to admin_claims_url, :alert => "No claims selected!"
+      redirect_to admin_claims_url, alert: "No claims selected!"
     end
   end
 
   def print_selected
     if params[:claim_ids]
-      @claims = Claim.find(params[:claim_ids], :include => {:accession => :patient})
-      render :action => 'index.pdf', :layout => false
+      @claims = Claim.find(params[:claim_ids]) #, include: {accession: :patient})
+
+      pdf = ClaimsReport.new(@claims, view_context)
+      send_data(pdf.render, filename: 'entrada_de_reclamos.pdf',
+        type: 'application/pdf', disposition: 'inline')
     else
       flash[:alert] = "No claims selected!"
       redirect_to admin_claims_url
     end
+  end
+
+  private
+
+  def claim_params
+    params.require(:claim).permit(:accession_id, :number, :external_number, :claimed_at, :insurance_provider_id)
   end
 end

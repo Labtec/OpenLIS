@@ -22,8 +22,8 @@ class LabTest < ActiveRecord::Base
   default_scope { order(position: :asc) }
 
   scope :sorted, -> { order(name: :asc) }
-  scope :with_price, -> { where('prices.amount IS NOT NULL').include(:prices) }
-  #scope :with_code, lambda { |code| { conditions: ["code = ?", code] } }
+  scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
+  scope :with_code, ->(code) { where(code: code) }
 
   def also_allow=(also_allow)
     if also_allow == 'also_numeric'

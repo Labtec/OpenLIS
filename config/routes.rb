@@ -49,9 +49,15 @@ Rails.application.routes.draw do
     end
     resources :units
     resources :departments
-    resources :claims, only: :index, member: { submit: :put }
-    resources :claims, collection: { submit_selected: :post }
-    resources :claims, collection: { print_selected: :post }
+    resources :claims do
+      collection do
+        post 'submit_selected'
+        post 'print_selected'
+      end
+      member do
+        put 'submit'
+      end
+    end
     resources :prices
   end
 end

@@ -1,15 +1,27 @@
 <fieldset>
-<% labeled_form_for [:admin, @claim] do |f| %>
+<%= form_for [:admin, @claim] do |f| %>
   <%= render 'shared/error_messages', object: @claim %>
+
   <h2>
     <%= f.object.accession.patient.name_last_comma_first_mi %>
     (<%= f.object.accession_id %>)
   </h2>
+
   <%= f.hidden_field :accession_id %>
-  <%= f.text_field :external_number %>
-  <%= f.text_field :number %>
+  <%= f.hidden_field :insurance_provider_id %>
+
+  <div class="external_number">
+    <%= f.label :external_number %>
+    <%= f.text_field :external_number %>
+  </div>
+
+  <div class="number">
+    <%= f.label :number %>
+    <%= f.text_field :number %>
+  </div>
+
   <div class="buttonbar">
-    <%= f.submit "Submit" %>
+    <%= f.submit 'Submit' %>
   </div>
 <% end %>
 </fieldset>

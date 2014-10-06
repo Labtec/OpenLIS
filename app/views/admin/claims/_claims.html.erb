@@ -1,4 +1,4 @@
-<% form_tag print_selected_admin_claims_path do %>
+<%= form_tag print_selected_admin_claims_path do %>
   <table>
     <tr>
       <th></th>
@@ -10,14 +10,14 @@
     </tr>
     <% @claims.each do |claim| %>
     <tr>
-      <td><%= check_box_tag "claim_ids[]", claim.id %></td>
+      <td><%= check_box_tag 'claim_ids[]', claim.id %></td>
       <td><%= claim.accession.patient.name_last_comma_first_mi %></td>
       <td><%= claim.accession.id %></td>
       <td><%= claim.try(:external_number) %></td>
       <td><%= claim.try(:number) %></td>
-      <td><%= link_to "Edit", edit_admin_claim_path(claim) %></td>
+      <td><%= link_to 'Edit', edit_admin_claim_path(claim) %></td>
     </tr>
     <% end %>
   </table>
-  <p><%= submit_tag "Print Selected" %></p>
+  <p><%= submit_tag 'Print Selected' %></p>
 <% end %>

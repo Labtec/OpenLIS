@@ -4,11 +4,11 @@ class Claim < ActiveRecord::Base
 
   validates_uniqueness_of :number, :allow_blank => true
   validates_uniqueness_of :external_number, :allow_blank => true
-  validates_presence_of :accession
+  validates_presence_of :accession, :insurance_provider
 
-  default_scope :order => :external_number
-  named_scope :submitted, :conditions => 'claimed_at IS NOT NULL', :include => {:accession => :patient}
-  named_scope :recent, lambda { |time| { :conditions => ["claimed_at > ?", 5.months.ago] } }
+  default_scope { order(external_number: :asc) }
+  scope :submitted, -> { where.not(claimed_at: nil) }# include: {accession: :patient}
+  scope :recent, -> { where('claimed_at > :grace_period', { grace_period: 5.months.ago }) }
 
   def insured_name
     accession.patient.try(:policy_number) =~ /(\d+)-(\d+)/

@@ -331,7 +331,7 @@ class ClaimsReport < Prawn::Document
 
     move_down 50
 
-    text "<b>AXA - Panamá</b>", :align => :center, :inline_format => true
+    text "<b>AXA — Panamá</b>", :align => :center, :inline_format => true
     text "<b>Entrada de Reclamos</b>", :align => :center, :inline_format => true
 
     move_down 25
