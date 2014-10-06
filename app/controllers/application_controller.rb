@@ -15,7 +15,7 @@ protected
     if current_user
       I18n.locale = current_user.language
     else
-      I18n.locale = "en"
+      I18n.locale = "es"
     end
   end
 end
