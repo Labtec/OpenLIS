@@ -29,9 +29,7 @@ class Patient < ActiveRecord::Base
 
   scope :recent, -> { order(updated_at: :desc).limit(10) }
   scope :sorted, -> { order(family_name: :asc) }
-  scope :ordered, lambda { |*order|
-    { order: order.flatten.first || 'created_at DESC' }
-  }
+  scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
   before_save :titleize_names
 
@@ -57,7 +55,7 @@ class Patient < ActiveRecord::Base
 
   def age
     days_per_year = 365.25
-    age = ((Date.today - birthdate.to_date).to_i / days_per_year).floor
+    ((Date.today - birthdate.to_date).to_i / days_per_year).floor
   end
 
   def age_to_display
@@ -91,7 +89,7 @@ class Patient < ActiveRecord::Base
   def age_parts(in_days)
     parts = Hash.new
     factors = [['years', 365.25],['months', 30.4375],['days', 1]]
-    age = factors.collect do |unit, factor|
+    factors.collect do |unit, factor|
       value, in_days = in_days.divmod(factor)
       parts[unit] = value
     end
