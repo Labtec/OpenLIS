@@ -4,7 +4,7 @@ $(function() {
     handle: '.handle',
     update: function() {
       $.ajax({
-        type: 'post',
+        type: 'patch',
         data: $(".lab_tests").sortable('serialize'),
         dataType: 'script',
         complete: function(request){

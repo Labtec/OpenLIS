@@ -43,8 +43,8 @@ class Admin::LabTestsController < Admin::ApplicationController
   end
 
   def sort
-    lab_test_params.each_with_index do |id, index|
-      LabTest.update_all({ position: index + 1 }, { id: id })
+    params[:lab_test].each_with_index do |id, index|
+      LabTest.where(id: id).update_all(position: index + 1)
     end
     render nothing: true
   end

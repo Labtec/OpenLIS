@@ -19,11 +19,11 @@ class LabTest < ActiveRecord::Base
 
   acts_as_list scope: :department
 
-  default_scope { order(position: :asc) }
-
   scope :sorted, -> { order(name: :asc) }
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
   scope :with_code, ->(code) { where(code: code) }
+
+  default_scope { order(position: :asc) }
 
   def also_allow=(also_allow)
     if also_allow == 'also_numeric'
