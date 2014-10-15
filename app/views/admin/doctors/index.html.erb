@@ -6,7 +6,7 @@
   <tr>
     <th>Name</th>
   </tr>
-  <% for doctor in @doctors %>
+  <% @doctors.each do |doctor| %>
     <tr>
       <td><%= doctor.name %></td>
       <td><%= link_to 'Show', [:admin, doctor] %></td>

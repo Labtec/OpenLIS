@@ -15,9 +15,9 @@ class Admin::DoctorsController < Admin::ApplicationController
     @doctor = Doctor.new(doctor_params)
     if @doctor.save
       flash[:notice] = "Successfully created doctor."
-      redirect_to [:admin, @doctor], :only_path => true
+      redirect_to [:admin, @doctor]
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -29,9 +29,9 @@ class Admin::DoctorsController < Admin::ApplicationController
     @doctor = Doctor.find(params[:id])
     if @doctor.update_attributes(doctor_params)
       flash[:notice] = "Successfully updated doctor."
-      redirect_to [:admin, @doctor], :only_path => true
+      redirect_to [:admin, @doctor]
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
