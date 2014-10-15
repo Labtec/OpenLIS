@@ -248,7 +248,7 @@ en:
   flash:
     login:
       hello: "Hello "
-      last_login_at: " Your last login was on "
+      last_login_at: " Previous login: "
       last_login_at_format: "%b %d, at %I:%M%p"
     patient:
       create: "Successfully created patient."

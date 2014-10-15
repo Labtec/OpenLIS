@@ -268,7 +268,7 @@ es:
   flash:
     login:
       hello: "¡Hola "
-      last_login_at: " Su último inico de sesión fue el "
+      last_login_at: " Su último inico de sesión fue hace "
       last_login_at_format: "%e de %B, a las %I:%M%p"
     patient:
       create: "Paciente creado exitosamente."
