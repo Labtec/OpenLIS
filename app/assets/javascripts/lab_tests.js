@@ -1,4 +1,4 @@
-$(function() {
+$(document).on("ready page:load", function() {
   $(".lab_tests").sortable({
     axis: 'y',
     handle: '.handle',

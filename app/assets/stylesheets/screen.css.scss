@@ -834,7 +834,7 @@ td.range{
   margin: 0px;
   padding: 5px 0px 5px 16px; }
 
-#panels, .values {
+.panels, .values {
   column-width: 15em;
   -moz-column-width: 15em;
   -webkit-column-width: 15em; }
@@ -952,8 +952,8 @@ li.ui-menu-item {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px; }
 
-.ui-autocomplete-loading {
-  background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat;
+input[type='text'].ui-autocomplete-loading {
+  background: image-url('loading.gif') no-repeat right center;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
