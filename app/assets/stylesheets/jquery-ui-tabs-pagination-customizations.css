@@ -42,6 +42,7 @@ li.ui-state-default.ui-tabs-paging-prev a{
     color: #222222;
 }
 
+#departments a:hover:not(.next-tab),
 #order_tests a:hover:not(.next-tab) {
     background: none;
 }
