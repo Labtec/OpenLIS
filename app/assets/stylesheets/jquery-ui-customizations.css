@@ -1,11 +1,4 @@
-.ui-tabs .ui-tabs-nav li {
-  height: 24px;
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-active {
-  padding-bottom: none;
-}
-
+/* UI */
 .ui-widget-content {
   border: none;
   background: none;
@@ -69,4 +62,35 @@
 .ui-corner-right,
 .ui-corner-br {
   border-bottom-right-radius: 0px;
+}
+
+/* UI Tabs */
+.ui-tabs-nav :focus {
+  outline: none;
+}
+
+.ui-tabs .ui-tabs-nav li {
+  height: 24px;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  padding-bottom: none;
+}
+
+/* UI Autocomplete */
+
+ul.ui-autocomplete {
+  border: 1px silver solid;
+  background: white; }
+
+li.ui-menu-item {
+  background: white; }
+  li.ui-menu-item a {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px; }
+
+input[type='text'].ui-autocomplete-loading {
+  background: image-url('loading.gif') no-repeat right center;
 }

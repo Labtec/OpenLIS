@@ -179,20 +179,12 @@ a {
   clear: both;
   margin-left: -2px;
   width: 100%; }
-  #order_tests a:hover:not(.next-tab) {
-    background: none; }
 
 #departments {
   background: whitesmoke;
   border: 5px lightblue solid; }
   #departments a:hover {
     background: none; }
-
-.ui-tabs-nav :focus {
-  outline: none; }
-
-.ui-tabs-paging-disabled {
-  visibility: hidden; }
 
 abbr {
   font-size: 9px; }
@@ -925,36 +917,6 @@ div.auto_complete {
       color: crimson;
       background: lightyellow;
       border-color: crimson; }
-
-li.ui-state-default.ui-tabs-paging-next a {
-    background: none;
-    height: 12px; }
-a.ui-corner-top.next-tab:hover {
-    background: #dadada; }
-li.ui-state-default.ui-tabs-paging-prev,
-li.ui-state-default.ui-tabs-paging-next {
-  background: none;
-}
-li.ui-state-default.ui-tabs-paging-prev:hover,
-li.ui-state-default.ui-tabs-paging-next:hover {
-  background: #dadada;
-}
-
-ul.ui-autocomplete {
-  border: 1px silver solid;
-  background: white; }
-
-li.ui-menu-item {
-  background: white; }
-  li.ui-menu-item a {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px; }
-
-input[type='text'].ui-autocomplete-loading {
-  background: image-url('loading.gif') no-repeat right center;
-}
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   .log input {
