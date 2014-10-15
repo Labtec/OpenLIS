@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_filter :authenticate_user!
   before_filter :set_user_language
+  before_filter :authenticate_user!
   before_filter :set_active_tab
 
 protected
