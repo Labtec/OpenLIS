@@ -8,7 +8,7 @@
       <% end %>
       <%= link_to t('.change_requisition'), edit_accession_path(accession)  %>
       <% if @current_user.admin? %>
-        | <%= link_to t('.delete?'), accession, :method => :delete, :confirm => t('.confirm_destroy') %>
+        | <%= link_to t('.delete?'), accession, method: :delete, data: { confirm: t('.confirm_destroy') } %>
       <% end %>
     </small>
   </div>
@@ -16,16 +16,16 @@
   <%= content_tag :tt, accession.patient.full_name unless @patient %>
   <dt style='padding: 2px 0px 0px 0px'>
     <% if accession.reported_at %>
-      <%= t('.drawn_at') %><b><%=h l(accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></b>
-      <%= t('.by') %><b><%=h accession.reporter.initials if accession.reporter %></b>
+      <%= t('.drawn_at') %><b><%= l(accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></b>
+      <%= t('.by') %><b><%= accession.reporter.initials if accession.reporter %></b>
       | <%= t('.tests_ordered') %><b><%= truncate(accession.order_list, :length => 30) %></b>
     <% else %>
-      <%= t('.drawn_at') %><b><%=h l(accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></b>
-      by: <b><%=h accession.drawer.initials if accession.drawer %></b>
+      <%= t('.drawn_at') %><b><%= l(accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></b>
+      by: <b><%= accession.drawer.initials if accession.drawer %></b>
       | <%= t('.tests_pending') %><b><%= truncate(accession.pending_list, :length => 30) %></b>
     <% end %>
     <% unless accession.doctor_id.blank? %>
-      | <%= t('.ordered_by') %> <b>Dr. <%=h accession.doctor.name %></b>
+      | <%= t('.ordered_by') %> <b>Dr. <%= accession.doctor.name %></b>
     <% end %>
   </dt>
 </li>

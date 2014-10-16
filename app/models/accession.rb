@@ -13,7 +13,7 @@ class Accession < ActiveRecord::Base
 
   accepts_nested_attributes_for :results, allow_destroy: true
   accepts_nested_attributes_for :accession_panels, allow_destroy: true
-  accepts_nested_attributes_for :notes, allow_destroy: true, reject_if: lambda { |a| a[:content].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :notes, allow_destroy: true, reject_if: :reject_notes
 
   validates_presence_of :patient_id
   validates_presence_of :icd9, if: Proc.new { |accession| accession.patient.try(:insurance_provider) }
@@ -135,6 +135,10 @@ class Accession < ActiveRecord::Base
   #    result.save(false)
   #  end
   #end
+
+  def reject_notes(attributes)
+    attributes[:content].blank? if new_record?
+  end
 
   def at_least_one_panel_or_test_selected
     if panel_ids.blank? && lab_test_ids.blank?

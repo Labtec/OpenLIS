@@ -79,11 +79,11 @@
 
     <div id="order_tests">
       <ul>
-        <% for department in @departments %>
+        <% @departments.each do |department| %>
           <li><a href="#<%= department.id %>"><%= department.name %></a></li>
         <% end %>
       </ul>
-      <% for department in @departments %>
+      <% @departments.each do |department| %>
         <div id="<%= department.id %>">
           <%= f.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |b| %>
             <div class="lab_test">
