@@ -83,15 +83,13 @@ class Accession < ActiveRecord::Base
   end
 
   def order_list
-    panels_list = panels.map {|p| p.code}
-    panels_lab_tests_list = panels.map {|p| p.lab_tests.map {|t| t.code}}
-    panels_lab_tests_list = []
-    all_lab_tests_list = lab_tests.map {|t| t.code}
-    (panels_list + all_lab_tests_list - panels_lab_tests_list).join(', ')
+    (panels_list + lab_tests_list).join(', ')
   end
 
   def pending_list
-    results.map { |result| result.lab_test.code if result.pending? }.compact.join(', ')
+    results.map do |result|
+      result.lab_test.code if result.pending?
+    end.compact.join(', ')
   end
 
   def pending_claim?
@@ -105,7 +103,16 @@ class Accession < ActiveRecord::Base
     true
   end
 
-private
+  private
+
+  def panels_list
+    panels.map { |p| p.code }
+  end
+
+  def lab_tests_list
+    panels_lab_tests_list = panels.map { |p| p.lab_tests.map { |t| t.code } }
+    lab_tests.map { |l| l.code } - panels_lab_tests_list.flatten
+  end
 
   def drawn_at_cant_be_in_the_future
     errors.add(:drawn_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.now < drawn_at unless drawn_at.nil?

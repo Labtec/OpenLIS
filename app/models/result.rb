@@ -106,7 +106,7 @@ class Result < ActiveRecord::Base
   end
 
   def pending?
-    return true if !lab_test_value && value.blank? && !lab_test.derivation
+    return true if !lab_test_value.present? && value.blank? && !lab_test.derivation?
   end
 
   def units
