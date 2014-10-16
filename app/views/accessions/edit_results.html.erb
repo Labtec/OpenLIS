@@ -40,7 +40,7 @@
           <tr class="<%= cycle('even', 'odd', name: 'alternating_row_colors') %>">
             <td class="lab_test <%= flag_color(result) %>"><%= r.label :value, sanitize(result.lab_test.name) %></td>
             <td class="result <%= flag_color(result) %>">
-              <% if result.lab_test.derivation %>
+              <% if result.lab_test.derivation? %>
                 <%= text_field_tag :value, format_value(result), size: 10, disabled: true %>
               <% else %>
                 <% if result.lab_test.lab_test_values.blank? %>
