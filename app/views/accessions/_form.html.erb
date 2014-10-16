@@ -20,7 +20,7 @@
     <div class="drawn_at">
     <% if mobile_user_agent? %>
       <%= f.label :drawn_at, t('.drawn_at') %>
-      <%= f.datetime_ios_select :drawn_at, end_year: Time.now.year, value: @accession.drawn_at.try(:to_s, :w3cdtf) %>
+      <%= f.date_field :drawn_at, end_year: Time.now.year, value: @accession.drawn_at.try(:to_s, :w3cdtf) %>
     <% else %>
       <%= f.label :drawn_at, t('.drawn_at') %>
       <%= f.datetime_select :drawn_at, end_year: Time.now.year %>
@@ -35,7 +35,7 @@
     <div class="received_at">
     <% if mobile_user_agent? %>
       <%= f.label :received_at, t('.received_at') %>
-      <%= f.datetime_ios_select :received_at, end_year: Time.now.year, value: @accession.received_at.try(:to_s, :w3cdtf) %>
+      <%= f.date_field :received_at, end_year: Time.now.year, value: @accession.received_at.try(:to_s, :w3cdtf) %>
     <% else %>
       <%= f.label :received_at, t('.received_at'), end_year: Time.now.year %>
       <%= f.datetime_select :received_at, end_year: Time.now.year %>
@@ -51,7 +51,7 @@
       <div class="reported_at">
       <% if mobile_user_agent? %>
         <%= f.label :reported_at, t('.reported_at') %>
-        <%= f.datetime_ios_select :reported_at, end_year: Time.now.year, value: @accession.received_at.try(:to_s, :w3cdtf) %>
+        <%= f.date_field :reported_at, end_year: Time.now.year, value: @accession.received_at.try(:to_s, :w3cdtf) %>
       <% else %>
         <%= f.label :reported_at, t('.reported_at') %>
         <%= f.datetime_select :reported_at, end_year: Time.now.year %>
