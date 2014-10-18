@@ -21,7 +21,7 @@ class AccessionsController < ApplicationController
     begin
       @accession = Accession.find(params[:id])
       # @results = @accession.results.order('lab_tests.position').include([{accession: :patient}, {lab_test: [:department, :unit]}, :lab_test_value]).group_by(&:department)
-      @results = @accession.results.group_by(&:department)
+      @results = @accession.results.includes(:lab_test).order('lab_tests.position').group_by(&:department)
       @patient = @accession.patient
     rescue ActiveRecord::RecordNotFound
       flash[:error] = t('flash.accession.accession_not_found')
