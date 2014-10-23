@@ -21,8 +21,8 @@ class Patient < ActiveRecord::Base
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, allow_blank: true
   validates_uniqueness_of :policy_number, allow_blank: true
 
-  belongs_to :insurance_provider
-  has_many :accessions, dependent: :destroy
+  belongs_to :insurance_provider, inverse_of: :patients
+  has_many :accessions, inverse_of: :patient, dependent: :destroy
   has_many :notes, as: :noticeable
 
   accepts_nested_attributes_for :accessions, allow_destroy: true

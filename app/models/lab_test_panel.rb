@@ -1,4 +1,4 @@
 class LabTestPanel < ActiveRecord::Base
-  belongs_to :lab_test
-  belongs_to :panel
+  belongs_to :lab_test, inverse_of: :lab_test_panels
+  belongs_to :panel, inverse_of: :lab_test_panels
 end

@@ -2,8 +2,8 @@ class Price < ActiveRecord::Base
   # Consider caching this model
   #attr_accessible :price_list_id, :amount
 
-  belongs_to :price_list
-  belongs_to :priceable, :polymorphic => true
+  belongs_to :price_list, inverse_of: :prices
+  belongs_to :priceable, polymorphic: true
 
   validates_numericality_of :amount
   validate :positive_amount

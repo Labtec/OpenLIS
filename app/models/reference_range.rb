@@ -25,7 +25,7 @@ class ReferenceRange < ActiveRecord::Base
     [ "Horse", 3 ]
   ]
 
-  belongs_to :lab_test
+  belongs_to :lab_test, inverse_of: :reference_ranges
 
   scope :for_its_gender, ->(gender) { where(gender: [gender, '*']) }
   scope :for_its_type, ->(type) { where(animal_type: type) }

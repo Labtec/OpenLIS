@@ -1,6 +1,6 @@
 class Claim < ActiveRecord::Base
-  belongs_to :accession
-  belongs_to :insurance_provider
+  belongs_to :accession, inverse_of: :claim
+  belongs_to :insurance_provider, inverse_of: :claims
 
   validates_uniqueness_of :number, :allow_blank => true
   validates_uniqueness_of :external_number, :allow_blank => true

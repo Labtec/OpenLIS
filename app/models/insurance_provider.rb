@@ -1,9 +1,9 @@
 class InsuranceProvider < ActiveRecord::Base
   # Consider caching this model
-  belongs_to :price_list
-  has_many :patients
+  belongs_to :price_list, inverse_of: :insurance_providers
+  has_many :patients, inverse_of: :insurance_provider
   has_many :prices, through: :price_list
-  has_many :claims
+  has_many :claims, inverse_of: :insurance_provider
 
   def submitted_claims
     claims.submitted

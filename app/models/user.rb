@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :timeoutable, :trackable,
          :validatable
 
-  has_many :accessions
+  has_many :accessions, inverse_of: :user
 
   validates :first_name, :last_name, :initials, presence: true
   validates :initials, uniqueness: true

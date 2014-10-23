@@ -1,15 +1,15 @@
 class Accession < ActiveRecord::Base
-  belongs_to :patient
-  belongs_to :doctor
-  belongs_to :receiver, class_name: 'User'
-  belongs_to :drawer, class_name: 'User'
-  belongs_to :reporter, class_name: 'User'
-  has_many :results, dependent: :destroy
+  belongs_to :patient, inverse_of: :accessions
+  belongs_to :doctor, inverse_of: :accessions
+  belongs_to :receiver, inverse_of: :accessions, class_name: 'User'
+  belongs_to :drawer, inverse_of: :accessions, class_name: 'User'
+  belongs_to :reporter, inverse_of: :accessions, class_name: 'User'
+  has_many :results, inverse_of: :accession, dependent: :destroy
   has_many :lab_tests, through: :results
-  has_many :accession_panels, dependent: :destroy
+  has_many :accession_panels, inverse_of: :accession, dependent: :destroy
   has_many :panels, through: :accession_panels
   has_many :notes, as: :noticeable
-  has_one :claim, dependent: :destroy
+  has_one :claim, inverse_of: :accession, dependent: :destroy
 
   accepts_nested_attributes_for :results, allow_destroy: true
   accepts_nested_attributes_for :accession_panels, allow_destroy: true

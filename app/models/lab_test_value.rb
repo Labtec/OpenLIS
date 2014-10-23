@@ -1,8 +1,8 @@
 class LabTestValue < ActiveRecord::Base
   #translates :name
-  has_many :lab_test_value_option_joints
+  has_many :lab_test_value_option_joints, inverse_of: :lab_test_value
   has_many :lab_tests, through: :lab_test_value_option_joints, dependent: :nullify
-  has_many :results
+  has_many :results, inverse_of: :lab_test_value
 
   scope :sorted, -> { order(value: :asc) }
 

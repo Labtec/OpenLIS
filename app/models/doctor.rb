@@ -1,5 +1,5 @@
 class Doctor < ActiveRecord::Base
-  has_many :accessions, :dependent => :nullify
+  has_many :accessions, inverse_of: :doctor, dependent: :nullify
 
   validates_presence_of :name
   validates_uniqueness_of :name

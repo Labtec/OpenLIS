@@ -2,16 +2,17 @@ class LabTest < ActiveRecord::Base
   # Consider caching this model
   #translates :name, :description
   #http://github.com/joshmh/globalize2/tree/master
-  belongs_to :department
-  belongs_to :unit
-  has_many :reference_ranges
-  has_many :lab_test_panels, dependent: :destroy
+  belongs_to :department, inverse_of: :lab_tests
+  belongs_to :unit, inverse_of: :lab_tests
+  has_many :reference_ranges, inverse_of: :lab_test
+  has_many :lab_test_panels, inverse_of: :lab_test, dependent: :destroy
   has_many :panels, through: :lab_test_panels
-  has_many :results, dependent: :destroy
+  has_many :results, inverse_of: :lab_test, dependent: :destroy
   has_many :accessions, through: :results
-  has_many :lab_test_value_option_joints, dependent: :destroy
+  has_many :lab_test_value_option_joints, inverse_of: :lab_test, dependent: :destroy
   has_many :lab_test_values, through: :lab_test_value_option_joints
   has_many :prices, as: :priceable, dependent: :destroy
+
   accepts_nested_attributes_for :prices, allow_destroy: true
 
   validates_presence_of :code
