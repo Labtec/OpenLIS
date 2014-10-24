@@ -64,7 +64,8 @@
       <%= label_tag 'lab_test_also_allow_none', 'None' %>
     </div>
     <div class="text_length">
-      <%= f.text_field :text_length, :label => 'Text' %>
+      <%= f.label :text_length, 'Text Length' %>
+      <%= f.text_field :text_length %>
     </div>
   </fieldset>
 
