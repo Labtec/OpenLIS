@@ -74,8 +74,7 @@
       <div class="values">
         <%= f.collection_check_boxes(:lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag) do |b| %>
           <div class="lab_test_value">
-            <%= b.check_box %>
-            <%= b.label(class: 'checkbox') %>
+            <%= b.label(:"data-value" => b.value) { b.check_box + raw(b.text) } %>
           </div>
         <% end %>
       </div>
