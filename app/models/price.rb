@@ -5,11 +5,11 @@ class Price < ActiveRecord::Base
   belongs_to :price_list, inverse_of: :prices
   belongs_to :priceable, polymorphic: true
 
-  validates_numericality_of :amount
+  validates :amount, numericality: true
+  validates :price_list_id, presence: true
+  validates :priceable_id, presence: true, uniqueness: { scope: :price_list_id }
+  validates :priceable_type, presence: true
   validate :positive_amount
-  validates_presence_of :price_list_id
-  validates_presence_of :priceable_id
-  validates_presence_of :priceable_type
 
 private
 
