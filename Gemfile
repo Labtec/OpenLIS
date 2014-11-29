@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0.beta4'
+gem 'rails', '4.2.0.rc1'
 
 gem 'acts_as_list'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'devise', github: 'plataformatec/devise', branch: 'lm-rails-4-2'
+gem 'devise', '~> 3.4.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -21,7 +21,7 @@ group :development, :test do
   gem 'capistrano'
   gem 'spring'
   gem 'sqlite3'
-  gem 'web-console', '~> 2.0.0.beta4'
+  gem 'web-console', '~> 2.0.0'
 end
 
 group :production do
