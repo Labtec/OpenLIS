@@ -52,6 +52,6 @@ class Admin::LabTestsController < Admin::ApplicationController
   private
 
   def lab_test_params
-    params.require(:lab_test).permit(:code, :name, :description, :decimals, :department_id, :unit_id, :procedure, :derivation, :also_numeric, :ratio, :range, :fraction, :text_length)
+    params.require(:lab_test).permit(:also_allow, :code, :name, :description, :decimals, :department_id, :unit_id, :procedure, :derivation, :also_numeric, :ratio, :range, :fraction, :text_length, { lab_test_value_ids: [] })
   end
 end

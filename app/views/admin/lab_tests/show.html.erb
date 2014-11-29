@@ -52,7 +52,7 @@
   <strong>Lab Test Values:</strong>
   <ul>
   <% for lab_test_value in @lab_test.lab_test_values %>
-    <li><%= lab_test_value.value %></li>
+    <li><%= sanitize(lab_test_value.value) %></li>
   <% end %>
   </ul>
 </p>

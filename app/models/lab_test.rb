@@ -27,42 +27,44 @@ class LabTest < ActiveRecord::Base
   default_scope { order(position: :asc) }
 
   def also_allow=(also_allow)
-    if also_allow == 'also_numeric'
+    case also_allow
+    when 'also_numeric'
       self.also_numeric = true
-      self.ratio = false
-      self.range = false
-      self.fraction = false
-    elsif also_allow == 'ratio'
+      self.ratio        = false
+      self.range        = false
+      self.fraction     = false
+    when 'ratio'
       self.also_numeric = false
-      self.ratio = true
-      self.range = false
-      self.fraction = false
-    elsif also_allow == 'range'
+      self.ratio        = true
+      self.range        = false
+      self.fraction     = false
+    when 'range'
       self.also_numeric = false
-      self.ratio = false
-      self.range = true
-      self.fraction = false
-    elsif also_allow == 'fraction'
+      self.ratio        = false
+      self.range        = true
+      self.fraction     = false
+    when 'fraction'
       self.also_numeric = false
-      self.ratio = false
-      self.range = false
-      self.fraction = true
+      self.ratio        = false
+      self.range        = false
+      self.fraction     = true
     else
       self.also_numeric = false
-      self.ratio = false
-      self.range = false
-      self.fraction = false
+      self.ratio        = false
+      self.range        = false
+      self.fraction     = false
     end
   end
 
   def also_allow
-    if also_numeric && !ratio && !range && !fraction
+    case
+    when also_numeric? && !ratio? && !range? && !fraction?
       :also_numeric
-    elsif !also_numeric && ratio && !range && !fraction
+    when !also_numeric? && ratio? && !range? && !fraction?
       :ratio
-    elsif !also_numeric && !ratio && range && !fraction
+    when !also_numeric? && !ratio? && range? && !fraction?
       :range
-    elsif !also_numeric && !ratio && !range && fraction
+    when !also_numeric? && !ratio? && !range? && fraction?
       :fraction
     else
       :none
