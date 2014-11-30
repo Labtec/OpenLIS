@@ -1,4 +1,4 @@
-//= require jquery
+//= require jquery2
 //= require jquery-ui/effect-shake
 
 $(function() {
