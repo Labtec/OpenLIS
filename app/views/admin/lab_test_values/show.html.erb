@@ -2,7 +2,7 @@
 
 <p>
   <strong>Value:</strong>
-  <%= sanitize @lab_test_value.value %>
+  <%= raw(@lab_test_value.value) %>
 </p>
 <p>
   <strong>Flag:</strong>
@@ -10,7 +10,7 @@
 </p>
 <p>
   <strong>Note:</strong>
-  <%= sanitize @lab_test_value.note %>
+  <%= sanitize(@lab_test_value.note) %>
 </p>
 
 <p>
