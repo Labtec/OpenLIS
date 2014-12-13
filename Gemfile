@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0.rc2'
+gem 'rails', '4.2.0.rc3'
 
 gem 'acts_as_list'
 gem 'coffee-rails', '~> 4.0.0'
@@ -10,6 +10,7 @@ gem 'jquery-rails', '~> 4.0.0'
 gem 'jquery-ui-rails'
 gem 'prawn'
 gem 'prawn-table'
+gem 'puma'
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'turbolinks'
