@@ -13,7 +13,7 @@
 
 <% @unsubmitted_claims.each do |unsubmitted_claim| %>
   <tr>
-    <td><%= check_box_tag 'unsubmitted_claim_ids[]', Accession.find(unsubmitted_claim).claim.id if Accession.find(unsubmitted_claim).claim %></td>
+    <td><%= check_box_tag 'unsubmitted_claim_ids[]', Accession.find(unsubmitted_claim.id).claim.id if Accession.find(unsubmitted_claim.id).claim %></td>
     <td><%= unsubmitted_claim.patient.name_last_comma_first_mi %></td>
     <td><%= link_to unsubmitted_claim.id, accession_path(unsubmitted_claim), target: '_blank' %></td>
     <td><%= unsubmitted_claim.claim.try(:external_number) %></td>
