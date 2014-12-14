@@ -8,13 +8,14 @@ Rails.application.routes.draw do
 
   root 'patients#index'
 
-  resources :users
-  get 'profile' => 'users#edit'
+  resources :users, only: [:edit, :update]
+  get 'profile', to: 'users#edit'
+
   resources :doctors, only: :index
 
   resources :patients, shallow: true do
     resources :accessions do
-      resources :results
+      resources :results, only: :index
     end
   end
 

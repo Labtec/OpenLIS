@@ -25,6 +25,10 @@ group :development, :test do
   gem 'web-console', '~> 2.0.0'
 end
 
+group :test do
+  gem 'factory_girl_rails'
+end
+
 group :production do
   gem 'mysql2'
   gem 'newrelic_rpm'
