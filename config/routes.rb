@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :doctors, only: :index
 
-  resources :patients, shallow: true do
+  resources :patients, shallow: true, except: :show do
     resources :accessions do
       resources :results, only: :index
     end
