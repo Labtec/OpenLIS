@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UsersTest < ActionDispatch::IntegrationTest
+class UsersRoutesTest < ActionDispatch::IntegrationTest
   setup do
     @defaults = { controller: 'users' }
   end

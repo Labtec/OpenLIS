@@ -84,19 +84,6 @@ class InitialSchema < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :lab_test_value_options do |t|
-      t.boolean  :numeric
-      t.boolean  :ratio
-      t.boolean  :range
-      t.boolean  :fraction
-      t.integer  :text_length
-      t.integer  :lab_test_id
-
-      t.timestamps
-    end
-
-    add_index :lab_test_value_options, [:lab_test_id], name: 'index_lab_test_value_options_on_lab_test_id'
-
     create_table :lab_test_values do |t|
       t.string   :value
       t.string   :flag

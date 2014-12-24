@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PatientsTest < ActionDispatch::IntegrationTest
+class PatientsRoutesTest < ActionDispatch::IntegrationTest
   setup do
     @defaults = { controller: 'patients' }
   end

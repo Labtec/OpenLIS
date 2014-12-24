@@ -32,17 +32,16 @@ Rails.application.routes.draw do
     resources :users
     resources :doctors
     resources :insurance_providers do
-      resources :claims
+      resources :claims, only: :index
       resources :prices
     end
-    resources :accessions do
-      resource :claim
+    resources :accessions, only: :index do
+      resource :claim, only: :new
     end
     resources :panels do
       resources :prices
     end
     resources :lab_test_values
-    resources :lab_test_value_options
     resources :reference_ranges
     resources :lab_tests do
       resources :prices
@@ -52,7 +51,7 @@ Rails.application.routes.draw do
     end
     resources :units
     resources :departments
-    resources :claims do
+    resources :claims, except: :new do
       collection do
         post 'submit_selected'
         post 'print_selected'

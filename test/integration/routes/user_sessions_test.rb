@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserSessionsTest < ActionDispatch::IntegrationTest
+class UserSessionsRoutesTest < ActionDispatch::IntegrationTest
   setup do
     @defaults = { controller: 'sessions' }
   end
