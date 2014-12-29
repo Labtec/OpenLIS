@@ -1,5 +1,5 @@
 class Accession < ActiveRecord::Base
-  belongs_to :patient, inverse_of: :accessions
+  belongs_to :patient, required: true, inverse_of: :accessions
   belongs_to :doctor, inverse_of: :accessions
   belongs_to :receiver, inverse_of: :accessions, class_name: 'User'
   belongs_to :drawer, inverse_of: :accessions, class_name: 'User'
@@ -15,7 +15,6 @@ class Accession < ActiveRecord::Base
   accepts_nested_attributes_for :accession_panels, allow_destroy: true
   accepts_nested_attributes_for :notes, allow_destroy: true, reject_if: :reject_notes
 
-  validates_presence_of :patient_id
   validates_presence_of :icd9, if: Proc.new { |accession| accession.patient.try(:insurance_provider) }
   validates_presence_of :drawn_at
   validates_presence_of :received_at
