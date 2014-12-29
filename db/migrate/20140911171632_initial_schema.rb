@@ -9,6 +9,13 @@ class InitialSchema < ActiveRecord::Migration
 
     add_index :accession_panels, [:accession_id, :panel_id], name: 'index_accession_panels_on_accession_id_and_panel_id'
 
+    # create_join_table :accessions, :panels do |t|
+    #   t.index :accession_id
+    #   t.index :panel_id
+    # end
+    # add_foreign_key :accessions_panels, :accession
+    # add_foreign_key :accessions_panels, :panel
+
     create_table :accessions do |t|
       t.integer  :patient_id
       t.datetime :drawn_at
