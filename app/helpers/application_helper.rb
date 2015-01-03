@@ -30,10 +30,6 @@ module ApplicationHelper
     content_tag :ul, safe_join(items)
   end
 
-  def twill_paginate(collection = nil, options = {})
-    will_paginate collection, {:previous_label => t('will_paginate.previous'), :next_label => t('will_paginate.next')}.merge(options)
-  end
-
   def mobile_user_agent?
     request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(Mobile)/]
   end

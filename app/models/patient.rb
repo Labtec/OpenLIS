@@ -40,7 +40,7 @@ class Patient < ActiveRecord::Base
     terms.each do |term|
       conditions << Array("%#{term}%") * 5 # number of ?s in `sql_string`
     end
-    paginate(per_page: 10, page: page).where(conditions.flatten)
+    self.where(conditions.flatten).page(page)
   end
 
   def full_name

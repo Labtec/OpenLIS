@@ -585,7 +585,7 @@ td.range{
   float: right;
 }
 
-#paginate, #pending_paginate {
+.pagination {
   float: right;
   font-size: 10px;
   margin: 4px 0px 0px 0px; }
@@ -865,56 +865,58 @@ div.auto_complete {
   float: right;
   font-size: 11px;
   margin: 6px 0px 0px 0px; }
-  .pagination a, .pagination span, .pagination em {
+  .pagination .first,
+  .pagination .last {
+    display: none; }
+  .pagination .next,
+  .pagination .prev,
+  .pagination .page{
     padding: .2em .5em;
     display: block;
     float: left;
-    margin: 0px 2px 0px 0px; }
-  .pagination span.disabled {
-    color: #999;
-    border: 1px solid #DDD; }
-  .pagination em.current {
+    margin: 0px 2px 0px 0px;
+    text-decoration: none;
+    color: #105CB6;
+    border: 1px solid #9AAFE5; }
+  .pagination .current {
     font-style: normal;
     font-weight: bold;
     background: #2E6AB1;
     color: white;
     border: 1px solid #2E6AB1; }
-  .pagination a {
-    text-decoration: none;
-    color: #105CB6;
-    border: 1px solid #9AAFE5; }
     .pagination a:hover, .pagination a:focus {
       color: navy;
       background: lightyellow;
       border-color: navy; }
-
-.pending_pagination {
-  background: white;
-  float: right;
-  font-size: 11px;
-  margin: 6px 0px 0px 0px; }
-  .pending_pagination a, .pending_pagination span, .pending_pagination em {
+  .pagination .gap {
+    border: none; }
+  .pending .pagination .next,
+  .pending .pagination .prev,
+  .pending .pagination .page {
     padding: .2em .5em;
     display: block;
     float: left;
-    margin: 0px 2px 0px 0px; }
-  .pending_pagination span.disabled {
-    color: #999;
-    border: 1px solid #DDD; }
-  .pending_pagination em.current {
+    margin: 0px 2px 0px 0px;
+    text-decoration: none;
+    color: #B61010;
+    border: 1px solid #E59A9A; }
+  .pending .pagination .current {
     font-style: normal;
     font-weight: bold;
     background: #B12E2E;
     color: white;
     border: 1px solid #B12E2E; }
-  .pending_pagination a {
-    text-decoration: none;
-    color: #B61010;
-    border: 1px solid #E59A9A; }
-    .pending_pagination a:hover, .pending_pagination a:focus {
+  .pending .next a,
+  .pending .prev a,
+  .pending .page a{
+    color: crimson;
+  }
+  .pending .page a:hover, .pending .page a:focus {
       color: crimson;
       background: lightyellow;
       border-color: crimson; }
+  .pending .pagination .gap {
+    border: none; }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   .log input {

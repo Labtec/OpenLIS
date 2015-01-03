@@ -13,8 +13,8 @@
     </ul>
   <% end %>
 
-  <div id='pending_paginate'>
-    <%= twill_paginate @pending_accessions, class: 'pending_pagination', param_name: :pending_page %>
+  <div class="pending">
+    <%= paginate @pending_accessions, param_name: :pending_page %>
     <div id="pending_paging" style="display:none">
       <%= image_tag('loading.gif', size: '16x16') %>
     </div>
@@ -27,9 +27,9 @@
     </ul>
   <% end %>
 
-  <div id='paginate'>
-    <%= twill_paginate @reported_accessions %>
-    <div id="paging" style="display:none">  
+  <div class="paginate">
+    <%= paginate @reported_accessions %>
+    <div id="paging" style="display:none">
       <%= image_tag('loading.gif', size: '16x16') %>
     </div>
   </div>
