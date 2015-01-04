@@ -16,13 +16,13 @@ $(document).on('mouseout', 'li.contact', function() {
   $(this).children(".tools").hide();
 });
 
-$(document).on('click', '.pending_pagination a', function() {
+$(document).on('click', '.pending a', function() {
   $("#pending_paging").show();
   $.getScript(this.href);
   return false;
 });
 
-$(document).on('click', '.pagination a', function() {
+$(document).on('click', '.paginate a', function() {
   $("#paging").show();
   $.getScript(this.href);
   return false;

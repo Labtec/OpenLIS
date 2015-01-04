@@ -5,15 +5,15 @@ class AccessionsController < ApplicationController
     if params[:patient_id]
       begin
         @patient = Patient.find(params[:patient_id])
-        @pending_accessions = @patient.accessions.queued.pending.paginate(per_page: 10, page: params[:pending_page])
-        @reported_accessions = @patient.accessions.recently.reported.paginate(per_page: 10, page: params[:page])
+        @pending_accessions = @patient.accessions.queued.pending.page(params[:pending_page])
+        @reported_accessions = @patient.accessions.recently.reported.page(params[:page])
       rescue ActiveRecord::RecordNotFound
         flash[:error] = t('flash.accession.patient_not_found')
         redirect_to accessions_url
       end
     else
-      @pending_accessions = Accession.queued.pending.paginate(per_page: 10, page: params[:pending_page])
-      @reported_accessions = Accession.recently.reported.paginate(per_page: 10, page: params[:page])
+      @pending_accessions = Accession.queued.pending.page(params[:pending_page])
+      @reported_accessions = Accession.recently.reported.page(params[:page])
     end
   end
 

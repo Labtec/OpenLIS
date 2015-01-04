@@ -45,10 +45,13 @@ es:
         reference_ranges: "Rangos"
         lab_test_values: "Valores"
 
-  will_paginate:
-    next: "Siguiente »"
-    previous: "« Anterior"
-    page_gap: "…"
+  views:
+    pagination:
+      first: Primero
+      last: Último
+      next: "Siguiente »"
+      previous: "« Anterior"
+      truncate: "…"
 
   patients:
     female: "Femenino"
