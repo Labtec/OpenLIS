@@ -25,7 +25,7 @@ class AuthlogicToDevise < ActiveRecord::Migration
     remove_column :users, :password_salt
     remove_column :users, :persistence_token
     # remove_column :users, :perishable_token
-    remove_column :users, :single_access_token
+    # remove_column :users, :single_access_token
 
     add_index :users, :confirmation_token, unique: true
     add_index :users, :reset_password_token, unique: true
@@ -55,7 +55,7 @@ class AuthlogicToDevise < ActiveRecord::Migration
     add_column :users, :password_salt, :string, null: false
     add_column :users, :persistence_token, :string
     # add_column :users, :perishable_token, :string
-    add_column :users, :single_access_token, :string
+    # add_column :users, :single_access_token, :string
 
     # remove_index :users, :confirmation_token
     # remove_index :users, :reset_password_token
