@@ -19,7 +19,8 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug'
-  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
   gem 'spring'
   gem 'sqlite3'
   gem 'web-console', '~> 2.0.0'
