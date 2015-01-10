@@ -28,7 +28,7 @@ module ResultsHelper
       number_with_precision(result.value, precision: result.lab_test.decimals, delimiter: ',') +
       ']'
     elsif result.lab_test_value
-      result.lab_test_value.value
+      result.lab_test_value.value.html_safe
     elsif result.value.blank?
       'pend.'
     elsif result.lab_test.ratio?
