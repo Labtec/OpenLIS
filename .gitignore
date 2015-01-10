@@ -16,5 +16,9 @@
 /tmp
 
 # Ignore config files.
-/config/capistrano
 /config/database.yml
+
+# Ignore deployment-specific files.
+/.capistrano
+/config/deploy/production.rb
+# /config/environments/production.rb
