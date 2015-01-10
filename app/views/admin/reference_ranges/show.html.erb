@@ -2,7 +2,7 @@
 
 <p>
   <strong>Test:</strong>
-  <%= @reference_range.lab_test.name %>
+  <%= sanitize(@reference_range.lab_test.name) %>
 </p>
 <p>
   <strong>Min:</strong>

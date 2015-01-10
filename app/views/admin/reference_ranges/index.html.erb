@@ -20,7 +20,7 @@
   </tr>
   <% @reference_ranges.each do |reference_range| %>
     <tr>
-      <td><%= reference_range.lab_test.name_with_description %></td>
+      <td><%= sanitize(reference_range.lab_test.name_with_description) %></td>
       <td><%= reference_range.min %></td>
       <td><%= reference_range.max %></td>
       <td><%= reference_range.gender %></td>
