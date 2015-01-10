@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     sign_out: 'logout',
   }, controllers: {
     sessions: 'sessions'
-  }
+  }, format: false
 
   root 'patients#index'
 
