@@ -1,6 +1,6 @@
 <tr class="<%= cycle('even', 'odd', name: 'alternating_row_colors') %>">
   <td class="lab_test <%= flag_color result %>"><%= sanitize(result.lab_test.name) %></td>
-  <td class="result <%= flag_color result %>"><%= format_value(result) %></td>
+  <td class="result <%= flag_color result %>"><%= sanitize(format_value(result)) %></td>
   <td class="symbol <%= flag_color result %>"><%= flag_name result %></td>
   <td class="units"><%= result.units %></td>
   <td class="ranges"><%= ranges_table result.ranges %></td>
