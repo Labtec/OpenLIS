@@ -32,11 +32,11 @@ module ResultsHelper
     elsif result.value.blank?
       'pend.'
     elsif result.lab_test.ratio?
-      result.value.gsub(/[:]/, '&ratio;')
+      result.value.gsub(/[:]/, '&ratio;').html_safe
     elsif result.lab_test.range?
-      result.value.gsub(/[-]/, '&ndash;')
+      result.value.gsub(/[-]/, '&ndash;').html_safe
     elsif result.lab_test.fraction?
-      result.value.gsub(/[\/]/, ' &frasl;&thinsp;')
+      result.value.gsub(/[\/]/, ' &frasl;&thinsp;').html_safe
     elsif result.lab_test.text_length?
       result.value
     else
