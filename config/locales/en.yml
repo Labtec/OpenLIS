@@ -45,10 +45,13 @@ en:
         reference_ranges: "Ranges"
         lab_test_values: "Values"
 
-  will_paginate:
-    next: "Next »"
-    previous: "« Previous"
-    page_gap: "…"
+  views:
+    pagination:
+      first: First
+      last: Last
+      next: "Next »"
+      previous: "« Previous"
+      truncate: "…"
 
   patients:
     female: "Femenino"
