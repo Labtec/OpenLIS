@@ -4,7 +4,7 @@ en:
       username: "Username"
       password: "Password"
       submit: "Log In"
-      
+
   users:
     form:
       username: "Username:"
@@ -23,7 +23,7 @@ en:
       submit: "Save User"
       or: "or"
       cancel: "Cancel"
-      
+
   layouts:
     header:
       quick_find: "Quick find"
@@ -119,7 +119,7 @@ en:
       edit: "Edit"
       delete: "Delete"
       confirm_destroy: "Are you sure?"
-      
+
   accessions:
     index:
       title: "Requisitions"
@@ -201,7 +201,7 @@ en:
       pending_requisitions: "Pending Requisitions"
       requisition_history: "Requisition History"
       order_tests: "Order Tests"
-      
+
   results:
     low: "L"
     high: "H"
@@ -244,7 +244,7 @@ en:
       email: "Email:"
       recent_patients: "Recent Patients"
       patient: "Patient:"
-          
+
   flash:
     login:
       hello: "Hello "

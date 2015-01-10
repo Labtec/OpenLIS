@@ -38,11 +38,9 @@ h1 a {
 
 #login { width: 320px; margin: 7em auto; }
 
-.errors {
+.alerts, .errors {
   margin: 0 0 16px 8px;
   color: rgb(51, 51, 51);
-  background-color: rgb(255, 235, 232);
-  border-color: #f40011;
   border-width: 1px;
   border-style: solid;
   padding: 12px;
@@ -50,6 +48,16 @@ h1 a {
   -khtml-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
+}
+
+.alerts {
+  background-color: rgb(252, 248, 227);
+  border-color: rgb(250, 235,204);
+}
+
+.errors {
+  background-color: rgb(255, 235, 232);
+  border-color: #f40011;
 }
 
 label {

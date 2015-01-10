@@ -11,11 +11,14 @@
   <body class="login">
     <div id="login">
       <h1><%= link_to "MasterLab", "http://www.labtecsa.com" %></h1>
-      <% if alert.present? || notice.present? %>
+      <% if alert.present? %>
       <div class="errors">
         <strong>ERROR:</strong>
-        <%= notice %>
         <%= alert %>
+      </div>
+      <% elsif notice.present? %>
+      <div class="alerts">
+        <%= notice %>
       </div>
       <% end %>
       <%= yield %>
