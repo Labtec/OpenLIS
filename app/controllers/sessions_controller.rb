@@ -3,9 +3,12 @@ class SessionsController < Devise::SessionsController
   skip_before_filter :verify_authenticity_token, only: :destroy
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    respond_to do |format|
+      format.html { super }
+      format.pdf { redirect_to new_user_session_path }
+    end
+  end
 
   # POST /resource/sign_in
   def create
