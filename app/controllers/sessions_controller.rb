@@ -1,5 +1,6 @@
 class SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
+  skip_before_filter :verify_authenticity_token, only: :destroy
 
   # GET /resource/sign_in
   # def new
@@ -16,9 +17,9 @@ class SessionsController < Devise::SessionsController
   end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+  end
 
   # protected
 
