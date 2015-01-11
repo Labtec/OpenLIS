@@ -62,6 +62,7 @@ form {
   form div.middle_name,
   form div.family_name,
   form div.family_name2,
+  form div.icd9,
   form div.address,
   form div.username,
   form div.password,
@@ -153,7 +154,7 @@ fieldset {
 
 legend {
  padding: 5px 5px 10px 5px;
- margin: 0; 
+ margin: 0;
  font-size: 14px;
  font-weight: bold;
  position: relative;
@@ -423,7 +424,7 @@ td.range{
   min-width: 496px;
   float: center;
   margin-right: 238px; }
-  
+
 .sidebar {
   float: right;
   color: #3f3f3f;
