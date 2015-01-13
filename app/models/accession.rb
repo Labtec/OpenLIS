@@ -23,7 +23,7 @@ class Accession < ActiveRecord::Base
   validate :received_at_cant_be_in_the_future
   validate :reported_at_cant_be_in_the_future
 
-  scope :recently, -> { order(updated_at: :desc) }
+  scope :recently, -> { order(reported_at: :desc) }
   scope :queued, -> { order(drawn_at: :asc) }
   scope :pending, -> { where(reported_at: nil) } #, include: [{results: [:lab_test, :lab_test_value]}, :drawer, :doctor]
   scope :reported, -> { where.not(reported_at: nil) } #, include: [:lab_tests, :panels, :reporter, :doctor]
