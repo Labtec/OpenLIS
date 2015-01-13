@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= set_user_language %>">
   <head>
-    <title>Login</title>
-    <%= stylesheet_link_tag 'login', media: 'all' %>
-    <%= javascript_include_tag 'login' %>
-    <%= yield(:head) %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
     <%= csrf_meta_tags %>
-    <meta name="viewport" content="initial-scale=1.0">
+    <title><%= t('.title') %></title>
+
+    <%= stylesheet_link_tag 'login', media: 'all' %>
   </head>
   <body class="login">
     <div id="login">
@@ -23,5 +23,7 @@
       <% end %>
       <%= yield %>
     </div>
+
+    <%= javascript_include_tag 'login' %>
   </body>
 </html>

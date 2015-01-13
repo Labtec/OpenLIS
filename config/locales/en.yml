@@ -44,6 +44,8 @@ en:
         units: "Units"
         reference_ranges: "Ranges"
         lab_test_values: "Values"
+    user_sessions:
+      title: Login
 
   views:
     pagination:
@@ -54,13 +56,13 @@ en:
       truncate: "…"
 
   patients:
-    female: "Femenino"
-    male: "Masculino"
-    unknown: "Desconocido"
-    canine: "Perro"
-    feline: "Gato"
-    equine: "Caballo"
-    other: "Otro"
+    female: "Female"
+    male: "Male"
+    unknown: "Unknown"
+    canine: "Dog"
+    feline: "Cat"
+    equine: "Horse"
+    other: "Other"
     year: "year"
     month: "month"
     day: "day"

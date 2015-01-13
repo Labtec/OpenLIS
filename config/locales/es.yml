@@ -44,6 +44,8 @@ es:
         units: "Unidades"
         reference_ranges: "Rangos"
         lab_test_values: "Valores"
+    user_sessions:
+      title: Inicio de sesión
 
   views:
     pagination:
