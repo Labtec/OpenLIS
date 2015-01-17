@@ -1,4 +1,6 @@
 class Patient < ActiveRecord::Base
+  include PgSearch
+
   GENDERS = [
     #Displayed  stored in db
     [ I18n.translate('patients.female'),  "F" ],
@@ -27,19 +29,22 @@ class Patient < ActiveRecord::Base
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
   scope :recent, -> { order(updated_at: :desc).limit(10) }
-  scope :sorted, -> { order(family_name: :asc) }
+  scope :sorted, -> { order('LOWER(my_unaccent(family_name))') }
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
   before_save :titleize_names
 
-  def self.search(query, page)
-    sql_string = '(given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?)'
-    terms = query.to_s.split
-    conditions = [([sql_string] * terms.size).join(" AND ")]
-    terms.each do |term|
-      conditions << Array("%#{term}%") * 5 # number of ?s in `sql_string`
+  pg_search_scope :search_by_name, against: [:identifier,
+                                             :family_name, :family_name2,
+                                             :given_name, :middle_name],
+                                             ignoring: :accents
+
+  def self.search(query)
+    if query.present?
+      search_by_name(query)
+    else
+      all.sorted
     end
-    self.where(conditions.flatten).page(page)
   end
 
   def full_name

@@ -2,7 +2,7 @@ class PatientsController < ApplicationController
   before_filter :set_recent_patients_list, except: [:update, :destroy]
 
   def index
-    @patients = Patient.sorted.search(params[:search], params[:page])
+    @patients = Patient.search(params[:search]).page(params[:page])
   end
 
   def new

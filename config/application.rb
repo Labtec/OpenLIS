@@ -8,5 +8,6 @@ module OpenLIS
   class Application < Rails::Application
     config.time_zone = 'Bogota'
     config.active_record.raise_in_transactional_callbacks = true
+    config.active_record.schema_format = :sql
   end
 end

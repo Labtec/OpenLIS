@@ -9,6 +9,8 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'pg'
+gem 'pg_search'
 gem 'prawn'
 gem 'prawn-table'
 gem 'puma'
@@ -21,7 +23,6 @@ group :development, :test do
   gem 'byebug'
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
-  gem 'sqlite3'
 end
 
 group :development do
@@ -34,7 +35,6 @@ group :test do
 end
 
 group :production do
-  gem 'mysql2'
   gem 'newrelic_rpm'
 end
 

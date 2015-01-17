@@ -1,5 +1,5 @@
 test:
-  adapter: mysql2
+  adapter: postgresql
   database: openlis_<%= Rails.env %>
-  username: travis
+  username: postgres
   encoding: utf8
