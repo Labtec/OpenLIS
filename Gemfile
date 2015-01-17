@@ -22,6 +22,7 @@ gem 'uglifier'
 group :development, :test do
   gem 'byebug'
   gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
 end
 

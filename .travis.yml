@@ -3,8 +3,6 @@ language: ruby
 cache: bundler
 addons:
   postgresql: '9.4'
-rvm:
-  - 2.3.0
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database openlis_test;' -U postgres
