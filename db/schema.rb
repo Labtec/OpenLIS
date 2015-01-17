@@ -97,19 +97,6 @@ ActiveRecord::Schema.define(version: 20141003113152) do
     t.datetime "updated_at"
   end
 
-  create_table "lab_test_value_options", force: true do |t|
-    t.boolean  "numeric"
-    t.boolean  "ratio"
-    t.boolean  "range"
-    t.boolean  "fraction"
-    t.integer  "text_length"
-    t.integer  "lab_test_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "lab_test_value_options", ["lab_test_id"], name: "index_lab_test_value_options_on_lab_test_id"
-
   create_table "lab_test_values", force: true do |t|
     t.string   "value"
     t.string   "flag"
@@ -152,13 +139,6 @@ ActiveRecord::Schema.define(version: 20141003113152) do
   end
 
   add_index "notes", ["noticeable_id", "noticeable_type"], name: "index_notes_on_noticeable_id_and_noticeable_type"
-
-  create_table "organisms", force: true do |t|
-    t.text     "name"
-    t.integer  "panel_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "panels", force: true do |t|
     t.string   "code"

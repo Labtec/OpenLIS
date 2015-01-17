@@ -134,13 +134,6 @@ class InitialSchema < ActiveRecord::Migration
 
     add_index :notes, [:noticeable_id, :noticeable_type], name: 'index_notes_on_noticeable_id_and_noticeable_type'
 
-    create_table :organisms do |t|
-      t.text     :name
-      t.integer  :panel_id
-
-      t.timestamps
-    end
-
     create_table :panels do |t|
       t.string   :code
       t.string   :name
