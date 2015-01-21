@@ -28,7 +28,10 @@ end
 
 group :development do
   gem 'spring'
+  gem 'stackprof'
   gem 'web-console'
+  gem 'flamegraph', require: false
+  gem 'rack-mini-profiler', require: false
 end
 
 group :test do
