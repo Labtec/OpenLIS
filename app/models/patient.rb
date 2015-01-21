@@ -128,16 +128,14 @@ private
     errors.add(:birthdate, I18n.t('flash.patient.birthday_cant_be_in_the_future')) if birthdate > Date.today unless birthdate.nil?
   end
 
-  ##
-  # Must be extended to capitalize international characters (á, é ...)
-  # In ruby 1.9.3 use mb_chars
   def titleize_names
-    self.given_name = given_name.titleize.squeeze(' ').strip if given_name
-    self.middle_name = middle_name.titleize.squeeze(' ').strip if middle_name
-    self.family_name = family_name.squeeze(' ').strip if family_name
-    self.family_name2 = family_name2.squeeze(' ').strip if family_name2
-    self.identifier = identifier.squeeze(' ').strip if identifier
-    self.phone = phone.squeeze(' ').strip if phone
-    self.address = address.squeeze(' ').strip if address
+    self.given_name = given_name.mb_chars.titleize.squish if given_name
+    self.middle_name = middle_name.mb_chars.titleize.squish if middle_name
+    self.family_name = family_name.squish if family_name
+    self.family_name2 = family_name2.squish if family_name2
+    self.identifier = identifier.squish if identifier
+    self.phone = phone.squish if phone
+    self.address = address.squish if address
+    self.policy_number = policy_number.squish if policy_number
   end
 end
