@@ -33,6 +33,7 @@ class Patient < ActiveRecord::Base
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
   before_save :titleize_names
+  after_commit :flush_cache
 
   pg_search_scope :search_by_name, against: [:identifier,
                                              :family_name, :family_name2,
@@ -44,6 +45,12 @@ class Patient < ActiveRecord::Base
       search_by_name(query)
     else
       all.sorted
+    end
+  end
+
+  def self.cached_recent
+    Rails.cache.fetch([name, 'recent']) do
+      recent.to_a
     end
   end
 
@@ -126,7 +133,7 @@ class Patient < ActiveRecord::Base
     end
   end
 
-private
+  private
 
   def birthdate_cant_be_in_the_future
     errors.add(:birthdate, I18n.t('flash.patient.birthday_cant_be_in_the_future')) if birthdate > Date.today unless birthdate.nil?
@@ -141,5 +148,9 @@ private
     self.phone = phone.squish if phone
     self.address = address.squish if address
     self.policy_number = policy_number.squish if policy_number
+  end
+
+  def flush_cache
+    Rails.cache.delete([self.class.name, 'recent'])
   end
 end

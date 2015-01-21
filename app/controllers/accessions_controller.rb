@@ -106,7 +106,7 @@ class AccessionsController < ApplicationController
   protected
 
   def set_recent_patients_list
-    @recent ||= Patient.recent
+    @recent ||= Patient.cached_recent
   end
 
   private

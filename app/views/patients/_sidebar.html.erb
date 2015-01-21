@@ -11,17 +11,17 @@
   <div class="panel" id="recent">
     <div class="caption"><%= t('.recent_patients') %></div>
     <ul>
-    <% if @recent %>
-    <% for patient in @recent %>
-      <li>
-        <dt>
-          <%= link_to truncate(patient.full_name, length: 15),
-            patient_accessions_path(patient), title: patient.full_name %>
-        </dt>
-        <tt><%= t('.patient') %></tt>
-      </li>
-    <% end %>
-    <% end %>
+      <% if @recent %>
+        <% for patient in @recent %>
+          <li>
+            <dt>
+              <%= link_to truncate(patient.full_name, length: 15),
+                patient_accessions_path(patient), title: patient.full_name %>
+            </dt>
+            <tt><%= t('.patient') %></tt>
+          </li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 </div>
