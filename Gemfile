@@ -4,6 +4,7 @@ gem 'rails', '4.2.6'
 
 gem 'acts_as_list'
 gem 'coffee-rails'
+gem 'dalli'
 gem 'devise'
 gem 'jbuilder'
 gem 'jquery-rails'

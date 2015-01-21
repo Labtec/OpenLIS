@@ -71,6 +71,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.1)
+    dalli (2.7.6)
     debug_inspector (0.0.2)
     devise (4.0.1)
       bcrypt (~> 3.0)
@@ -220,6 +221,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-puma
   coffee-rails
+  dalli
   devise
   factory_girl_rails
   flamegraph
