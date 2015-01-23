@@ -2,12 +2,12 @@
              enforce_utf8: false, html: { novalidate: true }) do |f| %>
   <div class="username">
     <%= f.label :username, t('user_sessions.new.username') %>
-    <%= f.email_field :username, autofocus: true %>
+    <%= f.email_field :username, 'aria-label' => t('user_sessions.new.username'), autofocus: true %>
   </div>
 
   <div class="password">
     <%= f.label :password, t('user_sessions.new.password') %>
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, 'aria-label' => t('user_sessions.new.password'), autocomplete: "off" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
