@@ -1,4 +1,12 @@
 module PatientsHelper
+  def avatar_icon(patient)
+    if patient.animal_type
+      image_tag('spacer.gif', class: "avatar_#{patient.animal_type}")
+    else
+      image_tag('spacer.gif', class: "avatar_#{patient.gender}")
+    end
+  end
+
   def options_for_gender
     [
       [ I18n.translate('patients.female'),  'F' ],

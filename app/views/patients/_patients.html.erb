@@ -1,37 +1,33 @@
 <% if @patients.empty? %>
-<p class="content"><%= t('.not_found') %></p>
+  <p class="content"><%= t('.not_found') %></p>
 <% else %>
-<ul>
-  <% @patients.each do |patient| %>
-  <li class="contact">
-  <% if patient.animal_type %>
-    <%= image_tag('spacer.gif', class: "avatar_#{patient.animal_type}") %>
-  <% else %>
-    <%= image_tag('spacer.gif', class: "avatar_#{patient.gender}") %>
-  <% end %>
+  <ul>
+    <% @patients.each do |patient| %>
+      <li class="contact">
+        <%= avatar_icon(patient) %>
 
-    <div class="tools" style="display:none">
-      <small>
-        <%= link_to t('.edit'), edit_patient_path(patient) %>
-        <% if current_user.admin? %> |
-        <%= link_to t('.delete?'), patient, method: :delete,
-          data: { confirm: t('.confirm_destroy') } %>
+        <div class="tools" style="display:none">
+          <small>
+            <%= link_to t('.edit'), edit_patient_path(patient) %>
+            <% if current_user.admin? %> |
+              <%= link_to t('.delete?'), patient, method: :delete,
+              data: { confirm: t('.confirm_destroy') } %>
+          <% end %>
+        </small>
+      </div>
+
+      <%= link_to patient.full_name, patient_accessions_path(patient) %>
+      <tt><%= patient.identifier %></tt>
+      <dt style="padding: 2px 0px 0px 0px">
+        <% if patient.email.present? %>
+          <%= mail_to patient.email %> |
         <% end %>
-      </small>
-    </div>
-
-    <%= link_to patient.full_name, patient_accessions_path(patient) %>
-    <tt><%= patient.identifier %></tt>
-    <dt style="padding: 2px 0px 0px 0px">
-    <% if patient.email.present? %>
-      <%= mail_to patient.email %> |
-    <% end %>
-    <% if patient.phone.present? %>
-      <%= t('.phone') %> <b><%= patient.phone %></b> |
-    <% end %>
-      <%= pluralize patient.age_to_display, patient.age_units %>
-    </dt>
-  </li>
+        <% if patient.phone.present? %>
+          <%= t('.phone') %> <b><%= patient.phone %></b> |
+        <% end %>
+        <%= pluralize patient.age_to_display, patient.age_units %>
+      </dt>
+    </li>
   <% end %>
 </ul>
 <% end %>

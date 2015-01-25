@@ -1,13 +1,13 @@
-<% title t('.title') %>
+<%= title t('.title') %>
 
-<div class='title_tools'>
+<div class="title_tools">
   <%= link_to t('.new_patient'), new_patient_path %>
 </div>
 
-<div class='title'>
+<div class="title">
   <span><%= t('.title')%></span>
 </div>
 
-<div class='list' id="patients">
-  <%= render "patients" %>
+<div class="list" id="patients">
+  <%= render 'patients' %>
 </div>
