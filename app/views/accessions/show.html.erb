@@ -3,7 +3,7 @@
 <fieldset class="<%= @accession.reported_at.blank? %>">
   <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
 
-  <%= doctor_name @accession.doctor %><br />
+  <%= practitioner @accession.doctor %><br />
 
   <% if @accession.drawn_at %>
     <%= t('.drawn_at') %>
