@@ -60,7 +60,6 @@ class ClaimPreview < Prawn::Document
     field_height = 12
     form_padding = 4
     form_indenting = 2
-    table_padding = 2
 
     # Cell widths
     provider_info_width = 180
@@ -190,6 +189,16 @@ class ClaimPreview < Prawn::Document
         text claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy), :align => :center
       end
     end
+    # FL 38 - Responsible Party Name and Address
+    # Not Required. For claims that involve payers of higher priority than Medicare.
+    bounding_box([left_margin, (top_margin - field_height * 7)], :width => insurance_provider_width, :height => field_height * 5) do
+      pad_top(10) do
+        pad(form_padding) do
+          text claim.insurance_provider.name, :align => :center, :size => 18
+          text "No. #{claim.external_number}", :align => :center, :size => 16
+        end
+      end
+    end
     # Prices calculation and tables preparation
     @total_price = []
     # Panels Table
@@ -223,12 +232,12 @@ class ClaimPreview < Prawn::Document
         ]
     end
     # TOTALS
-    if (panels_table.size + lab_tests_table.size) < main_table_rows
-      bounding_box([left_margin + rev_cd_width + line_23_page_width, (top_margin - field_height * 35)], :width => line_23_page_field_width, :height => field_height) do
-        pad(form_padding - 1) do
-          text "<b><i>1</i></b>", :align => :center, :inline_format => true #, :size => 9
-        end
+    bounding_box([left_margin + rev_cd_width + line_23_page_width, (top_margin - field_height * 35)], :width => line_23_page_field_width, :height => field_height) do
+      pad(form_padding - 1) do
+        text "<b><i>1</i></b>", :align => :center, :inline_format => true #, :size => 9
       end
+    end
+    if (panels_table.size + lab_tests_table.size) < main_table_rows
       bounding_box([left_margin + rev_cd_width + line_23_total_pages_width, (top_margin - field_height * 35)], :width => line_23_page_field_width, :height => field_height) do
         pad(form_padding - 1) do
           text "<b><i>1</i></b>", :align => :center, :inline_format => true #, :size => 9
@@ -257,7 +266,6 @@ class ClaimPreview < Prawn::Document
     end
     # FL 55A, B, and C - Estimated Amount Due From Patient
     bounding_box([left_margin + prior_payments_width, (top_margin - field_height * 37)], :width => due_from_patient_width, :height => field_height) do
-      @claim_total_price << @total_price.sum
       pad(form_padding) do
         text "#{@view.number_to_currency @total_price.sum, :unit => '', :separator => ' '}", :align => :right
       end
@@ -291,11 +299,6 @@ class ClaimPreview < Prawn::Document
         end
       end
     end
-    # Next page table
-    if (panels_table.size + lab_tests_table.size) >= main_table_rows
-      lab_tests_table.insert((main_table_rows - 1 - panels_table.size), ['', '<b><i>1</i></b>', '', '', '', ''])
-      lab_tests_table.insert((lab_tests_table.size), ['', '<b><i>2</i></b>', '', '', '', ''])
-    end
     # FL 43 - Revenue Description
     # Not Required. The provider enters a narrative description or standard abbreviation for each revenue code shown in FL 42 on the adjacent line in FL 43. The information assists clerical bill review. Descriptions or abbreviations correspond to the revenue codes. "Other" code categories are locally defined and individually described on each bill. The investigational device exemption (IDE) or procedure identifies a specific device used only for billing under the specific revenue code 0624. The IDE will appear on the paper format of Form CMS-1450 as follows: FDA IDE # A123456 (17 spaces). HHAs identify the specific piece of DME or non-routine supplies for which they are billing in this area on the line adjacent to the related revenue code. This description must be shown in HCPCS coding. (Also see FL 80, Remarks.)
     # FL 44 - HCPCS/Rates/HIPPS Rate Codes
@@ -311,28 +314,179 @@ class ClaimPreview < Prawn::Document
       unless panels_table.blank?
         table panels_table,
           :column_widths => { 0 => rev_cd_width, 1 => description_width, 2 => hpcs_rates_width, 3 => serv_date_width, 4 => serv_units_width, 5 => total_charges_width },
-          :cell_style => { :size => 8, :height => field_height, :padding => [form_padding - 2.5, form_padding - 2.5], :inline_format => true } do
-            cells.borders = []
-            column(0).style :align => :center
-            column(1).style :align => :left
-            column(2).style :align => :center
-            column(3).style :align => :center
-            column(4).style :align => :center
-            column(5).style :align => :right
+          :cell_style => { :size => 8, :height => field_height, :padding => [form_padding - 2.5, form_padding - 2.5], :inline_format => true } do |t|
+            t.cells.borders = []
+            t.column(0).style :align => :center
+            t.column(1).style :align => :left
+            t.column(2).style :align => :center
+            t.column(3).style :align => :center
+            t.column(4).style :align => :center
+            t.column(5).style :align => :right
           end
       end
       # Output Lab Tests Table
+      @background_form = true
       unless lab_tests_table.blank?
         table lab_tests_table,
           :column_widths => { 0 => rev_cd_width, 1 => description_width, 2 => hpcs_rates_width, 3 => serv_date_width, 4 => serv_units_width, 5 => total_charges_width },
-          :cell_style => { :size => 8, :height => field_height, :padding => [form_padding - 2.5, form_padding - 2.5], :inline_format => true } do
-            cells.borders = []
-            column(0).style :align => :center
-            column(1).style :align => :left
-            column(2).style :align => :center
-            column(3).style :align => :center
-            column(4).style :align => :center
-            column(5).style :align => :right
+          :cell_style => { :size => 8, :height => field_height, :padding => [form_padding - 2.5, form_padding - 2.5], :inline_format => true } do |t|
+            t.before_rendering_page do |page|
+              unless @background_form
+                # Form Locator (FL) 1 - (Untitled) Provider Name, Address, and Telephone Number
+                # Required. The minimum entry is the provider name, city, State, and ZIP code. The post office box number or street name and number may be included. The State may be abbreviated using standard post office abbreviations. Five or nine-digit ZIP codes are acceptable. This information is used in connection with the Medicare provider number (FL 51) to verify provider identity. Phone and/or Fax numbers are desirable.
+                bounding_box([0, field_height * (main_table_rows + 17)], :width => provider_info_width, :height => field_height) do
+                  pad(form_padding) do
+                    indent(form_indenting * 3) do
+                      text "<b>Labtec S.A.</b>", :inline_format => true
+                    end
+                  end
+                end
+                bounding_box([0, field_height * (main_table_rows + 16)], :width => provider_info_width, :height => field_height) do
+                  pad(form_padding) do
+                    indent(form_indenting * 3) do
+                      text "Villa Lucre, Consultorios San Judas Tadeo #107"
+                    end
+                  end
+                end
+                bounding_box([0, field_height * (main_table_rows + 15)], :width => provider_info_width, :height => field_height) do
+                  pad(form_padding) do
+                    indent(form_indenting * 3) do
+                      text "Tel: 222-9200 ext. 1107 • Fax: 277-7832"
+                    end
+                  end
+                end
+                bounding_box([0, field_height * (main_table_rows + 14)], :width => provider_info_width, :height => field_height) do
+                  pad(form_padding) do
+                    indent(form_indenting * 3) do
+                      text "masterlab@labtecsa.com"
+                    end
+                  end
+                end
+                # FL 5 - Federal Tax Number
+                # Required. The format is NN-NNNNNNN.
+                bounding_box([provider_info_width + pay_to_info_width, field_height * (main_table_rows + 14)], :width => federal_tax_number_width, :height => field_height) do
+                  pad_top(form_padding) do
+                    text "299497-1-409892 (13)", :align => :center, :size => 7
+                  end
+                end
+                # FL 3a - Patient Control Number
+                # Required. The patient's unique alpha-numeric control number assigned by the provider to facilitate retrieval of individual financial records and posting payment may be shown if the provider assigns one and needs it for association and reference purposes.
+                bounding_box([pre_control_no_width, field_height * (main_table_rows + 17)], :width => patient_control_number_width, :height => field_height) do
+                  pad(form_padding) do
+                    text "<b>#{claim.number}</b>", :align => :center, :inline_format => true
+                  end
+                end
+                # FL 8 - Patient's Name
+                # Required. The provider enters the patient's last name, first name, and, if any, middle initial, along with patient ID (if different than the subscriber/insured's ID).
+                bounding_box([7, field_height * (main_table_rows + 12)], :width => name_width, :height => field_height) do
+                  pad(form_padding) do
+                    indent(form_indenting) do
+                      text "<b>#{claim.accession.patient.name_last_comma_first_mi}</b>", :inline_format => true
+                    end
+                  end
+                end
+                # FL 10 - Patient's Birth Date
+                # Required. The provider enters the month, day, and year of birth (MMDDCCYY) of patient. If full birth date is unknown, indicate zeros for all eight digits.
+                bounding_box([0, field_height * (main_table_rows + 10)], :width => birthdate_width, :height => field_height) do
+                  pad(form_padding) do
+                    indent(form_indenting) do
+                      text claim.accession.patient.birthdate.to_formatted_s(:mmddccyy)
+                    end
+                  end
+                end
+                # FL 11 - Patient's Sex
+                # Required. The provider enters an "M" (male) or an "F" (female). The patient's sex is recorded at admission, outpatient service, or start of care.
+                bounding_box([birthdate_width, field_height * (main_table_rows + 10)], :width => gender_width, :height => field_height) do
+                  pad(form_padding) do
+                    text claim.accession.patient.gender, :align => :center
+                  end
+                end
+                # FLs 31, 32, 33 and 34 - Occurrence Codes and Dates
+                # Situational. Required when there is a condition code that applies to this claim.
+                bounding_box([occurrence_code_width, field_height * (main_table_rows + 8)], :width => occurrence_date_width, :height => field_height) do
+                  pad(form_padding) do
+                    text claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy), :align => :center
+                  end
+                end
+                # FL 38 - Responsible Party Name and Address
+                # Not Required. For claims that involve payers of higher priority than Medicare.
+                bounding_box([0, field_height * (main_table_rows + 6)], :width => insurance_provider_width, :height => field_height * 5) do
+                  pad_top(10) do
+                    pad(form_padding) do
+                      text claim.insurance_provider.name, :align => :center, :size => 18
+                      text "No. #{claim.external_number}", :align => :center, :size => 16
+                    end
+                  end
+                end
+                # TOTALS
+                bounding_box([rev_cd_width + line_23_page_width, field_height], :width => line_23_page_field_width, :height => field_height) do
+                  pad(form_padding - 1) do
+                    text "<b><i>2</i></b>", :align => :center, :inline_format => true
+                  end
+                end
+                bounding_box([rev_cd_width + line_23_total_pages_width, field_height], :width => line_23_page_field_width, :height => field_height) do
+                  pad(form_padding - 1) do
+                    text "<b><i>2</i></b>", :align => :center, :inline_format => true
+                  end
+                end
+                bounding_box([rev_cd_width + description_width + hpcs_rates_width + serv_date_width + serv_units_width, field_height], :width => totals_width, :height => field_height) do
+                  pad(form_padding - 1) do
+                    text "<b><i>#{@view.number_to_currency @total_price.sum, :unit => '', :separator => ' '}</i></b>", :align => :right, :inline_format => true, :size => 9
+                  end
+                end
+                # FL 50A, B, and C - Payer Identification
+                bounding_box([0, -field_height], :width => payer_name_width, :height => field_height) do
+                  pad(form_padding) do
+                    indent(form_indenting) do
+                      text "PCABP", :align => :left
+                    end
+                  end
+                end
+                # FL 55A, B, and C - Estimated Amount Due From Patient
+                bounding_box([prior_payments_width, -field_height], :width => due_from_patient_width, :height => field_height) do
+                  pad(form_padding) do
+                    text "#{@view.number_to_currency @total_price.sum, :unit => '', :separator => ' '}", :align => :right
+                  end
+                end
+                # FLs 58A, B, and C - Insured's Name
+                # Required. On the same lettered line (A, B or C) that corresponds to the line on which Medicare payer information is shown in FLs 50-54, the provider must enter the patient's name as shown on the HI card or other Medicare notice. All additional entries across line A (FLs 59-66) pertain to the person named in Item 58A. The instructions that follow explain when to complete these items.
+                bounding_box([0, -(field_height * 5)], :width => insured_name_width, :height => field_height) do
+                  pad(form_padding) do
+                    indent(form_indenting) do
+                      text claim.insured_name
+                    end
+                  end
+                end
+                # FLs 60A, B, and C - Insured's Unique ID (Certificate/Social Security Number/HI Claim/Identification Number (HICN))
+                # Required. On the same lettered line (A, B, or C) that corresponds to the line on which Medicare payer information is shown in FLs 50-54, the provider enters the patient's HICN, i.e., if Medicare is the primary payer, it enters this information in FL 60A. It shows the number as it appears on the patient's HI Card, Certificate of Award, Medicare Summary Notice, or as reported by the Social Security Office.
+                # If the provider is reporting any other insurance coverage higher in priority than Medicare (e.g., EGHP for the patient or the patient's spouse or during the first year of ESRD entitlement), it shows the involved claim number for that coverage on the appropriate line.
+                bounding_box([insured_name_width + patient_relationship_width, -(field_height * 5)], :width => insured_unique_id_width, :height => field_height) do
+                  pad(form_padding) do
+                    text claim.insured_policy_number, :align => :center
+                  end
+                end
+                # FL 74 - Principal Procedure Code and Date Situational. Required on inpatient claims when a procedure was performed. Not used on outpatient claims.
+                # FL 74A - 74E - Other Procedure Codes and Dates Situational. Required on inpatient claims when additional procedures must be reported. Not used on outpatient claims.
+                diag_codes = (claim.accession.icd9.split(',').map { |d| d.strip } unless claim.accession.icd9.blank?) || ["pend."]
+                diag_codes.each_with_index do |diag_code, i|
+                  bounding_box([code_width * i, -(field_height * 16)], :width => code_width, :height => field_height) do
+                    pad(form_padding) do
+                      indent(form_indenting) do
+                        text diag_code.upcase
+                      end
+                    end
+                  end
+                end
+              end
+              @background_form = false
+            end
+            t.cells.borders = []
+            t.column(0).style :align => :center
+            t.column(1).style :align => :left
+            t.column(2).style :align => :center
+            t.column(3).style :align => :center
+            t.column(4).style :align => :center
+            t.column(5).style :align => :right
           end
       end
     end
