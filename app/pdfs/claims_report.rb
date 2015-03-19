@@ -318,7 +318,6 @@ class ClaimsReport < Prawn::Document
       end
       # FL 55A, B, and C - Estimated Amount Due From Patient
       bounding_box([left_margin + prior_payments_width, (top_margin - field_height * 37)], :width => due_from_patient_width, :height => field_height) do
-        @claim_total_price << @total_price.sum
         pad(form_padding) do
           text "#{@view.number_to_currency @total_price.sum, :unit => '', :separator => ' '}", :align => :right
         end
@@ -488,7 +487,6 @@ class ClaimsReport < Prawn::Document
                     end
                   end
                   bounding_box([rev_cd_width + description_width + hpcs_rates_width + serv_date_width + serv_units_width, field_height], :width => totals_width, :height => field_height) do
-                    @claim_total_price << @total_price.sum
                     pad(form_padding - 1) do
                       text "<b><i>#{@view.number_to_currency @total_price.sum, :unit => '', :separator => ' '}</i></b>", :align => :right, :inline_format => true, :size => 9
                     end
@@ -503,7 +501,6 @@ class ClaimsReport < Prawn::Document
                   end
                   # FL 55A, B, and C - Estimated Amount Due From Patient
                   bounding_box([prior_payments_width, -field_height], :width => due_from_patient_width, :height => field_height) do
-                    @claim_total_price << @total_price.sum
                     pad(form_padding) do
                       text "#{@view.number_to_currency @total_price.sum, :unit => '', :separator => ' '}", :align => :right
                     end
