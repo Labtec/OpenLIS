@@ -96,7 +96,8 @@
     </div>
 
     <div class="buttonbar">
-      <%= f.submit t('.submit') %> <%= t('.or') %>
+      <%= f.submit t('.submit'), data: { disable_with: t('.processing') } %>
+      <%= t('.or') %>
       <% if @patient %>
         <%= link_to t('.cancel'), patient_accessions_path(@patient) %>
       <% else %>

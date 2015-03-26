@@ -167,6 +167,7 @@ es:
       submit: "Guardar"
       or: "o"
       cancel: "Cancelar"
+      processing: "Procesando..."
     sidebar:
       year: "año"
       phone: "Tel:"

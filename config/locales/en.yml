@@ -164,9 +164,10 @@ en:
       reported_by: "Reported by:"
       order_panels: "Order Panels"
       order_tests: "Order Tests"
-      submit: "Save Accession"
+      submit: "Save"
       or: "or"
       cancel: "Cancel"
+      processing: "Processing..."
     sidebar:
       year: "year"
       phone: "Phone:"
