@@ -1,0 +1,8 @@
+sudo: false
+language: ruby
+cache: bundler
+rvm:
+  - 2.2.3
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - mysql -e 'create database openlis_test;'
