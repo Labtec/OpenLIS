@@ -1,4 +1,16 @@
 module PatientsHelper
+  def avatar_for(patient)
+    if patient.animal_type
+      content_tag :span, class: 'avatar' do
+        image_tag("avatar_#{patient.animal_type}.png")
+      end
+    else
+      content_tag :span, class: 'avatar' do
+        image_tag("avatar_#{patient.gender}.png")
+      end
+    end
+  end
+
   def avatar_icon(patient)
     if patient.animal_type
       image_tag('spacer.gif', class: "avatar_#{patient.animal_type}")

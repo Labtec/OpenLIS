@@ -1,9 +1,7 @@
 <div class="panel" id="summary">
-  <% if patient.animal_type %>
-    <span class="avatar"><%= image_tag("avatar_#{patient.animal_type}.png") %></span>
-  <% else %>
-    <span class="avatar"><%= image_tag("avatar_#{patient.gender}.png") %></span>
-  <% end %>
+
+  <%= avatar_for(patient) %>
+
   <h4><%= link_to patient.full_name, patient_accessions_path(patient) %></h4>
   <div>
     <%= patient.identifier %><br />
