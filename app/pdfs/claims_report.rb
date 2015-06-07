@@ -82,9 +82,9 @@ class ClaimsReport < Prawn::Document
     hpcs_rates_width = 108
     serv_date_width = 50
     serv_units_width = 58
-    line_23_page_width = 30
-    line_23_total_pages_width = 72
-    line_23_page_field_width = 22
+    line_23_page_width = 32
+    line_23_total_pages_width = 75
+    line_23_page_field_width = 21
     total_charges_width = 64
     totals_width = 65
     payer_name_width = 166
