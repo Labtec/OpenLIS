@@ -3,7 +3,7 @@
   <%= render 'shared/error_messages', object: @claim %>
 
   <h2>
-    <%= f.object.accession.patient.name_last_comma_first_mi %>
+    <%= name_last_comma_first_mi(f.object.accession.patient) %>
     (<%= f.object.accession_id %>)
   </h2>
 

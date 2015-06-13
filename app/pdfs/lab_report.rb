@@ -204,7 +204,7 @@ repeat :all do
         end
       end
       bounding_box([demographics_stop_1, bounds.top], :width => demographics_width_2 + demographics_width_3 + demographics_width_4, :height => row_height) do
-        text @accession.patient.full_name, :style => :bold
+        text full_name(@accession.patient), :style => :bold
       end
       bounding_box([demographics_stop_1, bounds.top - row_height], :width => demographics_width_2, :height => row_height) do
         text @accession.patient.identifier
@@ -386,7 +386,7 @@ if cursor > bounds.bottom + signature_block_height
   bounding_box([bounds.width / 2 + line_padding, cursor], :width => signature_line, :height => 2 * line_height + padding) do
     stroke_horizontal_rule
     pad_top padding do
-      text current_user.name_to_display, :align => :center
+      text current_user_name, :align => :center
     end
     text registration_number, :align => :center
   end
@@ -399,7 +399,7 @@ else
   bounding_box([column_0_width + line_padding, cursor], :width => signature_line, :height => line_height + padding) do
     stroke_horizontal_rule
     pad_top padding do
-      text current_user.name_to_display + registration_number(:inline => true), :align => :center
+      text current_user_name + registration_number(:inline => true), :align => :center
     end
   end
 end
@@ -418,7 +418,7 @@ repeat :all do
     bounding_box([bounds.width / 2, bounds.top], :width => bounds.width / 2, :height => footer_height) do
       pad_top padding do
         text "#{t('results.index.accession')} #{@accession.id}", :align => :right
-        text "#{t('results.index.results_of')} #{@accession.patient.full_name}", :align => :right
+        text "#{t('results.index.results_of')} #{full_name(@accession.patient)}", :align => :right
         text "#{t('results.index.preliminary') unless @accession.reported_at}", :align => :right, :color => colors[:high_value]
       end
     end

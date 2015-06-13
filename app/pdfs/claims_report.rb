@@ -214,7 +214,7 @@ class ClaimsReport < Prawn::Document
       bounding_box([left_margin + 7, top_margin - field_height], :width => name_width, :height => field_height) do
         pad(form_padding) do
           indent(form_indenting) do
-            text "<b>#{claim.accession.patient.name_last_comma_first_mi}</b>", :inline_format => true
+            text "<b>#{name_last_comma_first_mi(claim.accession.patient)}</b>", :inline_format => true
           end
         end
       end
@@ -327,7 +327,7 @@ class ClaimsReport < Prawn::Document
       bounding_box([left_margin, (top_margin - field_height * 41)], :width => insured_name_width, :height => field_height) do
         pad(form_padding) do
           indent(form_indenting) do
-            text claim.insured_name
+            text name_last_comma_first_mi(claim.insured_name)
           end
         end
       end
@@ -438,7 +438,7 @@ class ClaimsReport < Prawn::Document
                   bounding_box([7, field_height * (main_table_rows + 12)], :width => name_width, :height => field_height) do
                     pad(form_padding) do
                       indent(form_indenting) do
-                        text "<b>#{claim.accession.patient.name_last_comma_first_mi}</b>", :inline_format => true
+                        text "<b>#{name_last_comma_first_mi(claim.accession.patient)}</b>", :inline_format => true
                       end
                     end
                   end
@@ -510,7 +510,7 @@ class ClaimsReport < Prawn::Document
                   bounding_box([0, -(field_height * 5)], :width => insured_name_width, :height => field_height) do
                     pad(form_padding) do
                       indent(form_indenting) do
-                        text claim.insured_name
+                        text name_last_comma_first_mi(claim.insured_name)
                       end
                     end
                   end
@@ -575,7 +575,7 @@ class ClaimsReport < Prawn::Document
     @claims.each_with_index.map do |claim, index|
       claims_table += [[
         index + 1,
-        claim.accession.patient.name_last_comma_first_mi,
+        name_last_comma_first_mi(claim.accession.patient),
         claim.accession.patient.policy_number,
         claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
         claim.external_number,
@@ -611,5 +611,11 @@ class ClaimsReport < Prawn::Document
         t.row(-1).borders = [:top, :bottom]
         t.row(-1).background_color = colors[:white]
       end
+  end
+
+  private
+
+  def method_missing(*args, &block)
+    @view.send(*args, &block)
   end
 end

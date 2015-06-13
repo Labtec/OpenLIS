@@ -54,16 +54,6 @@ class Patient < ActiveRecord::Base
     end
   end
 
-  def full_name
-    [given_name, middle_name, family_name, family_name2].join(' ').squeeze(' ').strip
-  end
-
-  def name_last_comma_first_mi
-    last_comma_first = [family_name, given_name].join(', ')
-    mi = (middle_name[0,1] + '.') unless middle_name.blank?
-    [last_comma_first, mi].join(' ').strip
-  end
-
   def age
     days_per_year = 365.25
     ((Date.today - birthdate.to_date).to_i / days_per_year).floor

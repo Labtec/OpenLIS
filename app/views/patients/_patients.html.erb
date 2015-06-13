@@ -16,7 +16,7 @@
         </small>
       </div>
 
-      <%= link_to patient.full_name, patient_accessions_path(patient) %>
+      <%= link_to full_name(patient), patient_accessions_path(patient) %>
       <tt><%= patient.identifier %></tt>
       <dt style="padding: 2px 0px 0px 0px">
         <% if patient.email.present? %>

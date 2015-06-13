@@ -13,9 +13,9 @@ class Claim < ActiveRecord::Base
   def insured_name
     accession.patient.try(:policy_number) =~ /(\d+)-(\d+)/
     if $1 && $2
-      Patient.find_by_policy_number($1).try(:name_last_comma_first_mi) || accession.patient.name_last_comma_first_mi
+      Patient.find_by_policy_number($1) || accession.patient
     else
-      accession.patient.name_last_comma_first_mi
+      accession.patient
     end
   end
 

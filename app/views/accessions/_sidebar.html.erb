@@ -8,7 +8,10 @@
     <ul>
       <% for patient in @recent %>
         <li>
-          <dt><%= link_to truncate(patient.full_name, :length => 15), patient_accessions_path(patient), :title => patient.full_name %></dt>
+          <dt>
+            <%= link_to truncate(full_name(patient), length: 15),
+              patient_accessions_path(patient), title: full_name(patient) %>
+          </dt>
           <tt><%= t('.patient') %></tt>
         </li>
       <% end %>

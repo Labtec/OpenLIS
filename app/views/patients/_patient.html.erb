@@ -2,7 +2,7 @@
 
   <%= avatar_for(patient) %>
 
-  <h4><%= link_to patient.full_name, patient_accessions_path(patient) %></h4>
+  <h4><%= link_to full_name(patient), patient_accessions_path(patient) %></h4>
   <div>
     <%= patient.identifier %><br />
     <%= pluralize patient.age_to_display, patient.age_units %>

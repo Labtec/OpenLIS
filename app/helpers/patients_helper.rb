@@ -19,6 +19,21 @@ module PatientsHelper
     end
   end
 
+  def full_name(patient)
+    [patient.given_name,
+     patient.middle_name,
+     patient.family_name,
+     patient.family_name2].join(' ').squish
+  end
+
+  def name_last_comma_first_mi(patient)
+    family_name = patient.family_name
+    family_name[0] = family_name[0].mb_chars.upcase
+    last_comma_first = [family_name, patient.given_name].join(', ')
+    mi = (patient.middle_name[0,1] + '.') unless patient.middle_name.blank?
+    [last_comma_first, mi].join(' ').squish
+  end
+
   def options_for_gender
     [
       [ I18n.translate('patients.female'),  'F' ],

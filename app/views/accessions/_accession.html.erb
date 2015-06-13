@@ -13,7 +13,7 @@
     </small>
   </div>
   <%= link_to "#{t('.accession')} ##{accession.id}", accession_path(accession) %>
-  <%= content_tag :tt, accession.patient.full_name unless @patient %>
+  <%= content_tag :tt, full_name(accession.patient) unless @patient %>
   <dt style='padding: 2px 0px 0px 0px'>
     <% if accession.reported_at %>
       <%= t('.drawn_at') %><b><%= l(accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></b>

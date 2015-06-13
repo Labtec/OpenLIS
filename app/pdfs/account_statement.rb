@@ -156,7 +156,7 @@ class AccountStatement < Prawn::Document
     data = [header]
     data << ['', '', '<b>Saldo Anterior</b>', '', '', "<b>#{@view.number_to_currency('0.00', :unit => 'B/. ')}</b>"]
     statement.each do |line_item|
-      data << [@view.l(line_item.received_at, :format => '%d/%m'), '', line_item.patient.full_name, '', '', '']
+      data << [@view.l(line_item.received_at, :format => '%d/%m'), '', full_name(line_item.patient), '', '', '']
       line_item.lab_tests.each do |lab_test|
         data << ['', lab_test.procedure, lab_test.name, '', '', @view.number_to_currency(lab_test.prices.first.try(:amount), :unit => '')] # price must be based upon provider.price_list
       end

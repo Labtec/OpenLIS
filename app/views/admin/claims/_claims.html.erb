@@ -11,7 +11,7 @@
     <% @claims.each do |claim| %>
     <tr>
       <td><%= check_box_tag 'claim_ids[]', claim.id %></td>
-      <td><%= claim.accession.patient.name_last_comma_first_mi %></td>
+      <td><%= name_last_comma_first_mi(claim.accession.patient) %></td>
       <td><%= claim.accession.id %></td>
       <td><%= claim.try(:external_number) %></td>
       <td><%= claim.try(:number) %></td>
