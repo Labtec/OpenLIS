@@ -25,4 +25,11 @@ class PatientsHelperTest < ActionView::TestCase
     @patient.update(family_name: 'ñel Tomasso')
     assert_equal 'Ñel Tomasso, John F.', name_last_comma_first_mi(@patient)
   end
+
+  test '#animal_type_name' do
+    animal_types = { other: 0, canine: 1, feline: 2, equine: 3 }
+    animal_types.each do |k, v|
+      assert_equal t("patients.#{k}"), animal_type_name(v)
+    end
+  end
 end

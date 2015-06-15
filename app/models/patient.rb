@@ -1,6 +1,7 @@
 class Patient < ActiveRecord::Base
   include PgSearch
 
+  ANIMAL_TYPES = [0, 1, 2, 3]
   GENDERS = [
     #Displayed  stored in db
     [ I18n.translate('patients.female'),  "F" ],
@@ -8,14 +9,7 @@ class Patient < ActiveRecord::Base
     [ I18n.translate('patients.unknown'), "U" ]
   ]
 
-  TYPES = [
-    #Displayed  stored in db
-    [ I18n.translate('patients.canine'), 1 ],
-    [ I18n.translate('patients.feline'), 2 ],
-    [ I18n.translate('patients.equine'), 3 ],
-    [ I18n.translate('patients.other'),  0 ]
-  ]
-
+  validates :animal_type, inclusion: { in: ANIMAL_TYPES }, allow_blank: true
   validates_presence_of :given_name, :family_name, :birthdate
   validates_inclusion_of :gender, in: GENDERS.map {|disp, value| value}
   validate :birthdate_cant_be_in_the_future
@@ -107,19 +101,6 @@ class Patient < ActiveRecord::Base
       I18n.translate('patients.unknown')
     else
       I18n.translate('patients.unknown')
-    end
-  end
-
-  def animal_type_name
-    case animal_type
-    when 0
-      I18n.t('patients.other')
-    when 1
-      I18n.t('patients.canine')
-    when 2
-      I18n.t('patients.feline')
-    when 3
-      I18n.t('patients.equine')
     end
   end
 

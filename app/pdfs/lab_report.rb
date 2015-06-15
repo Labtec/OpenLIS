@@ -228,7 +228,7 @@ repeat :all do
       end
       if @accession.patient.animal_type
         bounding_box([demographics_stop_3, bounds.top], :width => demographics_width_4, :height => row_height) do
-          text @accession.patient.animal_type_name, :style => :bold
+          text animal_type_name(@accession.patient.animal_type), :style => :bold
         end
       end
       bounding_box([demographics_stop_3, bounds.top - row_height], :width => demographics_width_4, :height => row_height) do

@@ -1,19 +1,46 @@
 module PatientsHelper
-  def avatar_for(patient)
-    if patient.animal_type
-      content_tag :span, class: 'avatar' do
-        image_tag("avatar_#{patient.animal_type}.png")
-      end
+  def animal_type_name(type)
+    case type
+    when 0
+      t('patients.other')
+    when 1
+      t('patients.canine')
+    when 2
+      t('patients.feline')
+    when 3
+      t('patients.equine')
     else
-      content_tag :span, class: 'avatar' do
+      ''
+    end
+  end
+
+  def avatar_for(patient)
+    content_tag :span, class: 'avatar' do
+      case patient.animal_type
+      when 0
+        image_tag('avatar_other.png')
+      when 1
+        image_tag('avatar_canine.png')
+      when 2
+        image_tag('avatar_feline.png')
+      when 3
+        image_tag('avatar_equine.png')
+      else
         image_tag("avatar_#{patient.gender}.png")
       end
     end
   end
 
   def avatar_icon(patient)
-    if patient.animal_type
-      image_tag('spacer.gif', class: "avatar_#{patient.animal_type}")
+    case patient.animal_type
+    when 0
+      image_tag('spacer.gif', class: 'avatar_other')
+    when 1
+      image_tag('spacer.gif', class: 'avatar_canine')
+    when 2
+      image_tag('spacer.gif', class: 'avatar_feline')
+    when 3
+      image_tag('spacer.gif', class: 'avatar_equine')
     else
       image_tag('spacer.gif', class: "avatar_#{patient.gender}")
     end
@@ -42,12 +69,12 @@ module PatientsHelper
     ]
   end
 
-  def options_for_types
+  def options_for_animal_types
     [
-      [ I18n.translate('patients.canine'), 1 ],
-      [ I18n.translate('patients.feline'), 2 ],
-      [ I18n.translate('patients.equine'), 3 ],
-      [ I18n.translate('patients.other'),  0 ]
+      [ t('patients.canine'), 1 ],
+      [ t('patients.feline'), 2 ],
+      [ t('patients.equine'), 3 ],
+      [ t('patients.other'),  0 ]
     ]
   end
 end
