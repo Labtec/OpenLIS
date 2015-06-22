@@ -134,8 +134,8 @@ es:
     new:
       title: "Nueva Petición"
     show:
-      title: "Accesión"
-      accession: "Accesión #"
+      title: "Solicitud"
+      accession: "Solicitud #"
       doctor: "Doctor: "
       walk_in: "Ambulatorio"
       drawn_at: "Recolectado el: "
@@ -150,7 +150,7 @@ es:
       notes: "Observaciones:"
     form:
       order_details: "Detalles de la Petición"
-      accession: "Accesión #"
+      accession: "Solicitud #"
       doctor: "Doctor que ordena:"
       icd9: "Códigos de Diagnóstico:"
       icd9_placeholder: "Separados por comas"
@@ -177,7 +177,7 @@ es:
       patient: "Paciente:"
     edit_results:
       title: "Ingresar Resultados"
-      accession: "Accesión #"
+      accession: "Solicitud #"
       doctor: "Doctor: "
       walk_in: "Ambulatorio"
       drawn_at: "Recolectado el: "
@@ -189,7 +189,7 @@ es:
       cancel: "Cancelar"
       notes: "Observaciones:"
     accession:
-      accession: "Accesión"
+      accession: "Solicitud"
       reported_at: "Reportado el: "
       by: "por: "
       ordered_by: "Ordenado por: "
@@ -223,7 +223,7 @@ es:
       year: "año"
       years: "años"
       gender: "Sexo:"
-      accession: "Accesión:"
+      accession: "Solicitud:"
       drawn_at: "Fecha de recolección:"
       received_at: "Fecha de recepción:"
       lab_test: "Prueba"
