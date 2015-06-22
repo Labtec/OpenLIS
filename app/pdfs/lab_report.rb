@@ -12,7 +12,7 @@ class LabReport < Prawn::Document
       info: {
         :Title => 'Reporte de Resultados',
         :Author => 'MasterLab—Laboratorio Clínico Especializado',
-        :Subject => "Accesión #{@accession.id}",
+        :Subject => "Solicitud #{@accession.id}",
         :Creator => 'MasterLab',
         :Producer => 'MasterLab',
         :CreationDate => @accession.drawn_at,
