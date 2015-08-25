@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.4'
 
 gem 'acts_as_list'
 gem 'coffee-rails', '~> 4.0.0'
