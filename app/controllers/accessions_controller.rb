@@ -32,9 +32,9 @@ class AccessionsController < ApplicationController
   def new
     @patient = Patient.find(params[:patient_id])
     @accession = @patient.accessions.build
-    @accession.drawn_at = Time.now
+    @accession.drawn_at = Time.current
     @accession.drawer_id = current_user.id
-    @accession.received_at = Time.now
+    @accession.received_at = Time.current
     @accession.receiver_id = current_user.id
     @departments = Department.all#(order: "lab_tests.position", include: :lab_tests)
   end
@@ -64,7 +64,7 @@ class AccessionsController < ApplicationController
     if @accession.update(accession_params)
       # TODO: This should be by result, not by accession!
       if !current_user.admin?
-        @accession.update(reporter_id: current_user.id, reported_at: Time.now) if @accession.reported_at
+        @accession.update(reporter_id: current_user.id, reported_at: Time.current) if @accession.reported_at
       end
       flash[:notice] = t('flash.accession.update')
       redirect_to accession_url(@accession)
@@ -94,7 +94,7 @@ class AccessionsController < ApplicationController
     @accession = Accession.find(params[:id])
     if @accession.complete?
       @accession.reporter_id = current_user.id
-      @accession.reported_at = Time.now
+      @accession.reported_at = Time.current
       @accession.save
       redirect_to accession_results_url(@accession, format: 'pdf')
     else

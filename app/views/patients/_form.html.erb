@@ -32,7 +32,7 @@
     <%= f.date_field :birthdate %>
   <% else %>
     <%= f.label :birthdate, t('.birthdate'), class: 'required' %>
-    <%= f.date_select :birthdate, start_year: Time.now.year, end_year: 1900,
+    <%= f.date_select :birthdate, start_year: Time.current.year, end_year: Time.current.year - 130,
       prompt: {day: t('.day'), month: t('.month'), year: t('.year')} %>
   <% end %>
   </div>

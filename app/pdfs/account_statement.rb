@@ -16,7 +16,7 @@ class AccountStatement < Prawn::Document
         :Subject => '',
         :Creator => 'Labtec, S.A.',
         :Producer => 'Labtec, S.A.',
-        :CreationDate => Time.zone.now
+        :CreationDate => Time.current
       },
       inline: true,
       # Letter (8.5 x 11 in) is 612 x 792

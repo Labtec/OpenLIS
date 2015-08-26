@@ -412,7 +412,7 @@ repeat :all do
     bounding_box([bounds.left, bounds.top], :width => bounds.width / 2, :height => footer_height) do
       pad_top padding do
         text "#{t('results.index.reported_at')} #{@accession.reported_at.strftime('%e/%m/%Y %l:%M%p') if @accession.reported_at}#{t('results.index.preliminary') unless @accession.reported_at}"
-        text "#{t('results.index.printed_at')} #{Time.zone.now.strftime('%e/%m/%Y %l:%M%p')}"
+        text "#{t('results.index.printed_at')} #{Time.current.strftime('%e/%m/%Y %l:%M%p')}"
       end
     end
     bounding_box([bounds.width / 2, bounds.top], :width => bounds.width / 2, :height => footer_height) do

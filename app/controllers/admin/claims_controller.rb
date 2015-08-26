@@ -54,7 +54,7 @@ module Admin
     def submit
       @claim = Claim.find(params[:id])
       if @claim.valid_submission?
-        @claim.update_attributes(claimed_at: Time.now, insurance_provider_id: 1)
+        @claim.update_attributes(claimed_at: Time.current, insurance_provider_id: 1)
         redirect_to admin_claims_url, notice: "Successfully submitted claim."
       else
         redirect_to admin_claims_url, alert: t('flash.claim.submit_alert')
@@ -65,7 +65,7 @@ module Admin
       if params[:unsubmitted_claim_ids]
         @claims = Claim.find(params[:unsubmitted_claim_ids])
         @claims.each do |claim|
-          claim.update_attributes!(claimed_at: Time.now, insurance_provider_id: 1)
+          claim.update_attributes!(claimed_at: Time.current, insurance_provider_id: 1)
         end
         redirect_to admin_claims_url, notice: "Successfully submitted claims."
       else

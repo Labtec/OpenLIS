@@ -50,11 +50,11 @@ class Patient < ActiveRecord::Base
 
   def age
     days_per_year = 365.25
-    ((Date.today - birthdate.to_date).to_i / days_per_year).floor
+    ((Date.current - birthdate.to_date).to_i / days_per_year).floor
   end
 
   def age_to_display
-    age_in_days = (Date.today - birthdate.to_date).to_i
+    age_in_days = (Date.current - birthdate.to_date).to_i
     parts = age_parts(age_in_days)
     if parts['years'] == 0
       if parts['months'] == 0
@@ -68,7 +68,7 @@ class Patient < ActiveRecord::Base
   end
 
   def age_units
-    age_in_days = (Date.today - birthdate.to_date).to_i
+    age_in_days = (Date.current - birthdate.to_date).to_i
     parts = age_parts(age_in_days)
     if parts['years'] == 0
       if parts['months'] == 0
@@ -107,7 +107,7 @@ class Patient < ActiveRecord::Base
   private
 
   def birthdate_cant_be_in_the_future
-    errors.add(:birthdate, I18n.t('flash.patient.birthday_cant_be_in_the_future')) if birthdate > Date.today unless birthdate.nil?
+    errors.add(:birthdate, I18n.t('flash.patient.birthday_cant_be_in_the_future')) if birthdate > Date.current unless birthdate.nil?
   end
 
   def titleize_names

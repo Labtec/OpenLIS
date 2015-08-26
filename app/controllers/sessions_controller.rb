@@ -16,7 +16,7 @@ class SessionsController < Devise::SessionsController
     flash[:notice] = t('flash.login.hello') + current_user.first_name + '!' +
       t('flash.login.last_login_at') +
       view_context.distance_of_time_in_words(current_user.last_sign_in_at,
-                                             Time.now)
+                                             Time.current)
   end
 
   # DELETE /resource/sign_out

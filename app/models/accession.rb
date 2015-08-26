@@ -114,15 +114,15 @@ class Accession < ActiveRecord::Base
   end
 
   def drawn_at_cant_be_in_the_future
-    errors.add(:drawn_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.now < drawn_at unless drawn_at.nil?
+    errors.add(:drawn_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.current < drawn_at unless drawn_at.nil?
   end
 
   def received_at_cant_be_in_the_future
-    errors.add(:received_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.now < received_at unless received_at.nil?
+    errors.add(:received_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.current < received_at unless received_at.nil?
   end
 
   def reported_at_cant_be_in_the_future
-    errors.add(:reported_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.now < reported_at unless reported_at.nil?
+    errors.add(:reported_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.current < reported_at unless reported_at.nil?
   end
 
   def result_of_test_coded_as(code)

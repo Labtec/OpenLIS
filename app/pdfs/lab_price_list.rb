@@ -13,7 +13,7 @@ class LabPriceList < Prawn::Document
         :Subject => "AXA Assistance",
         :Producer => "MasterLab",
         :Creator => "MasterLab",
-        :CreationDate => Time.now,
+        :CreationDate => Time.current,
         :Keywords => "precio lista prueba laboratorio"
       },
       inline: true,

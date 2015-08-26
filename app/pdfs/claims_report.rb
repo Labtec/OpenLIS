@@ -13,7 +13,7 @@ class ClaimsReport < Prawn::Document
         :Author => 'MasterLab—Laboratorio Clínico Especializado',
         :Creator => 'MasterLab',
         :Producer => 'MasterLab',
-        :CreationDate => Time.zone.now
+        :CreationDate => Time.current
       },
       inline: true,
       # Letter (8.5 x 11 in) is 612 x 792
@@ -561,7 +561,7 @@ class ClaimsReport < Prawn::Document
     draw_text "R.U.C. 299497-1-409892 D.V. 13", :at => [60, cursor - 55]
 
     move_down 70
-    text @view.l(Date.today, :format => :long), :align => :right
+    text @view.l(Date.current, :format => :long), :align => :right
 
     move_down 50
 
