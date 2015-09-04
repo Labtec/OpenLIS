@@ -339,7 +339,7 @@ end
       column(1).width = column_4_width
       column(2).width = column_5_width
       column(3).width = column_6_width
-      
+
       # TODO: padding should be done here
     end
     data << [cell_col_0, cell_col_1, result.units, cell_col_3, cell_col_4]
