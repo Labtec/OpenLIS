@@ -100,7 +100,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mime-types (2.6.1)
+    mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.0)
     multi_json (1.11.2)
@@ -160,10 +160,10 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    spring (1.3.6)
+    spring (1.4.0)
     sprockets (3.3.4)
       rack (~> 1.0)
-    sprockets-rails (2.3.2)
+    sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
@@ -206,7 +206,7 @@ DEPENDENCIES
   jquery-rails (~> 4.0.0)
   jquery-ui-rails
   kaminari
-  mysql2
+  mysql2 (~> 0.3.20)
   newrelic_rpm
   prawn
   prawn-table
