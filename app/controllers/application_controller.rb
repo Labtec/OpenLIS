@@ -21,7 +21,8 @@ protected
   end
 
   def extract_locale_from_accept_language_header
-    if request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first = 'es'
+    language = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+    if language == 'es'
       'es'
     else
       'en'
