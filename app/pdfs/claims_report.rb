@@ -590,7 +590,7 @@ class ClaimsReport < Prawn::Document
       :position => :center,
       :column_widths => { 0 => letter_line_number_width, 1 => letter_name_width, 2 => letter_policy_number_width, 3 => letter_service_date_width, 4 => letter_claim_external_number_width, 5 => letter_claim_number_width, 6 => letter_price_width },
       :row_colors => [colors[:white], colors[:gray]],
-      :cell_style => { :padding => [table_padding, table_padding], :inline_format => true } do |t|
+      :cell_style => { :padding => [0, table_padding, form_padding, table_padding], :valign => :center, :inline_format => true } do |t|
         t.cells.borders = []
         t.column(0).style :align => :right
         t.column(1).style :align => :left
