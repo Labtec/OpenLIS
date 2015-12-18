@@ -3,19 +3,19 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 
 gem 'acts_as_list'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'devise', '~> 3.4.0'
-gem 'jbuilder', '~> 2.0'
-gem 'jquery-rails', '~> 4.0.0'
+gem 'coffee-rails'
+gem 'devise'
+gem 'jbuilder'
+gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'prawn'
 gem 'prawn-table'
 gem 'puma'
-gem 'rails-html-sanitizer', '~> 1.0'
-gem 'sass-rails', '~> 5.0.0'
+gem 'rails-html-sanitizer'
+gem 'sass-rails'
 gem 'turbolinks'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 group :development, :test do
   gem 'byebug'
@@ -23,7 +23,7 @@ group :development, :test do
   gem 'capistrano3-puma'
   gem 'spring'
   gem 'sqlite3'
-  gem 'web-console', '~> 2.0.0'
+  gem 'web-console'
 end
 
 group :test do
@@ -35,4 +35,4 @@ group :production do
   gem 'newrelic_rpm'
 end
 
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', group: :doc
