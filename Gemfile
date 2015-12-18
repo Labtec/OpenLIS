@@ -21,8 +21,11 @@ group :development, :test do
   gem 'byebug'
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
-  gem 'spring'
   gem 'sqlite3'
+end
+
+group :development do
+  gem 'spring'
   gem 'web-console'
 end
 
