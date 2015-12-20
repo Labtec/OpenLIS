@@ -1,9 +1,10 @@
-class Doctor < ActiveRecord::Base
+class Doctor < ApplicationRecord
   has_many :accessions, inverse_of: :doctor, dependent: :nullify
 
-  validates :name, presence: true,
-                   uniqueness: true,
-                   length: { minimum: 2 }
+  validates :name,
+    presence: true,
+    uniqueness: true,
+    length: { minimum: 2 }
 
   before_validation :purge_trailing_spaces
 

@@ -1,23 +1,23 @@
-class ReferenceRange < ActiveRecord::Base
+class ReferenceRange < ApplicationRecord
   # Consider caching this model
 
   GENDERS = [
-    #Displayed  stored in db
-    [ "Both",     "*" ],
-    [ "Female",   "F" ],
-    [ "Male",     "M" ],
-    [ "Unknown",  "U" ]
+    # Displayed  stored in db
+    ['Both',     '*'],
+    ['Female',   'F'],
+    ['Male',     'M'],
+    ['Unknown',  'U']
   ]
 
   AGE_UNITS = [
-    #Displayed  stored in db
-    [ "Years",    "Y" ],
-    [ "Months",   "M" ],
-    [ "Weeks",    "W" ],
-    [ "Days",     "D" ]
+    # Displayed  stored in db
+    ['Years',    'Y'],
+    ['Months',   'M'],
+    ['Weeks',    'W'],
+    ['Days',     'D']
   ]
 
-  ANIMAL_TYPES = [0, 1, 2, 3]
+  ANIMAL_TYPES = (0..3).to_a
 
   belongs_to :lab_test, inverse_of: :reference_ranges
 
@@ -28,5 +28,6 @@ class ReferenceRange < ActiveRecord::Base
   }
 
   validates :animal_type, inclusion: { in: ANIMAL_TYPES }, allow_blank: true
-  validates_inclusion_of :gender, in: GENDERS.map {|disp, value| value}
+  validates :gender, inclusion: { in: GENDERS.map { |_disp, value| value } }
+  validates :min_age, presence: true, if: :max_age
 end

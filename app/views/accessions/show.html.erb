@@ -7,21 +7,21 @@
 
   <% if @accession.drawn_at %>
     <%= t('.drawn_at') %>
-    <strong><%= l(@accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.drawn_at, format: :short) %></strong>
     <%= t('.by') %>
     <strong><%= @accession.drawer.initials %></strong><br />
   <% end %>
 
   <% if @accession.received_at %>
     <%= t('.received_at') %>
-    <strong><%= l(@accession.received_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.received_at, format: :short) %></strong>
     <%= t('.by') %>
     <strong><%= @accession.receiver.initials %></strong><br />
   <% end %>
 
   <% if @accession.reported_at %>
     <%= t('.reported_at') %>
-    <strong><%= l(@accession.reported_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.reported_at, format: :short) %></strong>
     <%= t('.by') %>
     <strong><%= @accession.reporter.initials %></strong>
   <% end %>
@@ -49,8 +49,8 @@
       <%= link_to t('.change_results'), edit_results_accession_url(@accession) %> |
     <% else %>
       <%= link_to t('.enter_results'), edit_results_accession_url(@accession) %> |
-      <%= link_to t('.report'), report_accession_path(@accession), :method => :put %> |
+      <%= link_to t('.report'), report_accession_path(@accession), method: :put, 'data-turbolinks': false %> |
     <% end %>
-    <%= link_to t('.print_report'), accession_results_path(@accession, :format => 'pdf') %>
+    <%= link_to t('.print_report'), accession_results_path(@accession, format: 'pdf'), 'data-turbolinks': false %>
   </div>
 </fieldset>

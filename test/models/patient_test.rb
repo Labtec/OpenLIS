@@ -1,45 +1,25 @@
 require 'test_helper'
 
 class PatientTest < ActiveSupport::TestCase
-  setup do
-    @alice = create(:patient, given_name: 'Alice', identifier: '111-111-1111')
-    @bob = create(:patient, given_name: 'Bob', identifier: '222-222-2222')
-  end
+  ANIMAL_TYPES = (0..3).to_a.freeze
+  GENDERS = %w(F M U).freeze
 
-  test 'search with empty string returns all records' do
-    search = Patient.search('')
-    assert_includes(search, @alice)
-    assert_includes(search, @bob)
-  end
+  should validate_inclusion_of(:animal_type).in_array(ANIMAL_TYPES).allow_blank
+  should validate_inclusion_of(:gender).in_array(GENDERS)
+  should validate_presence_of(:given_name)
+  should validate_presence_of(:family_name)
+  should validate_presence_of(:birthdate)
+  should validate_uniqueness_of(:identifier).
+    ignoring_case_sensitivity.
+    allow_blank
 
-  test 'search for patients by ID' do
-    search = Patient.search('111-111-1111')
-    assert_includes(search, @alice)
-    assert_not_includes(search, @bob)
-  end
+  test 'birthdate is not in the future' do
+    p = patients(:john)
 
-  test 'search for patients with an incomplete ID' do
-    search = Patient.search('111-111-11')
-    assert_not_includes(search, @alice)
-  end
+    p.birthdate = Date.tomorrow
+    assert p.invalid?, 'A patient born tomorrow should not be valid'
 
-  test 'search for patients by given name' do
-    search = Patient.search('alice')
-    assert_includes(search, @alice)
-    assert_not_includes(search, @bob)
-  end
-
-  test 'search for patients with accents in their name' do
-    angel = create(:patient, given_name: 'Ángel')
-    search = Patient.search('angel')
-    assert_includes(search, angel)
-    assert_not_includes(search, @bob)
-  end
-
-  test 'search for patients with multiple argumets' do
-    alicia = create(:patient, given_name: 'Alicia', middle_name: 'Alice')
-    search = Patient.search('alice alicia')
-    assert_includes(search, alicia)
-    assert_not_includes(search, @alice)
+    p.birthdate = Date.current
+    assert p.valid?, 'A patient born today should be valid'
   end
 end

@@ -1,6 +1,5 @@
-class Price < ActiveRecord::Base
+class Price < ApplicationRecord
   # Consider caching this model
-  #attr_accessible :price_list_id, :amount
 
   belongs_to :price_list, inverse_of: :prices
   belongs_to :priceable, polymorphic: true
@@ -11,9 +10,9 @@ class Price < ActiveRecord::Base
   validates :priceable_type, presence: true
   validate :positive_amount
 
-private
+  private
 
   def positive_amount
-    errors.add(:amount, "should be at least 0.00") if amount.nil? || amount < 0.00
+    errors.add(:amount, 'should be at least 0.00') if amount.nil? || amount < 0.00
   end
 end

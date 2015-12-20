@@ -5,6 +5,11 @@ en:
       password: "Password"
       submit: "Log In"
 
+  admin:
+    claims:
+      submit:
+        submit_alert: Must have External and Claim Number
+
   users:
     form:
       username: "Username:"
@@ -63,9 +68,18 @@ en:
     feline: "Cat"
     equine: "Horse"
     other: "Other"
-    year: "year"
-    month: "month"
-    day: "day"
+    year:
+      one: 1 year
+      other: "%{count} years"
+    month:
+     one: 1 month
+     other: "%{count} months"
+    week:
+      one: 1 week
+      other: "%{count} weeks"
+    day:
+      one: 1 day
+      other: "%{count} days"
     sidebar:
       search_patients: "Search patients"
       search: "Search"
@@ -84,7 +98,15 @@ en:
       year: "year"
     new:
       title: "New Patient"
+    create:
+      success: "Successfully created patient."
+    update:
+      success: "Successfully updated patient."
+    destroy:
+      success: "Successfully removed patient."
     show:
+      order_tests: "Order Tests"
+      patient_not_found: "Patient record no longer available."
       title: "Patient Info"
     edit:
       title: "Edit Patient Info"
@@ -128,7 +150,6 @@ en:
   accessions:
     index:
       title: "Requisitions"
-      order_tests: "Order Tests"
     edit:
       title: "Change Order"
     new:
@@ -187,7 +208,6 @@ en:
       submit: "Save Results"
       or: "or"
       cancel: "Cancel"
-      notes: "Notes:"
     accession:
       accession: "Accession"
       reported_at: "Reported at: "
@@ -207,6 +227,10 @@ en:
       pending_requisitions: "Pending Requisitions"
       requisition_history: "Requisition History"
       order_tests: "Order Tests"
+
+  notes:
+    form:
+      notes: "Notes:"
 
   results:
     low: "L"
@@ -255,11 +279,7 @@ en:
     login:
       hello: "Hello "
       last_login_at: " Previous login: "
-      last_login_at_format: "%b %d, at %I:%M%p"
     patient:
-      create: "Successfully created patient."
-      update: "Successfully updated patient."
-      destroy: "Successfully removed patient."
       birthday_cant_be_in_the_future: "cannot be in the future"
     accession:
       create: "Successfully created requisition."
@@ -267,7 +287,6 @@ en:
       destroy: "Successfully removed requisition."
       report: "Reported requisition."
       report_error: "There are still pending results."
-      patient_not_found: "Patient record no longer available."
       accession_not_found: "Requisition accession no longer available."
       at_least_one_panel_or_test_selected: "Must have at least one panel or test selected."
       cant_be_in_the_future: "cannot be in the future"
@@ -278,3 +297,12 @@ en:
       fraction: "must be N ⁄ N."
       ratio: "must be N∶N."
 
+  activerecord:
+    attributes:
+      accession:
+        icd9: "Diagnosis Codes (ICD-9)"
+
+  time:
+    formats:
+      long: "%d %B %Y %H:%M"
+      short: "%d-%b-%Y %H:%M"

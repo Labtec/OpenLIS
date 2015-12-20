@@ -1,23 +1,27 @@
-class Accession < ActiveRecord::Base
+class Accession < ApplicationRecord
   belongs_to :patient, required: true, inverse_of: :accessions
   belongs_to :doctor, inverse_of: :accessions
   belongs_to :receiver, inverse_of: :accessions, class_name: 'User'
   belongs_to :drawer, inverse_of: :accessions, class_name: 'User'
   belongs_to :reporter, inverse_of: :accessions, class_name: 'User'
+
   has_many :results, inverse_of: :accession, dependent: :destroy
   has_many :lab_tests, through: :results
   has_many :accession_panels, inverse_of: :accession, dependent: :destroy
   has_many :panels, through: :accession_panels
   has_many :notes, as: :noticeable
+
   has_one :claim, inverse_of: :accession, dependent: :destroy
+
+  delegate :birthdate, to: :patient, prefix: true
+  delegate :insurance_provider, to: :patient, allow_nil: true
 
   accepts_nested_attributes_for :results, allow_destroy: true
   accepts_nested_attributes_for :accession_panels, allow_destroy: true
   accepts_nested_attributes_for :notes, allow_destroy: true, reject_if: :reject_notes
 
-  validates_presence_of :icd9, if: Proc.new { |accession| accession.patient.try(:insurance_provider) && accession.doctor.present? }
-  validates_presence_of :drawn_at
-  validates_presence_of :received_at
+  validates :icd9, presence: true, if: :insurable?
+  validates :drawn_at, :received_at, presence: true
   validate :at_least_one_panel_or_test_selected
   validate :drawn_at_cant_be_in_the_future
   validate :received_at_cant_be_in_the_future
@@ -25,17 +29,22 @@ class Accession < ActiveRecord::Base
 
   scope :recently, -> { order(reported_at: :desc) }
   scope :queued, -> { order(drawn_at: :asc) }
-  scope :pending, -> { where(reported_at: nil) } #, include: [{results: [:lab_test, :lab_test_value]}, :drawer, :doctor]
-  scope :reported, -> { where.not(reported_at: nil) } #, include: [:lab_tests, :panels, :reporter, :doctor]
-  scope :with_insurance_provider, -> {
-    select("accessions.*")
-      .joins("INNER JOIN patients ON patients.id = accessions.patient_id")
-      .where("patients.insurance_provider_id IS NOT NULL")
-      .order(id: :asc)
-  }
-  scope :within_claim_period, -> { where('drawn_at > :claim_period', { claim_period: 4.months.ago }) }
+  scope :pending, -> { where(reported_at: nil) }
+  scope :reported, -> { where.not(reported_at: nil) }
+  scope :with_insurance_provider, -> { joins(:patient).where('patients.insurance_provider_id IS NOT NULL').order(id: :asc) }
+  scope :within_claim_period, -> { where('drawn_at > :claim_period', { claim_period: 5.months.ago }) }
 
-  #after_update :save_results
+  def self.unsubmitted_claims
+    unsubmitted_claims = []
+
+    unsubmitted_accessions = self.find(self.within_claim_period.with_insurance_provider.map(&:id) - Claim.submitted.map(&:accession_id))
+
+    unsubmitted_accessions.each do |claim|
+      unsubmitted_claims.push(claim)
+    end
+
+    unsubmitted_claims
+  end
 
   def result_attributes=(result_attributes)
     results.reject(&:new_record?).each do |result|
@@ -51,22 +60,18 @@ class Accession < ActiveRecord::Base
   end
 
   def patient_age
-    sec_per_day = 86400
+    sec_per_day = 86_400
     days_per_week = 7
-    days_per_month = 30.4368 #30.4375
-    days_per_year = 365.242 #365.24
+    days_per_month = 30.4368
+    days_per_year = 365.242
 
-    age_in_days = (drawn_at - patient.birthdate.to_time) / sec_per_day
+    age_in_days = (drawn_at - patient_birthdate.to_time(:local)) / sec_per_day
     age_in_weeks = ((age_in_days / days_per_week) * 10).round / 10
     age_in_months = ((age_in_days / days_per_month) * 10).round / 10
     age_in_years = (age_in_days / days_per_year).floor
     age_in_days = (age_in_days * 10).round / 10
 
     { days: age_in_days, weeks: age_in_weeks, months: age_in_months, years: age_in_years }
-  end
-
-  def patient_age_in_days
-    (drawn_at.to_date - patient.birthdate).to_i
   end
 
   def doctor_name
@@ -81,13 +86,17 @@ class Accession < ActiveRecord::Base
     end
   end
 
+  def insurable?
+    insurance_provider && doctor.present?
+  end
+
   def order_list
     (panels_list + lab_tests_list).join(', ')
   end
 
   def pending_list
     results.map do |result|
-      result.lab_test.code if result.pending?
+      result.lab_test_code if result.pending?
     end.compact.join(', ')
   end
 
@@ -96,8 +105,8 @@ class Accession < ActiveRecord::Base
   end
 
   def complete?
-    results.each do |result|
-      return false if result.formatted_value == "pend."
+    results.includes(:lab_test).each do |result|
+      return false if result.pending?
     end
     true
   end
@@ -105,12 +114,12 @@ class Accession < ActiveRecord::Base
   private
 
   def panels_list
-    panels.map { |p| p.code }
+    Panel.find(panel_ids).map(&:code)
   end
 
   def lab_tests_list
-    panels_lab_tests_list = panels.map { |p| p.lab_tests.map { |t| t.code } }
-    lab_tests.map { |l| l.code } - panels_lab_tests_list.flatten
+    panels_lab_tests_list_ids = LabTestPanel.where({ panel_id: panel_ids }).map(&:lab_test_id).uniq
+    LabTest.find(lab_test_ids - panels_lab_tests_list_ids).map(&:code)
   end
 
   def drawn_at_cant_be_in_the_future
@@ -128,12 +137,6 @@ class Accession < ActiveRecord::Base
   def result_of_test_coded_as(code)
     results.find_by_lab_test_id(lab_tests.with_code(code).first).try(:value).try(:to_d)
   end
-
-  #def save_results
-  #  results.each do |result|
-  #    result.save(false)
-  #  end
-  #end
 
   def reject_notes(attributes)
     attributes[:content].blank? if new_record?

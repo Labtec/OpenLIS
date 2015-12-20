@@ -1,7 +1,5 @@
 <% title 'Doctors' %>
 
-<h3>If you erase a Doctor, all its requisitions will be gone!</h3>
-
 <table>
   <tr>
     <th>Name</th>
@@ -13,7 +11,7 @@
       <td><%= link_to 'Edit', edit_admin_doctor_path(doctor) %></td>
       <td>
         <%= link_to 'Destroy', [:admin, doctor], method: :delete,
-          data: { confirm: 'Are you sure?' } %>
+          data: { confirm: "If you erase a Doctor, all its requisitions will be gone!\nAre you sure?" } %>
       </td>
     </tr>
   <% end %>

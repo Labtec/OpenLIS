@@ -18,6 +18,9 @@ class PatientsRoutesTest < ActionDispatch::IntegrationTest
     assert_routing '/patients/1/edit',
                    @defaults.merge(action: 'edit', id: '1')
 
+    assert_routing '/patients/1',
+                   @defaults.merge(action: 'show', id: '1')
+
     assert_routing({ method: :patch, path: '/patients/1' },
                    @defaults.merge(action: 'update', id: '1'))
 

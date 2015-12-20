@@ -9,5 +9,18 @@
 </div>
 
 <div class="list" id="patients">
-  <%= render 'patients' %>
+  <% if @patients.empty? %>
+    <p class="content"><%= t('.not_found') %></p>
+  <% else %>
+    <ul>
+      <%= render @patients %>
+    </ul>
+
+    <div class="paginate">
+      <%= paginate @patients %>
+      <div id="paging" style="display:none">
+        <%= image_tag('loading.gif', size: '16x16') %>
+      </div>
+    </div>
+  <% end %>
 </div>

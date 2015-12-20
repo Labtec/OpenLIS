@@ -1,21 +1,22 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.0.beta4'
 
-gem 'acts_as_list'
+gem 'acts_as_list', github: 'swanandp/acts_as_list'
 gem 'coffee-rails'
 gem 'dalli'
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'kaminari'
+gem 'kaminari', github: 'amatsuda/kaminari'
 gem 'pg'
 gem 'pg_search'
 gem 'prawn'
 gem 'prawn-table'
 gem 'puma'
 gem 'rails-html-sanitizer'
+gem 'rails-i18n', github: 'jlduran/rails-i18n', branch: 'fix-es-pa'
 gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
@@ -28,19 +29,23 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman', require: false
+  gem 'bullet'
+  gem 'flamegraph', require: false
+  gem 'listen', '~> 3.0.5'
+  gem 'rack-mini-profiler', github: 'MiniProfiler/rack-mini-profiler', require: false
   gem 'spring'
+  gem 'spring-watcher-listen'
   gem 'stackprof'
   gem 'web-console'
-  gem 'flamegraph', require: false
-  gem 'rack-mini-profiler', require: false
-end
-
-group :test do
-  gem 'factory_girl_rails'
 end
 
 group :production do
-  gem 'newrelic_rpm'
+  gem 'therubyracer'
 end
 
-gem 'sdoc', group: :doc
+group :test do
+  gem 'capybara'
+  gem 'shoulda-context'
+  gem 'shoulda-matchers'
+end

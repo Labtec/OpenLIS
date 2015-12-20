@@ -1,7 +1,7 @@
 module Admin
   class PanelsController < BaseController
     def index
-      @panels = Panel.all #(include: :lab_tests)
+      @panels = Panel.all
     end
 
     def show

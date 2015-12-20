@@ -1,0 +1,9 @@
+bun:
+  department: chemistry
+  name: BUN
+  code: BUN
+
+chol:
+  department: chemistry
+  name: Cholesterol
+  code: CHOL

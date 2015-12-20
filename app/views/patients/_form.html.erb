@@ -1,4 +1,5 @@
-<%= form_for @patient, html: { novalidate: "" } do |f| %>
+<fieldset class="<%= @patient.new_record? %>">
+<%= form_for @patient, html: { novalidate: '' } do |f| %>
   <%= render 'shared/error_messages', object: @patient %>
 
   <div class="given_name">
@@ -81,3 +82,4 @@
     <%= link_to t('.cancel'), patients_path %>
   </div>
 <% end %>
+</fieldset>

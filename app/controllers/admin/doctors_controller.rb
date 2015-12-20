@@ -15,7 +15,7 @@ module Admin
     def create
       @doctor = Doctor.new(doctor_params)
       if @doctor.save
-        flash[:notice] = "Successfully created doctor."
+        flash[:notice] = 'Successfully created doctor.'
         redirect_to [:admin, @doctor]
       else
         render action: 'new'
@@ -29,7 +29,7 @@ module Admin
     def update
       @doctor = Doctor.find(params[:id])
       if @doctor.update_attributes(doctor_params)
-        flash[:notice] = "Successfully updated doctor."
+        flash[:notice] = 'Successfully updated doctor.'
         redirect_to [:admin, @doctor]
       else
         render action: 'edit'
@@ -39,7 +39,7 @@ module Admin
     def destroy
       @doctor = Doctor.find(params[:id])
       @doctor.destroy
-      flash[:notice] = "Successfully deleted doctor."
+      flash[:notice] = 'Successfully deleted doctor.'
       redirect_to admin_doctors_url
     end
 

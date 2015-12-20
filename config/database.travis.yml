@@ -1,5 +1,5 @@
 test:
   adapter: postgresql
-  database: openlis_<%= Rails.env %>
+  database: open_lis_<%= Rails.env %>
   username: postgres
   encoding: utf8

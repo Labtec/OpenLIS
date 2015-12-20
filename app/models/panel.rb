@@ -1,5 +1,4 @@
-class Panel < ActiveRecord::Base
-  # Consider caching this model
+class Panel < ApplicationRecord
   has_many :lab_test_panels, inverse_of: :panel
   has_many :lab_tests, through: :lab_test_panels
   has_many :accession_panels, inverse_of: :panel
@@ -8,18 +7,13 @@ class Panel < ActiveRecord::Base
 
   accepts_nested_attributes_for :prices, allow_destroy: true
 
-  validates_presence_of :code
-  validates_uniqueness_of :code
+  validates :code, presence: true, uniqueness: true
 
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
   scope :sorted, -> { order(name: :asc) }
 
   def lab_test_code_list
-    list = []
-    lab_tests.each do |lab_test|
-      list << lab_test.code
-    end
-    list.join(', ')
+    LabTest.where(id: lab_test_ids).map(&:code).join(', ')
   end
 
   def name_with_description

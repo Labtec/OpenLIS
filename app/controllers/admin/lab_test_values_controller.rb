@@ -1,7 +1,7 @@
 module Admin
   class LabTestValuesController < BaseController
     def index
-      @lab_test_values = LabTestValue.all.order(value: :asc)
+      @lab_test_values = LabTestValue.sorted
     end
 
     def show

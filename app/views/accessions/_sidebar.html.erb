@@ -1,20 +1,15 @@
 <div class='sidebar'>
   <% if @patient %>
-    <%= render @patient %>
+    <%= render partial: 'patients/card', locals: { patient: @patient } %>
   <% end %>
 
-  <div class="panel" id="recent">
-    <div class="caption"><%= t('.recent_patients') %></div>
-    <ul>
-      <% for patient in @recent %>
-        <li>
-          <dt>
-            <%= link_to truncate(full_name(patient), length: 15),
-              patient_accessions_path(patient), title: full_name(patient) %>
-          </dt>
-          <tt><%= t('.patient') %></tt>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <% if @recent %>
+    <div class="panel" id="recent">
+      <div class="caption"><%= t('.recent_patients') %></div>
+      <ul>
+        <%= render partial: 'shared/recent_patients',
+          collection: @recent, as: :patient, cached: true %>
+      </ul>
+    </div>
+  <% end %>
 </div>

@@ -15,10 +15,6 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type=number] {
-  width: 71px;
-  margin: 2px;
-}
 
 body, ol, ul, li, dt, tt, label, input, select, textarea {
   font-size: 12px;
@@ -27,6 +23,12 @@ body, ol, ul, li, dt, tt, label, input, select, textarea {
 body, h1, h2, h3, h4, h5, h6, ol, ul, li {
   margin: 0px;
   padding: 0px; }
+
+form h3 {
+  font-size: 12px;
+  font-weight: normal;
+  font-style: italic;
+  padding-top: 10px; }
 
 label.required {
   font-weight: bold; }
@@ -93,6 +95,7 @@ form {
   form div.family_name input,
   form div.family_name2 input,
   form div.address textarea,
+  form div.icd9 input,
   form div.username input,
   form div.password input,
   form div.password_confirmation input {
@@ -205,6 +208,7 @@ tt {
     background: #1e4262;
     color: greenyellow;
     font: normal 15px "Lucida Grande", Arial, Helvetica, sans-serif;
+    padding: 0px;
     text-decoration: none; }
   #header #welcome {
     float: right;
@@ -358,9 +362,15 @@ table {
     td.units {
       width: 100px; }
     td.result {
-      width: 200px;
+      width: 255px;
       text-align: right;
       padding-right: 0; }
+      td.result input {
+        margin: 0 0 0 4px;
+        width: 71px;
+        text-align: right; }
+      td.result select {
+        width: 125px; }
     td.symbol {
       width: 15px;
       text-align: right;
@@ -609,18 +619,18 @@ td.range{
     color: #2f2f2f;
     padding: 2px 0px; }
     .log h3.overdue {
-      margin: 4px 0px 0px 0px;
+      margin: 10px 0px 4px 0px;
       color: crimson;
       border-bottom: 1px crimson dotted; }
     .log h3.due_asap {
       color: darkred;
       border-bottom: 1px darkred dotted; }
     .log h3.due_today {
-      margin: 20px 0px 4px 0px;
+      margin: 10px 0px 4px 0px;
       color: darkgreen;
       border-bottom: 1px darkgreen dotted; }
     .log h3.done {
-      margin: 20px 0px 4px 0px;
+      margin: 10px 0px 4px 0px;
       color: #0033cc;
       border-bottom: 1px #0033cc dotted; }
     .log ul.overdue li.contact a {
@@ -918,6 +928,8 @@ div.auto_complete {
       border-color: crimson; }
   .pending .pagination .gap {
     border: none; }
+  .accessions_padding {
+    padding: 20px; }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   .log input {

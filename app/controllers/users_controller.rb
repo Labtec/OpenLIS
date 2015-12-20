@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(user_params)
-      flash[:notice] = "Successfully updated profile."
+      flash[:notice] = 'Successfully updated profile.'
       redirect_to root_url
     else
       render action: 'edit'

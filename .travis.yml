@@ -5,4 +5,4 @@ addons:
   postgresql: '9.4'
 before_script:
   - cp config/database.travis.yml config/database.yml
-  - psql -c 'create database openlis_test;' -U postgres
+  - psql -c 'create database open_lis_test;' -U postgres

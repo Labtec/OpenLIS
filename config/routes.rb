@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
-    sign_out: 'logout',
+    sign_out: 'logout'
   }, controllers: {
     sessions: 'sessions'
   }, format: false
@@ -13,8 +13,8 @@ Rails.application.routes.draw do
 
   resources :doctors, only: :index
 
-  resources :patients, shallow: true, except: :show do
-    resources :accessions do
+  resources :patients, shallow: true do
+    resources :accessions, except: :index do
       resources :results, only: :index
     end
   end

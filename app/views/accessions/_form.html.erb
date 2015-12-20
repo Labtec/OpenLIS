@@ -98,11 +98,7 @@
     <div class="buttonbar">
       <%= f.submit t('.submit'), data: { disable_with: t('.processing') } %>
       <%= t('.or') %>
-      <% if @patient %>
-        <%= link_to t('.cancel'), patient_accessions_path(@patient) %>
-      <% else %>
-        <%= link_to t('.cancel'), accession_path %>
-      <% end %>
+      <%= link_to t('.cancel'), patient_path(@patient) %>
     </div>
   <% end %>
 </fieldset>

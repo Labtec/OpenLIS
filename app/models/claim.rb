@@ -1,30 +1,32 @@
-class Claim < ActiveRecord::Base
+class Claim < ApplicationRecord
   belongs_to :accession, inverse_of: :claim
   belongs_to :insurance_provider, inverse_of: :claims
 
-  validates_uniqueness_of :number, :allow_blank => true
-  validates_uniqueness_of :external_number, :allow_blank => true
-  validates_presence_of :accession, :insurance_provider
+  has_one :patient, through: :accession
+
+  validates :external_number, :number, uniqueness: true, allow_blank: true
+  validates :accession, :insurance_provider, presence: true
 
   default_scope { order(external_number: :asc) }
-  scope :submitted, -> { where.not(claimed_at: nil) }# include: {accession: :patient}
+
+  scope :submitted, -> { where.not(claimed_at: nil) }
   scope :recent, -> { where('claimed_at > :grace_period', { grace_period: 5.months.ago }) }
 
   def insured_name
-    accession.patient.try(:policy_number) =~ /(\d+)-(\d+)/
+    patient.try(:policy_number) =~ /(\d+)-(\d+)/
     if $1 && $2
-      Patient.find_by_policy_number($1) || accession.patient
+      Patient.find_by_policy_number($1) || patient
     else
-      accession.patient
+      patient
     end
   end
 
   def insured_policy_number
-    accession.patient.try(:policy_number) =~ /(\d+)-(\d+)/
+    patient.try(:policy_number) =~ /(\d+)-(\d+)/
     if $1 && $2
-      Patient.find_by_policy_number($1).try(:policy_number) || accession.patient.policy_number
+      Patient.find_by_policy_number($1).try(:policy_number) || patient.policy_number
     else
-      accession.patient.policy_number || "pend."
+      patient.policy_number || 'pend.'
     end
   end
 

@@ -1,0 +1,15 @@
+user:
+  first_name: John
+  last_name: Doe
+  initials: JD
+  username: user
+  encrypted_password: <%= BCrypt::Password.create('password') %>
+  admin: false
+
+admin:
+  first_name: Admin
+  last_name: User
+  initials: ADM
+  username: admin
+  encrypted_password: <%= BCrypt::Password.create('password') %>
+  admin: true
