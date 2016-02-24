@@ -46,7 +46,7 @@ module Admin
     private
 
     def reference_range_params
-      params.require(:reference_range).permit(:min, :max, :gender, :min_age, :max_age, :age_unit, :lab_test_id, :animal_type, :descritpion)
+      params.require(:reference_range).permit(:min, :max, :gender, :min_age, :max_age, :age_unit, :lab_test_id, :animal_type, :description)
     end
   end
 end
