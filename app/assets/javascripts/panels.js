@@ -8,7 +8,7 @@ $(document).on("change click", ".new_accession", function() {
 });
 
 $(document).on("change click", ".edit_accession", function() {
-  $(".panel").on("change", function() {
+  $(".panel").on("change click", function() {
     panelId = $(this).find("input").val();
     toggleLabTests(panelId, false);
   });
