@@ -37,7 +37,7 @@
       <%= f.label :received_at, t('.received_at') %>
       <%= f.date_field :received_at, end_year: Time.now.year, value: @accession.received_at.try(:to_s, :w3cdtf) %>
     <% else %>
-      <%= f.label :received_at, t('.received_at'), end_year: Time.now.year %>
+      <%= f.label :received_at, t('.received_at') %>
       <%= f.datetime_select :received_at, end_year: Time.now.year, ampm: true %>
     <% end %>
     </div>
