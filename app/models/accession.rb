@@ -12,9 +12,11 @@ class Accession < ApplicationRecord
   has_many :notes, as: :noticeable
 
   has_one :claim, inverse_of: :accession, dependent: :destroy
+  has_one :insurance_provider, through: :patient
 
   delegate :birthdate, to: :patient, prefix: true
-  delegate :insurance_provider, to: :patient, allow_nil: true
+  delegate :external_number, to: :claim, prefix: true, allow_nil: true
+  delegate :number, to: :claim, prefix: true, allow_nil: true
 
   accepts_nested_attributes_for :results, allow_destroy: true
   accepts_nested_attributes_for :accession_panels, allow_destroy: true
@@ -29,22 +31,12 @@ class Accession < ApplicationRecord
 
   scope :recently, -> { order(reported_at: :desc) }
   scope :queued, -> { order(drawn_at: :asc) }
+  scope :ordered, -> { order(id: :asc) }
   scope :pending, -> { where(reported_at: nil) }
   scope :reported, -> { where.not(reported_at: nil) }
-  scope :with_insurance_provider, -> { joins(:patient).where('patients.insurance_provider_id IS NOT NULL').order(id: :asc) }
+  scope :with_insurance_provider, -> { joins(:patient).where('patients.insurance_provider_id IS NOT NULL').ordered }
   scope :within_claim_period, -> { where('drawn_at > :claim_period', { claim_period: 5.months.ago }) }
-
-  def self.unsubmitted_claims
-    unsubmitted_claims = []
-
-    unsubmitted_accessions = self.find(self.within_claim_period.with_insurance_provider.map(&:id) - Claim.submitted.map(&:accession_id))
-
-    unsubmitted_accessions.each do |claim|
-      unsubmitted_claims.push(claim)
-    end
-
-    unsubmitted_claims
-  end
+  scope :unclaimed, -> { eager_load(:claim).where('claims.claimed_at IS NULL').ordered }
 
   def result_attributes=(result_attributes)
     results.reject(&:new_record?).each do |result|

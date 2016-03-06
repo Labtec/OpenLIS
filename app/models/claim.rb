@@ -1,5 +1,5 @@
 class Claim < ApplicationRecord
-  belongs_to :accession, inverse_of: :claim
+  belongs_to :accession, -> { includes :patient }, inverse_of: :claim
   belongs_to :insurance_provider, inverse_of: :claims
 
   has_one :patient, through: :accession

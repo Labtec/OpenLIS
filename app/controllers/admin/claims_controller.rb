@@ -3,16 +3,16 @@ module Admin
     def index
       if params[:insurance_provider_id]
         provider = InsuranceProvider.find(params[:insurance_provider_id])
-        @unsubmitted_claims = provider.unsubmitted_claims
-        @claims = provider.submitted_claims.recent
+        @unsubmitted_claims = provider.accessions.includes(:patient, :claim).unclaimed.within_claim_period
+        @claims = provider.claims.includes(:patient).submitted.recent
       else
-        @unsubmitted_claims = Accession.unsubmitted_claims
-        @claims = Claim.submitted.recent
+        @unsubmitted_claims = Accession.includes(:patient).with_insurance_provider.unclaimed.within_claim_period
+        @claims = Claim.includes(:patient).submitted.recent
       end
     end
 
     def show
-      @claim = Claim.find(params[:id])
+      @claim = Claim.includes(:accession).find(params[:id])
 
       pdf = ClaimPreview.new(@claim, view_context)
       send_data(pdf.render, filename: "claim_#{@claim.try(:external_number)}.pdf",

@@ -7,7 +7,7 @@ class ClaimPreview < Prawn::Document
       info: {
         Title: 'Claim Preview',
         Author: 'MasterLab—Laboratorio Clínico Especializado',
-        Subject: "Claim #{@claim.try(:external_number)}",
+        Subject: "Claim #{@claim.external_number}",
         Creator: 'MasterLab',
         Producer: 'MasterLab',
         CreationDate: @claim.accession.drawn_at
@@ -139,14 +139,14 @@ class ClaimPreview < Prawn::Document
     # Required. The patient's unique alpha-numeric control number assigned by the provider to facilitate retrieval of individual financial records and posting payment may be shown if the provider assigns one and needs it for association and reference purposes.
     bounding_box([left_margin + pre_control_no_width, (top_margin + field_height * 4)], width: patient_control_number_width, height: field_height) do
       pad(form_padding) do
-        text "<b>#{claim.number}</b>", align: :center, inline_format: true
+        text "<b>#{@claim.number}</b>", align: :center, inline_format: true
       end
     end
     # FL 3b - Medical/Health Record Number
     # Situational. The number assigned to the patient's medical/health record by the provider (not FL3a).
     bounding_box([left_margin + pre_control_no_width, (top_margin + field_height * 3)], width: patient_control_number_width, height: field_height) do
       pad(form_padding) do
-        # text claim.accession.id.to_s, align: :center, inline_format: true
+        # text @claim.accession.id, align: :center, inline_format: true
       end
     end
     # FL 4 - Type of Bill
@@ -161,7 +161,7 @@ class ClaimPreview < Prawn::Document
     bounding_box([left_margin + 7, top_margin - field_height], width: name_width, height: field_height) do
       pad(form_padding) do
         indent(form_indenting) do
-          text "<b>#{name_last_comma_first_mi(claim.patient)}</b>", inline_format: true
+          text "<b>#{name_last_comma_first_mi(@claim.patient)}</b>", inline_format: true
         end
       end
     end
@@ -170,7 +170,7 @@ class ClaimPreview < Prawn::Document
     bounding_box([left_margin, (top_margin - field_height * 3)], width: birthdate_width, height: field_height) do
       pad(form_padding) do
         indent(form_indenting) do
-          text claim.patient.birthdate.to_formatted_s(:mmddccyy)
+          text @claim.patient.birthdate.to_formatted_s(:mmddccyy)
         end
       end
     end
@@ -178,14 +178,14 @@ class ClaimPreview < Prawn::Document
     # Required. The provider enters an "M" (male) or an "F" (female). The patient's sex is recorded at admission, outpatient service, or start of care.
     bounding_box([left_margin + birthdate_width, (top_margin - field_height * 3)], width: gender_width, height: field_height) do
       pad(form_padding) do
-        text claim.patient.gender, align: :center
+        text @claim.patient.gender, align: :center
       end
     end
     # FLs 31, 32, 33 and 34 - Occurrence Codes and Dates
     # Situational. Required when there is a condition code that applies to this claim.
     bounding_box([left_margin + occurrence_code_width, (top_margin - field_height * 5)], width: occurrence_date_width, height: field_height) do
       pad(form_padding) do
-        text claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy), align: :center
+        text @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy), align: :center
       end
     end
     # FL 38 - Responsible Party Name and Address
@@ -193,29 +193,29 @@ class ClaimPreview < Prawn::Document
     bounding_box([left_margin, (top_margin - field_height * 7)], width: insurance_provider_width, height: field_height * 5) do
       pad_top(10) do
         pad(form_padding) do
-          text claim.insurance_provider.name, align: :center, size: 18
-          text "No. #{claim.external_number}", align: :center, size: 16
+          text @claim.insurance_provider.name, align: :center, size: 18
+          text "No. #{@claim.external_number}", align: :center, size: 16
         end
       end
     end
     # Prices calculation and tables preparation
     @total_price = []
     # Panels Table
-    panels_table = claim.accession.panels.with_price.map do |panel|
+    panels_table = @claim.accession.panels.with_price.map do |panel|
       @total_price << (panel.prices.find_by_price_list_id(1).amount if panel.prices.find_by_price_list_id(1))
       [
         '300',
         panel.name,
         panel.procedure.to_s,
-        claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
+        @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
         '1',
         "#{@view.number_to_currency panel.prices.find_by_price_list_id(1).amount, unit: '', separator: ' ' if panel.prices.find_by_price_list_id(1)}"
       ]
     end
     # Lab Tests Table
     @lab_tests = []
-    claim.accession.lab_tests.with_price.map do |lab_test|
-      if (lab_test.panel_ids & claim.accession.panel_ids).empty?
+    @claim.accession.lab_tests.with_price.map do |lab_test|
+      if (lab_test.panel_ids & @claim.accession.panel_ids).empty?
         @lab_tests.push lab_test
       end
     end
@@ -225,7 +225,7 @@ class ClaimPreview < Prawn::Document
         '300',
         lab_test.name,
         lab_test.procedure.to_s,
-        claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
+        @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
         '1',
         "#{@view.number_to_currency lab_test.prices.find_by_price_list_id(1).amount, unit: '', separator: ' ' if lab_test.prices.find_by_price_list_id(1)}"
       ]
@@ -274,7 +274,7 @@ class ClaimPreview < Prawn::Document
     bounding_box([left_margin, (top_margin - field_height * 41)], width: insured_name_width, height: field_height) do
       pad(form_padding) do
         indent(form_indenting) do
-          text name_last_comma_first_mi(claim.insured_name)
+          text name_last_comma_first_mi(@claim.insured_name)
         end
       end
     end
@@ -283,12 +283,12 @@ class ClaimPreview < Prawn::Document
     # If the provider is reporting any other insurance coverage higher in priority than Medicare (e.g., EGHP for the patient or the patient's spouse or during the first year of ESRD entitlement), it shows the involved claim number for that coverage on the appropriate line.
     bounding_box([left_margin + insured_name_width + patient_relationship_width, (top_margin - field_height * 41)], width: insured_unique_id_width, height: field_height) do
       pad(form_padding) do
-        text claim.insured_policy_number, align: :center
+        text @claim.insured_policy_number, align: :center
       end
     end
     # FL 74 - Principal Procedure Code and Date Situational. Required on inpatient claims when a procedure was performed. Not used on outpatient claims.
     # FL 74A - 74E - Other Procedure Codes and Dates Situational. Required on inpatient claims when additional procedures must be reported. Not used on outpatient claims.
-    diag_codes = (claim.accession.icd9.split(',').map(&:strip) unless claim.accession.icd9.blank?) || ['pend.']
+    diag_codes = (@claim.accession.icd9.split(',').map(&:strip) unless @claim.accession.icd9.blank?) || ['pend.']
     diag_codes.each_with_index do |diag_code, i|
       bounding_box([left_margin + code_width * i, (top_margin - field_height * 52)], width: code_width, height: field_height) do
         pad(form_padding) do
@@ -387,7 +387,7 @@ class ClaimPreview < Prawn::Document
                                                       # Required. The patient's unique alpha-numeric control number assigned by the provider to facilitate retrieval of individual financial records and posting payment may be shown if the provider assigns one and needs it for association and reference purposes.
                                                       bounding_box([pre_control_no_width, field_height * (main_table_rows + 17)], width: patient_control_number_width, height: field_height) do
                                                         pad(form_padding) do
-                                                          text "<b>#{claim.number}</b>", align: :center, inline_format: true
+                                                          text "<b>#{@claim.number}</b>", align: :center, inline_format: true
                                                         end
                                                       end
                                                       # FL 8 - Patient's Name
@@ -395,7 +395,7 @@ class ClaimPreview < Prawn::Document
                                                       bounding_box([7, field_height * (main_table_rows + 12)], width: name_width, height: field_height) do
                                                         pad(form_padding) do
                                                           indent(form_indenting) do
-                                                            text "<b>#{name_last_comma_first_mi(claim.patient)}</b>", inline_format: true
+                                                            text "<b>#{name_last_comma_first_mi(@claim.patient)}</b>", inline_format: true
                                                           end
                                                         end
                                                       end
@@ -404,7 +404,7 @@ class ClaimPreview < Prawn::Document
                                                       bounding_box([0, field_height * (main_table_rows + 10)], width: birthdate_width, height: field_height) do
                                                         pad(form_padding) do
                                                           indent(form_indenting) do
-                                                            text claim.patient.birthdate.to_formatted_s(:mmddccyy)
+                                                            text @claim.patient.birthdate.to_formatted_s(:mmddccyy)
                                                           end
                                                         end
                                                       end
@@ -412,14 +412,14 @@ class ClaimPreview < Prawn::Document
                                                       # Required. The provider enters an "M" (male) or an "F" (female). The patient's sex is recorded at admission, outpatient service, or start of care.
                                                       bounding_box([birthdate_width, field_height * (main_table_rows + 10)], width: gender_width, height: field_height) do
                                                         pad(form_padding) do
-                                                          text claim.patient.gender, align: :center
+                                                          text @claim.patient.gender, align: :center
                                                         end
                                                       end
                                                       # FLs 31, 32, 33 and 34 - Occurrence Codes and Dates
                                                       # Situational. Required when there is a condition code that applies to this claim.
                                                       bounding_box([occurrence_code_width, field_height * (main_table_rows + 8)], width: occurrence_date_width, height: field_height) do
                                                         pad(form_padding) do
-                                                          text claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy), align: :center
+                                                          text @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy), align: :center
                                                         end
                                                       end
                                                       # FL 38 - Responsible Party Name and Address
@@ -427,8 +427,8 @@ class ClaimPreview < Prawn::Document
                                                       bounding_box([0, field_height * (main_table_rows + 6)], width: insurance_provider_width, height: field_height * 5) do
                                                         pad_top(10) do
                                                           pad(form_padding) do
-                                                            text claim.insurance_provider.name, align: :center, size: 18
-                                                            text "No. #{claim.external_number}", align: :center, size: 16
+                                                            text @claim.insurance_provider.name, align: :center, size: 18
+                                                            text "No. #{@claim.external_number}", align: :center, size: 16
                                                           end
                                                         end
                                                       end
@@ -467,7 +467,7 @@ class ClaimPreview < Prawn::Document
                                                       bounding_box([0, -(field_height * 5)], width: insured_name_width, height: field_height) do
                                                         pad(form_padding) do
                                                           indent(form_indenting) do
-                                                            text name_last_comma_first_mi(claim.insured_name)
+                                                            text name_last_comma_first_mi(@claim.insured_name)
                                                           end
                                                         end
                                                       end
@@ -476,12 +476,12 @@ class ClaimPreview < Prawn::Document
                                                       # If the provider is reporting any other insurance coverage higher in priority than Medicare (e.g., EGHP for the patient or the patient's spouse or during the first year of ESRD entitlement), it shows the involved claim number for that coverage on the appropriate line.
                                                       bounding_box([insured_name_width + patient_relationship_width, -(field_height * 5)], width: insured_unique_id_width, height: field_height) do
                                                         pad(form_padding) do
-                                                          text claim.insured_policy_number, align: :center
+                                                          text @claim.insured_policy_number, align: :center
                                                         end
                                                       end
                                                       # FL 74 - Principal Procedure Code and Date Situational. Required on inpatient claims when a procedure was performed. Not used on outpatient claims.
                                                       # FL 74A - 74E - Other Procedure Codes and Dates Situational. Required on inpatient claims when additional procedures must be reported. Not used on outpatient claims.
-                                                      diag_codes = (claim.accession.icd9.split(',').map(&:strip) unless claim.accession.icd9.blank?) || ['pend.']
+                                                      diag_codes = (@claim.accession.icd9.split(',').map(&:strip) unless claim.accession.icd9.blank?) || ['pend.']
                                                       diag_codes.each_with_index do |diag_code, i|
                                                         bounding_box([code_width * i, -(field_height * 16)], width: code_width, height: field_height) do
                                                           pad(form_padding) do
