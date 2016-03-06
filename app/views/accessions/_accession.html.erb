@@ -21,7 +21,7 @@
       | <%= t('.tests_ordered') %><b><%= truncate(accession.order_list, :length => 30) %></b>
     <% else %>
       <%= t('.drawn_at') %><b><%= l(accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></b>
-      by: <b><%= accession.drawer.initials if accession.drawer %></b>
+      <%= t('.by') %><b><%= accession.drawer.initials if accession.drawer %></b>
       | <%= t('.tests_pending') %><b><%= truncate(accession.pending_list, :length => 30) %></b>
     <% end %>
     <% unless accession.doctor_id.blank? %>
