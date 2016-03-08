@@ -5,8 +5,6 @@ class PatientsAgeHelperTest < ActionView::TestCase
 
   def setup
     travel_to Time.new(2016, 2, 28, 12, 0, 0, 0)
-    # FIXME: Fails on leapday
-    # travel_to Time.new(2016, 2, 29, 12, 0, 0, 0)
   end
 
   def teardown
@@ -63,18 +61,5 @@ class PatientsAgeHelperTest < ActionView::TestCase
     dates.each do |date|
       assert_equal date[2], age_hash(date[0], date[1])
     end
-  end
-
-  test 'accounts for leap years' do
-    birth_date = Date.parse('2000-02-29')
-
-    patient_age = age_hash(birth_date, Date.parse('2007-02-28'))
-    assert_equal 6, patient_age[:years], 'February 28,2007'
-
-    patient_age = age_hash(birth_date, Date.parse('2007-03-01'))
-    assert_equal 7, patient_age[:years], 'March 1, 2007'
-
-    patient_age = age_hash(birth_date, Date.parse('2008-02-29'))
-    assert_equal 8, patient_age[:years], 'February 29, 2008'
   end
 end

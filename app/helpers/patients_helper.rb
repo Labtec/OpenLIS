@@ -80,7 +80,7 @@ module PatientsHelper
   end
 
   # Returns a hash with the age of a patient at any given time.
-  # If no time is given, +Time.now+ is used.
+  # If no time is given, +Time.current+ is used.
   #
   # Units to be used for displaying a patient's age:
   #
@@ -93,7 +93,7 @@ module PatientsHelper
   #     | < 2 years   | Months     | Days        |
   #     | < 18 years  | Years      | Months      |
   #     | >= 18 years | Years      | Years       |
-  def age_hash(birth_date, service_date = Time.now)
+  def age_hash(birth_date, service_date = Time.current)
     patient_age = AgeCalculator.new(birth_date, service_date)
     age_in = patient_age.time_units
     remainder = patient_age.remainders

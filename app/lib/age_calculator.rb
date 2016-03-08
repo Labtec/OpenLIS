@@ -1,7 +1,7 @@
 # Calculates the age of a person at any given time.
-# If no time is given, +Time.now+ is used.
+# If no time is given, +Time.current+ is used.
 class AgeCalculator
-  def initialize(from_date, to_date = Time.now)
+  def initialize(from_date, to_date = Time.current)
     @from_date = from_date.in_time_zone if from_date.respond_to?(:in_time_zone)
     @to_date = to_date.in_time_zone if to_date.respond_to?(:in_time_zone)
   end
@@ -15,9 +15,9 @@ class AgeCalculator
     in_seconds = (@to_date - @from_date).round
     in_days = in_seconds / 1.day.seconds
     in_weeks = in_seconds / 1.week.seconds
-    in_months = in_seconds / 1.month.seconds # FIXME: This seems wrong
-    in_years = (@to_date.to_s(:number).to_i -
-                @from_date.to_s(:number).to_i) / 10e9.to_i
+    in_months = in_seconds / 1.month.seconds
+    in_years = @to_date.year - @from_date.year
+    in_years -= 1 if @to_date < @from_date + in_years.years
 
     {
       seconds: in_seconds,
@@ -28,21 +28,24 @@ class AgeCalculator
     }
   end
 
-  # Age remainders in time units.
+  # Age remainders for time units.
   #
   # === Returns
   #
-  # A hash with the age in different time units.
+  # A hash with the age remainders for different time units.
   def remainders
-    bd, bm, = @from_date.day, @from_date.month
-    dd, dm, = @to_date.day, @to_date.month
+    bd, bm = @from_date.day, @from_date.month
+    dd, dm, dy = @to_date.day, @to_date.month, @to_date.year
 
     # weeks
-    # FIXME: This fails on leapday
+    # remainder in days
     week_remainder = time_units[:days] - time_units[:weeks] * 7
 
     # months
-    if bd > dd
+    # remainder in days
+    if bd == 29 && bm == 2 && dd == 28 && dm == 2 && !Date.gregorian_leap?(dy)
+      month_remainder = 0
+    elsif bd > dd
       last_month_days =
         if Time.days_in_month(@to_date.last_month.month) > bd
           Time.days_in_month(@to_date.last_month.month) - bd
@@ -55,11 +58,14 @@ class AgeCalculator
     end
 
     # years
+    # remainder in months
     if bm > dm
       last_year_months = 12 - bm
       year_remainder = last_year_months + dm
     elsif bm == dm
-      if bd > dd
+      if bd == 29 && bm == 2 && dd == 28 && dm == 2 && !Date.gregorian_leap?(dy)
+        year_remainder = 0
+      elsif bd > dd
         year_remainder = 11
       else
         year_remainder = 0

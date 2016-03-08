@@ -621,7 +621,8 @@ td.range{
     .log h3.overdue {
       margin: 10px 0px 4px 0px;
       color: crimson;
-      border-bottom: 1px crimson dotted; }
+      border-bottom: 1px crimson dotted;
+      margin-bottom: 0px; }
     .log h3.due_asap {
       color: darkred;
       border-bottom: 1px darkred dotted; }
@@ -632,7 +633,8 @@ td.range{
     .log h3.done {
       margin: 10px 0px 4px 0px;
       color: #0033cc;
-      border-bottom: 1px #0033cc dotted; }
+      border-bottom: 1px #0033cc dotted;
+      margin-bottom: 0px; }
     .log ul.overdue li.contact a {
       color: crimson; }
     .log ul.overdue li.contact a:hover {
