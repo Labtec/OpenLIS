@@ -22,12 +22,14 @@ class AccessionsController < ApplicationController
     @accession.drawer_id = current_user.id
     @accession.received_at = Time.current
     @accession.receiver_id = current_user.id
-    @departments = Department.all
+    @panels = Panel.sorted.includes(:lab_tests)
+    @departments = Department.all.includes(:lab_tests)
   end
 
   def create
     @patient = Patient.find(params[:patient_id])
-    @departments = Department.all
+    @panels = Panel.sorted.includes(:lab_tests)
+    @departments = Department.all.includes(:lab_tests)
     @accession = @patient.accessions.build(accession_params)
     if @accession.save
       flash[:notice] = t('flash.accession.create')
@@ -41,6 +43,7 @@ class AccessionsController < ApplicationController
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
     @departments = Department.all.includes(:lab_tests)
+    @panels = Panel.sorted.includes(:lab_tests)
     $update_action = 'edit'
   end
 
@@ -48,6 +51,7 @@ class AccessionsController < ApplicationController
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
     @departments = Department.all.includes(:lab_tests)
+    @panels = Panel.sorted.includes(:lab_tests)
     if @accession.update(accession_params)
       unless current_user.admin?
         @accession.update(reporter_id: current_user.id, reported_at: Time.current) if @accession.reported_at
