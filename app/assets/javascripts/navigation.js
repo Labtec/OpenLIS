@@ -2,20 +2,6 @@ setTimeout(function(){
   $(".flash_notice").fadeOut(2000);
 }, 3000);
 
-$(document).on("mouseover", "li.contact", function() {
-  $(this).css({
-    "background" : "seashell"
-  });
-  $(this).children(".tools").show();
-});
-
-$(document).on("mouseout", "li.contact", function() {
-  $(this).css({
-    "background" : "white"
-  });
-  $(this).children(".tools").hide();
-});
-
 $(".pending a").on("click", function() {
   $("#pending_paging").show();
   $.getScript(this.href);
@@ -26,6 +12,22 @@ $(".paginate a").on("click", function() {
   $("#paging").show();
   $.getScript(this.href);
   return false;
+});
+
+$(document).on("page:change", function() {
+  $("li.contact").mouseenter(function() {
+    $(this).css({
+      "background" : "seashell"
+    });
+    $(this).children(".tools").show();
+  });
+
+  $("li.contact").on("click mouseleave", function() {
+    $(this).css({
+      "background" : "white"
+    });
+    $(this).children(".tools").hide();
+  });
 });
 
 /* Safari bug
