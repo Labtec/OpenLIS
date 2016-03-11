@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :accessions, only: :index do
     member do
-      put 'report'
+      patch 'report'
       get 'edit_results'
     end
   end

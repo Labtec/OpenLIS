@@ -49,8 +49,8 @@
       <%= link_to t('.change_results'), edit_results_accession_url(@accession) %> |
     <% else %>
       <%= link_to t('.enter_results'), edit_results_accession_url(@accession) %> |
-      <%= link_to t('.report'), report_accession_path(@accession), method: :put, 'data-turbolinks': false %> |
+      <%= link_to t('.report'), report_accession_path(@accession), method: :patch %> |
     <% end %>
-    <%= link_to t('.print_report'), accession_results_path(@accession, format: 'pdf'), 'data-turbolinks': false %>
+    <%= link_to t('.print_report'), accession_results_path(@accession, format: 'pdf') %>
   </div>
 </fieldset>
