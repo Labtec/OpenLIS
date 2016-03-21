@@ -66,25 +66,7 @@
 
     <%= render 'panels/form', f: f %>
 
-    <h2><%= t('.order_tests') %></h2>
-
-    <div id="order_tests">
-      <ul>
-        <% @departments.each do |department| %>
-          <li><a href="#<%= department.id %>"><%= department.name %></a></li>
-        <% end %>
-      </ul>
-      <% @departments.each do |department| %>
-        <div id="<%= department.id %>">
-          <%= f.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |b| %>
-            <div class="lab_test">
-              <%= b.check_box %>
-              <label class="checkbox" for="accession_lab_test_ids_<%= b.object.id %>"> <%= sanitize(b.text) %></label>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'lab_tests/form', f: f %>
 
     <div class="buttonbar">
       <%= f.submit t('.submit'), data: { disable_with: t('.processing') } %>

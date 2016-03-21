@@ -183,7 +183,6 @@ es-PA:
       received_by: "Recibido por:"
       reported_at: "Reportado el:"
       reported_by: "Reportado por:"
-      order_tests: "Ordernar Pruebas"
       submit: "Guardar"
       or: "o"
       cancel: "Cancelar"
@@ -226,6 +225,10 @@ es-PA:
       pending_requisitions: "Peticiones Pendientes"
       requisition_history: "Historial de Peticiones"
       order_tests: "Ordenar Pruebas"
+
+  lab_tests:
+    form:
+      order_tests: Ordernar Pruebas
 
   notes:
     form:

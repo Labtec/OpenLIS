@@ -183,7 +183,6 @@ en:
       received_by: "Received by:"
       reported_at: "Reported at:"
       reported_by: "Reported by:"
-      order_tests: "Order Tests"
       submit: "Save"
       or: "or"
       cancel: "Cancel"
@@ -226,6 +225,10 @@ en:
       pending_requisitions: "Pending Requisitions"
       requisition_history: "Requisition History"
       order_tests: "Order Tests"
+
+  lab_tests:
+    form:
+      order_tests: Order Tests
 
   notes:
     form:
