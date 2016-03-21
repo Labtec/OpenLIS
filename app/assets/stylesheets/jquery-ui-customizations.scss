@@ -78,6 +78,10 @@
 }
 
 /* UI Autocomplete */
+.ui-autocomplete {
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden; }
 
 ul.ui-autocomplete {
   border: 1px silver solid;

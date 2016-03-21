@@ -71,6 +71,7 @@ class Accession < ApplicationRecord
   end
 
   def doctor_name=(name)
+    name = name.squish if name
     if name.blank?
       self.doctor_id = nil
     else

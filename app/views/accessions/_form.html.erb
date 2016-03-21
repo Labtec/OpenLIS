@@ -9,7 +9,8 @@
 
     <div class="doctor_name">
       <%= f.label :doctor_name, t('.doctor') %>
-      <%= f.text_field :doctor_name, placeholder: t('.walk_in'), autocorrect: 'off' %>
+      <%= f.text_field :doctor_name, placeholder: t('.walk_in'),
+        data: { doctors: Doctor.cached_doctors_list }, autocorrect: 'off' %>
     </div>
 
     <div class="icd9">

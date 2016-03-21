@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   get 'profile', to: 'users#edit'
 
-  resources :doctors, only: :index
-
   resources :patients, shallow: true do
     resources :accessions, except: :index do
       resources :results, only: :index
