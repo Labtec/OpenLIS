@@ -9,4 +9,6 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :initials, presence: true
   validates :initials, uniqueness: true
+
+  scope :sorted, -> { order(username: :asc) }
 end

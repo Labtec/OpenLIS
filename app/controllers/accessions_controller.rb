@@ -24,6 +24,7 @@ class AccessionsController < ApplicationController
     @accession.receiver_id = current_user.id
     @panels = Panel.sorted.includes(:lab_tests)
     @departments = Department.all.includes(:lab_tests)
+    @users = User.sorted
   end
 
   def create
@@ -31,6 +32,7 @@ class AccessionsController < ApplicationController
     @panels = Panel.sorted.includes(:lab_tests)
     @departments = Department.all.includes(:lab_tests)
     @accession = @patient.accessions.build(accession_params)
+    @users = User.sorted
     if @accession.save
       flash[:notice] = t('flash.accession.create')
       redirect_to accession_url(@accession)
@@ -44,6 +46,7 @@ class AccessionsController < ApplicationController
     @patient = @accession.patient
     @departments = Department.all.includes(:lab_tests)
     @panels = Panel.sorted.includes(:lab_tests)
+    @users = User.sorted
     $update_action = 'edit'
   end
 
@@ -52,6 +55,7 @@ class AccessionsController < ApplicationController
     @patient = @accession.patient
     @departments = Department.all.includes(:lab_tests)
     @panels = Panel.sorted.includes(:lab_tests)
+    @users = User.sorted
     if @accession.update(accession_params)
       unless current_user.admin?
         @accession.update(reporter_id: current_user.id, reported_at: Time.current) if @accession.reported_at

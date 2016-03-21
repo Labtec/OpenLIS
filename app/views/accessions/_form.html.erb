@@ -29,7 +29,7 @@
 
     <div class="drawer_id">
       <%= f.label :drawer_id, t('.drawn_by') %>
-      <%= f.collection_select :drawer_id, User.all, :id, :username %>
+      <%= f.collection_select :drawer_id, @users, :id, :username %>
     </div>
 
     <div class="received_at">
@@ -44,7 +44,7 @@
 
     <div class="receiver_id">
       <%= f.label :receiver_id, t('.received_by') %>
-      <%= f.collection_select :receiver_id, User.all, :id, :username %>
+      <%= f.collection_select :receiver_id, @users, :id, :username %>
     </div>
 
     <% if @accession.reported_at? %>
@@ -60,7 +60,7 @@
 
       <div class="reporter_id">
         <%= f.label :reporter_id, t('.reported_by') %>
-        <%= f.collection_select :reporter_id, User.all, :id, :username %>
+        <%= f.collection_select :reporter_id, @users, :id, :username %>
       </div>
     <% end %>
 
