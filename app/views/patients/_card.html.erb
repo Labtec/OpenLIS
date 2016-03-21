@@ -1,25 +1,25 @@
-<% cache patient do %>
+<% cache @patient do %>
   <div class="panel" id="summary">
 
-    <%= avatar_for(patient) %>
+    <%= avatar_for(@patient) %>
 
-    <h4><%= link_to full_name(patient), patient_path(patient) %></h4>
+    <h4><%= link_to full_name(@patient), patient_path(@patient) %></h4>
     <div>
-      <%= patient.identifier %><br />
-      <%= age(patient.birthdate) %>
+      <%= @patient.identifier %><br />
+      <%= age(@patient.birthdate) %>
     </div>
     <div>
-      <%= t('.address') %> <%= patient.address %><br />
-      <%= t('.phone') %> <b><%= patient.phone %></b>
+      <%= t('.address') %> <%= @patient.address %><br />
+      <%= t('.phone') %> <b><%= @patient.phone %></b>
     </div>
     <div>
-      <%= t('.email') %> <b><%= mail_to patient.email %></b>
+      <%= t('.email') %> <b><%= mail_to @patient.email %></b>
     </div>
     <div class="bottom_card">
-      <%= image_tag('axa.svg', size: '15x15') if patient.insurance_provider %>
-      <%= patient.policy_number %>
+      <%= image_tag('axa.svg', size: '15x15') if @patient.insurance_provider %>
+      <%= @patient.policy_number %>
       <div class="edit_patient_card">
-        <%= link_to t('.edit'), edit_patient_path(patient) %>
+        <%= link_to t('.edit'), edit_patient_path(@patient) %>
       </div>
     </div>
   </div>

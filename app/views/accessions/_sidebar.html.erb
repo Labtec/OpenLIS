@@ -1,7 +1,5 @@
 <div class='sidebar'>
-  <% if @patient %>
-    <%= render partial: 'patients/card', locals: { patient: @patient } %>
-  <% end %>
+  <%= render partial: 'patients/card' if @patient %>
 
   <% if @recent %>
     <div class="panel" id="recent">

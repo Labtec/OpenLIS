@@ -1,6 +1,6 @@
 <div class="sidebar">
   <% if @patient %>
-    <%= render(partial: 'card', locals: { patient: @patient }) unless @patient.new_record? %>
+    <%= render partial: 'card' unless @patient.new_record? %>
   <% else %>
     <div class="filters">
       <div style="margin: 0px 0px 6px 0px">
