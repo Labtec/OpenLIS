@@ -183,7 +183,6 @@ es-PA:
       received_by: "Recibido por:"
       reported_at: "Reportado el:"
       reported_by: "Reportado por:"
-      order_panels: "Ordenar Paneles"
       order_tests: "Ordernar Pruebas"
       submit: "Guardar"
       or: "o"
@@ -231,6 +230,10 @@ es-PA:
   notes:
     form:
       notes: "Observaciones:"
+
+  panels:
+    form:
+      order_panels: Ordenar Paneles
 
   results:
     low: "•"

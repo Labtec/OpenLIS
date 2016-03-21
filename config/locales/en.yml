@@ -183,7 +183,6 @@ en:
       received_by: "Received by:"
       reported_at: "Reported at:"
       reported_by: "Reported by:"
-      order_panels: "Order Panels"
       order_tests: "Order Tests"
       submit: "Save"
       or: "or"
@@ -231,6 +230,10 @@ en:
   notes:
     form:
       notes: "Notes:"
+
+  panels:
+    form:
+      order_panels: Order Panels
 
   results:
     low: "L"
