@@ -1,7 +1,7 @@
-<div class='sidebar'>
-  <%= render partial: 'patients/card' if @patient %>
+<%= render partial: 'patients/card' if @patient %>
 
-  <% if @recent %>
+<% if @recent %>
+  <% cache @recent do %>
     <div class="panel" id="recent">
       <div class="caption"><%= t('.recent_patients') %></div>
       <ul>
@@ -10,4 +10,4 @@
       </ul>
     </div>
   <% end %>
-</div>
+<% end %>

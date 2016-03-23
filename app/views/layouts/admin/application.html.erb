@@ -10,16 +10,14 @@
   </head>
   <body>
     <nav>
-      <%= render 'layouts/admin/header' %>
-      <%= render 'layouts/admin/tabs' %>
+      <%= render 'layouts/admin/header' -%>
+      <%= render 'layouts/admin/tabs' -%>
     </nav>
 
     <section class='main'>
       <%= yield %>
     </section>
 
-    <footer id='footer'>
-      <%= render 'layouts/footer' %>
-    </footer>
+    <%= render 'layouts/footer' -%>
   </body>
 </html>

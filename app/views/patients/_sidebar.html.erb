@@ -1,18 +1,20 @@
-<div class="sidebar">
-  <% if @patient %>
-    <%= render partial: 'card' unless @patient.new_record? %>
-  <% else %>
-    <div class="filters">
-      <div style="margin: 0px 0px 6px 0px">
-        <%= form_tag patients_path, method: 'get', enforce_utf8: false do %>
-          <%= search_field_tag :search, params[:search], size: 23, results: 5,
-            autosave: "search_#{current_user.username}", autocorrect: 'off', placeholder: t('.search_patients') %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+<% if @patient %>
+  <%= render partial: 'card' unless @patient.new_record? %>
+<% else %>
+  <div class="filters">
+    <%= form_tag patients_path, method: 'get', enforce_utf8: false do %>
+      <%= search_field_tag :search, params[:search],
+        size: 23,
+        results: 5,
+        autosave: "search_#{current_user.username}",
+        autocorrect: 'off',
+        placeholder: t('.search_patients') %>
+    <% end %>
+  </div>
+<% end %>
 
-  <% if @recent %>
+<% if @recent %>
+  <% cache @recent do %>
     <div class="panel" id="recent">
       <div class="caption"><%= t('.recent_patients') %></div>
       <ul>
@@ -21,4 +23,4 @@
       </ul>
     </div>
   <% end %>
-</div>
+<% end %>

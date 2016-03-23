@@ -10,20 +10,18 @@
   </head>
   <body>
     <nav>
-      <%= render 'layouts/header' %>
-      <%= render 'layouts/tabs' %>
+      <%= render 'layouts/header' -%>
+      <%= render 'layouts/tabs' -%>
     </nav>
 
-    <section>
-      <%= render 'sidebar' %>
+    <section class="sidebar">
+      <%= render 'sidebar' -%>
     </section>
 
-    <section class='main'>
+    <section class="main">
       <%= yield %>
     </section>
 
-    <footer id='footer'>
-      <%= render 'layouts/footer' %>
-    </footer>
+    <%= render 'layouts/footer' -%>
   </body>
 </html>
