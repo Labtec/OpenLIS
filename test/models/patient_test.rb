@@ -9,6 +9,8 @@ class PatientTest < ActiveSupport::TestCase
   should validate_presence_of(:given_name)
   should validate_presence_of(:family_name)
   should validate_presence_of(:birthdate)
+  should validate_length_of(:given_name).is_at_least(2)
+  should validate_length_of(:family_name).is_at_least(2)
   should validate_uniqueness_of(:identifier).
     ignoring_case_sensitivity.
     allow_blank

@@ -11,7 +11,8 @@ class Patient < ApplicationRecord
 
   validates :animal_type, inclusion: { in: ANIMAL_TYPES }, allow_blank: true
   validates :gender, inclusion: { in: GENDERS }
-  validates :given_name, :family_name, :birthdate, presence: true
+  validates :given_name, :family_name, presence: true, length: { minimum: 2 }
+  validates :birthdate, presence: true
   validates :identifier, uniqueness: true, allow_blank: true
   validates :email, email: true, allow_blank: true
   validate :birthdate_cant_be_in_the_future
