@@ -23,6 +23,6 @@ class SessionsController < Devise::SessionsController
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_in_params
-  #   devise_parameter_sanitizer.for(:sign_in) << :attribute
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:subscribe_newsletter])
   # end
 end
