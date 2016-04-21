@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PatientsIntegrationTest < ActionDispatch::IntegrationTest
+class PatientsTest < ActionDispatch::IntegrationTest
   def setup
     login_as(users(:user), scope: :user)
   end

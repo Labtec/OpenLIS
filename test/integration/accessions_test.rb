@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AccessionsIntegrationTest < ActionDispatch::IntegrationTest
+class AccessionsTest < ActionDispatch::IntegrationTest
   def setup
     login_as(users(:user), scope: :user)
     @patient = patients(:john)
@@ -27,12 +27,27 @@ class AccessionsIntegrationTest < ActionDispatch::IntegrationTest
     assert page.has_content? users(:user).initials
   end
 
+  test 'an empty requisition' do
+    visit patient_path(@patient)
+    within('.title_tools') { click_on 'Order Tests' }
+    click_on 'Save'
+    assert page.has_content?('error'), 'Requisition can not be empty'
+  end
+
   test 'change a requisition' do
     visit edit_accession_path(@accession)
     uncheck 'BUN'
     click_on 'Save'
     assert_not page.has_content?('error'), 'Requisition not updated'
     assert page.has_content?('Successfully updated requisition')
+  end
+
+  test 'clear a requisition' do
+    visit edit_accession_path(@accession)
+    uncheck 'BUN'
+    uncheck 'Cholesterol'
+    click_on 'Save'
+    assert page.has_content?('error'), 'Requisition can not be empty'
   end
 
   test 'enter test results' do
