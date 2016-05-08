@@ -14,13 +14,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: open_lis_development; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON DATABASE open_lis_development IS 'OpenLIS';
-
-
---
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
 --
 

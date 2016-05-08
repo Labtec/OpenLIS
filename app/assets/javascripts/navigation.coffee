@@ -10,7 +10,7 @@ $('.paginate a').on 'click', ->
   $('#paging').show()
   $.getScript @href
 
-$(document).on 'page:change', ->
+$(document).on 'turbolinks:load', ->
   $('li.contact').mouseenter ->
     $(this).css 'background': 'seashell'
     $(this).children('.tools').show()
@@ -20,6 +20,6 @@ $(document).on 'page:change', ->
 
 # Safari bug
 # http://stackoverflow.com/questions/5297122/preventing-cache-on-back-button-in-safari-5
-$(window).bind 'pageshow', (event) ->
-  if event.originalEvent.persisted
-    window.location.reload()
+#$(window).bind 'pageshow', (event) ->
+#  if event.originalEvent.persisted
+#    window.location.reload()

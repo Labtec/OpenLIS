@@ -9,7 +9,7 @@ $(document).on 'change click', '.edit_accession', ->
     panelId = $(this).find('input').val()
     toggleLabTests panelId, false
 
-$(document).on 'ready page:load change click', ->
+$(document).on 'turbolinks:load change click', ->
   panels = $('.panels').data('panel-ids')
   if panels
     $.each panels, (index, panelId) ->

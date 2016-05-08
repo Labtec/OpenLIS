@@ -1,8 +1,11 @@
 sudo: false
 language: ruby
-cache: bundler
+cache:
+  bundler: true
 addons:
   postgresql: '9.4'
 before_script:
   - cp config/database.travis.yml config/database.yml
-  - psql -c 'create database open_lis_test;' -U postgres
+  - psql -c "CREATE DATABASE open_lis_test ENCODING 'UTF-8';" -U postgres
+env:
+  - SECRET_KEY_BASE=cef0bf40d1ddbe1b7dba4c0de6409d7c2db92c8569c8fe280af933ef07b5ddfe2b226d0f3ad80f4a2b9dbe4db682fe1df6889aac07e009034ef624874d6b19e0

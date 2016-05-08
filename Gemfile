@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.0.0.beta4'
+gem 'rails', '5.0.0.rc1'
 
-gem 'acts_as_list', github: 'swanandp/acts_as_list'
+gem 'acts_as_list'
 gem 'coffee-rails'
 gem 'dalli'
-gem 'devise', github: 'plataformatec/devise'
+gem 'devise'
 gem 'fast_blank'
 gem 'jbuilder'
 gem 'jquery-rails'
@@ -19,11 +19,11 @@ gem 'puma'
 gem 'rails-html-sanitizer'
 gem 'rails-i18n', github: 'jlduran/rails-i18n', branch: 'fix-es-pa'
 gem 'sass-rails'
-gem 'turbolinks'
+gem 'turbolinks', '~> 5.x'
 gem 'uglifier'
 
 group :development, :test do
-  gem 'byebug'
+  gem 'byebug', platform: :mri
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
@@ -34,7 +34,7 @@ group :development do
   gem 'bullet'
   gem 'flamegraph', require: false
   gem 'listen', '~> 3.0.5'
-  gem 'rack-mini-profiler', github: 'MiniProfiler/rack-mini-profiler', require: false
+  gem 'rack-mini-profiler', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'stackprof'

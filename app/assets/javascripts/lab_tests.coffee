@@ -1,4 +1,4 @@
-$(document).on 'ready page:load', ->
+$(document).on 'turbolinks:load', ->
   $('.lab_tests').sortable(
     axis: 'y'
     handle: '.handle'

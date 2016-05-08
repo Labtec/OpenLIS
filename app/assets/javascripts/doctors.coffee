@@ -1,4 +1,4 @@
-$(document).on 'ready page:load', ->
+$(document).on 'turbolinks:load', ->
   accentMap =
     'Á': 'a'
     'á': 'a'

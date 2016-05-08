@@ -1,4 +1,4 @@
-$(document).on 'ready page:load', ->
+$(document).on 'turbolinks:load', ->
   $tabs = $('#lab_tests').tabs()
   $panels = $('.ui-tabs-panel')
   $('#departments').tabs cache: true
