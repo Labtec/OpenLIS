@@ -1,7 +1,6 @@
 <li>
-  <dt>
-    <%= link_to truncate(full_name(patient), length: 15),
+  <tt>
+    <%= link_to truncate(full_name(patient), length: 30),
       patient_path(patient), title: full_name(patient) %>
-  </dt>
-  <tt><%= t('.patient') %></tt>
+  </tt>
 </li>

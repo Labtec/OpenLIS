@@ -84,7 +84,6 @@ es-PA:
       search_patients: "Buscar pacientes"
       search: "Buscar"
       recent_patients: "Pacientes Recientes"
-      patient: "Paciente:"
     index:
       title: "Pacientes"
       new_patient: "Nuevo Paciente"
@@ -193,7 +192,6 @@ es-PA:
       address: "Dirección:"
       email: "Correo Electrónico:"
       recent_patients: "Pacientes Recientes"
-      patient: "Paciente:"
     edit_results:
       title: "Ingresar Resultados"
       accession: "Solicitud #"
@@ -279,7 +277,6 @@ es-PA:
       address: "Dirección:"
       email: "Correo Electrónico:"
       recent_patients: "Pacientes Recientes"
-      patient: "Paciente:"
 
   flash:
     login:

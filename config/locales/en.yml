@@ -84,7 +84,6 @@ en:
       search_patients: "Search patients"
       search: "Search"
       recent_patients: "Recent Patients"
-      patient: "Patient:"
     index:
       title: "Patients"
       new_patient: "New Patient"
@@ -193,7 +192,6 @@ en:
       address: "Address:"
       email: "Email:"
       recent_patients: "Recent Patients"
-      patient: "Patient:"
     edit_results:
       title: "Enter Results"
       accession: "Accession #"
@@ -279,7 +277,6 @@ en:
       address: "Address:"
       email: "Email:"
       recent_patients: "Recent Patients"
-      patient: "Patient:"
 
   flash:
     login:
