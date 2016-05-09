@@ -72,8 +72,8 @@ en:
       one: 1 year
       other: "%{count} years"
     month:
-     one: 1 month
-     other: "%{count} months"
+      one: 1 month
+      other: "%{count} months"
     week:
       one: 1 week
       other: "%{count} weeks"
