@@ -33,8 +33,8 @@ class AgeCalculatorTest < ActiveSupport::TestCase
 
     age = AgeCalculator.new(birth_date, Date.parse('2002-01-01'))
     remainder = age.remainders
-    assert_equal nil, remainder[:years], 'Years nil remainder (in months)'
-    assert_equal nil, remainder[:months], 'Months nil remainder (in days)'
+    assert_nil remainder[:years], 'Years nil remainder (in months)'
+    assert_nil remainder[:months], 'Months nil remainder (in days)'
     assert_equal 1, remainder[:weeks], 'Weeks nil remainder (in days)'
 
     birth_date = Date.parse('2001-01-01')
@@ -49,8 +49,8 @@ class AgeCalculatorTest < ActiveSupport::TestCase
 
     age = AgeCalculator.new(birth_date, Date.parse('2001-02-28'))
     remainder = age.remainders
-    assert_equal nil, remainder[:years], 'Leap years remainder (in months)'
-    assert_equal nil, remainder[:months], 'Leap months remainder (in days)'
+    assert_nil remainder[:years], 'Leap years remainder (in months)'
+    assert_nil remainder[:months], 'Leap months remainder (in days)'
     assert_equal 1, remainder[:weeks], 'Leap weeks remainder (in days)'
   end
 end
