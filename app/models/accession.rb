@@ -24,10 +24,8 @@ class Accession < ApplicationRecord
 
   validates :icd9, presence: true, if: :insurable?
   validates :drawn_at, :received_at, presence: true
+  validates :drawn_at, :received_at, :reported_at, not_in_the_future: true
   validate :at_least_one_panel_or_test_selected
-  validate :drawn_at_cant_be_in_the_future
-  validate :received_at_cant_be_in_the_future
-  validate :reported_at_cant_be_in_the_future
 
   scope :recently, -> { order(reported_at: :desc) }
   scope :queued, -> { order(drawn_at: :asc) }
@@ -113,18 +111,6 @@ class Accession < ApplicationRecord
   def lab_tests_list
     panels_lab_tests_list_ids = LabTestPanel.where({ panel_id: panel_ids }).map(&:lab_test_id).uniq
     LabTest.find(lab_test_ids - panels_lab_tests_list_ids).map(&:code)
-  end
-
-  def drawn_at_cant_be_in_the_future
-    errors.add(:drawn_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.current < drawn_at unless drawn_at.nil?
-  end
-
-  def received_at_cant_be_in_the_future
-    errors.add(:received_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.current < received_at unless received_at.nil?
-  end
-
-  def reported_at_cant_be_in_the_future
-    errors.add(:reported_at, I18n.t('flash.accession.cant_be_in_the_future')) if Time.current < reported_at unless reported_at.nil?
   end
 
   def result_of_test_coded_as(code)

@@ -282,8 +282,6 @@ es-PA:
     login:
       hello: "¡Hola "
       last_login_at: " Su último inico de sesión fue hace "
-    patient:
-      birthday_cant_be_in_the_future: "no puede ser del futuro"
     accession:
       create: "Petición creada exitosamente."
       update: "Petición actualizada exitosamente."
@@ -292,7 +290,6 @@ es-PA:
       report_error: "Todavía existen resultados pendientes."
       accession_not_found: "Este registro de petición ya no está disponible."
       at_least_one_panel_or_test_selected: "Debe tener al menos un panel o una prueba seleccionada."
-      cant_be_in_the_future: "no puede ser del futuro"
     accessions:
       at_least_one_panel_or_test_selected: "Debe tener al menos un panel o una prueba seleccionada."
     results:
@@ -332,6 +329,9 @@ es-PA:
       reference_range: "rango"
       unit: "unidad"
       user: "usuario"
+  errors:
+    messages:
+      cant_be_in_the_future: "no puede ser del futuro"
   time:
     formats:
       long: "%-d/%m/%Y %l:%M %p"

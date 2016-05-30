@@ -282,8 +282,6 @@ en:
     login:
       hello: "Hello "
       last_login_at: " Previous login: "
-    patient:
-      birthday_cant_be_in_the_future: "cannot be in the future"
     accession:
       create: "Successfully created requisition."
       update: "Successfully updated requisition."
@@ -292,7 +290,6 @@ en:
       report_error: "There are still pending results."
       accession_not_found: "Requisition accession no longer available."
       at_least_one_panel_or_test_selected: "Must have at least one panel or test selected."
-      cant_be_in_the_future: "cannot be in the future"
     accessions:
       at_least_one_panel_or_test_selected: "Must have at least one panel or test selected."
     results:
@@ -304,7 +301,9 @@ en:
     attributes:
       accession:
         icd9: "Diagnosis Codes (ICD-9)"
-
+  errors:
+    messages:
+      cant_be_in_the_future: "cannot be in the future"
   time:
     formats:
       long: "%d %B %Y %H:%M"

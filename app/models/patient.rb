@@ -12,10 +12,9 @@ class Patient < ApplicationRecord
   validates :animal_type, inclusion: { in: ANIMAL_TYPES }, allow_blank: true
   validates :gender, inclusion: { in: GENDERS }
   validates :given_name, :family_name, presence: true, length: { minimum: 2 }
-  validates :birthdate, presence: true
+  validates :birthdate, presence: true, not_in_the_future: true
   validates :identifier, uniqueness: true, allow_blank: true
   validates :email, email: true, allow_blank: true
-  validate :birthdate_cant_be_in_the_future
 
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
@@ -47,10 +46,6 @@ class Patient < ApplicationRecord
   end
 
   private
-
-  def birthdate_cant_be_in_the_future
-    errors.add(:birthdate, I18n.t('flash.patient.birthday_cant_be_in_the_future')) if birthdate > Date.current unless birthdate.nil?
-  end
 
   def titleize_names
     self.given_name = given_name.mb_chars.titleize.squish if given_name
