@@ -1,17 +1,16 @@
 GIT
   remote: git://github.com/amatsuda/kaminari.git
-  revision: 17d0fb83aa8e257ecf887d3c9774f4289bee4458
+  revision: 384d5cc9adcdd2ce27e83531961943406241acc8
   specs:
     kaminari (1.0.0.alpha)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git://github.com/jlduran/rails-i18n.git
-  revision: b25814b6ae6be375e1e9b1f3d26ea03de2828b73
-  branch: fix-es-pa
+  remote: git://github.com/svenfuchs/rails-i18n.git
+  revision: 102c2e79f599c7429e8fe5c2c6185c80b2f3d92e
   specs:
-    rails-i18n (5.0.0.beta3)
+    rails-i18n (5.0.0.beta4)
       i18n (~> 0.7)
       railties (~> 5.0.0.beta1)
 
@@ -58,16 +57,16 @@ GEM
     acts_as_list (0.7.4)
       activerecord (>= 3.0)
     addressable (2.4.0)
-    airbrussh (1.0.1)
+    airbrussh (1.0.2)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.0.0)
     bcrypt (3.1.11)
     brakeman (3.3.0)
     builder (3.2.2)
-    bullet (5.0.0)
+    bullet (5.1.0)
       activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.9.0)
-    byebug (8.2.5)
+      uniform_notifier (~> 1.10.0)
+    byebug (9.0.5)
     capistrano (3.5.0)
       airbrussh (>= 1.0.0)
       capistrano-harrow
@@ -104,19 +103,17 @@ GEM
     concurrent-ruby (1.0.2)
     dalli (2.7.6)
     debug_inspector (0.0.2)
-    devise (4.1.0)
+    devise (4.1.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
     erubis (2.7.0)
-    execjs (2.6.0)
+    execjs (2.7.0)
     fast_blank (1.0.0)
-    fast_stack (0.2.0)
     ffi (1.9.10)
-    flamegraph (0.1.0)
-      fast_stack
+    flamegraph (0.9.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -131,20 +128,20 @@ GEM
       railties (>= 3.2.16)
     json (1.8.3)
     libv8 (3.16.14.15)
-    listen (3.0.7)
-      rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9.7)
+    listen (3.0.8)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (3.0)
+    mime-types (3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0221)
+    mime-types-data (3.2016.0521)
     mini_portile2 (2.0.0)
-    minitest (5.8.4)
-    multi_json (1.12.0)
+    minitest (5.9.0)
+    multi_json (1.12.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.1.1)
@@ -154,7 +151,7 @@ GEM
     orm_adapter (0.5.0)
     pdf-core (0.6.1)
     pg (0.18.4)
-    pg_search (1.0.5)
+    pg_search (1.0.6)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
@@ -166,7 +163,7 @@ GEM
     puma (3.4.0)
     rack (2.0.0.rc1)
       json
-    rack-mini-profiler (0.9.9.2)
+    rack-mini-profiler (0.10.1)
       rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -233,23 +230,23 @@ GEM
       ref
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.2)
+    tilt (2.0.4)
     ttfunk (1.4.0)
     turbolinks (5.0.0.beta2)
       turbolinks-source
-    turbolinks-source (5.0.0.beta4)
+    turbolinks-source (5.0.0.beta5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
-    uniform_notifier (1.9.0)
+    uniform_notifier (1.10.0)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (3.1.1)
       activemodel (>= 4.2)
       debug_inspector
       railties (>= 4.2)
-    websocket-driver (0.6.3)
+    websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     xpath (2.0.0)
@@ -298,4 +295,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.12.3
+   1.12.4
