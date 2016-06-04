@@ -1,7 +1,7 @@
 class Patient < ApplicationRecord
   include PgSearch
 
-  ANIMAL_TYPES = (0..3).to_a
+  ANIMAL_SPECIES = (0..3).to_a
   GENDERS = %w(F M U).freeze
 
   belongs_to :insurance_provider, inverse_of: :patients
@@ -9,7 +9,7 @@ class Patient < ApplicationRecord
   has_many :accessions, inverse_of: :patient, dependent: :destroy
   has_many :notes, as: :noticeable
 
-  validates :animal_type, inclusion: { in: ANIMAL_TYPES }, allow_blank: true
+  validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_blank: true
   validates :gender, inclusion: { in: GENDERS }
   validates :given_name, :family_name, presence: true, length: { minimum: 2 }
   validates :birthdate, presence: true, not_in_the_future: true

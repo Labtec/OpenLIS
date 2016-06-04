@@ -17,7 +17,7 @@ class ReferenceRange < ApplicationRecord
     ['Days',     'D']
   ]
 
-  ANIMAL_TYPES = (0..3).to_a
+  ANIMAL_SPECIES = (0..3).to_a
 
   belongs_to :lab_test, inverse_of: :reference_ranges
 
@@ -27,7 +27,7 @@ class ReferenceRange < ApplicationRecord
     where(["(min_age <= ? AND max_age > ? AND age_unit = 'D') OR (min_age <= ? AND max_age IS NULL AND age_unit = 'D') OR (min_age IS NULL AND max_age > ? AND age_unit = 'D') OR (min_age IS NULL AND max_age IS NULL) OR (min_age <= ? AND max_age > ? AND age_unit = 'W') OR (min_age <= ? AND max_age IS NULL AND age_unit = 'W') OR (min_age IS NULL AND max_age > ? AND age_unit = 'W') OR (min_age IS NULL AND max_age IS NULL) OR (min_age <= ? AND max_age > ? AND age_unit = 'M') OR (min_age <= ? AND max_age IS NULL AND age_unit = 'M') OR (min_age IS NULL AND max_age > ? AND age_unit = 'M') OR (min_age IS NULL AND max_age IS NULL) OR (min_age <= ? AND max_age > ? AND age_unit = 'Y') OR (min_age <= ? AND max_age IS NULL AND age_unit = 'Y') OR (min_age IS NULL AND max_age > ? AND age_unit = 'Y') OR (min_age IS NULL AND max_age IS NULL)", age_days, age_days, age_days, age_days, age_weeks, age_weeks, age_weeks, age_weeks, age_months, age_months, age_months, age_months, age_years, age_years, age_years, age_years])
   }
 
-  validates :animal_type, inclusion: { in: ANIMAL_TYPES }, allow_blank: true
+  validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_blank: true
   validates :gender, inclusion: { in: GENDERS.map { |_disp, value| value } }
   validates :min_age, presence: true, if: :max_age
 end

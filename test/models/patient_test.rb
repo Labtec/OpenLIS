@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class PatientTest < ActiveSupport::TestCase
-  ANIMAL_TYPES = (0..3).to_a.freeze
+  ANIMAL_SPECIES = (0..3).to_a
   GENDERS = %w(F M U).freeze
 
-  should validate_inclusion_of(:animal_type).in_array(ANIMAL_TYPES).allow_blank
+  should validate_inclusion_of(:animal_type).in_array(ANIMAL_SPECIES).allow_blank
   should validate_inclusion_of(:gender).in_array(GENDERS)
   should validate_presence_of(:given_name)
   should validate_presence_of(:family_name)

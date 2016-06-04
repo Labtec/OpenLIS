@@ -110,7 +110,7 @@ class LabReport < Prawn::Document
     footer_height = line_height * 3 + PADDING
     demographics_width_1 = 45
     demographics_width_2 = 155
-    demographics_width_3 = 30
+    demographics_width_3 = @patient.animal_type ? 40 : 30
     demographics_width_4 = 80
     demographics_width_5 = 80
     demographics_width_6 = 150
@@ -241,7 +241,7 @@ class LabReport < Prawn::Document
           end
           if @patient.animal_type
             bounding_box([demographics_stop_3, bounds.top], width: demographics_width_4, height: row_height) do
-              text animal_type_name(@patient.animal_type), style: :bold
+              text animal_species_name(@patient.animal_type), style: :bold
             end
           end
           bounding_box([demographics_stop_3, bounds.top - row_height], width: demographics_width_4, height: row_height) do

@@ -1,6 +1,6 @@
 module PatientsHelper
-  def animal_type_name(type)
-    case type
+  def animal_species_name(species)
+    case species
     when 0
       t('patients.other')
     when 1
@@ -70,7 +70,7 @@ module PatientsHelper
     ]
   end
 
-  def options_for_animal_types
+  def options_for_animal_species
     [
       [ t('patients.canine'), 1 ],
       [ t('patients.feline'), 2 ],

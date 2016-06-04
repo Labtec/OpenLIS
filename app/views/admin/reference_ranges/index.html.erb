@@ -24,7 +24,7 @@
       <td><%= reference_range.min_age %></td>
       <td><%= reference_range.max_age %></td>
       <td><%= reference_range.age_unit %></td>
-      <td><%= animal_type_name(reference_range.animal_type) %></td>
+      <td><%= animal_species_name(reference_range.animal_type) %></td>
       <td><%= reference_range.description %></td>
       <td><%= link_to 'Show', [:admin, reference_range] %></td>
       <td><%= link_to 'Edit', edit_admin_reference_range_path(reference_range) %></td>

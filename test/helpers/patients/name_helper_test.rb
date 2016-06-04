@@ -25,10 +25,10 @@ class PatientsNameHelperTest < ActionView::TestCase
     assert_equal 'Ñel Tomasso, John F.', name_last_comma_first_mi(@patient)
   end
 
-  test '#animal_type_name' do
-    animal_types = { other: 0, canine: 1, feline: 2, equine: 3 }
-    animal_types.each do |k, v|
-      assert_equal t("patients.#{k}"), animal_type_name(v)
+  test '#animal_species_name' do
+    animal_species = { other: 0, canine: 1, feline: 2, equine: 3 }
+    animal_species.each do |k, v|
+      assert_equal t("patients.#{k}"), animal_species_name(v)
     end
   end
 end
