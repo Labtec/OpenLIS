@@ -7,4 +7,6 @@ class InsuranceProvider < ApplicationRecord
   has_many :prices, through: :price_list
 
   validates :name, presence: true, uniqueness: true
+
+  auto_strip_attributes :name
 end

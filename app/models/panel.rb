@@ -8,9 +8,12 @@ class Panel < ApplicationRecord
   accepts_nested_attributes_for :prices, allow_destroy: true
 
   validates :code, presence: true, uniqueness: true
+  validates :name, presence: true
 
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
   scope :sorted, -> { order(name: :asc) }
+
+  auto_strip_attributes :name
 
   def lab_test_code_list
     LabTest.where(id: lab_test_ids).map(&:code).join(', ')

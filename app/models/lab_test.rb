@@ -30,6 +30,8 @@ class LabTest < ApplicationRecord
 
   default_scope { order(position: :asc) }
 
+  auto_strip_attributes :name
+
   def also_allow=(also_allow)
     case also_allow
     when 'also_numeric'

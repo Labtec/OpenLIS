@@ -22,8 +22,10 @@ class Patient < ApplicationRecord
   scope :sorted, -> { order('LOWER(my_unaccent(family_name))') }
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
-  before_save :titleize_names
+  auto_strip_attributes :given_name, :middle_name, :family_name, :family_name2,
+                        :identifier, :phone, :address, :policy_number
 
+  before_save :titleize_names
   after_commit :flush_cache
 
   pg_search_scope :search_by_name, against: %i(identifier
@@ -48,14 +50,8 @@ class Patient < ApplicationRecord
   private
 
   def titleize_names
-    self.given_name = given_name.mb_chars.titleize.squish if given_name
-    self.middle_name = middle_name.mb_chars.titleize.squish if middle_name
-    self.family_name = family_name.squish if family_name
-    self.family_name2 = family_name2.squish if family_name2
-    self.identifier = identifier.squish if identifier
-    self.phone = phone.squish if phone
-    self.address = address.squish if address
-    self.policy_number = policy_number.squish if policy_number
+    self.given_name = given_name.mb_chars.titleize if given_name
+    self.middle_name = middle_name.mb_chars.titleize if middle_name
   end
 
   def flush_cache

@@ -4,7 +4,11 @@ class LabTestValue < ApplicationRecord
                        dependent: :nullify
   has_many :results, inverse_of: :lab_test_value
 
+  validates :value, presence: true
+
   scope :sorted, -> { order(value: :asc) }
+
+  auto_strip_attributes :value
 
   def value_with_flag
     if flag.blank?

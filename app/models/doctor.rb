@@ -6,7 +6,7 @@ class Doctor < ApplicationRecord
     uniqueness: true,
     length: { minimum: 2 }
 
-  before_validation :purge_trailing_spaces
+  auto_strip_attributes :name
 
   after_commit :flush_cache
 
@@ -20,9 +20,5 @@ class Doctor < ApplicationRecord
 
   def flush_cache
     Rails.cache.delete('doctors')
-  end
-
-  def purge_trailing_spaces
-    self.name = name.squish if name
   end
 end

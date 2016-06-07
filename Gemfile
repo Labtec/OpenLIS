@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '5.0.0.rc1'
 
 gem 'acts_as_list'
+gem 'auto_strip_attributes'
 gem 'coffee-rails'
 gem 'dalli'
 gem 'devise'

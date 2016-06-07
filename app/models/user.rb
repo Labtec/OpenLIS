@@ -7,8 +7,11 @@ class User < ApplicationRecord
 
   has_many :accessions, inverse_of: :user
 
-  validates :first_name, :last_name, :initials, presence: true
+  validates :username, :first_name, :last_name, :initials, presence: true
   validates :initials, uniqueness: true
 
   scope :sorted, -> { order(username: :asc) }
+
+  auto_strip_attributes :username, :initials, delete_whitespaces: true
+  auto_strip_attributes :first_name, :last_name
 end
