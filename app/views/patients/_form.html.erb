@@ -28,7 +28,7 @@
   </div>
 
   <div class="birthdate">
-  <% if mobile_user_agent? %>
+  <% if request.variant.include? :mobile %>
     <%= f.label :birthdate, t('.birthdate'), class: 'required' %>
     <%= f.date_field :birthdate %>
   <% else %>

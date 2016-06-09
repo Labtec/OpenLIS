@@ -19,7 +19,7 @@
     </div>
 
     <div class="drawn_at">
-    <% if mobile_user_agent? %>
+    <% if request.variant.include? :mobile %>
       <%= f.label :drawn_at, t('.drawn_at') %>
       <%= f.datetime_local_field :drawn_at, max: Time.current %>
     <% else %>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="received_at">
-    <% if mobile_user_agent? %>
+    <% if request.variant.include? :mobile %>
       <%= f.label :received_at, t('.received_at') %>
       <%= f.datetime_local_field :received_at, max: Time.current %>
     <% else %>
@@ -50,7 +50,7 @@
 
     <% if @accession.reported_at? %>
       <div class="reported_at">
-      <% if mobile_user_agent? %>
+      <% if request.variant.include? :mobile %>
         <%= f.label :reported_at, t('.reported_at') %>
         <%= f.datetime_local_field :reported_at, max: Time.current %>
       <% else %>

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_user_language
   before_action :authenticate_user!
   before_action :set_active_tab
+  before_action :set_variant
 
   def set_user_language
     if current_user
@@ -20,6 +21,13 @@ class ApplicationController < ActionController::Base
 
   def set_active_tab
     @active_tab ||= controller_name.to_sym
+  end
+
+  def set_variant
+    case request.user_agent
+    when /Mobile/i
+      request.variant = :mobile
+    end
   end
 
   def extract_locale_from_accept_language_header
