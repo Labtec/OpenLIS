@@ -1,6 +1,8 @@
 # Calculates the age of a person at any given time.
 # If no time is given, +Time.current+ is used.
 class AgeCalculator
+  using FixnumRefinements
+
   def initialize(from_date, to_date = Time.current)
     @from_date = from_date.in_time_zone if from_date.respond_to?(:in_time_zone)
     @to_date = to_date.in_time_zone if to_date.respond_to?(:in_time_zone)
@@ -24,7 +26,7 @@ class AgeCalculator
       days: in_days,
       weeks: in_weeks,
       months: in_months,
-      years: in_years,
+      years: in_years
     }
   end
 
@@ -34,8 +36,8 @@ class AgeCalculator
   #
   # A hash with the age remainders for different time units.
   def remainders
-    bd, bm = @from_date.day, @from_date.month
-    dd, dm, dy = @to_date.day, @to_date.month, @to_date.year
+    fd, fm = @from_date.day, @from_date.month
+    td, tm = @to_date.day, @to_date.month
 
     # weeks
     # remainder in days
@@ -43,48 +45,47 @@ class AgeCalculator
 
     # months
     # remainder in days
-    if bd == 29 && bm == 2 && dd == 28 && dm == 2 && !Date.gregorian_leap?(dy)
+    if fd == 29 && fm == 2 && td == 28 && tm == 2 && !leap_year?
       month_remainder = 0
-    elsif bd > dd
+    elsif fd > td
       last_month_days =
-        if Time.days_in_month(@to_date.last_month.month) > bd
-          Time.days_in_month(@to_date.last_month.month) - bd
+        if Time.days_in_month(@to_date.last_month.month) > fd
+          Time.days_in_month(@to_date.last_month.month) - fd
         else
           0
         end
-      month_remainder = last_month_days + dd
+      month_remainder = last_month_days + td
     else
-      month_remainder = dd - bd
+      month_remainder = td - fd
     end
 
     # years
     # remainder in months
-    if bm > dm
-      last_year_months = 12 - bm
-      year_remainder = last_year_months + dm
-    elsif bm == dm
-      if bd == 29 && bm == 2 && dd == 28 && dm == 2 && !Date.gregorian_leap?(dy)
+    if fm > tm
+      last_year_months = 12 - fm
+      year_remainder = last_year_months + tm
+    elsif fm == tm
+      if fd == 29 && fm == 2 && td == 28 && tm == 2 && !leap_year?
         year_remainder = 0
-      elsif bd > dd
+      elsif fd > td
         year_remainder = 11
       else
         year_remainder = 0
       end
     else
-      year_remainder = dm - bm
+      year_remainder = tm - fm
     end
 
     {
-      weeks: nilify(week_remainder),
-      months: nilify(month_remainder),
-      years: nilify(year_remainder),
+      weeks: week_remainder.nilify!,
+      months: month_remainder.nilify!,
+      years: year_remainder.nilify!
     }
   end
 
   private
 
-  # If the remainder is zero, make it +nil+ instead.
-  def nilify(remainder)
-    remainder.zero? ? nil : remainder
+  def leap_year?
+    Date.gregorian_leap?(@to_date.year)
   end
 end
