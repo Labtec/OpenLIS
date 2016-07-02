@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.0.0.rc2'
+gem 'rails', '5.0.0'
 
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
@@ -18,9 +18,9 @@ gem 'prawn'
 gem 'prawn-table'
 gem 'puma'
 gem 'rails-html-sanitizer'
-gem 'rails-i18n', '5.0.0.beta4'
+gem 'rails-i18n', '~> 5'
 gem 'sass-rails'
-gem 'turbolinks', '~> 5.x'
+gem 'turbolinks', '~> 5'
 gem 'uglifier'
 
 group :development, :test do
@@ -34,7 +34,7 @@ group :development do
   gem 'brakeman', require: false
   gem 'bullet'
   gem 'flamegraph', require: false
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
   gem 'rack-mini-profiler', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
