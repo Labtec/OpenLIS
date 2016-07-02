@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7'
 
 gem 'acts_as_list'
 gem 'coffee-rails'
@@ -14,7 +14,7 @@ gem 'prawn-table'
 gem 'puma'
 gem 'rails-html-sanitizer'
 gem 'sass-rails'
-gem 'turbolinks'
+gem 'turbolinks', '~> 2'
 gem 'uglifier'
 
 group :development, :test do
