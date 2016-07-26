@@ -42,10 +42,6 @@ group :development do
   gem 'web-console'
 end
 
-group :production do
-  gem 'therubyracer'
-end
-
 group :test do
   gem 'capybara'
   gem 'shoulda-context'
