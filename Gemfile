@@ -32,7 +32,7 @@ end
 
 group :development do
   gem 'brakeman', require: false
-  gem 'bullet'
+  gem 'bullet', '~> 5.1.0'
   gem 'flamegraph', require: false
   gem 'listen'
   gem 'rack-mini-profiler', require: false
