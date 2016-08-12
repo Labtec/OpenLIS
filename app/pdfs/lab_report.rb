@@ -391,28 +391,35 @@ class LabReport < Prawn::Document
     # Signature block
     if cursor > bounds.bottom + signature_block_height
       move_down signature_spacing
-      bounding_box([bounds.left, cursor], width: bounds.width / 2, height: line_height) do
-        pad_top LINE_PADDING do
-          text t('results.index.reviewed_by'), align: :right
+      if @accession.reported_at
+        bounding_box([bounds.left, cursor], width: bounds.width / 2, height: line_height) do
+          pad_top LINE_PADDING do
+            text t('results.index.reviewed_by'), align: :right
+          end
         end
-      end
-      bounding_box([bounds.width / 2 + LINE_PADDING, cursor], width: signature_line, height: 2 * line_height + PADDING) do
-        stroke_horizontal_rule
-        pad_top PADDING do
-          text current_user_name, align: :center
+        bounding_box([bounds.width / 2 + LINE_PADDING, cursor], width: signature_line, height: 2 * line_height + PADDING) do
+          stroke_horizontal_rule
+          pad_top PADDING do
+            text current_user_name, align: :center
+          end
+          text registration_number, align: :center
         end
-        text registration_number, align: :center
+      else
+        text t('results.index.note'), style: :bold, color: REPORT_COLORS[:red]
+        text t('results.index.preliminary_warning'), color: REPORT_COLORS[:red]
       end
     else
-      bounding_box([bounds.left + SIGNATURE_BLOCK_SHIM, bounds.bottom - line_height - PADDING], width: column_0_width, height: line_height) do
-        pad_top LINE_PADDING do
-          text t('results.index.reviewed_by'), align: :right
+      if @accession.reported_at
+        bounding_box([bounds.left + SIGNATURE_BLOCK_SHIM, bounds.bottom - line_height - PADDING], width: column_0_width, height: line_height) do
+          pad_top LINE_PADDING do
+            text t('results.index.reviewed_by'), align: :right
+          end
         end
-      end
-      bounding_box([SIGNATURE_BLOCK_SHIM + column_0_width + LINE_PADDING, cursor], width: signature_line, height: line_height + PADDING) do
-        stroke_horizontal_rule
-        pad_top PADDING do
-          text current_user_name + registration_number(inline: true), align: :center
+        bounding_box([SIGNATURE_BLOCK_SHIM + column_0_width + LINE_PADDING, cursor], width: signature_line, height: line_height + PADDING) do
+          stroke_horizontal_rule
+          pad_top PADDING do
+            text current_user_name + registration_number(inline: true), align: :center
+          end
         end
       end
     end

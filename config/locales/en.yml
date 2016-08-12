@@ -271,6 +271,8 @@ en:
       results_of: "Lab Results For:"
       notes: "Notes:"
       register: "Registration "
+      note: "NOTE:"
+      preliminary_warning: "The information set out in this report is preliminary and must not be considered official."
     sidebar:
       year: "year"
       phone: "Phone:"
