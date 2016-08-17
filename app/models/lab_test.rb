@@ -80,4 +80,10 @@ class LabTest < ApplicationRecord
   def name_with_description
     description.present? ? "#{name} (#{description})" : name
   end
+
+  # TODO: The database should store both names,
+  # the plain name and the formatted name
+  def stripped_name
+    name.gsub(%r{</?i>}, '')
+  end
 end
