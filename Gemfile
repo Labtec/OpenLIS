@@ -28,11 +28,12 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
+  gem 'capistrano-maintenance', require: false
 end
 
 group :development do
   gem 'brakeman', require: false
-  gem 'bullet', '~> 5.1.0'
+  gem 'bullet'
   gem 'flamegraph', require: false
   gem 'listen'
   gem 'rack-mini-profiler', require: false
