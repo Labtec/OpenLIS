@@ -28,7 +28,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
-  gem 'capistrano-maintenance', require: false
+  gem 'capistrano-maintenance'
 end
 
 group :development do
