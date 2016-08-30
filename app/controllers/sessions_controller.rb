@@ -5,7 +5,10 @@ class SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   def new
     respond_to do |format|
-      format.html { super }
+      format.html do
+        super
+        expires_now
+      end
       format.pdf { redirect_to new_user_session_path }
     end
   end
