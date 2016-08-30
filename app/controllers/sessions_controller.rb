@@ -3,7 +3,10 @@ class SessionsController < Devise::SessionsController
 
   def new
     respond_to do |format|
-      format.html { super }
+      format.html do
+        super
+        expires_now
+      end
       format.pdf { redirect_to new_user_session_path }
     end
   end
