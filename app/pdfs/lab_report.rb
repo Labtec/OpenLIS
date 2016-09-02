@@ -378,28 +378,32 @@ horizontal_rule
 # Signature block
 if cursor > bounds.bottom + signature_block_height
   move_down signature_spacing
-  bounding_box([bounds.left, cursor], :width => bounds.width / 2, :height => line_height) do
-    pad_top line_padding do
-      text t('results.index.reviewed_by'), :align => :right
+  if @accession.reported_at
+    bounding_box([bounds.left, cursor], :width => bounds.width / 2, :height => line_height) do
+      pad_top line_padding do
+        text t('results.index.reviewed_by'), :align => :right
+      end
     end
-  end
-  bounding_box([bounds.width / 2 + line_padding, cursor], :width => signature_line, :height => 2 * line_height + padding) do
-    stroke_horizontal_rule
-    pad_top padding do
-      text current_user.name_to_display, :align => :center
+    bounding_box([bounds.width / 2 + line_padding, cursor], :width => signature_line, :height => 2 * line_height + padding) do
+      stroke_horizontal_rule
+      pad_top padding do
+        text current_user.name_to_display, :align => :center
+      end
+      text registration_number, :align => :center
     end
-    text registration_number, :align => :center
   end
 else
-  bounding_box([bounds.left, bounds.bottom - line_height * 2 - padding], :width => column_0_width, :height => line_height) do
-    pad_top line_padding do
-      text t('results.index.reviewed_by'), :align => :right
+  if @accession.reported_at
+    bounding_box([bounds.left, bounds.bottom - line_height * 2 - padding], :width => column_0_width, :height => line_height) do
+      pad_top line_padding do
+        text t('results.index.reviewed_by'), :align => :right
+      end
     end
-  end
-  bounding_box([column_0_width + line_padding, cursor], :width => signature_line, :height => line_height + padding) do
-    stroke_horizontal_rule
-    pad_top padding do
-      text current_user.name_to_display + registration_number(:inline => true), :align => :center
+    bounding_box([column_0_width + line_padding, cursor], :width => signature_line, :height => line_height + padding) do
+      stroke_horizontal_rule
+      pad_top padding do
+        text current_user.name_to_display + registration_number(:inline => true), :align => :center
+      end
     end
   end
 end
