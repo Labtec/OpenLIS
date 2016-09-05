@@ -28,12 +28,12 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
-  gem 'capistrano-maintenance'
 end
 
 group :development do
   gem 'brakeman', require: false
   gem 'bullet'
+  gem 'capistrano-maintenance'
   gem 'flamegraph', require: false
   gem 'listen'
   gem 'rack-mini-profiler', require: false
