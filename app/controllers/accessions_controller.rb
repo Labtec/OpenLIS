@@ -99,6 +99,21 @@ class AccessionsController < ApplicationController
     end
   end
 
+  def email
+    @accession = Accession.find(params[:id])
+    @patient = @accession.patient
+    @results = @accession.results.includes({ accession: { notes: [:department] } }, { lab_test: [:department] }, :lab_test_value, :reference_ranges, :unit).order('lab_tests.position').group_by(&:department)
+
+    pdf = LabReport.new(@patient, @accession, @results, view_context)
+
+    if @patient.email.present?
+      ResultsMailer.email(@accession, pdf).deliver_now
+      redirect_to accession_url(@accession), notice: t('flash.accession.email_success')
+    else
+      redirect_to accession_url(@accession), error: t('flash.accession.email_error')
+    end
+  end
+
   protected
 
   def set_recent_patients_list

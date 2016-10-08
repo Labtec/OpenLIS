@@ -47,6 +47,9 @@
     <%= link_to t('.change_accession'), edit_accession_path(@accession) %> |
     <% if @accession.reported_at %>
       <%= link_to t('.change_results'), edit_results_accession_url(@accession) %> |
+      <% if @accession.patient.email.present? %>
+        <%= link_to t('.email_report'), email_accession_path(@accession), method: :put, data: { turbolinks: false } %> |
+      <% end %>
     <% else %>
       <%= link_to t('.enter_results'), edit_results_accession_url(@accession) %> |
       <%= link_to t('.report'), report_accession_path(@accession), method: :patch, data: { turbolinks: false } %> |

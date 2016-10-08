@@ -90,4 +90,14 @@ Rails.application.configure do
   config.to_prepare { Devise::PasswordsController.force_ssl }
   config.action_mailer.default_url_options = { protocol: 'https',
                                                host: 'openlis.labtecsa.com' }
+
+  config.action_mailer.delivery_method = :sendmail
+  # Defaults to:
+  # config.action_mailer.sendmail_settings = {
+  #   location: '/usr/sbin/sendmail',
+  #   arguments: '-i'
+  # }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'masterlab@labtecsa.com'}
 end

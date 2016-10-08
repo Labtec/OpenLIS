@@ -1,4 +1,4 @@
-<% cache @patient do %>
+<% cache [I18n.locale, @patient] do %>
   <div class="panel" id="summary">
 
     <%= avatar_for(@patient) %>
@@ -16,8 +16,10 @@
       <%= t('.email') %> <b><%= mail_to @patient.email %></b>
     </div>
     <div class="bottom_card">
-      <%= image_tag('axa.svg', size: '15x15') if @patient.insurance_provider %>
-      <%= @patient.policy_number %>
+      <% if @patient.insurance_provider %>
+        <%= image_tag('axa.svg', size: '15x15') %>
+        <%= @patient.policy_number %>
+      <% end %>
       <div class="edit_patient_card">
         <%= link_to t('.edit'), edit_patient_path(@patient) %>
       </div>

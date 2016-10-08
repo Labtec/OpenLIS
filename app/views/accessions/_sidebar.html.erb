@@ -1,13 +1,13 @@
 <%= render partial: 'patients/card' if @patient %>
 
 <% if @recent %>
-  <% cache @recent do %>
-    <div class="panel" id="recent">
-      <div class="caption"><%= t('.recent_patients') %></div>
+  <div class="panel" id="recent">
+    <div class="caption"><%= t('.recent_patients') %></div>
+    <% cache @recent do %>
       <ul>
         <%= render partial: 'shared/recent_patients',
           collection: @recent, as: :patient, cached: true %>
       </ul>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 <% end %>

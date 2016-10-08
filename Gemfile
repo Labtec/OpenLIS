@@ -33,7 +33,7 @@ end
 group :development do
   gem 'brakeman', require: false
   gem 'bullet'
-  gem 'capistrano-maintenance'
+  # gem 'capistrano-maintenance'
   gem 'flamegraph', require: false
   gem 'listen'
   gem 'rack-mini-profiler', require: false
