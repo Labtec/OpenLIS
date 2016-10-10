@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'masterlab@labtecsa.com'
+  default from: 'Laboratorio MasterLab <masterlab@labtecsa.com>'
   layout 'mailer'
 end
 
