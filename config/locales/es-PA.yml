@@ -165,10 +165,12 @@ es-PA:
       change_accession: "Cambiar Petición"
       enter_results: "Ingresar Resultados"
       email_report: "Enviar Reporte por correo"
+      sending_email: "Enviando correo..."
       change_results: "Cambiar Resultados"
       report: "Reportar"
       print_report: "Imprimir Reporte (PDF)"
       notes: "Observaciones:"
+      confirm_email: "¿Desea enviar los resultados a %{email}?"
     form:
       order_details: "Detalles de la Petición"
       accession: "Solicitud #"
@@ -281,7 +283,7 @@ es-PA:
 
   results_mailer:
     email:
-      body: Adjunto encontrará los resultados de los exámenes.
+      body: Hemos adjuntado los resultados de sus exámenes.
       opening_M: "Estimado %{full_name}:"
       opening_F: "Estimada %{full_name}:"
       opening_U: "Estimado(a) %{full_name}:"

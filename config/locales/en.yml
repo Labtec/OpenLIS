@@ -165,10 +165,12 @@ en:
       change_accession: "Change Order"
       enter_results: "Enter Results"
       email_report: "Email Report"
+      sending_email: "Sending Email..."
       change_results: "Change Results"
       report: "Report"
       print_report: "Print Report (PDF)"
       notes: "Notes:"
+      confirm_email: "Would you like to email the results to %{email}?"
     form:
       order_details: "Order Details"
       accession: "Accession #"
@@ -281,7 +283,7 @@ en:
 
   results_mailer:
     email:
-      body: Please see attached the test results.
+      body: Attached are your lab results.
       opening_M: "Dear %{full_name},"
       opening_F: "Dear %{full_name},"
       opening_U: "Dear %{full_name},"
