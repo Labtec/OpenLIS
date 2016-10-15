@@ -77,11 +77,17 @@ class Result < ActiveRecord::Base
         rbc = result_for "RBC"
         hct / rbc * 10
       when "NORM"
-        abhead = result_for "ABHEAD"
-        abmid = result_for "ABMID"
-        abmain = result_for "ABMAIN"
-        excesscyt = result_for "EXCESSCYT"
-        100 - (abhead + abmid + abmain + excesscyt)
+        abhead, abhead_v = result_for('ABHEAD'), value_for('ABHEAD')
+        abmid, abmid_v = result_for('ABMID'), value_for('ABMID')
+        abmain, abmain_v = result_for('ABMAIN'), value_for('ABMAIN')
+        excesscyt, excesscyt_v = result_for('EXCESSCYT'), value_for('EXCESSCYT')
+        if (abhead.blank? || abmid.blank? ||
+            abmain.blank? || excesscyt.blank?) &&
+          (abhead_v || abmid_v || abmain_v || excesscyt_v).present?
+          abhead_v || abmid_v || abmain_v || excesscyt_v
+        else
+          100 - (abhead + abmid + abmain + excesscyt)
+        end
       when "TMOTILE"
         pr = result_for "PR"
         np = result_for "NP"
@@ -99,10 +105,18 @@ class Result < ActiveRecord::Base
     end
   end
 
+  # TODO: This method should be in Accession
   def result_for(code)
-    lab_test_by_code = accession.lab_tests.with_code(code).first
+    lab_test_by_code = LabTest.find_by_code(code)
     result_value = accession.results.find_by_lab_test_id(lab_test_by_code).value
     result_value.to_d if result_value.present?
+  end
+
+  # TODO: This method should be in Accession
+  def value_for(code)
+    lab_test_by_code = LabTest.find_by_code(code)
+    value_for_lab_test = accession.results.find_by_lab_test_id(lab_test_by_code).lab_test_value
+    value_for_lab_test.value if value_for_lab_test.present?
   end
 
   def pending?

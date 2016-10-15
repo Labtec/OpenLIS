@@ -22,7 +22,6 @@ class LabTest < ActiveRecord::Base
 
   scope :sorted, -> { order(name: :asc) }
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
-  scope :with_code, ->(code) { where(code: code) }
 
   default_scope { order(position: :asc) }
 
