@@ -114,7 +114,7 @@ class Accession < ApplicationRecord
   end
 
   def result_of_test_coded_as(code)
-    results.find_by_lab_test_id(lab_tests.with_code(code).first).try(:value).try(:to_d)
+    results.find_by_lab_test_id(LabTest.find_by_code(code)).try(:value).try(:to_d)
   end
 
   def reject_notes(attributes)
