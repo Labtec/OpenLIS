@@ -58,14 +58,15 @@ module ResultsHelper
   end
 
   def ranges_table(ranges)
-    tbody = content_tag :tbody do
-      ranges.collect { |range|
-        content_tag :tr do
-          content_tag :td, safe_join(range), class: 'range'
-        end
-      }.join().html_safe
+    content_tag :table do
+      content_tag :tbody do
+        ranges.collect { |range|
+          content_tag :tr do
+            content_tag :td, safe_join(range), class: 'range'
+          end
+        }.join().html_safe
+      end
     end
-    content_tag :table, sanitize(tbody)
   end
 
   def registration_number(inline = false)
