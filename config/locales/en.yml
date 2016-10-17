@@ -190,6 +190,8 @@ en:
       cancel: "Cancel"
       processing: "Processing..."
     sidebar:
+      search_patients: "Search patients"
+      search: "Search"
       year: "year"
       phone: "Phone:"
       address: "Address:"

@@ -190,6 +190,8 @@ es-PA:
       cancel: "Cancelar"
       processing: "Procesando..."
     sidebar:
+      search_patients: "Buscar pacientes"
+      search: "Buscar"
       year: "año"
       phone: "Tel:"
       address: "Dirección:"
