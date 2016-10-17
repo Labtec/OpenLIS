@@ -1,6 +1,6 @@
 class Accession < ApplicationRecord
   belongs_to :patient, required: true, inverse_of: :accessions
-  belongs_to :doctor, inverse_of: :accessions
+  belongs_to :doctor, counter_cache: true , inverse_of: :accessions
   belongs_to :receiver, inverse_of: :accessions, class_name: 'User'
   belongs_to :drawer, inverse_of: :accessions, class_name: 'User'
   belongs_to :reporter, inverse_of: :accessions, class_name: 'User'

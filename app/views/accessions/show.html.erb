@@ -3,7 +3,15 @@
 <fieldset class="<%= @accession.reported_at.blank? %>">
   <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
 
-  <%= practitioner @accession.doctor %><br />
+  <%= practitioner @accession.doctor %>
+  <% if @accession.doctor && @accession.doctor.email.present? %>
+    <%= link_to t('.email_report'), email_doctor_accession_path(@accession),
+      data: { confirm: t('.confirm_email', email: @accession.doctor.email),
+              disable_with: t('.sending_email') },
+    method: :put,
+    remote: true %>
+  <% end %>
+  <br />
 
   <% if @accession.drawn_at %>
     <%= t('.drawn_at') %>

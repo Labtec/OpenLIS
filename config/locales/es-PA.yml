@@ -281,6 +281,11 @@ es-PA:
       email: "Correo Electrónico:"
       recent_patients: "Pacientes Recientes"
 
+  doctors_mailer:
+    email:
+      body: "Hemos adjuntado los resultados de los exámenes de %{full_name}."
+    subject: "Resultados de %{full_name}"
+
   results_mailer:
     email:
       body: Hemos adjuntado los resultados de sus exámenes.

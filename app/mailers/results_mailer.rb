@@ -1,5 +1,4 @@
 class ResultsMailer < ApplicationMailer
-  helper PatientsHelper
 
   def email(accession, pdf)
     @accession = accession

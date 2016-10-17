@@ -2,16 +2,24 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.1
--- Dumped by pg_dump version 9.5.1
+-- Dumped from database version 9.6.0
+-- Dumped by pg_dump version 9.6.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- Name: open_lis_development; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON DATABASE open_lis_development IS 'OpenLIS';
+
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -198,7 +206,9 @@ CREATE TABLE doctors (
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    gender character varying(510) DEFAULT NULL::character varying
+    gender character varying(510) DEFAULT NULL::character varying,
+    email character varying,
+    accessions_count integer DEFAULT 0
 );
 
 
@@ -625,7 +635,7 @@ CREATE TABLE users (
 
 
 --
--- Name: accession_panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: accession_panels accession_panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY accession_panels
@@ -633,7 +643,7 @@ ALTER TABLE ONLY accession_panels
 
 
 --
--- Name: accessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: accessions accessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY accessions
@@ -641,7 +651,7 @@ ALTER TABLE ONLY accessions
 
 
 --
--- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY ar_internal_metadata
@@ -649,7 +659,7 @@ ALTER TABLE ONLY ar_internal_metadata
 
 
 --
--- Name: claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: claims claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY claims
@@ -657,7 +667,7 @@ ALTER TABLE ONLY claims
 
 
 --
--- Name: departments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: departments departments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY departments
@@ -665,7 +675,7 @@ ALTER TABLE ONLY departments
 
 
 --
--- Name: doctors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: doctors doctors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY doctors
@@ -673,7 +683,7 @@ ALTER TABLE ONLY doctors
 
 
 --
--- Name: insurance_providers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: insurance_providers insurance_providers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY insurance_providers
@@ -681,7 +691,7 @@ ALTER TABLE ONLY insurance_providers
 
 
 --
--- Name: lab_test_panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: lab_test_panels lab_test_panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY lab_test_panels
@@ -689,7 +699,7 @@ ALTER TABLE ONLY lab_test_panels
 
 
 --
--- Name: lab_test_value_option_joints_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: lab_test_value_option_joints lab_test_value_option_joints_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY lab_test_value_option_joints
@@ -697,7 +707,7 @@ ALTER TABLE ONLY lab_test_value_option_joints
 
 
 --
--- Name: lab_test_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: lab_test_values lab_test_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY lab_test_values
@@ -705,7 +715,7 @@ ALTER TABLE ONLY lab_test_values
 
 
 --
--- Name: lab_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: lab_tests lab_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY lab_tests
@@ -713,7 +723,7 @@ ALTER TABLE ONLY lab_tests
 
 
 --
--- Name: notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: notes notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY notes
@@ -721,7 +731,7 @@ ALTER TABLE ONLY notes
 
 
 --
--- Name: panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: panels panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY panels
@@ -729,7 +739,7 @@ ALTER TABLE ONLY panels
 
 
 --
--- Name: patients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: patients patients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY patients
@@ -737,7 +747,7 @@ ALTER TABLE ONLY patients
 
 
 --
--- Name: price_lists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: price_lists price_lists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY price_lists
@@ -745,7 +755,7 @@ ALTER TABLE ONLY price_lists
 
 
 --
--- Name: prices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: prices prices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY prices
@@ -753,7 +763,7 @@ ALTER TABLE ONLY prices
 
 
 --
--- Name: reference_ranges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reference_ranges reference_ranges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reference_ranges
@@ -761,7 +771,7 @@ ALTER TABLE ONLY reference_ranges
 
 
 --
--- Name: results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: results results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY results
@@ -769,7 +779,7 @@ ALTER TABLE ONLY results
 
 
 --
--- Name: units_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: units units_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY units
@@ -777,7 +787,7 @@ ALTER TABLE ONLY units
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -1021,6 +1031,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20140911171632'), ('20141003113152'), ('20150116215039'), ('20150116215040');
+INSERT INTO schema_migrations (version) VALUES ('20140911171632'), ('20141003113152'), ('20150116215039'), ('20150116215040'), ('20161016173522'), ('20161016181514');
 
 

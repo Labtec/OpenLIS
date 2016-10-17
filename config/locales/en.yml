@@ -281,6 +281,11 @@ en:
       email: "Email:"
       recent_patients: "Recent Patients"
 
+  doctors_mailer:
+    email:
+      body: "Attached are the results for %{full_name}."
+    subject: "Results for %{full_name}"
+
   results_mailer:
     email:
       body: Attached are your lab results.

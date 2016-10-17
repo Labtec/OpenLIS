@@ -46,7 +46,7 @@ module Admin
     private
 
     def doctor_params
-      params.require(:doctor).permit(:name)
+      params.require(:doctor).permit(:email, :name)
     end
   end
 end

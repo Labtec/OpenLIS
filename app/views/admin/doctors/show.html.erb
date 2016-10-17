@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Email:</strong>
+  <%= @doctor.email %>
+</p>
+
+<p>
   <%= link_to 'Edit', edit_admin_doctor_path(@doctor) %> |
   <%= link_to 'Destroy', [:admin, @doctor], method: :delete, data: { confirm: "If you erase a Doctor, all its requisitions will be gone!\nAre you sure?" } %> |
   <%= link_to 'View All', admin_doctors_path %>

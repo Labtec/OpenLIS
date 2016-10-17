@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'edit_results'
       patch 'report'
       put 'email'
+      put 'email_doctor'
     end
   end
 
