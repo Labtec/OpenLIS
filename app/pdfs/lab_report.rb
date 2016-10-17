@@ -432,7 +432,7 @@ class LabReport < Prawn::Document
             text "#{t('results.index.printed_at')} #{l(Time.current, format: :long)}"
           end
         end
-        bounding_box([bounds.width / 2, bounds.top], width: bounds.width / 2, height: footer_height) do
+        bounding_box([bounds.left, bounds.top], width: bounds.width, height: footer_height) do
           pad_top PADDING do
             text "#{t('results.index.accession')} #{@accession.id}", align: :right
             text "#{t('results.index.results_of')} #{full_name(@patient)}", align: :right
