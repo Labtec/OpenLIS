@@ -208,6 +208,12 @@ class Result < ApplicationRecord
       nil
     elsif lab_test_value.present?
       lab_test_value.flag
+    elsif lab_test.derivation?
+      if derived_value == 'calc.'
+        nil
+      else
+        check_reference_range(derived_value) if ranges?
+      end
     elsif value.present?
       check_reference_range(value.to_f) if ranges?
     elsif lab_test.also_numeric?
