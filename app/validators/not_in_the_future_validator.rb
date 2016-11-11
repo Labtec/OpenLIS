@@ -4,6 +4,6 @@ class NotInTheFutureValidator < ActiveModel::EachValidator
     record.errors[attribute] << (options[:message] ||
                                  I18n.t(:cant_be_in_the_future,
                                         scope: [:errors, :messages])) if
-    value && value > Time.current
+    value && value.to_time > Time.current
   end
 end
