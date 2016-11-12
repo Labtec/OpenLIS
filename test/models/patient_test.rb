@@ -20,7 +20,8 @@ class PatientTest < ActiveSupport::TestCase
 
     # XXX: This test fails within 1 hour before midnight
     # (local timezone - CI timezone)
-    p.birthdate = 1.day.from_now
+    # p.birthdate = 1.day.from_now # or Date.tomorrow
+    p.birthdate = 2.days.from_now
     assert p.invalid?, 'A patient born tomorrow should not be valid'
 
     p.birthdate = Date.current
