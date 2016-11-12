@@ -1,11 +1,12 @@
-sudo: false
+dist: trusty
+sudo: required
 language: ruby
 cache:
   bundler: true
 rvm:
   - 2.3.1-clang
 addons:
-  postgresql: '9.4'
+  postgresql: '9.5'
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c "CREATE DATABASE open_lis_test ENCODING 'UTF-8';" -U postgres
