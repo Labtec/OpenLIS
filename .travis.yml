@@ -4,7 +4,7 @@ language: ruby
 cache:
   bundler: true
 rvm:
-  - 2.3.1-clang
+  - 2.3.2-clang
 addons:
   postgresql: '9.5'
 before_script:
