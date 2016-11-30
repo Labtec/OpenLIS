@@ -1,5 +1,5 @@
 $(document).on 'turbolinks:load', ->
-  $('.lab_tests').sortable(
+  $('.lab_tests').sortable
     axis: 'y'
     handle: '.handle'
     update: ->
@@ -10,4 +10,3 @@ $(document).on 'turbolinks:load', ->
         complete: (request) ->
           $('.lab_tests').effect 'highlight'
         url: '/admin/lab_tests/sort'
-  ).disableSelection()

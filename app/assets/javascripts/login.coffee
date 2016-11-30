@@ -1,5 +1,5 @@
 #= require jquery2
-#= require jquery-ui/effect-shake
+#= require jquery-ui/effects/effect-shake
 
 $ ->
   $('div#login form :input:visible:first').focus()

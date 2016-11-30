@@ -1,7 +1,7 @@
 //= require jquery2
-//= require jquery-ui/autocomplete
-//= require jquery-ui/sortable
-//= require jquery-ui/tabs
+//= require jquery-ui/widgets/autocomplete
+//= require jquery-ui/widgets/sortable
+//= require jquery-ui/widgets/tabs
 //= require ui.tabs.paging
 //= require jquery_ujs
 //= require turbolinks
