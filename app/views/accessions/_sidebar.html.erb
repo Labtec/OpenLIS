@@ -17,7 +17,7 @@
     <% cache @recent do %>
       <ul>
         <%= render partial: 'shared/recent_patients',
-          collection: @recent, as: :patient, cached: true %>
+          collection: @recent, as: :recent_patient, cached: true %>
       </ul>
     <% end %>
   </div>
