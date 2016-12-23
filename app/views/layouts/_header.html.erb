@@ -1,7 +1,7 @@
 <div id="header">
   <div id="welcome">
     <% if current_user %>
-      <span><%= current_user.name_to_display %></span>
+      <span><%= current_user_name %></span>
       <span>&nbsp;&nbsp;</span>
 
       <%= link_to t('.profile'), profile_path %> |

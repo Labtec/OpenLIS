@@ -9,7 +9,8 @@
 
     <div class="doctor_name">
       <%= f.label :doctor_name, t('.doctor') %>
-      <%= f.text_field :doctor_name, placeholder: t('.walk_in'), autocorrect: 'off' %>
+      <%= f.text_field :doctor_name, placeholder: t('.walk_in'),
+        data: { doctors: Doctor.cached_doctors_list }, autocorrect: 'off' %>
     </div>
 
     <div class="icd9">
@@ -18,91 +19,60 @@
     </div>
 
     <div class="drawn_at">
-    <% if mobile_user_agent? %>
+    <% if request.variant.include? :mobile %>
       <%= f.label :drawn_at, t('.drawn_at') %>
-      <%= f.date_field :drawn_at, end_year: Time.now.year, value: @accession.drawn_at.try(:to_s, :w3cdtf) %>
+      <%= f.datetime_local_field :drawn_at, max: Time.current %>
     <% else %>
       <%= f.label :drawn_at, t('.drawn_at') %>
-      <%= f.datetime_select :drawn_at, end_year: Time.now.year, ampm: true %>
+      <%= f.datetime_select :drawn_at, end_year: Time.current.year, ampm: true %>
     <% end %>
     </div>
 
     <div class="drawer_id">
       <%= f.label :drawer_id, t('.drawn_by') %>
-      <%= f.collection_select :drawer_id, User.all, :id, :username %>
+      <%= f.collection_select :drawer_id, @users, :id, :username %>
     </div>
 
     <div class="received_at">
-    <% if mobile_user_agent? %>
+    <% if request.variant.include? :mobile %>
       <%= f.label :received_at, t('.received_at') %>
-      <%= f.date_field :received_at, end_year: Time.now.year, value: @accession.received_at.try(:to_s, :w3cdtf) %>
+      <%= f.datetime_local_field :received_at, max: Time.current %>
     <% else %>
       <%= f.label :received_at, t('.received_at') %>
-      <%= f.datetime_select :received_at, end_year: Time.now.year, ampm: true %>
+      <%= f.datetime_select :received_at, end_year: Time.current.year, ampm: true %>
     <% end %>
     </div>
 
     <div class="receiver_id">
       <%= f.label :receiver_id, t('.received_by') %>
-      <%= f.collection_select :receiver_id, User.all, :id, :username %>
+      <%= f.collection_select :receiver_id, @users, :id, :username %>
     </div>
 
     <% if @accession.reported_at? %>
       <div class="reported_at">
-      <% if mobile_user_agent? %>
+      <% if request.variant.include? :mobile %>
         <%= f.label :reported_at, t('.reported_at') %>
-        <%= f.date_field :reported_at, end_year: Time.now.year, value: @accession.received_at.try(:to_s, :w3cdtf) %>
+        <%= f.datetime_local_field :reported_at, max: Time.current %>
       <% else %>
         <%= f.label :reported_at, t('.reported_at') %>
-        <%= f.datetime_select :reported_at, end_year: Time.now.year, ampm: true %>
+        <%= f.datetime_select :reported_at, end_year: Time.current.year, ampm: true %>
       <% end %>
       </div>
 
       <div class="reporter_id">
         <%= f.label :reporter_id, t('.reported_by') %>
-        <%= f.collection_select :reporter_id, User.all, :id, :username %>
+        <%= f.collection_select :reporter_id, @users, :id, :username %>
       </div>
     <% end %>
 
-    <h2><%= t('.order_panels') %></h2>
+    <%= render 'panels/form', f: f %>
 
-    <%= content_tag :div, class: 'panels', data: { panel_ids: Panel.all.map(&:id) } do %>
-      <%= f.collection_check_boxes(:panel_ids, Panel.sorted, :id, :name_with_description) do |b| %>
-        <%= content_tag :div, class: 'panel', id: "panel_#{b.object.id}", data: { lab_test_ids: b.object.lab_test_ids } do %>
-          <%= b.check_box %>
-          <label class="checkbox" for="accession_panel_ids_<%= b.object.id %>"> <%= sanitize(b.text) %></label>
-        <% end %>
-      <% end %>
-    <% end %>
-
-    <h2><%= t('.order_tests') %></h2>
-
-    <div id="order_tests">
-      <ul>
-        <% @departments.each do |department| %>
-          <li><a href="#<%= department.id %>"><%= department.name %></a></li>
-        <% end %>
-      </ul>
-      <% @departments.each do |department| %>
-        <div id="<%= department.id %>">
-          <%= f.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |b| %>
-            <div class="lab_test">
-              <%= b.check_box %>
-              <label class="checkbox" for="accession_lab_test_ids_<%= b.object.id %>"> <%= sanitize(b.text) %></label>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'lab_tests/form', f: f %>
 
     <div class="buttonbar">
       <%= f.submit t('.submit'), data: { disable_with: t('.processing') } %>
       <%= t('.or') %>
-      <% if @patient %>
-        <%= link_to t('.cancel'), patient_accessions_path(@patient) %>
-      <% else %>
-        <%= link_to t('.cancel'), accession_path %>
-      <% end %>
+      <%= link_to t('.cancel'), patient_path(@patient) %>
     </div>
   <% end %>
 </fieldset>

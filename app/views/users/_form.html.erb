@@ -1,64 +1,68 @@
-<%= form_for @user do |f| %>
-  <fieldset>
-    <div class="username">
-      <%= f.label :username, t('.username'), class: 'required' %>
-      <%= f.text_field :username %>
-    </div>
+<fieldset>
+<%= form_for @user, html: { novalidate: '' } do |f| %>
+  <%= render 'shared/error_messages', object: @user %>
 
-    <div class="initials">
-      <%= f.label :initials, t('.initials'), class: 'required' %>
-      <%= f.text_field :initials %>
-    </div>
+  <div class="username">
+    <%= f.label :username, t('.username'), class: 'required' %>
+    <%= f.text_field :username %>
+  </div>
 
-    <div class="language">
-      <%= f.label :language, t('.language') %>
-      <%= f.select :language, [['Español', 'es'], ['English','en']] %>
-    </div>
+  <div class="initials">
+    <%= f.label :initials, t('.initials'), class: 'required' %>
+    <%= f.text_field :initials %>
+  </div>
 
-    <div class="password">
-      <%= f.label :password, t('.password'), class: 'required' %>
-      <%= f.password_field :password %>
-    </div>
+  <div class="language">
+    <%= f.label :language, t('.language') %>
+    <%= f.select :language, [['Español', 'es-PA'], ['English','en']] %>
+  </div>
 
-    <div class="password_confirmation">
-      <%= f.label :password_confirmation, t('.password_confirmation'), class: 'required' %>
-      <%= f.password_field :password_confirmation %>
-    </div>
+  <div class="password">
+    <%= f.label :password, t('.password'), class: 'required' %>
+    <%= f.password_field :password %>
+  </div>
 
-    <h2><%= t('.personal_information') %></h2>
+  <div class="password_confirmation">
+    <%= f.label :password_confirmation, t('.password_confirmation'), class: 'required' %>
+    <%= f.password_field :password_confirmation %>
+  </div>
 
-    <div class="prefix">
-      <%= f.label :prefix, t('.prefix') %>
-      <%= f.text_field :prefix %>
-    </div>
+  <h2><%= t('.personal_information') %></h2>
 
-    <div class="first_name">
-      <%= f.label :first_name, t('.first_name'), class: 'required' %>
-      <%= f.text_field :first_name %>
-    </div>
+  <div class="prefix">
+    <%= f.label :prefix, t('.prefix') %>
+    <%= f.text_field :prefix %>
+  </div>
 
-    <div class="last_name">
-      <%= f.label :last_name, t('.last_name'), class: 'required' %>
-      <%= f.text_field :last_name %>
-    </div>
+  <div class="first_name">
+    <%= f.label :first_name, t('.first_name'), class: 'required' %>
+    <%= f.text_field :first_name %>
+  </div>
 
-    <div class="suffix">
-      <%= f.label :suffix, t('.suffix') %>
-      <%= f.text_field :suffix %>
-    </div>
+  <div class="last_name">
+    <%= f.label :last_name, t('.last_name'), class: 'required' %>
+    <%= f.text_field :last_name %>
+  </div>
 
-    <div class="email">
-      <%= f.label :email, t('.email') %>
-      <%= f.text_field :email %>
-    </div>
+  <div class="suffix">
+    <%= f.label :suffix, t('.suffix') %>
+    <%= f.text_field :suffix %>
+  </div>
 
-    <div class="register">
-      <%= f.label :register, t('.register') %>
-      <%= f.text_field :register %>
-    </div>
+  <div class="email">
+    <%= f.label :email, t('.email') %>
+    <%= f.text_field :email %>
+  </div>
 
-    <div class="buttonbar">
-      <%= f.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), root_url %>
-    </div>
-  </fieldset>
+  <div class="register">
+    <%= f.label :register, t('.register') %>
+    <%= f.text_field :register %>
+  </div>
+
+  <div class="buttonbar">
+    <%= f.submit t('.submit') %>
+    <%= t('.or') %>
+    <%= link_to t('.cancel'), root_url %>
+  </div>
 <% end %>
+</fieldset>

@@ -1,8 +1,8 @@
 module AccessionsHelper
-  def doctor_name(doctor)
+  def practitioner(doctor)
     if doctor
-      t('.doctor')
-      content_tag :strong, doctor.name
+      concat t('.doctor')
+      content_tag(:strong, doctor.name)
     else
       content_tag :strong, t('.walk_in')
     end

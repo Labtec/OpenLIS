@@ -1,7 +1,7 @@
 module Admin
   class ReferenceRangesController < BaseController
     def index
-      @reference_ranges = ReferenceRange.all.order(:lab_test_id, :age_unit, :min_age) #, include: :lab_test)
+      @reference_ranges = ReferenceRange.all.includes(:lab_test).order(:lab_test_id, :age_unit, :min_age)
     end
 
     def show

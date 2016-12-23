@@ -3,25 +3,33 @@
 <fieldset class="<%= @accession.reported_at.blank? %>">
   <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
 
-  <%= doctor_name @accession.doctor %><br />
+  <%= practitioner @accession.doctor %>
+  <% if @accession.doctor && @accession.doctor.email.present? %>
+    <%= link_to t('.email_report'), email_doctor_accession_path(@accession),
+      data: { confirm: t('.confirm_email', email: @accession.doctor.email),
+              disable_with: t('.sending_email') },
+    method: :put,
+    remote: true %>
+  <% end %>
+  <br />
 
   <% if @accession.drawn_at %>
     <%= t('.drawn_at') %>
-    <strong><%= l(@accession.drawn_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.drawn_at, format: :short) %></strong>
     <%= t('.by') %>
     <strong><%= @accession.drawer.initials %></strong><br />
   <% end %>
 
   <% if @accession.received_at %>
     <%= t('.received_at') %>
-    <strong><%= l(@accession.received_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.received_at, format: :short) %></strong>
     <%= t('.by') %>
     <strong><%= @accession.receiver.initials %></strong><br />
   <% end %>
 
   <% if @accession.reported_at %>
     <%= t('.reported_at') %>
-    <strong><%= l(@accession.reported_at, :format => '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.reported_at, format: :short) %></strong>
     <%= t('.by') %>
     <strong><%= @accession.reporter.initials %></strong>
   <% end %>
@@ -47,10 +55,17 @@
     <%= link_to t('.change_accession'), edit_accession_path(@accession) %> |
     <% if @accession.reported_at %>
       <%= link_to t('.change_results'), edit_results_accession_url(@accession) %> |
+      <% if @accession.patient.email.present? %>
+        <%= link_to t('.email_report'), email_accession_path(@accession),
+          data: { confirm: t('.confirm_email', email: @patient.email),
+                  disable_with: t('.sending_email') },
+          method: :put,
+          remote: true %> |
+      <% end %>
     <% else %>
       <%= link_to t('.enter_results'), edit_results_accession_url(@accession) %> |
-      <%= link_to t('.report'), report_accession_path(@accession), :method => :put %> |
+      <%= link_to t('.report'), report_accession_path(@accession), method: :patch, data: { turbolinks: false } %> |
     <% end %>
-    <%= link_to t('.print_report'), accession_results_path(@accession, :format => 'pdf') %>
+    <%= link_to t('.print_report'), accession_results_path(@accession, format: 'pdf'), data: { turbolinks: false } %>
   </div>
 </fieldset>

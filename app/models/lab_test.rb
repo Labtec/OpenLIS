@@ -1,9 +1,7 @@
-class LabTest < ActiveRecord::Base
-  # Consider caching this model
-  #translates :name, :description
-  #http://github.com/joshmh/globalize2/tree/master
+class LabTest < ApplicationRecord
   belongs_to :department, inverse_of: :lab_tests
   belongs_to :unit, inverse_of: :lab_tests
+
   has_many :reference_ranges, inverse_of: :lab_test
   has_many :lab_test_panels, inverse_of: :lab_test, dependent: :destroy
   has_many :panels, through: :lab_test_panels
@@ -13,10 +11,16 @@ class LabTest < ActiveRecord::Base
   has_many :lab_test_values, through: :lab_test_value_option_joints
   has_many :prices, as: :priceable, dependent: :destroy
 
+  delegate :name, to: :department, prefix: true
+  delegate :name, to: :unit, prefix: true, allow_nil: true
+
   accepts_nested_attributes_for :prices, allow_destroy: true
 
-  validates_presence_of :code
-  validates_uniqueness_of :code
+  validates :code,
+    presence: true,
+    uniqueness: true
+  validates :department, presence: true
+  validates :name, presence: true
 
   acts_as_list scope: :department
 
@@ -24,6 +28,8 @@ class LabTest < ActiveRecord::Base
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
 
   default_scope { order(position: :asc) }
+
+  auto_strip_attributes :name
 
   def also_allow=(also_allow)
     case also_allow
@@ -70,11 +76,13 @@ class LabTest < ActiveRecord::Base
     end
   end
 
-  def department_name
-    department.name
-  end
-
   def name_with_description
     description.present? ? "#{name} (#{description})" : name
+  end
+
+  # TODO: The database should store both names,
+  # the plain name and the formatted name
+  def stripped_name
+    name.gsub(%r{</?i>}, '')
   end
 end

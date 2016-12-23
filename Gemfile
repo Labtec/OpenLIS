@@ -1,41 +1,50 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '5.0.1'
 
 gem 'acts_as_list'
+gem 'auto_strip_attributes'
 gem 'coffee-rails'
+gem 'dalli'
 gem 'devise'
+gem 'fast_blank'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'pg'
+gem 'pg_search'
 gem 'prawn'
 gem 'prawn-table'
 gem 'puma'
 gem 'rails-html-sanitizer'
+gem 'rails-i18n', '~> 5'
 gem 'sass-rails'
-gem 'turbolinks', '~> 2'
+gem 'turbolinks', '~> 5'
 gem 'uglifier'
 
 group :development, :test do
-  gem 'byebug'
+  gem 'byebug', platform: :mri
   gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
-  gem 'sqlite3'
 end
 
 group :development do
+  gem 'brakeman', require: false
+  gem 'bullet'
+  # gem 'capistrano-maintenance'
+  gem 'flamegraph', require: false
+  gem 'listen'
+  gem 'rack-mini-profiler', require: false
   gem 'spring'
+  gem 'spring-watcher-listen'
+  gem 'stackprof'
   gem 'web-console'
 end
 
 group :test do
-  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'shoulda-context'
+  gem 'shoulda-matchers'
 end
-
-group :production do
-  gem 'mysql2'
-  gem 'newrelic_rpm'
-end
-
-gem 'sdoc', group: :doc

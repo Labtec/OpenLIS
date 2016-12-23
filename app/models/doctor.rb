@@ -1,19 +1,25 @@
-class Doctor < ActiveRecord::Base
+class Doctor < ApplicationRecord
   has_many :accessions, inverse_of: :doctor, dependent: :nullify
 
-  validates :name, presence: true,
-                   uniqueness: true,
-                   length: { minimum: 2 }
+  validates :email, email: true, allow_blank: true
+  validates :name,
+    presence: true,
+    uniqueness: true,
+    length: { minimum: 2 }
 
-  before_validation :purge_trailing_spaces
+  auto_strip_attributes :name
 
-  scope :search_for_name, ->(term) { where(['lower(name) LIKE ?', "%#{term.try(:downcase)}%"]) }
+  after_commit :flush_cache
 
   default_scope { order(name: :asc) }
 
+  def self.cached_doctors_list
+    Rails.cache.fetch('doctors') { all.map(&:name).to_a }
+  end
+
   private
 
-  def purge_trailing_spaces
-    self.name = name.squish if name
+  def flush_cache
+    Rails.cache.delete('doctors')
   end
 end

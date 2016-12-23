@@ -1,7 +1,7 @@
 module Admin
   class DepartmentsController < BaseController
     def index
-      @departments = Department.all #.include(:lab_tests)
+      @departments = Department.all.includes(:lab_tests)
     end
 
     def new

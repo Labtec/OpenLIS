@@ -1,0 +1,41 @@
+DEFAULTS: &DEFAULTS
+  family_name: Doe
+  birthdate: <%= 30.years.ago %>
+
+alice: &alice
+  given_name: Alice
+  identifier: '111-111-1111'
+  gender: F
+  <<: *DEFAULTS
+
+alicia:
+  middle_name: Alicia
+  <<: *alice
+
+bob:
+  given_name: Bob
+  identifier: '222-222-2222'
+  gender: M
+  <<: *DEFAULTS
+
+john:
+  given_name: John
+  middle_name: Fitzgerald
+  family_name2: Rockefeller
+  identifier: '333-333-3333'
+  gender: M
+  <<: *DEFAULTS
+
+angel:
+  given_name: Ángel
+  identifier: '444-444-4444'
+  gender: M
+  <<: *DEFAULTS
+
+insured:
+  given_name: Insured
+  identifier: 'INS-1'
+  gender: U
+  insurance_provider: axa
+  policy_number: '1-111'
+  <<: *DEFAULTS

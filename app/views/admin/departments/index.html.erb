@@ -3,7 +3,7 @@
 <div id="departments">
   <ul>
     <% @departments.each do |department| %>
-      <li><%= link_to department.name, admin_departments_url(anchor: department.id) %></li>
+      <li><%= link_to department.name, admin_departments_path(anchor: department.id) %></li>
     <% end %>
     <li><%= link_to '+', new_admin_department_path %></li>
   </ul>

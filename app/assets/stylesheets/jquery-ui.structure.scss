@@ -1,0 +1,17 @@
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
+  padding-bottom: none;
+}
+.ui-tabs-nav :focus {
+  outline: none;
+}
+
+/* Extra */
+.ui-autocomplete-loading {
+  background: image-url('loading.gif') right center no-repeat;
+}

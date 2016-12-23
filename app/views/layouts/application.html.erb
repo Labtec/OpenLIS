@@ -2,30 +2,26 @@
 <html>
   <head>
     <title><%= yield(:title) || 'Untitled' %></title>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
     <%= yield(:head) %>
     <%= csrf_meta_tags %>
     <link rel="mask-icon" href="pinned-masterlab.svg" color="#993399">
   </head>
   <body>
     <nav>
-      <%= render 'layouts/header' %>
-      <%= render 'layouts/tabs' %>
+      <%= render 'layouts/header' -%>
+      <%= render 'layouts/tabs' -%>
     </nav>
 
-    <section>
-      <%= render 'sidebar' %>
+    <section class="sidebar">
+      <%= render 'sidebar' -%>
     </section>
 
-    <section class='main'>
+    <section class="main">
       <%= yield %>
     </section>
 
-    <footer id='footer'>
-      Powered by <a href="http://www.labtecsa.com" onclick="window.open(this.href);return false;">OpenLIS</a>
-      © 2008–<%= Time.current.year %> by MasterLab
-      | <a href="#about" rel="facebox">About</a>
-    </footer>
+    <%= render 'layouts/footer' -%>
   </body>
 </html>

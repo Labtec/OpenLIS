@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
-    sign_out: 'logout',
+    sign_out: 'logout'
   }, controllers: {
     sessions: 'sessions'
   }, format: false
@@ -11,18 +11,18 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   get 'profile', to: 'users#edit'
 
-  resources :doctors, only: :index
-
-  resources :patients, shallow: true, except: :show do
-    resources :accessions do
+  resources :patients, shallow: true do
+    resources :accessions, except: :index do
       resources :results, only: :index
     end
   end
 
   resources :accessions, only: :index do
     member do
-      put 'report'
       get 'edit_results'
+      patch 'report'
+      put 'email'
+      put 'email_doctor'
     end
   end
 

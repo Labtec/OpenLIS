@@ -5,6 +5,11 @@ en:
       password: "Password"
       submit: "Log In"
 
+  admin:
+    claims:
+      submit:
+        submit_alert: Must have External and Claim Number
+
   users:
     form:
       username: "Username:"
@@ -63,14 +68,22 @@ en:
     feline: "Cat"
     equine: "Horse"
     other: "Other"
-    year: "year"
-    month: "month"
-    day: "day"
+    year:
+      one: 1 year
+      other: "%{count} years"
+    month:
+      one: 1 month
+      other: "%{count} months"
+    week:
+      one: 1 week
+      other: "%{count} weeks"
+    day:
+      one: 1 day
+      other: "%{count} days"
     sidebar:
       search_patients: "Search patients"
       search: "Search"
       recent_patients: "Recent Patients"
-      patient: "Patient:"
     index:
       title: "Patients"
       new_patient: "New Patient"
@@ -84,7 +97,15 @@ en:
       year: "year"
     new:
       title: "New Patient"
+    create:
+      success: "Successfully created patient."
+    update:
+      success: "Successfully updated patient."
+    destroy:
+      success: "Successfully removed patient."
     show:
+      order_tests: "Order Tests"
+      patient_not_found: "Patient record no longer available."
       title: "Patient Info"
     edit:
       title: "Edit Patient Info"
@@ -104,7 +125,7 @@ en:
       phone: "Phone:"
       additional_information: "Additional Information"
       address: "Address:"
-      type: "Type:"
+      type: "Species:"
       insurance_provider: "Insurance provider:"
       policy_number: "Policy Number:"
       insured: "Insured's Name:"
@@ -128,7 +149,6 @@ en:
   accessions:
     index:
       title: "Requisitions"
-      order_tests: "Order Tests"
     edit:
       title: "Change Order"
     new:
@@ -144,10 +164,13 @@ en:
       by: " by: "
       change_accession: "Change Order"
       enter_results: "Enter Results"
+      email_report: "Email Report"
+      sending_email: "Sending Email..."
       change_results: "Change Results"
       report: "Report"
       print_report: "Print Report (PDF)"
       notes: "Notes:"
+      confirm_email: "Would you like to email the results to %{email}?"
     form:
       order_details: "Order Details"
       accession: "Accession #"
@@ -162,19 +185,18 @@ en:
       received_by: "Received by:"
       reported_at: "Reported at:"
       reported_by: "Reported by:"
-      order_panels: "Order Panels"
-      order_tests: "Order Tests"
       submit: "Save"
       or: "or"
       cancel: "Cancel"
       processing: "Processing..."
     sidebar:
+      search_patients: "Search patients"
+      search: "Search"
       year: "year"
       phone: "Phone:"
       address: "Address:"
       email: "Email:"
       recent_patients: "Recent Patients"
-      patient: "Patient:"
     edit_results:
       title: "Enter Results"
       accession: "Accession #"
@@ -187,7 +209,6 @@ en:
       submit: "Save Results"
       or: "or"
       cancel: "Cancel"
-      notes: "Notes:"
     accession:
       accession: "Accession"
       reported_at: "Reported at: "
@@ -208,6 +229,18 @@ en:
       requisition_history: "Requisition History"
       order_tests: "Order Tests"
 
+  lab_tests:
+    form:
+      order_tests: Order Tests
+
+  notes:
+    form:
+      notes: "Notes:"
+
+  panels:
+    form:
+      order_panels: Order Panels
+
   results:
     low: "L"
     high: "H"
@@ -219,7 +252,7 @@ en:
       doctor: "Doctor:"
       walk_in: "Walk-in"
       phone: "Phone:"
-      type: "Type:"
+      type: "Species:"
       age: "Age:"
       year: "year"
       years: "years"
@@ -249,28 +282,34 @@ en:
       address: "Address:"
       email: "Email:"
       recent_patients: "Recent Patients"
-      patient: "Patient:"
+
+  doctors_mailer:
+    email:
+      body: "Attached are the results for %{full_name}."
+    subject: "Results for %{full_name}"
+
+  results_mailer:
+    email:
+      body: Attached are your lab results.
+      opening_M: "Dear %{full_name},"
+      opening_F: "Dear %{full_name},"
+      opening_U: "Dear %{full_name},"
+    subject: Lab Results
 
   flash:
     login:
       hello: "Hello "
       last_login_at: " Previous login: "
-      last_login_at_format: "%b %d, at %I:%M%p"
-    patient:
-      create: "Successfully created patient."
-      update: "Successfully updated patient."
-      destroy: "Successfully removed patient."
-      birthday_cant_be_in_the_future: "cannot be in the future"
     accession:
       create: "Successfully created requisition."
       update: "Successfully updated requisition."
       destroy: "Successfully removed requisition."
+      email_success: "Email sent successfully."
+      email_error: "Invalid email."
       report: "Reported requisition."
       report_error: "There are still pending results."
-      patient_not_found: "Patient record no longer available."
       accession_not_found: "Requisition accession no longer available."
       at_least_one_panel_or_test_selected: "Must have at least one panel or test selected."
-      cant_be_in_the_future: "cannot be in the future"
     accessions:
       at_least_one_panel_or_test_selected: "Must have at least one panel or test selected."
     results:
@@ -278,3 +317,14 @@ en:
       fraction: "must be N ⁄ N."
       ratio: "must be N∶N."
 
+  activerecord:
+    attributes:
+      accession:
+        icd9: "Diagnosis Codes (ICD-9)"
+  errors:
+    messages:
+      cant_be_in_the_future: "cannot be in the future"
+  time:
+    formats:
+      long: "%d %B %Y %H:%M"
+      short: "%d-%b-%Y %H:%M"

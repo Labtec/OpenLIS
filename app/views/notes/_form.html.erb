@@ -1,8 +1,4 @@
-<% form_for @note do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+<h3><%= t('.notes') %></h3>
+
+<%= f.text_area :content, rows: 3, cols:46 %>
+<%= f.hidden_field :department_id %>

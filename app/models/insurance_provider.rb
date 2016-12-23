@@ -1,20 +1,12 @@
-class InsuranceProvider < ActiveRecord::Base
-  # Consider caching this model
+class InsuranceProvider < ApplicationRecord
   belongs_to :price_list, inverse_of: :insurance_providers
-  has_many :patients, inverse_of: :insurance_provider
-  has_many :prices, through: :price_list
+
   has_many :claims, inverse_of: :insurance_provider
+  has_many :patients, inverse_of: :insurance_provider
+  has_many :accessions, through: :patients
+  has_many :prices, through: :price_list
 
-  def submitted_claims
-    claims.submitted
-  end
+  validates :name, presence: true, uniqueness: true
 
-  def unsubmitted_claims
-    unsubmitted_claims = []
-    all_unsubmitted_claims = Accession.find(Accession.with_insurance_provider.map(&:id) - Claim.submitted.map(&:accession_id)) #, include: :patient)
-    all_unsubmitted_claims.each do |claim|
-      unsubmitted_claims.push(claim) if claim.patient.insurance_provider == self
-    end
-    unsubmitted_claims
-  end
+  auto_strip_attributes :name
 end

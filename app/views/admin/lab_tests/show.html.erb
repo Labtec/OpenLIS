@@ -2,7 +2,7 @@
 
 <p>
   <strong>Department:</strong>
-  <%= @lab_test.department.name %>
+  <%= @lab_test.department_name %>
 </p>
 <p>
   <strong>Code:</strong>
@@ -26,7 +26,7 @@
 </p>
 <p>
   <strong>Units:</strong>
-  <%= @lab_test.unit.name unless @lab_test.unit.nil? %>
+  <%= @lab_test.unit_name %>
 </p>
 <p>
   <strong>Also allow Numeric:</strong>

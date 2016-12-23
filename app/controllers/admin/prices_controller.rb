@@ -3,14 +3,14 @@ module Admin
     def index
       @priceable = find_priceable
       if @priceable
-        @prices = @priceable.prices #(include: [:price_list, :priceable])
+        @prices = @priceable.prices
       else
-        @prices = Price.all # (include: [:price_list, :priceable])
+        @prices = Price.all
       end
 
-      pdf = LabPriceList.new(@prices, view_context)
+      pdf = LabPriceList.new(@priceable, @prices, view_context)
       send_data(pdf.render, filename: 'lista_de_precios.pdf',
-                type: 'application/pdf', disposition: 'inline')
+                            type: 'application/pdf', disposition: 'inline')
     end
 
     def show

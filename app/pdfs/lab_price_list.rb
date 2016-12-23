@@ -2,7 +2,8 @@ require_relative 'images/logo'
 
 class LabPriceList < Prawn::Document
 
-  def initialize(prices, view_context)
+  def initialize(priceable, prices, view_context)
+    @priceable = priceable
     @prices = prices
     @view = view_context
 
@@ -10,10 +11,10 @@ class LabPriceList < Prawn::Document
       :info => {
         :Title => "Lista de Precios",
         :Author => "MasterLab—Laboratorio Clínico Especializado",
-        :Subject => "AXA Assistance",
+        :Subject => "",
         :Producer => "MasterLab",
         :Creator => "MasterLab",
-        :CreationDate => Time.now,
+        :CreationDate => Time.current,
         :Keywords => "precio lista prueba laboratorio"
       },
       inline: true,
@@ -144,6 +145,10 @@ class LabPriceList < Prawn::Document
 
         move_down 25
         text "Lista de Precios", :align => :center, :size => 10, :style => :bold
+        if @priceable
+          text @priceable.name, :align => :center, :size => 10, :style => :bold
+        end
+
         move_down 5
 
         # Manually add second column title or fix bug in prawn
@@ -153,12 +158,12 @@ class LabPriceList < Prawn::Document
     column_box [0, cursor], :width => bounds.width, :columns => 2 do
 
     # Prices Table
-    prices_table = [["Prueba", "CPT", "Precio"]]
+      prices_table = [["Prueba", "CPT", "Precio (B/.)"]]
     @prices.map do |price|
       prices_table += [[
         price.priceable.name,
         price.priceable.procedure,
-        @view.number_to_currency(price.amount)
+        @view.number_with_precision(price.amount, precision: 2)
       ]]
     end
 

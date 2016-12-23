@@ -1,4 +1,5 @@
-<%= form_for [:admin, @lab_test] do |f| %>
+<fieldset class="<%= @lab_test.new_record? %>">
+<%= form_for [:admin, @lab_test], html: { novalidate: '' } do |f| %>
   <%= render 'shared/error_messages', object: @lab_test %>
 
   <div class="department_id">
@@ -41,56 +42,55 @@
     <%= f.text_area :description %>
   </div>
 
-  <fieldset>
-    <legend>Also Allow</legend>
-    <div class="also_allow">
-      <%= f.radio_button :also_allow, :also_numeric %>
-      <%= label_tag 'lab_test_also_allow_also_numeric', 'Numeric' %>
-    </div>
-    <div class="also_allow">
-      <%= f.radio_button :also_allow, :ratio %>
-      <%= label_tag 'lab_test_also_allow_ratio', 'N:N' %>
-    </div>
-    <div class="also_allow">
-      <%= f.radio_button :also_allow, :range %>
-      <%= label_tag 'lab_test_also_allow_range', 'N–N' %>
-    </div>
-    <div class="also_allow">
-      <%= f.radio_button :also_allow, :fraction %>
-      <%= label_tag 'lab_test_also_allow_fraction', 'N ⁄ N' %>
-    </div>
-    <div class="also_allow">
-      <%= f.radio_button :also_allow, :none %>
-      <%= label_tag 'lab_test_also_allow_none', 'None' %>
-    </div>
-    <div class="text_length">
-      <%= f.label :text_length, 'Text Length' %>
-      <%= f.text_field :text_length %>
-    </div>
-  </fieldset>
+  <h2>Also Allow</h2>
+  <div class="also_allow">
+    <%= f.radio_button :also_allow, :also_numeric %>
+    <%= label_tag 'lab_test_also_allow_also_numeric', 'Numeric' %>
+  </div>
+  <div class="also_allow">
+    <%= f.radio_button :also_allow, :ratio %>
+    <%= label_tag 'lab_test_also_allow_ratio', 'N:N' %>
+  </div>
+  <div class="also_allow">
+    <%= f.radio_button :also_allow, :range %>
+    <%= label_tag 'lab_test_also_allow_range', 'N–N' %>
+  </div>
+  <div class="also_allow">
+    <%= f.radio_button :also_allow, :fraction %>
+    <%= label_tag 'lab_test_also_allow_fraction', 'N ⁄ N' %>
+  </div>
+  <div class="also_allow">
+    <%= f.radio_button :also_allow, :none %>
+    <%= label_tag 'lab_test_also_allow_none', 'None' %>
+  </div>
+  <div class="text_length">
+    <%= f.label :text_length, 'Text Length' %>
+    <%= f.text_field :text_length %>
+  </div>
 
-  <fieldset>
-    <legend>Values</legend>
-      <div class="values">
-        <%= f.collection_check_boxes(:lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag) do |b| %>
-          <div class="lab_test_value">
-            <%= b.label(:"data-value" => b.value) { b.check_box + raw(b.text) } %>
-          </div>
-        <% end %>
+  <h2>Values</h2>
+  <div class="values">
+    <%= f.collection_check_boxes(:lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag) do |b| %>
+      <div class="lab_test_value">
+        <%= b.label(:"data-value" => b.value) { b.check_box + raw(b.text) } %>
       </div>
-  </fieldset>
+    <% end %>
+  </div>
 
   <% unless @lab_test.new_record? %>
-  <fieldset>
-    <legend>Prices</legend>
-    <% f.object.prices.each do |price| %>
+    <h2>Prices</h2>
+    <% @lab_test.prices.includes(:price_list).each do |price| %>
       <%= price.price_list.name %>:
       <%= number_to_currency price.amount %>
       <%= link_to 'Edit', edit_admin_price_path(price.id) %><br />
     <% end %>
     <p><%= link_to 'New Price', new_admin_lab_test_price_path(@lab_test) %></p>
-  </fieldset>
   <% end %>
 
-  <%= f.submit 'Submit' %>
+  <div class="buttonbar">
+    <%= f.submit 'Submit' %>
+    <%= t('.or') %>
+    <%= link_to t('.cancel'), admin_lab_tests_path %>
+  </div>
 <% end %>
+</fieldset>

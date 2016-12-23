@@ -1,8 +1,5 @@
 <% title 'Reference Ranges' %>
 
-<h3>If there is a max age value, there must be a min age value.
-  In the future, the program will validate this.</h3>
-
 <table>
   <tr>
     <th>Test</th>
@@ -20,14 +17,14 @@
   </tr>
   <% @reference_ranges.each do |reference_range| %>
     <tr>
-      <td><%= sanitize(reference_range.lab_test.name_with_description) %></td>
+      <td><%= name_with_description(reference_range.lab_test) %></td>
       <td><%= reference_range.min %></td>
       <td><%= reference_range.max %></td>
       <td><%= reference_range.gender %></td>
       <td><%= reference_range.min_age %></td>
       <td><%= reference_range.max_age %></td>
       <td><%= reference_range.age_unit %></td>
-      <td><%= reference_range.animal_type_name %></td>
+      <td><%= animal_species_name(reference_range.animal_type) %></td>
       <td><%= reference_range.description %></td>
       <td><%= link_to 'Show', [:admin, reference_range] %></td>
       <td><%= link_to 'Edit', edit_admin_reference_range_path(reference_range) %></td>

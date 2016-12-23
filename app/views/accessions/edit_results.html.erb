@@ -3,19 +3,18 @@
 <fieldset class="<%= @accession.reported_at.blank? %>">
   <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
 
-  <%= t('.doctor') %>
-  <strong><%= doctor_name(@accession.doctor) %></strong><br />
+  <%= practitioner(@accession.doctor) %><br />
 
   <% if @accession.drawn_at %>
     <%= t('.drawn_at') %>
-    <strong><%= l(@accession.drawn_at, format: '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.drawn_at, format: :short) %></strong>
     <%= t('.by') %>
     <strong><%= @accession.drawer.initials %></strong><br />
   <% end %>
 
   <% if @accession.received_at %>
     <%= t('.received_at') %>
-    <strong><%= l(@accession.received_at, format: '%e %b %Y %l:%M%p') %></strong>
+    <strong><%= l(@accession.received_at, format: :short) %></strong>
     <%= t('.by') %>
     <strong><%= @accession.receiver.initials %></strong><br />
   <% end %>
@@ -27,53 +26,31 @@
     <strong><%= @accession.reporter.initials %></strong>
   <% end %>
 
-<%= form_for @accession, html: { novalidate: '' } do |a| %>
-  <%= render 'shared/error_messages', object: @accession %>
+  <%= form_for @accession, html: { novalidate: '' } do |a| %>
+    <%= render 'shared/error_messages', object: @accession %>
 
-  <% a.object.results.group_by(&:department).each do |department, results| %>
-    <h2><%= department.name %></h2>
+    <% @results.each do |department, results| %>
+      <h2><%= department.name %></h2>
 
-    <table class="results">
-    <% reset_cycle('alternating_row_colors') %>
-    <%= a.fields_for :results, results do |r| %>
-      <tr class="<%= cycle('even', 'odd', name: 'alternating_row_colors') %>">
-        <td class="lab_test <%= flag_color(r.object) %>"><%= r.label :value, sanitize(r.object.lab_test.name) %></td>
-        <td class="result <%= flag_color(r.object) %>">
-          <% if r.object.lab_test.derivation? %>
-            <%= text_field_tag :value, format_value(r.object), size: 10, disabled: true %>
-          <% else %>
-            <% if r.object.lab_test.lab_test_values.blank? %>
-              <% if r.object.lab_test.also_numeric? || r.object.lab_test.ratio? || r.object.lab_test.range? || r.object.lab_test.fraction? || r.object.lab_test.text_length.present? %>
-                <%= r.text_field :value, size: 10, pattern: '\\d*' %>
-              <% else%>
-                <%= r.number_field :value, size: 10, step: "#{10.0 ** -(r.object.lab_test.decimals || 0)}" %>
-              <% end %>
-            <% else %>
-              <%= r.collection_select :lab_test_value_id, LabTest.find(r.object.lab_test_id).lab_test_values, :id, :value, { include_blank: true } %>
-              <%= r.text_field :value, size: 10, pattern: '\\d*' if r.object.lab_test.also_numeric? || r.object.lab_test.ratio? || r.object.lab_test.range? || r.object.lab_test.fraction? || r.object.lab_test.text_length.present? %>
-            <% end %>
-          <% end %>
-        </td>
-        <td class="symbol <%= flag_color r.object %>"><%= flag_name r.object %></td>
-        <td class="units"><%= r.object.lab_test.unit.name if r.object.lab_test.unit %></td>
-        <td class="ranges"><%= ranges_table r.object.ranges %></td>
-      </tr>
-    <% end %>
-    </table>
+      <% reset_cycle('alternating_row_colors') %>
+      <table class="results">
+        <%= a.fields_for :results, results do |results_form| %>
+          <%= render 'results/form',
+            object: results_form.object, f: results_form %>
+        <% end %>
+      </table>
 
-    <%= a.fields_for :notes do |note_form| %>
-      <% if note_form.object.department == department %>
-        <br /><em><%= t('.notes') %></em><br />
-        <%= note_form.text_area :content, rows: 3, cols:40 %><br /><br />
-        <%= note_form.hidden_field :department_id %>
+      <%= a.fields_for :notes do |notes_form| %>
+        <% if notes_form.object.department == department %>
+          <%= render 'notes/form', f: notes_form %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
 
-  <div class="buttonbar">
-    <%= a.submit t('.submit') %>
-    <%= t('.or') %>
-    <%= link_to t('.cancel'), accession_path(@accession) %>
-  </div>
-<% end %>
+    <div class="buttonbar">
+      <%= a.submit t('.submit') %>
+      <%= t('.or') %>
+      <%= link_to t('.cancel'), accession_path(@accession) %>
+    </div>
+  <% end %>
 </fieldset>

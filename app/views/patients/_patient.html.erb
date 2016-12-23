@@ -1,26 +1,26 @@
-<div class="panel" id="summary">
-  <% if patient.animal_type %>
-    <span class="avatar"><%= image_tag("avatar_#{patient.animal_type}.png") %></span>
-  <% else %>
-    <span class="avatar"><%= image_tag("avatar_#{patient.gender}.png") %></span>
-  <% end %>
-  <h4><%= link_to patient.full_name, patient_accessions_path(patient) %></h4>
-  <div>
-    <%= patient.identifier %><br />
-    <%= pluralize patient.age_to_display, patient.age_units %>
-  </div>
-  <div>
-    <%= t('.address') %> <%= patient.address %><br />
-    <%= t('.phone') %> <b><%= patient.phone %></b>
-  </div>
-  <div>
-    <%= t('.email') %> <b><%= mail_to patient.email %></b>
-  </div>
-  <div class="bottom_card">
-    <%= image_tag('axa.svg', size: '15x15') if patient.insurance_provider %>
-    <%= patient.policy_number %>
-    <div class="edit_patient_card">
-      <%= link_to t('.edit'), edit_patient_path(patient) %>
+<% cache [I18n.locale, patient] do %>
+  <li class="contact">
+    <%= avatar_icon(patient) %>
+
+    <div class="tools" style="display:none">
+      <small>
+        <%= link_to t('.edit'), edit_patient_path(patient) %>
+        <% if current_user.admin? %> |
+          <%= link_to t('.delete?'), patient, method: :delete, data: { confirm: t('.confirm_destroy') } %>
+        <% end %>
+      </small>
     </div>
-  </div>
-</div>
+
+    <%= link_to full_name(patient), patient_path(patient) %>
+    <tt><%= patient.identifier %></tt>
+    <dt style="padding: 2px 0px 0px 0px">
+      <% if patient.email.present? %>
+        <%= mail_to patient.email %> |
+      <% end %>
+      <% if patient.phone.present? %>
+        <%= t('.phone') %> <b><%= patient.phone %></b> |
+      <% end %>
+      <%= age(patient.birthdate) %>
+    </dt>
+  </li>
+<% end %>

@@ -1,4 +1,0 @@
-== Code Status
-
-{<img src="https://travis-ci.org/Labtec/OpenLIS.svg?branch=master" alt="Build Status">}[https://travis-ci.org/Labtec/OpenLIS]
-{<img src="https://gemnasium.com/Labtec/OpenLIS.svg?branch=master" alt="Dependency Status">}[https://gemnasium.com/Labtec/OpenLIS]

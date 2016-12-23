@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :recoverable, :registerable,
   # :rememberable and :omniauthable
@@ -7,15 +7,11 @@ class User < ActiveRecord::Base
 
   has_many :accessions, inverse_of: :user
 
-  validates :first_name, :last_name, :initials, presence: true
+  validates :username, :first_name, :last_name, :initials, presence: true
   validates :initials, uniqueness: true
 
-  def name_to_display
-    full_name = [prefix, first_name, last_name].join(' ').squeeze(' ').strip
-    if suffix.blank?
-      full_name
-    else
-      [full_name, suffix].join(', ')
-    end
-  end
+  scope :sorted, -> { order(username: :asc) }
+
+  auto_strip_attributes :username, :initials, delete_whitespaces: true
+  auto_strip_attributes :first_name, :last_name
 end

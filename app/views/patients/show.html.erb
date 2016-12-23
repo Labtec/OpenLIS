@@ -1,0 +1,10 @@
+<% title t('.title') %>
+
+<div class="title_tools">
+  <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
+</div>
+<div class="title"><%= full_name(@patient) %></div>
+
+<div class="list" id="requisitions">
+  <%= render 'accessions/accessions' %>
+</div>

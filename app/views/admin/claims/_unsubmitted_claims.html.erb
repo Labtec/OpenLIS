@@ -13,14 +13,14 @@
 
 <% @unsubmitted_claims.each do |unsubmitted_claim| %>
   <tr>
-    <td><%= check_box_tag 'unsubmitted_claim_ids[]', Accession.find(unsubmitted_claim.id).claim.id if Accession.find(unsubmitted_claim.id).claim %></td>
-    <td><%= unsubmitted_claim.patient.name_last_comma_first_mi %></td>
+    <td><%= check_box_tag 'unsubmitted_claim_ids[]', unsubmitted_claim.claim.id if unsubmitted_claim.claim %></td>
+    <td><%= name_last_comma_first_mi(unsubmitted_claim.patient) %></td>
     <td><%= link_to unsubmitted_claim.id, accession_path(unsubmitted_claim), target: '_blank' %></td>
-    <td><%= unsubmitted_claim.claim.try(:external_number) %></td>
-    <td><%= unsubmitted_claim.claim.try(:number) %></td>
+    <td><%= unsubmitted_claim.claim_external_number %></td>
+    <td><%= unsubmitted_claim.claim_number %></td>
     <% if unsubmitted_claim.claim %>
       <td><%= link_to 'Info', edit_admin_claim_path(unsubmitted_claim.claim), class: 'edit_claim' %></td>
-      <td><%= link_to 'Preview', [:admin, unsubmitted_claim.claim] %></td>
+      <td><%= link_to 'Preview', [:admin, unsubmitted_claim.claim], data: { turbolinks: false } %></td>
       <td><%= link_to 'Submit', submit_admin_claim_path(unsubmitted_claim.claim), method: :put %></td>
     <% else %>
       <td><%= link_to 'Info', new_admin_accession_claim_path(unsubmitted_claim), class: 'edit_claim' %></td>

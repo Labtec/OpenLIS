@@ -11,26 +11,30 @@
     <ul class="overdue">
       <%= render @pending_accessions %>
     </ul>
+
+    <div class="pending">
+      <%= paginate @pending_accessions, param_name: :pending_page %>
+      <div id="pending_paging" style="display:none">
+        <%= image_tag('loading.gif', size: '16x16') %>
+      </div>
+    </div>
   <% end %>
 
-  <div class="pending">
-    <%= paginate @pending_accessions, param_name: :pending_page %>
-    <div id="pending_paging" style="display:none">
-      <%= image_tag('loading.gif', size: '16x16') %>
-    </div>
-  </div>
+  <% if !@pending_accessions.blank? && !@reported_accessions.blank? %>
+    <div class="accessions_padding"></div>
+  <% end %>
 
   <% unless @reported_accessions.blank? %>
     <h3 class="done"><%= t('.requisition_history') %></h3>
     <ul>
       <%= render @reported_accessions %>
     </ul>
-  <% end %>
 
-  <div class="paginate">
-    <%= paginate @reported_accessions %>
-    <div id="paging" style="display:none">
-      <%= image_tag('loading.gif', size: '16x16') %>
+    <div class="paginate">
+      <%= paginate @reported_accessions %>
+      <div id="paging" style="display:none">
+        <%= image_tag('loading.gif', size: '16x16') %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

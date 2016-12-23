@@ -1,4 +1,5 @@
-<%= form_for @patient, html: { novalidate: "" } do |f| %>
+<fieldset class="<%= @patient.new_record? %>">
+<%= form_for @patient, html: { novalidate: '' } do |f| %>
   <%= render 'shared/error_messages', object: @patient %>
 
   <div class="given_name">
@@ -27,19 +28,19 @@
   </div>
 
   <div class="birthdate">
-  <% if mobile_user_agent? %>
+  <% if request.variant.include? :mobile %>
     <%= f.label :birthdate, t('.birthdate'), class: 'required' %>
     <%= f.date_field :birthdate %>
   <% else %>
     <%= f.label :birthdate, t('.birthdate'), class: 'required' %>
-    <%= f.date_select :birthdate, start_year: Time.now.year, end_year: 1900,
+    <%= f.date_select :birthdate, start_year: Time.current.year, end_year: Time.current.year - 130,
       prompt: {day: t('.day'), month: t('.month'), year: t('.year')} %>
   <% end %>
   </div>
 
   <div class="identifier">
     <%= f.label :identifier, t('.identifier') %>
-    <%= f.text_field :identifier, autocorrect: "off", pattern: "\\d*" %>
+    <%= f.text_field :identifier, autocorrect: "off" %>
   </div>
 
   <div class="email">
@@ -61,7 +62,7 @@
 
   <div class="animal_type">
     <%= f.label :animal_type, t('.type') %>
-    <%= f.select :animal_type, options_for_types, include_blank: true %>
+    <%= f.select :animal_type, options_for_animal_species, include_blank: true %>
   </div>
 
   <div class="insurance_provider_id">
@@ -72,7 +73,7 @@
 
   <div class="policy_number">
     <%= f.label :policy_number, t('.policy_number') %>
-    <%= f.text_field :policy_number, autocorrect: "off", pattern: "\\d*" %>
+    <%= f.text_field :policy_number, autocorrect: "off" %>
   </div>
 
   <div class="buttonbar">
@@ -81,3 +82,4 @@
     <%= link_to t('.cancel'), patients_path %>
   </div>
 <% end %>
+</fieldset>
