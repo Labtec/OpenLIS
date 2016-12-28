@@ -1,7 +1,6 @@
 # Calculates the age of a person at any given time.
 # If no time is given, +Time.current+ is used.
 class AgeCalculator
-  using FixnumRefinements
 
   def initialize(from_date, to_date = Time.current)
     @from_date = from_date.in_time_zone if from_date.respond_to?(:in_time_zone)
@@ -38,6 +37,7 @@ class AgeCalculator
   def remainders
     fd, fm = @from_date.day, @from_date.month
     td, tm = @to_date.day, @to_date.month
+    remainders = {}
 
     # weeks
     # remainder in days
@@ -76,11 +76,11 @@ class AgeCalculator
       year_remainder = tm - fm
     end
 
-    {
-      weeks: week_remainder.nilify!,
-      months: month_remainder.nilify!,
-      years: year_remainder.nilify!
-    }
+    remainders[:weeks]  = week_remainder  unless week_remainder.zero?
+    remainders[:months] = month_remainder unless month_remainder.zero?
+    remainders[:years]  = year_remainder  unless year_remainder.zero?
+
+    remainders
   end
 
   private
