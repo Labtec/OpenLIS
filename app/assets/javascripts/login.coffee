@@ -1,4 +1,4 @@
-#= require jquery2
+#= require jquery3
 #= require jquery-ui/effects/effect-shake
 
 $ ->
