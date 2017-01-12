@@ -145,6 +145,11 @@ en:
       edit: "Edit"
       delete: "Delete"
       confirm_destroy: "Are you sure?"
+    card:
+      address: "Address:"
+      phone: "Phone:"
+      email: "Email:"
+      edit: "Edit"
 
   accessions:
     index:
