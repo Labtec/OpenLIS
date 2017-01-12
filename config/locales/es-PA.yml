@@ -145,6 +145,11 @@ es-PA:
       edit: "Editar"
       delete: "Borrar"
       confirm_destroy: "¿Está seguro?"
+    card:
+      address: "Dirección:"
+      phone: "Tel:"
+      email: "Email:"
+      edit: "Editar"
 
   accessions:
     index:
