@@ -8,7 +8,7 @@
   </tr>
   <% @lab_test_values.each do |lab_test_value| %>
     <tr>
-      <td><%= raw(lab_test_value.value).html_safe %></td>
+      <td><%= sanitize(lab_test_value.value) %></td>
       <td><%= lab_test_value.flag %></td>
       <td><%= sanitize(lab_test_value.note) %></td>
       <td><%= link_to 'Show', [:admin, lab_test_value] %></td>

@@ -2,7 +2,7 @@
 
 <p>
   <strong>Value:</strong>
-  <%= raw(@lab_test_value.value).html_safe %>
+  <%= sanitize(@lab_test_value.value) %>
 </p>
 <p>
   <strong>Flag:</strong>
