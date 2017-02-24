@@ -8,11 +8,6 @@ module ApplicationHelper
     render 'error_messages', object: messages unless messages.empty?
   end
 
-  def labeled_form_for(*args, &block)
-    options = args.extract_options!.merge(builder: LabeledFormBuilder)
-    form_for(*(args + [options]), &block)
-  end
-
   def navigation(*links)
     items = []
     links.each do |link|

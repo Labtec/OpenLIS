@@ -19,7 +19,7 @@ class ReferenceRange < ApplicationRecord
 
   ANIMAL_SPECIES = (0..3).to_a
 
-  belongs_to :lab_test, inverse_of: :reference_ranges
+  belongs_to :lab_test
 
   scope :for_its_gender, ->(gender) { where(gender: [gender, '*']) }
   scope :for_its_type, ->(type) { where(animal_type: [type, 0]) }

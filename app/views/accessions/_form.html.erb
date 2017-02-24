@@ -1,8 +1,9 @@
 <fieldset class="<%= @accession.reported_at.blank? %>">
   <% if @accession.id %>
-    <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
+    <h1><%= t('.accession', id: @accession.id) %></h1>
   <% end %>
-  <%= form_for shallow_args(@patient, @accession), html: { novalidate: '' } do |f| %>
+
+  <%= form_with(model: shallow_args(@patient, @accession), local: true, class: css_class, html: { novalidate: '' }) do |f| %>
     <%= render 'shared/error_messages', object: @accession %>
 
     <h2><%= t('.order_details') %></h2>
@@ -10,6 +11,7 @@
     <div class="doctor_name">
       <%= f.label :doctor_name, t('.doctor') %>
       <%= f.text_field :doctor_name, placeholder: t('.walk_in'),
+        id: 'accession_doctor_name',
         data: { doctors: Doctor.cached_doctors_list }, autocorrect: 'off' %>
     </div>
 
@@ -19,13 +21,13 @@
     </div>
 
     <div class="drawn_at">
-    <% if request.variant.include? :mobile %>
-      <%= f.label :drawn_at, t('.drawn_at') %>
-      <%= f.datetime_local_field :drawn_at, max: Time.current %>
-    <% else %>
-      <%= f.label :drawn_at, t('.drawn_at') %>
-      <%= f.datetime_select :drawn_at, end_year: Time.current.year, ampm: true %>
-    <% end %>
+      <% if request.variant.include? :mobile %>
+        <%= f.label :drawn_at, t('.drawn_at') %>
+        <%= f.datetime_local_field :drawn_at, max: Time.current %>
+      <% else %>
+        <%= f.label :drawn_at, t('.drawn_at') %>
+        <%= f.datetime_select :drawn_at, end_year: Time.current.year, ampm: true %>
+      <% end %>
     </div>
 
     <div class="drawer_id">
@@ -34,13 +36,13 @@
     </div>
 
     <div class="received_at">
-    <% if request.variant.include? :mobile %>
-      <%= f.label :received_at, t('.received_at') %>
-      <%= f.datetime_local_field :received_at, max: Time.current %>
-    <% else %>
-      <%= f.label :received_at, t('.received_at') %>
-      <%= f.datetime_select :received_at, end_year: Time.current.year, ampm: true %>
-    <% end %>
+      <% if request.variant.include? :mobile %>
+        <%= f.label :received_at, t('.received_at') %>
+        <%= f.datetime_local_field :received_at, max: Time.current %>
+      <% else %>
+        <%= f.label :received_at, t('.received_at') %>
+        <%= f.datetime_select :received_at, end_year: Time.current.year, ampm: true %>
+      <% end %>
     </div>
 
     <div class="receiver_id">
@@ -50,13 +52,13 @@
 
     <% if @accession.reported_at? %>
       <div class="reported_at">
-      <% if request.variant.include? :mobile %>
-        <%= f.label :reported_at, t('.reported_at') %>
-        <%= f.datetime_local_field :reported_at, max: Time.current %>
-      <% else %>
-        <%= f.label :reported_at, t('.reported_at') %>
-        <%= f.datetime_select :reported_at, end_year: Time.current.year, ampm: true %>
-      <% end %>
+        <% if request.variant.include? :mobile %>
+          <%= f.label :reported_at, t('.reported_at') %>
+          <%= f.datetime_local_field :reported_at, max: Time.current %>
+        <% else %>
+          <%= f.label :reported_at, t('.reported_at') %>
+          <%= f.datetime_select :reported_at, end_year: Time.current.year, ampm: true %>
+        <% end %>
       </div>
 
       <div class="reporter_id">

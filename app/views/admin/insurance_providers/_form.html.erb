@@ -1,4 +1,4 @@
-<%= form_for [:admin, @insurance_provider] do |f| %>
+<%= form_with(model: [:admin, @insurance_provider], local: true) do |f| %>
   <%= render 'shared/error_messages', object: @insurance_provider %>
   <p>
     <%= f.label :name %><br />

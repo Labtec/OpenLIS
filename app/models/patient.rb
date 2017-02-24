@@ -4,9 +4,9 @@ class Patient < ApplicationRecord
   ANIMAL_SPECIES = (0..3).to_a
   GENDERS = %w(F M U).freeze
 
-  belongs_to :insurance_provider, inverse_of: :patients
+  belongs_to :insurance_provider, optional: true
 
-  has_many :accessions, inverse_of: :patient, dependent: :destroy
+  has_many :accessions, dependent: :destroy
   has_many :notes, as: :noticeable
 
   validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_blank: true

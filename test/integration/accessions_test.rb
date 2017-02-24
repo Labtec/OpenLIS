@@ -36,6 +36,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
 
   test 'change a requisition' do
     visit edit_accession_path(@accession)
+    assert page.has_content?("Accession ##{@accession.id}"), 'Order number missing'
     uncheck 'BUN'
     click_on 'Save'
     assert_not page.has_content?('error'), 'Requisition not updated'
@@ -52,6 +53,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
 
   test 'enter test results' do
     visit edit_results_accession_path(@accession)
+    assert page.has_content?("Accession ##{@accession.id}"), 'Order number missing'
     fill_in 'Cholesterol', with: 180
     click_on 'Save'
     assert_not page.has_content?('error'), 'Results not entered'

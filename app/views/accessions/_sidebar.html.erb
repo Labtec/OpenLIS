@@ -1,5 +1,5 @@
 <div class="filters">
-  <%= form_tag patients_path, method: 'get', enforce_utf8: false do %>
+  <%= form_with(url: patients_path, local: true, method: 'get', skip_enforcing_utf8: true) do %>
     <%= search_field_tag :search, params[:search],
       size: 23,
       results: 5,

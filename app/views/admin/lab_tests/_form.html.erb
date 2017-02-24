@@ -1,5 +1,5 @@
 <fieldset class="<%= @lab_test.new_record? %>">
-<%= form_for [:admin, @lab_test], html: { novalidate: '' } do |f| %>
+<%= form_with(model: [:admin, @lab_test], local: true, html: { novalidate: '' }) do |f| %>
   <%= render 'shared/error_messages', object: @lab_test %>
 
   <div class="department_id">

@@ -1,0 +1,10 @@
+paneled:
+  patient: john
+  drawn_at: <%= 1.day.ago %>
+  received_at: <%= 1.day.ago %>
+  reported_at: <%= 1.day.ago %>
+  drawer: user
+  receiver: user
+  reporter: user
+  lab_tests: bun, chol
+  panels: panel

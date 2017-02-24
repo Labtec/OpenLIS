@@ -159,8 +159,7 @@ en:
     new:
       title: "New Order"
     show:
-      title: "Accession"
-      accession: "Accession #"
+      accession: "Accession #%{id}"
       doctor: "Doctor: "
       walk_in: "Walk-in"
       drawn_at: "Collected at: "
@@ -177,8 +176,8 @@ en:
       notes: "Notes:"
       confirm_email: "Would you like to email the results to %{email}?"
     form:
+      accession: "Accession #%{id}"
       order_details: "Order Details"
-      accession: "Accession #"
       doctor: "Ordering Doctor:"
       walk_in: "Leave blank if walk-in"
       icd9: "Diagnosis Codes:"
@@ -204,7 +203,7 @@ en:
       recent_patients: "Recent Patients"
     edit_results:
       title: "Enter Results"
-      accession: "Accession #"
+      accession: "Accession #%{id}"
       doctor: "Doctor: "
       walk_in: "Walk-in"
       drawn_at: "Collected at: "
@@ -215,7 +214,7 @@ en:
       or: "or"
       cancel: "Cancel"
     accession:
-      accession: "Accession"
+      accession: "Accession #%{id}"
       reported_at: "Reported at: "
       by: "by: "
       ordered_by: "Ordered by: "
@@ -288,18 +287,16 @@ en:
       email: "Email:"
       recent_patients: "Recent Patients"
 
-  doctors_mailer:
-    email:
-      body: "Attached are the results for %{full_name}."
-    subject: "Results for %{full_name}"
-
   results_mailer:
-    email:
-      body: Attached are your lab results.
+    email_patient:
+      subject: Lab Results
       opening_M: "Dear %{full_name},"
       opening_F: "Dear %{full_name},"
       opening_U: "Dear %{full_name},"
-    subject: Lab Results
+      body: Attached are your lab results.
+    email_doctor:
+      subject: "Results for %{full_name}"
+      body: "Attached are the results for %{full_name}."
 
   flash:
     login:

@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :lockable, :timeoutable,
          :trackable, :validatable
 
-  has_many :accessions, inverse_of: :user
+  has_many :accessions
 
   validates :username, :first_name, :last_name, :initials, presence: true
   validates :initials, uniqueness: true

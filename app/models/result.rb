@@ -1,9 +1,9 @@
 class Result < ApplicationRecord
   RANGE_SYMBOLS = [RANGE_SYMBOL_RANGE = '–', RANGE_SYMBOL_LT = '<', RANGE_SYMBOL_GE = '≥']
 
-  belongs_to :accession, inverse_of: :results
-  belongs_to :lab_test, inverse_of: :results
-  belongs_to :lab_test_value, inverse_of: :results
+  belongs_to :accession
+  belongs_to :lab_test
+  belongs_to :lab_test_value, optional: true
 
   has_many :notes, as: :noticeable
   has_many :reference_ranges, through: :lab_test

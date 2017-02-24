@@ -1,7 +1,7 @@
 <% title t('.title') %>
 
 <fieldset class="<%= @accession.reported_at.blank? %>">
-  <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
+  <h1><%= t('.accession', id: @accession.id) %></h1>
 
   <%= practitioner(@accession.doctor) %><br />
 
@@ -26,7 +26,7 @@
     <strong><%= @accession.reporter.initials %></strong>
   <% end %>
 
-  <%= form_for @accession, html: { novalidate: '' } do |a| %>
+  <%= form_with(model: @accession, local: true, html: { novalidate: '' }) do |a| %>
     <%= render 'shared/error_messages', object: @accession %>
 
     <% @results.each do |department, results| %>

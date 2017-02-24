@@ -1,7 +1,7 @@
-<% title "#{t('.title')} ##{@accession.id.to_s}" %>
+<% title t('.accession', id: @accession.id) %>
 
 <fieldset class="<%= @accession.reported_at.blank? %>">
-  <h1><%= t('.accession') %><%= @accession.id.to_s %></h1>
+  <h1><%= t('.accession', id: @accession.id) %></h1>
 
   <%= practitioner @accession.doctor %>
   <% if @accession.doctor && @accession.doctor.email.present? %>
@@ -56,7 +56,7 @@
     <% if @accession.reported_at %>
       <%= link_to t('.change_results'), edit_results_accession_url(@accession) %> |
       <% if @accession.patient.email.present? %>
-        <%= link_to t('.email_report'), email_accession_path(@accession),
+        <%= link_to t('.email_report'), email_patient_accession_path(@accession),
           data: { confirm: t('.confirm_email', email: @patient.email),
                   disable_with: t('.sending_email') },
           method: :put,

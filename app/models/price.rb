@@ -1,7 +1,7 @@
 class Price < ApplicationRecord
   # Consider caching this model
 
-  belongs_to :price_list, inverse_of: :prices
+  belongs_to :price_list
   belongs_to :priceable, polymorphic: true
 
   validates :amount, numericality: { greater_than_or_equal_to: 0.00 }

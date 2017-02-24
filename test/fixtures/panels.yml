@@ -1,0 +1,4 @@
+panel:
+  name: Panel
+  code: PANEL
+  lab_tests: bun, chol

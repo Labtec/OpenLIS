@@ -159,8 +159,7 @@ es-PA:
     new:
       title: "Nueva Petición"
     show:
-      title: "Solicitud"
-      accession: "Solicitud #"
+      accession: "Solicitud #%{id}"
       doctor: "Doctor: "
       walk_in: "Ambulatorio"
       drawn_at: "Recolectado el: "
@@ -177,8 +176,8 @@ es-PA:
       notes: "Observaciones:"
       confirm_email: "¿Desea enviar los resultados a %{email}?"
     form:
+      accession: "Solicitud #%{id}"
       order_details: "Detalles de la Petición"
-      accession: "Solicitud #"
       doctor: "Doctor que ordena:"
       walk_in: "Dejar en blanco si es ambulatorio"
       icd9: "Códigos de Diagnóstico:"
@@ -204,7 +203,7 @@ es-PA:
       recent_patients: "Pacientes Recientes"
     edit_results:
       title: "Ingresar Resultados"
-      accession: "Solicitud #"
+      accession: "Solicitud #%{id}"
       doctor: "Doctor: "
       walk_in: "Ambulatorio"
       drawn_at: "Recolectado el: "
@@ -215,7 +214,7 @@ es-PA:
       or: "o"
       cancel: "Cancelar"
     accession:
-      accession: "Solicitud"
+      accession: "Solicitud #%{id}"
       reported_at: "Reportado el: "
       by: "por: "
       ordered_by: "Ordenado por: "
@@ -288,18 +287,16 @@ es-PA:
       email: "Correo Electrónico:"
       recent_patients: "Pacientes Recientes"
 
-  doctors_mailer:
-    email:
-      body: "Hemos adjuntado los resultados de los exámenes de %{full_name}."
-    subject: "Resultados de %{full_name}"
-
   results_mailer:
-    email:
-      body: Hemos adjuntado los resultados de sus exámenes.
+    email_patient:
+      subject: Resultados de Exámenes
       opening_M: "Estimado %{full_name}:"
       opening_F: "Estimada %{full_name}:"
       opening_U: "Estimado(a) %{full_name}:"
-    subject: Resultados de Exámenes
+      body: Hemos adjuntado los resultados de sus exámenes.
+    email_doctor:
+      subject: "Resultados de %{full_name}"
+      body: "Hemos adjuntado los resultados de los exámenes de %{full_name}."
 
   flash:
     login:

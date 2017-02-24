@@ -1,5 +1,5 @@
 class Unit < ApplicationRecord
-  has_many :lab_tests, inverse_of: :unit
+  has_many :lab_tests
 
   validates :name, presence: true, uniqueness: true
 
