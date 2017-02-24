@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EmailValidatorTest < ActiveModel::TestCase
+class EmailValidatorTest < ActiveSupport::TestCase
   test 'valid email format' do
     p = patients(:john)
 
