@@ -121,7 +121,7 @@ class AccessionsController < ApplicationController
 
     pdf = LabReport.new(@patient, @accession, @results, view_context)
 
-    if true # @accession.doctor.email.present?
+    if @accession.doctor.email.present?
       DoctorsMailer.email(@accession, pdf).deliver_now
       redirect_to accession_url(@accession), notice: t('flash.accession.email_success')
     else
