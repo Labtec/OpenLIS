@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.0
--- Dumped by pg_dump version 9.6.0
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1031,6 +1031,12 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20140911171632'), ('20141003113152'), ('20150116215039'), ('20150116215040'), ('20161016173522'), ('20161016181514');
+INSERT INTO "schema_migrations" (version) VALUES
+('20140911171632'),
+('20141003113152'),
+('20150116215039'),
+('20150116215040'),
+('20161016173522'),
+('20161016181514');
 
 
