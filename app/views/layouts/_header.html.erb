@@ -1,10 +1,7 @@
 <div id="header">
   <div id="welcome">
     <% if current_user %>
-      <span><%= current_user_name %></span>
-      <span>&nbsp;&nbsp;</span>
-
-      <%= link_to t('.profile'), profile_path %> |
+      <%= link_to current_username, profile_path %> |
       <% if current_user.admin? %>
         <%= link_to t('.admin'), admin_path %> |
       <% end %>

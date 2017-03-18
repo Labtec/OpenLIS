@@ -7,4 +7,8 @@ module UsersHelper
       [full_name, current_user.suffix].join(', ').squish
     end
   end
+
+  def current_username
+    current_user.username
+  end
 end
