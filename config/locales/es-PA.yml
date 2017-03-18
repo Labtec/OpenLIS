@@ -32,7 +32,6 @@ es-PA:
   layouts:
     header:
       quick_find: "Búsqueda rápida"
-      profile: "Perfil"
       admin: "Admin"
       logout: "Salir"
     tabs:

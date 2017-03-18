@@ -32,7 +32,6 @@ en:
   layouts:
     header:
       quick_find: "Quick find"
-      profile: "Profile"
       admin: "Admin"
       logout: "Logout"
     tabs:

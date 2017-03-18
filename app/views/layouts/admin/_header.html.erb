@@ -1,9 +1,6 @@
 <div id="header">
   <div id="welcome">
-    <span><%= current_user_name %></span>
-    <span>&nbsp;&nbsp;</span>
-
-    <%= link_to "Profile", profile_path %> |
+    <%= link_to current_username, profile_path %> |
     <%= link_to "Back to OpenLIS", root_path %> |
     <%= link_to "Logout", destroy_user_session_path, method: :delete %>
   </div>
