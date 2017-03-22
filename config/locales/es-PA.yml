@@ -143,6 +143,7 @@ es-PA:
       email: "Correo Electrónico:"
       edit: "Editar"
       delete: "Borrar"
+      delete?: "¿Borrar?"
       confirm_destroy: "¿Está seguro?"
     card:
       address: "Dirección:"
