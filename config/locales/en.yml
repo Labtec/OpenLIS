@@ -143,6 +143,7 @@ en:
       email: "Email:"
       edit: "Edit"
       delete: "Delete"
+      delete?: "Delete?"
       confirm_destroy: "Are you sure?"
     card:
       address: "Address:"
