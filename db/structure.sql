@@ -879,6 +879,20 @@ CREATE INDEX index_lab_test_panels_on_lab_test_id_and_panel_id ON lab_test_panel
 
 
 --
+-- Name: index_lab_test_value_option_joints_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lab_test_value_option_joints_on_lab_test_id ON lab_test_value_option_joints USING btree (lab_test_id);
+
+
+--
+-- Name: index_lab_test_value_option_joints_on_lab_test_value_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lab_test_value_option_joints_on_lab_test_value_id ON lab_test_value_option_joints USING btree (lab_test_value_id);
+
+
+--
 -- Name: index_lab_tests_on_code; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -904,6 +918,13 @@ CREATE INDEX index_lab_tests_on_position ON lab_tests USING btree ("position");
 --
 
 CREATE INDEX index_lab_tests_on_unit_id ON lab_tests USING btree (unit_id);
+
+
+--
+-- Name: index_notes_on_department_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_notes_on_department_id ON notes USING btree (department_id);
 
 
 --
@@ -1037,6 +1058,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20150116215039'),
 ('20150116215040'),
 ('20161016173522'),
-('20161016181514');
+('20161016181514'),
+('20170507064755');
 
 
