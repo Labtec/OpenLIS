@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  rescue_from ActionController::RoutingError, with: :not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+
   before_action :set_user_language
   before_action :authenticate_user!
   before_action :set_active_tab
@@ -44,5 +48,13 @@ class ApplicationController < ActionController::Base
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(_resource_or_scope)
     new_user_session_path
+  end
+
+  def not_found
+    respond_with_error(404)
+  end
+
+  def unprocessable_entity
+    respond_with_error(422)
   end
 end
