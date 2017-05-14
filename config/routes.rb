@@ -62,4 +62,9 @@ Rails.application.routes.draw do
     end
     resources :prices
   end
+
+  match '*unmatched_route',
+    via: :all,
+    to: 'application#raise_not_found',
+    format: false
 end
