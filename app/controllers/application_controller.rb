@@ -6,9 +6,13 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
 
   before_action :set_user_language
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :raise_not_found
   before_action :set_active_tab
   before_action :set_variant
+
+  def raise_not_found
+    raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
+  end
 
   def set_user_language
     if current_user
@@ -56,5 +60,16 @@ class ApplicationController < ActionController::Base
 
   def unprocessable_entity
     respond_with_error(422)
+  end
+
+  def respond_with_error(code)
+    respond_to do |format|
+      format.any { head code }
+      format.html do
+        # set_user_language
+        render "/#{code}.html", status: code
+        render file: "#{Rails.root}/public/#{code}.html" , status: code
+      end
+    end
   end
 end
