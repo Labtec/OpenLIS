@@ -11,7 +11,7 @@ class AccessionTest < ActiveSupport::TestCase
       drawn_at: Time.current,
       drawer: user,
       received_at: Time.current,
-      receiver_id: user,
+      receiver: user,
       lab_test_ids: [lab_test.id]
     )
 
