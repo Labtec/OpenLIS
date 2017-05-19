@@ -1,4 +1,1 @@
-<%= t(".opening_#{@accession.patient.gender}",
-      full_name: full_name(@accession.patient)) %>
-
-<%= t('.body') %>
+<%= t('.body', full_name: full_name(@accession.patient)) %>
