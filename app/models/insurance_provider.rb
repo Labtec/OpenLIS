@@ -1,8 +1,8 @@
 class InsuranceProvider < ApplicationRecord
-  belongs_to :price_list, inverse_of: :insurance_providers
+  belongs_to :price_list
 
-  has_many :claims, inverse_of: :insurance_provider
-  has_many :patients, inverse_of: :insurance_provider
+  has_many :claims
+  has_many :patients
   has_many :accessions, through: :patients
   has_many :prices, through: :price_list
 

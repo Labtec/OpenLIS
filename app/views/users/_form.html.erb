@@ -1,5 +1,5 @@
 <fieldset>
-<%= form_for @user, html: { novalidate: '' } do |f| %>
+<%= form_with(model: @user, local: true, html: { novalidate: '' }) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
   <div class="username">

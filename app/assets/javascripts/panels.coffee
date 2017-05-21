@@ -27,5 +27,5 @@ toggleLabTests = (panelId, newAccession) ->
       $('#accession_lab_test_ids_' + labTestId).prop 'disabled', false
       if newAccession
         $('#accession_lab_test_ids_' + labTestId).prop 'checked', false
-  $('#form').submit ->
+  $('form').submit ->
     $('input').removeAttr 'disabled'

@@ -1,4 +1,4 @@
-<%= form_for [:admin, @reference_range] do |f| %>
+<%= form_with(model: [:admin, @reference_range], local: true) do |f| %>
   <%= render 'shared/error_messages', object: @reference_range %>
 
   <div class="lab_test_id">

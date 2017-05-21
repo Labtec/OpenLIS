@@ -1,6 +1,6 @@
 class Department < ApplicationRecord
-  has_many :lab_tests, inverse_of: :department, dependent: :destroy
-  has_many :notes, inverse_of: :department, dependent: :destroy
+  has_many :lab_tests, dependent: :destroy
+  has_many :notes, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
 

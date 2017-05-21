@@ -99,7 +99,7 @@ class AccessionsController < ApplicationController
     end
   end
 
-  def email
+  def email_patient
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
     @results = @accession.results.includes({ accession: { notes: [:department] } }, { lab_test: [:department] }, :lab_test_value, :reference_ranges, :unit).order('lab_tests.position').group_by(&:department)
@@ -107,7 +107,7 @@ class AccessionsController < ApplicationController
     pdf = LabReport.new(@patient, @accession, @results, view_context)
 
     if @patient.email.present?
-      ResultsMailer.email(@accession, pdf).deliver_now
+      ResultsMailer.email_patient(@accession, pdf).deliver_now
       redirect_to accession_url(@accession), notice: t('flash.accession.email_success')
     else
       redirect_to accession_url(@accession), error: t('flash.accession.email_error')
@@ -122,7 +122,7 @@ class AccessionsController < ApplicationController
     pdf = LabReport.new(@patient, @accession, @results, view_context)
 
     if @accession.doctor.email.present?
-      DoctorsMailer.email(@accession, pdf).deliver_now
+      ResultsMailer.email_doctor(@accession, pdf).deliver_now
       redirect_to accession_url(@accession), notice: t('flash.accession.email_success')
     else
       redirect_to accession_url(@accession), error: t('flash.accession.email_error')

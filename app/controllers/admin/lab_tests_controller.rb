@@ -47,7 +47,7 @@ module Admin
       params[:lab_test].each_with_index do |id, index|
         LabTest.where(id: id).update_all(position: index + 1)
       end
-      render nothing: true
+      head :ok
     end
 
     private

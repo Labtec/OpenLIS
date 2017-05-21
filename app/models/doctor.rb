@@ -1,5 +1,5 @@
 class Doctor < ApplicationRecord
-  has_many :accessions, inverse_of: :doctor, dependent: :nullify
+  has_many :accessions, dependent: :nullify
 
   validates :email, email: true, allow_blank: true
   validates :name,

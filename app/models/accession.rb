@@ -1,17 +1,17 @@
 class Accession < ApplicationRecord
-  belongs_to :patient, required: true, inverse_of: :accessions
-  belongs_to :doctor, counter_cache: true , inverse_of: :accessions
+  belongs_to :patient
+  belongs_to :doctor, counter_cache: true, optional: true
   belongs_to :receiver, inverse_of: :accessions, class_name: 'User'
   belongs_to :drawer, inverse_of: :accessions, class_name: 'User'
-  belongs_to :reporter, inverse_of: :accessions, class_name: 'User'
+  belongs_to :reporter, optional: true, inverse_of: :accessions, class_name: 'User'
 
-  has_many :results, inverse_of: :accession, dependent: :destroy
+  has_many :results, dependent: :destroy
   has_many :lab_tests, through: :results
-  has_many :accession_panels, inverse_of: :accession, dependent: :destroy
+  has_many :accession_panels, dependent: :destroy
   has_many :panels, through: :accession_panels
   has_many :notes, as: :noticeable
 
-  has_one :claim, inverse_of: :accession, dependent: :destroy
+  has_one :claim, dependent: :destroy
   has_one :insurance_provider, through: :patient
 
   delegate :birthdate, to: :patient, prefix: true

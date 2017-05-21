@@ -1,6 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.0.3'
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+gem 'rails', '5.1.1'
 
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
@@ -24,7 +29,9 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
@@ -44,7 +51,6 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
   gem 'shoulda-context'
   gem 'shoulda-matchers'
 end
