@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="<%= set_user_language %>">
+<html lang="<%= set_user_language %>" prefix="og: http://ogp.me/ns#">
 <head>
+<title><%= t('.title') %></title>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<meta property="og:image" content="apple-touch-icon.png" />
-<title><%= t('.title') %></title>
+<meta property="og:title" content="OpenLIS">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= request.original_url %>">
+<meta property="og:image" content="<%= request.base_url + '/apple-touch-icon.png' %>">
 <%= stylesheet_link_tag 'login', media: 'all' %>
 <%= javascript_include_tag 'login' %>
 <link rel="mask-icon" href="pinned-masterlab.svg" color="#993399">
