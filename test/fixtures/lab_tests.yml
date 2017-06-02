@@ -7,3 +7,9 @@ chol:
   department: chemistry
   name: Cholesterol
   code: CHOL
+
+range:
+  department: chemistry
+  range: true
+  name: Range
+  code: RANGE

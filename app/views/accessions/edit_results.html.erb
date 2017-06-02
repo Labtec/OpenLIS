@@ -29,7 +29,7 @@
   <%= form_with(model: @accession, local: true, html: { novalidate: '' }) do |a| %>
     <%= render 'shared/error_messages', object: @accession %>
 
-    <% @results.each do |department, results| %>
+    <% @accession.results.group_by(&:department).each do |department, results| %>
       <h2><%= department.name %></h2>
 
       <% reset_cycle('alternating_row_colors') %>

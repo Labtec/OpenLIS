@@ -17,23 +17,9 @@ class Result < ApplicationRecord
   delegate :name, to: :lab_test, prefix: true
   delegate :name, to: :unit, prefix: true, allow_nil: true
 
-  validates_format_of :value,
-    message: I18n.t('flash.results.range'),
-    allow_blank: true,
-    with: /\A((<|>)|(\d+)(-))(\d+)\Z/,
-    if: :range?
-
-  validates_format_of :value,
-    message: I18n.t('flash.results.fraction'),
-    allow_blank: true,
-    with: /\A(\d+)\/(\d+)\Z/,
-    if: :fraction?
-
-  validates_format_of :value,
-    message: I18n.t('flash.results.ratio'),
-    allow_blank: true,
-    with: /\A(\d+):(\d+)\Z/,
-    if: :ratio?
+  validates :value, range: true, allow_blank: true, if: :range?
+  validates :value, fraction: true, allow_blank: true, if: :fraction?
+  validates :value, ratio: true, allow_blank: true, if: :ratio?
 
   def range?
     lab_test.range?
