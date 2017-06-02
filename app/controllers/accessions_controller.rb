@@ -77,10 +77,10 @@ class AccessionsController < ApplicationController
   def edit_results
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
-    @results = @accession.results.includes({ accession: { notes: [:department] } }, { lab_test: [:department] }, :lab_test_value, :reference_ranges, :unit).order('lab_tests.position').group_by(&:department)
+    results = @accession.results.includes({ accession: { notes: [:department] } }, { lab_test: [:department] }, :lab_test_value, :reference_ranges, :unit).order('lab_tests.position').group_by(&:department)
     # TODO: Missing per department blank validation.
     # It will only check first
-    @results.each do |department, _result|
+    results.each do |department, _result|
       @accession.notes.build(department_id: department.id) unless @accession.try(:notes).find_by_department_id(department.id)
     end
     $update_action = 'edit_results'
