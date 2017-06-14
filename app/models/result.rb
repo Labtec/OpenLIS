@@ -43,6 +43,13 @@ class Result < ApplicationRecord
       tp = result_for 'TP'
       alb = result_for 'ALB'
       tp - alb
+    when 'ALBGLO'
+      alb = result_for 'ALB'
+      a1_glo = result_for 'A1-GLO'
+      a2_glo = result_for 'A2-GLO'
+      b_glo = result_for 'B-GLO'
+      g_glo = result_for 'G-GLO'
+      alb / (a1_glo + a2_glo + b_glo + g_glo)
     when 'IBIL'
       tbil = result_for 'TBIL'
       dbil = result_for 'DBIL'
