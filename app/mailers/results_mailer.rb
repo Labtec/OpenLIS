@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResultsMailer < ApplicationMailer
   def email_doctor(accession, pdf)
     @accession = accession

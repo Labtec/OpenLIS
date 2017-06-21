@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Calculates the age of a person at any given time.
 # If no time is given, +Time.current+ is used.
 class AgeCalculator

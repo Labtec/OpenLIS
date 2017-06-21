@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UsersHelper
   def current_user_name
     full_name = [current_user.prefix, current_user.first_name, current_user.last_name].join(' ').squish

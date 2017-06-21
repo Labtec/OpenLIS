@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Panel < ApplicationRecord
   has_many :lab_test_panels
   has_many :lab_tests, through: :lab_test_panels

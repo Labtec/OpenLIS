@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ClaimPreview < Prawn::Document
   def initialize(claim, view_context)
     @claim = claim

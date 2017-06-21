@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validates ratio result format
 class RatioValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)

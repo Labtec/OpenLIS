@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReferenceRange < ApplicationRecord
   # Consider caching this model
 

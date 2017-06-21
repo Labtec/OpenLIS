@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Accession < ApplicationRecord
   belongs_to :patient
   belongs_to :doctor, counter_cache: true, optional: true

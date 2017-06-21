@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Claim < ApplicationRecord
   belongs_to :accession, -> { includes :patient }
   belongs_to :insurance_provider

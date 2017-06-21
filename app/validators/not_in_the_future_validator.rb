@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validates a date or time is not in the future
 class NotInTheFutureValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Result < ApplicationRecord
   RANGE_SYMBOLS = [RANGE_SYMBOL_RANGE = '–', RANGE_SYMBOL_LT = '<', RANGE_SYMBOL_GE = '≥']
 

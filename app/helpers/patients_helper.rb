@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PatientsHelper
   def animal_species_name(species)
     case species

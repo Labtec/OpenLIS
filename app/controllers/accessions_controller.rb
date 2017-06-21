@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AccessionsController < ApplicationController
   before_action :set_recent_patients_list, except: [:destroy]
 

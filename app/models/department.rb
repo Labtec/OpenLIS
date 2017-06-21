@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Department < ApplicationRecord
   has_many :lab_tests, dependent: :destroy
   has_many :notes, dependent: :destroy

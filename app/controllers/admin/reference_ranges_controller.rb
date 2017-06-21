@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class ReferenceRangesController < BaseController
     def index

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ResultsHelper
   def doctor_name(doctor)
     if doctor

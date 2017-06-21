@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :doctors do
   desc 'Counter cache for doctor has many accessions'
 

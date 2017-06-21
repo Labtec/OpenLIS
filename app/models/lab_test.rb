@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LabTest < ApplicationRecord
   belongs_to :department
   belongs_to :unit, optional: true

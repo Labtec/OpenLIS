@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validates fraction result format
 class FractionValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
