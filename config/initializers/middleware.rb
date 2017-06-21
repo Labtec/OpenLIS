@@ -1,1 +1,1 @@
-  Rails.application.config.middleware.delete Rack::Runtime
+Rails.application.config.middleware.delete Rack::Runtime

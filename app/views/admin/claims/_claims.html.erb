@@ -10,8 +10,8 @@
     </tr>
     <% @claims.each do |claim| %>
     <tr>
-      <td><%= check_box_tag 'claim_ids[]', claim.id %></td>
-      <td><%= name_last_comma_first_mi(claim.patient) %></td>
+      <td><%= check_box_tag 'claim_ids[]', claim.id, false, id: "claim_id_#{claim.id}" %></td>
+      <td><%= label_tag "claim_id_#{claim.id}", name_last_comma_first_mi(claim.patient) %></td>
       <td><%= claim.accession_id %></td>
       <td><%= claim.external_number %></td>
       <td><%= claim.number %></td>
