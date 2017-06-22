@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class EmailValidatorTest < ActiveSupport::TestCase
@@ -7,9 +9,9 @@ class EmailValidatorTest < ActiveSupport::TestCase
     p.email = 'username@invalid'
     assert p.invalid?, 'Email should be invalid'
     assert p.errors[:email].any?,
-      'A patient with an invalid email should contain an error'
+           'A patient with an invalid email should contain an error'
     assert_equal ['is invalid'], p.errors['email'],
-      'An invalid email error message is expected'
+                 'An invalid email error message is expected'
 
     p.email = 'username@example.com'
     assert p.valid?, 'Email should be valid'

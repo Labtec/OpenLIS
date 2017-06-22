@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class AccessionTest < ActiveSupport::TestCase
-
   test 'insured patient order' do
     patient = patients(:insured)
     lab_test = LabTest.last
