@@ -12,12 +12,12 @@ class Claim < ApplicationRecord
   default_scope { order(external_number: :asc) }
 
   scope :submitted, -> { where.not(claimed_at: nil) }
-  scope :recent, -> { where('claimed_at > :grace_period', { grace_period: 5.months.ago }) }
+  scope :recent, -> { where('claimed_at > :grace_period', grace_period: 5.months.ago) }
 
   def insured_name
     patient.try(:policy_number) =~ /(\d+)-(\d+)/
-    if $1 && $2
-      Patient.find_by_policy_number($1) || patient
+    if Regexp.last_match(1) && Regexp.last_match(2)
+      Patient.find_by(policy_number: Regexp.last_match(1)) || patient
     else
       patient
     end
@@ -25,8 +25,8 @@ class Claim < ApplicationRecord
 
   def insured_policy_number
     patient.try(:policy_number) =~ /(\d+)-(\d+)/
-    if $1 && $2
-      Patient.find_by_policy_number($1).try(:policy_number) || patient.policy_number
+    if Regexp.last_match(1) && Regexp.last_match(2)
+      Patient.find_by(policy_number: Regexp.last_match(1)).try(:policy_number) || patient.policy_number
     else
       patient.policy_number || 'pend.'
     end

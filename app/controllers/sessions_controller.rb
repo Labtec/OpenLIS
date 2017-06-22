@@ -16,8 +16,8 @@ class SessionsController < Devise::SessionsController
   def create
     super
     flash[:notice] = t('flash.login.hello') + current_user.first_name + '!' +
-      t('flash.login.last_login_at') +
-      view_context.time_ago_in_words(current_user.last_sign_in_at)
+                     t('flash.login.last_login_at') +
+                     view_context.time_ago_in_words(current_user.last_sign_in_at)
   end
 
   def destroy

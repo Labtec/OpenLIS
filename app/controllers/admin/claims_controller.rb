@@ -44,7 +44,7 @@ module Admin
       @claim = Claim.find(params[:id])
       if @claim.update_attributes(claim_params)
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
-          notice: 'Successfully updated claim.'
+                    notice: 'Successfully updated claim.'
       else
         render action: 'edit'
       end
@@ -55,10 +55,10 @@ module Admin
       if @claim.valid_submission?
         @claim.update_attributes(claimed_at: Time.current)
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
-          notice: 'Successfully submitted claim.'
+                    notice: 'Successfully submitted claim.'
       else
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
-          alert: t('.submit_alert')
+                    alert: t('.submit_alert')
       end
     end
 

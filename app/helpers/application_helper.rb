@@ -13,13 +13,13 @@ module ApplicationHelper
   def navigation(*links)
     items = []
     links.each do |link|
-      if controller.controller_name.to_sym == link[0] || "admin_#{controller.controller_name}".to_sym == link[0]
-        items << content_tag(:li, link_to("#{link[1]}", link[0]), class: 'active')
-      else
-        items << content_tag(:li, link_to("#{link[1]}", link[0]))
-      end
+      items << if controller.controller_name.to_sym == link[0] || "admin_#{controller.controller_name}".to_sym == link[0]
+                 content_tag(:li, link_to((link[1]).to_s, link[0]), class: 'active')
+               else
+                 content_tag(:li, link_to((link[1]).to_s, link[0]))
+               end
     end
-    if "#{controller.controller_name}" == 'claims'
+    if controller.controller_name.to_s == 'claims'
       items.delete_at(2)
       items.insert(2, content_tag(:li, link_to(t('.insurance_providers'), :admin_insurance_providers), class: 'active'))
     end

@@ -19,8 +19,8 @@ class LabTest < ApplicationRecord
   accepts_nested_attributes_for :prices, allow_destroy: true
 
   validates :code,
-    presence: true,
-    uniqueness: true
+            presence: true,
+            uniqueness: true
   validates :department, presence: true
   validates :name, presence: true
 
@@ -64,14 +64,13 @@ class LabTest < ApplicationRecord
   end
 
   def also_allow
-    case
-    when also_numeric? && !ratio? && !range? && !fraction?
+    if also_numeric? && !ratio? && !range? && !fraction?
       :also_numeric
-    when !also_numeric? && ratio? && !range? && !fraction?
+    elsif !also_numeric? && ratio? && !range? && !fraction?
       :ratio
-    when !also_numeric? && !ratio? && range? && !fraction?
+    elsif !also_numeric? && !ratio? && range? && !fraction?
       :range
-    when !also_numeric? && !ratio? && !range? && fraction?
+    elsif !also_numeric? && !ratio? && !range? && fraction?
       :fraction
     else
       :none

@@ -4,11 +4,11 @@ module Admin
   class PricesController < BaseController
     def index
       @priceable = find_priceable
-      if @priceable
-        @prices = @priceable.prices
-      else
-        @prices = Price.all
-      end
+      @prices = if @priceable
+                  @priceable.prices
+                else
+                  Price.all
+                end
 
       pdf = LabPriceList.new(@priceable, @prices, view_context)
       send_data(pdf.render, filename: 'lista_de_precios.pdf',
@@ -61,9 +61,7 @@ module Admin
 
     def find_priceable
       params.each do |name, value|
-        if name =~ /(.+)_id$/
-          return $1.classify.constantize.find(value)
-        end
+        return Regexp.last_match(1).classify.constantize.find(value) if name.match(/(.+)_id$/)
       end
       nil
     end

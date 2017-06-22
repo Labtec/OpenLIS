@@ -3,7 +3,6 @@
 # Calculates the age of a person at any given time.
 # If no time is given, +Time.current+ is used.
 class AgeCalculator
-
   def initialize(from_date, to_date = Time.current)
     @from_date = from_date.in_time_zone if from_date.respond_to?(:in_time_zone)
     @to_date = to_date.in_time_zone if to_date.respond_to?(:in_time_zone)
@@ -37,8 +36,10 @@ class AgeCalculator
   #
   # A hash with the age remainders for different time units.
   def remainders
-    fd, fm = @from_date.day, @from_date.month
-    td, tm = @to_date.day, @to_date.month
+    fd = @from_date.day
+    fm = @from_date.month
+    td = @to_date.day
+    tm = @to_date.month
     remainders = {}
 
     # weeks
@@ -67,13 +68,13 @@ class AgeCalculator
       last_year_months = 12 - fm
       year_remainder = last_year_months + tm
     elsif fm == tm
-      if fd == 29 && fm == 2 && td == 28 && tm == 2 && !leap_year?
-        year_remainder = 0
-      elsif fd > td
-        year_remainder = 11
-      else
-        year_remainder = 0
-      end
+      year_remainder = if fd == 29 && fm == 2 && td == 28 && tm == 2 && !leap_year?
+                         0
+                       elsif fd > td
+                         11
+                       else
+                         0
+                       end
     else
       year_remainder = tm - fm
     end

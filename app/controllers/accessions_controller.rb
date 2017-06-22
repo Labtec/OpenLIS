@@ -4,7 +4,7 @@ class AccessionsController < ApplicationController
   before_action :set_recent_patients_list, except: [:destroy]
 
   def index
-    @pending_accessions = Accession.includes(:drawer, :patient, results: [:lab_test, :lab_test_value]).queued.pending.page(params[:pending_page])
+    @pending_accessions = Accession.includes(:drawer, :patient, results: %i[lab_test lab_test_value]).queued.pending.page(params[:pending_page])
     @reported_accessions = Accession.includes(:patient, :reporter).recently.reported.page(params[:page])
   end
 
@@ -83,7 +83,7 @@ class AccessionsController < ApplicationController
     # TODO: Missing per department blank validation.
     # It will only check first
     results.each do |department, _result|
-      @accession.notes.build(department_id: department.id) unless @accession.try(:notes).find_by_department_id(department.id)
+      @accession.notes.build(department_id: department.id) unless @accession.try(:notes).find_by(department_id: department.id)
     end
     $update_action = 'edit_results'
   end
@@ -140,6 +140,6 @@ class AccessionsController < ApplicationController
   private
 
   def accession_params
-    params.require(:accession).permit(:drawn_at, :drawer_id, :received_at, :receiver_id, :doctor_name, :icd9, { lab_test_ids: [] }, :reporter_id, :reported_at, { results_attributes: [:id, :lab_test_id, :lab_test_value_id, :value] }, { panel_ids: [] }, { notes_attributes: [:id, :content, :department_id] })
+    params.require(:accession).permit(:drawn_at, :drawer_id, :received_at, :receiver_id, :doctor_name, :icd9, { lab_test_ids: [] }, :reporter_id, :reported_at, { results_attributes: %i[id lab_test_id lab_test_value_id value] }, { panel_ids: [] }, notes_attributes: %i[id content department_id])
   end
 end

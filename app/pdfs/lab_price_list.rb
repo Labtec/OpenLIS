@@ -3,21 +3,20 @@
 require_relative 'images/logo'
 
 class LabPriceList < Prawn::Document
-
   def initialize(priceable, prices, view_context)
     @priceable = priceable
     @prices = prices
     @view = view_context
 
     super(
-      :info => {
-        :Title => "Lista de Precios",
-        :Author => "MasterLab—Laboratorio Clínico Especializado",
-        :Subject => "",
-        :Producer => "MasterLab",
-        :Creator => "MasterLab",
-        :CreationDate => Time.current,
-        :Keywords => "precio lista prueba laboratorio"
+      info: {
+        Title: 'Lista de Precios',
+        Author: 'MasterLab—Laboratorio Clínico Especializado',
+        Subject: '',
+        Producer: 'MasterLab',
+        Creator: 'MasterLab',
+        CreationDate: Time.current,
+        Keywords: 'precio lista prueba laboratorio'
       },
       inline: true,
       # Letter (8.5 x 11 in) is 612 x 792
@@ -146,9 +145,9 @@ class LabPriceList < Prawn::Document
         end
 
         move_down 25
-        text "Lista de Precios", :align => :center, :size => 10, :style => :bold
+        text 'Lista de Precios', align: :center, size: 10, style: :bold
         if @priceable
-          text @priceable.name, :align => :center, :size => 10, :style => :bold
+          text @priceable.name, align: :center, size: 10, style: :bold
         end
 
         move_down 5
@@ -157,36 +156,35 @@ class LabPriceList < Prawn::Document
       end
     end
 
-    column_box [0, cursor], :width => bounds.width, :columns => 2 do
+    column_box [0, cursor], width: bounds.width, columns: 2 do
+      # Prices Table
+      prices_table = [['Prueba', 'CPT', 'Precio (B/.)']]
+      @prices.map do |price|
+        prices_table += [[
+          price.priceable.name,
+          price.priceable.procedure,
+          @view.number_with_precision(price.amount, precision: 2)
+        ]]
+      end
 
-    # Prices Table
-      prices_table = [["Prueba", "CPT", "Precio (B/.)"]]
-    @prices.map do |price|
-      prices_table += [[
-        price.priceable.name,
-        price.priceable.procedure,
-        @view.number_with_precision(price.amount, precision: 2)
-      ]]
-    end
-
-    table prices_table,
-      :header => true,
-      # :position => :center, # This breaks the column layout
-      :column_widths => { 0 => name_width, 1 => procedure_width, 2 => price_width },
-      :row_colors => [colors[:white], colors[:gray]],
-      :cell_style => { :inline_format => true } do |t|
+      table prices_table,
+            header: true,
+            # :position => :center, # This breaks the column layout
+            column_widths: { 0 => name_width, 1 => procedure_width, 2 => price_width },
+            row_colors: [colors[:white], colors[:gray]],
+            cell_style: { inline_format: true } do |t|
         t.cells.borders = []
         t.cells.height = row_height
         t.cells.padding = table_padding
-        t.column(0).style :align => :left
-        t.column(1).style :align => :center
-        t.column(2).style :align => :right
+        t.column(0).style align: :left
+        t.column(1).style align: :center
+        t.column(2).style align: :right
         t.before_rendering_page do |page|
           page.row(0).border_top_color = colors[:black]
           page.row(0).border_top_width = 1
           page.row(0).border_bottom_color = colors[:black]
           page.row(0).border_bottom_width = 0.5
-          page.row(0).borders = [:top, :bottom]
+          page.row(0).borders = %i[top bottom]
           page.row(0).font_style = :bold
           page.row(-1).border_bottom_color = colors[:black]
           page.row(-1).border_bottom_width = 1
