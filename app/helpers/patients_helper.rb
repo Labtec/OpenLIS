@@ -114,7 +114,7 @@ module PatientsHelper
   end
 
   # Returns a human-readable age string.
-  def age(birth_date, service_date = Time.now)
+  def age(birth_date, service_date = Time.current)
     age = age_hash(birth_date, service_date)
 
     years = t('patients.year', count: age[:years]) if age[:years]
