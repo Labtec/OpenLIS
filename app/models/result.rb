@@ -207,13 +207,13 @@ class Result < ApplicationRecord
     elsif lab_test.also_numeric?
       check_reference_range(value.to_f)
     elsif lab_test.range?
-      value =~ /\A((<|>)|(\d+)(-))(\d+)\Z/
+      value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
       check_reference_range([Regexp.last_match(3), Regexp.last_match(5)].map(&:to_i).try(:max))
     elsif lab_test.fraction?
-      value =~ /\A(\d+)\/(\d+)\Z/
+      value =~ %r{\A(\d+)\/(\d+)\z}
       check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
     elsif lab_test.ratio?
-      value =~ /\A(\d+):(\d+)\Z/
+      value =~ /\A(\d+):(\d+)\z/
       check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
     end
   end
