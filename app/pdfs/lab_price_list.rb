@@ -67,50 +67,50 @@ class LabPriceList < Prawn::Document
 
     ##
     # Constants
-    half_inch = 36
-    one_inch = half_inch * 2
-    min_hp_print = 17
-    safe_print = half_inch
-    fold = page.dimensions[3] / 3
+    # half_inch = 36
+    # one_inch = half_inch * 2
+    # min_hp_print = 17
+    # safe_print = half_inch
+    # fold = page.dimensions[3] / 3
     top_margin = page.margins[:top]
-    right_margin = page.margins[:right]
-    bottom_margin = page.margins[:bottom]
-    left_margin = page.margins[:left]
+    # right_margin = page.margins[:right]
+    # bottom_margin = page.margins[:bottom]
+    # left_margin = page.margins[:left]
     page_top = bounds.top + top_margin
-    page_bottom = bounds.bottom - bottom_margin
-    page_left = bounds.left - left_margin
+    # page_bottom = bounds.bottom - bottom_margin
+    # page_left = bounds.left - left_margin
 
     ##
     # Variables
     line_padding = 2
-    row_vertical_padding = 1
+    # row_vertical_padding = 1
     line_height = font_size + line_padding
     row_height = font_size + 4 + 2 # Helvetica Neue has less leading
     title_row_height = line_height * 1.5
-    page_number_height = font_size - 0.25
-    notes_padding = 7
-    notes_indent = 45
-    number_of_rows = 600 / row_height
+    # page_number_height = font_size - 0.25
+    # notes_padding = 7
+    # notes_indent = 45
+    # number_of_rows = 600 / row_height
     padding = 5
-    footer_margin_bottom = half_inch
+    # footer_margin_bottom = half_inch
     heading_padding = 5.5
     heading_indent = 20
-    footer_height = line_height * 3 + padding
+    # footer_height = line_height * 3 + padding
     logo_width = 150
     logo_height = 50
-    flash_tag_width = 80
+    # flash_tag_width = 80
     name_width = 150
     procedure_width = 50
     price_width = 50
     table_padding = 2
-    signature_spacing = line_height * 3
-    signature_line = 180
+    # signature_spacing = line_height * 3
+    # signature_line = 180
     patient_demographics_height = row_height * 3
-    window_height = 36 * 2.25
-    window_width = 36 * 9
+    # window_height = 36 * 2.25
+    # window_width = 36 * 9
     envelope_adjustment_height = 34
     header_height = logo_height + envelope_adjustment_height + patient_demographics_height + title_row_height + padding * 2.5
-    signature_block_height = signature_spacing + line_height * 2 + padding
+    # signature_block_height = signature_spacing + line_height * 2 + padding
     page.margins[:top] = header_height + top_margin
 
     ##
