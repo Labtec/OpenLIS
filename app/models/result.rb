@@ -147,16 +147,14 @@ class Result < ApplicationRecord
 
         ranges << if lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
                     [nil]
+                  elsif r.max && r.min
+                    [description, format_value(r.min), range_interval_symbol, format_value(r.max)]
+                  elsif r.max
+                    [description, nil, range_interval_symbol, format_value(r.max)]
+                  elsif r.min
+                    [description, nil, range_interval_symbol, format_value(r.min)]
                   else
-                    if r.max && r.min
-                      [description, format_value(r.min), range_interval_symbol, format_value(r.max)]
-                    elsif r.max
-                      [description, nil, range_interval_symbol, format_value(r.max)]
-                    elsif r.min
-                      [description, nil, range_interval_symbol, format_value(r.min)]
-                    else
-                      [nil]
-                    end
+                    [nil]
                   end
         ranges
       end
@@ -178,16 +176,14 @@ class Result < ApplicationRecord
 
     if lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
       [nil, nil, nil]
+    elsif @range_max && @range_min
+      [@range_min, range_interval_symbol, @range_max]
+    elsif @range_max
+      [nil, range_interval_symbol, @range_max]
+    elsif @range_min
+      [nil, range_interval_symbol, @range_min]
     else
-      if @range_max && @range_min
-        [@range_min, range_interval_symbol, @range_max]
-      elsif @range_max
-        [nil, range_interval_symbol, @range_max]
-      elsif @range_min
-        [nil, range_interval_symbol, @range_min]
-      else
-        [nil, nil, nil]
-      end
+      [nil, nil, nil]
     end
   end
 
@@ -199,8 +195,8 @@ class Result < ApplicationRecord
     elsif lab_test.derivation?
       if derived_value == 'calc.'
         nil
-      else
-        check_reference_range(derived_value) if ranges?
+      elsif ranges?
+        check_reference_range(derived_value)
       end
     elsif value.present?
       check_reference_range(value.to_f) if ranges?
