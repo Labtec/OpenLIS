@@ -15,6 +15,6 @@ class PriceTest < ActiveSupport::TestCase
   should validate_presence_of(:price_list_id)
   should validate_presence_of(:priceable_id)
   should validate_uniqueness_of(:priceable_id)
-    .scoped_to(:price_list_id)
+    .scoped_to(%i[price_list_id priceable_type])
   should validate_presence_of(:priceable_type)
 end

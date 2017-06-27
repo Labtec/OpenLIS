@@ -8,6 +8,6 @@ class Price < ApplicationRecord
 
   validates :amount, numericality: { greater_than_or_equal_to: 0.00 }
   validates :price_list_id, presence: true
-  validates :priceable_id, presence: true, uniqueness: { scope: :price_list_id }
+  validates :priceable_id, presence: true, uniqueness: { scope: %i[price_list_id priceable_type] }
   validates :priceable_type, presence: true
 end

@@ -38,7 +38,8 @@
     <legend>Prices</legend>
     <% f.object.prices.each do |price| %>
       <%= price.price_list.name %>:
-      <%= number_to_currency price.amount %><br />
+      <%= number_to_currency price.amount %>
+      <%= link_to 'Edit', edit_admin_price_path(price.id) %><br />
     <% end %>
     <p><%= link_to 'New Price', new_admin_panel_price_path(@panel) %></p>
   </fieldset>
