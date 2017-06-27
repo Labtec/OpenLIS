@@ -4,19 +4,17 @@ class ReferenceRange < ApplicationRecord
   # Consider caching this model
 
   GENDERS = [
-    # Displayed  stored in db
-    ['Both',     '*'],
-    ['Female',   'F'],
-    ['Male',     'M'],
-    ['Unknown',  'U']
+    %w[Both *],
+    %w[Female F],
+    %w[Male M],
+    %w[Unknown U]
   ].freeze
 
   AGE_UNITS = [
-    # Displayed  stored in db
-    ['Years',    'Y'],
-    ['Months',   'M'],
-    ['Weeks',    'W'],
-    ['Days',     'D']
+    %w[Years Y],
+    %w[Months M],
+    %w[Weeks W],
+    %w[Days D]
   ].freeze
 
   ANIMAL_SPECIES = (0..3).to_a
