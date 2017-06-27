@@ -61,7 +61,7 @@ module Admin
 
     def find_priceable
       params.each do |name, value|
-        return Regexp.last_match(1).classify.constantize.find(value) if name.match(/(.+)_id$/)
+        return Regexp.last_match(1).classify.constantize.find(value) if name =~ /(.+)_id$/
       end
       nil
     end
