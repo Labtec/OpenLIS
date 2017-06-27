@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PatientsHelper
   def animal_species_name(species)
     case species
@@ -58,7 +60,7 @@ module PatientsHelper
     family_name = patient.family_name
     family_name[0] = family_name[0].mb_chars.upcase
     last_comma_first = [family_name, patient.given_name].join(', ')
-    mi = (patient.middle_name[0, 1] + '.') unless patient.middle_name.blank?
+    mi = (patient.middle_name[0, 1] + '.') if patient.middle_name.present?
     [last_comma_first, mi].join(' ').squish
   end
 
@@ -72,10 +74,10 @@ module PatientsHelper
 
   def options_for_animal_species
     [
-      [ t('patients.canine'), 1 ],
-      [ t('patients.feline'), 2 ],
-      [ t('patients.equine'), 3 ],
-      [ t('patients.other'),  0 ]
+      [t('patients.canine'), 1],
+      [t('patients.feline'), 2],
+      [t('patients.equine'), 3],
+      [t('patients.other'),  0]
     ]
   end
 
@@ -98,14 +100,13 @@ module PatientsHelper
     age_in = patient_age.time_units
     remainder = patient_age.remainders
 
-    case
-    when age_in[:weeks] < 4 # < 4 weeks
+    if age_in[:weeks] < 4 # < 4 weeks
       { days: age_in[:days] }
-    when age_in[:years] < 1 # < 1 year
+    elsif age_in[:years] < 1 # < 1 year
       { weeks: age_in[:weeks], days: remainder[:weeks] }.compact
-    when age_in[:years] < 2 # < 2 years
+    elsif age_in[:years] < 2 # < 2 years
       { months: age_in[:months], days: remainder[:months] }.compact
-    when age_in[:years] < 18 # < 18 years
+    elsif age_in[:years] < 18 # < 18 years
       { years: age_in[:years], months: remainder[:years] }.compact
     else # >= 18 years
       { years: age_in[:years] }

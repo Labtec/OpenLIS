@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Accession < ApplicationRecord
   belongs_to :patient
   belongs_to :doctor, counter_cache: true, optional: true
@@ -15,6 +17,7 @@ class Accession < ApplicationRecord
   has_one :insurance_provider, through: :patient
 
   delegate :birthdate, to: :patient, prefix: true
+  delegate :name, to: :doctor, prefix: true, allow_nil: true
   delegate :external_number, to: :claim, prefix: true, allow_nil: true
   delegate :number, to: :claim, prefix: true, allow_nil: true
 
@@ -33,18 +36,17 @@ class Accession < ApplicationRecord
   scope :pending, -> { where(reported_at: nil) }
   scope :reported, -> { where.not(reported_at: nil) }
   scope :with_insurance_provider, -> { joins(:patient).where('patients.insurance_provider_id IS NOT NULL').ordered }
-  scope :within_claim_period, -> { where('drawn_at > :claim_period', { claim_period: 5.months.ago }) }
+  scope :within_claim_period, -> { where('drawn_at > :claim_period', claim_period: 5.months.ago) }
   scope :unclaimed, -> { eager_load(:claim).where('claims.claimed_at IS NULL').ordered }
 
   def result_attributes=(result_attributes)
     results.reject(&:new_record?).each do |result|
-      unless result.lab_test.derivation
-        attributes = result_attributes[result.id.to_s]
-        if attributes['_delete'] == '1'
-          results.delete(result)
-        else
-          result.attributes = attributes
-        end
+      next if result.lab_test.derivation
+      attributes = result_attributes[result.id.to_s]
+      if attributes['_delete'] == '1'
+        results.delete(result)
+      else
+        result.attributes = attributes
       end
     end
   end
@@ -62,10 +64,6 @@ class Accession < ApplicationRecord
     age_in_days = (age_in_days * 10).round / 10
 
     { days: age_in_days, weeks: age_in_weeks, months: age_in_months, years: age_in_years }
-  end
-
-  def doctor_name
-    doctor.name if doctor
   end
 
   def doctor_name=(name)
@@ -109,12 +107,12 @@ class Accession < ApplicationRecord
   end
 
   def lab_tests_list
-    panels_lab_tests_list_ids = LabTestPanel.where({ panel_id: panel_ids }).map(&:lab_test_id).uniq
+    panels_lab_tests_list_ids = LabTestPanel.where(panel_id: panel_ids).map(&:lab_test_id).uniq
     LabTest.find(lab_test_ids - panels_lab_tests_list_ids).map(&:code)
   end
 
   def result_of_test_coded_as(code)
-    results.find_by_lab_test_id(LabTest.find_by_code(code)).try(:value).try(:to_d)
+    results.find_by(lab_test_id: LabTest.find_by(code: code)).try(:value).try(:to_d)
   end
 
   def reject_notes(attributes)

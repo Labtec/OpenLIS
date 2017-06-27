@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -15,11 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user_language
-    if current_user
-      I18n.locale = current_user.language
-    else
-      I18n.locale = extract_locale_from_accept_language_header
-    end
+    I18n.locale = if current_user
+                    current_user.language
+                  else
+                    extract_locale_from_accept_language_header
+                  end
   rescue
     I18n.default_locale
   end
@@ -68,7 +70,7 @@ class ApplicationController < ActionController::Base
       format.html do
         # set_user_language
         render "/#{code}.html", status: code
-        render file: "#{Rails.root}/public/#{code}.html" , status: code
+        render file: "#{Rails.root}/public/#{code}.html", status: code
       end
     end
   end

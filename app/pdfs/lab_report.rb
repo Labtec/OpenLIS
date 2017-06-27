@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'images/logo'
 
 class LabReport < Prawn::Document
@@ -156,7 +158,7 @@ class LabReport < Prawn::Document
       ##
       # Flash tag top
       bounding_box([bounds.right - FLASH_TAG_WIDTH, page_top - HALF_INCH - line_height], width: FLASH_TAG_WIDTH, height: line_height) do
-        text "#{t('results.index.preliminary') unless @accession.reported_at}", align: :right, color: REPORT_COLORS[:red]
+        text (t('results.index.preliminary') unless @accession.reported_at).to_s, align: :right, color: REPORT_COLORS[:red]
       end
 
       ##
@@ -330,7 +332,7 @@ class LabReport < Prawn::Document
     @results.each do |department, test_results|
       department_title = make_cell content: department.name, borders: [], font_style: :bold, padding: [PADDING, 0]
       blank_fill = make_cell content: nil, borders: []
-      run_by = make_cell content: "#{[t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ') if @accession.reported_at}", font_style: :italic, size: 7.5, borders: [], align: :right
+      run_by = make_cell content: ([t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ') if @accession.reported_at).to_s, font_style: :italic, size: 7.5, borders: [], align: :right
       data = [[department_title, blank_fill, blank_fill, blank_fill, run_by]]
       test_results.each do |result|
         if result.flag.present?
@@ -374,11 +376,10 @@ class LabReport < Prawn::Document
         row(1..-1).border_width = 0.75
       end
 
-      if @accession.notes.find_by_department_id(department).try(:content).present?
-        pad NOTES_PADDING do
-          indent NOTES_INDENT do
-            text "#{t('results.index.notes')} #{@accession.notes.find_by_department_id(department).content}", color: COLORS[:purple], style: :bold_italic, inline_format: true
-          end
+      next if @accession.notes.find_by(department_id: department).try(:content).blank?
+      pad NOTES_PADDING do
+        indent NOTES_INDENT do
+          text "#{t('results.index.notes')} #{@accession.notes.find_by(department_id: department).content}", color: COLORS[:purple], style: :bold_italic, inline_format: true
         end
       end
     end
@@ -436,7 +437,7 @@ class LabReport < Prawn::Document
           pad_top PADDING do
             text "#{t('results.index.accession')} #{@accession.id}", align: :right
             text "#{t('results.index.results_of')} #{full_name(@patient)}", align: :right
-            text "#{t('results.index.preliminary') unless @accession.reported_at}", align: :right, color: REPORT_COLORS[:red]
+            text (t('results.index.preliminary') unless @accession.reported_at).to_s, align: :right, color: REPORT_COLORS[:red]
           end
         end
       end
@@ -444,7 +445,7 @@ class LabReport < Prawn::Document
 
     ##
     # Page number
-    number_pages "#{t('results.index.page')} <page> #{t('results.index.of')} <total>", { at: [bounds.left, page_bottom + footer_margin_bottom + page_number_height] }
+    number_pages "#{t('results.index.page')} <page> #{t('results.index.of')} <total>", at: [bounds.left, page_bottom + footer_margin_bottom + page_number_height]
   end
 
   private

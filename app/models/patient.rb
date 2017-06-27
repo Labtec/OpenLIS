@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Patient < ApplicationRecord
   include PgSearch
 
   ANIMAL_SPECIES = (0..3).to_a
-  GENDERS = %w(F M U).freeze
+  GENDERS = %w[F M U].freeze
 
   belongs_to :insurance_provider, optional: true
 
@@ -28,9 +30,9 @@ class Patient < ApplicationRecord
   before_save :titleize_names
   after_commit :flush_cache
 
-  pg_search_scope :search_by_name, against: %i(identifier
+  pg_search_scope :search_by_name, against: %i[identifier
                                                family_name family_name2
-                                               given_name middle_name),
+                                               given_name middle_name],
                                    ignoring: :accents
 
   def self.search(query)

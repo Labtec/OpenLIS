@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InsuranceProvider < ApplicationRecord
   belongs_to :price_list
 

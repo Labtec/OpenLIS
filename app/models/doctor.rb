@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class Doctor < ApplicationRecord
   has_many :accessions, dependent: :nullify
 
   validates :email, email: true, allow_blank: true
   validates :name,
-    presence: true,
-    uniqueness: true,
-    length: { minimum: 2 }
+            presence: true,
+            uniqueness: true,
+            length: { minimum: 2 }
 
   auto_strip_attributes :name
 

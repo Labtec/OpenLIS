@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResultsController < ApplicationController
   def index
     @accession = Accession.find(params[:accession_id])

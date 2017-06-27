@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ResultsHelper
   def doctor_name(doctor)
     if doctor
@@ -11,7 +13,7 @@ module ResultsHelper
   def format_value(result)
     if result.lab_test.derivation?
       number_with_precision(result.derived_value, precision: result.lab_test_decimals, delimiter: ',')
-    elsif result.lab_test_value && !result.value.blank?
+    elsif result.lab_test_value && result.value.present?
       result.lab_test_value.value.html_safe +
         ' [' +
         number_with_precision(result.value, precision: result.lab_test_decimals, delimiter: ',') +
@@ -60,11 +62,11 @@ module ResultsHelper
   def ranges_table(ranges)
     content_tag :table do
       content_tag :tbody do
-        ranges.collect { |range|
+        ranges.collect do |range|
           content_tag :tr do
             content_tag :td, safe_join(range), class: 'range'
           end
-        }.join().html_safe
+        end.join.html_safe
       end
     end
   end
@@ -90,16 +92,14 @@ module ResultsHelper
           r.text_field :value, pattern: '\\d*'
         else
           r.number_field :value,
-            step: "#{10.0 ** -(result.lab_test_decimals || 0)}"
+                         step: (10.0**-(result.lab_test_decimals || 0)).to_s
         end
       else
         r.collection_select(:lab_test_value_id,
                             LabTest.find(result.lab_test_id).lab_test_values,
                             :id, :stripped_value,
-                            { include_blank: true }) +
-        if result.result_types?
-          r.text_field(:value, pattern: '\\d*')
-        end
+                            include_blank: true) +
+          (r.text_field(:value, pattern: '\\d*') if result.result_types?)
       end
     end
   end

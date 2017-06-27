@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class PatientTest < ActiveSupport::TestCase
   ANIMAL_SPECIES = (0..3).to_a
-  GENDERS = %w(F M U).freeze
+  GENDERS = %w[F M U].freeze
 
   should validate_inclusion_of(:animal_type).in_array(ANIMAL_SPECIES).allow_blank
   should validate_inclusion_of(:gender).in_array(GENDERS)
@@ -11,9 +13,9 @@ class PatientTest < ActiveSupport::TestCase
   should validate_presence_of(:birthdate)
   should validate_length_of(:given_name).is_at_least(2)
   should validate_length_of(:family_name).is_at_least(2)
-  should validate_uniqueness_of(:identifier).
-    ignoring_case_sensitivity.
-    allow_blank
+  should validate_uniqueness_of(:identifier)
+    .ignoring_case_sensitivity
+    .allow_blank
 
   test 'birthdate is not in the future' do
     p = patients(:john)

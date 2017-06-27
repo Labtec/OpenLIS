@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReferenceRange < ApplicationRecord
   # Consider caching this model
 
@@ -7,7 +9,7 @@ class ReferenceRange < ApplicationRecord
     ['Female',   'F'],
     ['Male',     'M'],
     ['Unknown',  'U']
-  ]
+  ].freeze
 
   AGE_UNITS = [
     # Displayed  stored in db
@@ -15,7 +17,7 @@ class ReferenceRange < ApplicationRecord
     ['Months',   'M'],
     ['Weeks',    'W'],
     ['Days',     'D']
-  ]
+  ].freeze
 
   ANIMAL_SPECIES = (0..3).to_a
 

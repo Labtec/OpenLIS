@@ -1,37 +1,30 @@
+# frozen_string_literal: true
+
 class Result < ApplicationRecord
-  RANGE_SYMBOLS = [RANGE_SYMBOL_RANGE = '–', RANGE_SYMBOL_LT = '<', RANGE_SYMBOL_GE = '≥']
+  RANGE_SYMBOLS = [RANGE_SYMBOL_RANGE = '–', RANGE_SYMBOL_LT = '<', RANGE_SYMBOL_GE = '≥'].freeze
 
   belongs_to :accession
   belongs_to :lab_test
   belongs_to :lab_test_value, optional: true
 
-  has_many :notes, as: :noticeable
+  has_many :notes,            as: :noticeable
   has_many :reference_ranges, through: :lab_test
 
   has_one :department, through: :lab_test
-  has_one :patient, through: :accession
-  has_one :unit, through: :lab_test
+  has_one :patient,    through: :accession
+  has_one :unit,       through: :lab_test
 
-  delegate :code, to: :lab_test, prefix: true
-  delegate :decimals, to: :lab_test, prefix: true
-  delegate :name, to: :lab_test, prefix: true
-  delegate :name, to: :unit, prefix: true, allow_nil: true
+  delegate :code,      to: :lab_test, prefix: true
+  delegate :decimals,  to: :lab_test, prefix: true
+  delegate :fraction?, to: :lab_test
+  delegate :name,      to: :lab_test, prefix: true
+  delegate :name,      to: :unit,     prefix: true, allow_nil: true
+  delegate :range?,    to: :lab_test
+  delegate :ratio?,    to: :lab_test
 
-  validates :value, range: true, allow_blank: true, if: :range?
+  validates :value, range: true,    allow_blank: true, if: :range?
   validates :value, fraction: true, allow_blank: true, if: :fraction?
-  validates :value, ratio: true, allow_blank: true, if: :ratio?
-
-  def range?
-    lab_test.range?
-  end
-
-  def fraction?
-    lab_test.fraction?
-  end
-
-  def ratio?
-    lab_test.ratio?
-  end
+  validates :value, ratio: true,    allow_blank: true, if: :ratio?
 
   def derived_value
     case lab_test_code
@@ -76,13 +69,17 @@ class Result < ApplicationRecord
       rbc = result_for 'RBC'
       hct / rbc * 10
     when 'NORM'
-      abhead, abhead_v = result_for('ABHEAD'), value_for('ABHEAD')
-      abmid, abmid_v = result_for('ABMID'), value_for('ABMID')
-      abmain, abmain_v = result_for('ABMAIN'), value_for('ABMAIN')
-      excesscyt, excesscyt_v = result_for('EXCESSCYT'), value_for('EXCESSCYT')
+      abhead = result_for('ABHEAD')
+      abhead_v = value_for('ABHEAD')
+      abmid = result_for('ABMID')
+      abmid_v = value_for('ABMID')
+      abmain = result_for('ABMAIN')
+      abmain_v = value_for('ABMAIN')
+      excesscyt = result_for('EXCESSCYT')
+      excesscyt_v = value_for('EXCESSCYT')
       if (abhead.blank? || abmid.blank? ||
           abmain.blank? || excesscyt.blank?) &&
-        (abhead_v || abmid_v || abmain_v || excesscyt_v).present?
+         (abhead_v || abmid_v || abmain_v || excesscyt_v).present?
         abhead_v || abmid_v || abmain_v || excesscyt_v
       else
         100 - (abhead + abmid + abmain + excesscyt)
@@ -105,20 +102,20 @@ class Result < ApplicationRecord
 
   # TODO: This method should be in Accession
   def result_for(code)
-    lab_test_by_code = LabTest.find_by_code(code)
-    result_value = accession.results.find_by_lab_test_id(lab_test_by_code).value
+    lab_test_by_code = LabTest.find_by(code: code)
+    result_value = accession.results.find_by(lab_test_id: lab_test_by_code).value
     result_value.to_d if result_value.present?
   end
 
   # TODO: This method should be in Accession
   def value_for(code)
-    lab_test_by_code = LabTest.find_by_code(code)
-    value_for_lab_test = accession.results.find_by_lab_test_id(lab_test_by_code).lab_test_value
+    lab_test_by_code = LabTest.find_by(code: code)
+    value_for_lab_test = accession.results.find_by(lab_test_id: lab_test_by_code).lab_test_value
     value_for_lab_test.value if value_for_lab_test.present?
   end
 
   def pending?
-    return true if !lab_test_value.present? && value.blank? && !lab_test.derivation?
+    return true if lab_test_value.blank? && value.blank? && !lab_test.derivation?
   end
 
   # SUGGESTION: min and max should be renamed to min_value and max_value to avoid clashing
@@ -146,23 +143,21 @@ class Result < ApplicationRecord
           range_interval_symbol = Result::RANGE_SYMBOL_GE
         end
 
-        if r.description.present?
-          description = r.description + ': '
-        end
+        description = r.description + ': ' if r.description.present?
 
-        unless lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
-          if r.max && r.min
-            ranges << [description, format_value(r.min), range_interval_symbol, format_value(r.max)]
-          elsif r.max
-            ranges << [description, nil, range_interval_symbol, format_value(r.max)]
-          elsif r.min
-            ranges << [description, nil, range_interval_symbol, format_value(r.min)]
-          else
-            ranges << [nil]
-          end
-        else
-          ranges << [nil]
-        end
+        ranges << if lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
+                    [nil]
+                  else
+                    if r.max && r.min
+                      [description, format_value(r.min), range_interval_symbol, format_value(r.max)]
+                    elsif r.max
+                      [description, nil, range_interval_symbol, format_value(r.max)]
+                    elsif r.min
+                      [description, nil, range_interval_symbol, format_value(r.min)]
+                    else
+                      [nil]
+                    end
+                  end
         ranges
       end
     else
@@ -181,7 +176,9 @@ class Result < ApplicationRecord
       range_interval_symbol = Result::RANGE_SYMBOL_GE
     end
 
-    unless lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
+    if lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
+      [nil, nil, nil]
+    else
       if @range_max && @range_min
         [@range_min, range_interval_symbol, @range_max]
       elsif @range_max
@@ -191,8 +188,6 @@ class Result < ApplicationRecord
       else
         [nil, nil, nil]
       end
-    else
-      [nil, nil, nil]
     end
   end
 
@@ -213,22 +208,20 @@ class Result < ApplicationRecord
       check_reference_range(value.to_f)
     elsif lab_test.range?
       value =~ /\A((<|>)|(\d+)(-))(\d+)\Z/
-      check_reference_range([$3, $5].map(&:to_i).try(:max))
+      check_reference_range([Regexp.last_match(3), Regexp.last_match(5)].map(&:to_i).try(:max))
     elsif lab_test.fraction?
       value =~ /\A(\d+)\/(\d+)\Z/
-      check_reference_range([$1, $2].map(&:to_i).try(:max))
+      check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
     elsif lab_test.ratio?
       value =~ /\A(\d+):(\d+)\Z/
-      check_reference_range([$1, $2].map(&:to_i).try(:max))
+      check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
     end
   end
 
   def check_reference_range(numeric_value)
     min = @range_min || -Float::INFINITY
     max = @range_max || Float::INFINITY
-    if numeric_value.to_f == max.to_f && @range_min.nil?
-      return 'H'
-    end
+    return 'H' if numeric_value.to_f == max.to_f && @range_min.nil?
     case numeric_value.to_f
     when -Float::INFINITY...min.to_f then 'L'
     when min.to_f..max.to_f then nil
@@ -244,10 +237,10 @@ class Result < ApplicationRecord
   # enum result_type: [:numeric, :ratio, :range, :fraction, ...]
   def result_types?
     lab_test.also_numeric? ||
-    lab_test.ratio? ||
-    lab_test.range? ||
-    lab_test.fraction? ||
-    lab_test.text_length.present?
+      lab_test.ratio? ||
+      lab_test.range? ||
+      lab_test.fraction? ||
+      lab_test.text_length.present?
   end
 
   private

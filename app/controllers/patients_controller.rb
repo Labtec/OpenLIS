@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PatientsController < ApplicationController
-  before_action :set_recent_patients_list, except: [:update, :destroy]
+  before_action :set_recent_patients_list, except: %i[update destroy]
 
   def index
     @patients = Patient.search(params[:search]).page(params[:page])
@@ -8,12 +10,12 @@ class PatientsController < ApplicationController
   def show
     @patient = Patient.find(params[:id])
     @pending_accessions = @patient.accessions
-                          .includes(:drawer,
-                                    results: [:lab_test, :lab_test_value])
-                          .queued.pending.page(params[:pending_page])
+                                  .includes(:drawer,
+                                            results: %i[lab_test lab_test_value])
+                                  .queued.pending.page(params[:pending_page])
     @reported_accessions = @patient.accessions
-                           .includes(:reporter)
-                           .recently.reported.page(params[:page])
+                                   .includes(:reporter)
+                                   .recently.reported.page(params[:page])
   rescue ActiveRecord::RecordNotFound
     redirect_to patients_url, alert: t('.patient_not_found')
   end

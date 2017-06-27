@@ -13,8 +13,14 @@
 
 <% @unsubmitted_claims.each do |unsubmitted_claim| %>
   <tr>
-    <td><%= check_box_tag 'unsubmitted_claim_ids[]', unsubmitted_claim.claim.id if unsubmitted_claim.claim %></td>
-    <td><%= name_last_comma_first_mi(unsubmitted_claim.patient) %></td>
+    <td><%= check_box_tag 'unsubmitted_claim_ids[]', unsubmitted_claim.claim.id, false, id: "unsubmitted_claim_id_#{unsubmitted_claim.claim.id}" if unsubmitted_claim.claim %></td>
+    <td>
+      <% if unsubmitted_claim.claim %>
+        <%= label_tag "unsubmitted_claim_id_#{unsubmitted_claim.claim.id}", name_last_comma_first_mi(unsubmitted_claim.patient) %>
+      <% else %>
+        <%= name_last_comma_first_mi(unsubmitted_claim.patient) %>
+      <% end %>
+    </td>
     <td><%= link_to unsubmitted_claim.id, accession_path(unsubmitted_claim), target: '_blank' %></td>
     <td><%= unsubmitted_claim.claim_external_number %></td>
     <td><%= unsubmitted_claim.claim_number %></td>

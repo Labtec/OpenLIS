@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LabTestsHelper
   def name_with_description(lab_test)
     if lab_test.description.present?
