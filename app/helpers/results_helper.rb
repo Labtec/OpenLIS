@@ -27,7 +27,7 @@ module ResultsHelper
     elsif result.lab_test.range?
       result.value.gsub(/[-]/, '–').html_safe
     elsif result.lab_test.fraction?
-      result.value.gsub(/[\/]/, ' ∕ ').html_safe
+      result.value.gsub(%r{[\/]}, ' ∕ ').html_safe
     elsif result.lab_test.text_length?
       result.value
     else

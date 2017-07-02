@@ -110,12 +110,12 @@ class LabReport < Prawn::Document
     page_number_height = font_size - 0.25
     # number_of_rows = 600 / row_height
     footer_height = line_height * 3 + PADDING
-    demographics_width_1 = 45
-    demographics_width_2 = 155
-    demographics_width_3 = @patient.animal_type ? 40 : 30
-    demographics_width_4 = 80
-    demographics_width_5 = 80
-    demographics_width_6 = 150
+    demographics_width1 = 45
+    demographics_width2 = 155
+    demographics_width3 = @patient.animal_type ? 40 : 30
+    demographics_width4 = 80
+    demographics_width5 = 80
+    demographics_width6 = 150
     column_0_width = 140
     column_1_width = 80
     column_2_width = 88
@@ -135,15 +135,15 @@ class LabReport < Prawn::Document
     envelope_adjustment_height = 34
     header_height = LOGO_HEIGHT + envelope_adjustment_height + patient_demographics_height + title_row_height + PADDING * 2.5
     signature_block_height = signature_spacing + line_height * 3 + PADDING
-    demographics_stop_1 = demographics_width_1
-    demographics_stop_2 = demographics_stop_1 + demographics_width_2
-    demographics_stop_3 = demographics_stop_2 + demographics_width_3
-    demographics_stop_4 = demographics_stop_3 + demographics_width_4
-    demographics_stop_5 = demographics_stop_4 + demographics_width_5
-    title_row_stop_1 = column_0_width
-    title_row_stop_2 = title_row_stop_1 + column_1_width
-    title_row_stop_3 = title_row_stop_2 + column_2_width
-    title_row_stop_4 = title_row_stop_3 + column_3_width
+    demographics_stop1 = demographics_width1
+    demographics_stop2 = demographics_stop1 + demographics_width2
+    demographics_stop3 = demographics_stop2 + demographics_width3
+    demographics_stop4 = demographics_stop3 + demographics_width4
+    demographics_stop5 = demographics_stop4 + demographics_width5
+    title_row_stop1 = column_0_width
+    title_row_stop2 = title_row_stop1 + column_1_width
+    title_row_stop3 = title_row_stop2 + column_2_width
+    title_row_stop4 = title_row_stop3 + column_3_width
     page.margins[:top] = header_height + top_margin
 
     ##
@@ -191,86 +191,86 @@ class LabReport < Prawn::Document
         ##
         # Patient demographics
         bounding_box([bounds.left, cursor - PADDING * 2], width: bounds.width, height: patient_demographics_height) do
-          bounding_box([bounds.left, bounds.top], width: demographics_width_1, height: row_height) do
+          bounding_box([bounds.left, bounds.top], width: demographics_width1, height: row_height) do
             indent PADDING do
               text t('results.index.full_name'), style: :bold
             end
           end
-          bounding_box([bounds.left, bounds.top - row_height], width: demographics_width_1, height: row_height) do
+          bounding_box([bounds.left, bounds.top - row_height], width: demographics_width1, height: row_height) do
             indent PADDING do
               text t('results.index.identifier')
             end
           end
           if @accession.doctor
-            bounding_box([bounds.left, bounds.top - 2 * row_height], width: demographics_width_1, height: row_height) do
+            bounding_box([bounds.left, bounds.top - 2 * row_height], width: demographics_width1, height: row_height) do
               indent PADDING do
                 text t('results.index.doctor')
               end
             end
           else
-            bounding_box([bounds.left, bounds.top - 2 * row_height], width: demographics_width_1 + demographics_width_2, height: row_height) do
+            bounding_box([bounds.left, bounds.top - 2 * row_height], width: demographics_width1 + demographics_width2, height: row_height) do
               indent PADDING do
                 text t('results.index.walk_in')
               end
             end
           end
-          text_box full_name(@patient), at: [demographics_stop_1, bounds.top],
-                                        width: demographics_width_2 +
-                                               demographics_width_3 +
-                                               demographics_width_4,
+          text_box full_name(@patient), at: [demographics_stop1, bounds.top],
+                                        width: demographics_width2 +
+                                               demographics_width3 +
+                                               demographics_width4,
                                         height: row_height,
                                         overflow: :shrink_to_fit,
                                         style: :bold
-          bounding_box([demographics_stop_1, bounds.top - row_height], width: demographics_width_2, height: row_height) do
+          bounding_box([demographics_stop1, bounds.top - row_height], width: demographics_width2, height: row_height) do
             text @patient.identifier
           end
-          bounding_box([demographics_stop_1, bounds.top - 2 * row_height], width: demographics_width_2, height: row_height) do
+          bounding_box([demographics_stop1, bounds.top - 2 * row_height], width: demographics_width2, height: row_height) do
             text @accession.doctor_name if @accession.doctor
           end
 
           ########################
 
           if @patient.animal_type
-            bounding_box([demographics_stop_2, bounds.top], width: demographics_width_3, height: row_height) do
+            bounding_box([demographics_stop2, bounds.top], width: demographics_width3, height: row_height) do
               text t('results.index.type'), style: :bold
             end
           end
-          bounding_box([demographics_stop_2, bounds.top - row_height], width: demographics_width_3, height: row_height) do
+          bounding_box([demographics_stop2, bounds.top - row_height], width: demographics_width3, height: row_height) do
             text t('results.index.age')
           end
-          bounding_box([demographics_stop_2, bounds.top - 2 * row_height], width: demographics_width_3, height: row_height) do
+          bounding_box([demographics_stop2, bounds.top - 2 * row_height], width: demographics_width3, height: row_height) do
             text t('results.index.gender')
           end
           if @patient.animal_type
-            bounding_box([demographics_stop_3, bounds.top], width: demographics_width_4, height: row_height) do
+            bounding_box([demographics_stop3, bounds.top], width: demographics_width4, height: row_height) do
               text animal_species_name(@patient.animal_type), style: :bold
             end
           end
-          bounding_box([demographics_stop_3, bounds.top - row_height], width: demographics_width_4, height: row_height) do
+          bounding_box([demographics_stop3, bounds.top - row_height], width: demographics_width4, height: row_height) do
             text age(@patient.birthdate, @accession.drawn_at)
           end
-          bounding_box([demographics_stop_3, bounds.top - 2 * row_height], width: demographics_width_4, height: row_height) do
+          bounding_box([demographics_stop3, bounds.top - 2 * row_height], width: demographics_width4, height: row_height) do
             text gender(@patient.gender)
           end
 
           ########################
 
-          bounding_box([demographics_stop_4, bounds.top], width: demographics_width_5, height: row_height) do
+          bounding_box([demographics_stop4, bounds.top], width: demographics_width5, height: row_height) do
             text t('results.index.accession'), style: :bold
           end
-          bounding_box([demographics_stop_4, bounds.top - row_height], width: demographics_width_5, height: row_height) do
+          bounding_box([demographics_stop4, bounds.top - row_height], width: demographics_width5, height: row_height) do
             text t('results.index.drawn_at')
           end
-          bounding_box([demographics_stop_4, bounds.top - 2 * row_height], width: demographics_width_5, height: row_height) do
+          bounding_box([demographics_stop4, bounds.top - 2 * row_height], width: demographics_width5, height: row_height) do
             text t('results.index.received_at')
           end
-          bounding_box([demographics_stop_5, bounds.top], width: demographics_width_6, height: row_height) do
+          bounding_box([demographics_stop5, bounds.top], width: demographics_width6, height: row_height) do
             text @accession.id.to_s, style: :bold
           end
-          bounding_box([demographics_stop_5, bounds.top - row_height], width: demographics_width_6, height: row_height) do
+          bounding_box([demographics_stop5, bounds.top - row_height], width: demographics_width6, height: row_height) do
             text l(@accession.drawn_at, format: :long)
           end
-          bounding_box([demographics_stop_5, bounds.top - 2 * row_height], width: demographics_width_6, height: row_height) do
+          bounding_box([demographics_stop5, bounds.top - 2 * row_height], width: demographics_width6, height: row_height) do
             text l(@accession.received_at, format: :long)
           end
         end
@@ -291,31 +291,31 @@ class LabReport < Prawn::Document
               end
             end
           end
-          bounding_box([title_row_stop_1, bounds.top], width: column_1_width, height: title_row_height) do
+          bounding_box([title_row_stop1, bounds.top], width: column_1_width, height: title_row_height) do
             pad_top PADDING do
               indent 0, PADDING do
                 text t('results.index.result'), style: :bold, align: :right
               end
             end
           end
-          bounding_box([title_row_stop_2, bounds.top], width: column_2_width, height: title_row_height) do
+          bounding_box([title_row_stop2, bounds.top], width: column_2_width, height: title_row_height) do
             pad_top PADDING do
               indent PADDING do
                 text t('results.index.units'), style: :bold, align: :left
               end
             end
           end
-          bounding_box([title_row_stop_3, bounds.top], width: column_3_width, height: title_row_height) do
+          bounding_box([title_row_stop3, bounds.top], width: column_3_width, height: title_row_height) do
             pad_top PADDING do
               text t('results.index.flag'), style: :bold, align: :center
             end
           end
-          bounding_box([title_row_stop_4 + column_description_range_width / 2, bounds.top], width: column_range_width - column_description_range_width / 2, height: title_row_height) do
+          bounding_box([title_row_stop4 + column_description_range_width / 2, bounds.top], width: column_range_width - column_description_range_width / 2, height: title_row_height) do
             pad_top PADDING do
               text t('results.index.range'), color: COLORS[:white], style: :bold, align: :center
             end
           end
-          bounding_box([title_row_stop_4 + column_description_range_width / 2, bounds.top], width: column_range_width - column_description_range_width / 2, height: title_row_height) do
+          bounding_box([title_row_stop4 + column_description_range_width / 2, bounds.top], width: column_range_width - column_description_range_width / 2, height: title_row_height) do
             pad_top PADDING do
               text t('results.index.range'), color: COLORS[:purple], style: :bold, align: :center
             end
@@ -336,16 +336,16 @@ class LabReport < Prawn::Document
       data = [[department_title, blank_fill, blank_fill, blank_fill, run_by]]
       test_results.each do |result|
         if result.flag.present?
-          cell_col_0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true
-          cell_col_1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(/&lt; \//, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true
+          cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; \/}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true
         else
-          cell_col_0 = make_cell content: result.lab_test_name, inline_format: true
-          cell_col_1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(/&lt; \//, '</'), inline_format: true
+          cell_col0 = make_cell content: result.lab_test_name, inline_format: true
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; \/}, '</'), inline_format: true
         end
-        cell_col_3 = make_cell content: flag_name(result), font_style: :bold, text_color: FLAG_COLORS[flag_color(result).to_sym]
+        cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: FLAG_COLORS[flag_color(result).to_sym]
         ##
         # Ranges sub-table
-        cell_col_4 = make_table(result.ranges, cell_style: { padding: [0, 0.4], borders: [] }) do
+        cell_col4 = make_table(result.ranges, cell_style: { padding: [0, 0.4], borders: [] }) do
           column(0).align = :right
           column(1).align = :right
           column(2).align = :center
@@ -357,7 +357,7 @@ class LabReport < Prawn::Document
 
           # TODO: padding should be done here
         end
-        data << [cell_col_0, cell_col_1, result.unit_name, cell_col_3, cell_col_4]
+        data << [cell_col0, cell_col1, result.unit_name, cell_col3, cell_col4]
       end
 
       table(data, header: true, cell_style: { padding: [LINE_PADDING, 0] }) do
@@ -406,18 +406,16 @@ class LabReport < Prawn::Document
           text registration_number, align: :center
         end
       end
-    else
-      if @accession.reported_at
-        bounding_box([bounds.left + SIGNATURE_BLOCK_SHIM, bounds.bottom - line_height - PADDING], width: column_0_width, height: line_height) do
-          pad_top LINE_PADDING do
-            text t('results.index.reviewed_by'), align: :right
-          end
+    elsif @accession.reported_at
+      bounding_box([bounds.left + SIGNATURE_BLOCK_SHIM, bounds.bottom - line_height - PADDING], width: column_0_width, height: line_height) do
+        pad_top LINE_PADDING do
+          text t('results.index.reviewed_by'), align: :right
         end
-        bounding_box([SIGNATURE_BLOCK_SHIM + column_0_width + LINE_PADDING, cursor], width: signature_line, height: line_height + PADDING) do
-          stroke_horizontal_rule
-          pad_top PADDING do
-            text current_user_name + registration_number(inline: true), align: :center
-          end
+      end
+      bounding_box([SIGNATURE_BLOCK_SHIM + column_0_width + LINE_PADDING, cursor], width: signature_line, height: line_height + PADDING) do
+        stroke_horizontal_rule
+        pad_top PADDING do
+          text current_user_name + registration_number(inline: true), align: :center
         end
       end
     end

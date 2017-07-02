@@ -135,59 +135,36 @@ class Result < ApplicationRecord
     ranges = []
     if ranges?
       @base_ranges.each do |r|
-        if r.max && r.min
-          range_interval_symbol = Result::RANGE_SYMBOL_RANGE
-        elsif r.max
-          range_interval_symbol = Result::RANGE_SYMBOL_LT
-        elsif r.min
-          range_interval_symbol = Result::RANGE_SYMBOL_GE
-        end
-
         description = r.description + ': ' if r.description.present?
 
         ranges << if lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
                     [nil]
+                  elsif r.max && r.min
+                    [description, format_value(r.min), RANGE_SYMBOL_RANGE, format_value(r.max)]
+                  elsif r.max
+                    [description, nil, RANGE_SYMBOL_LT, format_value(r.max)]
+                  elsif r.min
+                    [description, nil, RANGE_SYMBOL_GE, format_value(r.min)]
                   else
-                    if r.max && r.min
-                      [description, format_value(r.min), range_interval_symbol, format_value(r.max)]
-                    elsif r.max
-                      [description, nil, range_interval_symbol, format_value(r.max)]
-                    elsif r.min
-                      [description, nil, range_interval_symbol, format_value(r.min)]
-                    else
-                      [nil]
-                    end
+                    [nil]
                   end
-        ranges
       end
-    else
-      ranges << [nil]
     end
     ranges << [nil]
   end
 
   # TODO: rename to absolute_range
   def range
-    if @range_max && @range_min
-      range_interval_symbol = Result::RANGE_SYMBOL_RANGE
-    elsif @range_max
-      range_interval_symbol = Result::RANGE_SYMBOL_LT
-    elsif @range_min
-      range_interval_symbol = Result::RANGE_SYMBOL_GE
-    end
-
     if lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
       [nil, nil, nil]
+    elsif @range_max && @range_min
+      [@range_min, RANGE_SYMBOL_RANGE, @range_max]
+    elsif @range_max
+      [nil, RANGE_SYMBOL_LT, @range_max]
+    elsif @range_min
+      [nil, RANGE_SYMBOL_GE, @range_min]
     else
-      if @range_max && @range_min
-        [@range_min, range_interval_symbol, @range_max]
-      elsif @range_max
-        [nil, range_interval_symbol, @range_max]
-      elsif @range_min
-        [nil, range_interval_symbol, @range_min]
-      else
-        [nil, nil, nil]
-      end
+      [nil, nil, nil]
     end
   end
 
@@ -199,21 +176,21 @@ class Result < ApplicationRecord
     elsif lab_test.derivation?
       if derived_value == 'calc.'
         nil
-      else
-        check_reference_range(derived_value) if ranges?
+      elsif ranges?
+        check_reference_range(derived_value)
       end
     elsif value.present?
       check_reference_range(value.to_f) if ranges?
     elsif lab_test.also_numeric?
       check_reference_range(value.to_f)
     elsif lab_test.range?
-      value =~ /\A((<|>)|(\d+)(-))(\d+)\Z/
+      value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
       check_reference_range([Regexp.last_match(3), Regexp.last_match(5)].map(&:to_i).try(:max))
     elsif lab_test.fraction?
-      value =~ /\A(\d+)\/(\d+)\Z/
+      value =~ %r{\A(\d+)\/(\d+)\z}
       check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
     elsif lab_test.ratio?
-      value =~ /\A(\d+):(\d+)\Z/
+      value =~ /\A(\d+):(\d+)\z/
       check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
     end
   end
