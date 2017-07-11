@@ -86,21 +86,19 @@ module ResultsHelper
   def result_input(r, result)
     if result.lab_test.derivation?
       text_field_tag :value, format_value(result), disabled: true
-    else
-      if result.lab_test_values?
-        if result.result_types?
-          r.text_field :value, pattern: '\\d*'
-        else
-          r.number_field :value,
-                         step: (10.0**-(result.lab_test_decimals || 0)).to_s
-        end
+    elsif result.lab_test_values?
+      if result.result_types?
+        r.text_field :value, pattern: '\\d*'
       else
-        r.collection_select(:lab_test_value_id,
-                            LabTest.find(result.lab_test_id).lab_test_values,
-                            :id, :stripped_value,
-                            include_blank: true) +
-          (r.text_field(:value, pattern: '\\d*') if result.result_types?)
+        r.number_field :value,
+                       step: (10.0**-(result.lab_test_decimals || 0)).to_s
       end
+    else
+      r.collection_select(:lab_test_value_id,
+                          LabTest.find(result.lab_test_id).lab_test_values,
+                          :id, :stripped_value,
+                          include_blank: true) +
+        (r.text_field(:value, pattern: '\\d*') if result.result_types?)
     end
   end
 end
