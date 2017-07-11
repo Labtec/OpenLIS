@@ -14,20 +14,20 @@ module ResultsHelper
     if result.lab_test.derivation?
       number_with_precision(result.derived_value, precision: result.lab_test_decimals, delimiter: ',')
     elsif result.lab_test_value && result.value.present?
-      result.lab_test_value.value.html_safe +
-        ' [' +
-        number_with_precision(result.value, precision: result.lab_test_decimals, delimiter: ',') +
-        ']'
+      [result.lab_test_value.value,
+       ' [',
+       number_with_precision(result.value, precision: result.lab_test_decimals, delimiter: ','),
+       ']'].join
     elsif result.lab_test_value
-      result.lab_test_value.value.html_safe
+      result.lab_test_value.value
     elsif result.value.blank?
       'pend.'
     elsif result.lab_test.ratio?
-      result.value.gsub(/[:]/, '∶').html_safe
+      result.value.gsub(/[:]/, '∶')
     elsif result.lab_test.range?
-      result.value.gsub(/[-]/, '–').html_safe
+      result.value.gsub(/[-]/, '–')
     elsif result.lab_test.fraction?
-      result.value.gsub(%r{[\/]}, ' ∕ ').html_safe
+      result.value.gsub(%r{[\/]}, ' ∕ ')
     elsif result.lab_test.text_length?
       result.value
     else
@@ -62,11 +62,11 @@ module ResultsHelper
   def ranges_table(ranges)
     content_tag :table do
       content_tag :tbody do
-        ranges.collect do |range|
+        safe_join(ranges.collect do |range|
           content_tag :tr do
             content_tag :td, safe_join(range), class: 'range'
           end
-        end.join.html_safe
+        end)
       end
     end
   end
