@@ -64,7 +64,9 @@ module ResultsHelper
       content_tag :tbody do
         safe_join(ranges.collect do |range|
           content_tag :tr do
-            content_tag :td, safe_join(range), class: 'range'
+            range.each_with_index do |column, index|
+              concat content_tag :td, column, class: "range_#{index}"
+            end
           end
         end)
       end

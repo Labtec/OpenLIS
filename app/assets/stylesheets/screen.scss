@@ -391,8 +391,16 @@ table {
     border: none;
     clear: both;
     background-color: #e5e5e5; }
-td.range{
+td.range_0,
+td.range_1,
+td.range_2,
+td.range_3 {
   padding: 0; }
+td.range_0,
+td.range_1 {
+  text-align: right; }
+td.range_0 {
+  padding-right: 1em; }
 .handle {
   font-size: 12px;
   cursor: move;
