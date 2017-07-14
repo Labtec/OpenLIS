@@ -1,0 +1,9 @@
+less_than:
+  gender: '*'
+  max: 10
+  lab_test: reference_range_less_than
+
+greater_than:
+  gender: '*'
+  min: 10
+  lab_test: reference_range_greater_than

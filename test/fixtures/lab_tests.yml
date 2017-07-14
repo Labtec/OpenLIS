@@ -50,3 +50,15 @@ decimal:
   decimals: 1
   name: Decimal
   code: DECIMAL
+
+reference_range_less_than:
+  department: chemistry
+  decimals: 0
+  name: Reference Range
+  code: REFRANGELT
+
+reference_range_greater_than:
+  department: chemistry
+  decimals: 0
+  name: Reference Range
+  code: REFRANGEGT

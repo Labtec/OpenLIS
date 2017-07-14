@@ -75,4 +75,16 @@ class ResultsHelperTest < ActionView::TestCase
                    value: 'This is the result')
     assert_equal 'This is the result', format_value(@result)
   end
+
+  test 'reference range table contains less than symbol' do
+    @result.lab_test = lab_tests(:reference_range_less_than)
+    assert_equal '<table><tbody><tr><td class="range">&lt;10</td></tr></tbody></table>',
+                 ranges_table(@result.ranges)
+  end
+
+  test 'reference range table contains greater than symbol' do
+    @result.lab_test = lab_tests(:reference_range_greater_than)
+    assert_equal '<table><tbody><tr><td class="range">≥10</td></tr></tbody></table>',
+                 ranges_table(@result.ranges)
+  end
 end

@@ -149,8 +149,11 @@ class Result < ApplicationRecord
                     [nil]
                   end
       end
+    else
+      ranges << [nil]
     end
-    ranges << [nil]
+
+    ranges
   end
 
   # TODO: rename to absolute_range
