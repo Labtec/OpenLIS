@@ -322,9 +322,9 @@ en:
   errors:
     messages:
       cant_be_in_the_future: "cannot be in the future"
-      fraction: "must be N ⁄ N."
-      range: "must be N–N, <N or >N."
-      ratio: "must be N∶N."
+      fraction: "must be N/N"
+      range: "must be N-N, <N or >N"
+      ratio: "must be N:N"
   time:
     formats:
       long: "%d %B %Y %H:%M"

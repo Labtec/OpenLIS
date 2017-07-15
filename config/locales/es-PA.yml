@@ -352,9 +352,9 @@ es-PA:
   errors:
     messages:
       cant_be_in_the_future: "no puede ser del futuro"
-      fraction: "debe ser N ⁄ N."
-      range: "debe ser N–N, <N o >N."
-      ratio: "debe ser N∶N."
+      fraction: "debe ser N/N"
+      range: "debe ser N-N, <N o >N"
+      ratio: "debe ser N:N"
   time:
     formats:
       long: "%-d/%m/%Y %l:%M %p"
