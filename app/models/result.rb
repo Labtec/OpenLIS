@@ -190,7 +190,7 @@ class Result < ApplicationRecord
       value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
       check_reference_range([Regexp.last_match(3), Regexp.last_match(5)].map(&:to_i).try(:max))
     elsif lab_test.fraction?
-      value =~ %r{\A(\d+)\/(\d+)\z}
+      value =~ %r{\A(\d+)/(\d+)\z}
       check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
     elsif lab_test.ratio?
       value =~ /\A(\d+):(\d+)\z/
