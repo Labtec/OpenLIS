@@ -120,8 +120,6 @@ class Accession < ApplicationRecord
   end
 
   def at_least_one_panel_or_test_selected
-    if panel_ids.blank? && lab_test_ids.blank?
-      errors.add(:base, I18n.t('flash.accessions.at_least_one_panel_or_test_selected'))
-    end
+    errors.add(:base, I18n.t('flash.accessions.at_least_one_panel_or_test_selected')) if panel_ids.blank? && lab_test_ids.blank?
   end
 end

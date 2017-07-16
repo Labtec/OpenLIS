@@ -27,6 +27,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :set_user_language
 
+  private
+
+  def require_admin!
+    redirect_to root_path unless current_user&.admin?
+  end
+
   protected
 
   def set_active_tab

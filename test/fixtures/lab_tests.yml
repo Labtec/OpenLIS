@@ -8,8 +8,57 @@ chol:
   name: Cholesterol
   code: CHOL
 
+qualitative:
+  department: chemistry
+  name: Qualitative
+  code: QUAL
+  lab_test_values: positive
+
+mixed:
+  department: chemistry
+  also_numeric: true
+  name: Mixed
+  code: MIXED
+  lab_test_values: positive
+
+ratio:
+  department: chemistry
+  ratio: true
+  name: Ratio
+  code: RATIO
+
 range:
   department: chemistry
   range: true
   name: Range
   code: RANGE
+
+fraction:
+  department: chemistry
+  fraction: true
+  name: Fraction
+  code: FRACTION
+
+text:
+  department: chemistry
+  text_length: 32
+  name: Text
+  code: TEXT
+
+decimal:
+  department: chemistry
+  decimals: 1
+  name: Decimal
+  code: DECIMAL
+
+reference_range_less_than:
+  department: chemistry
+  decimals: 0
+  name: Reference Range
+  code: REFRANGELT
+
+reference_range_greater_than:
+  department: chemistry
+  decimals: 0
+  name: Reference Range
+  code: REFRANGEGT

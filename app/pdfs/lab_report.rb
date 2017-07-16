@@ -337,10 +337,10 @@ class LabReport < Prawn::Document
       test_results.each do |result|
         if result.flag.present?
           cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true
-          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; \/}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true
         else
           cell_col0 = make_cell content: result.lab_test_name, inline_format: true
-          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; \/}, '</'), inline_format: true
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true
         end
         cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: FLAG_COLORS[flag_color(result).to_sym]
         ##

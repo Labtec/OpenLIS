@@ -1,0 +1,9 @@
+positive:
+  value: Positive
+  flag: A
+
+less_than:
+  value: '< 10'
+
+greater_than:
+  value: '> 10'
