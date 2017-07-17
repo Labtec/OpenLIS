@@ -7,3 +7,6 @@ less_than:
 
 greater_than:
   value: '> 10'
+
+html:
+  value: '<i>E. coli</i>'

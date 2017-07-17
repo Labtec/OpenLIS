@@ -39,6 +39,12 @@ class ResultsHelperTest < ActionView::TestCase
     assert_equal '> 10', format_value(@result)
   end
 
+  test 'format qualitative result marked-up with html' do
+    @result.update(lab_test: lab_tests(:qualitative),
+                   lab_test_value: lab_test_values(:html))
+    assert_equal '<i>E. coli</i>', format_value(@result)
+  end
+
   test 'format mixed result' do
     @result.update(lab_test: lab_tests(:mixed),
                    value: 10,
