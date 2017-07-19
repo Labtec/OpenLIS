@@ -121,14 +121,11 @@ class Result < ApplicationRecord
   # SUGGESTION: min and max should be renamed to min_value and max_value to avoid clashing
   # with min and max methods for arrays.
   def ranges?
-    if reference_ranges.present?
-      @base_ranges ||= reference_ranges.for_its_type(patient.animal_type).for_its_gender(patient.gender).for_its_age_in_units(accession.patient_age[:days], accession.patient_age[:weeks], accession.patient_age[:months], accession.patient_age[:years])
-      @range_min ||= @base_ranges.map(&:min).compact.min if @base_ranges
-      @range_max ||= @base_ranges.map(&:max).compact.max if @base_ranges
-      true
-    else
-      false
-    end
+    @base_ranges ||= reference_ranges.for_its_type(patient.animal_type).for_its_gender(patient.gender).for_its_age_in_units(accession.patient_age[:days], accession.patient_age[:weeks], accession.patient_age[:months], accession.patient_age[:years]) if reference_ranges.present?
+    @range_min ||= @base_ranges.map(&:min).compact.min if @base_ranges.present?
+    @range_max ||= @base_ranges.map(&:max).compact.max if @base_ranges.present?
+
+    @base_ranges.present?
   end
 
   def ranges
@@ -149,9 +146,11 @@ class Result < ApplicationRecord
                     [nil]
                   end
       end
+    else
+      ranges << [nil]
     end
 
-    ranges << [nil]
+    ranges
   end
 
   # TODO: rename to absolute_range
