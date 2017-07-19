@@ -19,6 +19,6 @@ class ResultsTest < ApplicationSystemTestCase
     visit accession_url(@result.accession)
 
     assert_not page.has_content?('<i>E. coli</i>')
-    assert page.has_content?('E. coli')
+    assert page.has_css?('i', text: 'E. coli')
   end
 end
