@@ -3,7 +3,7 @@
 module Admin
   class LabTestsController < BaseController
     def index
-      @lab_tests = LabTest.all.includes(:department, :unit).order(position: :asc).group_by(&:department_name)
+      @lab_tests = LabTest.all.includes(:department, :unit).group_by(&:department_name)
     end
 
     def show
