@@ -583,26 +583,22 @@ td.range_0 {
     padding: 0px;
     margin: -10px 0px 0px 36px; }
 
-.avatar img {
+.contact .avatar {
+  float: left;
+  width: 30px;
+  height: 30px;
+  padding-right: 10px; }
+
+.panel .avatar {
   float: right;
   width: 50px;
   height: 50px; }
 
-.avatar_other { background: image-url('avatars.png') 0px -150px no-repeat; }
-.avatar_canine { background: image-url('avatars.png') 0px 0px no-repeat; }
-.avatar_feline { background: image-url('avatars.png') 0px -30px no-repeat; }
-.avatar_equine { background: image-url('avatars.png') 0px -60px no-repeat; }
-.avatar_F { background: image-url('avatars.png') 0px -90px no-repeat; }
-.avatar_M { background: image-url('avatars.png') 0px -120px no-repeat; }
-.avatar_U { background: image-url('avatars.png') 0px -150px no-repeat; }
-
 .bottom_card{
-  height: 15px;
-}
+  height: 15px; }
 
 .edit_patient_card {
-  float: right;
-}
+  float: right; }
 
 .pagination {
   float: right;

@@ -1,7 +1,7 @@
 <% cache [I18n.locale, @patient] do %>
   <div class="panel" id="summary">
 
-    <%= avatar_for(@patient) %>
+    <%= avatar_icon(@patient) %>
 
     <h4><%= link_to full_name(@patient), patient_path(@patient) %></h4>
     <div>

@@ -16,35 +16,20 @@ module PatientsHelper
     end
   end
 
-  def avatar_for(patient)
-    content_tag :span, class: 'avatar' do
+  def avatar_icon(patient)
+    content_tag :svg, class: 'avatar' do
       case patient.animal_type
       when 0
-        image_tag('avatar_other.png')
+        tag :use, 'xlink:href' => image_path('avatars.svg#U')
       when 1
-        image_tag('avatar_canine.png')
+        tag :use, 'xlink:href' => image_path('avatars.svg#canine')
       when 2
-        image_tag('avatar_feline.png')
+        tag :use, 'xlink:href' => image_path('avatars.svg#feline')
       when 3
-        image_tag('avatar_equine.png')
+        tag :use, 'xlink:href' => image_path('avatars.svg#equine')
       else
-        image_tag("avatar_#{patient.gender}.png")
+        tag :use, 'xlink:href' => image_path("avatars.svg##{patient.gender}")
       end
-    end
-  end
-
-  def avatar_icon(patient)
-    case patient.animal_type
-    when 0
-      image_tag('spacer.gif', class: 'avatar_other')
-    when 1
-      image_tag('spacer.gif', class: 'avatar_canine')
-    when 2
-      image_tag('spacer.gif', class: 'avatar_feline')
-    when 3
-      image_tag('spacer.gif', class: 'avatar_equine')
-    else
-      image_tag('spacer.gif', class: "avatar_#{patient.gender}")
     end
   end
 

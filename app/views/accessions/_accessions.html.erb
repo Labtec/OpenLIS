@@ -14,9 +14,6 @@
 
     <div class="pending">
       <%= paginate @pending_accessions, param_name: :pending_page %>
-      <div id="pending_paging" style="display:none">
-        <%= image_tag('loading.gif', size: '16x16') %>
-      </div>
     </div>
   <% end %>
 
@@ -32,9 +29,6 @@
 
     <div class="paginate">
       <%= paginate @reported_accessions %>
-      <div id="paging" style="display:none">
-        <%= image_tag('loading.gif', size: '16x16') %>
-      </div>
     </div>
   <% end %>
 </div>
