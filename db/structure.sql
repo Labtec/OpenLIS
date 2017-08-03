@@ -816,6 +816,13 @@ CREATE INDEX index_accessions_on_receiver_id ON accessions USING btree (receiver
 
 
 --
+-- Name: index_accessions_on_reported_at_and_drawn_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_accessions_on_reported_at_and_drawn_at ON accessions USING btree (reported_at, drawn_at);
+
+
+--
 -- Name: index_accessions_on_reporter_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -827,6 +834,13 @@ CREATE INDEX index_accessions_on_reporter_id ON accessions USING btree (reporter
 --
 
 CREATE UNIQUE INDEX index_claims_on_accession_id ON claims USING btree (accession_id);
+
+
+--
+-- Name: index_claims_on_claimed_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_claims_on_claimed_at ON claims USING btree (claimed_at);
 
 
 --
@@ -942,6 +956,20 @@ CREATE INDEX index_patients_on_lower_family_name ON patients USING btree (lower(
 
 
 --
+-- Name: index_patients_on_policy_number; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_patients_on_policy_number ON patients USING btree (policy_number);
+
+
+--
+-- Name: index_patients_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_patients_on_updated_at ON patients USING btree (updated_at);
+
+
+--
 -- Name: index_patients_search; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1045,6 +1073,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20150116215040'),
 ('20161016173522'),
 ('20161016181514'),
-('20170507064755');
+('20170507064755'),
+('20170803000000');
 
 
