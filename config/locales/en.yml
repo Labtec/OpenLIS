@@ -48,7 +48,7 @@ en:
         units: "Units"
         reference_ranges: "Ranges"
         lab_test_values: "Values"
-    user_sessions:
+    auth:
       title: Login
 
   views:

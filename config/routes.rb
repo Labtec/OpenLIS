@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  devise_for :users, path: '', path_names: {
-    sign_in: 'login',
-    sign_out: 'logout'
-  }, controllers: {
-    sessions: 'sessions'
-  }, format: false
+  devise_for :users, path: '',
+                     path_names: { sign_in: 'login',
+                                   sign_out: 'logout' },
+                     controllers: { sessions: 'auth/sessions' },
+                     format: false
 
   root 'patients#index'
 
-  resources :users, only: [:edit, :update]
+  resources :users, only: %i[edit update]
   get 'profile', to: 'users#edit'
 
   resources :patients, shallow: true do
@@ -64,7 +65,7 @@ Rails.application.routes.draw do
   end
 
   match '*unmatched_route',
-    via: :all,
-    to: 'application#raise_not_found',
-    format: false
+        via: :all,
+        to: 'application#raise_not_found',
+        format: false
 end

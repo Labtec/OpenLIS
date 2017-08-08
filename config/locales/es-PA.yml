@@ -48,7 +48,7 @@ es-PA:
         units: "Unidades"
         reference_ranges: "Rangos"
         lab_test_values: "Valores"
-    user_sessions:
+    auth:
       title: Inicio de sesión
 
   views:
