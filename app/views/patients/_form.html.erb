@@ -21,6 +21,11 @@
     <%= f.text_field :family_name2, id: :patient_family_name2, autocorrect: "off" %>
   </div>
 
+  <div class="partner_name">
+    <%= f.label :partner_name, t('.partner_name'), class: 'required' %>
+    <%= f.text_field :partner_name, id: :patient_partner_name, autocorrect: "off" %>
+  </div>
+
   <div class="gender">
     <%= f.label :gender, t('.gender'), class: 'required' %>
     <%= f.select :gender, options_for_gender, { prompt: t('.prompt_gender') }, { id: :patient_gender } %>

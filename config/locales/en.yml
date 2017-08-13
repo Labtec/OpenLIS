@@ -113,6 +113,7 @@ en:
       middle_name: "Middle name:"
       family_name: "Last name:"
       family_name2: "Mother's maiden name:"
+      partner_name: "Partner's name:"
       gender: "Sex:"
       prompt_gender: "Select Sex:"
       birthdate: "Birth date:"

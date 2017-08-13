@@ -10,9 +10,11 @@ class PatientTest < ActiveSupport::TestCase
   should validate_inclusion_of(:gender).in_array(GENDERS)
   should validate_presence_of(:given_name)
   should validate_presence_of(:family_name)
+  should validate_presence_of(:partner_name)
   should validate_presence_of(:birthdate)
   should validate_length_of(:given_name).is_at_least(2)
   should validate_length_of(:family_name).is_at_least(2)
+  should validate_length_of(:partner_name).is_at_least(2)
   should validate_uniqueness_of(:identifier)
     .ignoring_case_sensitivity
     .allow_blank
@@ -25,5 +27,15 @@ class PatientTest < ActiveSupport::TestCase
 
     p.birthdate = Date.current
     assert p.valid?, 'A patient born today should be valid'
+  end
+
+  test "no family name and partner's name" do
+    p = patients(:john)
+
+    p.family_name = nil
+    assert p.invalid?, "A patient must have a family name or a partner's name"
+
+    p.partner_name = 'Doe'
+    assert p.valid?, "A patient with only a partner's name should be valid"
   end
 end

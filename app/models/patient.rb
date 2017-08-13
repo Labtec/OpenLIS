@@ -13,7 +13,13 @@ class Patient < ApplicationRecord
 
   validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_blank: true
   validates :gender, inclusion: { in: GENDERS }
-  validates :given_name, :family_name, presence: true, length: { minimum: 2 }
+  validates :given_name, presence: true, length: { minimum: 2 }
+  validates :family_name, presence: true,
+                          length: { minimum: 2 },
+                          unless: -> { partner_name.present? }
+  validates :partner_name, presence: true,
+                           length: { minimum: 2 },
+                           unless: -> { family_name.present? }
   validates :birthdate, presence: true, not_in_the_future: true
   validates :identifier, uniqueness: true, allow_blank: true
   validates :email, email: true, allow_blank: true
@@ -25,13 +31,15 @@ class Patient < ApplicationRecord
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
   auto_strip_attributes :given_name, :middle_name, :family_name, :family_name2,
-                        :identifier, :phone, :address, :policy_number
+                        :partner_name, :identifier, :phone, :address,
+                        :policy_number
 
   before_save :titleize_names
   after_commit :flush_cache
 
   pg_search_scope :search_by_name, against: %i[identifier
                                                family_name family_name2
+                                               partner_name
                                                given_name middle_name],
                                    ignoring: :accents
 
