@@ -22,6 +22,11 @@ class PatientsNameHelperTest < ActionView::TestCase
     assert_equal 'Doe, John F.', name_last_comma_first_mi(@patient)
   end
 
+  test 'display name as last name comma first name without family name' do
+    @patient.update(family_name: '', partner_name: 'Doe')
+    assert_equal 'Doe, John F.', name_last_comma_first_mi(@patient)
+  end
+
   test 'if last name starts with a lowercase, uppercase when Last, First' do
     @patient.update(family_name: 'ñel Tomasso')
     assert_equal 'Ñel Tomasso, John F.', name_last_comma_first_mi(@patient)

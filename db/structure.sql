@@ -422,7 +422,8 @@ CREATE TABLE patients (
     phone character varying(64) DEFAULT NULL::character varying,
     email character varying(128) DEFAULT NULL::character varying,
     animal_type integer,
-    policy_number character varying(510) DEFAULT NULL::character varying
+    policy_number character varying(510) DEFAULT NULL::character varying,
+    partner_name character varying
 );
 
 
@@ -956,6 +957,13 @@ CREATE INDEX index_patients_on_lower_family_name ON patients USING btree (lower(
 
 
 --
+-- Name: index_patients_on_partner_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_patients_on_partner_name ON patients USING btree (partner_name);
+
+
+--
 -- Name: index_patients_on_policy_number; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -973,7 +981,7 @@ CREATE INDEX index_patients_on_updated_at ON patients USING btree (updated_at);
 -- Name: index_patients_search; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_patients_search ON patients USING gin ((((((to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((identifier)::text, ''::text))::character varying))::text) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((family_name)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((family_name2)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((given_name)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((middle_name)::text, ''::text))::character varying))::text))));
+CREATE INDEX index_patients_search ON patients USING gin (((((((to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((identifier)::text, ''::text))::character varying))::text) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((family_name)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((family_name2)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((partner_name)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((given_name)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((middle_name)::text, ''::text))::character varying))::text))));
 
 
 --
@@ -1074,6 +1082,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20161016173522'),
 ('20161016181514'),
 ('20170507064755'),
-('20170803000000');
+('20170803000000'),
+('20170812200000'),
+('20170812200001');
 
 

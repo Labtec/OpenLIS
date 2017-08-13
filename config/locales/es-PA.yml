@@ -48,7 +48,7 @@ es-PA:
         units: "Unidades"
         reference_ranges: "Rangos"
         lab_test_values: "Valores"
-    user_sessions:
+    auth:
       title: Inicio de sesión
 
   views:
@@ -113,6 +113,7 @@ es-PA:
       middle_name: "Segundo nombre:"
       family_name: "Primer apellido:"
       family_name2: "Segundo apellido:"
+      partner_name: "Apellido de casada:"
       gender: "Sexo:"
       prompt_gender: "Elegir Sexo:"
       birthdate: "Fecha de Nacimiento:"

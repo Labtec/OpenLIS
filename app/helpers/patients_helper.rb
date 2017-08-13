@@ -38,11 +38,12 @@ module PatientsHelper
     [patient.given_name,
      patient.middle_name,
      patient.family_name,
-     patient.family_name2].join(' ').squish
+     patient.family_name2,
+     patient.partner_name].join(' ').squish
   end
 
   def name_last_comma_first_mi(patient)
-    family_name = patient.family_name
+    family_name = patient.family_name || patient.partner_name
     family_name[0] = family_name[0].mb_chars.upcase
     last_comma_first = [family_name, patient.given_name].join(', ')
     mi = (patient.middle_name[0, 1] + '.') if patient.middle_name.present?
