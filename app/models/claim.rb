@@ -12,7 +12,7 @@ class Claim < ApplicationRecord
   default_scope { order(external_number: :asc) }
 
   scope :submitted, -> { where.not(claimed_at: nil) }
-  scope :recent, -> { where('claimed_at > :grace_period', grace_period: 5.months.ago) }
+  scope :recent, -> { where('claimed_at > :grace_period', grace_period: 8.months.ago) }
 
   def insured_name
     patient.try(:policy_number) =~ /(\d+)-(\d+)/
