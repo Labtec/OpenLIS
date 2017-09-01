@@ -2,7 +2,7 @@
   <li class="contact">
     <%= avatar_icon(patient) %>
 
-    <div class="tools" style="display:none">
+    <div class="tools">
       <small>
         <%= link_to t('.edit'), edit_patient_path(patient) %>
         <% if current_user.admin? %> |
@@ -13,7 +13,7 @@
 
     <%= link_to full_name(patient), patient_path(patient) %>
     <tt><%= patient.identifier %></tt>
-    <dt style="padding: 2px 0px 0px 0px">
+    <dt class="second">
       <% if patient.email.present? %>
         <%= mail_to patient.email %> |
       <% end %>

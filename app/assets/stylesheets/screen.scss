@@ -460,8 +460,14 @@ td.range_0 {
     height: 30px; }
 
 .tools {
+  display: none;
   float: right;
   padding: 0px 0px 0px 4px; }
+
+.second {
+  padding-top: 2px;
+  padding-left: 0px !important;
+}
 
 .label {
   color: #3f3f3f;

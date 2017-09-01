@@ -1,6 +1,6 @@
 <% cache [I18n.locale, accession, @patient] do %>
   <li class='contact'>
-    <div class="tools" style="display:none">
+    <div class="tools">
       <small>
         <% if accession.reported_at %>
           <%= link_to t('.change_results'), edit_results_accession_url(accession) %> |
@@ -15,7 +15,7 @@
     </div>
     <%= link_to t('.accession', id: accession.id), accession_path(accession) %>
     <%= content_tag :tt, full_name(accession.patient) unless @patient %>
-    <dt style='padding: 2px 0px 0px 0px'>
+    <dt class="second">
       <% if accession.reported_at %>
         <%= t('.drawn_at') %><b><%= l(accession.drawn_at, format: :short) %></b>
         <%= t('.by') %><b><%= accession.reporter.initials if accession.reporter %></b>
