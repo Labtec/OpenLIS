@@ -8,8 +8,7 @@
     <%= link_to t('.email_report'), email_doctor_accession_path(@accession),
       data: { confirm: t('.confirm_email', email: @accession.doctor.email),
               disable_with: t('.sending_email') },
-    method: :put,
-    remote: true %>
+    method: :put %>
   <% end %>
   <br />
 
@@ -59,8 +58,7 @@
         <%= link_to t('.email_report'), email_patient_accession_path(@accession),
           data: { confirm: t('.confirm_email', email: @patient.email),
                   disable_with: t('.sending_email') },
-          method: :put,
-          remote: true %> |
+          method: :put %> |
       <% end %>
     <% else %>
       <%= link_to t('.enter_results'), edit_results_accession_url(@accession) %> |
