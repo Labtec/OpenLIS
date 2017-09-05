@@ -295,9 +295,11 @@ es-PA:
       opening_F: "Estimada %{full_name}:"
       opening_U: "Estimado(a) %{full_name}:"
       body: Hemos adjuntado los resultados de sus exámenes.
+      body_preliminary: Hemos adjuntado los resultados preliminares de sus exámenes.
     email_doctor:
       subject: "Resultados de %{full_name}"
       body: "Hemos adjuntado los resultados de los exámenes de %{full_name}."
+      body_preliminary: "Hemos adjuntado los resultados preliminares de los exámenes de %{full_name}."
 
   flash:
     login:

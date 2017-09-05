@@ -1,4 +1,8 @@
 <%= t(".opening_#{@accession.patient.gender}",
       full_name: full_name(@accession.patient)) %>
 
+<% if @accession.reported_at %>
 <%= t('.body') %>
+<% else %>
+<%= t('.body_preliminary') %>
+<% end %>

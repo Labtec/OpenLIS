@@ -295,9 +295,11 @@ en:
       opening_F: "Dear %{full_name},"
       opening_U: "Dear %{full_name},"
       body: Attached are your lab results.
+      body_preliminary: Attached are your preliminary lab results.
     email_doctor:
       subject: "Results for %{full_name}"
       body: "Attached are the results for %{full_name}."
+      body_preliminary: "Attached are the preliminary results for %{full_name}."
 
   flash:
     login:
