@@ -290,7 +290,8 @@ en:
 
   results_mailer:
     email_patient:
-      subject: Lab Results
+      subject: Lab results
+      subject_preliminary: Preliminary lab results
       opening_M: "Dear %{full_name},"
       opening_F: "Dear %{full_name},"
       opening_U: "Dear %{full_name},"
@@ -298,6 +299,7 @@ en:
       body_preliminary: Attached are your preliminary lab results.
     email_doctor:
       subject: "Results for %{full_name}"
+      subject_preliminary: "Preliminary results for %{full_name}"
       body: "Attached are the results for %{full_name}."
       body_preliminary: "Attached are the preliminary results for %{full_name}."
 
