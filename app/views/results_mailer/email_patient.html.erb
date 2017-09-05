@@ -4,5 +4,9 @@
 </p>
 
 <p>
+<% if @accession.reported_at %>
   <%= t('.body') %>
+<% else %>
+  <%= t('.body_preliminary') %>
+<% end %>
 </p>
