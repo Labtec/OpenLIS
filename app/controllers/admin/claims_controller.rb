@@ -66,9 +66,14 @@ module Admin
       if params[:unsubmitted_claim_ids]
         @claims = Claim.find(params[:unsubmitted_claim_ids])
         @claims.each do |claim|
-          claim.update_attributes!(claimed_at: Time.current)
+          if claim.valid_submission?
+            claim.update_attributes!(claimed_at: Time.current)
+            flash[:notice] = 'Claims successfully submitted.'
+          else
+            flash[:alert] = 'Some claims were not submitted.'
+          end
         end
-        redirect_to admin_claims_url, notice: 'Successfully submitted claims.'
+        redirect_to admin_claims_url
       else
         redirect_to admin_claims_url, alert: 'No claims selected!'
       end
