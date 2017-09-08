@@ -13,9 +13,9 @@
 
 <% @unsubmitted_claims.each do |unsubmitted_claim| %>
   <tr>
-    <td><%= check_box_tag 'unsubmitted_claim_ids[]', unsubmitted_claim.claim.id, false, id: "unsubmitted_claim_id_#{unsubmitted_claim.claim.id}" if unsubmitted_claim.claim %></td>
+    <td><%= check_box_tag 'unsubmitted_claim_ids[]', unsubmitted_claim.claim.id, false, id: "unsubmitted_claim_id_#{unsubmitted_claim.claim.id}" if unsubmitted_claim.claim&.valid_submission? %></td>
     <td>
-      <% if unsubmitted_claim.claim %>
+      <% if unsubmitted_claim.claim&.valid_submission? %>
         <%= label_tag "unsubmitted_claim_id_#{unsubmitted_claim.claim.id}", name_last_comma_first_mi(unsubmitted_claim.patient) %>
       <% else %>
         <%= name_last_comma_first_mi(unsubmitted_claim.patient) %>
@@ -27,7 +27,7 @@
     <% if unsubmitted_claim.claim %>
       <td><%= link_to 'Info', edit_admin_claim_path(unsubmitted_claim.claim), class: 'edit_claim' %></td>
       <td><%= link_to 'Preview', [:admin, unsubmitted_claim.claim], data: { turbolinks: false } %></td>
-      <td><%= link_to 'Submit', submit_admin_claim_path(unsubmitted_claim.claim), method: :put %></td>
+      <td><%= link_to 'Submit', submit_admin_claim_path(unsubmitted_claim.claim), method: :put if unsubmitted_claim.claim&.valid_submission? %></td>
     <% else %>
       <td><%= link_to 'Info', new_admin_accession_claim_path(unsubmitted_claim), class: 'edit_claim' %></td>
       <td></td>
