@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Accession < ApplicationRecord
-  belongs_to :patient
+  belongs_to :patient, touch: true
   belongs_to :doctor, counter_cache: true, optional: true
   belongs_to :receiver, inverse_of: :accessions, class_name: 'User'
   belongs_to :drawer, inverse_of: :accessions, class_name: 'User'
