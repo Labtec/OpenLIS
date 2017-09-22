@@ -67,9 +67,9 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE accession_panels (
-    id integer DEFAULT nextval('accession_panels_id_seq'::regclass) NOT NULL,
-    accession_id integer,
-    panel_id integer,
+    id bigint DEFAULT nextval('accession_panels_id_seq'::regclass) NOT NULL,
+    accession_id bigint,
+    panel_id bigint,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
 );
@@ -92,17 +92,17 @@ CREATE SEQUENCE accessions_id_seq
 --
 
 CREATE TABLE accessions (
-    id integer DEFAULT nextval('accessions_id_seq'::regclass) NOT NULL,
-    patient_id integer,
+    id bigint DEFAULT nextval('accessions_id_seq'::regclass) NOT NULL,
+    patient_id bigint,
     drawn_at timestamp with time zone,
-    drawer_id integer,
+    drawer_id bigint,
     received_at timestamp with time zone,
-    receiver_id integer,
+    receiver_id bigint,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
     reported_at timestamp with time zone,
-    reporter_id integer,
-    doctor_id integer,
+    reporter_id bigint,
+    doctor_id bigint,
     icd9 character varying(510) DEFAULT NULL::character varying
 );
 
@@ -136,14 +136,14 @@ CREATE SEQUENCE claims_id_seq
 --
 
 CREATE TABLE claims (
-    id integer DEFAULT nextval('claims_id_seq'::regclass) NOT NULL,
-    accession_id integer,
+    id bigint DEFAULT nextval('claims_id_seq'::regclass) NOT NULL,
+    accession_id bigint,
     number character varying(510) DEFAULT NULL::character varying,
     external_number character varying(510) DEFAULT NULL::character varying,
     claimed_at timestamp with time zone,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    insurance_provider_id integer
+    insurance_provider_id bigint
 );
 
 
@@ -164,7 +164,7 @@ CREATE SEQUENCE departments_id_seq
 --
 
 CREATE TABLE departments (
-    id integer DEFAULT nextval('departments_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('departments_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
@@ -188,7 +188,7 @@ CREATE SEQUENCE doctors_id_seq
 --
 
 CREATE TABLE doctors (
-    id integer DEFAULT nextval('doctors_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('doctors_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
@@ -215,11 +215,11 @@ CREATE SEQUENCE insurance_providers_id_seq
 --
 
 CREATE TABLE insurance_providers (
-    id integer DEFAULT nextval('insurance_providers_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('insurance_providers_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    price_list_id integer
+    price_list_id bigint
 );
 
 
@@ -240,9 +240,9 @@ CREATE SEQUENCE lab_test_panels_id_seq
 --
 
 CREATE TABLE lab_test_panels (
-    id integer DEFAULT nextval('lab_test_panels_id_seq'::regclass) NOT NULL,
-    lab_test_id integer,
-    panel_id integer,
+    id bigint DEFAULT nextval('lab_test_panels_id_seq'::regclass) NOT NULL,
+    lab_test_id bigint,
+    panel_id bigint,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
 );
@@ -265,11 +265,11 @@ CREATE SEQUENCE lab_test_value_option_joints_id_seq
 --
 
 CREATE TABLE lab_test_value_option_joints (
-    id integer DEFAULT nextval('lab_test_value_option_joints_id_seq'::regclass) NOT NULL,
-    lab_test_value_id integer,
+    id bigint DEFAULT nextval('lab_test_value_option_joints_id_seq'::regclass) NOT NULL,
+    lab_test_value_id bigint,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    lab_test_id integer
+    lab_test_id bigint
 );
 
 
@@ -290,7 +290,7 @@ CREATE SEQUENCE lab_test_values_id_seq
 --
 
 CREATE TABLE lab_test_values (
-    id integer DEFAULT nextval('lab_test_values_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('lab_test_values_id_seq'::regclass) NOT NULL,
     value character varying(510) DEFAULT NULL::character varying,
     flag character varying(510) DEFAULT NULL::character varying,
     note text,
@@ -316,15 +316,15 @@ CREATE SEQUENCE lab_tests_id_seq
 --
 
 CREATE TABLE lab_tests (
-    id integer DEFAULT nextval('lab_tests_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('lab_tests_id_seq'::regclass) NOT NULL,
     code character varying(510) DEFAULT NULL::character varying,
     name character varying(510) DEFAULT NULL::character varying,
     description text,
     decimals integer,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    department_id integer,
-    unit_id integer,
+    department_id bigint,
+    unit_id bigint,
     procedure integer,
     derivation boolean,
     also_numeric boolean,
@@ -353,10 +353,10 @@ CREATE SEQUENCE notes_id_seq
 --
 
 CREATE TABLE notes (
-    id integer DEFAULT nextval('notes_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('notes_id_seq'::regclass) NOT NULL,
     content text,
-    department_id integer,
-    noticeable_id integer,
+    department_id bigint,
+    noticeable_id bigint,
     noticeable_type character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
@@ -380,7 +380,7 @@ CREATE SEQUENCE panels_id_seq
 --
 
 CREATE TABLE panels (
-    id integer DEFAULT nextval('panels_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('panels_id_seq'::regclass) NOT NULL,
     code character varying(510) DEFAULT NULL::character varying,
     name character varying(510) DEFAULT NULL::character varying,
     description character varying(510) DEFAULT NULL::character varying,
@@ -407,7 +407,7 @@ CREATE SEQUENCE patients_id_seq
 --
 
 CREATE TABLE patients (
-    id integer DEFAULT nextval('patients_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('patients_id_seq'::regclass) NOT NULL,
     given_name character varying(510) DEFAULT NULL::character varying,
     middle_name character varying(510) DEFAULT NULL::character varying,
     family_name character varying(510) DEFAULT NULL::character varying,
@@ -418,7 +418,7 @@ CREATE TABLE patients (
     address text,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    insurance_provider_id integer,
+    insurance_provider_id bigint,
     phone character varying(64) DEFAULT NULL::character varying,
     email character varying(128) DEFAULT NULL::character varying,
     animal_type integer,
@@ -444,7 +444,7 @@ CREATE SEQUENCE price_lists_id_seq
 --
 
 CREATE TABLE price_lists (
-    id integer DEFAULT nextval('price_lists_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('price_lists_id_seq'::regclass) NOT NULL,
     name character varying(510) NOT NULL,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
@@ -468,10 +468,10 @@ CREATE SEQUENCE prices_id_seq
 --
 
 CREATE TABLE prices (
-    id integer DEFAULT nextval('prices_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('prices_id_seq'::regclass) NOT NULL,
     amount numeric(8,2) DEFAULT NULL::numeric,
-    price_list_id integer NOT NULL,
-    priceable_id integer NOT NULL,
+    price_list_id bigint NOT NULL,
+    priceable_id bigint NOT NULL,
     priceable_type character varying(510) NOT NULL,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
@@ -495,14 +495,14 @@ CREATE SEQUENCE reference_ranges_id_seq
 --
 
 CREATE TABLE reference_ranges (
-    id integer DEFAULT nextval('reference_ranges_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('reference_ranges_id_seq'::regclass) NOT NULL,
     gender character varying(510) DEFAULT NULL::character varying,
     min_age integer,
     max_age integer,
     age_unit character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    lab_test_id integer,
+    lab_test_id bigint,
     min numeric(15,5) DEFAULT NULL::numeric,
     max numeric(15,5) DEFAULT NULL::numeric,
     animal_type integer,
@@ -527,13 +527,13 @@ CREATE SEQUENCE results_id_seq
 --
 
 CREATE TABLE results (
-    id integer DEFAULT nextval('results_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('results_id_seq'::regclass) NOT NULL,
     value character varying(510) DEFAULT NULL::character varying,
-    lab_test_id integer,
-    accession_id integer,
+    lab_test_id bigint,
+    accession_id bigint,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    lab_test_value_id integer
+    lab_test_value_id bigint
 );
 
 
@@ -563,7 +563,7 @@ CREATE SEQUENCE units_id_seq
 --
 
 CREATE TABLE units (
-    id integer DEFAULT nextval('units_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('units_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
@@ -587,7 +587,7 @@ CREATE SEQUENCE users_id_seq
 --
 
 CREATE TABLE users (
-    id integer DEFAULT nextval('users_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('users_id_seq'::regclass) NOT NULL,
     username character varying(510) DEFAULT NULL::character varying,
     email character varying(510) DEFAULT NULL::character varying,
     encrypted_password character varying(510) NOT NULL,
@@ -1084,6 +1084,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170507064755'),
 ('20170803000000'),
 ('20170812200000'),
-('20170812200001');
+('20170812200001'),
+('20170922131801');
 
 
