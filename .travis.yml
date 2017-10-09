@@ -10,7 +10,7 @@ cache:
 rvm:
   - 2.4.2-clang
 addons:
-  postgresql: '9.6'
+  postgresql: '10.0'
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c "CREATE DATABASE open_lis_test ENCODING 'UTF-8';" -U postgres
