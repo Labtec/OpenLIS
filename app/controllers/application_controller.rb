@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: :raise_not_found
   before_action :set_active_tab
   before_action :set_variant
+  before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
 
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
@@ -55,6 +56,10 @@ class ApplicationController < ActionController::Base
     end
   rescue
     I18n.default_locale
+  end
+
+  def store_current_location
+    store_location_for(:user, request.url)
   end
 
   # Overwriting the sign_out redirect path method
