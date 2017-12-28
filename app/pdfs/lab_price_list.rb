@@ -146,9 +146,7 @@ class LabPriceList < Prawn::Document
 
         move_down 25
         text 'Lista de Precios', align: :center, size: 10, style: :bold
-        if @priceable
-          text @priceable.name, align: :center, size: 10, style: :bold
-        end
+        text @priceable.name, align: :center, size: 10, style: :bold if @priceable
 
         move_down 5
 

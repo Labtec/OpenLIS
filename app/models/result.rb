@@ -96,7 +96,7 @@ class Result < ApplicationRecord
       trig = result_for 'TRIG'
       0.2 * trig
     end
-  rescue
+  rescue StandardError
     'calc.'
   end
 
