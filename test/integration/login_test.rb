@@ -13,6 +13,7 @@ class LoginTest < ActionDispatch::IntegrationTest
     fill_in 'Password', with: 'password'
     click_on 'Log In'
     assert_not page.has_content?('ERROR')
+    visit root_path
     assert_not page.has_content?('Admin')
   end
 
@@ -22,6 +23,7 @@ class LoginTest < ActionDispatch::IntegrationTest
     fill_in 'Password', with: 'password'
     click_on 'Log In'
     assert_not page.has_content?('ERROR')
+    visit root_path
     assert page.has_content?('Admin')
   end
 end
