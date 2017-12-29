@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
                   else
                     extract_locale_from_accept_language_header
                   end
-  rescue
+  rescue StandardError
     I18n.default_locale
   end
   helper_method :set_user_language
@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
     else
       'en'
     end
-  rescue
+  rescue StandardError
     I18n.default_locale
   end
 

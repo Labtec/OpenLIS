@@ -8,7 +8,7 @@ cache:
   bundler: true
   yarn: true
 rvm:
-  - 2.4.3-clang
+  - 2.5.0-clang
 addons:
   postgresql: '9.6'
 before_script:
