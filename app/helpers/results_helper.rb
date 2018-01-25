@@ -89,12 +89,7 @@ module ResultsHelper
     if result.lab_test.derivation?
       text_field_tag :value, format_value(result), disabled: true
     elsif result.lab_test_values?
-      if result.result_types?
-        r.text_field :value, pattern: '\\d*'
-      else
-        r.number_field :value,
-                       step: (10.0**-(result.lab_test_decimals || 0)).to_s
-      end
+      r.text_field :value, pattern: '\\d*'
     else
       r.collection_select(:lab_test_value_id,
                           LabTest.find(result.lab_test_id).lab_test_values,
