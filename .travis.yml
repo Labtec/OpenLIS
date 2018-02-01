@@ -4,11 +4,12 @@ language: ruby
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
   - export PATH=$HOME/.yarn/bin:$PATH
+  - rvm reinstall 2.5.0-clang --disable-binary
 cache:
   bundler: true
   yarn: true
 rvm:
-  - 2.5.0
+  - 2.5.0-clang
 addons:
   postgresql: '9.6'
 before_script:
