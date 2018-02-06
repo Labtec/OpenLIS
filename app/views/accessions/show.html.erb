@@ -58,7 +58,7 @@
       <%= link_to t('.enter_results'), edit_results_accession_url(@accession) %> |
       <%= link_to t('.report'), report_accession_path(@accession), method: :patch, data: { turbolinks: false } %> |
     <% end %>
-    <% if @accession.patient.email.present? %>
+    <% if @patient.email.present? %>
       <%= link_to t('.email_report'), email_patient_accession_path(@accession),
         data: { confirm: t('.confirm_email', email: @patient.email),
                 disable_with: t('.sending_email') },
