@@ -16,7 +16,7 @@
       <td><%= link_to 'Edit', edit_admin_doctor_path(doctor) %></td>
       <td>
         <%= link_to 'Destroy', [:admin, doctor], method: :delete,
-          data: { confirm: "If you erase a Doctor, all its requisitions will be gone!\nAre you sure?" } %>
+          data: { confirm: "If you erase a Doctor, all its requisitions will be gone!\nAre you sure?" } if doctor.accessions_count.zero? %>
       </td>
     <% end %>
   <% end %>
