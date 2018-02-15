@@ -53,9 +53,6 @@ GEM
     bindex (0.5.0)
     brakeman (4.1.1)
     builder (3.2.3)
-    bullet (5.7.2)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11.0)
     byebug (10.0.0)
     capistrano (3.10.1)
       airbrussh (>= 1.0.0)
@@ -254,7 +251,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.6)
       execjs (>= 0.3.0, < 3)
-    uniform_notifier (1.11.0)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.5.1)
@@ -275,7 +271,6 @@ DEPENDENCIES
   acts_as_list
   auto_strip_attributes
   brakeman
-  bullet
   byebug
   capistrano-rails
   capistrano-rbenv

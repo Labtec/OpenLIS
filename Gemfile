@@ -44,7 +44,7 @@ end
 
 group :development do
   gem 'brakeman', require: false
-  gem 'bullet'
+  # gem 'bullet'
   # gem 'capistrano-maintenance'
   gem 'flamegraph', require: false
   gem 'listen'
