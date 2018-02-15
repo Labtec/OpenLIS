@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 ruby '2.5.0'
 
-gem 'rails', '5.1.4'
+gem 'rails', '5.1.5'
 
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
@@ -44,7 +44,7 @@ end
 
 group :development do
   gem 'brakeman', require: false
-  gem 'bullet'
+  # gem 'bullet'
   # gem 'capistrano-maintenance'
   gem 'flamegraph', require: false
   gem 'listen'
