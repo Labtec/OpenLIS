@@ -4,7 +4,7 @@
     <title><%= yield(:title) || 'Untitled' %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', async: Rails.env.production? %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= yield(:head) %>
     <link rel="mask-icon" href="pinned-masterlab.svg" color="#993399">
   </head>
