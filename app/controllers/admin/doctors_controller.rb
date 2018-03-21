@@ -30,7 +30,7 @@ module Admin
 
     def update
       @doctor = Doctor.find(params[:id])
-      if @doctor.update_attributes(doctor_params)
+      if @doctor.update(doctor_params)
         flash[:notice] = 'Successfully updated doctor.'
         redirect_to [:admin, @doctor]
       else

@@ -30,7 +30,7 @@ module Admin
 
     def update
       @panel = Panel.find(params[:id])
-      if @panel.update_attributes(panel_params)
+      if @panel.update(panel_params)
         flash[:notice] = 'Successfully updated panel.'
         redirect_to [:admin, @panel]
       else

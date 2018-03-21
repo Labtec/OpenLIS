@@ -27,7 +27,7 @@ module Admin
 
     def update
       @department = Department.find(params[:id])
-      if @department.update_attributes(department_params)
+      if @department.update(department_params)
         flash[:notice] = 'Department updated successfully.'
         redirect_to admin_departments_url
       else

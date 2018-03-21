@@ -44,7 +44,7 @@ class LabPriceList < Prawn::Document
 
     ##
     # Document fonts
-    file = File.expand_path('../fonts/MyriadPro', __FILE__)
+    file = File.expand_path('fonts/MyriadPro', __dir__)
     font_families['MyriadPro'] = {
       normal:      { file: file + '-Regular.ttf' },
       italic:      { file: file + '-SemiCnIt.ttf' },
@@ -52,7 +52,7 @@ class LabPriceList < Prawn::Document
       bold_italic: { file: file + '-BoldSemiCnIt.ttf' }
     }
 
-    file = File.expand_path('../fonts/HelveticaWorld', __FILE__)
+    file = File.expand_path('fonts/HelveticaWorld', __dir__)
     font_families['HelveticaWorld'] = {
       normal:      { file: file + '-Regular.ttf' },
       italic:      { file: file + '-Italic.ttf' },
