@@ -30,7 +30,7 @@ module Admin
 
     def update
       @insurance_provider = InsuranceProvider.find(params[:id])
-      if @insurance_provider.update_attributes(insurance_provider_params)
+      if @insurance_provider.update(insurance_provider_params)
         flash[:notice] = 'Successfully updated insurance provider.'
         redirect_to [:admin, @insurance_provider], only_path: true
       else

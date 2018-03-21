@@ -30,7 +30,7 @@ module Admin
 
     def update
       @lab_test = LabTest.find(params[:id])
-      if @lab_test.update_attributes(lab_test_params)
+      if @lab_test.update(lab_test_params)
         flash[:notice] = 'Successfully updated lab test.'
         redirect_to [:admin, @lab_test]
       else

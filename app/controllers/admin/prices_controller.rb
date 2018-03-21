@@ -43,7 +43,7 @@ module Admin
     def update
       @price = Price.find(params[:id])
 
-      if @price.update_attributes(price_params)
+      if @price.update(price_params)
         redirect_to [:admin, @price], notice: 'Price was successfully updated.'
       else
         render action: 'edit'

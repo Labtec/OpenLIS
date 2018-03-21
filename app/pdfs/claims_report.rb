@@ -27,7 +27,7 @@ class ClaimsReport < Prawn::Document
     )
 
     # Document defaults
-    file = File.expand_path('../fonts/HelveticaNeueLTStd', __FILE__)
+    file = File.expand_path('fonts/HelveticaNeueLTStd', __dir__)
     font_families['HelveticaNeueLTStd'] = {
       normal: { file: file + '-Roman.ttf' },
       italic: { file: file + '-It.ttf' },
@@ -35,7 +35,7 @@ class ClaimsReport < Prawn::Document
       bold_italic: { file: file + '-BdIt.ttf' }
     }
 
-    file = File.expand_path('../fonts/HelveticaWorld', __FILE__)
+    file = File.expand_path('fonts/HelveticaWorld', __dir__)
     font_families['HelveticaWorld'] = {
       normal: { file: file + '-Regular.ttf' },
       italic: { file: file + '-Italic.ttf' },

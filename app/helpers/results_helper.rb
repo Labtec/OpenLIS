@@ -85,17 +85,17 @@ module ResultsHelper
     end
   end
 
-  def result_input(r, result)
+  def result_input(builder, result)
     if result.lab_test.derivation?
       text_field_tag :value, format_value(result), disabled: true
     elsif result.lab_test_values?
-      r.text_field :value
+      builder.text_field :value
     else
-      r.collection_select(:lab_test_value_id,
-                          LabTest.find(result.lab_test_id).lab_test_values,
-                          :id, :stripped_value,
-                          include_blank: true) +
-        (r.text_field(:value) if result.result_types?)
+      builder.collection_select(:lab_test_value_id,
+                                LabTest.find(result.lab_test_id).lab_test_values,
+                                :id, :stripped_value,
+                                include_blank: true) +
+        (builder.text_field(:value) if result.result_types?)
     end
   end
 end
