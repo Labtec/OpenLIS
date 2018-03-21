@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_user_language
   before_action :authenticate_user!, except: :raise_not_found
-  before_action :set_active_tab
+  before_action :active_tab
   before_action :set_variant
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
 
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def set_active_tab
+  def active_tab
     @active_tab ||= controller_name.to_sym
   end
 

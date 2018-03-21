@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccessionsController < ApplicationController
-  before_action :set_recent_patients_list, except: [:destroy]
+  before_action :recent, except: [:destroy]
 
   def index
     @pending_accessions = Accession.includes(:drawer, :patient, results: %i[lab_test lab_test_value]).queued.pending.page(params[:pending_page])
@@ -133,7 +133,7 @@ class AccessionsController < ApplicationController
 
   protected
 
-  def set_recent_patients_list
+  def recent
     @recent ||= Patient.cached_recent
   end
 
