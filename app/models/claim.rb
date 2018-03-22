@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Claim < ApplicationRecord
-  belongs_to :accession, -> { includes :patient }
+  belongs_to :accession, -> { includes :patient }, inverse_of: :claim
   belongs_to :insurance_provider
 
   has_one :patient, through: :accession
