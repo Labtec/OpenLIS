@@ -1,4 +1,4 @@
-class ChangeIndexTypes < ActiveRecord::Migration
+class ChangeIndexTypes < ActiveRecord::Migration[5.0]
   def up
     execute <<-SQL
       DROP INDEX IF EXISTS index_patients_on_family_name;

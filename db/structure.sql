@@ -3,6 +3,7 @@ SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
@@ -35,22 +36,20 @@ CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA public;
 COMMENT ON EXTENSION unaccent IS 'text search dictionary that removes accents';
 
 
-SET search_path = public, pg_catalog;
-
 --
--- Name: my_unaccent(character varying); Type: FUNCTION; Schema: public; Owner: -
+-- Name: my_unaccent(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION my_unaccent(character varying) RETURNS character varying
+CREATE FUNCTION public.my_unaccent(text) RETURNS text
     LANGUAGE sql IMMUTABLE
-    AS $_$ select unaccent('unaccent', $1::text); $_$;
+    AS $_$ SELECT public.unaccent('public.unaccent', $1) $_$;
 
 
 --
 -- Name: accession_panels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE accession_panels_id_seq
+CREATE SEQUENCE public.accession_panels_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -66,8 +65,8 @@ SET default_with_oids = false;
 -- Name: accession_panels; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE accession_panels (
-    id bigint DEFAULT nextval('accession_panels_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.accession_panels (
+    id bigint DEFAULT nextval('public.accession_panels_id_seq'::regclass) NOT NULL,
     accession_id bigint,
     panel_id bigint,
     created_at timestamp with time zone,
@@ -79,7 +78,7 @@ CREATE TABLE accession_panels (
 -- Name: accessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE accessions_id_seq
+CREATE SEQUENCE public.accessions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -91,8 +90,8 @@ CREATE SEQUENCE accessions_id_seq
 -- Name: accessions; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE accessions (
-    id bigint DEFAULT nextval('accessions_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.accessions (
+    id bigint DEFAULT nextval('public.accessions_id_seq'::regclass) NOT NULL,
     patient_id bigint,
     drawn_at timestamp with time zone,
     drawer_id bigint,
@@ -111,7 +110,7 @@ CREATE TABLE accessions (
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE ar_internal_metadata (
+CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
     created_at timestamp without time zone NOT NULL,
@@ -123,7 +122,7 @@ CREATE TABLE ar_internal_metadata (
 -- Name: claims_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE claims_id_seq
+CREATE SEQUENCE public.claims_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -135,8 +134,8 @@ CREATE SEQUENCE claims_id_seq
 -- Name: claims; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE claims (
-    id bigint DEFAULT nextval('claims_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.claims (
+    id bigint DEFAULT nextval('public.claims_id_seq'::regclass) NOT NULL,
     accession_id bigint,
     number character varying(510) DEFAULT NULL::character varying,
     external_number character varying(510) DEFAULT NULL::character varying,
@@ -151,7 +150,7 @@ CREATE TABLE claims (
 -- Name: departments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE departments_id_seq
+CREATE SEQUENCE public.departments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -163,8 +162,8 @@ CREATE SEQUENCE departments_id_seq
 -- Name: departments; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE departments (
-    id bigint DEFAULT nextval('departments_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.departments (
+    id bigint DEFAULT nextval('public.departments_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
@@ -175,7 +174,7 @@ CREATE TABLE departments (
 -- Name: doctors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE doctors_id_seq
+CREATE SEQUENCE public.doctors_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -187,8 +186,8 @@ CREATE SEQUENCE doctors_id_seq
 -- Name: doctors; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE doctors (
-    id bigint DEFAULT nextval('doctors_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.doctors (
+    id bigint DEFAULT nextval('public.doctors_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
@@ -202,7 +201,7 @@ CREATE TABLE doctors (
 -- Name: insurance_providers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE insurance_providers_id_seq
+CREATE SEQUENCE public.insurance_providers_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -214,8 +213,8 @@ CREATE SEQUENCE insurance_providers_id_seq
 -- Name: insurance_providers; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE insurance_providers (
-    id bigint DEFAULT nextval('insurance_providers_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.insurance_providers (
+    id bigint DEFAULT nextval('public.insurance_providers_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
@@ -227,7 +226,7 @@ CREATE TABLE insurance_providers (
 -- Name: lab_test_panels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE lab_test_panels_id_seq
+CREATE SEQUENCE public.lab_test_panels_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -239,8 +238,8 @@ CREATE SEQUENCE lab_test_panels_id_seq
 -- Name: lab_test_panels; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE lab_test_panels (
-    id bigint DEFAULT nextval('lab_test_panels_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.lab_test_panels (
+    id bigint DEFAULT nextval('public.lab_test_panels_id_seq'::regclass) NOT NULL,
     lab_test_id bigint,
     panel_id bigint,
     created_at timestamp with time zone,
@@ -252,7 +251,7 @@ CREATE TABLE lab_test_panels (
 -- Name: lab_test_value_option_joints_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE lab_test_value_option_joints_id_seq
+CREATE SEQUENCE public.lab_test_value_option_joints_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -264,8 +263,8 @@ CREATE SEQUENCE lab_test_value_option_joints_id_seq
 -- Name: lab_test_value_option_joints; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE lab_test_value_option_joints (
-    id bigint DEFAULT nextval('lab_test_value_option_joints_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.lab_test_value_option_joints (
+    id bigint DEFAULT nextval('public.lab_test_value_option_joints_id_seq'::regclass) NOT NULL,
     lab_test_value_id bigint,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
@@ -277,7 +276,7 @@ CREATE TABLE lab_test_value_option_joints (
 -- Name: lab_test_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE lab_test_values_id_seq
+CREATE SEQUENCE public.lab_test_values_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -289,8 +288,8 @@ CREATE SEQUENCE lab_test_values_id_seq
 -- Name: lab_test_values; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE lab_test_values (
-    id bigint DEFAULT nextval('lab_test_values_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.lab_test_values (
+    id bigint DEFAULT nextval('public.lab_test_values_id_seq'::regclass) NOT NULL,
     value character varying(510) DEFAULT NULL::character varying,
     flag character varying(510) DEFAULT NULL::character varying,
     note text,
@@ -303,7 +302,7 @@ CREATE TABLE lab_test_values (
 -- Name: lab_tests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE lab_tests_id_seq
+CREATE SEQUENCE public.lab_tests_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -315,8 +314,8 @@ CREATE SEQUENCE lab_tests_id_seq
 -- Name: lab_tests; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE lab_tests (
-    id bigint DEFAULT nextval('lab_tests_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.lab_tests (
+    id bigint DEFAULT nextval('public.lab_tests_id_seq'::regclass) NOT NULL,
     code character varying(510) DEFAULT NULL::character varying,
     name character varying(510) DEFAULT NULL::character varying,
     description text,
@@ -340,7 +339,7 @@ CREATE TABLE lab_tests (
 -- Name: notes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE notes_id_seq
+CREATE SEQUENCE public.notes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -352,8 +351,8 @@ CREATE SEQUENCE notes_id_seq
 -- Name: notes; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE notes (
-    id bigint DEFAULT nextval('notes_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.notes (
+    id bigint DEFAULT nextval('public.notes_id_seq'::regclass) NOT NULL,
     content text,
     department_id bigint,
     noticeable_id bigint,
@@ -367,7 +366,7 @@ CREATE TABLE notes (
 -- Name: panels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE panels_id_seq
+CREATE SEQUENCE public.panels_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -379,8 +378,8 @@ CREATE SEQUENCE panels_id_seq
 -- Name: panels; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE panels (
-    id bigint DEFAULT nextval('panels_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.panels (
+    id bigint DEFAULT nextval('public.panels_id_seq'::regclass) NOT NULL,
     code character varying(510) DEFAULT NULL::character varying,
     name character varying(510) DEFAULT NULL::character varying,
     description character varying(510) DEFAULT NULL::character varying,
@@ -394,7 +393,7 @@ CREATE TABLE panels (
 -- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE patients_id_seq
+CREATE SEQUENCE public.patients_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -406,8 +405,8 @@ CREATE SEQUENCE patients_id_seq
 -- Name: patients; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE patients (
-    id bigint DEFAULT nextval('patients_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.patients (
+    id bigint DEFAULT nextval('public.patients_id_seq'::regclass) NOT NULL,
     given_name character varying(510) DEFAULT NULL::character varying,
     middle_name character varying(510) DEFAULT NULL::character varying,
     family_name character varying(510) DEFAULT NULL::character varying,
@@ -431,7 +430,7 @@ CREATE TABLE patients (
 -- Name: price_lists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE price_lists_id_seq
+CREATE SEQUENCE public.price_lists_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -443,8 +442,8 @@ CREATE SEQUENCE price_lists_id_seq
 -- Name: price_lists; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE price_lists (
-    id bigint DEFAULT nextval('price_lists_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.price_lists (
+    id bigint DEFAULT nextval('public.price_lists_id_seq'::regclass) NOT NULL,
     name character varying(510) NOT NULL,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
@@ -455,7 +454,7 @@ CREATE TABLE price_lists (
 -- Name: prices_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE prices_id_seq
+CREATE SEQUENCE public.prices_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -467,8 +466,8 @@ CREATE SEQUENCE prices_id_seq
 -- Name: prices; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE prices (
-    id bigint DEFAULT nextval('prices_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.prices (
+    id bigint DEFAULT nextval('public.prices_id_seq'::regclass) NOT NULL,
     amount numeric(8,2) DEFAULT NULL::numeric,
     price_list_id bigint NOT NULL,
     priceable_id bigint NOT NULL,
@@ -482,7 +481,7 @@ CREATE TABLE prices (
 -- Name: reference_ranges_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE reference_ranges_id_seq
+CREATE SEQUENCE public.reference_ranges_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -494,8 +493,8 @@ CREATE SEQUENCE reference_ranges_id_seq
 -- Name: reference_ranges; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE reference_ranges (
-    id bigint DEFAULT nextval('reference_ranges_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.reference_ranges (
+    id bigint DEFAULT nextval('public.reference_ranges_id_seq'::regclass) NOT NULL,
     gender character varying(510) DEFAULT NULL::character varying,
     min_age integer,
     max_age integer,
@@ -514,7 +513,7 @@ CREATE TABLE reference_ranges (
 -- Name: results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE results_id_seq
+CREATE SEQUENCE public.results_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -526,8 +525,8 @@ CREATE SEQUENCE results_id_seq
 -- Name: results; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE results (
-    id bigint DEFAULT nextval('results_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.results (
+    id bigint DEFAULT nextval('public.results_id_seq'::regclass) NOT NULL,
     value character varying(510) DEFAULT NULL::character varying,
     lab_test_id bigint,
     accession_id bigint,
@@ -541,7 +540,7 @@ CREATE TABLE results (
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE schema_migrations (
+CREATE TABLE public.schema_migrations (
     version character varying(510) NOT NULL
 );
 
@@ -550,7 +549,7 @@ CREATE TABLE schema_migrations (
 -- Name: units_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE units_id_seq
+CREATE SEQUENCE public.units_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -562,8 +561,8 @@ CREATE SEQUENCE units_id_seq
 -- Name: units; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE units (
-    id bigint DEFAULT nextval('units_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.units (
+    id bigint DEFAULT nextval('public.units_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone
@@ -574,7 +573,7 @@ CREATE TABLE units (
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE users_id_seq
+CREATE SEQUENCE public.users_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -586,8 +585,8 @@ CREATE SEQUENCE users_id_seq
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE users (
-    id bigint DEFAULT nextval('users_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.users (
+    id bigint DEFAULT nextval('public.users_id_seq'::regclass) NOT NULL,
     username character varying(510) DEFAULT NULL::character varying,
     email character varying(510) DEFAULT NULL::character varying,
     encrypted_password character varying(510) NOT NULL,
@@ -625,7 +624,7 @@ CREATE TABLE users (
 -- Name: accession_panels accession_panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY accession_panels
+ALTER TABLE ONLY public.accession_panels
     ADD CONSTRAINT accession_panels_pkey PRIMARY KEY (id);
 
 
@@ -633,7 +632,7 @@ ALTER TABLE ONLY accession_panels
 -- Name: accessions accessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY accessions
+ALTER TABLE ONLY public.accessions
     ADD CONSTRAINT accessions_pkey PRIMARY KEY (id);
 
 
@@ -641,7 +640,7 @@ ALTER TABLE ONLY accessions
 -- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY ar_internal_metadata
+ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
 
 
@@ -649,7 +648,7 @@ ALTER TABLE ONLY ar_internal_metadata
 -- Name: claims claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY claims
+ALTER TABLE ONLY public.claims
     ADD CONSTRAINT claims_pkey PRIMARY KEY (id);
 
 
@@ -657,7 +656,7 @@ ALTER TABLE ONLY claims
 -- Name: departments departments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY departments
+ALTER TABLE ONLY public.departments
     ADD CONSTRAINT departments_pkey PRIMARY KEY (id);
 
 
@@ -665,7 +664,7 @@ ALTER TABLE ONLY departments
 -- Name: doctors doctors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY doctors
+ALTER TABLE ONLY public.doctors
     ADD CONSTRAINT doctors_pkey PRIMARY KEY (id);
 
 
@@ -673,7 +672,7 @@ ALTER TABLE ONLY doctors
 -- Name: insurance_providers insurance_providers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY insurance_providers
+ALTER TABLE ONLY public.insurance_providers
     ADD CONSTRAINT insurance_providers_pkey PRIMARY KEY (id);
 
 
@@ -681,7 +680,7 @@ ALTER TABLE ONLY insurance_providers
 -- Name: lab_test_panels lab_test_panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY lab_test_panels
+ALTER TABLE ONLY public.lab_test_panels
     ADD CONSTRAINT lab_test_panels_pkey PRIMARY KEY (id);
 
 
@@ -689,7 +688,7 @@ ALTER TABLE ONLY lab_test_panels
 -- Name: lab_test_value_option_joints lab_test_value_option_joints_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY lab_test_value_option_joints
+ALTER TABLE ONLY public.lab_test_value_option_joints
     ADD CONSTRAINT lab_test_value_option_joints_pkey PRIMARY KEY (id);
 
 
@@ -697,7 +696,7 @@ ALTER TABLE ONLY lab_test_value_option_joints
 -- Name: lab_test_values lab_test_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY lab_test_values
+ALTER TABLE ONLY public.lab_test_values
     ADD CONSTRAINT lab_test_values_pkey PRIMARY KEY (id);
 
 
@@ -705,7 +704,7 @@ ALTER TABLE ONLY lab_test_values
 -- Name: lab_tests lab_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY lab_tests
+ALTER TABLE ONLY public.lab_tests
     ADD CONSTRAINT lab_tests_pkey PRIMARY KEY (id);
 
 
@@ -713,7 +712,7 @@ ALTER TABLE ONLY lab_tests
 -- Name: notes notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY notes
+ALTER TABLE ONLY public.notes
     ADD CONSTRAINT notes_pkey PRIMARY KEY (id);
 
 
@@ -721,7 +720,7 @@ ALTER TABLE ONLY notes
 -- Name: panels panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY panels
+ALTER TABLE ONLY public.panels
     ADD CONSTRAINT panels_pkey PRIMARY KEY (id);
 
 
@@ -729,7 +728,7 @@ ALTER TABLE ONLY panels
 -- Name: patients patients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY patients
+ALTER TABLE ONLY public.patients
     ADD CONSTRAINT patients_pkey PRIMARY KEY (id);
 
 
@@ -737,7 +736,7 @@ ALTER TABLE ONLY patients
 -- Name: price_lists price_lists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY price_lists
+ALTER TABLE ONLY public.price_lists
     ADD CONSTRAINT price_lists_pkey PRIMARY KEY (id);
 
 
@@ -745,7 +744,7 @@ ALTER TABLE ONLY price_lists
 -- Name: prices prices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY prices
+ALTER TABLE ONLY public.prices
     ADD CONSTRAINT prices_pkey PRIMARY KEY (id);
 
 
@@ -753,7 +752,7 @@ ALTER TABLE ONLY prices
 -- Name: reference_ranges reference_ranges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY reference_ranges
+ALTER TABLE ONLY public.reference_ranges
     ADD CONSTRAINT reference_ranges_pkey PRIMARY KEY (id);
 
 
@@ -761,7 +760,7 @@ ALTER TABLE ONLY reference_ranges
 -- Name: results results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY results
+ALTER TABLE ONLY public.results
     ADD CONSTRAINT results_pkey PRIMARY KEY (id);
 
 
@@ -769,7 +768,7 @@ ALTER TABLE ONLY results
 -- Name: units units_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY units
+ALTER TABLE ONLY public.units
     ADD CONSTRAINT units_pkey PRIMARY KEY (id);
 
 
@@ -777,7 +776,7 @@ ALTER TABLE ONLY units
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY users
+ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
@@ -785,287 +784,287 @@ ALTER TABLE ONLY users
 -- Name: index_accession_panels_on_accession_id_and_panel_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_accession_panels_on_accession_id_and_panel_id ON accession_panels USING btree (accession_id, panel_id);
+CREATE INDEX index_accession_panels_on_accession_id_and_panel_id ON public.accession_panels USING btree (accession_id, panel_id);
 
 
 --
 -- Name: index_accessions_on_doctor_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_accessions_on_doctor_id ON accessions USING btree (doctor_id);
+CREATE INDEX index_accessions_on_doctor_id ON public.accessions USING btree (doctor_id);
 
 
 --
 -- Name: index_accessions_on_drawer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_accessions_on_drawer_id ON accessions USING btree (drawer_id);
+CREATE INDEX index_accessions_on_drawer_id ON public.accessions USING btree (drawer_id);
 
 
 --
 -- Name: index_accessions_on_patient_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_accessions_on_patient_id ON accessions USING btree (patient_id);
+CREATE INDEX index_accessions_on_patient_id ON public.accessions USING btree (patient_id);
 
 
 --
 -- Name: index_accessions_on_receiver_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_accessions_on_receiver_id ON accessions USING btree (receiver_id);
+CREATE INDEX index_accessions_on_receiver_id ON public.accessions USING btree (receiver_id);
 
 
 --
 -- Name: index_accessions_on_reported_at_and_drawn_at; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_accessions_on_reported_at_and_drawn_at ON accessions USING btree (reported_at, drawn_at);
+CREATE INDEX index_accessions_on_reported_at_and_drawn_at ON public.accessions USING btree (reported_at, drawn_at);
 
 
 --
 -- Name: index_accessions_on_reporter_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_accessions_on_reporter_id ON accessions USING btree (reporter_id);
+CREATE INDEX index_accessions_on_reporter_id ON public.accessions USING btree (reporter_id);
 
 
 --
 -- Name: index_claims_on_accession_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_claims_on_accession_id ON claims USING btree (accession_id);
+CREATE UNIQUE INDEX index_claims_on_accession_id ON public.claims USING btree (accession_id);
 
 
 --
 -- Name: index_claims_on_claimed_at; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_claims_on_claimed_at ON claims USING btree (claimed_at);
+CREATE INDEX index_claims_on_claimed_at ON public.claims USING btree (claimed_at);
 
 
 --
 -- Name: index_claims_on_insurance_provider_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_claims_on_insurance_provider_id ON claims USING btree (insurance_provider_id);
+CREATE INDEX index_claims_on_insurance_provider_id ON public.claims USING btree (insurance_provider_id);
 
 
 --
 -- Name: index_departments_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_departments_on_name ON departments USING btree (name);
+CREATE UNIQUE INDEX index_departments_on_name ON public.departments USING btree (name);
 
 
 --
 -- Name: index_doctors_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_doctors_on_name ON doctors USING btree (name);
+CREATE INDEX index_doctors_on_name ON public.doctors USING btree (name);
 
 
 --
 -- Name: index_insurance_providers_on_price_list_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_insurance_providers_on_price_list_id ON insurance_providers USING btree (price_list_id);
+CREATE INDEX index_insurance_providers_on_price_list_id ON public.insurance_providers USING btree (price_list_id);
 
 
 --
 -- Name: index_lab_test_panels_on_lab_test_id_and_panel_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_lab_test_panels_on_lab_test_id_and_panel_id ON lab_test_panels USING btree (lab_test_id, panel_id);
+CREATE INDEX index_lab_test_panels_on_lab_test_id_and_panel_id ON public.lab_test_panels USING btree (lab_test_id, panel_id);
 
 
 --
 -- Name: index_lab_test_value_option_joints_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_lab_test_value_option_joints_on_lab_test_id ON lab_test_value_option_joints USING btree (lab_test_id);
+CREATE INDEX index_lab_test_value_option_joints_on_lab_test_id ON public.lab_test_value_option_joints USING btree (lab_test_id);
 
 
 --
 -- Name: index_lab_test_value_option_joints_on_lab_test_value_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_lab_test_value_option_joints_on_lab_test_value_id ON lab_test_value_option_joints USING btree (lab_test_value_id);
+CREATE INDEX index_lab_test_value_option_joints_on_lab_test_value_id ON public.lab_test_value_option_joints USING btree (lab_test_value_id);
 
 
 --
 -- Name: index_lab_tests_on_code; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_lab_tests_on_code ON lab_tests USING btree (code);
+CREATE INDEX index_lab_tests_on_code ON public.lab_tests USING btree (code);
 
 
 --
 -- Name: index_lab_tests_on_department_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_lab_tests_on_department_id ON lab_tests USING btree (department_id);
+CREATE INDEX index_lab_tests_on_department_id ON public.lab_tests USING btree (department_id);
 
 
 --
 -- Name: index_lab_tests_on_position; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_lab_tests_on_position ON lab_tests USING btree ("position");
+CREATE INDEX index_lab_tests_on_position ON public.lab_tests USING btree ("position");
 
 
 --
 -- Name: index_lab_tests_on_unit_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_lab_tests_on_unit_id ON lab_tests USING btree (unit_id);
+CREATE INDEX index_lab_tests_on_unit_id ON public.lab_tests USING btree (unit_id);
 
 
 --
 -- Name: index_notes_on_department_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_notes_on_department_id ON notes USING btree (department_id);
+CREATE INDEX index_notes_on_department_id ON public.notes USING btree (department_id);
 
 
 --
 -- Name: index_notes_on_noticeable_id_and_noticeable_type; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_notes_on_noticeable_id_and_noticeable_type ON notes USING btree (noticeable_id, noticeable_type);
+CREATE INDEX index_notes_on_noticeable_id_and_noticeable_type ON public.notes USING btree (noticeable_id, noticeable_type);
 
 
 --
 -- Name: index_panels_on_code; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_panels_on_code ON panels USING btree (code);
+CREATE INDEX index_panels_on_code ON public.panels USING btree (code);
 
 
 --
 -- Name: index_patients_on_insurance_provider_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_patients_on_insurance_provider_id ON patients USING btree (insurance_provider_id);
+CREATE INDEX index_patients_on_insurance_provider_id ON public.patients USING btree (insurance_provider_id);
 
 
 --
 -- Name: index_patients_on_lower_family_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_patients_on_lower_family_name ON patients USING btree (lower((my_unaccent(family_name))::text));
+CREATE INDEX index_patients_on_lower_family_name ON public.patients USING btree (lower(public.my_unaccent((family_name)::text)));
 
 
 --
 -- Name: index_patients_on_partner_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_patients_on_partner_name ON patients USING btree (partner_name);
+CREATE INDEX index_patients_on_partner_name ON public.patients USING btree (partner_name);
 
 
 --
 -- Name: index_patients_on_policy_number; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_patients_on_policy_number ON patients USING btree (policy_number);
+CREATE INDEX index_patients_on_policy_number ON public.patients USING btree (policy_number);
 
 
 --
 -- Name: index_patients_on_updated_at; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_patients_on_updated_at ON patients USING btree (updated_at);
+CREATE INDEX index_patients_on_updated_at ON public.patients USING btree (updated_at);
 
 
 --
 -- Name: index_patients_search; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_patients_search ON patients USING gin (((((((to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((identifier)::text, ''::text))::character varying))::text) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((family_name)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((family_name2)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((partner_name)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((given_name)::text, ''::text))::character varying))::text)) || to_tsvector('simple'::regconfig, (my_unaccent((COALESCE((middle_name)::text, ''::text))::character varying))::text))));
+CREATE INDEX index_patients_search ON public.patients USING gin (((((((to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((identifier)::text, ''::text))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((family_name)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((family_name2)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((partner_name)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((given_name)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((middle_name)::text, ''::text))))));
 
 
 --
 -- Name: index_prices_on_price_list_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_prices_on_price_list_id ON prices USING btree (price_list_id);
+CREATE INDEX index_prices_on_price_list_id ON public.prices USING btree (price_list_id);
 
 
 --
 -- Name: index_prices_on_priceable_id_and_priceable_type; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_prices_on_priceable_id_and_priceable_type ON prices USING btree (priceable_id, priceable_type);
+CREATE INDEX index_prices_on_priceable_id_and_priceable_type ON public.prices USING btree (priceable_id, priceable_type);
 
 
 --
 -- Name: index_reference_ranges_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_reference_ranges_on_lab_test_id ON reference_ranges USING btree (lab_test_id);
+CREATE INDEX index_reference_ranges_on_lab_test_id ON public.reference_ranges USING btree (lab_test_id);
 
 
 --
 -- Name: index_results_on_accession_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_results_on_accession_id ON results USING btree (accession_id);
+CREATE INDEX index_results_on_accession_id ON public.results USING btree (accession_id);
 
 
 --
 -- Name: index_results_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_results_on_lab_test_id ON results USING btree (lab_test_id);
+CREATE INDEX index_results_on_lab_test_id ON public.results USING btree (lab_test_id);
 
 
 --
 -- Name: index_results_on_lab_test_value_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_results_on_lab_test_value_id ON results USING btree (lab_test_value_id);
+CREATE INDEX index_results_on_lab_test_value_id ON public.results USING btree (lab_test_value_id);
 
 
 --
 -- Name: index_units_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_units_on_name ON units USING btree (name);
+CREATE INDEX index_units_on_name ON public.units USING btree (name);
 
 
 --
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
+CREATE UNIQUE INDEX index_users_on_confirmation_token ON public.users USING btree (confirmation_token);
 
 
 --
 -- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
 
 
 --
 -- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_unlock_token ON users USING btree (unlock_token);
+CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
 
 
 --
 -- Name: index_users_on_username; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_username ON users USING btree (username);
+CREATE UNIQUE INDEX index_users_on_username ON public.users USING btree (username);
 
 
 --
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
 
 
 --
@@ -1085,6 +1084,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170803000000'),
 ('20170812200000'),
 ('20170812200001'),
-('20170922131801');
+('20170922131801'),
+('20180323000000');
 
 
