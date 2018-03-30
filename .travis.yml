@@ -16,9 +16,6 @@ addons:
     packages:
       - postgresql-10
       - postgresql-client-10
-env:
-  global:
-    - PGPORT=5433
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c "CREATE DATABASE open_lis_test ENCODING 'UTF-8';" -U postgres
