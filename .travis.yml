@@ -11,11 +11,7 @@ cache:
 rvm:
   - 2.5.1-clang
 addons:
-  postgresql: '10'
-  apt:
-    packages:
-      - postgresql-10
-      - postgresql-client-10
+  postgresql: '9.6'
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c "CREATE DATABASE open_lis_test ENCODING 'UTF-8';" -U postgres
