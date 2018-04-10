@@ -4,8 +4,8 @@ class AccessionsController < ApplicationController
   before_action :recent, except: [:destroy]
 
   def index
-    @pending_accessions = Accession.includes(:drawer, :patient, results: %i[lab_test lab_test_value]).queued.pending.page(params[:pending_page])
-    @reported_accessions = Accession.includes(:patient, :reporter).recently.reported.page(params[:page])
+    @pending_accessions = Accession.includes(:drawer, :patient, results: %i[lab_test lab_test_value]).queued.pending.page(pending_page)
+    @reported_accessions = Accession.includes(:patient, :reporter).recently.reported.page(page)
   end
 
   def show
@@ -141,5 +141,13 @@ class AccessionsController < ApplicationController
 
   def accession_params
     params.require(:accession).permit(:drawn_at, :drawer_id, :received_at, :receiver_id, :doctor_name, :icd9, { lab_test_ids: [] }, :reporter_id, :reported_at, { results_attributes: %i[id lab_test_id lab_test_value_id value] }, { panel_ids: [] }, notes_attributes: %i[id content department_id])
+  end
+
+  def pending_page
+    params[:pending_page].to_i
+  end
+
+  def page
+    params[:page].to_i
   end
 end
