@@ -26,3 +26,6 @@ Capfile
 /.capistrano
 /config/deploy
 /config/deploy.rb
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

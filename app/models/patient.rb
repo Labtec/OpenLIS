@@ -27,7 +27,7 @@ class Patient < ApplicationRecord
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
   scope :recent, -> { order(updated_at: :desc).limit(10) }
-  scope :sorted, -> { order('LOWER(my_unaccent(family_name))') }
+  scope :sorted, -> { order(Arel.sql('LOWER(my_unaccent(family_name))')) }
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
   auto_strip_attributes :given_name, :middle_name, :family_name, :family_name2,
