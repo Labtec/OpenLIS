@@ -9,7 +9,7 @@ class Patient < ApplicationRecord
   belongs_to :insurance_provider, optional: true
 
   has_many :accessions, dependent: :destroy
-  has_many :notes, as: :noticeable
+  has_many :notes, as: :noticeable, dependent: :destroy
 
   validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_blank: true
   validates :gender, inclusion: { in: GENDERS }

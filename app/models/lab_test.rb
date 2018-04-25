@@ -4,7 +4,7 @@ class LabTest < ApplicationRecord
   belongs_to :department
   belongs_to :unit, optional: true
 
-  has_many :reference_ranges
+  has_many :reference_ranges, dependent: :destroy
   has_many :lab_test_panels, dependent: :destroy
   has_many :panels, through: :lab_test_panels
   has_many :results, dependent: :destroy

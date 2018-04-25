@@ -3,8 +3,8 @@
 class InsuranceProvider < ApplicationRecord
   belongs_to :price_list
 
-  has_many :claims
-  has_many :patients
+  has_many :claims, dependent: :destroy
+  has_many :patients, dependent: :nullify
   has_many :accessions, through: :patients
   has_many :prices, through: :price_list
 

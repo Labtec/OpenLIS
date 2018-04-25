@@ -11,7 +11,7 @@ class Accession < ApplicationRecord
   has_many :lab_tests, through: :results
   has_many :accession_panels, dependent: :destroy
   has_many :panels, through: :accession_panels
-  has_many :notes, as: :noticeable
+  has_many :notes, as: :noticeable, dependent: :destroy
 
   has_one :claim, dependent: :destroy
   has_one :insurance_provider, through: :patient

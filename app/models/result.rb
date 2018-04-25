@@ -7,7 +7,7 @@ class Result < ApplicationRecord
   belongs_to :lab_test
   belongs_to :lab_test_value, optional: true
 
-  has_many :notes,            as: :noticeable
+  has_many :notes, as: :noticeable, dependent: :destroy
   has_many :reference_ranges, through: :lab_test
 
   has_one :department, through: :lab_test
