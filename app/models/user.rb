@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :lockable, :timeoutable,
          :trackable, :validatable
 
-  has_many :accessions
+  has_many :accessions, dependent: :nullify
 
   validates :username, :first_name, :last_name, :initials, presence: true
   validates :initials, uniqueness: true
