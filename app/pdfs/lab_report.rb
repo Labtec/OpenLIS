@@ -121,10 +121,12 @@ class LabReport < Prawn::Document
     column_2_width = 88
     column_3_width = 40
     column_range_width = 192
-    column_6_padding_right = 40
+    column_6_padding_right = 28
+    column_gender_range_width = 12
     column_description_range_width = 70
+    column_range_title_width = column_gender_range_width + column_description_range_width
     column_5_width = font_size - 2
-    column_4_width = (column_range_width - column_description_range_width - column_5_width - column_6_padding_right) / 2
+    column_4_width = (column_range_width - column_range_title_width - column_5_width - column_6_padding_right) / 2
     column_6_width = column_4_width + column_6_padding_right
     # table_padding = 2
     signature_spacing = line_height * 3
@@ -310,12 +312,12 @@ class LabReport < Prawn::Document
               text t('results.index.flag'), style: :bold, align: :center
             end
           end
-          bounding_box([title_row_stop4 + column_description_range_width / 2, bounds.top], width: column_range_width - column_description_range_width / 2, height: title_row_height) do
+          bounding_box([title_row_stop4 + column_range_title_width / 2, bounds.top], width: column_range_width - column_range_title_width / 2, height: title_row_height) do
             pad_top PADDING do
               text t('results.index.range'), color: COLORS[:white], style: :bold, align: :center
             end
           end
-          bounding_box([title_row_stop4 + column_description_range_width / 2, bounds.top], width: column_range_width - column_description_range_width / 2, height: title_row_height) do
+          bounding_box([title_row_stop4 + column_range_title_width / 2, bounds.top], width: column_range_width - column_range_title_width / 2, height: title_row_height) do
             pad_top PADDING do
               text t('results.index.range'), color: COLORS[:purple], style: :bold, align: :center
             end
@@ -348,12 +350,14 @@ class LabReport < Prawn::Document
         cell_col4 = make_table(result.ranges, cell_style: { padding: [0, 0.4], borders: [] }) do
           column(0).align = :right
           column(1).align = :right
-          column(2).align = :center
-          column(3).align = :left
-          column(0).width = column_description_range_width
-          column(1).width = column_4_width
-          column(2).width = column_5_width
-          column(3).width = column_6_width
+          column(2).align = :right
+          column(3).align = :center
+          column(4).align = :left
+          column(0).width = column_gender_range_width
+          column(1).width = column_description_range_width
+          column(2).width = column_4_width
+          column(3).width = column_5_width
+          column(4).width = column_6_width
 
           # TODO: padding should be done here
         end

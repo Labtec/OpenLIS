@@ -62,3 +62,9 @@ reference_range_greater_than:
   decimals: 0
   name: Reference Range
   code: REFRANGEGT
+
+reference_range_male_female:
+  department: chemistry
+  decimals: 0
+  name: Reference Range
+  code: REFRANGEMF

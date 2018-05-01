@@ -39,3 +39,9 @@ insured:
   insurance_provider: axa
   policy_number: '1-111'
   <<: *DEFAULTS
+
+unknown:
+  given_name: Unknown
+  identifier: '000-000-0000'
+  gender: U
+  <<: *DEFAULTS

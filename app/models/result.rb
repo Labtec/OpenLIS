@@ -132,16 +132,17 @@ class Result < ApplicationRecord
     ranges = []
     if ranges?
       @base_ranges.each do |r|
-        description = r.description + ': ' if r.description.present?
+        gender = "#{r.gender}: " if patient.gender == 'U'
+        description = "#{r.description}: " if r.description.present?
 
         ranges << if lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
                     [nil]
                   elsif r.max && r.min
-                    [description, format_value(r.min), RANGE_SYMBOL_RANGE, format_value(r.max)]
+                    [gender, description, format_value(r.min), RANGE_SYMBOL_RANGE, format_value(r.max)]
                   elsif r.max
-                    [description, nil, RANGE_SYMBOL_LT, format_value(r.max)]
+                    [gender, description, nil, RANGE_SYMBOL_LT, format_value(r.max)]
                   elsif r.min
-                    [description, nil, RANGE_SYMBOL_GE, format_value(r.min)]
+                    [gender, description, nil, RANGE_SYMBOL_GE, format_value(r.min)]
                   else
                     [nil]
                   end
