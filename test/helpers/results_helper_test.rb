@@ -84,13 +84,20 @@ class ResultsHelperTest < ActionView::TestCase
 
   test 'reference range table contains less than symbol' do
     @result.lab_test = lab_tests(:reference_range_less_than)
-    assert_equal '<table><tbody><tr><td class="range_0"></td><td class="range_1"></td><td class="range_2">&lt;</td><td class="range_3">10</td></tr></tbody></table>',
+    assert_equal '<table><tbody><tr><td class="range_0"></td><td class="range_1"></td><td class="range_2"></td><td class="range_3">&lt;</td><td class="range_4">10</td></tr></tbody></table>',
                  ranges_table(@result.ranges)
   end
 
   test 'reference range table contains greater than symbol' do
     @result.lab_test = lab_tests(:reference_range_greater_than)
-    assert_equal '<table><tbody><tr><td class="range_0"></td><td class="range_1"></td><td class="range_2">≥</td><td class="range_3">10</td></tr></tbody></table>',
+    assert_equal '<table><tbody><tr><td class="range_0"></td><td class="range_1"></td><td class="range_2"></td><td class="range_3">≥</td><td class="range_4">10</td></tr></tbody></table>',
+                 ranges_table(@result.ranges)
+  end
+
+  test "reference range table contains gender info if patient's gender is unknown" do
+    @result.accession = accessions(:unknown_patient)
+    @result.lab_test = lab_tests(:reference_range_male_female)
+    assert_equal '<table><tbody><tr><td class="range_0">M: </td><td class="range_1"></td><td class="range_2">0</td><td class="range_3">–</td><td class="range_4">10</td></tr><tr><td class="range_0">F: </td><td class="range_1"></td><td class="range_2">100</td><td class="range_3">–</td><td class="range_4">200</td></tr></tbody></table>',
                  ranges_table(@result.ranges)
   end
 end

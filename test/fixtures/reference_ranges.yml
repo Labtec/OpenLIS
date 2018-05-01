@@ -7,3 +7,15 @@ greater_than:
   gender: '*'
   min: 10
   lab_test: reference_range_greater_than
+
+gender_male:
+  gender: M
+  min: 0
+  max: 10
+  lab_test: reference_range_male_female
+
+gender_female:
+  gender: F
+  min: 100
+  max: 200
+  lab_test: reference_range_male_female

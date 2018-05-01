@@ -396,12 +396,15 @@ table {
 td.range_0,
 td.range_1,
 td.range_2,
-td.range_3 {
+td.range_3,
+td.range_4 {
   padding: 0; }
 td.range_0,
-td.range_1 {
+td.range_1,
+td.range_2 {
   text-align: right; }
-td.range_0 {
+td.range_0,
+td.range_1 {
   padding-right: 1em; }
 .handle {
   font-size: 12px;
