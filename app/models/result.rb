@@ -26,6 +26,8 @@ class Result < ApplicationRecord
   validates :value, fraction: true, allow_blank: true, if: :fraction?
   validates :value, ratio: true,    allow_blank: true, if: :ratio?
 
+  auto_strip_attributes :value, if: :text_length?
+
   def derived_value
     case lab_test_code
     when 'CHOLHDLR'
