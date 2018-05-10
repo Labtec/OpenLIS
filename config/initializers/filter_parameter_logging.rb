@@ -12,6 +12,5 @@ Rails.application.config.filter_parameters += [:address,
                                                :insurance_provider_id,
                                                :middle_name,
                                                :password,
-                                               :password_confirmation,
                                                :phone,
                                                :search]
