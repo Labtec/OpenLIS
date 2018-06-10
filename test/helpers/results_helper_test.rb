@@ -82,6 +82,20 @@ class ResultsHelperTest < ActionView::TestCase
     assert_equal 'This is the result', format_value(@result)
   end
 
+  test 'qualitative-only results should not have units' do
+    @result.update(lab_test: lab_tests(:mixed),
+                   value: nil,
+                   lab_test_value: lab_test_values(:positive))
+    assert_nil format_units(@result)
+  end
+
+  test 'quantitative results should have units' do
+    @result.update(lab_test: lab_tests(:mixed),
+                   value: 10,
+                   lab_test_value: lab_test_values(:positive))
+    assert_equal 'Units', format_units(@result)
+  end
+
   test 'reference range table contains less than symbol' do
     @result.lab_test = lab_tests(:reference_range_less_than)
     assert_equal '<table><tbody><tr><td class="range_0"></td><td class="range_1"></td><td class="range_2"></td><td class="range_3">&lt;</td><td class="range_4">10</td></tr></tbody></table>',

@@ -2,6 +2,6 @@
   <td class="lab_test <%= flag_color result %>"><%= sanitize(result.lab_test_name) %></td>
   <td class="result <%= flag_color result %>"><%= sanitize(format_value(result)) %></td>
   <td class="symbol <%= flag_color result %>"><%= flag_name result %></td>
-  <td class="units"><%= result.unit_name %></td>
+  <td class="units"><%= sanitize(format_units(result)) %></td>
   <td class="ranges"><%= ranges_table result.ranges %></td>
 </tr>
