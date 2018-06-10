@@ -361,7 +361,7 @@ class LabReport < Prawn::Document
 
           # TODO: padding should be done here
         end
-        data << [cell_col0, cell_col1, result.unit_name, cell_col3, cell_col4]
+        data << [cell_col0, cell_col1, format_units(result), cell_col3, cell_col4]
       end
 
       table(data, header: true, cell_style: { padding: [LINE_PADDING, 0] }) do

@@ -35,6 +35,10 @@ module ResultsHelper
     end
   end
 
+  def format_units(result)
+    result.unit_name unless result.lab_test_value && result.value.blank?
+  end
+
   def flag_name(result)
     case result.flag
     when 'A'

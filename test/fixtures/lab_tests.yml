@@ -20,6 +20,7 @@ mixed:
   name: Mixed
   code: MIXED
   lab_test_values: positive
+  unit: units
 
 ratio:
   department: chemistry
