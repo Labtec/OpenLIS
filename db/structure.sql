@@ -331,7 +331,8 @@ CREATE TABLE public.lab_tests (
     range boolean,
     fraction boolean,
     text_length integer,
-    "position" integer
+    "position" integer,
+    loinc character varying
 );
 
 
@@ -385,7 +386,8 @@ CREATE TABLE public.panels (
     description character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    procedure integer
+    procedure integer,
+    loinc character varying
 );
 
 
@@ -907,6 +909,13 @@ CREATE INDEX index_lab_tests_on_department_id ON public.lab_tests USING btree (d
 
 
 --
+-- Name: index_lab_tests_on_loinc; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lab_tests_on_loinc ON public.lab_tests USING btree (loinc);
+
+
+--
 -- Name: index_lab_tests_on_position; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -939,6 +948,13 @@ CREATE INDEX index_notes_on_noticeable_id_and_noticeable_type ON public.notes US
 --
 
 CREATE INDEX index_panels_on_code ON public.panels USING btree (code);
+
+
+--
+-- Name: index_panels_on_loinc; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_panels_on_loinc ON public.panels USING btree (loinc);
 
 
 --
@@ -1085,6 +1101,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170812200000'),
 ('20170812200001'),
 ('20170922131801'),
-('20180323000000');
+('20180323000000'),
+('20180610055354');
 
 

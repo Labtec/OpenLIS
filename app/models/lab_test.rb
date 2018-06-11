@@ -23,6 +23,7 @@ class LabTest < ApplicationRecord
             uniqueness: true
   validates :department, presence: true
   validates :name, presence: true
+  validates :loinc, loinc: true, allow_blank: true
 
   acts_as_list scope: :department
 
@@ -31,7 +32,7 @@ class LabTest < ApplicationRecord
 
   default_scope { order(position: :asc) }
 
-  auto_strip_attributes :name
+  auto_strip_attributes :name, :code, :procedure, :loinc
 
   def also_allow=(also_allow)
     case also_allow

@@ -9,6 +9,7 @@
         <%= sanitize lab_test.name %>
         <%= "(#{lab_test.description})" if lab_test.description.present? %>
         — <%= lab_test.code %>
+        <%= loinc_hyperlink(lab_test.loinc) if lab_test.loinc.present? %>
         <%= "(#{lab_test.procedure})" if lab_test.procedure.present? %>
         <%= '0.' + '0' * lab_test.decimals if lab_test.decimals %>
         <%= lab_test.unit_name %>

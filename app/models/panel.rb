@@ -11,11 +11,12 @@ class Panel < ApplicationRecord
 
   validates :code, presence: true, uniqueness: true
   validates :name, presence: true
+  validates :loinc, loinc: true, allow_blank: true
 
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
   scope :sorted, -> { order(name: :asc) }
 
-  auto_strip_attributes :name
+  auto_strip_attributes :name, :code, :procedure, :loinc
 
   def lab_test_code_list
     LabTest.where(id: lab_test_ids).map(&:code).join(', ')
