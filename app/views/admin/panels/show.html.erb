@@ -9,8 +9,12 @@
   <%= sanitize @panel.name %>
 </p>
 <p>
-  <strong>CPT:</strong>
+  <strong>CPT Code:</strong>
   <%= @panel.procedure %>
+</p>
+<p>
+  <strong>LOINC:</strong>
+  <%= loinc_hyperlink(@panel.loinc) %>
 </p>
 <p>
   <strong>Description:</strong>

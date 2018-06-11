@@ -8,4 +8,8 @@ module LabTestsHelper
       sanitize lab_test.name
     end
   end
+
+  def loinc_hyperlink(loinc)
+    link_to loinc, "https://s.details.loinc.org/LOINC/#{loinc}.html?sections=Comprehensive", target: :_blank if loinc.present?
+  end
 end

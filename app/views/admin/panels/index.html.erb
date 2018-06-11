@@ -5,6 +5,7 @@
     <th>Code</th>
     <th>Name</th>
     <th>CPT</th>
+    <th>LOINC</th>
     <th>Description</th>
     <th>Lab Tests</th>
   </tr>
@@ -13,6 +14,7 @@
       <td><%= panel.code %></td>
       <td><%= sanitize panel.name %></td>
       <td><%= panel.procedure %></td>
+      <td><%= loinc_hyperlink(panel.loinc) %></td>
       <td><%= panel.description %></td>
       <td><%= panel.lab_test_code_list %></td>
       <td><%= link_to 'Show', [:admin, panel] %></td>

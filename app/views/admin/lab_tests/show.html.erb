@@ -17,6 +17,10 @@
   <%= @lab_test.procedure %>
 </p>
 <p>
+  <strong>LOINC:</strong>
+  <%= loinc_hyperlink(@lab_test.loinc) %>
+</p>
+<p>
   <strong>Description:</strong>
   <%= @lab_test.description %>
 </p>
