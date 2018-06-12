@@ -40,6 +40,10 @@ class Result < ApplicationRecord
       trig = result_for 'TRIG'
       ldl = chol - hdl - 0.2 * trig
       ldl / hdl
+    when 'NHDCH'
+      chol = result_for 'CHOL'
+      hdl = result_for 'HDL'
+      chol - hdl
     when 'GLO'
       tp = result_for 'TP'
       alb = result_for 'ALB'
