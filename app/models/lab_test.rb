@@ -23,7 +23,7 @@ class LabTest < ApplicationRecord
             uniqueness: true
   validates :department, presence: true
   validates :name, presence: true
-  validates :loinc, loinc: true, allow_blank: true
+  validates :loinc, loinc: true, length: { maximum: 10 }, allow_blank: true
 
   acts_as_list scope: :department
 
