@@ -424,7 +424,8 @@ CREATE TABLE public.patients (
     email character varying(128) DEFAULT NULL::character varying,
     animal_type integer,
     policy_number character varying(510) DEFAULT NULL::character varying,
-    partner_name character varying
+    partner_name character varying,
+    cellular character varying(32)
 );
 
 
@@ -1102,6 +1103,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170812200001'),
 ('20170922131801'),
 ('20180323000000'),
-('20180610055354');
+('20180610055354'),
+('20180701205553');
 
 
