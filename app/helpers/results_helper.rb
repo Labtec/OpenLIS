@@ -36,7 +36,9 @@ module ResultsHelper
   end
 
   def format_units(result)
-    result.unit_name unless result.lab_test_value && result.value.blank?
+    result.unit_name unless result.lab_test_value &&
+                            !result.lab_test_value.numeric? &&
+                            result.value.blank?
   end
 
   def flag_name(result)

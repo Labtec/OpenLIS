@@ -52,6 +52,11 @@
     <%= f.email_field :email, id: :patient_email %>
   </div>
 
+  <div class="cellular">
+    <%= f.label :cellular, t('.cellular') %>
+    <%= f.telephone_field :cellular, id: :patient_cellular %>
+  </div>
+
   <div class="phone">
     <%= f.label :phone, t('.phone') %>
     <%= f.telephone_field :phone, id: :patient_phone %>

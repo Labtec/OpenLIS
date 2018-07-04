@@ -9,11 +9,20 @@
       <%= age(@patient.birthdate) %>
     </div>
     <div>
-      <%= t('.address') %> <%= @patient.address %><br />
-      <%= t('.phone') %> <b><%= @patient.phone %></b>
+      <% if @patient.address.present? %>
+        <%= t('.address') %> <%= @patient.address %><br />
+      <% end %>
+      <% if @patient.cellular.present? %>
+        <%= t('.cellular') %> <b><%= @patient.cellular %></b><br />
+      <% end %>
+      <% if @patient.phone.present? %>
+        <%= t('.phone') %> <b><%= @patient.phone %></b>
+      <% end %>
     </div>
     <div>
-      <%= t('.email') %> <b><%= mail_to @patient.email %></b>
+      <% if @patient.email.present? %>
+        <%= t('.email') %> <b><%= mail_to @patient.email %></b>
+      <% end %>
     </div>
     <div class="bottom_card">
       <% if @patient.insurance_provider %>
