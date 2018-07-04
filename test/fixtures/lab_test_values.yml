@@ -4,9 +4,11 @@ positive:
 
 less_than:
   value: '< 10'
+  numeric: true
 
 greater_than:
   value: '> 10'
+  numeric: true
 
 html:
   value: '<i>E. coli</i>'

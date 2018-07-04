@@ -9,6 +9,10 @@
   <%= @lab_test_value.flag %>
 </p>
 <p>
+  <strong>Numeric:</strong>
+  <%= @lab_test_value.numeric? %>
+</p>
+<p>
   <strong>Note:</strong>
   <%= sanitize(@lab_test_value.note) %>
 </p>

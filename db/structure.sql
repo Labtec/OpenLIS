@@ -294,7 +294,8 @@ CREATE TABLE public.lab_test_values (
     flag character varying(510) DEFAULT NULL::character varying,
     note text,
     created_at timestamp with time zone,
-    updated_at timestamp with time zone
+    updated_at timestamp with time zone,
+    "numeric" boolean
 );
 
 
@@ -1104,6 +1105,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170922131801'),
 ('20180323000000'),
 ('20180610055354'),
-('20180701205553');
+('20180701205553'),
+('20180704040107');
 
 

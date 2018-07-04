@@ -89,6 +89,13 @@ class ResultsHelperTest < ActionView::TestCase
     assert_nil format_units(@result)
   end
 
+  test 'numerical-qualitative results should have units' do
+    @result.update(lab_test: lab_tests(:mixed),
+                   value: nil,
+                   lab_test_value: lab_test_values(:less_than))
+    assert_equal 'Units', format_units(@result)
+  end
+
   test 'quantitative results should have units' do
     @result.update(lab_test: lab_tests(:mixed),
                    value: 10,
