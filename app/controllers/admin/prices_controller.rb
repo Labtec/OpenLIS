@@ -3,12 +3,8 @@
 module Admin
   class PricesController < BaseController
     def index
-      @priceable = find_priceable
-      @prices = if @priceable
-                  @priceable.prices
-                else
-                  Price.all
-                end
+      @priceable = find_priceable || PriceList.last
+      @prices = @priceable.prices
 
       pdf = LabPriceList.new(@priceable, @prices, view_context)
       send_data(pdf.render, filename: 'lista_de_precios.pdf',
