@@ -69,3 +69,9 @@ reference_range_male_female:
   decimals: 0
   name: Reference Range
   code: REFRANGEMF
+
+multiple_ranges_nil_min_range:
+  department: chemistry
+  decimals: 0
+  name: Multiple Ranges
+  code: MULTREFRANGES
