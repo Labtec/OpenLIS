@@ -19,3 +19,14 @@ gender_female:
   min: 100
   max: 200
   lab_test: reference_range_male_female
+
+multiple_ranges_1:
+  gender: '*'
+  max: 10
+  lab_test: multiple_ranges_nil_min_range
+
+multiple_ranges_2:
+  gender: '*'
+  min: 2
+  max: 3
+  lab_test: multiple_ranges_nil_min_range
