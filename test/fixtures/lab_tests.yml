@@ -52,6 +52,12 @@ decimal:
   name: Decimal
   code: DECIMAL
 
+reference_range:
+  department: chemistry
+  decimals: 0
+  name: Reference Range
+  code: REFRANGE
+
 reference_range_less_than:
   department: chemistry
   decimals: 0

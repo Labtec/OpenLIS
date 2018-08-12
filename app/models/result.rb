@@ -134,8 +134,8 @@ class Result < ApplicationRecord
   # with min and max methods for arrays.
   def ranges?
     @base_ranges ||= reference_ranges.for_its_type(patient.animal_type).for_its_gender(patient.gender).for_its_age_in_units(accession.patient_age[:days], accession.patient_age[:weeks], accession.patient_age[:months], accession.patient_age[:years]) if reference_ranges.present?
-    @range_min ||= @base_ranges.map(&:min).map(&:to_i).compact.min if @base_ranges.present?
-    @range_max ||= @base_ranges.map(&:max).map(&:to_i).compact.max if @base_ranges.present?
+    @range_min ||= @base_ranges.map(&:min).map(&:to_f).compact.min if @base_ranges.present?
+    @range_max ||= @base_ranges.map(&:max).compact.max if @base_ranges.present?
 
     @base_ranges.present?
   end
@@ -193,9 +193,9 @@ class Result < ApplicationRecord
         check_reference_range(derived_value)
       end
     elsif value.present?
-      check_reference_range(value.to_f) if ranges?
+      check_reference_range(value.gsub(/[^\d\.]/, '').to_f) if ranges?
     elsif lab_test.also_numeric?
-      check_reference_range(value.to_f)
+      check_reference_range(value.gsub(/[^\d\.]/, '').to_f)
     elsif lab_test.range?
       value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
       check_reference_range([Regexp.last_match(3), Regexp.last_match(5)].map(&:to_i).try(:max))
