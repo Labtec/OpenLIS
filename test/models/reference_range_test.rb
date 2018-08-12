@@ -13,6 +13,12 @@ class ReferenceRangeTest < ActiveSupport::TestCase
     assert_nil @result.flag
   end
 
+  test 'flag of a lab test with multiple ranges including a nil max range' do
+    @result.update(lab_test: lab_tests(:multiple_ranges_nil_max_range),
+                   value: 10)
+    assert_nil @result.flag
+  end
+
   test 'flag of a lab test with a nil max range' do
     @result.update(lab_test: lab_tests(:reference_range_greater_than))
 

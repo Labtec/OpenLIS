@@ -61,13 +61,13 @@ reference_range:
 reference_range_less_than:
   department: chemistry
   decimals: 0
-  name: Reference Range
+  name: Reference Range Less Than
   code: REFRANGELT
 
 reference_range_greater_than:
   department: chemistry
   decimals: 0
-  name: Reference Range
+  name: Reference Range Greater Than
   code: REFRANGEGT
 
 reference_range_male_female:
@@ -79,5 +79,11 @@ reference_range_male_female:
 multiple_ranges_nil_min_range:
   department: chemistry
   decimals: 0
-  name: Multiple Ranges
-  code: MULTREFRANGES
+  name: Multiple Ranges Nil Min
+  code: MULTREFRANGESNILMIN
+
+multiple_ranges_nil_max_range:
+  department: chemistry
+  decimals: 0
+  name: Multiple Ranges Nil Max
+  code: MULTREFRANGESNILMAX
