@@ -36,3 +36,14 @@ multiple_ranges_2:
   min: 2
   max: 3
   lab_test: multiple_ranges_nil_min_range
+
+multiple_ranges_3:
+  gender: '*'
+  min: 10
+  lab_test: multiple_ranges_nil_max_range
+
+multiple_ranges_4:
+  gender: '*'
+  min: 5
+  max: 9
+  lab_test: multiple_ranges_nil_max_range

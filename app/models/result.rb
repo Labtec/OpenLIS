@@ -135,7 +135,7 @@ class Result < ApplicationRecord
   def ranges?
     @base_ranges ||= reference_ranges.for_its_type(patient.animal_type).for_its_gender(patient.gender).for_its_age_in_units(accession.patient_age[:days], accession.patient_age[:weeks], accession.patient_age[:months], accession.patient_age[:years]) if reference_ranges.present?
     @range_min ||= @base_ranges.map(&:min).map(&:to_f).compact.min if @base_ranges.present?
-    @range_max ||= @base_ranges.map(&:max).compact.max if @base_ranges.present?
+    @range_max ||= @base_ranges.map(&:max).map { |b| b || Float::INFINITY }.compact.max if @base_ranges.present?
 
     @base_ranges.present?
   end
