@@ -102,7 +102,9 @@ CREATE TABLE public.accessions (
     reported_at timestamp with time zone,
     reporter_id bigint,
     doctor_id bigint,
-    icd9 character varying(510) DEFAULT NULL::character varying
+    icd9 character varying(510) DEFAULT NULL::character varying,
+    emailed_doctor_at timestamp without time zone,
+    emailed_patient_at timestamp without time zone
 );
 
 
@@ -1106,6 +1108,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180323000000'),
 ('20180610055354'),
 ('20180701205553'),
-('20180704040107');
+('20180704040107'),
+('20180904171938');
 
 

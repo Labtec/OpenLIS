@@ -111,6 +111,7 @@ class AccessionsController < ApplicationController
     if @patient.email.present?
       ResultsMailer.email_patient(@accession, pdf).deliver_now
       redirect_to accession_url(@accession), notice: t('flash.accession.email_success')
+      @accession.update(emailed_patient_at: Time.zone.now)
     else
       redirect_to accession_url(@accession), error: t('flash.accession.email_error')
     end
@@ -126,6 +127,7 @@ class AccessionsController < ApplicationController
     if @accession.doctor.email.present?
       ResultsMailer.email_doctor(@accession, pdf).deliver_now
       redirect_to accession_url(@accession), notice: t('flash.accession.email_success')
+      @accession.update(emailed_doctor_at: Time.zone.now)
     else
       redirect_to accession_url(@accession), error: t('flash.accession.email_error')
     end
