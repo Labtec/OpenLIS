@@ -8,7 +8,7 @@ ruby '2.5.1'
 gem 'rails', '5.2.1'
 
 gem 'acts_as_list'
-gem 'auto_strip_attributes'
+gem 'auto_strip_attributes', '2.4.0'
 gem 'bootsnap'
 gem 'coffee-rails'
 gem 'dalli'
