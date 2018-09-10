@@ -14,19 +14,20 @@ class Result < ApplicationRecord
   has_one :patient,    through: :accession
   has_one :unit,       through: :lab_test
 
-  delegate :code,      to: :lab_test, prefix: true
-  delegate :decimals,  to: :lab_test, prefix: true
-  delegate :fraction?, to: :lab_test
-  delegate :name,      to: :lab_test, prefix: true
-  delegate :name,      to: :unit,     prefix: true, allow_nil: true
-  delegate :range?,    to: :lab_test
-  delegate :ratio?,    to: :lab_test
+  delegate :code,        to: :lab_test, prefix: true
+  delegate :decimals,    to: :lab_test, prefix: true
+  delegate :fraction?,   to: :lab_test
+  delegate :name,        to: :lab_test, prefix: true
+  delegate :name,        to: :unit,     prefix: true, allow_nil: true
+  delegate :range?,      to: :lab_test
+  delegate :ratio?,      to: :lab_test
+  delegate :text_length, to: :lab_test
 
   validates :value, range: true,    allow_blank: true, if: :range?
   validates :value, fraction: true, allow_blank: true, if: :fraction?
   validates :value, ratio: true,    allow_blank: true, if: :ratio?
 
-  auto_strip_attributes :value, if: :text_length?
+  auto_strip_attributes :value, if: :text_length
 
   def derived_value
     case lab_test_code
@@ -147,7 +148,7 @@ class Result < ApplicationRecord
         gender = "#{r.gender}: " if patient.gender == 'U'
         description = "#{r.description}: " if r.description.present?
 
-        ranges << if lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
+        ranges << if ratio? || range? || fraction? || text_length
                     [nil]
                   elsif r.max && r.min
                     [gender, description, format_value(r.min), RANGE_SYMBOL_RANGE, format_value(r.max)]
@@ -168,7 +169,7 @@ class Result < ApplicationRecord
 
   # TODO: rename to absolute_range
   def range
-    if lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
+    if ratio? || range? || fraction? || text_length
       [nil, nil, nil]
     elsif @range_max && @range_min
       [@range_min, RANGE_SYMBOL_RANGE, @range_max]
@@ -227,10 +228,7 @@ class Result < ApplicationRecord
   # enum result_type: [:numeric, :ratio, :range, :fraction, ...]
   def result_types?
     lab_test.also_numeric? ||
-      lab_test.ratio? ||
-      lab_test.range? ||
-      lab_test.fraction? ||
-      lab_test.text_length.present?
+      ratio? || range? || fraction? || text_length.present?
   end
 
   private
