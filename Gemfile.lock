@@ -51,7 +51,7 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    auto_strip_attributes (2.4.0)
+    auto_strip_attributes (2.5.0)
       activerecord (>= 4.0)
     bcrypt (3.1.12)
     bcrypt_pbkdf (1.0.0)
@@ -286,7 +286,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list
-  auto_strip_attributes (= 2.4.0)
+  auto_strip_attributes
   bcrypt_pbkdf
   bootsnap
   brakeman
