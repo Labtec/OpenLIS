@@ -36,7 +36,7 @@ group :development, :test do
   gem 'capistrano-yarn'
   gem 'capistrano3-puma'
   gem 'capybara'
-  gem 'chromedriver-helper', '< 2'
+  gem 'chromedriver-helper'
   gem 'selenium-webdriver'
 end
 
