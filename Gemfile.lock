@@ -104,7 +104,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.0)
+    concurrent-ruby (1.0.5)
     crass (1.0.4)
     dalli (2.7.9)
     devise (4.5.0)
