@@ -34,6 +34,7 @@ class Claim < ApplicationRecord
 
   def valid_submission?
     return false if number.blank? || external_number.blank?
+
     true
   end
 end

@@ -16,6 +16,7 @@ class Result < ApplicationRecord
 
   delegate :code,        to: :lab_test, prefix: true
   delegate :decimals,    to: :lab_test, prefix: true
+  delegate :derivation?, to: :lab_test
   delegate :fraction?,   to: :lab_test
   delegate :name,        to: :lab_test, prefix: true
   delegate :name,        to: :unit,     prefix: true, allow_nil: true
@@ -128,7 +129,7 @@ class Result < ApplicationRecord
   end
 
   def pending?
-    return true if lab_test_value.blank? && value.blank? && !lab_test.derivation?
+    lab_test_value.blank? && value.blank? && !derivation?
   end
 
   # SUGGESTION: min and max should be renamed to min_value and max_value to avoid clashing
@@ -213,6 +214,7 @@ class Result < ApplicationRecord
     min = @range_min || -Float::INFINITY
     max = @range_max || Float::INFINITY
     return 'H' if numeric_value.to_f == max.to_f && @range_min.nil?
+
     case numeric_value.to_f
     when -Float::INFINITY...min.to_f then 'L'
     when min.to_f..max.to_f then nil
