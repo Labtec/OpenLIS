@@ -23,6 +23,7 @@ class ReferenceRange < ApplicationRecord
 
   scope :for_its_gender, (lambda do |gender|
     return where(gender: ['F', 'M', '*']) if gender == 'U'
+
     where(gender: [gender, '*'])
   end)
   scope :for_its_type, ->(type) { where(animal_type: [type, 0]) }

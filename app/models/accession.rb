@@ -42,6 +42,7 @@ class Accession < ApplicationRecord
   def result_attributes=(result_attributes)
     results.reject(&:new_record?).each do |result|
       next if result.lab_test.derivation
+
       attributes = result_attributes[result.id.to_s]
       if attributes['_delete'] == '1'
         results.delete(result)
@@ -94,7 +95,7 @@ class Accession < ApplicationRecord
   end
 
   def complete?
-    results.includes(:lab_test).each do |result|
+    results.find_each do |result|
       return false if result.pending?
     end
     true

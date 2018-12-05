@@ -10,10 +10,10 @@ class UserTest < ActiveSupport::TestCase
   should validate_uniqueness_of(:initials)
 
   test 'user contains no extra spaces' do
-    user = User.create(username:   '  jdoe  ',
+    user = User.create(username: '  jdoe  ',
                        first_name: '  John  ',
-                       last_name:  '  Doe  ',
-                       initials:   '  JD  ')
+                       last_name: '  Doe  ',
+                       initials: '  JD  ')
     assert_equal 'jdoe', user.username
     assert_equal 'John', user.first_name
     assert_equal 'Doe', user.last_name
@@ -21,10 +21,10 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'no extra spaces within username' do
-    user = User.create(username:   'j  doe',
+    user = User.create(username: 'j  doe',
                        first_name: 'John  John',
-                       last_name:  'Doe  Doe',
-                       initials:   'J  D')
+                       last_name: 'Doe  Doe',
+                       initials: 'J  D')
     assert_equal 'jdoe', user.username
     assert_equal 'John John', user.first_name
     assert_equal 'Doe Doe', user.last_name
