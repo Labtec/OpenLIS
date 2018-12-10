@@ -9,6 +9,7 @@ gem 'rails', '5.2.2'
 
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
+gem 'bcrypt', github: 'Labtec/bcrypt-ruby', branch: 'fix-freebsd-12-remove-crypt_r'
 gem 'bootsnap'
 gem 'coffee-rails'
 gem 'dalli'
