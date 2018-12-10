@@ -3,7 +3,7 @@ user:
   last_name: Doe
   initials: JD
   username: user
-  encrypted_password: <%= BCrypt::Password.create('password') %>
+  encrypted_password: <%= BCrypt::Password.create('password', cost: 1) %>
   admin: false
 
 admin:
@@ -11,5 +11,5 @@ admin:
   last_name: User
   initials: ADM
   username: admin
-  encrypted_password: <%= BCrypt::Password.create('password') %>
+  encrypted_password: <%= BCrypt::Password.create('password', cost: 1) %>
   admin: true
