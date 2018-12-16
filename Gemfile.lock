@@ -5,6 +5,14 @@ GIT
   specs:
     bcrypt (3.1.12)
 
+GIT
+  remote: https://github.com/Labtec/ffi.git
+  revision: 15a237c229c49e83eaf4a3a4f276f91f65baadb8
+  branch: fix-freebsd-cc
+  submodules: true
+  specs:
+    ffi (1.9.25)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -123,7 +131,6 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     fast_blank (1.0.0)
-    ffi (1.9.25)
     flamegraph (0.9.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -312,6 +319,7 @@ DEPENDENCIES
   devise
   ed25519
   fast_blank
+  ffi!
   flamegraph
   jbuilder
   jquery-rails
