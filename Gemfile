@@ -15,7 +15,7 @@ gem 'coffee-rails'
 gem 'dalli'
 gem 'devise'
 gem 'fast_blank'
-gem 'ffi', github: 'Labtec/ffi', branch: 'fix-freebsd-cc', submodules: true
+gem 'ffi', github: 'Labtec/ffi', branch: 'fix-freebsd-types', submodules: true
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
