@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/Labtec/ffi.git
-  revision: e1129ccc16c09fd04b0534a605c41eb21ece892d
+  revision: 6123fbe4f8f0cf318387f3cacc94ef106826552a
   branch: fix-freebsd-types
   submodules: true
   specs:
@@ -128,7 +128,7 @@ GEM
       responders
       warden (~> 1.2.3)
     ed25519 (1.2.4)
-    erubi (1.7.1)
+    erubi (1.8.0)
     execjs (2.7.0)
     fast_blank (1.0.0)
     flamegraph (0.9.5)
@@ -180,7 +180,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
     nio4r (2.3.1)
-    nokogiri (1.9.0)
+    nokogiri (1.9.1)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pdf-core (0.7.0)
@@ -350,4 +350,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
