@@ -4,14 +4,14 @@ class AccessionsController < ApplicationController
   before_action :recent, except: [:destroy]
 
   def index
-    @pending_accessions = Accession.includes(:drawer, :patient, results: %i[lab_test lab_test_value]).queued.pending.page(pending_page)
-    @reported_accessions = Accession.includes(:patient, :reporter).recently.reported.page(page)
+    @pending_accessions = Accession.queued.pending.page(pending_page)
+    @reported_accessions = Accession.recently.reported.page(page)
   end
 
   def show
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
-    @results = @accession.results.includes({ accession: { notes: [:department] } }, { lab_test: [:department] }, :lab_test_value, :reference_ranges, :unit).order('lab_tests.position').group_by(&:department)
+    @results = @accession.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
   rescue ActiveRecord::RecordNotFound
     flash[:error] = t('flash.accession.accession_not_found')
     redirect_to accessions_url
@@ -79,7 +79,7 @@ class AccessionsController < ApplicationController
   def edit_results
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
-    results = @accession.results.includes({ accession: { notes: [:department] } }, { lab_test: [:department] }, :lab_test_value, :reference_ranges, :unit).order('lab_tests.position').group_by(&:department)
+    results = @accession.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
     # TODO: Missing per department blank validation.
     # It will only check first
     results.each do |department, _result|
@@ -104,7 +104,7 @@ class AccessionsController < ApplicationController
   def email_patient
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
-    @results = @accession.results.includes({ accession: { notes: [:department] } }, { lab_test: [:department] }, :lab_test_value, :reference_ranges, :unit).order('lab_tests.position').group_by(&:department)
+    @results = @accession.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
 
     pdf = LabReport.new(@patient, @accession, @results, view_context)
 
@@ -120,7 +120,7 @@ class AccessionsController < ApplicationController
   def email_doctor
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
-    @results = @accession.results.includes({ accession: { notes: [:department] } }, { lab_test: [:department] }, :lab_test_value, :reference_ranges, :unit).order('lab_tests.position').group_by(&:department)
+    @results = @accession.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
 
     pdf = LabReport.new(@patient, @accession, @results, view_context)
 
