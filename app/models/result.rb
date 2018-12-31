@@ -28,6 +28,8 @@ class Result < ApplicationRecord
   validates :value, fraction: true, allow_blank: true, if: :fraction?
   validates :value, ratio: true,    allow_blank: true, if: :ratio?
 
+  scope :ordered, -> { order('lab_tests.position') }
+
   auto_strip_attributes :value, if: :text_length
 
   def derived_value
