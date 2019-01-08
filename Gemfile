@@ -34,6 +34,7 @@ gem 'rails-html-sanitizer'
 gem 'rails-i18n'
 gem 'rexml'
 gem 'sass-rails'
+gem 'scrypt'
 gem 'semacode', github: 'Labtec/semacode', branch: 'barcodes'
 gem 'turbolinks'
 gem 'uglifier'
@@ -51,7 +52,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bcrypt_pbkdf'
   gem 'brakeman', require: false
   # gem 'capistrano-maintenance'
   gem 'ed25519'

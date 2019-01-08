@@ -3,7 +3,7 @@ user:
   last_name: Doe
   initials: JD
   username: user
-  encrypted_password: <%= BCrypt::Password.create('password', cost: 1) %>
+  encrypted_password: <%= SCrypt::Password.create('password', max_time: 0.01) %>
   admin: false
 
 admin:
@@ -11,7 +11,7 @@ admin:
   last_name: User
   initials: ADM
   username: admin
-  encrypted_password: <%= BCrypt::Password.create('password', cost: 1) %>
+  encrypted_password: <%= SCrypt::Password.create('password', max_time: 0.01) %>
   admin: true
 
 webauthn:
