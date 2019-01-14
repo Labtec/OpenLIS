@@ -172,7 +172,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (5.1.0)
     nio4r (2.3.1)
-    nokogiri (1.10.0)
+    nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pdf-core (0.7.0)
@@ -341,4 +341,4 @@ RUBY VERSION
    ruby 2.6.0p0
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
