@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Labtec/bcrypt-ruby.git
-  revision: 3c93aa06c4681f76b78107fea50c84a2089ea396
+  revision: 7b0b7d246ce1403bb3d772478d6b67dbbfc10c6c
   branch: fix-freebsd-12-remove-crypt_r
   specs:
     bcrypt (3.1.12)
@@ -124,7 +124,7 @@ GEM
     fast_blank (1.0.0)
     ffi (1.10.0)
     flamegraph (0.9.5)
-    globalid (0.4.1)
+    globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.5.1)
       concurrent-ruby (~> 1.0)
@@ -166,17 +166,17 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
-    msgpack (1.2.4)
+    msgpack (1.2.6)
     multi_json (1.13.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.1.0)
     nio4r (2.3.1)
-    nokogiri (1.10.0)
+    nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pdf-core (0.7.0)
-    pg (1.1.3)
+    pg (1.1.4)
     pg_search (2.1.3)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
@@ -311,7 +311,6 @@ DEPENDENCIES
   devise
   ed25519
   fast_blank
-  ffi
   flamegraph
   jbuilder
   jquery-rails
@@ -342,4 +341,4 @@ RUBY VERSION
    ruby 2.6.0p0
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
