@@ -3,7 +3,10 @@
 require 'test_helper'
 
 class LabTestValueTest < ActiveSupport::TestCase
-  should validate_presence_of(:value)
+  test 'presence of value' do
+    lab_test_value = LabTestValue.create(value: '')
+    assert lab_test_value.errors.added?(:value, :blank)
+  end
 
   test 'value contains extra spaces' do
     lab_test_value = LabTestValue.create(value: '  Lab Test Value  ')

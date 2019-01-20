@@ -3,8 +3,15 @@
 require 'test_helper'
 
 class UnitTest < ActiveSupport::TestCase
-  should validate_presence_of(:name)
-  should validate_uniqueness_of(:name)
+  test 'presence of name' do
+    unit = Unit.create(name: '')
+    assert unit.errors.added?(:name, :blank)
+  end
+
+  test 'uniqueness of name' do
+    unit = Unit.create(name: 'Units')
+    assert unit.errors.added?(:name, :taken, value: 'Units')
+  end
 
   test 'name contains extra spaces' do
     unit = Unit.create(name: '  Unit  ')

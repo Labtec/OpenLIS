@@ -3,11 +3,30 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  should validate_presence_of(:username)
-  should validate_presence_of(:first_name)
-  should validate_presence_of(:last_name)
-  should validate_presence_of(:initials)
-  should validate_uniqueness_of(:initials)
+  test 'presence of first name' do
+    user = User.create(first_name: '')
+    assert user.errors.added?(:first_name, :blank)
+  end
+
+  test 'presence of initials' do
+    user = User.create(initials: '')
+    assert user.errors.added?(:initials, :blank)
+  end
+
+  test 'presence of last name' do
+    user = User.create(last_name: '')
+    assert user.errors.added?(:last_name, :blank)
+  end
+
+  test 'presence of username' do
+    user = User.create(username: '')
+    assert user.errors.added?(:username, :blank)
+  end
+
+  test 'uniqueness of initials' do
+    user = User.create(initials: 'JD')
+    assert user.errors.added?(:initials, :taken, value: 'JD')
+  end
 
   test 'user contains no extra spaces' do
     user = User.create(username: '  jdoe  ',

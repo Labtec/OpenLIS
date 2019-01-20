@@ -3,9 +3,20 @@
 require 'test_helper'
 
 class DoctorTest < ActiveSupport::TestCase
-  should validate_presence_of(:name)
-  should validate_uniqueness_of(:name)
-  should validate_length_of(:name).is_at_least(2)
+  test 'presence of name' do
+    doctor = Doctor.create(name: '')
+    assert doctor.errors.added?(:name, :blank)
+  end
+
+  test 'uniqueness of name' do
+    doctor = Doctor.create(name: 'Doctor')
+    assert doctor.errors.added?(:name, :taken, value: 'Doctor')
+  end
+
+  test 'length of name' do
+    doctor = Doctor.create(name: 'D')
+    assert doctor.errors.added?(:name, :too_short, count: 2)
+  end
 
   test 'name contains extra spaces' do
     doctor = Doctor.create(name: '  Alice  ')

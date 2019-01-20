@@ -1,0 +1,5 @@
+price:
+  amount: 9.99
+  price_list: price_list
+  priceable_id: 1
+  priceable_type: LabTest
