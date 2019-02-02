@@ -21,7 +21,8 @@ class Patient < ApplicationRecord
                            length: { minimum: 2 },
                            unless: -> { family_name.present? }
   validates :birthdate, presence: true, not_in_the_future: true
-  validates :identifier, uniqueness: true, allow_blank: true
+  validates :identifier, uniqueness: { case_sensitive: false },
+                         allow_blank: true
   validates :email, email: true, allow_blank: true
 
   accepts_nested_attributes_for :accessions, allow_destroy: true

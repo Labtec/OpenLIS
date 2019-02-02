@@ -55,8 +55,3 @@ group :development do
   gem 'stackprof'
   gem 'web-console'
 end
-
-group :test do
-  gem 'shoulda-context'
-  gem 'shoulda-matchers'
-end

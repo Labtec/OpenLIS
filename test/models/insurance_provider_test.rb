@@ -3,8 +3,15 @@
 require 'test_helper'
 
 class InsuranceProviderTest < ActiveSupport::TestCase
-  should validate_presence_of(:name)
-  should validate_uniqueness_of(:name)
+  test 'presence of name' do
+    insurance_provider = InsuranceProvider.create(name: '')
+    assert insurance_provider.errors.added?(:name, :blank)
+  end
+
+  test 'uniqueness of name' do
+    insurance_provider = InsuranceProvider.create(name: 'AXA')
+    assert insurance_provider.errors.added?(:name, :taken, value: 'AXA')
+  end
 
   test 'name contains extra spaces' do
     insurance_provider = InsuranceProvider.create(name: '  Insurance Provider  ')

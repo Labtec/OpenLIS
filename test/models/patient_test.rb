@@ -6,18 +6,67 @@ class PatientTest < ActiveSupport::TestCase
   ANIMAL_SPECIES = (0..3).to_a
   GENDERS = %w[F M U].freeze
 
-  should validate_inclusion_of(:animal_type).in_array(ANIMAL_SPECIES).allow_blank
-  should validate_inclusion_of(:gender).in_array(GENDERS)
-  should validate_presence_of(:given_name)
-  should validate_presence_of(:family_name)
-  should validate_presence_of(:partner_name)
-  should validate_presence_of(:birthdate)
-  should validate_length_of(:given_name).is_at_least(2)
-  should validate_length_of(:family_name).is_at_least(2)
-  should validate_length_of(:partner_name).is_at_least(2)
-  should validate_uniqueness_of(:identifier)
-    .ignoring_case_sensitivity
-    .allow_blank
+  test 'presence of birthdate' do
+    patient = Patient.create(birthdate: '')
+    assert patient.errors.added?(:birthdate, :blank)
+  end
+
+  test 'presence of family name unless partner name present' do
+    patient = Patient.create(family_name: '', partner_name: '')
+    assert patient.errors.added?(:family_name, :blank)
+
+    patient = Patient.create(family_name: '', partner_name: 'Doe')
+    assert_not patient.errors.added?(:family_name, :blank)
+  end
+
+  test 'presence of given name' do
+    patient = Patient.create(given_name: '')
+    assert patient.errors.added?(:given_name, :blank)
+  end
+
+  test 'presence of partner name unless family name present' do
+    patient = Patient.create(partner_name: '', family_name: '')
+    assert patient.errors.added?(:partner_name, :blank)
+
+    patient = Patient.create(partner_name: '', family_name: 'Doe')
+    assert_not patient.errors.added?(:partner_name, :blank)
+  end
+
+  test 'uniqueness of identifier ignoring case sentitivity allowing blank' do
+    patient = Patient.create(identifier: '111-111-1111')
+    assert patient.errors.added?(:identifier, :taken, value: '111-111-1111')
+
+    patient = Patient.create(identifier: 'ins-1')
+    assert patient.errors.added?(:identifier, :taken, value: 'ins-1')
+
+    patient = Patient.create(identifier: '')
+    assert_not patient.errors.added?(:identifier, :blank)
+  end
+
+  test 'length of family name' do
+    patient = Patient.create(family_name: 'D')
+    assert patient.errors.added?(:family_name, :too_short, count: 2)
+  end
+
+  test 'length of given name' do
+    patient = Patient.create(given_name: 'J')
+    assert patient.errors.added?(:given_name, :too_short, count: 2)
+  end
+
+  test 'length of partner name' do
+    patient = Patient.create(partner_name: 'D')
+    assert patient.errors.added?(:partner_name, :too_short, count: 2)
+  end
+
+  test 'inclusion of animal type in ANIMAL_SPECIES allowing blank' do
+    assert_equal Patient.validators_on(:animal_type).map(&:options),
+                 [{ allow_blank: true, in: ANIMAL_SPECIES }]
+  end
+
+  test 'inclusion of gender in GENDERS' do
+    assert_equal Patient.validators_on(:gender).map(&:options),
+                 [{ in: GENDERS }]
+  end
 
   test 'birthdate is not in the future' do
     p = patients(:john)
