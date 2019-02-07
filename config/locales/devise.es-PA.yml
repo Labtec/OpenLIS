@@ -1,4 +1,3 @@
----
 es-PA:
   devise:
     confirmations:
@@ -43,6 +42,7 @@ es-PA:
       signed_up_but_unconfirmed: "Se le ha enviado un mensaje con un enlace de confirmación. Por favor visite el enlace para activar su cuenta."
       update_needs_confirmation: "Ha actualizado su cuenta correctamente, sin embargo necesitamos verificar su nueva cuenta de correo. Por favor revise su correo electrónico y visite el enlace para finalizar la confirmación de su nueva dirección de correo electrónico."
       updated: "Ha actualizado su cuenta correctamente."
+      updated_but_not_signed_in: "Ha actualizado su cuenta correctamente, como su contraseña ha cambiado, debe identificarse nuevamente."
     sessions:
       signed_in: "Ha iniciado sesión con éxito."
       signed_out: "Ha cerrado sesión con éxito."
