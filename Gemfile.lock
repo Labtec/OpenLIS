@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/Labtec/bcrypt-ruby.git
-  revision: 1ec2d8a826bfcd7709d58cedd0f6d268ee342649
-  branch: fix-freebsd-12-remove-crypt_r
+  revision: e19a8a9b6e8dcf7057eecacf01dd4a2af0c6844c
+  branch: fix-freebsd-12-skip-gnu
   specs:
     bcrypt (3.1.12)
 
