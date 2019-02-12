@@ -1,349 +1,346 @@
 es-PA:
-  user_sessions:
+  accessions:
+    accession:
+      accession: 'Solicitud #%{id}'
+      by: 'por: '
+      change_requisition: Cambiar Petición
+      change_results: Cambiar Resultados
+      confirm_destroy: ¿Está seguro?
+      delete?: ¿Borrar?
+      drawn_at: 'Extraído el: '
+      enter_results: Ingresar Resultados
+      ordered_by: 'Ordenado por: '
+      reported_at: 'Reportado el: '
+      tests_ordered: 'Pruebas ordenadas: '
+      tests_pending: 'Pruebas pendientes: '
+      walk_in: Ambulatorio
+    accessions:
+      no_requisitions_yet: Sin historial de peticiones
+      order_tests: Ordenar Pruebas
+      pending_requisitions: Peticiones Pendientes
+      requisition_history: Historial de Peticiones
+    edit:
+      title: Cambiar Petición
+    edit_results:
+      accession: 'Solicitud #%{id}'
+      by: ' por: '
+      cancel: Cancelar
+      doctor: 'Doctor: '
+      drawn_at: 'Recolectado el: '
+      or: o
+      received_at: 'Recibido el: '
+      reported_at: 'Reportado el: '
+      submit: Guardar Resultados
+      title: Ingresar Resultados
+      walk_in: Ambulatorio
+    form:
+      accession: 'Solicitud #%{id}'
+      cancel: Cancelar
+      doctor: 'Doctor que ordena:'
+      drawn_at: 'Recolectado el:'
+      drawn_by: 'Recolectado por:'
+      icd9: 'Códigos de Diagnóstico:'
+      icd9_placeholder: Separados por comas
+      labels: Etiquetas
+      or: o
+      order_details: Detalles de la Petición
+      processing: Procesando...
+      received_at: 'Recibido el:'
+      received_by: 'Recibido por:'
+      reported_at: 'Reportado el:'
+      reported_by: 'Reportado por:'
+      submit: Guardar
+      walk_in: Dejar en blanco si es ambulatorio
+    index:
+      title: Peticiones
     new:
-      username: "Usuario"
-      password: "Contraseña"
-      submit: "Acceder"
-
+      title: Nueva Petición
+    show:
+      accession: 'Solicitud #%{id}'
+      by: ' por: '
+      change_accession: Cambiar Petición
+      change_results: Cambiar Resultados
+      confirm_email: ¿Desea enviar los resultados a %{email}?
+      confirm_emailed: ¿Desea enviar nuevamente los resultados a %{email}?
+      doctor: 'Doctor: '
+      drawn_at: 'Recolectado el: '
+      email_report: Enviar reporte por correo
+      emailed_report: Reenviar reporte por correo
+      enter_results: Ingresar Resultados
+      notes: 'Observaciones:'
+      print_report: Imprimir Reporte (PDF)
+      received_at: 'Recibido el: '
+      report: Reportar
+      reported_at: 'Reportado el: '
+      sending_email: Enviando correo…
+      walk_in: Ambulatorio
+    sidebar:
+      address: 'Dirección:'
+      cellular: 'Móvil:'
+      email: 'Correo Electrónico:'
+      phone: 'Tel:'
+      recent_patients: Pacientes Recientes
+      search: Buscar
+      search_patients: Buscar pacientes
+      year: año
   admin:
     claims:
       submit:
         submit_alert: Debe tener External y Claim Number
-
-  users:
+  errors:
+    messages:
+      cant_be_in_the_future: no puede ser del futuro
+      fraction: debe ser N/N
+      range: debe ser N-N, <N o >N
+      ratio: debe ser N:N
+  flash:
+    accession:
+      accession_not_found: Este registro de petición ya no está disponible.
+      at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
+      create: Petición creada exitosamente.
+      destroy: Petición eliminada exitosamente.
+      email_error: Correo inválido.
+      email_success: Correo enviado exitosamente.
+      report: Petición reportada.
+      report_error: Todavía existen resultados pendientes.
+      update: Petición actualizada exitosamente.
+    accessions:
+      at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
+    login:
+      hello: '¡Hola '
+      last_login_at: ' Su último inico de sesión fue hace '
+  lab_tests:
     form:
-      username: "Nombre de usuario:"
-      initials: "Iniciales:"
-      language: "Idioma:"
-      password: "Contraseña:"
-      password_confirmation: "Confirmación de contraseña:"
-      admin: "El usuario es Administrador"
-      personal_information: "Información Personal"
-      prefix: "Prefijo:"
-      first_name: "Nombre:"
-      last_name: "Apellido:"
-      suffix: "Sufijo:"
-      email: "Correo electrónico:"
-      register: "Registro:"
-      submit: "Guardar Usuario"
-      or: "o"
-      cancel: "Cancelar"
-
+      order_tests: Ordernar Pruebas
   layouts:
-    header:
-      quick_find: "Búsqueda rápida"
-      admin: "Admin"
-      logout: "Salir"
-    tabs:
-      patients: "Pacientes"
-      requisitions: "Peticiones"
     admin:
       tabs:
-        users: "Usuarios"
-        lab_tests: "Pruebas"
-        panels: "Paneles"
-        doctors: "Doctores"
-        insurance_providers: "Aseguradoras"
-        departments: "Deptos."
-        units: "Unidades"
-        reference_ranges: "Rangos"
-        lab_test_values: "Valores"
+        departments: Deptos.
+        doctors: Doctores
+        insurance_providers: Aseguradoras
+        lab_test_values: Valores
+        lab_tests: Pruebas
+        panels: Paneles
+        reference_ranges: Rangos
+        units: Unidades
+        users: Usuarios
     auth:
       title: Inicio de sesión
-
+    header:
+      admin: Admin
+      logout: Salir
+      quick_find: Búsqueda rápida
+    tabs:
+      patients: Pacientes
+      requisitions: Peticiones
+  notes:
+    form:
+      notes: 'Observaciones:'
+  panels:
+    form:
+      order_panels: Ordenar Paneles
+  patients:
+    canine: Perro
+    card:
+      address: 'Dirección:'
+      cellular: 'Móvil:'
+      edit: Editar
+      email: 'Email:'
+      phone: 'Tel:'
+    create:
+      success: Paciente creado exitosamente.
+    day:
+      one: 1 día
+      other: '%{count} días'
+    destroy:
+      success: Paciente borrado exitosamente.
+    edit:
+      title: Editar Información del Paciente
+    equine: Caballo
+    feline: Gato
+    female: Femenino
+    form:
+      additional_information: Información Adicional
+      address: 'Dirección:'
+      birthdate: 'Fecha de Nacimiento:'
+      cancel: Cancelar
+      cellular: 'Móvil:'
+      day: 'Día:'
+      email: 'Correo Electrónico:'
+      family_name: 'Primer apellido:'
+      family_name2: 'Segundo apellido:'
+      gender: 'Sexo:'
+      given_name: 'Primer nombre:'
+      identifier: 'Cédula:'
+      insurance_provider: 'Proveedor de Seguro:'
+      insured: 'Nombre del Asegurado:'
+      insured_placeholder: Dejar en blanco si es el principal
+      middle_name: 'Segundo nombre:'
+      month: 'Mes:'
+      or: o
+      partner_name: 'Apellido de casada:'
+      phone: 'Teléfono:'
+      policy_number: 'Número de Póliza:'
+      prompt_gender: 'Elegir Sexo:'
+      submit: Guardar Paciente
+      type: 'Especie:'
+      year: 'Año:'
+    index:
+      new_patient: Nuevo Paciente
+      options: Opciones
+      title: Pacientes
+    male: Masculino
+    month:
+      one: 1 mes
+      other: '%{count} meses'
+    new:
+      title: Nuevo Paciente
+    other: Otro
+    patient:
+      accessions: Peticiones
+      address: 'Dirección:'
+      age: 'Edad:'
+      cellular: 'Móvil:'
+      confirm_destroy: ¿Está seguro?
+      delete: Borrar
+      delete?: ¿Borrar?
+      edit: Editar
+      email: 'Correo Electrónico:'
+      gender: 'Sexo:'
+      identifier: 'Cédula:'
+      phone: 'Tel:'
+      year: año
+    patients:
+      cellular: 'Móvil:'
+      confirm_destroy: ¿Está seguro?
+      delete?: ¿Borrar?
+      edit: Editar
+      not_found: No se encontró ningún paciente
+      phone: 'Tel:'
+      year: año
+    show:
+      order_tests: Ordenar Pruebas
+      patient_not_found: Este registro de paciente ya no está disponible.
+      title: Información del Paciente
+    sidebar:
+      recent_patients: Pacientes Recientes
+      search: Buscar
+      search_patients: Buscar pacientes
+    unknown: Desconocido
+    update:
+      success: Paciente actualizado exitosamente.
+    week:
+      one: 1 semana
+      other: '%{count} semanas'
+    year:
+      one: 1 año
+      other: '%{count} años'
+  results:
+    abnormal: •
+    high: •
+    index:
+      accession: 'Solicitud:'
+      age: 'Edad:'
+      cellular: 'Móvil:'
+      date: 'Fecha:'
+      doctor: 'Doctor:'
+      drawn_at: 'Fecha de recolección:'
+      flag: Señal
+      full_name: 'Nombre:'
+      gender: 'Sexo:'
+      identifier: 'Cédula:'
+      lab_test: Prueba
+      notes: 'Observaciones:'
+      of: de
+      on_date: el
+      page: Página
+      phone: 'Teléfono:'
+      preliminary: Preliminar
+      printed_at: 'Fecha de impresión:'
+      range: Rango de Referencia
+      received_at: 'Fecha de recepción:'
+      register: 'Registro '
+      reported_at: 'Fecha de reporte:'
+      result: Resultado
+      results_of: 'Resultados de:'
+      reviewed_by: 'Revisado por:'
+      run_by: 'Ejecutado por:'
+      type: 'Especie:'
+      units: Unidades
+      walk_in: Ambulatorio
+      year: año
+      years: años
+    low: •
+    sidebar:
+      address: 'Dirección:'
+      cellular: 'Móvil:'
+      email: 'Correo Electrónico:'
+      phone: 'Tel:'
+      recent_patients: Pacientes Recientes
+      year: año
+  results_mailer:
+    email_doctor:
+      body: Hemos adjuntado los resultados de los exámenes de %{full_name}.
+      body_preliminary: Hemos adjuntado los resultados preliminares de los exámenes de %{full_name}.
+      subject: Resultados de %{full_name}
+      subject_preliminary: Resultados preliminares de %{full_name}
+    email_patient:
+      body: Hemos adjuntado los resultados de sus exámenes.
+      body_preliminary: Hemos adjuntado los resultados preliminares de sus exámenes.
+      opening_F: 'Estimada %{full_name}:'
+      opening_M: 'Estimado %{full_name}:'
+      opening_U: 'Estimado(a) %{full_name}:'
+      subject: Resultados de exámenes
+      subject_preliminary: Resultados preliminares de exámenes
+  time:
+    formats:
+      long: '%-d/%m/%Y %l:%M %p'
+      short: '%-d %b %Y %l:%M %p'
+  user_sessions:
+    new:
+      password: Contraseña
+      submit: Acceder
+      username: Usuario
+  users:
+    form:
+      admin: El usuario es Administrador
+      cancel: Cancelar
+      email: 'Correo electrónico:'
+      first_name: 'Nombre:'
+      initials: 'Iniciales:'
+      language: 'Idioma:'
+      last_name: 'Apellido:'
+      or: o
+      password: 'Contraseña:'
+      password_confirmation: 'Confirmación de contraseña:'
+      personal_information: Información Personal
+      prefix: 'Prefijo:'
+      register: 'Registro:'
+      submit: Guardar Usuario
+      suffix: 'Sufijo:'
+      username: 'Nombre de usuario:'
   views:
     pagination:
       first: Primero
       last: Último
-      next: "Siguiente »"
-      previous: "« Anterior"
-      truncate: "…"
-
-  patients:
-    female: "Femenino"
-    male: "Masculino"
-    unknown: "Desconocido"
-    canine: "Perro"
-    feline: "Gato"
-    equine: "Caballo"
-    other: "Otro"
-    year:
-      one: 1 año
-      other: "%{count} años"
-    month:
-      one: 1 mes
-      other: "%{count} meses"
-    week:
-      one: 1 semana
-      other: "%{count} semanas"
-    day:
-      one: 1 día
-      other: "%{count} días"
-    sidebar:
-      search_patients: "Buscar pacientes"
-      search: "Buscar"
-      recent_patients: "Pacientes Recientes"
-    index:
-      title: "Pacientes"
-      new_patient: "Nuevo Paciente"
-      options: "Opciones"
-    patients:
-      not_found: "No se encontró ningún paciente"
-      edit: "Editar"
-      delete?: "¿Borrar?"
-      confirm_destroy: "¿Está seguro?"
-      cellular: "Móvil:"
-      phone: "Tel:"
-      year: "año"
-    new:
-      title: "Nuevo Paciente"
-    create:
-      success: "Paciente creado exitosamente."
-    update:
-      success: "Paciente actualizado exitosamente."
-    destroy:
-      success: "Paciente borrado exitosamente."
-    show:
-      order_tests: "Ordenar Pruebas"
-      patient_not_found: "Este registro de paciente ya no está disponible."
-      title: "Información del Paciente"
-    edit:
-      title: "Editar Información del Paciente"
-    form:
-      given_name: "Primer nombre:"
-      middle_name: "Segundo nombre:"
-      family_name: "Primer apellido:"
-      family_name2: "Segundo apellido:"
-      partner_name: "Apellido de casada:"
-      gender: "Sexo:"
-      prompt_gender: "Elegir Sexo:"
-      birthdate: "Fecha de Nacimiento:"
-      day: "Día:"
-      month: "Mes:"
-      year: "Año:"
-      identifier: "Cédula:"
-      email: "Correo Electrónico:"
-      cellular: "Móvil:"
-      phone: "Teléfono:"
-      additional_information: "Información Adicional"
-      address: "Dirección:"
-      type: "Especie:"
-      insurance_provider: "Proveedor de Seguro:"
-      policy_number: "Número de Póliza:"
-      insured: "Nombre del Asegurado:"
-      insured_placeholder: "Dejar en blanco si es el principal"
-      submit: "Guardar Paciente"
-      or: "o"
-      cancel: "Cancelar"
-    patient:
-      gender: "Sexo:"
-      age: "Edad:"
-      identifier: "Cédula:"
-      address: "Dirección:"
-      accessions: "Peticiones"
-      year: "año"
-      cellular: "Móvil:"
-      phone: "Tel:"
-      email: "Correo Electrónico:"
-      edit: "Editar"
-      delete: "Borrar"
-      delete?: "¿Borrar?"
-      confirm_destroy: "¿Está seguro?"
-    card:
-      address: "Dirección:"
-      cellular: "Móvil:"
-      phone: "Tel:"
-      email: "Email:"
-      edit: "Editar"
-
-  accessions:
-    index:
-      title: "Peticiones"
-    edit:
-      title: "Cambiar Petición"
-    new:
-      title: "Nueva Petición"
-    show:
-      accession: "Solicitud #%{id}"
-      doctor: "Doctor: "
-      walk_in: "Ambulatorio"
-      drawn_at: "Recolectado el: "
-      received_at: "Recibido el: "
-      reported_at: "Reportado el: "
-      by: " por: "
-      change_accession: "Cambiar Petición"
-      enter_results: "Ingresar Resultados"
-      email_report: "Enviar reporte por correo"
-      emailed_report: "Reenviar reporte por correo"
-      sending_email: "Enviando correo..."
-      change_results: "Cambiar Resultados"
-      report: "Reportar"
-      print_report: "Imprimir Reporte (PDF)"
-      notes: "Observaciones:"
-      confirm_email: "¿Desea enviar los resultados a %{email}?"
-      confirm_emailed: "¿Desea enviar nuevamente los resultados a %{email}?"
-    form:
-      accession: "Solicitud #%{id}"
-      order_details: "Detalles de la Petición"
-      doctor: "Doctor que ordena:"
-      walk_in: "Dejar en blanco si es ambulatorio"
-      icd9: "Códigos de Diagnóstico:"
-      icd9_placeholder: "Separados por comas"
-      labels: "Etiquetas"
-      drawn_at: "Recolectado el:"
-      drawn_by: "Recolectado por:"
-      received_at: "Recibido el:"
-      received_by: "Recibido por:"
-      reported_at: "Reportado el:"
-      reported_by: "Reportado por:"
-      submit: "Guardar"
-      or: "o"
-      cancel: "Cancelar"
-      processing: "Procesando..."
-    sidebar:
-      search_patients: "Buscar pacientes"
-      search: "Buscar"
-      year: "año"
-      cellular: "Móvil:"
-      phone: "Tel:"
-      address: "Dirección:"
-      email: "Correo Electrónico:"
-      recent_patients: "Pacientes Recientes"
-    edit_results:
-      title: "Ingresar Resultados"
-      accession: "Solicitud #%{id}"
-      doctor: "Doctor: "
-      walk_in: "Ambulatorio"
-      drawn_at: "Recolectado el: "
-      received_at: "Recibido el: "
-      reported_at: "Reportado el: "
-      by: " por: "
-      submit: "Guardar Resultados"
-      or: "o"
-      cancel: "Cancelar"
-    accession:
-      accession: "Solicitud #%{id}"
-      reported_at: "Reportado el: "
-      by: "por: "
-      ordered_by: "Ordenado por: "
-      walk_in: "Ambulatorio"
-      drawn_at: "Extraído el: "
-      tests_ordered: "Pruebas ordenadas: "
-      tests_pending: "Pruebas pendientes: "
-      enter_results: "Ingresar Resultados"
-      change_results: "Cambiar Resultados"
-      change_requisition: "Cambiar Petición"
-      delete?: "¿Borrar?"
-      confirm_destroy: "¿Está seguro?"
-    accessions:
-      no_requisitions_yet: "Sin historial de peticiones"
-      pending_requisitions: "Peticiones Pendientes"
-      requisition_history: "Historial de Peticiones"
-      order_tests: "Ordenar Pruebas"
-
-  lab_tests:
-    form:
-      order_tests: Ordernar Pruebas
-
-  notes:
-    form:
-      notes: "Observaciones:"
-
-  panels:
-    form:
-      order_panels: Ordenar Paneles
-
-  results:
-    low: "•"
-    high: "•"
-    abnormal: "•"
-    index:
-      preliminary: "Preliminar"
-      full_name: "Nombre:"
-      identifier: "Cédula:"
-      doctor: "Doctor:"
-      walk_in: "Ambulatorio"
-      cellular: "Móvil:"
-      phone: "Teléfono:"
-      type: "Especie:"
-      age: "Edad:"
-      year: "año"
-      years: "años"
-      gender: "Sexo:"
-      accession: "Solicitud:"
-      drawn_at: "Fecha de recolección:"
-      received_at: "Fecha de recepción:"
-      lab_test: "Prueba"
-      result: "Resultado"
-      units: "Unidades"
-      flag: "Señal"
-      range: "Rango de Referencia"
-      run_by: "Ejecutado por:"
-      on_date: "el"
-      reviewed_by: "Revisado por:"
-      date: "Fecha:"
-      reported_at: "Fecha de reporte:"
-      printed_at: "Fecha de impresión:"
-      page: "Página"
-      of: "de"
-      results_of: "Resultados de:"
-      notes: "Observaciones:"
-      register: "Registro "
-    sidebar:
-      year: "año"
-      cellular: "Móvil:"
-      phone: "Tel:"
-      address: "Dirección:"
-      email: "Correo Electrónico:"
-      recent_patients: "Pacientes Recientes"
-
-  results_mailer:
-    email_patient:
-      subject: Resultados de exámenes
-      subject_preliminary: Resultados preliminares de exámenes
-      opening_M: "Estimado %{full_name}:"
-      opening_F: "Estimada %{full_name}:"
-      opening_U: "Estimado(a) %{full_name}:"
-      body: Hemos adjuntado los resultados de sus exámenes.
-      body_preliminary: Hemos adjuntado los resultados preliminares de sus exámenes.
-    email_doctor:
-      subject: "Resultados de %{full_name}"
-      subject_preliminary: "Resultados preliminares de %{full_name}"
-      body: "Hemos adjuntado los resultados de los exámenes de %{full_name}."
-      body_preliminary: "Hemos adjuntado los resultados preliminares de los exámenes de %{full_name}."
-
-  flash:
-    login:
-      hello: "¡Hola "
-      last_login_at: " Su último inico de sesión fue hace "
-    accession:
-      create: "Petición creada exitosamente."
-      update: "Petición actualizada exitosamente."
-      destroy: "Petición eliminada exitosamente."
-      email_success: "Correo enviado exitosamente."
-      email_error: "Correo inválido."
-      report: "Petición reportada."
-      report_error: "Todavía existen resultados pendientes."
-      accession_not_found: "Este registro de petición ya no está disponible."
-      at_least_one_panel_or_test_selected: "Debe tener al menos un panel o una prueba seleccionada."
-    accessions:
-      at_least_one_panel_or_test_selected: "Debe tener al menos un panel o una prueba seleccionada."
-
+      next: Siguiente »
+      previous: « Anterior
+      truncate: …
   activerecord:
     attributes:
       accession:
-        drawn_at: "Fecha de recolección"
-        icd9: "Códigos de Diagnóstico (ICD-9)"
-        received_at: "Fecha de recepción"
-        reported_at: "Fecha de reporte"
+        drawn_at: Fecha de recolección
+        icd9: Códigos de Diagnóstico (ICD-9)
+        received_at: Fecha de recepción
+        reported_at: Fecha de reporte
       patient:
-        birthdate: "Fecha de Nacimiento"
-        email: "Correo Electrónico"
-        family_name: "Primer apellido"
-        gender: "Sexo"
-        given_name: "Primer nombre"
-        identifier: "Cédula"
-        policy_number: "Número de Póliza"
+        birthdate: Fecha de Nacimiento
+        email: Correo Electrónico
+        family_name: Primer apellido
+        gender: Sexo
+        given_name: Primer nombre
+        identifier: Cédula
+        policy_number: Número de Póliza
       results:
         value: El valor
       user:
@@ -352,24 +349,14 @@ es-PA:
         password_confirmation: La contraseña
         username: El nombre de usuario
     models:
-      accession: "petición"
-      department: "departamento"
-      doctor: "doctor"
-      insurance_provider: "aseguradora"
-      lab_test: "prueba"
-      lab_test_value: "valor"
-      panel: "panel"
-      patient: "paciente"
-      reference_range: "rango"
-      unit: "unidad"
-      user: "usuario"
-  errors:
-    messages:
-      cant_be_in_the_future: "no puede ser del futuro"
-      fraction: "debe ser N/N"
-      range: "debe ser N-N, <N o >N"
-      ratio: "debe ser N:N"
-  time:
-    formats:
-      long: "%-d/%m/%Y %l:%M %p"
-      short: "%-d %b %Y %l:%M %p"
+      accession: petición
+      department: departamento
+      doctor: doctor
+      insurance_provider: aseguradora
+      lab_test: prueba
+      lab_test_value: valor
+      panel: panel
+      patient: paciente
+      reference_range: rango
+      unit: unidad
+      user: usuario

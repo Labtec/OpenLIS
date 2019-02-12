@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/Labtec/bcrypt-ruby.git
-  revision: 1ec2d8a826bfcd7709d58cedd0f6d268ee342649
-  branch: fix-freebsd-12-remove-crypt_r
+  revision: e19a8a9b6e8dcf7057eecacf01dd4a2af0c6844c
+  branch: fix-freebsd-12-skip-gnu
   specs:
     bcrypt (3.1.12)
 
@@ -62,7 +62,7 @@ GEM
       activerecord (>= 4.0)
     bcrypt_pbkdf (1.0.0)
     bindex (0.5.0)
-    bootsnap (1.3.2)
+    bootsnap (1.4.0)
       msgpack (~> 1.0)
     brakeman (4.4.0)
     builder (3.2.3)
@@ -112,7 +112,7 @@ GEM
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     dalli (2.7.9)
-    devise (4.6.0)
+    devise (4.6.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)

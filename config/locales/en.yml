@@ -1,345 +1,332 @@
 en:
-  user_sessions:
+  accessions:
+    accession:
+      accession: 'Accession #%{id}'
+      by: 'by: '
+      change_requisition: Change Requisition
+      change_results: Change Results
+      confirm_destroy: Are you sure?
+      delete?: Delete?
+      drawn_at: 'Drawn at: '
+      enter_results: Enter Results
+      ordered_by: 'Ordered by: '
+      reported_at: 'Reported at: '
+      tests_ordered: 'Tests ordered: '
+      tests_pending: 'Tests pending: '
+      walk_in: Walk-in
+    accessions:
+      no_requisitions_yet: No requisitions history
+      order_tests: Order Tests
+      pending_requisitions: Pending Requisitions
+      requisition_history: Requisition History
+    edit:
+      title: Change Order
+    edit_results:
+      accession: 'Accession #%{id}'
+      by: ' by: '
+      cancel: Cancel
+      doctor: 'Doctor: '
+      drawn_at: 'Collected at: '
+      or: or
+      received_at: 'Received at: '
+      reported_at: 'Reported at: '
+      submit: Save Results
+      title: Enter Results
+      walk_in: Walk-in
+    form:
+      accession: 'Accession #%{id}'
+      cancel: Cancel
+      doctor: 'Ordering Doctor:'
+      drawn_at: 'Collected at:'
+      drawn_by: 'Collected by:'
+      icd9: 'Diagnosis Codes:'
+      icd9_placeholder: Separated by commas
+      labels: Labels
+      or: or
+      order_details: Order Details
+      processing: Processing...
+      received_at: 'Received at:'
+      received_by: 'Received by:'
+      reported_at: 'Reported at:'
+      reported_by: 'Reported by:'
+      submit: Save
+      walk_in: Leave blank if walk-in
+    index:
+      title: Requisitions
     new:
-      username: "Username"
-      password: "Password"
-      submit: "Log In"
-
+      title: New Order
+    show:
+      accession: 'Accession #%{id}'
+      by: ' by: '
+      change_accession: Change Order
+      change_results: Change Results
+      confirm_email: Would you like to email the results to %{email}?
+      confirm_emailed: Would you like to email the results to %{email} again?
+      doctor: 'Doctor: '
+      drawn_at: 'Collected at: '
+      email_report: Email Report
+      emailed_report: Resend Report
+      enter_results: Enter Results
+      notes: 'Notes:'
+      print_report: Print Report (PDF)
+      received_at: 'Received at: '
+      report: Report
+      reported_at: 'Reported at: '
+      sending_email: Sending Email…
+      walk_in: Walk-in
+    sidebar:
+      address: 'Address:'
+      cellular: 'Mobile:'
+      email: 'Email:'
+      phone: 'Phone:'
+      recent_patients: Recent Patients
+      search: Search
+      search_patients: Search patients
+      year: year
   admin:
     claims:
       submit:
         submit_alert: Must have External and Claim Number
-
-  users:
+  errors:
+    messages:
+      cant_be_in_the_future: cannot be in the future
+      fraction: must be N/N
+      range: must be N-N, <N or >N
+      ratio: must be N:N
+  flash:
+    accession:
+      accession_not_found: Requisition accession no longer available.
+      at_least_one_panel_or_test_selected: Must have at least one panel or test selected.
+      create: Successfully created requisition.
+      destroy: Successfully removed requisition.
+      email_error: Invalid email.
+      email_success: Email sent successfully.
+      report: Reported requisition.
+      report_error: There are still pending results.
+      update: Successfully updated requisition.
+    accessions:
+      at_least_one_panel_or_test_selected: Must have at least one panel or test selected.
+    login:
+      hello: 'Hello '
+      last_login_at: ' Previous login: '
+  lab_tests:
     form:
-      username: "Username:"
-      initials: "Initials:"
-      language: "Language:"
-      password: "Password:"
-      password_confirmation: "Password confirmation:"
-      admin: "The user is Administrator"
-      personal_information: "Personal Information"
-      prefix: "Prefix:"
-      first_name: "First name:"
-      last_name: "Last name:"
-      suffix: "Suffix:"
-      email: "Email:"
-      register: "Registration:"
-      submit: "Save User"
-      or: "or"
-      cancel: "Cancel"
-
+      order_tests: Order Tests
   layouts:
-    header:
-      quick_find: "Quick find"
-      admin: "Admin"
-      logout: "Logout"
-    tabs:
-      patients: "Patients"
-      requisitions: "Requisitions"
     admin:
       tabs:
-        users: "Users"
-        lab_tests: "Lab Tests"
-        panels: "Panels"
-        doctors: "Doctors"
-        insurance_providers: "Providers"
-        departments: "Departments"
-        units: "Units"
-        reference_ranges: "Ranges"
-        lab_test_values: "Values"
+        departments: Departments
+        doctors: Doctors
+        insurance_providers: Providers
+        lab_test_values: Values
+        lab_tests: Lab Tests
+        panels: Panels
+        reference_ranges: Ranges
+        units: Units
+        users: Users
     auth:
       title: Login
-
+    header:
+      admin: Admin
+      logout: Logout
+      quick_find: Quick find
+    tabs:
+      patients: Patients
+      requisitions: Requisitions
+  notes:
+    form:
+      notes: 'Notes:'
+  panels:
+    form:
+      order_panels: Order Panels
+  patients:
+    canine: Dog
+    card:
+      address: 'Address:'
+      cellular: 'Mobile:'
+      edit: Edit
+      email: 'Email:'
+      phone: 'Phone:'
+    create:
+      success: Successfully created patient.
+    day:
+      one: 1 day
+      other: '%{count} days'
+    destroy:
+      success: Successfully removed patient.
+    edit:
+      title: Edit Patient Info
+    equine: Horse
+    feline: Cat
+    female: Female
+    form:
+      additional_information: Additional Information
+      address: 'Address:'
+      birthdate: 'Birth date:'
+      cancel: Cancel
+      cellular: 'Mobile:'
+      day: 'Day:'
+      email: 'Email:'
+      family_name: 'Last name:'
+      family_name2: "Mother's maiden name:"
+      gender: 'Sex:'
+      given_name: 'Given name:'
+      identifier: 'National ID:'
+      insurance_provider: 'Insurance provider:'
+      insured: "Insured's Name:"
+      insured_placeholder: Leave blank if primary
+      middle_name: 'Middle name:'
+      month: 'Month:'
+      or: or
+      partner_name: "Partner's name:"
+      phone: 'Phone:'
+      policy_number: 'Policy Number:'
+      prompt_gender: 'Select Sex:'
+      submit: Save Patient
+      type: 'Species:'
+      year: 'Year:'
+    index:
+      new_patient: New Patient
+      options: Options
+      title: Patients
+    male: Male
+    month:
+      one: 1 month
+      other: '%{count} months'
+    new:
+      title: New Patient
+    other: Other
+    patient:
+      accessions: Accessions
+      address: 'Address:'
+      age: 'Age:'
+      cellular: 'Mobile:'
+      confirm_destroy: Are you sure?
+      delete: Delete
+      delete?: Delete?
+      edit: Edit
+      email: 'Email:'
+      gender: 'Sex:'
+      identifier: 'National ID:'
+      phone: 'Phone:'
+      year: year
+    patients:
+      cellular: 'Mobile:'
+      confirm_destroy: Are you sure?
+      delete?: Delete?
+      edit: Edit
+      not_found: No patients found
+      phone: 'Phone:'
+      year: year
+    show:
+      order_tests: Order Tests
+      patient_not_found: Patient record no longer available.
+      title: Patient Info
+    sidebar:
+      recent_patients: Recent Patients
+      search: Search
+      search_patients: Search patients
+    unknown: Unknown
+    update:
+      success: Successfully updated patient.
+    week:
+      one: 1 week
+      other: '%{count} weeks'
+    year:
+      one: 1 year
+      other: '%{count} years'
+  results:
+    abnormal: A
+    high: H
+    index:
+      accession: 'Accession:'
+      age: 'Age:'
+      cellular: 'Mobile:'
+      date: 'Date:'
+      doctor: 'Doctor:'
+      drawn_at: 'Collected Date:'
+      flag: Flag
+      full_name: 'Name:'
+      gender: 'Sex:'
+      identifier: 'ID:'
+      lab_test: Test Name
+      notes: 'Notes:'
+      of: of
+      on_date: on
+      page: Page
+      phone: 'Phone:'
+      preliminary: Preliminary
+      printed_at: 'Printed:'
+      range: Reference Range
+      received_at: 'Received in Lab:'
+      register: 'Registration '
+      reported_at: 'Reported On:'
+      result: Result
+      results_of: 'Lab Results For:'
+      reviewed_by: 'Reviewed By:'
+      run_by: 'Run By:'
+      type: 'Species:'
+      units: Units
+      walk_in: Walk-in
+      year: year
+      years: years
+    low: L
+    sidebar:
+      address: 'Address:'
+      cellular: 'Mobile:'
+      email: 'Email:'
+      phone: 'Phone:'
+      recent_patients: Recent Patients
+      year: year
+  results_mailer:
+    email_doctor:
+      body: Attached are the results for %{full_name}.
+      body_preliminary: Attached are the preliminary results for %{full_name}.
+      subject: Results for %{full_name}
+      subject_preliminary: Preliminary results for %{full_name}
+    email_patient:
+      body: Attached are your lab results.
+      body_preliminary: Attached are your preliminary lab results.
+      opening_F: Dear %{full_name},
+      opening_M: Dear %{full_name},
+      opening_U: Dear %{full_name},
+      subject: Lab results
+      subject_preliminary: Preliminary lab results
+  time:
+    formats:
+      long: '%d %B %Y %H:%M'
+      short: '%d-%b-%Y %H:%M'
+  user_sessions:
+    new:
+      password: Password
+      submit: Log In
+      username: Username
+  users:
+    form:
+      admin: The user is Administrator
+      cancel: Cancel
+      email: 'Email:'
+      first_name: 'First name:'
+      initials: 'Initials:'
+      language: 'Language:'
+      last_name: 'Last name:'
+      or: or
+      password: 'Password:'
+      password_confirmation: 'Password confirmation:'
+      personal_information: Personal Information
+      prefix: 'Prefix:'
+      register: 'Registration:'
+      submit: Save User
+      suffix: 'Suffix:'
+      username: 'Username:'
   views:
     pagination:
       first: First
       last: Last
-      next: "Next »"
-      previous: "« Previous"
-      truncate: "…"
-
-  patients:
-    female: "Female"
-    male: "Male"
-    unknown: "Unknown"
-    canine: "Dog"
-    feline: "Cat"
-    equine: "Horse"
-    other: "Other"
-    year:
-      one: 1 year
-      other: "%{count} years"
-    month:
-      one: 1 month
-      other: "%{count} months"
-    week:
-      one: 1 week
-      other: "%{count} weeks"
-    day:
-      one: 1 day
-      other: "%{count} days"
-    sidebar:
-      search_patients: "Search patients"
-      search: "Search"
-      recent_patients: "Recent Patients"
-    index:
-      title: "Patients"
-      new_patient: "New Patient"
-      options: "Options"
-    patients:
-      not_found: "No patients found"
-      edit: "Edit"
-      delete?: "Delete?"
-      confirm_destroy: "Are you sure?"
-      cellular: "Mobile:"
-      phone: "Phone:"
-      year: "year"
-    new:
-      title: "New Patient"
-    create:
-      success: "Successfully created patient."
-    update:
-      success: "Successfully updated patient."
-    destroy:
-      success: "Successfully removed patient."
-    show:
-      order_tests: "Order Tests"
-      patient_not_found: "Patient record no longer available."
-      title: "Patient Info"
-    edit:
-      title: "Edit Patient Info"
-    form:
-      given_name: "Given name:"
-      middle_name: "Middle name:"
-      family_name: "Last name:"
-      family_name2: "Mother's maiden name:"
-      partner_name: "Partner's name:"
-      gender: "Sex:"
-      prompt_gender: "Select Sex:"
-      birthdate: "Birth date:"
-      day: "Day:"
-      month: "Month:"
-      year: "Year:"
-      identifier: "National ID:"
-      email: "Email:"
-      cellular: "Mobile:"
-      phone: "Phone:"
-      additional_information: "Additional Information"
-      address: "Address:"
-      type: "Species:"
-      insurance_provider: "Insurance provider:"
-      policy_number: "Policy Number:"
-      insured: "Insured's Name:"
-      insured_placeholder: "Leave blank if primary"
-      submit: "Save Patient"
-      or: "or"
-      cancel: "Cancel"
-    patient:
-      gender: "Sex:"
-      age: "Age:"
-      identifier: "National ID:"
-      address: "Address:"
-      accessions: "Accessions"
-      year: "year"
-      cellular: "Mobile:"
-      phone: "Phone:"
-      email: "Email:"
-      edit: "Edit"
-      delete: "Delete"
-      delete?: "Delete?"
-      confirm_destroy: "Are you sure?"
-    card:
-      address: "Address:"
-      cellular: "Mobile:"
-      phone: "Phone:"
-      email: "Email:"
-      edit: "Edit"
-
-  accessions:
-    index:
-      title: "Requisitions"
-    edit:
-      title: "Change Order"
-    new:
-      title: "New Order"
-    show:
-      accession: "Accession #%{id}"
-      doctor: "Doctor: "
-      walk_in: "Walk-in"
-      drawn_at: "Collected at: "
-      received_at: "Received at: "
-      reported_at: "Reported at: "
-      by: " by: "
-      change_accession: "Change Order"
-      enter_results: "Enter Results"
-      email_report: "Email Report"
-      emailed_report: "Resend Report"
-      sending_email: "Sending Email..."
-      change_results: "Change Results"
-      report: "Report"
-      print_report: "Print Report (PDF)"
-      notes: "Notes:"
-      confirm_email: "Would you like to email the results to %{email}?"
-      confirm_emailed: "Would you like to email the results to %{email} again?"
-    form:
-      accession: "Accession #%{id}"
-      order_details: "Order Details"
-      doctor: "Ordering Doctor:"
-      walk_in: "Leave blank if walk-in"
-      icd9: "Diagnosis Codes:"
-      icd9_placeholder: "Separated by commas"
-      labels: "Labels"
-      drawn_at: "Collected at:"
-      drawn_by: "Collected by:"
-      received_at: "Received at:"
-      received_by: "Received by:"
-      reported_at: "Reported at:"
-      reported_by: "Reported by:"
-      submit: "Save"
-      or: "or"
-      cancel: "Cancel"
-      processing: "Processing..."
-    sidebar:
-      search_patients: "Search patients"
-      search: "Search"
-      year: "year"
-      cellular: "Mobile:"
-      phone: "Phone:"
-      address: "Address:"
-      email: "Email:"
-      recent_patients: "Recent Patients"
-    edit_results:
-      title: "Enter Results"
-      accession: "Accession #%{id}"
-      doctor: "Doctor: "
-      walk_in: "Walk-in"
-      drawn_at: "Collected at: "
-      received_at: "Received at: "
-      reported_at: "Reported at: "
-      by: " by: "
-      submit: "Save Results"
-      or: "or"
-      cancel: "Cancel"
-    accession:
-      accession: "Accession #%{id}"
-      reported_at: "Reported at: "
-      by: "by: "
-      ordered_by: "Ordered by: "
-      walk_in: "Walk-in"
-      drawn_at: "Drawn at: "
-      tests_ordered: "Tests ordered: "
-      tests_pending: "Tests pending: "
-      enter_results: "Enter Results"
-      change_results: "Change Results"
-      change_requisition: "Change Requisition"
-      delete?: "Delete?"
-      confirm_destroy: "Are you sure?"
-    accessions:
-      no_requisitions_yet: "No requisitions history"
-      pending_requisitions: "Pending Requisitions"
-      requisition_history: "Requisition History"
-      order_tests: "Order Tests"
-
-  lab_tests:
-    form:
-      order_tests: Order Tests
-
-  notes:
-    form:
-      notes: "Notes:"
-
-  panels:
-    form:
-      order_panels: Order Panels
-
-  results:
-    low: "L"
-    high: "H"
-    abnormal: "A"
-    index:
-      preliminary: "Preliminary"
-      full_name: "Name:"
-      identifier: "ID:"
-      doctor: "Doctor:"
-      walk_in: "Walk-in"
-      cellular: "Mobile:"
-      phone: "Phone:"
-      type: "Species:"
-      age: "Age:"
-      year: "year"
-      years: "years"
-      gender: "Sex:"
-      accession: "Accession:"
-      drawn_at: "Collected Date:"
-      received_at: "Received in Lab:"
-      lab_test: "Test Name"
-      result: "Result"
-      units: "Units"
-      flag: "Flag"
-      range: "Reference Range"
-      run_by: "Run By:"
-      on_date: "on"
-      reviewed_by: "Reviewed By:"
-      date: "Date:"
-      reported_at: "Reported On:"
-      printed_at: "Printed:"
-      page: "Page"
-      of: "of"
-      results_of: "Lab Results For:"
-      notes: "Notes:"
-      register: "Registration "
-    sidebar:
-      year: "year"
-      cellular: "Mobile:"
-      phone: "Phone:"
-      address: "Address:"
-      email: "Email:"
-      recent_patients: "Recent Patients"
-
-  results_mailer:
-    email_patient:
-      subject: Lab results
-      subject_preliminary: Preliminary lab results
-      opening_M: "Dear %{full_name},"
-      opening_F: "Dear %{full_name},"
-      opening_U: "Dear %{full_name},"
-      body: Attached are your lab results.
-      body_preliminary: Attached are your preliminary lab results.
-    email_doctor:
-      subject: "Results for %{full_name}"
-      subject_preliminary: "Preliminary results for %{full_name}"
-      body: "Attached are the results for %{full_name}."
-      body_preliminary: "Attached are the preliminary results for %{full_name}."
-
-  flash:
-    login:
-      hello: "Hello "
-      last_login_at: " Previous login: "
-    accession:
-      create: "Successfully created requisition."
-      update: "Successfully updated requisition."
-      destroy: "Successfully removed requisition."
-      email_success: "Email sent successfully."
-      email_error: "Invalid email."
-      report: "Reported requisition."
-      report_error: "There are still pending results."
-      accession_not_found: "Requisition accession no longer available."
-      at_least_one_panel_or_test_selected: "Must have at least one panel or test selected."
-    accessions:
-      at_least_one_panel_or_test_selected: "Must have at least one panel or test selected."
-
+      next: Next »
+      previous: « Previous
+      truncate: …
   activerecord:
     attributes:
       accession:
-        icd9: "Diagnosis Codes (ICD-9)"
-  errors:
-    messages:
-      cant_be_in_the_future: "cannot be in the future"
-      fraction: "must be N/N"
-      range: "must be N-N, <N or >N"
-      ratio: "must be N:N"
-  time:
-    formats:
-      long: "%d %B %Y %H:%M"
-      short: "%d-%b-%Y %H:%M"
+        icd9: Diagnosis Codes (ICD-9)
