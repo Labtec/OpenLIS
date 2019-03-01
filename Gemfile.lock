@@ -1,7 +1,6 @@
 GIT
-  remote: https://github.com/Labtec/bcrypt-ruby.git
-  revision: e19a8a9b6e8dcf7057eecacf01dd4a2af0c6844c
-  branch: fix-freebsd-12-skip-gnu
+  remote: https://github.com/codahale/bcrypt-ruby.git
+  revision: 7644e3684d96fb49f5aa20cb5f547cb1b56b3f38
   specs:
     bcrypt (3.1.12)
 
@@ -55,21 +54,21 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     airbrussh (1.3.1)
       sshkit (>= 1.6.1, != 1.7.0)
-    archive-zip (0.11.0)
+    archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
     auto_strip_attributes (2.5.0)
       activerecord (>= 4.0)
     bcrypt_pbkdf (1.0.0)
     bindex (0.5.0)
-    bootsnap (1.4.0)
+    bootsnap (1.4.1)
       msgpack (~> 1.0)
     brakeman (4.4.0)
     builder (3.2.3)
     bullet (5.9.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
-    byebug (10.0.2)
+    byebug (11.0.0)
     capistrano (3.11.0)
       airbrussh (>= 1.0.0)
       i18n
@@ -89,7 +88,7 @@ GEM
       capistrano (~> 3.7)
       capistrano-bundler
       puma (~> 3.4)
-    capybara (3.13.2)
+    capybara (3.14.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -166,7 +165,7 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
-    msgpack (1.2.6)
+    msgpack (1.2.7)
     multi_json (1.13.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
