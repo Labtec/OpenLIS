@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
-gem 'rails', '5.2.2'
+gem 'rails', '5.2.2.1'
 
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
