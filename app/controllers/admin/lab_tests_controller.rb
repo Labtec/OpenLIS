@@ -46,8 +46,8 @@ module Admin
     end
 
     def sort
-      params[:lab_test].each_with_index do |id, index|
-        LabTest.where(id: id).update_all(position: index + 1)
+      params[:lab_test].each.with_index(1) do |id, index|
+        LabTest.where(id: id).update_all(position: index)
       end
       head :ok
     end

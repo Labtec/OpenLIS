@@ -5,8 +5,8 @@ $(document).on 'turbolinks:load', ->
     update: ->
       $.ajax
         type: 'patch'
-        data: $('.lab_tests').sortable('serialize')
+        data: $(this).sortable('serialize')
         dataType: 'script'
         complete: (request) ->
           $('.lab_tests').effect 'highlight'
-        url: '/admin/lab_tests/sort'
+        url: $(this).data('update-url')

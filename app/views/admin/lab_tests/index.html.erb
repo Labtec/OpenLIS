@@ -1,6 +1,7 @@
 <% title 'Lab Tests' %>
 
-<ul class='lab_tests'>
+<%= content_tag :ul, class: 'lab_tests',
+                     data: { update_url: sort_admin_lab_tests_url } do %>
   <% @lab_tests.each do |department, lab_tests| %>
     <h3><%= department %></h3>
     <% lab_tests.each do |lab_test| %>
@@ -20,6 +21,6 @@
       <% end %>
     <% end %>
   <% end %>
-</ul>
+<% end %>
 
 <p><%= link_to 'New Lab Test', new_admin_lab_test_path %></p>
