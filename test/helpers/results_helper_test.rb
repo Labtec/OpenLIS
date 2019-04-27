@@ -116,8 +116,8 @@ class ResultsHelperTest < ActionView::TestCase
   end
 
   test "reference range table contains gender info if patient's gender is unknown" do
-    result_ranges = [["M: ", nil, "0", "–", "10"],
-                     ["F: ", nil, "100", "–", "200"]]
+    result_ranges = [['M: ', nil, '0', '–', '10'],
+                     ['F: ', nil, '100', '–', '200']]
     assert_equal '<table><tbody><tr><td class="range_0">M: </td><td class="range_1"></td><td class="range_2">0</td><td class="range_3">–</td><td class="range_4">10</td></tr><tr><td class="range_0">F: </td><td class="range_1"></td><td class="range_2">100</td><td class="range_3">–</td><td class="range_4">200</td></tr></tbody></table>',
                  ranges_table(result_ranges)
   end

@@ -68,17 +68,17 @@ class LabReport < Prawn::Document
     # Document fonts
     file = File.expand_path('fonts/MyriadPro', __dir__)
     font_families['MyriadPro'] = {
-      normal:      { file: file + '-Regular.ttf' },
-      italic:      { file: file + '-SemiCnIt.ttf' },
-      bold:        { file: file + '-Semibold.ttf' },
+      normal: { file: file + '-Regular.ttf' },
+      italic: { file: file + '-SemiCnIt.ttf' },
+      bold: { file: file + '-Semibold.ttf' },
       bold_italic: { file: file + '-BoldSemiCnIt.ttf' }
     }
 
     file = File.expand_path('fonts/HelveticaWorld', __dir__)
     font_families['HelveticaWorld'] = {
-      normal:      { file: file + '-Regular.ttf' },
-      italic:      { file: file + '-Italic.ttf' },
-      bold:        { file: file + '-Bold.ttf' },
+      normal: { file: file + '-Regular.ttf' },
+      italic: { file: file + '-Italic.ttf' },
+      bold: { file: file + '-Bold.ttf' },
       bold_italic: { file: file + '-BoldItalic.ttf' }
     }
 
@@ -381,6 +381,7 @@ class LabReport < Prawn::Document
       end
 
       next if @accession.notes.find_by(department_id: department).try(:content).blank?
+
       pad NOTES_PADDING do
         indent NOTES_INDENT do
           text "#{t('results.index.notes')} #{@accession.notes.find_by(department_id: department).content}", color: COLORS[:purple], style: :bold_italic, inline_format: true

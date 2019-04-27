@@ -28,17 +28,17 @@ class ClaimPreview < Prawn::Document
     # Document defaults
     file = File.expand_path('fonts/HelveticaNeueLTStd', __dir__)
     font_families['HelveticaNeueLTStd'] = {
-      normal:      { file: file + '-Roman.ttf' },
-      italic:      { file: file + '-It.ttf' },
-      bold:        { file: file + '-Bd.ttf' },
+      normal: { file: file + '-Roman.ttf' },
+      italic: { file: file + '-It.ttf' },
+      bold: { file: file + '-Bd.ttf' },
       bold_italic: { file: file + '-BdIt.ttf' }
     }
 
     file = File.expand_path('fonts/HelveticaWorld', __dir__)
     font_families['HelveticaWorld'] = {
-      normal:      { file: file + '-Regular.ttf' },
-      italic:      { file: file + '-Italic.ttf' },
-      bold:        { file: file + '-Bold.ttf' },
+      normal: { file: file + '-Regular.ttf' },
+      italic: { file: file + '-Italic.ttf' },
+      bold: { file: file + '-Bold.ttf' },
       bold_italic: { file: file + '-BoldItalic.ttf' }
     }
 

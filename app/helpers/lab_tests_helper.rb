@@ -10,6 +10,6 @@ module LabTestsHelper
   end
 
   def loinc_hyperlink(loinc)
-    link_to loinc, "https://s.details.loinc.org/LOINC/#{loinc}.html?sections=Comprehensive", target: :_blank if loinc.present?
+    link_to loinc, "https://s.details.loinc.org/LOINC/#{loinc}.html?sections=Comprehensive", target: :_blank, rel: :noopener if loinc.present?
   end
 end
