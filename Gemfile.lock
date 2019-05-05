@@ -216,6 +216,8 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    rb-kqueue (0.2.5)
+      ffi (>= 0.5.0)
     regexp_parser (1.4.0)
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
@@ -314,6 +316,7 @@ DEPENDENCIES
   rails (= 5.2.3)
   rails-html-sanitizer
   rails-i18n (~> 5)
+  rb-kqueue
   sass-rails
   selenium-webdriver
   spring
