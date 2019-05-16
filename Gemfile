@@ -53,4 +53,7 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'stackprof'
   gem 'web-console'
+
+  require 'rbconfig'
+  gem 'rb-kqueue' if RbConfig::CONFIG['target_os'] =~ /(?i-mx:bsd|dragonfly)/
 end

@@ -66,7 +66,7 @@ class Result < ApplicationRecord
     when 'IM'
       pr = result_for 'PR'
       np = result_for 'NP'
-      100 - pr + np
+      100 - (pr + np)
     when 'LDL'
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
