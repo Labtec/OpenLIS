@@ -51,10 +51,14 @@ class Result < ApplicationRecord
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
       trig = result_for 'TRIG'
-      # When ldl is in mmol/L, use:
-      #
-      #   chol - (hdl + trig / 2.2)
-      ldl = chol - (hdl + trig / 5)
+      ldl = case unit.name.downcase
+      when 'mg/dl'
+        chol - (hdl + trig / 5)
+      when 'mmol/l'
+        chol - (hdl + trig / 2.2)
+      else
+        raise
+      end
       ldl / hdl
     when 'NHDCH'
       chol = result_for 'CHOL'
@@ -88,10 +92,14 @@ class Result < ApplicationRecord
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
       trig = result_for 'TRIG'
-      # When ldl is in mmol/L, use:
-      #
-      #   chol - (hdl + trig / 2.2)
-      chol - (hdl + trig / 5)
+      case unit.name.downcase
+      when 'mg/dl'
+        chol - (hdl + trig / 5)
+      when 'mmol/l'
+        chol - (hdl + trig / 2.2)
+      else
+        raise
+      end
     when 'MCH'
       hgb = result_for 'HGB'
       rbc = result_for 'RBC'

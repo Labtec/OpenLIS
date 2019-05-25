@@ -24,3 +24,10 @@ unknown_patient:
   drawer: user
   receiver: user
   lab_tests: bun
+
+lipid:
+  patient: john
+  drawn_at: <%= 1.day.ago %>
+  received_at: <%= 1.day.ago %>
+  drawer: user
+  receiver: user

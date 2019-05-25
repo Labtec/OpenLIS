@@ -8,6 +8,22 @@ chol:
   name: Cholesterol
   code: CHOL
 
+hdl:
+  department: chemistry
+  name: Cholesterol in HDL
+  code: HDL
+
+trig:
+  department: chemistry
+  name: Triglyceride
+  code: TRIG
+
+ldl:
+  department: chemistry
+  name: Cholesterol in LDL
+  code: LDL
+  derivation: true
+
 qualitative:
   department: chemistry
   name: Qualitative

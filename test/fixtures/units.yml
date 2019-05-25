@@ -1,2 +1,8 @@
 units:
   name: Units
+
+unit_a:
+  name: mg/dL
+
+unit_b:
+  name: mmol/L
