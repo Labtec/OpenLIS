@@ -51,7 +51,7 @@ class Result < ApplicationRecord
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
       trig = result_for 'TRIG'
-      ldl = case unit.name.downcase
+      ldl = case unit_for('LDL').downcase
       when 'mg/dl'
         chol - (hdl + trig / 5)
       when 'mmol/l'
@@ -149,6 +149,13 @@ class Result < ApplicationRecord
     lab_test_by_code = LabTest.find_by(code: code)
     result_value = accession.results.find_by(lab_test_id: lab_test_by_code).value
     result_value.to_d if result_value.present?
+  end
+
+  # TODO: This method should be in Accession
+  def unit_for(code)
+    lab_test_by_code = LabTest.find_by(code: code)
+    unit_for_lab_test = accession.results.find_by(lab_test_id: lab_test_by_code).unit.name
+    unit_for_lab_test if unit_for_lab_test.present?
   end
 
   # TODO: This method should be in Accession

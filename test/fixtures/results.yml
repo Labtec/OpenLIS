@@ -17,3 +17,7 @@ result_trig:
 result_ldl:
   lab_test: ldl
   accession: lipid
+
+result_ldl_hdl:
+  lab_test: ldl_hdl
+  accession: lipid

@@ -24,6 +24,12 @@ ldl:
   code: LDL
   derivation: true
 
+ldl_hdl:
+  department: chemistry
+  name: LDL/HDL Ratio
+  code: LDLHDLR
+  derivation: true
+
 qualitative:
   department: chemistry
   name: Qualitative
