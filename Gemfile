@@ -9,7 +9,7 @@ gem 'rails', '5.2.3'
 
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
-gem 'bcrypt', github: 'codahale/bcrypt-ruby'
+gem 'bcrypt'
 gem 'bootsnap'
 gem 'coffee-rails'
 gem 'dalli'

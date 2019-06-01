@@ -1,3 +1,23 @@
 result:
   lab_test: bun
   accession: accession
+
+result_chol:
+  lab_test: chol
+  accession: lipid
+
+result_hdl:
+  lab_test: hdl
+  accession: lipid
+
+result_trig:
+  lab_test: trig
+  accession: lipid
+
+result_ldl:
+  lab_test: ldl
+  accession: lipid
+
+result_ldl_hdl:
+  lab_test: ldl_hdl
+  accession: lipid

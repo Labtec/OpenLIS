@@ -101,6 +101,11 @@ class Accession < ApplicationRecord
     true
   end
 
+  def result_for(code)
+    lab_test_by_code = LabTest.find_by(code: code)
+    results.find_by(lab_test_id: lab_test_by_code)
+  end
+
   private
 
   def panels_list

@@ -252,7 +252,7 @@ en:
       lab_test: Test Name
       notes: 'Notes:'
       of: of
-      on_date: on
+      on_date: 'on'
       page: Page
       phone: 'Phone:'
       preliminary: Preliminary

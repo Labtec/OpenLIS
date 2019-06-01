@@ -34,6 +34,15 @@ class Result < ApplicationRecord
 
   def derived_value
     case lab_test_code
+    when 'AG'
+      na = result_for 'Na'
+      cl = result_for 'Cl'
+      co2 = result_for 'CO2'
+      na - (cl + co2)
+    when 'BUNCRER'
+      bun = result_for 'BUN'
+      cre = result_for 'CRE'
+      bun / cre
     when 'CHOLHDLR'
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
@@ -42,7 +51,14 @@ class Result < ApplicationRecord
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
       trig = result_for 'TRIG'
-      ldl = chol - hdl - 0.2 * trig
+      ldl = case unit_for('LDL').downcase
+            when 'mg/dl'
+              chol - (hdl + trig / 5)
+            when 'mmol/l'
+              chol - (hdl + trig / 2.2)
+            else
+              raise
+            end
       ldl / hdl
     when 'NHDCH'
       chol = result_for 'CHOL'
@@ -58,7 +74,11 @@ class Result < ApplicationRecord
       a2_glo = result_for 'A2-GLO'
       b_glo = result_for 'B-GLO'
       g_glo = result_for 'G-GLO'
-      alb / (a1_glo + a2_glo + b_glo + g_glo)
+      glo1 = a1_glo + a2_glo + b_glo + g_glo
+      tp = result_for 'TP'
+      glo2 = tp - alb
+      glo = glo1.zero? ? glo2 : glo1
+      alb / glo
     when 'IBIL'
       tbil = result_for 'TBIL'
       dbil = result_for 'DBIL'
@@ -71,7 +91,14 @@ class Result < ApplicationRecord
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
       trig = result_for 'TRIG'
-      chol - hdl - 0.2 * trig
+      case unit.name.downcase
+      when 'mg/dl'
+        chol - (hdl + trig / 5)
+      when 'mmol/l'
+        chol - (hdl + trig / 2.2)
+      else
+        raise
+      end
     when 'MCH'
       hgb = result_for 'HGB'
       rbc = result_for 'RBC'
@@ -121,6 +148,13 @@ class Result < ApplicationRecord
     lab_test_by_code = LabTest.find_by(code: code)
     result_value = accession.results.find_by(lab_test_id: lab_test_by_code).value
     result_value.to_d if result_value.present?
+  end
+
+  # TODO: This method should be in Accession
+  def unit_for(code)
+    lab_test_by_code = LabTest.find_by(code: code)
+    unit_for_lab_test = accession.results.find_by(lab_test_id: lab_test_by_code).unit.name
+    unit_for_lab_test.presence
   end
 
   # TODO: This method should be in Accession
