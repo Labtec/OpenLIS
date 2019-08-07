@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Patient < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
 
   ANIMAL_SPECIES = (0..3).to_a
   GENDERS = %w[F M U].freeze
