@@ -181,7 +181,7 @@ GEM
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
     public_suffix (3.1.1)
-    puma (4.1.0)
+    puma (4.0.1)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-mini-profiler (1.0.2)
@@ -308,7 +308,7 @@ DEPENDENCIES
   pg_search
   prawn
   prawn-table
-  puma
+  puma (= 4.0.1)
   rack-mini-profiler
   rails (= 5.2.3)
   rails-html-sanitizer
