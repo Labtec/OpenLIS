@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
 
-gem 'rails', '5.2.3'
+gem 'rails', '6.0.0'
 
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
@@ -25,10 +25,10 @@ gem 'prawn'
 gem 'prawn-table'
 gem 'puma', '4.0.1'
 gem 'rails-html-sanitizer'
-gem 'rails-i18n', '~> 5'
+gem 'rails-i18n'
 gem 'sassc-rails'
 gem 'sassc', github: 'Labtec/sassc-ruby', submodules: true, branch: 'no-lto'
-gem 'turbolinks', '~> 5'
+gem 'turbolinks'
 gem 'uglifier'
 
 group :development, :test do
