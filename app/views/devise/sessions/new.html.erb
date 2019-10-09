@@ -1,6 +1,5 @@
 <%= form_with(model: resource, url: session_path(resource_name), local: true,
-              skip_enforcing_utf8: true, class: 'login-form',
-              html: { novalidate: true }) do |f| %>
+              class: 'login-form', html: { novalidate: true }) do |f| %>
   <div class="username">
     <%= f.label :username, t('user_sessions.new.username') %>
     <%= f.email_field :username, id: 'user_username',
