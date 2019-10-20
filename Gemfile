@@ -27,7 +27,6 @@ gem 'puma'
 gem 'rails-html-sanitizer'
 gem 'rails-i18n'
 gem 'sass-rails'
-gem 'sassc', github: 'Labtec/sassc-ruby', submodules: true, branch: 'no-lto'
 gem 'turbolinks'
 gem 'uglifier'
 
