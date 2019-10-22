@@ -49,11 +49,9 @@ group :development do
   gem 'flamegraph', require: false
   gem 'listen'
   gem 'rack-mini-profiler', require: false
+  gem 'rb-kqueue'
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'stackprof'
   gem 'web-console'
-
-  require 'rbconfig'
-  gem 'rb-kqueue' if RbConfig::CONFIG['target_os'] =~ /(?i-mx:bsd|dragonfly)/
 end
