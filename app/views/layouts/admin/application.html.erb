@@ -3,7 +3,10 @@
   <head>
     <title><%= yield(:title) || 'Untitled' %></title>
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= yield(:head) %>
     <link rel="mask-icon" href="pinned-masterlab.svg" color="#993399">

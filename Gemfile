@@ -19,7 +19,6 @@ gem 'devise'
 gem 'fast_blank'
 gem 'fhir_models'
 gem 'jbuilder'
-gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'nokogiri'
@@ -36,6 +35,8 @@ gem 'sass-rails'
 gem 'semacode', github: 'Labtec/semacode', branch: 'barcodes'
 gem 'turbolinks'
 gem 'uglifier'
+gem 'webauthn'
+gem 'webpacker'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

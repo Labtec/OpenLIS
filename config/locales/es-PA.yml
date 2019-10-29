@@ -113,6 +113,8 @@ es-PA:
     login:
       hello: '¡Hola '
       last_login_at: ' Su último inicio de sesión fue hace '
+    users:
+      cant_delete_last_security_key: No se puede eliminar la última llave de seguridad.
   lab_tests:
     form:
       order_tests: Ordenar Pruebas
@@ -347,6 +349,7 @@ es-PA:
       username: Usuario
   users:
     form:
+      add_key: Registrar nueva llave de seguridad
       admin: El usuario es Administrador
       cancel: Cancelar
       email: 'Correo electrónico:'
@@ -360,6 +363,7 @@ es-PA:
       personal_information: Información Personal
       prefix: 'Prefijo:'
       register: 'Registro:'
+      security_keys: Llaves de Seguridad
       signature: 'Firma:'
       submit: Guardar Usuario
       suffix: 'Sufijo:'
@@ -371,11 +375,42 @@ es-PA:
       next: Siguiente »
       previous: « Anterior
       truncate: …
+  auth:
+    sessions:
+      webauthn:
+        title: Llave de Seguridad
+        message: Cuando esté listo para autenticarse, presione el botón de abajo.
+        submit: Usar llave de seguridad
+  settings:
+    webauthn_credentials:
+      create:
+        error: Hubo un problema al registrar su llave de seguridad. Por favor intente de nuevo.
+        success: Su llave de seguridad ha sido registrada exitosamente.
+      destroy:
+        error: Hubo un problema al eliminar su llave de seguridad. Por favor intente de nuevo.
+        success: Su llave de seguridad ha sido eliminada exitosamente.
+      new:
+        cancel: Cancelar
+        nickname: 'Sobrenombre:'
+        or: o
+        submit: Guardar Llave
+        title: Nueva Llave de Seguridad
+  webauthn_credentials:
+    invalid_credential: Llave de seguridad inválida
+    not_enabled: WebAuthn no está habilitado
+    not_supported: Este navegador no soporta el uso de llaves de seguridad
+    webauthn_credential:
+      confirm_destroy: ¿Está seguro(a) que desea eliminar esta llave de seguridad?
+      delete: Eliminar
+      registered_on: registrada el %{date}
   interval:
     gender:
       female: 'F:'
       male: 'M:'
       unknown: ''
+  date:
+    formats:
+      with_month_name: "%d de %B de %Y"
   activerecord:
     attributes:
       accession:

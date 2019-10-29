@@ -55,7 +55,8 @@ form {
   form div.admin,
   form div.prefix,
   form div.insurance_provider_id,
-  form div.signature {
+  form div.signature,
+  form div.security-keys {
     clear: left; }
   form div.given_name,
   form div.middle_name,
@@ -183,6 +184,17 @@ fieldset {
     clear: both;
     font-size: 13px;
     font-weight: bold; }
+
+.nickname {
+  clear: left;
+  margin-right: 0;
+  font-weight: bold; }
+
+.em-dash::before {
+  content: '—'; }
+
+.external-id {
+  margin-left: 0; }
 
 legend {
  padding: 5px 5px 10px 5px;
@@ -654,6 +666,9 @@ h3.department {
 .prefix {
   width: 30px;
   font-size: 10px; }
+
+.hidden {
+  display: none; }
 
 .comment {
   background: #f2f2f2;

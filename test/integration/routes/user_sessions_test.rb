@@ -16,5 +16,8 @@ class UserSessionsRoutesTest < ActionDispatch::IntegrationTest
 
     assert_routing({ method: :delete, path: '/logout' },
                    @defaults.merge(action: 'destroy'))
+
+    assert_routing '/auth/sessions/security_key_options',
+                   { controller: 'auth/sessions', action: 'webauthn_options' }
   end
 end
