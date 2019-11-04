@@ -169,7 +169,7 @@ GEM
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
     nio4r (2.5.2)
-    nokogiri (1.10.5)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pdf-core (0.7.0)
@@ -312,6 +312,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   listen
+  nokogiri (= 1.10.4)
   pg
   pg_search
   prawn
