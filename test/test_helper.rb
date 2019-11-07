@@ -8,18 +8,12 @@ require 'bcrypt'
 
 module ActiveSupport
   class TestCase
-    fixtures :all
-  end
-end
-
-module ActionDispatch
-  class IntegrationTest
     include Capybara::DSL
     include Warden::Test::Helpers
 
     Warden.test_mode!
 
-    fixtures :users
+    fixtures :all
 
     def select_date(date, options = {})
       raise ArgumentError, 'from is a required option' if options[:from].blank?
