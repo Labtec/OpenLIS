@@ -204,7 +204,7 @@ class ClaimPreview < Prawn::Document
     @total_price = []
     # Panels Table
     panels_table = @claim.accession.panels.with_price.map do |panel|
-      @total_price << (panel.prices.find_by(price_list_id: 1)&.amount)
+      @total_price << panel.prices.find_by(price_list_id: 1)&.amount
       [
         '300',
         panel.name,
@@ -220,7 +220,7 @@ class ClaimPreview < Prawn::Document
       @lab_tests.push lab_test if (lab_test.panel_ids & @claim.accession.panel_ids).empty?
     end
     lab_tests_table = @lab_tests.map do |lab_test|
-      @total_price << (lab_test.prices.find_by(price_list_id: 1)&.amount)
+      @total_price << lab_test.prices.find_by(price_list_id: 1)&.amount
       [
         '300',
         lab_test.name,
