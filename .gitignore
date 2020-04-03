@@ -18,9 +18,6 @@
 
 .byebug_history
 
-# Ignore config files.
-/config/database.yml
-
 # Ignore deployment-specific files.
 Capfile
 /.capistrano
