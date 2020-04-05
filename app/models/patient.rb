@@ -24,6 +24,8 @@ class Patient < ApplicationRecord
   validates :identifier, uniqueness: { case_sensitive: false },
                          allow_blank: true
   validates :email, email: true, allow_blank: true
+  validates :phone, phone: true, allow_blank: true
+  validates :cellular, phone: true, allow_blank: true
 
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
@@ -32,7 +34,7 @@ class Patient < ApplicationRecord
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
   auto_strip_attributes :given_name, :middle_name, :family_name, :family_name2,
-                        :partner_name, :identifier, :phone, :address,
+                        :partner_name, :identifier, :cellular, :phone, :address,
                         :policy_number
 
   before_save :titleize_names
