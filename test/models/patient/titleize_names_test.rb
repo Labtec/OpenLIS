@@ -62,10 +62,10 @@ class PatientTitleizeNamesTest < ActiveSupport::TestCase
   end
 
   test 'phone contains extra spaces' do
-    @patient.phone = '  111-5555  '
+    @patient.phone = '  222-5555  '
 
     @patient.save!
-    assert_equal '111-5555', @patient.phone
+    assert_equal '222-5555', @patient.phone
   end
 
   test 'address contains extra spaces' do
