@@ -335,11 +335,13 @@ es-PA:
         reported_at: Fecha de reporte
       patient:
         birthdate: Fecha de Nacimiento
+        cellular: Móvil
         email: Correo Electrónico
         family_name: Primer apellido
         gender: Sexo
         given_name: Primer nombre
         identifier: Cédula
+        phone: Teléfono
         policy_number: Número de Póliza
       results:
         value: El valor
