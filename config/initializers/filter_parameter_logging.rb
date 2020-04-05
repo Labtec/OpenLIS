@@ -4,6 +4,7 @@
 Rails.application.config.filter_parameters += [:address,
                                                :animal_type,
                                                :birthdate,
+                                               :cellular,
                                                :email,
                                                :family_name,
                                                :family_name2,
