@@ -24,8 +24,8 @@ class Patient < ApplicationRecord
   validates :identifier, uniqueness: { case_sensitive: false },
                          allow_blank: true
   validates :email, email: true, allow_blank: true
-  validates :phone, phone: true, allow_blank: true
-  validates :cellular, phone: true, allow_blank: true
+  validates :phone, phone: { allow_blank: true, types: :fixed_line }
+  validates :cellular, phone: { allow_blank: true, types: :mobile }
 
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
