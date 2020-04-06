@@ -90,6 +90,7 @@ es-PA:
   errors:
     messages:
       cant_be_in_the_future: no puede ser del futuro
+      cant_begin_with_dr: no puede comenzar con Dr(a).
       fraction: debe ser N/N
       range: debe ser N-N, <N o >N
       ratio: debe ser N:N

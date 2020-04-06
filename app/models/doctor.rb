@@ -5,8 +5,9 @@ class Doctor < ApplicationRecord
 
   validates :email, email: true, allow_blank: true
   validates :name,
+            cant_begin_with_dr: true,
             presence: true,
-            uniqueness: true,
+            uniqueness: { case_sensitive: false },
             length: { minimum: 2 }
 
   auto_strip_attributes :name
