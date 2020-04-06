@@ -13,6 +13,11 @@ class DoctorTest < ActiveSupport::TestCase
     assert doctor.errors.added?(:name, :taken, value: 'Doctor')
   end
 
+  test 'uniqueness of name regardless of case' do
+    doctor = Doctor.create(name: 'doctor')
+    assert doctor.errors.added?(:name, :taken, value: 'doctor')
+  end
+
   test 'length of name' do
     doctor = Doctor.create(name: 'D')
     assert doctor.errors.added?(:name, :too_short, count: 2)
@@ -31,5 +36,10 @@ class DoctorTest < ActiveSupport::TestCase
   test 'name contains two characters or more' do
     doctor = Doctor.new(name: ' A ')
     assert_equal true, doctor.invalid?(:name)
+  end
+
+  test 'does not start with Dr(a).' do
+    doctor = Doctor.create(name: 'Dr. Doctor')
+    assert doctor.invalid?, "A Doctor's name must not begin with Dr."
   end
 end

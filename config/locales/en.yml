@@ -90,6 +90,7 @@ en:
   errors:
     messages:
       cant_be_in_the_future: cannot be in the future
+      cant_begin_with_dr: must not begin with Dr(a).
       fraction: must be N/N
       range: must be N-N, <N or >N
       ratio: must be N:N
