@@ -311,10 +311,20 @@ class ClaimsReport < Prawn::Document
       # FL 74A - 74E - Other Procedure Codes and Dates Situational. Required on inpatient claims when additional procedures must be reported. Not used on outpatient claims.
       diag_codes = (claim.accession.icd9.split(',').map(&:strip) if claim.accession.icd9.present?) || ['pend.']
       diag_codes.each_with_index do |diag_code, i|
-        bounding_box([left_margin + code_width * i, (top_margin - field_height * 52)], width: code_width, height: field_height) do
-          pad(form_padding) do
-            indent(form_indenting) do
-              text diag_code.upcase
+        if i < 3
+          bounding_box([left_margin + code_width * i, (top_margin - field_height * 52)], width: code_width, height: field_height) do
+            pad(form_padding) do
+              indent(form_indenting) do
+                text diag_code.upcase
+              end
+            end
+          end
+        else
+          bounding_box([left_margin + code_width * (i - 3), (top_margin - field_height * 54)], width: code_width, height: field_height) do
+            pad(form_padding) do
+              indent(form_indenting) do
+                text diag_code.upcase
+              end
             end
           end
         end
@@ -494,10 +504,20 @@ class ClaimsReport < Prawn::Document
                 # FL 74A - 74E - Other Procedure Codes and Dates Situational. Required on inpatient claims when additional procedures must be reported. Not used on outpatient claims.
                 diag_codes = (claim.accession.icd9.split(',').map(&:strip) if claim.accession.icd9.present?) || ['pend.']
                 diag_codes.each_with_index do |diag_code, i|
-                  bounding_box([code_width * i, -(field_height * 16)], width: code_width, height: field_height) do
-                    pad(form_padding) do
-                      indent(form_indenting) do
-                        text diag_code.upcase
+                  if i < 3
+                    bounding_box([code_width * i, -(field_height * 16)], width: code_width, height: field_height) do
+                      pad(form_padding) do
+                        indent(form_indenting) do
+                          text diag_code.upcase
+                        end
+                      end
+                    end
+                  else
+                    bounding_box([code_width * (i - 3), -(field_height * 18)], width: code_width, height: field_height) do
+                      pad(form_padding) do
+                        indent(form_indenting) do
+                          text diag_code.upcase
+                        end
                       end
                     end
                   end
