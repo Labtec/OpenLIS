@@ -31,3 +31,13 @@ lipid:
   received_at: <%= 1.day.ago %>
   drawer: user
   receiver: user
+
+insured:
+  patient: insured
+  drawn_at: <%= 1.day.ago %>
+  received_at: <%= 1.day.ago %>
+  drawer: user
+  receiver: user
+  lab_tests: bun
+  doctor: doctor
+  icd9: V70.0
