@@ -138,4 +138,14 @@ module PatientsHelper
       t('patients.unknown')
     end
   end
+
+  # Returns a phone number formatted
+  def format_phone_number(phone)
+    Phonelib.parse(phone).local_number
+  end
+
+  # Returns a phone number E.164-formatted
+  def format_phone_number_e164(phone)
+    Phonelib.parse(phone).e164
+  end
 end
