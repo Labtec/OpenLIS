@@ -13,10 +13,12 @@
         <%= t('.address') %> <%= @patient.address %><br />
       <% end %>
       <% if @patient.cellular.present? %>
-        <%= t('.cellular') %> <b><%= link_to @patient.cellular, "tel:#{@patient.cellular}" %></b><br />
+        <%= t('.cellular') %> <b><%= link_to format_phone_number(@patient.cellular),
+          "tel:#{format_phone_number_e164(@patient.cellular)}" %></b><br />
       <% end %>
       <% if @patient.phone.present? %>
-        <%= t('.phone') %> <b><%= link_to @patient.phone, "tel:#{@patient.phone}" %></b>
+        <%= t('.phone') %> <b><%= link_to format_phone_number(@patient.phone),
+          "tel:#{format_phone_number_e164(@patient.phone)}" %></b>
       <% end %>
     </div>
     <div>
