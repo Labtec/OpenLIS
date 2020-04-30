@@ -7,4 +7,18 @@ class Department < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   auto_strip_attributes :name
+
+  after_commit :flush_cache
+
+  def self.cached_tests
+    Rails.cache.fetch([name, 'cached_tests']) do
+      all.includes(:lab_tests).to_a
+    end
+  end
+
+  private
+
+  def flush_cache
+    Rails.cache.delete([self.class.name, 'cached_tests'])
+  end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PatientsController < ApplicationController
-  before_action :recent, except: %i[update destroy]
+  before_action :recent_patients, except: %i[update destroy]
 
   def index
     @patients = Patient.search(params[:search]).page(params[:page])
@@ -51,8 +51,8 @@ class PatientsController < ApplicationController
 
   protected
 
-  def recent
-    @recent ||= Patient.cached_recent
+  def recent_patients
+    @recent_patients ||= Patient.cached_recent
   end
 
   private

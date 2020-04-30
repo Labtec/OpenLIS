@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class AccessionsController < ApplicationController
-  before_action :recent, except: [:destroy]
+  before_action :recent_patients, except: [:destroy]
+  before_action :departments, only: [:new, :create, :edit, :update]
+  before_action :panels, only: [:new, :create, :edit, :update]
 
   def index
     @pending_accessions = Accession.queued.pending.page(pending_page)
@@ -24,15 +26,11 @@ class AccessionsController < ApplicationController
     @accession.drawer_id = current_user.id
     @accession.received_at = Time.current
     @accession.receiver_id = current_user.id
-    @panels = Panel.sorted.includes(:lab_tests)
-    @departments = Department.all.includes(:lab_tests)
     @users = User.sorted
   end
 
   def create
     @patient = Patient.find(params[:patient_id])
-    @panels = Panel.sorted.includes(:lab_tests)
-    @departments = Department.all.includes(:lab_tests)
     @accession = @patient.accessions.build(accession_params)
     @users = User.sorted
     if @accession.save
@@ -46,8 +44,6 @@ class AccessionsController < ApplicationController
   def edit
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
-    @departments = Department.all.includes(:lab_tests)
-    @panels = Panel.sorted.includes(:lab_tests)
     @users = User.sorted
     $update_action = 'edit'
   end
@@ -55,8 +51,6 @@ class AccessionsController < ApplicationController
   def update
     @accession = Accession.find(params[:id])
     @patient = @accession.patient
-    @departments = Department.all.includes(:lab_tests)
-    @panels = Panel.sorted.includes(:lab_tests)
     @users = User.sorted
     if @accession.update(accession_params)
       unless current_user.admin?
@@ -135,8 +129,16 @@ class AccessionsController < ApplicationController
 
   protected
 
-  def recent
-    @recent ||= Patient.cached_recent
+  def recent_patients
+    @recent_patients ||= Patient.cached_recent
+  end
+
+  def departments
+    @departments ||= Department.cached_tests
+  end
+
+  def panels
+    @panels ||= Panel.cached_panels
   end
 
   private

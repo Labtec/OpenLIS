@@ -1,21 +1,19 @@
-<% cache_if @accession.new_record?, @departments do %>
-  <h2><%= t('.order_tests') %></h2>
+<h2><%= t('.order_tests') %></h2>
 
-  <div id="order_tests">
-    <ul>
-      <% @departments.each do |department| %>
-        <li><a href="#<%= department.id %>"><%= department.name %></a></li>
-      <% end %>
-    </ul>
+<div id="order_tests">
+  <ul>
     <% @departments.each do |department| %>
-      <div id="<%= department.id %>">
-        <%= f.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |b| %>
-          <div class="lab_test">
-            <%= b.check_box %>
-            <label class="checkbox" for="accession_lab_test_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
-          </div>
-        <% end %>
-      </div>
+      <li><a href="#<%= department.id %>"><%= department.name %></a></li>
     <% end %>
-  </div>
-<% end %>
+  </ul>
+  <% @departments.each do |department| %>
+    <div id="<%= department.id %>">
+      <%= f.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |b| %>
+        <div class="lab_test">
+          <%= b.check_box %>
+          <label class="checkbox" for="accession_lab_test_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

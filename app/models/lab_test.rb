@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LabTest < ApplicationRecord
-  belongs_to :department
+  belongs_to :department, touch: true
   belongs_to :unit, optional: true
 
   has_many :reference_ranges, dependent: :destroy
