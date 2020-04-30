@@ -141,7 +141,13 @@ module PatientsHelper
 
   # Returns a phone number formatted
   def format_phone_number(phone)
-    Phonelib.parse(phone).local_number
+    parsed_phone = Phonelib.parse(phone)
+
+    if parsed_phone.country == Phonelib.default_country
+      parsed_phone.local_number
+    else
+      parsed_phone.full_international
+    end
   end
 
   # Returns a phone number E.164-formatted
