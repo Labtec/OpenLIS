@@ -67,9 +67,13 @@
       </div>
     <% end %>
 
-    <%= render 'panels/form', f: f %>
+    <% cache_if @accession.new_record?, @panels do %>
+      <%= render 'panels/form', f: f %>
+    <% end %>
 
-    <%= render 'lab_tests/form', f: f %>
+    <% cache_if @accession.new_record?, @departments do %>
+      <%= render 'lab_tests/form', f: f %>
+    <% end %>
 
     <div class="buttonbar">
       <%= f.submit t('.submit'), data: { disable_with: t('.processing') } %>

@@ -55,7 +55,7 @@ class Patient < ApplicationRecord
   end
 
   def self.cached_recent
-    Rails.cache.fetch([name, 'recent']) do
+    Rails.cache.fetch([name, 'recent_patients']) do
       recent.to_a
     end
   end
@@ -68,6 +68,6 @@ class Patient < ApplicationRecord
   end
 
   def flush_cache
-    Rails.cache.delete([self.class.name, 'recent'])
+    Rails.cache.delete([self.class.name, 'recent_patients'])
   end
 end

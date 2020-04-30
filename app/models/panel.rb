@@ -18,6 +18,8 @@ class Panel < ApplicationRecord
 
   auto_strip_attributes :name, :code, :procedure, :loinc
 
+  after_commit :flush_cache
+
   def lab_test_code_list
     LabTest.where(id: lab_test_ids).map(&:code).join(', ')
   end
@@ -25,4 +27,17 @@ class Panel < ApplicationRecord
   def name_with_description
     description.present? ? "#{name} (#{description})" : name
   end
+
+  def self.cached_panels
+    Rails.cache.fetch([name, 'cached_panels']) do
+      sorted.includes(:lab_tests).to_a
+    end
+  end
+
+  private
+
+  def flush_cache
+    Rails.cache.delete([self.class.name, 'cached_panels'])
+  end
+
 end
