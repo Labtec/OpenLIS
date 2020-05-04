@@ -1,6 +1,5 @@
 {
   "name": "OpenLIS",
   "private": true,
-  "dependencies": {},
-  "version": "0.0.0"
+  "dependencies": {}
 }
