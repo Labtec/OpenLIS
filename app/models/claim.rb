@@ -17,18 +17,19 @@ class Claim < ApplicationRecord
   def insured_name
     patient.try(:policy_number) =~ /(\d+)-(\d+)/
     if Regexp.last_match(1) && Regexp.last_match(2)
-      # XXX: Collapse into one Regexp
-      Patient.find_by(policy_number: Regexp.last_match(1)) ||
-        Patient.find_by(policy_number: "#{Regexp.last_match(1)}-0") ||
-        Patient.find_by(policy_number: "#{Regexp.last_match(1)}-00") ||
-        patient
+      Patient.find_by(policy_number: Regexp.last_match(1)) || patient
     else
       patient
     end
   end
 
   def insured_policy_number
-    insured_name.policy_number || 'pend.'
+    patient.try(:policy_number) =~ /(\d+)-(\d+)/
+    if Regexp.last_match(1) && Regexp.last_match(2)
+      Patient.find_by(policy_number: Regexp.last_match(1)).try(:policy_number) || patient.policy_number
+    else
+      patient.policy_number || 'pend.'
+    end
   end
 
   def valid_submission?
