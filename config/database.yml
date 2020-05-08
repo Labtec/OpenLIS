@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  encoding: utf-8
+  host: <%= ENV.fetch("PG_HOST", "localhost") %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: open_lis_development
+test:
+  <<: *default
+  database: open_lis_test
