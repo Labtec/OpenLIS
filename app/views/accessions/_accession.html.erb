@@ -17,7 +17,7 @@
     <%= content_tag :tt, full_name(accession.patient) unless @patient %>
     <dt class="second">
       <% if accession.reported_at %>
-        <%= t('.drawn_at') %><b><%= l(accession.drawn_at, format: :short) %></b>
+        <%= t('.reported_at') %><b><%= l(accession.reported_at, format: :short) %></b>
         <%= t('.by') %><b><%= accession.reporter.initials if accession.reporter %></b>
         | <%= t('.tests_ordered') %><b><%= truncate(accession.order_list, :length => 30) %></b>
       <% else %>
