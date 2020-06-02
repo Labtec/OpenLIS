@@ -549,7 +549,7 @@ class ClaimsReport < Prawn::Document
     draw_text 'R.U.C. 299497-1-409892 D.V. 13', at: [60, cursor - 55]
 
     move_down 70
-    text @view.l(Date.current, format: :long), align: :right
+    text @view.l(Date.current, format: :long, locale: :'es-PA').capitalize, align: :right
 
     move_down 50
 
