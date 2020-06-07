@@ -23,11 +23,11 @@ module ResultsHelper
     elsif result.value.blank?
       'pend.'
     elsif result.lab_test.ratio?
-      result.value.gsub(/[:]/, '∶')
+      result.value.tr(':', '∶')
     elsif result.lab_test.range?
-      result.value.gsub(/[-]/, '–')
+      result.value.tr('-', '–')
     elsif result.lab_test.fraction?
-      result.value.gsub(%r{[/]}, ' ∕ ')
+      result.value.gsub(%r{/}, ' ∕ ')
     elsif result.lab_test.text_length?
       result.value
     else

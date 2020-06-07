@@ -39,5 +39,4 @@ class Panel < ApplicationRecord
   def flush_cache
     Rails.cache.delete([self.class.name, 'cached_panels'])
   end
-
 end
