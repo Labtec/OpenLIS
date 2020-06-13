@@ -2,8 +2,8 @@
 
 class AccessionsController < ApplicationController
   before_action :recent_patients, except: [:destroy]
-  before_action :departments, only: [:new, :create, :edit, :update]
-  before_action :panels, only: [:new, :create, :edit, :update]
+  before_action :departments, only: %i[new create edit update]
+  before_action :panels, only: %i[new create edit update]
 
   def index
     @pending_accessions = Accession.queued.pending.page(pending_page)

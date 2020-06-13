@@ -231,9 +231,9 @@ class Result < ApplicationRecord
         check_reference_range(derived_value)
       end
     elsif value.present?
-      check_reference_range(value.gsub(/[^\d\.]/, '').to_f) if ranges?
+      check_reference_range(value.gsub(/[^\d.]/, '').to_f) if ranges?
     elsif lab_test.also_numeric?
-      check_reference_range(value.gsub(/[^\d\.]/, '').to_f)
+      check_reference_range(value.gsub(/[^\d.]/, '').to_f)
     elsif lab_test.range?
       value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
       check_reference_range([Regexp.last_match(3), Regexp.last_match(5)].map(&:to_i).try(:max))
