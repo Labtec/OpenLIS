@@ -154,4 +154,15 @@ module PatientsHelper
   def format_phone_number_e164(phone)
     Phonelib.parse(phone).e164
   end
+
+  # Returns a full phone number in international format,
+  # omitting any zeroes, brackets, or dashes
+  def whatsapp_format(phone)
+    Phonelib.parse(phone).international(false)
+  end
+
+  # Returns a click-to-chat WhatsApp url
+  def whatsapp_click_to_chat_url(phone)
+    "https://api.whatsapp.com/send?phone=#{whatsapp_format(phone)}&text&source&data&&lang=#{current_user.language}"
+  end
 end
