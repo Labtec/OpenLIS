@@ -15,6 +15,7 @@ class AccessionsTest < ApplicationSystemTestCase
   test 'create new order from panel' do
     visit patient_url(@patient)
     within('.title_tools') { click_on 'Order Tests' }
+    within('#order_tests') { click_on 'Chemistry' }
 
     assert page.has_unchecked_field?('BUN')
     assert page.has_unchecked_field?('Cholesterol')
@@ -37,6 +38,8 @@ class AccessionsTest < ApplicationSystemTestCase
     visit edit_accession_url(accession)
 
     assert page.has_checked_field?('Panel'), 'Panel is not checked'
+
+    within('#order_tests') { click_on 'Chemistry' }
     assert page.has_field?('BUN', disabled: true), 'BUN is not disabled'
     assert page.has_field?('Cholesterol', disabled: true), 'CHOL is not disabled'
 

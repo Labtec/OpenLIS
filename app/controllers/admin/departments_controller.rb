@@ -3,7 +3,7 @@
 module Admin
   class DepartmentsController < BaseController
     def index
-      @departments = Department.all.includes(:lab_tests)
+      @departments = Department.order('id asc').includes(:lab_tests)
     end
 
     def new

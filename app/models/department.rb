@@ -12,7 +12,7 @@ class Department < ApplicationRecord
 
   def self.cached_tests
     Rails.cache.fetch([name, 'cached_tests']) do
-      all.includes(:lab_tests).to_a
+      order('id asc').includes(:lab_tests).to_a
     end
   end
 
