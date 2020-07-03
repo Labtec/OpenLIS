@@ -14,7 +14,7 @@
       <% end %>
       <% if @patient.cellular.present? %>
         <%= t('.cellular') %> <b><%= link_to format_phone_number(@patient.cellular),
-          "https://api.whatsapp.com/send?phone=#{format_phone_number_e164(@patient.cellular)}&text&source&data&&lang=es", target: :_blank %></b><br />
+          whatsapp_click_to_chat_url(@patient.cellular), target: :_blank %></b><br />
       <% end %>
       <% if @patient.phone.present? %>
         <%= t('.phone') %> <b><%= link_to format_phone_number(@patient.phone),
