@@ -5,10 +5,10 @@ module Admin
     def index
       if params[:insurance_provider_id]
         provider = InsuranceProvider.find(params[:insurance_provider_id])
-        @unsubmitted_claims = provider.accessions.includes(:patient, :claim).unclaimed.within_claim_period
+        @unsubmitted_claims = provider.accessions.includes(:patient, :claim).claimable.unclaimed.within_claim_period
         @claims = provider.claims.includes(:patient).submitted.recent
       else
-        @unsubmitted_claims = Accession.includes(:patient).with_insurance_provider.unclaimed.within_claim_period
+        @unsubmitted_claims = Accession.includes(:patient).with_insurance_provider.claimable.unclaimed.within_claim_period
         @claims = Claim.includes(:patient).submitted.recent
       end
     end
