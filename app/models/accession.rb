@@ -38,6 +38,7 @@ class Accession < ApplicationRecord
   scope :with_insurance_provider, -> { joins(:patient).where('patients.insurance_provider_id IS NOT NULL').ordered }
   scope :within_claim_period, -> { where('drawn_at > :claim_period', claim_period: 8.months.ago) }
   scope :unclaimed, -> { eager_load(:claim).where('claims.claimed_at IS NULL').ordered }
+  scope :claimable, -> { where.not(doctor_id: nil) }
 
   def result_attributes=(result_attributes)
     results.reject(&:new_record?).each do |result|
