@@ -594,6 +594,13 @@ td.range_1 {
     padding: 0px;
     margin: -10px 0px 0px 36px; }
 
+li.contact:hover {
+  background: seashell;
+
+  .tools {
+    display: block; }
+}
+
 .contact .avatar {
   float: left;
   width: 30px;
@@ -851,6 +858,16 @@ td.range_1 {
   color: darkgreen;
   margin: 0px;
   padding: 5px 0px 5px 16px; }
+
+.flash_notice {
+  animation-name: fadeOut;
+  animation-delay: 3s;
+  animation-duration: 2s;
+  animation-fill-mode: forwards; }
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; } }
 
 .panels, .values {
   column-width: 15em;
