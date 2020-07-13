@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'images/logo'
+require_relative 'images/logos/master_lab'
 
 class LabReport < Prawn::Document
   # Corporate colors
@@ -169,7 +169,7 @@ class LabReport < Prawn::Document
         ##
         # Corporate logo
         translate(bounds.left, bounds.top - LOGO_HEIGHT) do
-          logo
+          logo_master_lab
         end
 
         bounding_box([bounds.left + LOGO_WIDTH, bounds.top], width: bounds.width - LOGO_WIDTH, height: LOGO_HEIGHT) do
