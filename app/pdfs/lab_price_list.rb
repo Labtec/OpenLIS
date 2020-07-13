@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'images/logo'
+require_relative 'images/logos/master_lab'
 
 class LabPriceList < Prawn::Document
   def initialize(priceable, prices, view_context)
@@ -128,7 +128,7 @@ class LabPriceList < Prawn::Document
         ##
         # Corporate logo
         translate(bounds.left, bounds.top - logo_height) do
-          logo
+          logo_master_lab
         end
 
         bounding_box([bounds.left + logo_width, bounds.top], width: bounds.width - logo_width, height: logo_height) do
