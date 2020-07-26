@@ -9,7 +9,7 @@ gem 'rails', '6.0.3.2'
 
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
-gem 'bcrypt'
+gem 'bcrypt', '3.1.13'
 gem 'bootsnap'
 gem 'coffee-rails'
 gem 'dalli'
