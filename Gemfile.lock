@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/jlduran/bcrypt-ruby.git
+  revision: e852ce14ce946ba18d01ce70be29c9dc57d03289
+  branch: fix-freebsd
+  specs:
+    bcrypt (3.1.15)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -64,7 +71,6 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     auto_strip_attributes (2.6.0)
       activerecord (>= 4.0)
-    bcrypt (3.1.13)
     bcrypt_pbkdf (1.0.1)
     bindex (0.8.1)
     bootsnap (1.4.7)
@@ -291,7 +297,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   auto_strip_attributes
-  bcrypt (= 3.1.13)
+  bcrypt!
   bcrypt_pbkdf
   bootsnap
   brakeman
