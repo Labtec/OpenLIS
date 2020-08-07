@@ -329,11 +329,13 @@ class LabReport < Prawn::Document
     ##
     # Begin report
 
+    blank_fill = make_cell content: nil, borders: []
+    color_fill = make_cell content: nil, borders: [], background_color: REPORT_COLORS[:highlight_gray]
+
     ##
     # Results table
     @results.each do |department, test_results|
       department_title = make_cell content: department.name, borders: [], font_style: :bold, padding: [PADDING, 0]
-      blank_fill = make_cell content: nil, borders: []
       run_by = make_cell content: ([t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ') if @accession.reported_at).to_s, font_style: :italic, size: 7.5, borders: [], align: :right
       data = [[department_title, blank_fill, blank_fill, blank_fill, run_by]]
       test_results.each do |result|
@@ -362,6 +364,10 @@ class LabReport < Prawn::Document
           # TODO: padding should be done here
         end
         data << [cell_col0, cell_col1, format_units(result), cell_col3, cell_col4]
+        if result.lab_test_remarks.present?
+          remarks = make_cell content: "#{result.lab_test_remarks}", background_color: REPORT_COLORS[:highlight_gray], text_color: FLAG_COLORS[:abnormal_value], inline_format: true, colspan: 4
+          data << [remarks, color_fill]
+        end
       end
 
       table(data, header: true, cell_style: { padding: [LINE_PADDING, 0] }) do
