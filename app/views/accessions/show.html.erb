@@ -39,11 +39,10 @@
     </table>
 
     <% if @accession.notes.find_by_department_id(department).try(:content).present? %>
-      <br />
-      <br />
-      <em><%= t('.notes') %></em>
-      <%= @accession.notes.find_by_department_id(department).content %>
-      <br /><br />
+      <div class="notes">
+        <em><%= t('.notes') %></em>
+        <%= @accession.notes.find_by_department_id(department).content %>
+      </div>
     <% end %>
   <% end %>
 

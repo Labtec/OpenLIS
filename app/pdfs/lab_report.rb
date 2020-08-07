@@ -365,8 +365,8 @@ class LabReport < Prawn::Document
         end
         data << [cell_col0, cell_col1, format_units(result), cell_col3, cell_col4]
         if result.lab_test_remarks.present?
-          remarks = make_cell content: "#{result.lab_test_remarks}", background_color: REPORT_COLORS[:highlight_gray], text_color: FLAG_COLORS[:abnormal_value], inline_format: true, colspan: 4
-          data << [remarks, color_fill]
+          remarks = make_cell content: "#{result.lab_test_remarks}", background_color: REPORT_COLORS[:highlight_gray], text_color: FLAG_COLORS[:abnormal_value], inline_format: true, colspan: 5
+          data << [remarks]
         end
       end
 
