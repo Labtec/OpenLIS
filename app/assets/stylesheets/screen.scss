@@ -386,6 +386,8 @@ table {
     td.ranges {
       width: 250px;
       text-align: center; }
+    td.remarks {
+      color: #800080; }
   tr.even {
     border: none;
     clear: both; }
@@ -411,6 +413,11 @@ td.range_1 {
   cursor: move;
   color: #777;
   display: inline; }
+
+.notes {
+  color: #800080;
+  padding: 20px 0;
+}
 
 .standalone {
   background: whitesmoke;
