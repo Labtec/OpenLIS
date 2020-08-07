@@ -47,6 +47,11 @@
     <%= f.text_area :description %>
   </div>
 
+  <div class="remarks">
+    <%= f.label :remarks %>
+    <%= f.text_area :remarks %>
+  </div>
+
   <h2>Also Allow</h2>
   <div class="also_allow">
     <%= f.radio_button :also_allow, :also_numeric, id: 'lab_test_also_allow_also_numeric' %>

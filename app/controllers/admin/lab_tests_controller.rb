@@ -55,7 +55,7 @@ module Admin
     private
 
     def lab_test_params
-      params.require(:lab_test).permit(:also_allow, :code, :name, :description, :decimals, :department_id, :unit_id, :procedure, :loinc, :derivation, :also_numeric, :ratio, :range, :fraction, :text_length, lab_test_value_ids: [])
+      params.require(:lab_test).permit(:also_allow, :code, :name, :description, :decimals, :department_id, :unit_id, :procedure, :loinc, :derivation, :also_numeric, :ratio, :range, :fraction, :text_length, :remarks, lab_test_value_ids: [])
     end
   end
 end
