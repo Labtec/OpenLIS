@@ -22,6 +22,7 @@ class Result < ApplicationRecord
   delegate :name,        to: :unit,     prefix: true, allow_nil: true
   delegate :range?,      to: :lab_test
   delegate :ratio?,      to: :lab_test
+  delegate :remarks,     to: :lab_test, prefix: true, allow_nil: true
   delegate :text_length, to: :lab_test
 
   validates :value, range: true,    allow_blank: true, if: :range?

@@ -322,7 +322,8 @@ CREATE TABLE public.lab_tests (
     fraction boolean,
     text_length integer,
     "position" integer,
-    loinc character varying
+    loinc character varying,
+    remarks text
 );
 
 
@@ -1096,6 +1097,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180610055354'),
 ('20180701205553'),
 ('20180704040107'),
-('20180904171938');
+('20180904171938'),
+('20200806230748');
 
 

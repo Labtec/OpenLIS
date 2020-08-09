@@ -559,7 +559,7 @@ class ClaimsReport < Prawn::Document
     move_down 25
 
     # Claims Table
-    claims_table = [['', '<b>Paciente</b>', '<b>No. de Póliza</b>', '<b>Fecha de Atención</b>', '<b>External No.</b>', '<b>Claim No.</b>', "<b>Monto\n(B/.)</b>"]]
+    claims_table = [['', '<b>Paciente</b>', '<b>№ de Póliza</b>', '<b>Fecha de Atención</b>', '<b>External №</b>', '<b>Claim №</b>', "<b>Monto\n(B/.)</b>"]]
     @claims.each_with_index.map do |claim, index|
       claims_table += [[
         index + 1,

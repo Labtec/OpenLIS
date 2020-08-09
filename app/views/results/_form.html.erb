@@ -1,4 +1,5 @@
-<tr class="<%= cycle('even', 'odd', name: 'alternating_row_colors') %>">
+<% row_class = cycle('even', 'odd', name: 'alternating_row_colors') %>
+<tr class="<%= row_class %>">
   <td class="lab_test <%= flag_color(object) %>">
     <%= f.label :value, sanitize(object.lab_test_name) %>
   </td>
@@ -15,3 +16,8 @@
     <%= ranges_table object.ranges %>
   </td>
 </tr>
+<% if object.lab_test_remarks.present? %>
+<tr class="<%= row_class %>">
+  <td class="remarks" colspan="5"><%= sanitize(object.lab_test_remarks) %></td>
+</tr>
+<% end %>
