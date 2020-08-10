@@ -330,7 +330,6 @@ class LabReport < Prawn::Document
     # Begin report
 
     blank_fill = make_cell content: nil, borders: []
-    color_fill = make_cell content: nil, borders: [], background_color: REPORT_COLORS[:highlight_gray]
 
     ##
     # Results table
