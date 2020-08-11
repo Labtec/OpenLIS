@@ -48,6 +48,11 @@ class Result < ApplicationRecord
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
       chol / hdl
+    when 'CRETCLEAR24H'
+      urncret = result_for 'URNCRET'
+      cret = result_for 'CRET'
+      uvol24h = result_for 'UVOL24H'
+      uvol24h * urncret / cret / 1440
     when 'LDLHDLR'
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
@@ -132,6 +137,10 @@ class Result < ApplicationRecord
       pr = result_for 'PR'
       np = result_for 'NP'
       pr + np
+    when 'TPU24H'
+      rndprot = result_for 'RNDPROT'
+      uvol24h = result_for 'UVOL24H'
+      rndprot * uvol24h / 100
     when 'TSPERM'
       sconc = result_for 'SCONC'
       svol = result_for 'SVOL'
