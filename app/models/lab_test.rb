@@ -87,4 +87,8 @@ class LabTest < ApplicationRecord
   def stripped_name
     name.gsub(%r{</?i>}, '')
   end
+
+  def stripped_name_with_description
+    name_with_description.gsub(%r{</?i>}, '')
+  end
 end

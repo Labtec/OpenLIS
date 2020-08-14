@@ -3,7 +3,7 @@
 
   <div class="lab_test_id">
     <%= f.label :lab_test_id %>
-    <%= f.collection_select :lab_test_id, LabTest.unscoped.sorted, :id, :stripped_name %>
+    <%= f.collection_select :lab_test_id, LabTest.unscoped.sorted, :id, :stripped_name_with_description %>
   </div>
 
   <div class="min">
