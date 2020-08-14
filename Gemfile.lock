@@ -73,7 +73,7 @@ GEM
       activerecord (>= 4.0)
     bcrypt_pbkdf (1.0.1)
     bindex (0.8.1)
-    bootsnap (1.4.7)
+    bootsnap (1.4.8)
       msgpack (~> 1.0)
     brakeman (4.9.0)
     builder (3.2.4)
