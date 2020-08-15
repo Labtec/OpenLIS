@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/jlduran/bcrypt-ruby.git
+  remote: https://github.com/Labtec/bcrypt-ruby.git
   revision: e852ce14ce946ba18d01ce70be29c9dc57d03289
   branch: fix-freebsd
   specs:
