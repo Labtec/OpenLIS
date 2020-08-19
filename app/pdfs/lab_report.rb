@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'images/logos/master_lab'
+require 'barby/barcode/code_128'
 
 class LabReport < Prawn::Document
   # Corporate colors
@@ -23,6 +24,8 @@ class LabReport < Prawn::Document
     highlight_gray: [0, 0, 0, 15]
   }.freeze
 
+  BARCODE_HEIGHT = 25
+  BARCODE_WIDTH = 80
   FLASH_TAG_WIDTH = 80
   HALF_INCH = 36
   HEADING_INDENT = 20
@@ -161,6 +164,12 @@ class LabReport < Prawn::Document
       # Flash tag top
       bounding_box([bounds.right - FLASH_TAG_WIDTH, page_top - HALF_INCH - line_height], width: FLASH_TAG_WIDTH, height: line_height) do
         text (t('results.index.preliminary') unless @accession.reported_at).to_s, align: :right, color: REPORT_COLORS[:red]
+      end
+      bounding_box([bounds.right - BARCODE_WIDTH, page_top - HALF_INCH - 2 * line_height], width: BARCODE_WIDTH, height: BARCODE_HEIGHT + line_height) do
+        barcode
+      end
+      bounding_box([bounds.right - BARCODE_WIDTH, page_top - HALF_INCH - 3.2 * line_height - BARCODE_HEIGHT], width: BARCODE_WIDTH, height: BARCODE_HEIGHT + 2 * line_height) do
+        text @accession.id.to_s, style: :bold, align: :center
       end
 
       ##
@@ -457,6 +466,11 @@ class LabReport < Prawn::Document
   end
 
   private
+
+  def barcode
+    barcode = Barby::Code128.new(@accession.id.to_s)
+    barcode.annotate_pdf(self, height: BARCODE_HEIGHT)
+  end
 
   def method_missing(*args, &block)
     @view.send(*args, &block)

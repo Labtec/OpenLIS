@@ -71,6 +71,7 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     auto_strip_attributes (2.6.0)
       activerecord (>= 4.0)
+    barby (0.6.8)
     bcrypt_pbkdf (1.0.1)
     bindex (0.8.1)
     bootsnap (1.4.8)
@@ -297,6 +298,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   auto_strip_attributes
+  barby
   bcrypt!
   bcrypt_pbkdf
   bootsnap
