@@ -9,6 +9,7 @@ gem 'rails', '6.0.3.2'
 
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
+gem 'barby'
 gem 'bcrypt', github: 'Labtec/bcrypt-ruby', branch: 'fix-freebsd'
 gem 'bootsnap'
 gem 'coffee-rails'
