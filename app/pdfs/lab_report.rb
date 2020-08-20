@@ -347,14 +347,16 @@ class LabReport < Prawn::Document
     ##
     # Begin report
 
-    blank_fill = make_cell content: nil, borders: []
-
     ##
     # Results table
     @results.each do |department, test_results|
-      department_title = make_cell content: department.name, borders: [], font_style: :bold, padding: [LINE_PADDING, 0]
-      run_by = make_cell content: ([t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ') if @accession.reported_at).to_s, font_style: :italic, size: 7.5, borders: [], align: :right, colspan: 2, padding: [LINE_PADDING, 0]
-      data = [[department_title, blank_fill, blank_fill, run_by]]
+      department_title = make_cell content: department.name, font_style: :bold, padding: [LINE_PADDING, 0]
+      if @accession.reported_at
+        run_by = make_cell content: ([t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ')).to_s, font_style: :italic, size: 7.5, colspan: 2, align: :right, padding: [LINE_PADDING, 0]
+        data = [[department_title, '', '', run_by]]
+      else
+        data = [[department_title, '', '', '', '']]
+      end
       test_results.each do |result|
         if result.flag.present?
           cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
@@ -404,13 +406,14 @@ class LabReport < Prawn::Document
         end
       end
 
-      # Data table
+      # Department table
       table(data, header: true) do
         column(0).width = column_0_width
         column(1).width = column_1_width
         column(2).width = column_2_width
         column(3).width = column_3_width
         column(4).width = column_range_width
+        row(0).borders = []
         row(1..-1).column(1).align = :right
         row(1..-1).column(3).align = :center
         row(1..-1).border_bottom_color = REPORT_COLORS[:light_gray]
