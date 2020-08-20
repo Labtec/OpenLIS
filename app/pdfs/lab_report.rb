@@ -352,21 +352,22 @@ class LabReport < Prawn::Document
     ##
     # Results table
     @results.each do |department, test_results|
-      department_title = make_cell content: department.name, borders: [], font_style: :bold, padding: [PADDING, 0]
-      run_by = make_cell content: ([t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ') if @accession.reported_at).to_s, font_style: :italic, size: 7.5, borders: [], align: :right
+      department_title = make_cell content: department.name, borders: [], font_style: :bold, padding: [LINE_PADDING, 0]
+      run_by = make_cell content: ([t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ') if @accession.reported_at).to_s, font_style: :italic, size: 7.5, borders: [], align: :right, padding: [LINE_PADDING, 0]
       data = [[department_title, blank_fill, blank_fill, blank_fill, run_by]]
       test_results.each do |result|
         if result.flag.present?
-          cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true
-          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true
+          cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         else
-          cell_col0 = make_cell content: result.lab_test_name, inline_format: true
-          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true
+          cell_col0 = make_cell content: result.lab_test_name, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         end
-        cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: FLAG_COLORS[flag_color(result).to_sym]
+        cell_col2 = make_cell content: format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+        cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: FLAG_COLORS[flag_color(result).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         ##
         # Ranges sub-table
-        cell_col4 = make_table(result.ranges, cell_style: { padding: [0, 0.4], borders: [] }) do
+        ranges_table = make_table(result.ranges, cell_style: { padding: [0, 0.4], borders: [] }) do
           column(0).align = :right
           column(1).align = :right
           column(2).align = :right
@@ -377,27 +378,41 @@ class LabReport < Prawn::Document
           column(2).width = column_4_width
           column(3).width = column_5_width
           column(4).width = column_6_width
-
-          # TODO: padding should be done here
         end
-        data << [cell_col0, cell_col1, format_units(result), cell_col3, cell_col4]
+        cell_col4 = make_cell content: ranges_table, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, 0]
+
         if result.lab_test_remarks.present?
-          remarks = make_cell content: "#{result.lab_test_remarks}", background_color: REPORT_COLORS[:highlight_gray], text_color: FLAG_COLORS[:abnormal_value], inline_format: true, colspan: 5
-          data << [remarks]
+          remarks = make_cell content: "#{result.lab_test_remarks}", inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
+
+          data_remarks = [[cell_col0, cell_col1, cell_col2, cell_col3, cell_col4]]
+          data_remarks << [remarks]
+
+          data_remarks_table = make_table(data_remarks, cell_style: { borders: [] }) do
+            column(0).width = column_0_width
+            column(1).width = column_1_width
+            column(2).width = column_2_width
+            column(3).width = column_3_width
+            column(4).width = column_range_width
+            column(1).align = :right
+            column(3).align = :center
+          end
+
+          data_remarks_cell = make_cell content: data_remarks_table, colspan: 5
+          data << [data_remarks_cell]
+        else
+          data << [cell_col0, cell_col1, cell_col2, cell_col3, cell_col4]
         end
       end
 
-      table(data, header: true, cell_style: { padding: [LINE_PADDING, 0] }) do
+      # Data table
+      table(data, header: true) do
         column(0).width = column_0_width
         column(1).width = column_1_width
         column(2).width = column_2_width
         column(3).width = column_3_width
         column(4).width = column_range_width
-        rows(1..-1).columns(0..3).padding = [ROW_VERTICAL_PADDING, PADDING]
-        rows(1..-1).columns(4..6).padding = [ROW_VERTICAL_PADDING, 0]
         row(1..-1).column(1).align = :right
         row(1..-1).column(3).align = :center
-        row(1..-1).column(0).padding_left = 5
         row(1..-1).border_bottom_color = REPORT_COLORS[:light_gray]
         row(1..-1).borders = [:bottom]
         row(1..-1).border_width = 0.75
