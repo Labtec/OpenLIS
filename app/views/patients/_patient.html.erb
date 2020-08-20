@@ -17,8 +17,11 @@
       <% if patient.email.present? %>
         <%= mail_to patient.email %> |
       <% end %>
+      <% if patient.cellular.present? %>
+        <%= t('.cellular') %> <b><%= format_phone_number(patient.cellular) %></b> |
+      <% end %>
       <% if patient.phone.present? %>
-        <%= t('.phone') %> <b><%= patient.phone %></b> |
+        <%= t('.phone') %> <b><%= format_phone_number(patient.phone) %></b> |
       <% end %>
       <%= age(patient.birthdate) %>
     </dt>
