@@ -79,6 +79,11 @@ class LabReport < Prawn::Document
       bold_italic: { file: file + '-BoldSemiCnIt.ttf' }
     }
 
+    file = File.expand_path('fonts/OCR-B', __dir__)
+    font_families['OCRB'] = {
+      normal: { file: file + '.ttf' },
+    }
+
     file = File.expand_path('fonts/HelveticaWorld', __dir__)
     font_families['HelveticaWorld'] = {
       normal: { file: file + '-Regular.ttf' },
@@ -171,7 +176,9 @@ class LabReport < Prawn::Document
         barcode
       end
       bounding_box([bounds.right - BARCODE_WIDTH, page_top - HALF_INCH - 3.2 * line_height - BARCODE_HEIGHT], width: BARCODE_WIDTH, height: BARCODE_HEIGHT + 2 * line_height) do
-        text @accession.id.to_s, style: :bold, align: :center
+        font('OCRB') do
+          text @accession.id.to_s, size: 7, align: :center
+        end
       end
 
       ##
