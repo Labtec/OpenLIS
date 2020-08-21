@@ -496,7 +496,13 @@ class LabReport < Prawn::Document
 
   def barcode
     barcode = Barby::Code128.new(@accession.id.to_s)
-    barcode.annotate_pdf(self, height: BARCODE_HEIGHT)
+    barcode.annotate_pdf(self, height: BARCODE_HEIGHT, x: pad_barcode)
+  end
+
+  def pad_barcode
+    length = @accession.id.to_s.length
+    padding_factor = 5 - length
+    padding_factor > 0 ? 12 : 0
   end
 
   def method_missing(*args, &block)
