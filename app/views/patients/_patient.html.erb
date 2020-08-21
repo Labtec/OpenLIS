@@ -18,7 +18,8 @@
         <%= mail_to patient.email %> |
       <% end %>
       <% if patient.cellular.present? %>
-        <%= t('.cellular') %> <b><%= format_phone_number(patient.cellular) %></b> |
+        <%= t('.cellular') %> <b><%= link_to format_phone_number(patient.cellular),
+          whatsapp_click_to_chat_url(patient.cellular), target: :_blank %></b> |
       <% end %>
       <% if patient.phone.present? %>
         <%= t('.phone') %> <b><%= format_phone_number(patient.phone) %></b> |
