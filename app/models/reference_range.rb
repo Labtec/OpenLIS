@@ -4,10 +4,9 @@ class ReferenceRange < ApplicationRecord
   # Consider caching this model
 
   GENDERS = [
-    %w[Both *],
+    %w[All *],
     %w[Female F],
-    %w[Male M],
-    %w[Unknown U]
+    %w[Male M]
   ].freeze
 
   AGE_UNITS = [

@@ -192,7 +192,7 @@ class Result < ApplicationRecord
     ranges = []
     if ranges?
       @base_ranges.each do |r|
-        gender = "#{r.gender}: " if patient.gender == 'U'
+        gender = "#{r.gender}: " if patient.gender == 'U' && r.gender != '*'
         description = "#{r.description}: " if r.description.present?
 
         ranges << if ratio? || range? || fraction? || text_length
