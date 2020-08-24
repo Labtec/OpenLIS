@@ -4,7 +4,7 @@ require 'test_helper'
 
 class PatientTest < ActiveSupport::TestCase
   ANIMAL_SPECIES = (0..3).to_a
-  GENDERS = %w[F M U].freeze
+  GENDERS = %w[F M O U].freeze
 
   test 'presence of birthdate' do
     patient = Patient.create(birthdate: '')

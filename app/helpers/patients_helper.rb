@@ -54,6 +54,7 @@ module PatientsHelper
     [
       [t('patients.female'),  'F'],
       [t('patients.male'),    'M'],
+      [t('patients.other'),   'O'],
       [t('patients.unknown'), 'U']
     ]
   end
@@ -111,20 +112,6 @@ module PatientsHelper
     [years, months, weeks, days].compact.join(' ')
   end
 
-  # Returns the gender of a patient according to the HL7 standard.
-  def gender_hl7(gender)
-    case gender
-    when 'M'
-      'M'
-    when 'F'
-      'F'
-    when 'U'
-      'UN'
-    else
-      'UNK'
-    end
-  end
-
   # Returns the gender of a patient spelled out
   def gender(gender)
     case gender
@@ -132,8 +119,8 @@ module PatientsHelper
       t('patients.female')
     when 'M'
       t('patients.male')
-    when 'U'
-      t('patients.unknown')
+    when 'O'
+      t('patients.other')
     else
       t('patients.unknown')
     end

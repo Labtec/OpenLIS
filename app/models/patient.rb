@@ -4,7 +4,7 @@ class Patient < ApplicationRecord
   include PgSearch::Model
 
   ANIMAL_SPECIES = (0..3).to_a
-  GENDERS = %w[F M U].freeze
+  GENDERS = %w[F M O U].freeze
 
   belongs_to :insurance_provider, optional: true
 
