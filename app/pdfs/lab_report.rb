@@ -80,7 +80,7 @@ class LabReport < Prawn::Document
 
     file = File.expand_path('fonts/OCR-B', __dir__)
     font_families['OCRB'] = {
-      normal: { file: file + '.ttf' },
+      normal: { file: file + '.ttf' }
     }
 
     file = File.expand_path('fonts/HelveticaWorld', __dir__)
@@ -351,7 +351,7 @@ class LabReport < Prawn::Document
     @results.each do |department, test_results|
       department_title = make_cell content: department.name, font_style: :bold, padding: [LINE_PADDING, 0]
       if @accession.reported_at
-        run_by = make_cell content: ([t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ')).to_s, font_style: :italic, size: 7.5, colspan: 2, align: :right, padding: [LINE_PADDING, 0]
+        run_by = make_cell content: [t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ').to_s, font_style: :italic, size: 7.5, colspan: 2, align: :right, padding: [LINE_PADDING, 0]
         data = [[department_title, '', '', run_by]]
       else
         data = [[department_title, '', '', '', '']]
@@ -383,7 +383,7 @@ class LabReport < Prawn::Document
         cell_col4 = make_cell content: ranges_table, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, 0]
 
         if result.lab_test_remarks.present?
-          remarks = make_cell content: "#{result.lab_test_remarks}", inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
+          remarks = make_cell content: result.lab_test_remarks.to_s, inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
 
           data_remarks = [[cell_col0, cell_col1, cell_col2, cell_col3, cell_col4]]
           data_remarks << [remarks]
