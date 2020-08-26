@@ -9,7 +9,7 @@ en:
       delete?: Delete?
       drawn_at: 'Drawn at: '
       enter_results: Enter Results
-      ordered_by: 'Ordered by: '
+      ordered_by: 'Ordered by:'
       reported_at: 'Reported at: '
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '

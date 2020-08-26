@@ -9,7 +9,7 @@ es-PA:
       delete?: ¿Borrar?
       drawn_at: 'Extraído el: '
       enter_results: Ingresar Resultados
-      ordered_by: 'Ordenado por: '
+      ordered_by: 'Ordenado por:'
       reported_at: 'Reportado el: '
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
