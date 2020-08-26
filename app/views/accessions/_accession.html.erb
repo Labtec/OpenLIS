@@ -28,7 +28,7 @@
         <% end %>
       <% end %>
       <% unless accession.doctor_id.blank? %>
-        | <%= t('.ordered_by') %> <b>Dr. <%= Doctor.find(accession.doctor_id).name %></b>
+        | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= Doctor.find(accession.doctor_id).name %></b>
       <% end %>
     </dt>
   </li>
