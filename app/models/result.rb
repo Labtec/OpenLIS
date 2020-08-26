@@ -140,7 +140,7 @@ class Result < ApplicationRecord
     when 'TPU24H'
       uprot24h = result_for 'UPROT24H'
       uvol24h = result_for 'UVOL24H'
-      uprot24h  * uvol24h / 100
+      uprot24h * uvol24h / 100
     when 'TSPERM'
       sconc = result_for 'SCONC'
       svol = result_for 'SVOL'
