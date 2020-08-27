@@ -36,8 +36,10 @@ module AddressesHelper
       Address::SUBDIVISIONS['provinces']["pa_#{id}"]['districts'].each do |d|
         # Handle Guna Yala's special case, where there are no
         # districts, only corregimientos
-        districts << [Address::SUBDIVISIONS['provinces']["pa_#{id}"]['name'],
-                      d['corregimientos']] unless d['name']
+        unless d['name']
+          districts << [Address::SUBDIVISIONS['provinces']["pa_#{id}"]['name'],
+                        d['corregimientos']]
+        end
 
         districts << [d['name'], d['corregimientos']]
       end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../config/environment', __dir__)
+require_relative '../config/environment'
 require 'rails/test_help'
 require 'capybara/rails'
 require 'bcrypt'
@@ -12,6 +12,8 @@ module ActiveSupport
     include Warden::Test::Helpers
 
     Warden.test_mode!
+
+    parallelize(workers: :number_of_processors)
 
     fixtures :all
 
