@@ -30,6 +30,7 @@ gem 'puma'
 gem 'rails-html-sanitizer'
 gem 'rails-i18n'
 gem 'sass-rails'
+gem 'semacode', github: 'Labtec/semacode', branch: 'barcodes'
 gem 'turbolinks'
 gem 'uglifier'
 
