@@ -340,6 +340,10 @@ es-PA:
         received_at: Fecha de recepción
         reported_at: Fecha de reporte
       patient:
+        address_corregimiento: Corregimiento
+        address_district: Distrito
+        address_line: Dirección
+        address_province: Provincia
         birthdate: Fecha de Nacimiento
         cellular: Móvil
         email: Correo Electrónico
