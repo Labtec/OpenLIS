@@ -34,18 +34,22 @@ class Patient < ApplicationRecord
   validates :phone, phone: { allow_blank: true, types: :fixed_line }
   validates :cellular, phone: { allow_blank: true, types: :mobile }
   validates :address_province, presence: true,
-    if: -> { address_district.present? ||
-             address_corregimiento.present? ||
-             address_line.present? }
+                               if: lambda {
+                                     address_district.present? ||
+                                       address_corregimiento.present? ||
+                                       address_line.present?
+                                   }
   validates :address_corregimiento, presence: true,
-    if: -> { address_province.present? ||
-             address_line.present? }
+                                    if: lambda {
+                                          address_province.present? ||
+                                            address_line.present?
+                                        }
   validates :address_line, presence: true,
-    if: -> { address_province.present? }
+                           if: -> { address_province.present? }
   # TODO: Add province, district and corregimiento validators
-  #validates :address_province, province: true
-  #validates :address_district, district: true
-  #validates :address_corregimiento, corregimiento: true
+  # validates :address_province, province: true
+  # validates :address_district, district: true
+  # validates :address_corregimiento, corregimiento: true
 
   accepts_nested_attributes_for :accessions, allow_destroy: true
 

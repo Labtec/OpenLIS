@@ -17,7 +17,7 @@ class Address
   COMARCAS = %i[em ky nb].freeze
   SUBDIVISIONS ||= YAML.load_file('app/models/subdivisions.yml')
 
-  attr_accessor :line
+  attr_reader :line
 
   # https://www.hl7.org/fhir/datatypes.html#address
   attribute :province, :string
