@@ -495,12 +495,12 @@ class LabReport < Prawn::Document
 
   def barcode
     barcode = Barby::DataMatrix.new(@accession.id.to_s)
-    barcode.annotate_pdf(self)
+    barcode.annotate_pdf(self, xdim: 1.5)
   end
 
   def barcode_width
     length = @accession.id.to_s.length
-    length + 7
+    length + 14
   end
 
   def method_missing(*args, &block)
