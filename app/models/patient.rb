@@ -11,6 +11,13 @@ class Patient < ApplicationRecord
   has_many :accessions, dependent: :destroy
   has_many :notes, as: :noticeable, dependent: :destroy
 
+  serialize :address, Address
+
+  delegate :province, to: :address, prefix: true
+  delegate :district, to: :address, prefix: true
+  delegate :corregimiento, to: :address, prefix: true
+  delegate :line, to: :address, prefix: true
+
   validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_blank: true
   validates :gender, inclusion: { in: GENDERS }
   validates :given_name, presence: true, length: { minimum: 2 }
@@ -26,6 +33,19 @@ class Patient < ApplicationRecord
   validates :email, email: true, allow_blank: true
   validates :phone, phone: { allow_blank: true, types: :fixed_line }
   validates :cellular, phone: { allow_blank: true, types: :mobile }
+  validates :address_province, presence: true,
+    if: -> { address_district.present? ||
+             address_corregimiento.present? ||
+             address_line.present? }
+  validates :address_corregimiento, presence: true,
+    if: -> { address_province.present? ||
+             address_line.present? }
+  validates :address_line, presence: true,
+    if: -> { address_province.present? }
+  # TODO: Add province, district and corregimiento validators
+  #validates :address_province, province: true
+  #validates :address_district, district: true
+  #validates :address_corregimiento, corregimiento: true
 
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
@@ -34,7 +54,7 @@ class Patient < ApplicationRecord
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
   auto_strip_attributes :given_name, :middle_name, :family_name, :family_name2,
-                        :partner_name, :identifier, :cellular, :phone, :address,
+                        :partner_name, :identifier, :cellular, :phone,
                         :policy_number
 
   before_save :titleize_names

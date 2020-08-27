@@ -166,7 +166,9 @@ en:
       birthdate: 'Birth date:'
       cancel: Cancel
       cellular: 'Mobile:'
+      corregimiento: 'Corregimiento:'
       day: 'Day:'
+      district: 'District:'
       email: 'Email:'
       family_name: 'Last name:'
       family_name2: "Mother's maiden name:"
@@ -176,13 +178,16 @@ en:
       insurance_provider: 'Insurance provider:'
       insured: "Insured's Name:"
       insured_placeholder: Leave blank if primary
+      line: 'Line:'
+      map: Map
       middle_name: 'Middle name:'
       month: 'Month:'
       or: or
       partner_name: "Partner's name:"
       phone: 'Phone:'
-      policy_number: 'Policy Number:'
-      prompt_gender: 'Select Sex:'
+      policy_number: 'Policy number:'
+      prompt_gender: 'Select sex:'
+      province: 'Province or comarca:'
       submit: Save Patient
       type: 'Species:'
       year: 'Year:'

@@ -407,7 +407,6 @@ CREATE TABLE public.patients (
     gender character varying(510) DEFAULT NULL::character varying,
     birthdate date,
     identifier character varying(510) DEFAULT NULL::character varying,
-    address text,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
     insurance_provider_id bigint,
@@ -416,7 +415,8 @@ CREATE TABLE public.patients (
     animal_type integer,
     policy_number character varying(510) DEFAULT NULL::character varying,
     partner_name character varying,
-    cellular character varying(32)
+    cellular character varying(32),
+    address jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -1098,6 +1098,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180701205553'),
 ('20180704040107'),
 ('20180904171938'),
-('20200806230748');
+('20200806230748'),
+('20200824000001'),
+('20200824000002');
 
 

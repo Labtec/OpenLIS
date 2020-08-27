@@ -68,11 +68,11 @@ class PatientTitleizeNamesTest < ActiveSupport::TestCase
     assert_equal '222-5555', @patient.phone
   end
 
-  test 'address contains extra spaces' do
-    @patient.address = '  123  Elm  St.  '
+  test 'address line contains extra spaces' do
+    @patient.address = { province: 'Province', district: 'District', corregimiento: 'Corregimiento', line: '  123  Elm  St.  ' }
 
     @patient.save!
-    assert_equal '123 Elm St.', @patient.address
+    assert_equal '123 Elm St.', @patient.address_line
   end
 
   test 'policy number contains extra spaces' do

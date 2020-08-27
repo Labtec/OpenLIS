@@ -1,0 +1,48 @@
+# frozen_string_literal: true
+
+module AddressesHelper
+  def map_link(province, district, corregimiento)
+    link_to t('.map'), "https://www.google.com/maps/place/+#{corregimiento},+#{district},+#{province},+Panamá", target: :_blank, rel: :noopener, id: :patient_address_map
+  end
+
+  def options_for_province
+    provinces = []
+
+    (Address::PROVINCES + Address::COMARCAS).each do |id|
+      provinces << Address::SUBDIVISIONS['provinces']["pa_#{id}"]['name']
+    end
+
+    provinces
+  end
+
+  def options_for_district
+    provinces = []
+
+    (Address::PROVINCES + Address::COMARCAS).each do |id|
+      districts = []
+      Address::SUBDIVISIONS['provinces']["pa_#{id}"]['districts'].each do |d|
+        districts << d['name'] if d['is_district'].nil? || d['is_district']
+      end
+      provinces << [Address::SUBDIVISIONS['provinces']["pa_#{id}"]['name'], districts]
+    end
+
+    provinces
+  end
+
+  def options_for_corregimiento
+    districts = []
+
+    (Address::PROVINCES + Address::COMARCAS).each do |id|
+      Address::SUBDIVISIONS['provinces']["pa_#{id}"]['districts'].each do |d|
+        # Handle Guna Yala's special case, where there are no
+        # districts, only corregimientos
+        districts << [Address::SUBDIVISIONS['provinces']["pa_#{id}"]['name'],
+                      d['corregimientos']] unless d['name']
+
+        districts << [d['name'], d['corregimientos']]
+      end
+    end
+
+    districts
+  end
+end
