@@ -29,7 +29,7 @@ class Address
 
   # XXX: hand-rolled auto_strip_attributes
   def line=(line)
-    @line = line.squish
+    @line = line.try(:squish)
   end
 
   def persisted?
