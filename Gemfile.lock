@@ -5,6 +5,14 @@ GIT
   specs:
     bcrypt (3.1.15)
 
+GIT
+  remote: https://github.com/Labtec/semacode.git
+  revision: 86149a6ce3bf4705a011c16f4b3ae385e833977d
+  branch: barcodes
+  specs:
+    semacode (0.7.5)
+      rake (>= 0.7.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -335,6 +343,7 @@ DEPENDENCIES
   rb-kqueue
   sass-rails
   selenium-webdriver
+  semacode!
   spring
   spring-watcher-listen
   stackprof
