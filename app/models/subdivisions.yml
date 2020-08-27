@@ -1,6 +1,7 @@
 ---
+# https://www.iso.org/obp/ui/#iso:code:3166:PA
 provinces:
-  pan_1:
+  pa_1:
     name: Bocas del Toro
     capital: Bocas del Toro
     districts:
@@ -50,7 +51,7 @@ provinces:
           - Puente Peña
           - Punta Robalo
           - Rambala
-  pan_2:
+  pa_2:
     name: Coclé
     capital: Penonomé
     districts:
@@ -125,7 +126,7 @@ provinces:
           - Río Indio
           - Toabré
           - Tulú
-  pan_3:
+  pa_3:
     name: Colón
     capital: Colón
     districts:
@@ -197,7 +198,7 @@ provinces:
           - Playa Chiquita
           - Santa Isabel
           - Viento Frío
-  pan_4:
+  pa_4:
     name: Chiriquí
     capital: David
     districts:
@@ -360,7 +361,7 @@ provinces:
           - Quebrada de Piedra
           - Tolé
           - Veladero
-  pan_5:
+  pa_5:
     name: Darién
     capital: La Palma
     districts:
@@ -402,7 +403,7 @@ provinces:
           - Río Iglesias
           - Santa Fe
           - Zapallal
-  pan_6:
+  pa_6:
     name: Herrera
     capital: Chitré
     districts:
@@ -483,7 +484,7 @@ provinces:
           - El Rincón
           - Los Canelos
           - Santa María
-  pan_7:
+  pa_7:
     name: Los Santos
     capital: Las Tablas
     districts:
@@ -592,7 +593,7 @@ provinces:
           - Isla de Cañas
           - La Tronosa
           - Tonosí
-  pan_8:
+  pa_8:
     name: Panamá
     capital: Panamá
     districts:
@@ -677,7 +678,7 @@ provinces:
           - Otoque Occidente
           - Otoque Oriente
           - Taboga
-  pan_9:
+  pa_9:
     name: Veraguas
     capital: Santiago
     districts:
@@ -834,7 +835,7 @@ provinces:
           - Rodeo Viejo
           - Río Grande
           - Soná
-  pan_10:
+  pa_10:
     name: Panamá Oeste
     capital: La Chorrera
     districts:
@@ -917,10 +918,10 @@ provinces:
           - Los Llanitos
           - San Carlos
           - San José
-  pan_ew:
-    name: Emberá-Wounaan
+  pa_em:
+    name: Emberá
     capital: Unión Chocó
-    comarca: true
+    indigenous_region: true
     districts:
       -
         name: Cémaco
@@ -935,132 +936,134 @@ provinces:
         corregimientos:
           - Jingurundó
           - Río Sabalo
-  pan_gy:
+  pa_ky:
     name: Guna Yala
     capital: Gaigirgordub
-    comarca: true
-    corregimientos:
-      - Ailigandí
-      - Narganá
-      - Puerto Obaldía
-      - Tubualá
-  pan_nb:
-    name: Ngäbe-Buglé
+    indigenous_region: true
+    districts:
+      -
+        corregimientos:
+          - Ailigandí
+          - Narganá
+          - Puerto Obaldía
+          - Tubualá
+  pa_nb:
+    name: Ngöbe-Buglé
     capital: Llano Tugrí
-    comarca: true
-    regions:
+    indigenous_region: true
+    districts:
       -
-        name: Ñö Kribo
-        districts:
-          -
-            name: Kankintú
-            cabecera: Bisira
-            corregimientos:
-              - Bisira
-              - Calante
-              - Guoroní
-              - Kankintú
-              - Mününí
-              - Piedra Roja
-              - Tolote
-          -
-            name: Kusapín
-            cabecera: Kusapín
-            corregimientos:
-              - Bahía Azul
-              - Cañaveral
-              - Kusapín
-              - Río Chiriquí
-              - Tobobé
-          -
-            name: Jirondai
-            cabecera: Samboa
-            corregimientos:
-              - Burí
-              - Guariviara
-              - Man Creek
-              - Samboa
-              - Tuwai
-          -
-            name: Santa Catalina o Calovébora
-            cabecera: Santa Catalina o Calovébora
-            corregimientos:
-              - Alto Bilingüe
-              - Loma Yuca
-              - San Pedrito
-              - Santa Catalina o Calovébora
-              - Valle Bonito
+        name: Besikó
+        cabecera: Soloy
+        region: Nedrini
+        corregimientos:
+          - Boca de Balsa
+          - Camarón Arriba
+          - Cerro Banco
+          - Cerro Patena
+          - Emplanada de Chorcha
+          - Niba
+          - Nämnoní
+          - Soloy
       -
-        name: Nedrini
-        districts:
-          -
-            name: Besikó
-            cabecera: Soloy
-            corregimientos:
-              - Boca de Balsa
-              - Camarón Arriba
-              - Cerro Banco
-              - Cerro Patena
-              - Emplanada de Chorcha
-              - Niba
-              - Nämnoní
-              - Soloy
-          -
-            name: Mironó
-            cabecera: Hato Pilón
-            corregimientos:
-              - Cascabel
-              - Hato Corotú
-              - Hato Culantro
-              - Hato Jobo
-              - Hato Julí
-              - Hato Pilón
-              - Quebrada de Loro
-              - Salto Dupí
-          -
-            name: Nole Düima
-            cabecera: Cerro Iglesias
-            corregimientos:
-              - Cerro Iglesias
-              - Hato Chamí
-              - Jädeberi
-              - Lajero
-              - Susama
+        name: Jirondai
+        cabecera: Samboa
+        region: Ñö Kribo
+        corregimientos:
+          - Burí
+          - Guariviara
+          - Man Creek
+          - Samboa
+          - Tuwai
       -
-        name: Kädriri
-        districts:
-          -
-            name: Müna
-            cabecera: Chichica
-            corregimientos:
-              - Alto Caballero
-              - Bakama
-              - Cerro Caña
-              - Cerro Puerco
-              - Chichica
-              - Dikeri
-              - Diko
-              - Kikari
-              - Krüa
-              - Maraca
-              - Mreeni
-              - Nibra
-              - Peña Blanca
-              - Roka
-              - Sitio Prado
-              - Umaní
-          -
-            name: Ñürüm
-            cabecera: Buenos Aires
-            corregimientos:
-              - Agua de Salud
-              - Alto de Jesús
-              - Buenos Aires
-              - Cerro Pelado
-              - El Bale
-              - El Paredón
-              - El Peñón
-              - El Piro
-              - El Piro №2
-              - Guayabito
-              - Güibale
+        name: Kankintú
+        cabecera: Bisira
+        region: Ñö Kribo
+        corregimientos:
+          - Bisira
+          - Calante
+          - Guoroní
+          - Kankintú
+          - Mününí
+          - Piedra Roja
+          - Tolote
+      -
+        name: Kusapín
+        cabecera: Kusapín
+        region: Ñö Kribo
+        corregimientos:
+          - Bahía Azul
+          - Cañaveral
+          - Kusapín
+          - Río Chiriquí
+          - Tobobé
+      -
+        name: Nole Düima
+        cabecera: Cerro Iglesias
+        region: Nedrini
+        corregimientos:
+          - Cerro Iglesias
+          - Hato Chamí
+          - Jädeberi
+          - Lajero
+          - Susama
+      -
+        name: Ñürüm
+        cabecera: Buenos Aires
+        region: Kädriri
+        corregimientos:
+          - Agua de Salud
+          - Alto de Jesús
+          - Buenos Aires
+          - Cerro Pelado
+          - El Bale
+          - El Paredón
+          - El Peñón
+          - El Piro
+          - El Piro №2
+          - Guayabito
+          - Güibale
+      -
+        name: Mironó
+        cabecera: Hato Pilón
+        region: Nedrini
+        corregimientos:
+          - Cascabel
+          - Hato Corotú
+          - Hato Culantro
+          - Hato Jobo
+          - Hato Julí
+          - Hato Pilón
+          - Quebrada de Loro
+          - Salto Dupí
+      -
+        name: Müna
+        cabecera: Chichica
+        region: Kädriri
+        corregimientos:
+          - Alto Caballero
+          - Bakama
+          - Cerro Caña
+          - Cerro Puerco
+          - Chichica
+          - Dikeri
+          - Diko
+          - Kikari
+          - Krüa
+          - Maraca
+          - Mreeni
+          - Nibra
+          - Peña Blanca
+          - Roka
+          - Sitio Prado
+          - Umaní
+      -
+        name: Santa Catalina o Calovébora
+        cabecera: Santa Catalina o Calovébora
+        region: Ñö Kribo
+        corregimientos:
+          - Alto Bilingüe
+          - Loma Yuca
+          - San Pedrito
+          - Santa Catalina o Calovébora
+          - Valle Bonito

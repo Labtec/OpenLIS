@@ -66,7 +66,31 @@
 
   <div class="address">
     <%= f.label :address, t('.address') %>
-    <%= f.text_area :address, id: :patient_address, rows: 3 %>
+    <%= f.fields_for patient.address, id: :patient_address do |addr| %>
+      <div class="province">
+        <%= addr.label :province, t('.province') %>
+        <%= addr.select :province, options_for_province, include_blank: true %>
+      </div>
+
+      <div class="district">
+        <%= addr.label :district, t('.district') %>
+        <%= addr.select :district, options_for_district, include_blank: true %>
+      </div>
+
+      <div class="corregimiento">
+        <%= addr.label :corregimiento, t('.corregimiento') %>
+        <%= addr.select :corregimiento, options_for_corregimiento, include_blank: true %>
+      </div>
+
+      <div class="map">
+        <%= map_link(addr.object.province, addr.object.district, addr.object.corregimiento) %>
+      </div>
+
+      <div class="line">
+        <%= addr.label :line, t('.line') %>
+        <%= addr.text_field :line %>
+      </div>
+    <% end %>
   </div>
 
   <div class="animal_type">

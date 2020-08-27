@@ -9,8 +9,8 @@
       <%= age(@patient.birthdate) %>
     </div>
     <div>
-      <% if @patient.address.present? %>
-        <%= t('.address') %> <%= @patient.address %><br />
+      <% if @patient.address_line.present? %>
+        <%= t('.address') %> <%= @patient.address_line %><br />
       <% end %>
       <% if @patient.cellular.present? %>
         <%= t('.cellular') %> <b><%= link_to format_phone_number(@patient.cellular),

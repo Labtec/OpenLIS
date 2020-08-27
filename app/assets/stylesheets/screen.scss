@@ -50,8 +50,10 @@ form {
   form div.gender,
   form div.email,
   form div.address,
+  form div.animal_type,
   form div.type,
   form div.drawn_at,
+  form div.line,
   form div.received_at,
   form div.reported_at,
   form div.username,
@@ -66,11 +68,14 @@ form {
   form div.family_name2,
   form div.partner_name,
   form div.icd9,
-  form div.address,
   form div.username,
   form div.password,
   form div.password_confirmation {
     width: 240px; }
+  form #patient_address_line {
+    width: 528px; }
+  form div.address {
+    width: 550px; }
   form div.gender {
     width: 110px; }
   form div.birthdate {
@@ -129,6 +134,12 @@ form {
     width: 216px; }
   form input#search {
     width: 192px; }
+  form select#patient_address_province,
+  form select#patient_address_district,
+  form select#patient_address_corregimiento {
+    min-width: 110px; }
+  form .map {
+    padding-top: 3ex; }
 
 fieldset {
   min-width: 550px;

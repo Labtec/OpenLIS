@@ -163,26 +163,31 @@ es-PA:
     form:
       additional_information: Información Adicional
       address: 'Dirección:'
-      birthdate: 'Fecha de Nacimiento:'
+      birthdate: 'Fecha de nacimiento:'
       cancel: Cancelar
       cellular: 'Móvil:'
+      corregimiento: 'Corregimiento:'
       day: 'Día:'
-      email: 'Correo Electrónico:'
+      district: 'Distrito:'
+      email: 'Correo electrónico:'
       family_name: 'Primer apellido:'
       family_name2: 'Segundo apellido:'
       gender: 'Sexo:'
       given_name: 'Primer nombre:'
       identifier: 'Cédula:'
-      insurance_provider: 'Proveedor de Seguro:'
-      insured: 'Nombre del Asegurado:'
+      insurance_provider: 'Proveedor de seguro:'
+      insured: 'Nombre del asegurado:'
       insured_placeholder: Dejar en blanco si es el principal
+      line: 'Dirección:'
+      map: Mapa
       middle_name: 'Segundo nombre:'
       month: 'Mes:'
       or: o
       partner_name: 'Apellido de casada:'
       phone: 'Teléfono:'
-      policy_number: 'Número de Póliza:'
-      prompt_gender: 'Elegir Sexo:'
+      policy_number: 'Número de póliza:'
+      prompt_gender: 'Elegir sexo:'
+      province: 'Provincia o comarca:'
       submit: Guardar Paciente
       type: 'Especie:'
       year: 'Año:'
