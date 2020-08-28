@@ -27,6 +27,7 @@ class LabReport < Prawn::Document
   }.freeze
 
   BARCODE_HEIGHT = 15
+  BARCODE_XDIM = 1.5
   FLASH_TAG_WIDTH = 80
   HALF_INCH = 36
   HEADING_INDENT = 20
@@ -171,12 +172,12 @@ class LabReport < Prawn::Document
       bounding_box([bounds.right - FLASH_TAG_WIDTH, page_top - HALF_INCH - line_height], width: FLASH_TAG_WIDTH, height: line_height) do
         text (t('results.index.preliminary') unless @accession.reported_at).to_s, align: :right, color: REPORT_COLORS[:red]
       end
-      bounding_box([bounds.right - barcode_width, page_top - HALF_INCH - 1.7 * line_height], width: barcode_width, height: BARCODE_HEIGHT + line_height) do
+      bounding_box([bounds.right - barcode_width, page_top - HALF_INCH - 2.4 * line_height], width: barcode_width, height: BARCODE_HEIGHT + line_height) do
         barcode
       end
-      bounding_box([bounds.right - barcode_width, page_top - HALF_INCH - 2.9 * line_height - BARCODE_HEIGHT], width: barcode_width, height: BARCODE_HEIGHT + 2 * line_height) do
+      bounding_box([bounds.right - barcode_width, page_top - HALF_INCH - 3.6 * line_height - BARCODE_HEIGHT], width: barcode_width, height: BARCODE_HEIGHT + 2 * line_height) do
         font('OCRB') do
-          text @accession.id.to_s, size: 4, align: :center
+          text @accession.id.to_s, size: 5, align: :center
         end
       end
 
@@ -495,12 +496,12 @@ class LabReport < Prawn::Document
 
   def barcode
     barcode = Barby::DataMatrix.new(@accession.id.to_s)
-    barcode.annotate_pdf(self, xdim: 1.5)
+    barcode.annotate_pdf(self, xdim: BARCODE_XDIM)
   end
 
   def barcode_width
     length = @accession.id.to_s.length
-    length + 14
+    (length + 7) * BARCODE_XDIM
   end
 
   def method_missing(*args, &block)
