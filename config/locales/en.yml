@@ -50,6 +50,7 @@ en:
       received_by: 'Received by:'
       reported_at: 'Reported at:'
       reported_by: 'Reported by:'
+      search_icd_code: Search ICD Code
       submit: Save
       walk_in: Leave blank if walk-in
     index:

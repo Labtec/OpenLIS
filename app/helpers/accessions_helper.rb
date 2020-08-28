@@ -37,4 +37,9 @@ module AccessionsHelper
               method: :put
     end
   end
+
+  def search_icd_code
+    link_to t('.search_icd_code'), 'http://ais.paho.org/classifications/Chapters/',
+      target: :_blank, rel: :noopener, id: :search_icd_code
+  end
 end
