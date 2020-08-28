@@ -27,6 +27,7 @@ es-PA:
       cancel: Cancelar
       doctor: 'Doctor: '
       drawn_at: 'Recolectado el: '
+      icd9: 'Códigos de Diagnóstico:'
       or: o
       received_at: 'Recibido el: '
       reported_at: 'Reportado el: '
