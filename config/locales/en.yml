@@ -67,6 +67,7 @@ en:
       email_report: Email Report
       emailed_report: Resend Report
       enter_results: Enter Results
+      icd9: 'Diagnosis Codes:'
       notes: 'Notes:'
       print_report: Print Report (PDF)
       received_at: 'Received at: '
