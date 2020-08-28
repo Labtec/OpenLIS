@@ -27,6 +27,7 @@ en:
       cancel: Cancel
       doctor: 'Doctor: '
       drawn_at: 'Collected at: '
+      icd9: 'Diagnosis Codes:'
       or: or
       received_at: 'Received at: '
       reported_at: 'Reported at: '
