@@ -50,6 +50,7 @@ es-PA:
       received_by: 'Recibido por:'
       reported_at: 'Reportado el:'
       reported_by: 'Reportado por:'
+      search_icd_code: Buscar código CIE
       submit: Guardar
       walk_in: Dejar en blanco si es ambulatorio
     index:

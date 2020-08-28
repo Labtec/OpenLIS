@@ -67,7 +67,6 @@ form {
   form div.family_name,
   form div.family_name2,
   form div.partner_name,
-  form div.icd9,
   form div.username,
   form div.password,
   form div.password_confirmation {
@@ -140,6 +139,11 @@ form {
     min-width: 110px; }
   form .map {
     padding-top: 3ex; }
+  form div.icd9 {
+    width: 400px; }
+  form #search_icd_code {
+    display: inline-block;
+    margin-left: 5px; }
 
 fieldset {
   min-width: 550px;

@@ -10,8 +10,12 @@ provinces:
         cabecera: Almirante
         corregimientos:
           - Almirante
+          - Bajo Culubre
           - Barriada Guaymí
           - Barrio Francés
+          - Cauchero
+          - Ceiba
+          - Miraflores
           - Nance de Riscó
           - Valle de Aguas Arriba
           - Valle de Riscó
@@ -20,25 +24,32 @@ provinces:
         cabecera: Bocas del Toro
         corregimientos:
           - Bastimentos
+          - Boca del Drago
           - Bocas del Toro
-          - Cauchero
           - Punta Laurel
+          - San Cristóbal
           - Tierra Oscura
       -
         name: Changuinola
         cabecera: Changuinola
         corregimientos:
+          - Barranco Adentro
           - Barriada 4 de Abril
           - Changuinola
           - Cochigro
           - El Empalme
           - El Silencio
           - El Teribe
-          - Finca 30
+          - Finca 4
           - Finca 6
+          - Finca 12
+          - Finca 30
+          - Finca 51
           - Finca 60
+          - Finca 66
           - Guabito
           - La Gloria
+          - La Mesa
           - Las Delicias
           - Las Tablas
       -
@@ -970,7 +981,9 @@ provinces:
         cabecera: Samboa
         region: Ñö Kribo
         corregimientos:
+          - Beri
           - Burí
+          - Daira
           - Guariviara
           - Man Creek
           - Samboa
@@ -982,21 +995,25 @@ provinces:
         corregimientos:
           - Bisira
           - Calante
+          - Canoa
           - Guoroní
           - Kankintú
           - Mününí
           - Piedra Roja
           - Tolote
+          - Trinchera Comarcal
       -
         name: Kusapín
         cabecera: Kusapín
         region: Ñö Kribo
         corregimientos:
           - Bahía Azul
+          - Bucori
           - Cañaveral
           - Kusapín
           - Río Chiriquí
           - Tobobé
+          - Vegay
       -
         name: Nole Düima
         cabecera: Cerro Iglesias
