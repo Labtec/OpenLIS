@@ -9,6 +9,11 @@
   <% end %>
   <br />
 
+  <% if @accession.icd9.present? %>
+    <%= t('.icd9') %>
+    <strong><%= @accession.icd9 %></strong><br />
+  <% end %>
+
   <% if @accession.drawn_at %>
     <%= t('.drawn_at') %>
     <strong><%= l(@accession.drawn_at, format: :short) %></strong>

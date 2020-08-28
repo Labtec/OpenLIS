@@ -67,6 +67,7 @@ es-PA:
       email_report: Enviar reporte por correo
       emailed_report: Reenviar reporte por correo
       enter_results: Ingresar Resultados
+      icd9: 'Códigos de Diagnóstico:'
       notes: 'Observaciones:'
       print_report: Imprimir Reporte (PDF)
       received_at: 'Recibido el: '
