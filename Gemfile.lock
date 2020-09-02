@@ -1,17 +1,17 @@
 GIT
-  remote: https://github.com/Labtec/bcrypt-ruby.git
-  revision: e852ce14ce946ba18d01ce70be29c9dc57d03289
-  branch: fix-freebsd
-  specs:
-    bcrypt (3.1.15)
-
-GIT
   remote: https://github.com/Labtec/semacode.git
-  revision: 86149a6ce3bf4705a011c16f4b3ae385e833977d
+  revision: dddcf4148fea0cdba154662b650161edadd0d8fe
   branch: barcodes
   specs:
     semacode (0.7.5)
       rake (>= 0.7.0)
+
+GIT
+  remote: https://github.com/codahale/bcrypt-ruby.git
+  revision: 32469cc1f220b6af2b1c663bb8d8d9f4e4249292
+  branch: master
+  specs:
+    bcrypt (3.1.15)
 
 GEM
   remote: https://rubygems.org/
@@ -178,7 +178,7 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.14.1)
+    minitest (5.14.2)
     msgpack (1.3.3)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
@@ -192,13 +192,13 @@ GEM
     pg_search (2.3.2)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
-    phonelib (0.6.44)
+    phonelib (0.6.45)
     prawn (2.3.0)
       pdf-core (~> 0.8.1)
       ttfunk (~> 1.6)
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
-    public_suffix (4.0.5)
+    public_suffix (4.0.6)
     puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.3)
@@ -286,8 +286,8 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     uniform_notifier (1.13.0)
-    warden (1.2.8)
-      rack (>= 2.0.6)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.0.4)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
