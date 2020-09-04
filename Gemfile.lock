@@ -6,13 +6,6 @@ GIT
     semacode (0.7.5)
       rake (>= 0.7.0)
 
-GIT
-  remote: https://github.com/codahale/bcrypt-ruby.git
-  revision: 32469cc1f220b6af2b1c663bb8d8d9f4e4249292
-  branch: master
-  specs:
-    bcrypt (3.1.15)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -80,6 +73,7 @@ GEM
     auto_strip_attributes (2.6.0)
       activerecord (>= 4.0)
     barby (0.6.8)
+    bcrypt (3.1.16)
     bcrypt_pbkdf (1.0.1)
     bindex (0.8.1)
     bootsnap (1.4.8)
@@ -307,7 +301,7 @@ DEPENDENCIES
   acts_as_list
   auto_strip_attributes
   barby
-  bcrypt!
+  bcrypt
   bcrypt_pbkdf
   bootsnap
   brakeman
