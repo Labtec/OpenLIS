@@ -157,13 +157,15 @@ class LabPriceList < Prawn::Document
     column_box [0, cursor], width: bounds.width, columns: 2 do
       # Prices Table
       prices_table = [['Prueba', 'CPT', 'Precio (B/.)']]
+      prices_table_content = []
       @prices.map do |price|
-        prices_table += [[
+        prices_table_content << [
           price.priceable.name,
           price.priceable.procedure,
           @view.number_with_precision(price.amount, precision: 2)
-        ]]
+        ]
       end
+      prices_table += prices_table_content.sort
 
       table prices_table,
             header: true,
