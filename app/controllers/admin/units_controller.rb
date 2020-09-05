@@ -48,7 +48,7 @@ module Admin
     private
 
     def unit_params
-      params.require(:unit).permit(:name)
+      params.require(:unit).permit(:name, :ucum)
     end
   end
 end

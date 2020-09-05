@@ -48,7 +48,7 @@ module Admin
     private
 
     def lab_test_value_params
-      params.require(:lab_test_value).permit(:value, :flag, :numeric, :note)
+      params.require(:lab_test_value).permit(:value, :flag, :loinc, :numeric, :note, :snomed)
     end
   end
 end

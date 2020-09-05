@@ -14,6 +14,8 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'OpenLIS'
   inflect.acronym 'LOINC'
+  inflect.acronym 'SNOMED'
   inflect.acronym 'UB04'
   inflect.acronym 'UB92'
+  inflect.acronym 'UCUM'
 end

@@ -284,7 +284,9 @@ CREATE TABLE public.lab_test_values (
     note text,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    "numeric" boolean
+    "numeric" boolean,
+    snomed character varying,
+    loinc character varying
 );
 
 
@@ -559,7 +561,8 @@ CREATE TABLE public.units (
     id bigint DEFAULT nextval('public.units_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
-    updated_at timestamp with time zone
+    updated_at timestamp with time zone,
+    ucum character varying
 );
 
 
@@ -1100,6 +1103,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180904171938'),
 ('20200806230748'),
 ('20200824000001'),
-('20200824000002');
+('20200824000002'),
+('20200905000001');
 
 
