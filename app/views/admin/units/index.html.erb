@@ -3,10 +3,12 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>UCUM</th>
   </tr>
   <% @units.each do |unit| %>
     <tr>
       <td><%= unit.name %></td>
+      <td><%= unit.ucum %></td>
       <td><%= link_to 'Show', [:admin, unit] %></td>
       <td><%= link_to 'Edit', edit_admin_unit_path(unit) %></td>
       <td>

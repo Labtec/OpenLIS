@@ -9,6 +9,14 @@
   <%= @lab_test_value.flag %>
 </p>
 <p>
+  <strong>SNOMED CT:</strong>
+  <%= @lab_test_value.snomed %>
+</p>
+<p>
+  <strong>LOINC:</strong>
+  <%= loinc_hyperlink(@lab_test_value.loinc) %>
+</p>
+<p>
   <strong>Numeric:</strong>
   <%= @lab_test_value.numeric? %>
 </p>
