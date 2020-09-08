@@ -147,6 +147,7 @@ es-PA:
     canine: Perro
     card:
       address: 'Dirección:'
+      age: 'Edad:'
       cellular: 'Móvil:'
       edit: Editar
       email: 'Email:'
@@ -236,6 +237,7 @@ es-PA:
       search: Buscar
       search_patients: Buscar pacientes
     unknown: Desconocido
+    unknown_age: Desconocida
     update:
       success: Paciente actualizado exitosamente.
     week:

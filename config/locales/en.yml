@@ -147,6 +147,7 @@ en:
     canine: Dog
     card:
       address: 'Address:'
+      age: 'Age:'
       cellular: 'Mobile:'
       edit: Edit
       email: 'Email:'
@@ -236,6 +237,7 @@ en:
       search: Search
       search_patients: Search patients
     unknown: Unknown
+    unknown_age: Unknown
     update:
       success: Successfully updated patient.
     week:

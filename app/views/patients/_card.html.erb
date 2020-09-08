@@ -6,7 +6,7 @@
     <h4><%= link_to full_name(@patient), patient_path(@patient) %></h4>
     <div>
       <%= @patient.identifier %><br />
-      <%= age(@patient.birthdate) %>
+      <%= t('.age') %> <%= age(@patient.birthdate) %>
     </div>
     <div>
       <% if @patient.address_line.present? %>
