@@ -83,7 +83,10 @@
     <%= f.collection_check_boxes(:lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag) do |b| %>
       <div class="lab_test_value">
         <%= b.check_box %>
-        <label class="checkbox" for="lab_test_lab_test_value_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
+        <label class="checkbox" for="lab_test_lab_test_value_ids_<%= b.object.id %>">
+          <%= sanitize(b.text) %>
+          <%= "(#{b.object.note})" if b.object.note.present? %>
+        </label>
       </div>
     <% end %>
   </div>
