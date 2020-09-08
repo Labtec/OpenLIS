@@ -6,7 +6,8 @@ class LabTestValue < ApplicationRecord
                        dependent: :nullify
   has_many :results, dependent: :nullify
 
-  validates :loinc, loinc: true, length: { maximum: 10 }, allow_blank: true
+  # TODO: Add LOINC Answer code validator
+  # validates :loinc, loinc: true, length: { maximum: 10 }, allow_blank: true
   validates :value, presence: true
 
   scope :sorted, -> { order(value: :asc) }
