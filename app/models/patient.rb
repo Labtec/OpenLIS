@@ -23,11 +23,12 @@ class Patient < ApplicationRecord
   validates :given_name, presence: true, length: { minimum: 2 }
   validates :family_name, presence: true,
                           length: { minimum: 2 },
-                          unless: -> { partner_name.present? }
+                          unless: -> { partner_name.present? || animal_type.present? }
   validates :partner_name, presence: true,
                            length: { minimum: 2 },
-                           unless: -> { family_name.present? }
-  validates :birthdate, presence: true, not_in_the_future: true
+                           unless: -> { family_name.present? || animal_type.present? }
+  validates :birthdate, presence: true, unless: -> { animal_type.present? }
+  validates :birthdate, not_in_the_future: true
   validates :identifier, uniqueness: { case_sensitive: false },
                          allow_blank: true
   validates :email, email: true, allow_blank: true

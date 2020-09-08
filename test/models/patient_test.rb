@@ -87,4 +87,16 @@ class PatientTest < ActiveSupport::TestCase
     p.partner_name = 'Doe'
     assert p.valid?, "A patient with only a partner's name should be valid"
   end
+
+  test 'animals do not require family_name' do
+    p = patients(:dog)
+
+    assert p.valid?, 'An animal patient without family name should be valid'
+  end
+
+  test 'animals do not require birthdate' do
+    p = patients(:dog)
+
+    assert p.valid?, 'An animal patient without birthdate should be valid'
+  end
 end

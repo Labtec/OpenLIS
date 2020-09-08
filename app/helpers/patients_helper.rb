@@ -35,6 +35,11 @@ module PatientsHelper
 
   # Returns the full name of a patient.
   def full_name(patient)
+    if patient.family_name.blank? && patient.animal_type.present?
+      return [patient.given_name,
+              "(#{animal_species_name(patient.animal_type)})"].join(' ').squish
+    end
+
     [patient.given_name,
      patient.middle_name,
      patient.family_name,
@@ -102,6 +107,8 @@ module PatientsHelper
 
   # Returns a human-readable age string.
   def age(birth_date, service_date = Time.current)
+    return t('patients.unknown_age') if birth_date.blank?
+
     age = age_hash(birth_date, service_date)
 
     years = t('patients.year', count: age[:years]) if age[:years]

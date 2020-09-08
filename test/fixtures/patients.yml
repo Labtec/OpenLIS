@@ -45,3 +45,8 @@ unknown:
   identifier: '000-000-0000'
   gender: U
   <<: *DEFAULTS
+
+dog:
+  given_name: Dog
+  gender: M
+  animal_type: 1

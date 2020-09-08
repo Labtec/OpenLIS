@@ -59,11 +59,13 @@ class Accession < ApplicationRecord
     days_per_month = 30.4368
     days_per_year = 365.242
 
-    age_in_days = (drawn_at - patient_birthdate.to_time(:local)) / sec_per_day
-    age_in_weeks = ((age_in_days / days_per_week) * 10).round / 10
-    age_in_months = ((age_in_days / days_per_month) * 10).round / 10
-    age_in_years = (age_in_days / days_per_year).floor
-    age_in_days = (age_in_days * 10).round / 10
+    if patient_birthdate
+      age_in_days = (drawn_at - patient_birthdate.to_time(:local)) / sec_per_day
+      age_in_weeks = ((age_in_days / days_per_week) * 10).round / 10
+      age_in_months = ((age_in_days / days_per_month) * 10).round / 10
+      age_in_years = (age_in_days / days_per_year).floor
+      age_in_days = (age_in_days * 10).round / 10
+    end
 
     { days: age_in_days, weeks: age_in_weeks, months: age_in_months, years: age_in_years }
   end
