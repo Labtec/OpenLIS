@@ -159,11 +159,13 @@ class LabPriceList < Prawn::Document
       prices_table = [['Prueba', 'CPT', 'Precio (B/.)']]
       prices_table_content = []
       @prices.map do |price|
+        next if prices_table_content.flatten.include?(price.priceable.name)
+
         prices_table_content << [
           price.priceable.name,
           price.priceable.procedure,
           @view.number_with_precision(price.amount, precision: 2)
-        ] unless prices_table_content.flatten.include?(price.priceable.name)
+        ]
       end
       prices_table += prices_table_content.sort
 
