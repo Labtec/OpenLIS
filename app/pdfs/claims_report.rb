@@ -565,7 +565,7 @@ class ClaimsReport < Prawn::Document
         index + 1,
         name_last_comma_first_mi(claim.patient),
         claim.patient.policy_number,
-        claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
+        @view.l(claim.accession.drawn_at.to_date, format: :default, locale: :'es-PA'),
         claim.external_number,
         claim.number,
         @view.number_with_precision(@claim_total_price[index], precision: 2)
