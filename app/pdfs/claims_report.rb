@@ -559,13 +559,13 @@ class ClaimsReport < Prawn::Document
     move_down 25
 
     # Claims Table
-    claims_table = [['', '<b>Paciente</b>', '<b>№ de Póliza</b>', '<b>Fecha de Atención</b>', '<b>External №</b>', '<b>Claim №</b>', "<b>Monto\n(B/.)</b>"]]
+    claims_table = [['<b>№</b>', '<b>Paciente</b>', '<b>№ de Póliza</b>', '<b>Fecha de Atención</b>', '<b>External №</b>', '<b>Claim №</b>', "<b>Monto\n(B/.)</b>"]]
     @claims.each_with_index.map do |claim, index|
       claims_table += [[
         index + 1,
         name_last_comma_first_mi(claim.patient),
         claim.patient.policy_number,
-        claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
+        @view.l(claim.accession.drawn_at.to_date, format: :default, locale: :'es-PA'),
         claim.external_number,
         claim.number,
         @view.number_with_precision(@claim_total_price[index], precision: 2)
@@ -581,6 +581,7 @@ class ClaimsReport < Prawn::Document
           cell_style: { padding: [0, table_padding, form_padding, table_padding], valign: :center, inline_format: true } do |t|
       t.cells.borders = []
       t.column(0).style align: :right
+      t.column(0).style padding: [0, 3 * table_padding, form_padding, table_padding]
       t.column(1).style align: :left
       t.column(2).style align: :center
       t.column(3).style align: :right
