@@ -248,7 +248,11 @@ es-PA:
       other: '%{count} años'
   results:
     abnormal: •
+    detected: •
+    equivocal: •
     high: •
+    indeterminate: •
+    intermediate: •
     index:
       accession: 'Solicitud:'
       age: 'Edad:'
@@ -282,6 +286,14 @@ es-PA:
       year: año
       years: años
     low: •
+    negative: ''
+    normal: ''
+    non_reactive: ''
+    non_susceptible: •
+    not_detected: ''
+    positive: •
+    reactive: •
+    resistant: •
     sidebar:
       address: 'Dirección:'
       cellular: 'Móvil:'
@@ -289,6 +301,8 @@ es-PA:
       phone: 'Tel:'
       recent_patients: Pacientes Recientes
       year: año
+    susceptible: ''
+    weakly_reactive: •
   results_mailer:
     email_doctor:
       body: Hemos adjuntado los resultados de los exámenes de %{full_name}.
