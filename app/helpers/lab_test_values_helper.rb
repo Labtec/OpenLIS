@@ -41,7 +41,7 @@ module LabTestValuesHelper
       ['Reactivity',
         [
           ['Non-reactive', 'NR'],
-          ['Reactive', 'R'],
+          ['Reactive', 'RR'],
           ['Weakly reactive', 'WR']
         ]
       ]
