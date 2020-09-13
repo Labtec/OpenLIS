@@ -291,6 +291,8 @@ es-PA:
     non_reactive: ''
     non_susceptible: •
     not_detected: ''
+    off_scale_low: •
+    off_scale_high: •
     positive: •
     reactive: •
     resistant: •
