@@ -77,7 +77,9 @@ class AccessionsController < ApplicationController
     # TODO: Missing per department blank validation.
     # It will only check first
     results.each do |department, _result|
-      @accession.notes.build(department_id: department.id) unless @accession.try(:notes).find_by(department_id: department.id)
+      unless @accession.try(:notes).find_by(department_id: department.id)
+        @accession.notes.build(department_id: department.id)
+      end
     end
     $update_action = 'edit_results'
   end

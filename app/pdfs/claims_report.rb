@@ -29,18 +29,18 @@ class ClaimsReport < Prawn::Document
     # Document defaults
     file = File.expand_path('fonts/HelveticaNeueLTStd', __dir__)
     font_families['HelveticaNeueLTStd'] = {
-      normal: { file: file + '-Roman.ttf' },
-      italic: { file: file + '-It.ttf' },
-      bold: { file: file + '-Bd.ttf' },
-      bold_italic: { file: file + '-BdIt.ttf' }
+      normal: { file: "#{file}-Roman.ttf" },
+      italic: { file: "#{file}-It.ttf" },
+      bold: { file: "#{file}-Bd.ttf" },
+      bold_italic: { file: "#{file}-BdIt.ttf" }
     }
 
     file = File.expand_path('fonts/HelveticaWorld', __dir__)
     font_families['HelveticaWorld'] = {
-      normal: { file: file + '-Regular.ttf' },
-      italic: { file: file + '-Italic.ttf' },
-      bold: { file: file + '-Bold.ttf' },
-      bold_italic: { file: file + '-BoldItalic.ttf' }
+      normal: { file: "#{file}-Regular.ttf" },
+      italic: { file: "#{file}-Italic.ttf" },
+      bold: { file: "#{file}-Bold.ttf" },
+      bold_italic: { file: "#{file}-BoldItalic.ttf" }
     }
 
     fallback_fonts ['HelveticaWorld']
@@ -232,7 +232,9 @@ class ClaimsReport < Prawn::Document
           panel.procedure.to_s,
           claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
           '1',
-          (@view.number_with_precision panel.prices.find_by(price_list_id: 1).amount, precision: 2, separator: ' ' if panel.prices.find_by(price_list_id: 1)).to_s
+          (if panel.prices.find_by(price_list_id: 1)
+             @view.number_with_precision panel.prices.find_by(price_list_id: 1).amount, precision: 2, separator: ' '
+           end).to_s
         ]
       end
       # Lab Tests Table
@@ -248,7 +250,9 @@ class ClaimsReport < Prawn::Document
           lab_test.procedure.to_s,
           claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
           '1',
-          (@view.number_with_precision lab_test.prices.find_by(price_list_id: 1).amount, precision: 2, separator: ' ' if lab_test.prices.find_by(price_list_id: 1)).to_s
+          (if lab_test.prices.find_by(price_list_id: 1)
+             @view.number_with_precision lab_test.prices.find_by(price_list_id: 1).amount, precision: 2, separator: ' '
+           end).to_s
         ]
       end
       # TOTALS
@@ -502,7 +506,9 @@ class ClaimsReport < Prawn::Document
                 end
                 # FL 74 - Principal Procedure Code and Date Situational. Required on inpatient claims when a procedure was performed. Not used on outpatient claims.
                 # FL 74A - 74E - Other Procedure Codes and Dates Situational. Required on inpatient claims when additional procedures must be reported. Not used on outpatient claims.
-                diag_codes = (claim.accession.icd9.split(',').map(&:strip) if claim.accession.icd9.present?) || ['pend.']
+                diag_codes = (if claim.accession.icd9.present?
+                                claim.accession.icd9.split(',').map(&:strip)
+                              end) || ['pend.']
                 diag_codes.each_with_index do |diag_code, i|
                   if i < 3
                     bounding_box([code_width * i, -(field_height * 16)], width: code_width, height: field_height) do

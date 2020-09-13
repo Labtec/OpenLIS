@@ -36,10 +36,10 @@ gem 'uglifier'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capistrano3-puma'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-yarn'
-  gem 'capistrano3-puma'
   gem 'capybara'
   gem 'selenium-webdriver'
 end
