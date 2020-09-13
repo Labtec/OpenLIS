@@ -51,7 +51,7 @@ module PatientsHelper
     family_name = patient.family_name || patient.partner_name
     family_name[0] = family_name[0].mb_chars.upcase
     last_comma_first = [family_name, patient.given_name].join(', ')
-    mi = (patient.middle_name[0, 1] + '.') if patient.middle_name.present?
+    mi = "#{patient.middle_name[0, 1]}." if patient.middle_name.present?
     [last_comma_first, mi].join(' ').squish
   end
 

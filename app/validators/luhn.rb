@@ -7,7 +7,7 @@ class Luhn
       d *= 2 if i.even?
       d > 9 ? d - 9 : d
     end
-    sum = digits.inject(0) { |m, x| m + x }
+    sum = digits.sum
     mod = 10 - sum % 10
     mod == 10 ? 0 : mod
   end

@@ -28,18 +28,18 @@ class ClaimPreview < Prawn::Document
     # Document defaults
     file = File.expand_path('fonts/HelveticaNeueLTStd', __dir__)
     font_families['HelveticaNeueLTStd'] = {
-      normal: { file: file + '-Roman.ttf' },
-      italic: { file: file + '-It.ttf' },
-      bold: { file: file + '-Bd.ttf' },
-      bold_italic: { file: file + '-BdIt.ttf' }
+      normal: { file: "#{file}-Roman.ttf" },
+      italic: { file: "#{file}-It.ttf" },
+      bold: { file: "#{file}-Bd.ttf" },
+      bold_italic: { file: "#{file}-BdIt.ttf" }
     }
 
     file = File.expand_path('fonts/HelveticaWorld', __dir__)
     font_families['HelveticaWorld'] = {
-      normal: { file: file + '-Regular.ttf' },
-      italic: { file: file + '-Italic.ttf' },
-      bold: { file: file + '-Bold.ttf' },
-      bold_italic: { file: file + '-BoldItalic.ttf' }
+      normal: { file: "#{file}-Regular.ttf" },
+      italic: { file: "#{file}-Italic.ttf" },
+      bold: { file: "#{file}-Bold.ttf" },
+      bold_italic: { file: "#{file}-BoldItalic.ttf" }
     }
 
     fallback_fonts ['HelveticaWorld']
@@ -211,7 +211,9 @@ class ClaimPreview < Prawn::Document
         panel.procedure.to_s,
         @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
         '1',
-        (@view.number_to_currency panel.prices.find_by(price_list_id: 1).amount, unit: '', separator: ' ' if panel.prices.find_by(price_list_id: 1)).to_s
+        (if panel.prices.find_by(price_list_id: 1)
+           @view.number_to_currency panel.prices.find_by(price_list_id: 1).amount, unit: '', separator: ' '
+         end).to_s
       ]
     end
     # Lab Tests Table
@@ -227,7 +229,9 @@ class ClaimPreview < Prawn::Document
         lab_test.procedure.to_s,
         @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
         '1',
-        (@view.number_to_currency lab_test.prices.find_by(price_list_id: 1).amount, unit: '', separator: ' ' if lab_test.prices.find_by(price_list_id: 1)).to_s
+        (if lab_test.prices.find_by(price_list_id: 1)
+           @view.number_to_currency lab_test.prices.find_by(price_list_id: 1).amount, unit: '', separator: ' '
+         end).to_s
       ]
     end
     # TOTALS
