@@ -54,6 +54,6 @@ class ReferenceRangeTest < ActiveSupport::TestCase
 
     @result.update(value: '10-11')
 
-    assert_equal 'H', @result.flag, 'highest value is more thant 10'
+    assert_equal 'H', @result.flag, 'highest value is more than 10'
   end
 end
