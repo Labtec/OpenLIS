@@ -240,19 +240,21 @@ class Result < ApplicationRecord
       elsif ranges?
         check_reference_range(derived_value)
       end
-    elsif value.present?
-      check_reference_range(value.gsub(/[^\d.]/, '').to_f) if ranges?
-    elsif lab_test.also_numeric?
-      check_reference_range(value.gsub(/[^\d.]/, '').to_f)
-    elsif lab_test.range?
-      value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
-      check_reference_range([Regexp.last_match(3), Regexp.last_match(5)].map(&:to_i).try(:max))
-    elsif lab_test.fraction?
-      value =~ %r{\A(\d+)/(\d+)\z}
-      check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
-    elsif lab_test.ratio?
-      value =~ /\A(\d+):(\d+)\z/
-      check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
+    elsif ranges?
+      if lab_test.also_numeric?
+        check_reference_range(value.gsub(/[^\d.]/, '').to_f)
+      elsif lab_test.range?
+        value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
+        check_reference_range([Regexp.last_match(3), Regexp.last_match(5)].map(&:to_i).try(:max))
+      elsif lab_test.fraction?
+        value =~ %r{\A(\d+)/(\d+)\z}
+        check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
+      elsif lab_test.ratio?
+        value =~ /\A(\d+):(\d+)\z/
+        check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
+      elsif value.present?
+        check_reference_range(value.gsub(/[^\d.]/, '').to_f)
+      end
     end
   end
 
