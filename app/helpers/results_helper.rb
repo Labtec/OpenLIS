@@ -45,20 +45,54 @@ module ResultsHelper
     case result.flag
     when 'A'
       t('results.abnormal')
+    when 'AA'
+      t('results.abnormal') * 2
+    when 'DET'
+      t('results.detected')
+    when 'E'
+      t('results.equivocal')
     when 'H'
       t('results.high')
+    when 'HH'
+      t('results.high') * 2
+    when 'I'
+      t('results.intermediate')
+    when 'IND'
+      t('results.indeterminate')
     when 'L'
       t('results.low')
+    when 'LL'
+      t('results.low') * 2
+    when 'N'
+      t('results.normal')
+    when 'ND'
+      t('results.not_detected')
+    when 'NEG'
+      t('results.negative')
+    when 'NR'
+      t('results.non_reactive')
+    when 'NS'
+      t('results.non_susceptible')
+    when 'POS'
+      t('results.positive')
+    when 'R'
+      t('results.resistant')
+    when 'RR'
+      t('results.reactive')
+    when 'S'
+      t('results.susceptible')
+    when 'WR'
+      t('results.weakly_reactive')
     end
   end
 
   def flag_color(result)
     case result.flag
-    when 'A'
+    when *LabTestValue::ABNORMAL_FLAGS
       'abnormal_value'
-    when 'H'
+    when *LabTestValue::HIGH_FLAGS
       'high_value'
-    when 'L'
+    when *LabTestValue::LOW_FLAGS
       'low_value'
     else
       'normal_value'

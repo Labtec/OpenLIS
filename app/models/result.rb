@@ -233,7 +233,7 @@ class Result < ApplicationRecord
     if pending?
       nil
     elsif lab_test_value.present?
-      lab_test_value.flag
+      lab_test_value.raise_flag
     elsif lab_test.derivation?
       if derived_value == 'calc.'
         nil

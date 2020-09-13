@@ -248,7 +248,11 @@ en:
       other: '%{count} years'
   results:
     abnormal: A
+    detected: DET
+    equivocal: E
     high: H
+    indeterminate: IND
+    intermediate: I
     index:
       accession: 'Accession:'
       age: 'Age:'
@@ -282,6 +286,14 @@ en:
       year: year
       years: years
     low: L
+    negative: NEG
+    normal: N
+    non_reactive: NR
+    non_susceptible: NS
+    not_detected: ND
+    positive: POS
+    reactive: RR
+    resistant: R
     sidebar:
       address: 'Address:'
       cellular: 'Mobile:'
@@ -289,6 +301,8 @@ en:
       phone: 'Phone:'
       recent_patients: Recent Patients
       year: year
+    susceptible: S
+    weakly_reactive: WR
   results_mailer:
     email_doctor:
       body: Attached are the results for %{full_name}.
