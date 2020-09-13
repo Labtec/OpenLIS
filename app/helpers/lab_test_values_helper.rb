@@ -3,6 +3,12 @@
 module LabTestValuesHelper
   def options_for_flag
     [
+      ['Exceptions',
+        [
+          ['Off scale low', '<'],
+          ['Off scale high', '>']
+        ]
+      ],
       ['Normality',
         [
           ['Abnormal', 'A'],

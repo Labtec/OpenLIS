@@ -43,6 +43,10 @@ module ResultsHelper
 
   def flag_name(result)
     case result.flag
+    when '<'
+      t('results.off_scale_low')
+    when '>'
+      t('results.off_scale_high')
     when 'A'
       t('results.abnormal')
     when 'AA'
