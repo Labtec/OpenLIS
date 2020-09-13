@@ -8,7 +8,7 @@
 
   <div class="flag">
     <%= f.label :flag %>
-    <%= f.select :flag, options_for_flag, { prompt: 'Select flag:' } %>
+    <%= f.select :flag, options_for_flag, prompt: 'Select flag:', include_blank: true %>
   </div>
 
   <div class="numeric">
