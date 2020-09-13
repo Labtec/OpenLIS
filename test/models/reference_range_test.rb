@@ -44,4 +44,16 @@ class ReferenceRangeTest < ActiveSupport::TestCase
     @result.update(value: '1,000')
     assert_nil @result.flag, 'value contains a comma'
   end
+
+  test 'high flag of a range lab test with max range' do
+    lab_test = lab_tests(:range)
+    lab_test.update(reference_ranges: [reference_ranges(:less_than)])
+    @result.update(lab_test: lab_test, value: '8-9')
+
+    assert_nil @result.flag, 'highest value is less than 10'
+
+    @result.update(value: '10-11')
+
+    assert_equal 'H', @result.flag, 'highest value is more thant 10'
+  end
 end
