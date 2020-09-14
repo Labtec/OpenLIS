@@ -481,6 +481,9 @@ li.lab_test,
 h3.department {
   padding: 2px; }
 
+li.lab_test:hover {
+  background: seashell; }
+
 h3.department {
   border-bottom: 3px black solid;
   margin-bottom: 5px; }
