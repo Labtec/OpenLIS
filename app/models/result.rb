@@ -144,7 +144,8 @@ class Result < ApplicationRecord
     when 'TSPERM'
       sconc = result_for 'SCONC'
       svol = result_for 'SVOL'
-      sconc * svol
+      tsperm = sconc * svol
+      tsperm.zero? ? '<0.1' : tsperm
     when 'VLDL'
       trig = result_for 'TRIG'
       0.2 * trig
