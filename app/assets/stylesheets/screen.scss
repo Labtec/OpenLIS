@@ -431,6 +431,25 @@ td.range_1 {
   color: #777;
   display: inline; }
 
+.sortable_lab_test_name {
+  display: inline-block;
+  width: 230px; }
+.sortable_lab_test_code {
+  display: inline-block;
+  width: 75px; }
+.sortable_lab_test_loinc {
+  display: inline-block;
+  width: 70px; }
+.sortable_lab_test_procedure {
+  display: inline-block;
+  width: 50px; }
+.sortable_lab_test_numerical {
+  display: inline-block;
+  width: 140px; }
+.sortable_lab_test_actions {
+  display: inline-block;
+  width: 200px; }
+
 .notes {
   color: #800080;
   padding: 20px 0;
@@ -457,6 +476,14 @@ td.range_1 {
   clear: both;
   font-size: 12px;
   font-family: "Lucida Grande", Geneva, Arial, Helvetica, sans-serif; }
+
+li.lab_test,
+h3.department {
+  padding: 2px; }
+
+h3.department {
+  border-bottom: 3px black solid;
+  margin-bottom: 5px; }
 
 .main {
   background: white;
