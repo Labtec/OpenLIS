@@ -200,6 +200,8 @@ class Result < ApplicationRecord
 
         ranges << if ratio? || range? || fraction? || text_length
                     [nil]
+                  elsif lab_test_value && !lab_test_value.numeric? && value.blank?
+                    [nil]
                   elsif r.max && r.min
                     [gender, description, format_value(r.min), RANGE_SYMBOL_RANGE, format_value(r.max)]
                   elsif r.max
