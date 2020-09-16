@@ -144,7 +144,8 @@ class Result < ApplicationRecord
     when 'TSPERM'
       sconc = result_for 'SCONC'
       svol = result_for 'SVOL'
-      sconc * svol
+      tsperm = sconc * svol
+      tsperm.zero? ? '<0.1' : tsperm
     when 'VLDL'
       trig = result_for 'TRIG'
       0.2 * trig
@@ -198,6 +199,8 @@ class Result < ApplicationRecord
         description = "#{r.description}: " if r.description.present?
 
         ranges << if ratio? || range? || fraction? || text_length
+                    [nil]
+                  elsif lab_test_value && !lab_test_value.numeric? && value.blank?
                     [nil]
                   elsif r.max && r.min
                     [gender, description, format_value(r.min), RANGE_SYMBOL_RANGE, format_value(r.max)]
