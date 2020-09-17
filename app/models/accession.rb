@@ -104,9 +104,35 @@ class Accession < ApplicationRecord
     true
   end
 
+  def all_pending?
+    results.find_each do |result|
+      return false unless result.pending?
+    end
+    true
+  end
+
   def result_for(code)
     lab_test_by_code = LabTest.find_by(code: code)
     results.find_by(lab_test_id: lab_test_by_code)
+  end
+
+  def status
+    if reported_at
+      # XXX: Do not use UNIX time
+      return 'amended' if updated_at.to_i > reported_at.to_i &&
+        updated_at.to_i > emailed_doctor_at.to_i &&
+        updated_at.to_i > emailed_patient_at.to_i
+
+      return 'final'
+    end
+
+    return 'preliminary' if complete?
+
+    if all_pending?
+      return 'registered'
+    else
+      return 'partial'
+    end
   end
 
   private

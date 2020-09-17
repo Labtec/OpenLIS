@@ -170,9 +170,7 @@ class LabReport < Prawn::Document
       ##
       # Flash tag top
       bounding_box([bounds.right - FLASH_TAG_WIDTH, page_top - HALF_INCH - line_height], width: FLASH_TAG_WIDTH, height: line_height) do
-        text (unless @accession.reported_at
-                t('results.index.preliminary')
-              end).to_s, align: :right, color: REPORT_COLORS[:red]
+        text t("results.index.#{@accession.status}"), align: :right, color: REPORT_COLORS[:red]
       end
       bounding_box([bounds.right - barcode_width, page_top - HALF_INCH - 2.4 * line_height], width: barcode_width, height: BARCODE_HEIGHT + line_height) do
         barcode
@@ -475,11 +473,11 @@ class LabReport < Prawn::Document
         stroke_horizontal_rule
         bounding_box([bounds.left, bounds.top], width: bounds.width / 2, height: footer_height) do
           pad_top PADDING do
-            text "#{t('results.index.reported_at')} #{if @accession.reported_at
+            text %Q[#{t('results.index.reported_at')} #{if @accession.reported_at
                                                         l(@accession.reported_at, format: :long)
-                                                      end}#{unless @accession.reported_at
-                                                              t('results.index.preliminary')
-                                                            end}"
+                                                      else
+                                                        t("results.index.#{@accession.status}")
+                                                      end}]
             text "#{t('results.index.printed_at')} #{l(Time.current, format: :long)}"
           end
         end
@@ -487,9 +485,7 @@ class LabReport < Prawn::Document
           pad_top PADDING do
             text "#{t('results.index.accession')} #{@accession.id}", align: :right
             text "#{t('results.index.results_of')} #{full_name(@patient)}", align: :right
-            text (unless @accession.reported_at
-                    t('results.index.preliminary')
-                  end).to_s, align: :right, color: REPORT_COLORS[:red]
+            text t("results.index.#{@accession.status}"), align: :right, color: REPORT_COLORS[:red]
           end
         end
       end

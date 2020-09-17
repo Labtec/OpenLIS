@@ -256,10 +256,12 @@ en:
     index:
       accession: 'Accession:'
       age: 'Age:'
+      amended: Amended
       cellular: 'Mobile:'
       date: 'Date:'
       doctor: 'Doctor:'
       drawn_at: 'Collected Date:'
+      final: Final
       flag: Flag
       full_name: 'Name:'
       gender: 'Sex:'
@@ -269,12 +271,14 @@ en:
       of: of
       on_date: 'on'
       page: Page
+      partial: Partial
       phone: 'Phone:'
       preliminary: Preliminary
       printed_at: 'Printed:'
       range: Reference Range
       received_at: 'Received in Lab:'
       register: 'Registration '
+      registered: Registered
       reported_at: 'Reported On:'
       result: Result
       results_of: 'Lab Results For:'
@@ -308,16 +312,20 @@ en:
   results_mailer:
     email_doctor:
       body: Attached are the results for %{full_name}.
+      body_partial: Attached are the partial results for %{full_name}.
       body_preliminary: Attached are the preliminary results for %{full_name}.
       subject: Results for %{full_name}
+      subject_partial: Partial results for %{full_name}
       subject_preliminary: Preliminary results for %{full_name}
     email_patient:
       body: Attached are your lab results.
+      body_partial: Attached are your partial lab results.
       body_preliminary: Attached are your preliminary lab results.
       opening_F: Dear %{full_name},
       opening_M: Dear %{full_name},
       opening_U: Dear %{full_name},
       subject: Lab results
+      subject_partial: Partial lab results
       subject_preliminary: Preliminary lab results
   time:
     formats:

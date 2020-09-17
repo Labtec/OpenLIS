@@ -1,8 +1,11 @@
 <%= t(".opening_#{@accession.patient.gender}",
       full_name: full_name(@accession.patient)) %>
 
-<% if @accession.reported_at %>
-<%= t('.body') %>
-<% else %>
+<% case @accession.status
+  when 'preliminary' %>
 <%= t('.body_preliminary') %>
+<% when 'partial' %>
+<%= t('.body_partial') %>
+<% else %>
+<%= t('.body') %>
 <% end %>

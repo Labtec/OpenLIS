@@ -1,5 +1,8 @@
-<% if @accession.reported_at %>
-<%= t('.body', full_name: full_name(@accession.patient)) %>
-<% else %>
+<% case @accession.status
+  when 'preliminary' %>
 <%= t('.body_preliminary', full_name: full_name(@accession.patient)) %>
+<% when 'partial' %>
+<%= t('.body_partial', full_name: full_name(@accession.patient)) %>
+<% else %>
+<%= t('.body', full_name: full_name(@accession.patient)) %>
 <% end %>
