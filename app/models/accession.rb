@@ -104,7 +104,7 @@ class Accession < ApplicationRecord
     true
   end
 
-  def all_pending?
+  def registered?
     results.find_each do |result|
       return false unless result.pending?
     end
@@ -127,12 +127,9 @@ class Accession < ApplicationRecord
     end
 
     return 'preliminary' if complete?
+    return 'registered' if registered?
 
-    if all_pending?
-      'registered'
-    else
-      'partial'
-    end
+    'partial'
   end
 
   private
