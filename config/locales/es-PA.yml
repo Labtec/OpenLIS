@@ -256,10 +256,12 @@ es-PA:
     index:
       accession: 'Solicitud:'
       age: 'Edad:'
+      amended: ''
       cellular: 'Móvil:'
       date: 'Fecha:'
       doctor: 'Doctor:'
       drawn_at: 'Fecha de recolección:'
+      final: ''
       flag: Señal
       full_name: 'Nombre:'
       gender: 'Sexo:'
@@ -269,12 +271,14 @@ es-PA:
       of: de
       on_date: el
       page: Página
+      partial: Parcial
       phone: 'Teléfono:'
       preliminary: Preliminar
       printed_at: 'Fecha de impresión:'
       range: Rango de Referencia
       received_at: 'Fecha de recepción:'
       register: 'Registro '
+      registered: Registrado
       reported_at: 'Fecha de reporte:'
       result: Resultado
       results_of: 'Resultados de:'
@@ -308,16 +312,20 @@ es-PA:
   results_mailer:
     email_doctor:
       body: Hemos adjuntado los resultados de los exámenes de %{full_name}.
+      body_partial: Hemos adjuntado los resultados parciales de los exámenes de %{full_name}.
       body_preliminary: Hemos adjuntado los resultados preliminares de los exámenes de %{full_name}.
       subject: Resultados de %{full_name}
+      subject_partial: Resultados parciales de %{full_name}
       subject_preliminary: Resultados preliminares de %{full_name}
     email_patient:
       body: Hemos adjuntado los resultados de sus exámenes.
+      body_partial: Hemos adjuntado los resultados parciales de sus exámenes.
       body_preliminary: Hemos adjuntado los resultados preliminares de sus exámenes.
       opening_F: 'Estimada %{full_name}:'
       opening_M: 'Estimado %{full_name}:'
       opening_U: 'Estimado(a) %{full_name}:'
       subject: Resultados de exámenes
+      subject_partial: Resultados parciales de exámenes
       subject_preliminary: Resultados preliminares de exámenes
   time:
     formats:

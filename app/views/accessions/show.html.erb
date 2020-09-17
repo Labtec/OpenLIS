@@ -4,7 +4,7 @@
   <h1><%= t('.accession', id: @accession.id) %></h1>
 
   <%= practitioner @accession.doctor %>
-  <% if @accession.doctor && @accession.doctor.email.present? %>
+  <% if @accession.doctor && @accession.doctor.email.present? && @accession.status != 'registered' %>
     <%= email_doctor_report(@accession, @accession.doctor.email) %>
   <% end %>
   <br />
@@ -59,7 +59,7 @@
       <%= link_to t('.enter_results'), edit_results_accession_url(@accession) %> |
       <%= link_to t('.report'), report_accession_path(@accession), method: :patch, data: { turbolinks: false } %> |
     <% end %>
-    <% if @patient.email.present? %>
+    <% if @patient.email.present? && @accession.status != 'registered' %>
        <%= email_patient_report(@accession, @patient.email) %> |
     <% end %>
     <%= link_to t('.print_report'), accession_results_path(@accession, format: 'pdf'), data: { turbolinks: false } %>
