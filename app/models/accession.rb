@@ -120,8 +120,8 @@ class Accession < ApplicationRecord
     if reported_at
       # XXX: Do not use UNIX time
       return 'amended' if updated_at.to_i > reported_at.to_i &&
-        updated_at.to_i > emailed_doctor_at.to_i &&
-        updated_at.to_i > emailed_patient_at.to_i
+                          updated_at.to_i > emailed_doctor_at.to_i &&
+                          updated_at.to_i > emailed_patient_at.to_i
 
       return 'final'
     end
@@ -129,9 +129,9 @@ class Accession < ApplicationRecord
     return 'preliminary' if complete?
 
     if all_pending?
-      return 'registered'
+      'registered'
     else
-      return 'partial'
+      'partial'
     end
   end
 

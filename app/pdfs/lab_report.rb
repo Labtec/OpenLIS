@@ -473,11 +473,11 @@ class LabReport < Prawn::Document
         stroke_horizontal_rule
         bounding_box([bounds.left, bounds.top], width: bounds.width / 2, height: footer_height) do
           pad_top PADDING do
-            text %Q[#{t('results.index.reported_at')} #{if @accession.reported_at
-                                                        l(@accession.reported_at, format: :long)
-                                                      else
-                                                        t("results.index.#{@accession.status}")
-                                                      end}]
+            text %(#{t('results.index.reported_at')} #{if @accession.reported_at
+                                                         l(@accession.reported_at, format: :long)
+                                                       else
+                                                         t("results.index.#{@accession.status}")
+                                                       end})
             text "#{t('results.index.printed_at')} #{l(Time.current, format: :long)}"
           end
         end
