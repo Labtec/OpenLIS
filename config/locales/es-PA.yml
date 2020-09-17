@@ -112,10 +112,10 @@ es-PA:
       at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
     login:
       hello: '¡Hola '
-      last_login_at: ' Su último inico de sesión fue hace '
+      last_login_at: ' Su último inicio de sesión fue hace '
   lab_tests:
     form:
-      order_tests: Ordernar Pruebas
+      order_tests: Ordenar Pruebas
   layouts:
     admin:
       tabs:
