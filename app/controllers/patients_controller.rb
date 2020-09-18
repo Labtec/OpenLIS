@@ -13,6 +13,11 @@ class PatientsController < ApplicationController
                                   .queued.pending.page(params[:pending_page])
     @reported_accessions = @patient.accessions
                                    .recently.reported.page(params[:page])
+    respond_to do |format|
+      format.html
+      format.json { render json: @patient }
+      format.xml { render xml: @patient }
+    end
   rescue ActiveRecord::RecordNotFound
     redirect_to patients_url, alert: t('.patient_not_found')
   end
