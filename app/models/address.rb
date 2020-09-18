@@ -2,7 +2,7 @@
 
 class Address
   include JsonbSerializable
-  include Addresseable
+  include Addressable
   include ActiveModel::Model
   include ActiveModel::Serialization
   include ActiveModel::Attributes
