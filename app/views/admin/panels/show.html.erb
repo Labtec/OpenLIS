@@ -24,7 +24,7 @@
   <strong>Lab Tests:</strong>
   <ul>
     <% @panel.lab_tests.each do |lab_test| %>
-      <li><%= sanitize(lab_test.name) %></li>
+      <li><%= sanitize lab_test.name %><%= " (#{lab_test.description})" if lab_test.description.present? %> <%= loinc_hyperlink(lab_test.loinc) if lab_test.loinc.present? %></li>
     <% end %>
   </ul>
 </p>
