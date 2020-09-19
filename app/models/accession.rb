@@ -104,7 +104,7 @@ class Accession < ApplicationRecord
     true
   end
 
-  def all_pending?
+  def registered?
     results.find_each do |result|
       return false unless result.pending?
     end
@@ -120,19 +120,16 @@ class Accession < ApplicationRecord
     if reported_at
       # XXX: Do not use UNIX time
       return 'amended' if updated_at.to_i > reported_at.to_i &&
-        updated_at.to_i > emailed_doctor_at.to_i &&
-        updated_at.to_i > emailed_patient_at.to_i
+                          updated_at.to_i > emailed_doctor_at.to_i &&
+                          updated_at.to_i > emailed_patient_at.to_i
 
       return 'final'
     end
 
     return 'preliminary' if complete?
+    return 'registered' if registered?
 
-    if all_pending?
-      return 'registered'
-    else
-      return 'partial'
-    end
+    'partial'
   end
 
   private

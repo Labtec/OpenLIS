@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Addresseable
+module Addressable
   extend ActiveSupport::Concern
 
   def type_for_attribute(attr_name, &block)

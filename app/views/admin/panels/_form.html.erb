@@ -32,7 +32,7 @@
         <%= f.collection_check_boxes(:lab_test_ids, LabTest.all, :id, :name) do |b| %>
           <div class="lab_test">
             <%= b.check_box %>
-            <label class="checkbox" for="panel_lab_test_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
+            <label class="checkbox" for="panel_lab_test_ids_<%= b.object.id %>"><%= sanitize(b.text) %><%= " (#{b.object.description})" if b.object.description.present? %></label>
           </div>
         <% end %>
       </div>
