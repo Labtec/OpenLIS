@@ -6,7 +6,7 @@ module ResultsHelper
       t('.doctor')
       content_tag :strong, doctor.name
     else
-      content_tag :strong, t('.walk_in')
+      content_tag :strong, t('.outpatient')
     end
   end
 

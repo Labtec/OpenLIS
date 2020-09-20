@@ -230,7 +230,7 @@ class LabReport < Prawn::Document
           else
             bounding_box([bounds.left, bounds.top - 2 * row_height], width: demographics_width1 + demographics_width2, height: row_height) do
               indent PADDING do
-                text t('results.index.walk_in')
+                text t('results.index.outpatient')
               end
             end
           end
