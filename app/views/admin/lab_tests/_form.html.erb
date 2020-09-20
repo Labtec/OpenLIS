@@ -19,7 +19,7 @@
 
   <div class="unit_id">
     <%= f.label :unit_id, 'Units' %>
-    <%= f.collection_select :unit_id, Unit.all, :id, :name, include_blank: true %>
+    <%= f.collection_select :unit_id, Unit.all, :id, :name_display, include_blank: true %>
   </div>
 
   <div class="decimals">

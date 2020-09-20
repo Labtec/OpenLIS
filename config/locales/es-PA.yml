@@ -13,7 +13,7 @@ es-PA:
       reported_at: 'Reportado el: '
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
-      walk_in: Ambulatorio
+      outpatient: Ambulatorio
     accessions:
       no_requisitions_yet: Sin historial de peticiones
       order_tests: Ordenar Pruebas
@@ -33,7 +33,7 @@ es-PA:
       reported_at: 'Reportado el: '
       submit: Guardar Resultados
       title: Ingresar Resultados
-      walk_in: Ambulatorio
+      outpatient: Ambulatorio
     form:
       accession: 'Solicitud #%{id}'
       cancel: Cancelar
@@ -52,7 +52,7 @@ es-PA:
       reported_by: 'Reportado por:'
       search_icd_code: Buscar código CIE
       submit: Guardar
-      walk_in: Dejar en blanco si es ambulatorio
+      outpatient: Dejar en blanco si es ambulatorio
     index:
       title: Peticiones
     new:
@@ -76,7 +76,7 @@ es-PA:
       report: Reportar
       reported_at: 'Reportado el: '
       sending_email: Enviando correo…
-      walk_in: Ambulatorio
+      outpatient: Ambulatorio
     sidebar:
       address: 'Dirección:'
       cellular: 'Móvil:'
@@ -286,7 +286,7 @@ es-PA:
       run_by: 'Ejecutado por:'
       type: 'Especie:'
       units: Unidades
-      walk_in: Ambulatorio
+      outpatient: Ambulatorio
       year: año
       years: años
     low: •

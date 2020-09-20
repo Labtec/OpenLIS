@@ -13,7 +13,7 @@ en:
       reported_at: 'Reported at: '
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
-      walk_in: Walk-in
+      outpatient: Outpatient
     accessions:
       no_requisitions_yet: No requisitions history
       order_tests: Order Tests
@@ -33,7 +33,7 @@ en:
       reported_at: 'Reported at: '
       submit: Save Results
       title: Enter Results
-      walk_in: Walk-in
+      outpatient: Outpatient
     form:
       accession: 'Accession #%{id}'
       cancel: Cancel
@@ -52,7 +52,7 @@ en:
       reported_by: 'Reported by:'
       search_icd_code: Search ICD Code
       submit: Save
-      walk_in: Leave blank if walk-in
+      outpatient: Leave blank if outpatient
     index:
       title: Requisitions
     new:
@@ -76,7 +76,7 @@ en:
       report: Report
       reported_at: 'Reported at: '
       sending_email: Sending Email…
-      walk_in: Walk-in
+      outpatient: Outpatient
     sidebar:
       address: 'Address:'
       cellular: 'Mobile:'
@@ -286,7 +286,7 @@ en:
       run_by: 'Run By:'
       type: 'Species:'
       units: Units
-      walk_in: Walk-in
+      outpatient: Outpatient
       year: year
       years: years
     low: L

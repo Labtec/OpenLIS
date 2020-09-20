@@ -22,4 +22,9 @@ class UnitTest < ActiveSupport::TestCase
     unit = Unit.create(name: 'International  Unit')
     assert_equal 'International Unit', unit.name
   end
+
+  test 'absence of name but UCUM unit present' do
+    unit = Unit.create(name: '', ucum: '{ratio}')
+    assert unit.valid?
+  end
 end
