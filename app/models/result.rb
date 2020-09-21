@@ -149,6 +149,11 @@ class Result < ApplicationRecord
     when 'VLDL'
       trig = result_for 'TRIG'
       0.2 * trig
+    when 'UOSMS'
+      na = result_for 'Na'
+      bun = result_for 'BUN'
+      glucose = result_for('GLU') || result_for('GLUC')
+      na * 2 + bun / 2.8 + glucose / 18
     end
   rescue StandardError
     'calc.'
@@ -157,7 +162,7 @@ class Result < ApplicationRecord
   # TODO: This method should be in Accession
   def result_for(code)
     lab_test_by_code = LabTest.find_by(code: code)
-    result_value = accession.results.find_by(lab_test_id: lab_test_by_code).value
+    result_value = accession.results.find_by(lab_test_id: lab_test_by_code).try(:value)
     result_value.to_d if result_value.present?
   end
 
