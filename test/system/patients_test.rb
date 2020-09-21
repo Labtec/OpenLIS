@@ -22,4 +22,12 @@ class PatientsTest < ApplicationSystemTestCase
     assert_not page.has_content?('error'), 'New patient not added'
     assert page.has_content?('Amber Zigbee')
   end
+
+  test 'search for a patient' do
+    visit root_path
+    fill_in 'Search patients', with: "Alicia Doe\n"
+
+    assert_not page.has_content?('222-222-2222'), 'Non-searched patient'
+    assert page.has_content?('111-111-1111'), 'Patient search failed'
+  end
 end
