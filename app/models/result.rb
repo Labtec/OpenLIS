@@ -159,11 +159,25 @@ class Result < ApplicationRecord
       if patient.gender == 'F'
         a = -0.329
         k = 0.7
-        b_gender = 1.018 * 1.159 # XXX: Patient ethnicity/race is never collected
+        gender = 1.018
       else
         a = -0.411
         k = 0.9
-        b_gender = 1.159 # XXX: Patient ethnicity/race is never collected
+        gender = 1
+      end
+      age = accession.patient_age[:years]
+      cret_k = cret / k
+      141 * [cret_k, 1].min**a * [cret_k, 1].max**-1.209 * 0.993**age * gender
+    when 'GFR-B'
+      cret = result_for 'CRET'
+      if patient.gender == 'F'
+        a = -0.329
+        k = 0.7
+        b_gender = 1.018 * 1.159
+      else
+        a = -0.411
+        k = 0.9
+        b_gender = 1.159
       end
       age = accession.patient_age[:years]
       cret_k = cret / k
