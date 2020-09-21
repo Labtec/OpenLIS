@@ -12,7 +12,7 @@ module ResultsHelper
 
   def format_value(result)
     if result.lab_test.derivation?
-      number_with_precision(result.derived_value, precision: result.lab_test_decimals, delimiter: ',')
+      number_with_precision(result.derived_value, precision: result.lab_test_decimals, delimiter: ',') || 'calc.'
     elsif result.lab_test_value && result.value.present?
       [result.lab_test_value.value,
        ' [',
