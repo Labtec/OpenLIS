@@ -1,5 +1,5 @@
 <% cache [I18n.locale, @patient] do %>
-  <div class="panel" id="summary">
+  <div class="panel <%= 'deceased' if @patient.deceased? %>" id="summary">
 
     <%= avatar_icon(@patient) %>
 

@@ -172,6 +172,7 @@ en:
       cellular: 'Mobile:'
       corregimiento: 'Corregimiento:'
       day: 'Day:'
+      deceased: 'Deceased?'
       district: 'District:'
       email: 'Email:'
       family_name: 'Last name:'

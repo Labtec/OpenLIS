@@ -172,6 +172,7 @@ es-PA:
       cellular: 'Móvil:'
       corregimiento: 'Corregimiento:'
       day: 'Día:'
+      deceased: '¿Fallecido(a)?'
       district: 'Distrito:'
       email: 'Correo electrónico:'
       family_name: 'Primer apellido:'
