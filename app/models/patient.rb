@@ -2,6 +2,7 @@
 
 class Patient < ApplicationRecord
   include PgSearch::Model
+  include FHIRable::Patient
 
   ANIMAL_SPECIES = (0..3).to_a
   GENDERS = %w[F M O U].freeze

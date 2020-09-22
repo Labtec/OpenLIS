@@ -13,6 +13,7 @@
 # These inflection rules are supported but not enabled by default:
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'OpenLIS'
+  inflect.acronym 'FHIRable'
   inflect.acronym 'LOINC'
   inflect.acronym 'SNOMED'
   inflect.acronym 'UB04'

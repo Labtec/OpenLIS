@@ -27,6 +27,9 @@
       <% end %>
     </div>
     <div class="bottom_card">
+      <%= link_to patient_path @patient, format: :json do %>
+        <%= image_tag('logo_fhir.svg', size: '15x15', class: 'fhir_icon') %>
+      <% end %>
       <% if @patient.insurance_provider %>
         <%= image_tag('axa.svg', size: '15x15') %>
         <%= @patient.policy_number %>

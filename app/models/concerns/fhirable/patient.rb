@@ -1,0 +1,68 @@
+# frozen_string_literal: true
+
+module FHIRable
+  module Patient
+    extend ActiveSupport::Concern
+    include FHIRable::Address
+    include FHIRable::Communication
+    include FHIRable::Identifier
+    include FHIRable::Name
+    include FHIRable::Telecom
+
+    ADMINISTRATIVE_GENDERS = {
+      'M' => 'male',
+      'F' => 'female',
+      'O' => 'other',
+      'U' => 'unknown'
+    }.freeze
+
+    included do
+      def self.new_from_fhir(contents)
+        bundle = FHIR.from_contents(contents)
+        patient = ''
+
+        if bundle.try(:entry)
+          bundle.entry.each do |e|
+            next if e.resource.resourceType != 'Patient'
+
+            patient = e.resource
+            break
+          end
+        else
+          patient = bundle
+        end
+
+        new(
+          given_name: patient.name.first.given.first,
+          middle_name: patient.name.first.given.second,
+          family_name: patient.name.first.family,
+          birthdate: patient.birthDate,
+          identifier: patient.identifier.first.value,
+          gender: ADMINISTRATIVE_GENDERS.key(patient.gender)
+        )
+      end
+    end
+
+    def fhirable_patient
+      FHIR::Patient.new(
+        'id': id,
+        'active': true,
+        'identifier': fhirable_identifier,
+        'name': fhirable_name,
+        'telecom': fhirable_telecom,
+        'gender': ADMINISTRATIVE_GENDERS[gender],
+        'birthDate': birthdate,
+        'deceasedBoolean': false,
+        'address': fhirable_address
+      )
+    end
+
+    def to_json(_options = {})
+      fhirable_patient.to_json
+    end
+
+    def to_xml(_options = {})
+      fhirable_patient.to_xml
+    end
+  end
+end
