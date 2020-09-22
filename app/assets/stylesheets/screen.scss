@@ -813,6 +813,8 @@ li.contact:hover {
 .panel#summary {
   background: oldlace;
   width: 194px; }
+#summary.panel.deceased {
+  opacity: 0.5; }
 
 .selector {
   color: black;

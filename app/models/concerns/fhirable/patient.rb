@@ -52,7 +52,7 @@ module FHIRable
         'telecom': fhirable_telecom,
         'gender': ADMINISTRATIVE_GENDERS[gender],
         'birthDate': birthdate,
-        'deceasedBoolean': false,
+        'deceasedBoolean': deceased?,
         'address': fhirable_address
       )
     end

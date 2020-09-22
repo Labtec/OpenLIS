@@ -47,6 +47,11 @@
     <%= f.text_field :identifier, id: :patient_identifier, autocorrect: "off" %>
   </div>
 
+  <div class="deceased">
+    <%= f.label :deceased, t('.deceased') %>
+    <%= f.check_box :deceased, id: :patient_deceased %>
+  </div>
+
   <div class="email">
     <%= f.label :email, t('.email') %>
     <%= f.email_field :email, id: :patient_email %>

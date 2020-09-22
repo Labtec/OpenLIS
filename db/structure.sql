@@ -418,7 +418,8 @@ CREATE TABLE public.patients (
     policy_number character varying(510) DEFAULT NULL::character varying,
     partner_name character varying,
     cellular character varying(32),
-    address jsonb DEFAULT '{}'::jsonb
+    address jsonb DEFAULT '{}'::jsonb,
+    deceased boolean
 );
 
 
@@ -1104,6 +1105,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200806230748'),
 ('20200824000001'),
 ('20200824000002'),
-('20200905000001');
+('20200905000001'),
+('20200922000001');
 
 
