@@ -15,7 +15,7 @@ module FHIRable
     private
 
     def fhirable_telecom_cellular
-      return unless cellular
+      return if cellular.blank?
 
       {
         'use': 'mobile',
@@ -35,7 +35,7 @@ module FHIRable
     end
 
     def fhirable_telecom_phone
-      return unless phone
+      return if phone.blank?
 
       {
         'use': 'home',
