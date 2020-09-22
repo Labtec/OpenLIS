@@ -19,8 +19,26 @@ module FHIRable
           },
           'system': 'https://verificate.pa/cedula?search=',
           'value': identifier
-        }
+        },
+        fhirable_identifier_member_number
       ]
+    end
+
+    private
+
+    def fhirable_identifier_member_number
+      return if policy_number.blank?
+
+      {
+        'type': {
+          'coding': [
+            'system': 'http://terminology.hl7.org/CodeSystem/v2-0203',
+            'code': 'MB'
+          ]
+        },
+        'system': 'https://www.axa-assistance.com.pa',
+        'value': policy_number
+      }
     end
   end
 end
