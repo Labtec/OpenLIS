@@ -651,6 +651,10 @@ h3.department {
     padding: 0px;
     margin: -10px 0px 0px 36px; }
 
+li.contact.deceased {
+  min-height: 30px;
+  opacity: 0.5; }
+
 li.contact:hover {
   background: seashell;
 
