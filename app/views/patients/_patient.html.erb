@@ -1,5 +1,5 @@
 <% cache [I18n.locale, patient] do %>
-  <li class="contact">
+  <li class="contact <%= 'deceased' if patient.deceased? %>">
     <%= avatar_icon(patient) %>
 
     <div class="tools">
@@ -14,17 +14,17 @@
     <%= link_to full_name(patient), patient_path(patient) %>
     <tt><%= patient.identifier %></tt>
     <dt class="second">
+      <%= age(patient.birthdate) unless patient.deceased? %>
       <% if patient.email.present? %>
-        <%= mail_to patient.email %> |
+        | <%= mail_to patient.email %>
       <% end %>
       <% if patient.cellular.present? %>
-        <%= t('.cellular') %> <b><%= link_to format_phone_number(patient.cellular),
-          whatsapp_click_to_chat_url(patient.cellular), target: :_blank %></b> |
+        | <%= t('.cellular') %> <b><%= link_to format_phone_number(patient.cellular),
+          whatsapp_click_to_chat_url(patient.cellular), target: :_blank %></b>
       <% end %>
       <% if patient.phone.present? %>
-        <%= t('.phone') %> <b><%= format_phone_number(patient.phone) %></b> |
+        | <%= t('.phone') %> <b><%= format_phone_number(patient.phone) %></b>
       <% end %>
-      <%= age(patient.birthdate) %>
     </dt>
   </li>
 <% end %>
