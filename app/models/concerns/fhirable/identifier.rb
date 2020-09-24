@@ -17,7 +17,7 @@ module FHIRable
               'code': 'NNPAN'
             ]
           },
-          'system': 'https://verificate.pa/cedula?search=',
+          'system': 'https://sede.tribunal-electoral.gob.pa/sede-cedula-web',
           'value': identifier
         },
         fhirable_identifier_member_number
