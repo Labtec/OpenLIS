@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     resources :accessions, except: :index do
       resources :results, only: :index
     end
+    member do
+      get 'history'
+    end
   end
 
   resources :accessions, only: :index do
