@@ -13,11 +13,6 @@ class PatientsController < ApplicationController
                                   .queued.pending.page(params[:pending_page])
     @reported_accessions = @patient.accessions
                                    .recently.reported.page(params[:page])
-    respond_to do |format|
-      format.html
-      format.json { render json: @patient }
-      format.xml { render xml: @patient }
-    end
   rescue ActiveRecord::RecordNotFound
     redirect_to patients_url, alert: t('.patient_not_found')
   end
@@ -52,6 +47,19 @@ class PatientsController < ApplicationController
     @patient = Patient.find(params[:id])
     @patient.destroy
     redirect_to patients_url, notice: t('.success')
+  end
+
+  def history
+    @bundle = FHIR::Bundle.new
+    @patient = Patient.find(params[:id])
+    @bundle.id = @patient.id
+    @bundle.type = 'history'
+    @bundle.entry = FHIR.from_contents(@patient.to_json)
+
+    respond_to do |format|
+      format.json { render json: @bundle.to_json }
+      format.xml { render xml: @bundle.to_xml }
+    end
   end
 
   protected
