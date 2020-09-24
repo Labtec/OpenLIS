@@ -52,8 +52,10 @@ class PatientsController < ApplicationController
   def history
     @bundle = FHIR::Bundle.new
     @patient = Patient.find(params[:id])
+    meta = FHIR::Meta.new("lastUpdated" => @patient.updated_at.iso8601)
     @bundle.id = @patient.id
     @bundle.type = 'history'
+    @bundle.meta = meta
     @bundle.entry = FHIR.from_contents(@patient.to_json)
 
     respond_to do |format|
