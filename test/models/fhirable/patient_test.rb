@@ -35,4 +35,15 @@ class FHIRablePatientTest < ActiveSupport::TestCase
 
     assert patient.valid?
   end
+
+  test 'imported animal patient from json maps to OpenLIS' do
+    json = file_fixture('patient-example-animal.json').read
+    patient = Patient.new_from_fhir(json)
+
+    assert_equal 'Kenzi', patient.given_name
+    assert_equal 'F', patient.gender
+    assert_equal Date.new(2010, 3, 23), patient.birthdate
+    assert_equal '1234123', patient.identifier
+    assert_equal 1, patient.animal_type
+  end
 end
