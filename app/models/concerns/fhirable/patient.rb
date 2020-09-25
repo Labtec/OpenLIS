@@ -4,6 +4,7 @@ module FHIRable
   module Patient
     extend ActiveSupport::Concern
     include FHIRable::Address
+    include FHIRable::Animal
     include FHIRable::Communication
     include FHIRable::Identifier
     include FHIRable::Name
@@ -16,10 +17,15 @@ module FHIRable
       'U' => 'unknown'
     }.freeze
 
+    ANIMAL_SPECIES = {
+      1 => 'canislf'
+    }.freeze
+
     included do
       def self.new_from_fhir(contents)
         bundle = FHIR.from_contents(contents)
         patient = ''
+        animal_species = ''
 
         if bundle.try(:entry)
           bundle.entry.each do |e|
@@ -32,19 +38,28 @@ module FHIRable
           patient = bundle
         end
 
+        patient.extension.each do |e|
+          next unless e.url == 'http://hl7.org/fhir/StructureDefinition/patient-animal'
+
+          animal_species = ANIMAL_SPECIES.key(e.species.coding.first.code)
+          break
+        end
+
         new(
           given_name: patient.name.first.given.first,
           middle_name: patient.name.first.given.second,
           family_name: patient.name.first.family,
           birthdate: patient.birthDate,
           identifier: patient.identifier.first.value,
-          gender: ADMINISTRATIVE_GENDERS.key(patient.gender)
+          gender: ADMINISTRATIVE_GENDERS.key(patient.gender),
+          animal_type: animal_species
         )
       end
     end
 
     def fhirable_patient
       FHIR::Patient.new(
+        'extension': fhirable_animal,
         'id': id,
         'active': true,
         'identifier': fhirable_identifier,
