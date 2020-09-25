@@ -15,7 +15,7 @@ module FHIRable
             'valueCodeableConcept': {
               'coding': [
                 {
-                  'system': 'http://hl7.org/fhir/animal-species',
+                  'system': 'http://snomed.info/sct',
                   'code': code_for_species,
                   'display': display_for_species
                 }
@@ -31,20 +31,20 @@ module FHIRable
     def code_for_species
       case animal_type
       when 1
-        'canislf'
+        '448771007'
       when 2
-        'felisc'
+        '448169003'
       when 3
-        'equusc'
+        '35354009'
       end
     end
 
     def display_for_species
       case animal_type
       when 1
-        'Dog'
+        'Domestic dog'
       when 2
-        'Cat'
+        'Domestic cat'
       when 3
         'Horse'
       end
