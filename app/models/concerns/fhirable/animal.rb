@@ -16,8 +16,8 @@ module FHIRable
               'coding': [
                 {
                   'system': 'http://hl7.org/fhir/animal-species',
-                  'code': "#{code_for_species}",
-                  'display': "#{display_for_species}"
+                  'code': code_for_species,
+                  'display': display_for_species
                 }
               ]
             }
@@ -29,7 +29,7 @@ module FHIRable
     private
 
     def code_for_species
-      case self.animal_type
+      case animal_type
       when 1
         'canislf'
       when 2
@@ -40,7 +40,7 @@ module FHIRable
     end
 
     def display_for_species
-      case self.animal_type
+      case animal_type
       when 1
         'Dog'
       when 2

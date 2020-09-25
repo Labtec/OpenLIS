@@ -3,12 +3,12 @@
 module FHIRable
   module Patient
     extend ActiveSupport::Concern
-    include FHIRable::Address
-    include FHIRable::Animal
-    include FHIRable::Communication
-    include FHIRable::Identifier
-    include FHIRable::Name
-    include FHIRable::Telecom
+    include Address
+    include Animal
+    include Communication
+    include Identifier
+    include Name
+    include Telecom
 
     ADMINISTRATIVE_GENDERS = {
       'M' => 'male',

@@ -6,7 +6,7 @@ module FHIRable
 
     # TODO: Implement an identifier type ['NNPAN', 'PPN']
     def fhirable_identifier
-      return unless identifier.present?
+      return if identifier.blank?
 
       [
         {
