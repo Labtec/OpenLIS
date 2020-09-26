@@ -43,7 +43,7 @@
   </div>
 
   <div class="identifier">
-    <%= f.label :identifier, t('.identifier') %>
+    <%= f.select :identifier_type, options_for_identifier_type, id: :patient_identifier_type %>
     <%= f.text_field :identifier, id: :patient_identifier, autocorrect: "off" %>
   </div>
 

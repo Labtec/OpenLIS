@@ -169,6 +169,7 @@ en:
       address: 'Address:'
       birthdate: 'Birth date:'
       cancel: Cancel
+      cedula: 'National ID:'
       cellular: 'Mobile:'
       corregimiento: 'Corregimiento:'
       day: 'Day:'
@@ -179,7 +180,6 @@ en:
       family_name2: "Mother's maiden name:"
       gender: 'Sex:'
       given_name: 'Given name:'
-      identifier: 'National ID:'
       insurance_provider: 'Insurance provider:'
       insured: "Insured's Name:"
       insured_placeholder: Leave blank if primary
@@ -189,6 +189,7 @@ en:
       month: 'Month:'
       or: or
       partner_name: "Partner's name:"
+      passport: 'Passport:'
       phone: 'Phone:'
       policy_number: 'Policy number:'
       prompt_gender: 'Select sex:'
@@ -218,7 +219,8 @@ en:
       edit: Edit
       email: 'Email:'
       gender: 'Sex:'
-      identifier: 'National ID:'
+      cedula: 'National ID:'
+      passport: 'Passport:'
       phone: 'Phone:'
       year: year
     patients:
@@ -255,6 +257,8 @@ en:
     indeterminate: IND
     intermediate: I
     index:
+      1: 'ID:'
+      2: 'Passport:'
       accession: 'Accession:'
       age: 'Age:'
       amended: Amended
@@ -266,7 +270,6 @@ en:
       flag: Flag
       full_name: 'Name:'
       gender: 'Sex:'
-      identifier: 'ID:'
       lab_test: Test Name
       notes: 'Notes:'
       of: of

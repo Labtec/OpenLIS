@@ -56,6 +56,7 @@ class PatientTitleizeNamesTest < ActiveSupport::TestCase
 
   test 'identifier contains extra spaces' do
     @patient.identifier = '  12345  '
+    @patient.identifier_type = 0
 
     @patient.save!
     assert_equal '12345', @patient.identifier

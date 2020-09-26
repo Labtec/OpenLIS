@@ -218,7 +218,7 @@ class LabReport < Prawn::Document
           end
           bounding_box([bounds.left, bounds.top - row_height], width: demographics_width1, height: row_height) do
             indent PADDING do
-              text t('results.index.identifier')
+              text t("results.index.#{@patient.identifier_type}") if @patient.identifier_type
             end
           end
           if @accession.doctor
