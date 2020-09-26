@@ -76,7 +76,8 @@ class PatientsController < ApplicationController
     params.require(:patient).permit(
       :given_name, :middle_name, :family_name, :family_name2, :partner_name,
       :gender, :birthdate, :identifier, :email, :cellular, :phone, :deceased,
-      :animal_type, :insurance_provider_id, :policy_number, address: {}
+      :animal_type, :insurance_provider_id, :policy_number, :identifier_type,
+      address: {}
     )
   end
 end

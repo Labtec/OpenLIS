@@ -14,10 +14,10 @@ module FHIRable
           'type': {
             'coding': [
               'system': 'http://terminology.hl7.org/CodeSystem/v2-0203',
-              'code': 'NNPAN'
+              'code': fhirable_identifier_code
             ]
           },
-          'system': 'https://sede.tribunal-electoral.gob.pa/sede-cedula-web',
+          'system': fhirable_identifier_system,
           'value': identifier
         },
         fhirable_identifier_member_number
@@ -25,6 +25,14 @@ module FHIRable
     end
 
     private
+
+    def fhirable_identifier_code
+      identifier_type == 1 ? 'NNPAN' : 'PPN'
+    end
+
+    def fhirable_identifier_system
+      'https://sede.tribunal-electoral.gob.pa/sede-cedula-web' if identifier_type == 1
+    end
 
     def fhirable_identifier_member_number
       return if policy_number.blank?

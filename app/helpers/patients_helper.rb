@@ -73,6 +73,13 @@ module PatientsHelper
     ]
   end
 
+  def options_for_identifier_type
+    [
+      [t('patients.form.cedula'), 1],
+      [t('patients.form.passport'), 2]
+    ]
+  end
+
   # Returns a hash with the age of a patient at any given time.
   # If no time is given, +Time.current+ is used.
   #

@@ -6,6 +6,7 @@ class Patient < ApplicationRecord
 
   ANIMAL_SPECIES = (0..3).to_a
   GENDERS = %w[F M O U].freeze
+  IDENTIFIER_TYPES = (0..2).to_a
 
   belongs_to :insurance_provider, optional: true
 
@@ -32,6 +33,9 @@ class Patient < ApplicationRecord
   validates :birthdate, not_in_the_future: true
   validates :identifier, uniqueness: { case_sensitive: false },
                          allow_blank: true
+  validates :identifier_type, presence: true, if: -> { identifier.present? }
+  validates :identifier_type, inclusion: { in: IDENTIFIER_TYPES },
+                              allow_blank: true
   validates :email, email: true, allow_blank: true
   validates :phone, phone: { allow_blank: true, types: :fixed_line }
   validates :cellular, phone: { allow_blank: true, types: :mobile }
@@ -63,7 +67,7 @@ class Patient < ApplicationRecord
                         :partner_name, :identifier, :cellular, :phone,
                         :policy_number
 
-  before_save :titleize_names
+  before_save :titleize_names, :nil_identifier_type_if_identifier_blank
   after_commit :flush_cache
 
   pg_search_scope :search_by_name, against: %i[identifier
@@ -87,6 +91,10 @@ class Patient < ApplicationRecord
   end
 
   private
+
+  def nil_identifier_type_if_identifier_blank
+    self.identifier_type = nil if identifier.blank?
+  end
 
   def titleize_names
     self.given_name = given_name.mb_chars.titleize if given_name

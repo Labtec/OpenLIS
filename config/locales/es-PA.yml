@@ -169,6 +169,7 @@ es-PA:
       address: 'Dirección:'
       birthdate: 'Fecha de nacimiento:'
       cancel: Cancelar
+      cedula: 'Cédula:'
       cellular: 'Móvil:'
       corregimiento: 'Corregimiento:'
       day: 'Día:'
@@ -179,7 +180,6 @@ es-PA:
       family_name2: 'Segundo apellido:'
       gender: 'Sexo:'
       given_name: 'Primer nombre:'
-      identifier: 'Cédula:'
       insurance_provider: 'Proveedor de seguro:'
       insured: 'Nombre del asegurado:'
       insured_placeholder: Dejar en blanco si es el principal
@@ -189,6 +189,7 @@ es-PA:
       month: 'Mes:'
       or: o
       partner_name: 'Apellido de casada:'
+      passport: 'Pasaporte:'
       phone: 'Teléfono:'
       policy_number: 'Número de póliza:'
       prompt_gender: 'Elegir sexo:'
@@ -218,7 +219,8 @@ es-PA:
       edit: Editar
       email: 'Correo Electrónico:'
       gender: 'Sexo:'
-      identifier: 'Cédula:'
+      cedula: 'Cédula:'
+      passport: 'Pasaporte:'
       phone: 'Tel:'
       year: año
     patients:
@@ -255,6 +257,8 @@ es-PA:
     indeterminate: •
     intermediate: •
     index:
+      1: 'Cédula:'
+      2: 'Pasaporte:'
       accession: 'Solicitud:'
       age: 'Edad:'
       amended: ''
@@ -266,7 +270,6 @@ es-PA:
       flag: Señal
       full_name: 'Nombre:'
       gender: 'Sexo:'
-      identifier: 'Cédula:'
       lab_test: Prueba
       notes: 'Observaciones:'
       of: de
@@ -380,7 +383,8 @@ es-PA:
         family_name: Primer apellido
         gender: Sexo
         given_name: Primer nombre
-        identifier: Cédula
+        identifier: Identificación
+        identifier_type: Tipo de identificación
         phone: Teléfono
         policy_number: Número de Póliza
       results:

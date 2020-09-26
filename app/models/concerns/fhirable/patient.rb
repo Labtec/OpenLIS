@@ -51,6 +51,7 @@ module FHIRable
           family_name: patient.name.first.family,
           birthdate: patient.birthDate,
           identifier: patient.identifier.first.value,
+          identifier_type: 0,
           gender: ADMINISTRATIVE_GENDERS.key(patient.gender),
           animal_type: animal_species
         )

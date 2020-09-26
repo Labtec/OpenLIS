@@ -76,11 +76,15 @@ form {
   form div.address {
     width: 550px; }
   form div.gender {
+    padding-top: 5px;
     width: 110px; }
   form div.birthdate {
+    padding-top: 5px;
     width: 235px; }
   form div.identifier {
     width: 124px; }
+  form div.deceased {
+    padding-top: 5px; }
   form div.email {
     width: 325px; }
   form div.phone {
