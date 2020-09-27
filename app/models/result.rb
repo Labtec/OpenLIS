@@ -42,17 +42,17 @@ class Result < ApplicationRecord
       na - (cl + co2)
     when 'BUNCRER'
       bun = result_for 'BUN'
-      cre = result_for 'CRE'
-      bun / cre
+      crtsa = result_for 'CRTSA'
+      bun / crtsa
     when 'CHOLHDLR'
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
       chol / hdl
     when 'CRETCLEAR24H'
       urncret = result_for 'URNCRET'
-      cret = result_for 'CRET'
+      crtsa = result_for 'CRTSA'
       uvol24h = result_for 'UVOL24H'
-      uvol24h * urncret / cret / 1440
+      uvol24h * urncret / crtsa / 1440
     when 'LDLHDLR'
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
@@ -154,8 +154,8 @@ class Result < ApplicationRecord
       bun = result_for 'BUN'
       glucose = result_for('GLU') || result_for('GLUC')
       na * 2 + bun / 2.8 + glucose / 18
-    when 'GFR'
-      cret = result_for 'CRET'
+    when 'EGNB'
+      crtsa = result_for 'CRTSA'
       if patient.gender == 'F'
         a = -0.329
         k = 0.7
@@ -166,10 +166,10 @@ class Result < ApplicationRecord
         gender = 1
       end
       age = accession.patient_age[:years]
-      cret_k = cret / k
-      141 * [cret_k, 1].min**a * [cret_k, 1].max**-1.209 * 0.993**age * gender
-    when 'GFR-B'
-      cret = result_for 'CRET'
+      crtsa_k = crtsa / k
+      141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * gender
+    when 'EGBL'
+      crtsa = result_for 'CRTSA'
       if patient.gender == 'F'
         a = -0.329
         k = 0.7
@@ -180,8 +180,8 @@ class Result < ApplicationRecord
         b_gender = 1.159
       end
       age = accession.patient_age[:years]
-      cret_k = cret / k
-      141 * [cret_k, 1].min**a * [cret_k, 1].max**-1.209 * 0.993**age * b_gender
+      crtsa_k = crtsa / k
+      141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * b_gender
     end
   rescue StandardError
     'calc.'
