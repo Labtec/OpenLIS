@@ -53,7 +53,8 @@ module FHIRable
           identifier: patient.identifier.first.value,
           identifier_type: 0,
           gender: ADMINISTRATIVE_GENDERS.key(patient.gender),
-          animal_type: animal_species
+          animal_type: animal_species,
+          deceased: patient.deceasedBoolean
         )
       end
     end
@@ -62,7 +63,7 @@ module FHIRable
       FHIR::Patient.new(
         'extension': fhirable_animal,
         'id': id,
-        'active': true,
+        'active': fhirable_active,
         'identifier': fhirable_identifier,
         'name': fhirable_name,
         'telecom': fhirable_telecom,
@@ -79,6 +80,10 @@ module FHIRable
 
     def to_xml(_options = {})
       fhirable_patient.to_xml
+    end
+
+    def fhirable_active
+      deceased? ? false : true
     end
   end
 end

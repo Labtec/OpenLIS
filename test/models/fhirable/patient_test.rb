@@ -27,6 +27,7 @@ class FHIRablePatientTest < ActiveSupport::TestCase
     assert_equal 'M', patient.gender
     assert_equal Date.new(1974, 12, 25), patient.birthdate
     assert_equal '12345', patient.identifier
+    assert_not patient.deceased?
   end
 
   test 'imported patient from json is valid' do
