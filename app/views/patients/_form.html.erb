@@ -11,6 +11,10 @@
     <%= f.text_field :middle_name, id: :patient_middle_name, autocorrect: "off" %>
   </div>
 
+  <div class="scan">
+    <input tabindex="-1" id="barcode_scan" placeholder="❚❘❙❘❘❘❙❘❙❘❘"></input>
+  </div>
+
   <div class="family_name">
     <%= f.label :family_name, t('.family_name'), class: 'required' %>
     <%= f.text_field :family_name, id: :patient_family_name, autocorrect: "off" %>
