@@ -523,7 +523,7 @@ class LabReport < Prawn::Document
 
     float do
       bounding_box([5, cursor + shim], width: 170, height: pad) do
-        svg Base64.strict_decode64(current_user.signature), height: pad if current_user.signature
+        svg Base64.strict_decode64(current_user.signature), position: :center, height: pad if current_user.signature
       end
     end
   end
