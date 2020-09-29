@@ -106,7 +106,7 @@ class Accession < ApplicationRecord
 
   def registered?
     results.find_each do |result|
-      return false unless result.pending?
+      return false unless result.pending? || result.derivation?
     end
     true
   end
