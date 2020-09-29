@@ -355,6 +355,7 @@ es-PA:
       personal_information: Información Personal
       prefix: 'Prefijo:'
       register: 'Registro:'
+      signature: 'Firma:'
       submit: Guardar Usuario
       suffix: 'Sufijo:'
       username: 'Nombre de usuario:'

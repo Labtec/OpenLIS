@@ -60,7 +60,8 @@ form {
   form div.password,
   form div.admin,
   form div.prefix,
-  form div.insurance_provider_id {
+  form div.insurance_provider_id,
+  form div.signature {
     clear: left; }
   form div.given_name,
   form div.middle_name,
@@ -160,6 +161,8 @@ form {
     width: 40px; }
   form div.scan {
     margin-top: 21px; }
+  form div.signature {
+    width: 150px; }
 
 fieldset {
   min-width: 550px;

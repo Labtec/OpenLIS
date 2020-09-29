@@ -355,6 +355,7 @@ en:
       personal_information: Personal Information
       prefix: 'Prefix:'
       register: 'Registration:'
+      signature: 'Signature:'
       submit: Save User
       suffix: 'Suffix:'
       username: 'Username:'

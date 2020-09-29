@@ -102,7 +102,7 @@ class AccessionsController < ApplicationController
     @patient = @accession.patient
     @results = @accession.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
 
-    pdf = LabReport.new(@patient, @accession, @results, view_context)
+    pdf = LabReport.new(@patient, @accession, @results, true, view_context)
 
     if @patient.email.present?
       ResultsMailer.email_patient(@accession, pdf).deliver_now
@@ -118,7 +118,7 @@ class AccessionsController < ApplicationController
     @patient = @accession.patient
     @results = @accession.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
 
-    pdf = LabReport.new(@patient, @accession, @results, view_context)
+    pdf = LabReport.new(@patient, @accession, @results, true, view_context)
 
     if @accession.doctor.email.present?
       ResultsMailer.email_doctor(@accession, pdf).deliver_now
