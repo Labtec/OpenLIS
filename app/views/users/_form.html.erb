@@ -59,6 +59,13 @@
     <%= f.text_field :register %>
   </div>
 
+  <% if @user.signature.present? %>
+  <div class="signature">
+    <%= f.label :signature, t('.signature') %>
+    <img src="data:image/svg+xml;base64,<%= f.object.signature %>"/>
+  </div>
+  <% end %>
+
   <div class="buttonbar">
     <%= f.submit t('.submit') %>
     <%= t('.or') %>

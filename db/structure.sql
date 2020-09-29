@@ -615,7 +615,9 @@ CREATE TABLE public.users (
     remember_created_at timestamp with time zone,
     unlock_token character varying(510) DEFAULT NULL::character varying,
     locked_at timestamp with time zone,
-    failed_attempts integer DEFAULT 0
+    failed_attempts integer DEFAULT 0,
+    signature text,
+    descender boolean
 );
 
 
@@ -1108,6 +1110,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200824000002'),
 ('20200905000001'),
 ('20200922000001'),
-('20200925000001');
+('20200925000001'),
+('20200929000001');
 
 

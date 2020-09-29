@@ -41,10 +41,11 @@ class LabReport < Prawn::Document
   ROW_VERTICAL_PADDING = 1
   SIGNATURE_BLOCK_SHIM = 75
 
-  def initialize(patient, accession, results, view_context)
+  def initialize(patient, accession, results, signature, view_context)
     @patient = patient
     @accession = accession
     @results = results
+    @signature = signature
     @view = view_context
 
     super(
@@ -446,6 +447,7 @@ class LabReport < Prawn::Document
         end
         bounding_box([bounds.width / 2 + LINE_PADDING, cursor], width: signature_line, height: 2 * line_height + PADDING) do
           stroke_horizontal_rule
+          signature_image
           pad_top PADDING do
             text current_user_name, align: :center
           end
@@ -460,6 +462,7 @@ class LabReport < Prawn::Document
       end
       bounding_box([SIGNATURE_BLOCK_SHIM + column_0_width + LINE_PADDING, cursor], width: signature_line, height: line_height + PADDING) do
         stroke_horizontal_rule
+        signature_image
         pad_top PADDING do
           text current_user_name + registration_number(inline: true), align: :center
         end
@@ -510,5 +513,18 @@ class LabReport < Prawn::Document
 
   def method_missing(*args, &block)
     @view.send(*args, &block)
+  end
+
+  def signature_image
+    return unless @signature
+
+    pad = current_user.descender? ? 40 : 20
+    shim = current_user.descender? ? 22 : 18
+
+    float do
+      bounding_box([5, cursor + shim], width: 170, height: pad) do
+        svg Base64.strict_decode64(current_user.signature), height: pad if current_user.signature
+      end
+    end
   end
 end
