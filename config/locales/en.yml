@@ -76,6 +76,7 @@ en:
       report: Report
       reported_at: 'Reported at: '
       sending_email: Sending Email…
+      signed_report: Signed Report
       outpatient: Outpatient
     sidebar:
       address: 'Address:'

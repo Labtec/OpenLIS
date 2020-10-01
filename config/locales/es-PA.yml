@@ -76,6 +76,7 @@ es-PA:
       report: Reportar
       reported_at: 'Reportado el: '
       sending_email: Enviando correo…
+      signed_report: Reporte Firmado
       outpatient: Ambulatorio
     sidebar:
       address: 'Dirección:'
