@@ -129,6 +129,16 @@ class AccessionsController < ApplicationController
     end
   end
 
+  def signed_report
+    @accession = Accession.find(params[:id])
+    @patient = @accession.patient
+    @results = @accession.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
+
+    pdf = LabReport.new(@patient, @accession, @results, true, view_context)
+    send_data(pdf.render, filename: "resultados_#{@accession.id}.pdf",
+                          type: 'application/pdf', disposition: 'inline')
+  end
+
   protected
 
   def recent_patients

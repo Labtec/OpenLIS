@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       patch 'report'
       put 'email_patient'
       put 'email_doctor'
+      get 'signed_report'
     end
   end
 
