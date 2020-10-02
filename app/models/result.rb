@@ -48,6 +48,10 @@ class Result < ApplicationRecord
       chol = result_for 'CHOL'
       hdl = result_for 'HDL'
       chol / hdl
+    when 'CORT24MT'
+      cort24 = result_for 'CORT24'
+      uvol24h = result_for 'UVOL24H'
+      cort24 * uvol24h / 100
     when 'CRETCLEAR24H'
       urncret = result_for 'URNCRET'
       crtsa = result_for 'CRTSA'
