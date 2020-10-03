@@ -75,31 +75,29 @@
 
   <div class="address">
     <%= f.label :address, t('.address') %>
-    <%= f.fields_for patient.address, id: :patient_address do |addr| %>
-      <div class="province">
-        <%= addr.label :province, t('.province') %>
-        <%= addr.select :province, options_for_province, include_blank: true %>
-      </div>
+    <div class="province">
+      <%= f.label :address_province, t('.province') %>
+      <%= f.select :address_province, options_for_province, include_blank: true %>
+    </div>
 
-      <div class="district">
-        <%= addr.label :district, t('.district') %>
-        <%= addr.select :district, options_for_district, include_blank: true %>
-      </div>
+    <div class="district">
+      <%= f.label :address_district, t('.district') %>
+      <%= f.select :address_district, options_for_district, include_blank: true %>
+    </div>
 
-      <div class="corregimiento">
-        <%= addr.label :corregimiento, t('.corregimiento') %>
-        <%= addr.select :corregimiento, options_for_corregimiento, include_blank: true %>
-      </div>
+    <div class="corregimiento">
+      <%= f.label :address_corregimiento, t('.corregimiento') %>
+      <%= f.select :address_corregimiento, options_for_corregimiento, include_blank: true %>
+    </div>
 
-      <div class="map">
-        <%= map_link(addr.object.province, addr.object.district, addr.object.corregimiento) %>
-      </div>
+    <div class="map">
+      <%= map_link(f.object.address_province, f.object.address_district, f.object.address_corregimiento) %>
+    </div>
 
-      <div class="line">
-        <%= addr.label :line, t('.line') %>
-        <%= addr.text_field :line %>
-      </div>
-    <% end %>
+    <div class="line">
+      <%= f.label :address_line, t('.line') %>
+      <%= f.text_field :address_line %>
+    </div>
   </div>
 
   <div class="animal_type">

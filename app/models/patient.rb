@@ -13,12 +13,7 @@ class Patient < ApplicationRecord
   has_many :accessions, dependent: :destroy
   has_many :notes, as: :noticeable, dependent: :destroy
 
-  serialize :address, Address
-
-  delegate :province, to: :address, prefix: true
-  delegate :district, to: :address, prefix: true
-  delegate :corregimiento, to: :address, prefix: true
-  delegate :line, to: :address, prefix: true
+  store_accessor :address, :line, :corregimiento, :district, :province, prefix: true
 
   validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_blank: true
   validates :gender, inclusion: { in: GENDERS }
@@ -44,7 +39,7 @@ class Patient < ApplicationRecord
                                      address_district.present? ||
                                        address_corregimiento.present? ||
                                        address_line.present?
-                                   }
+                                   }, allow_blank: true
   validates :address_corregimiento, presence: true,
                                     if: lambda {
                                           address_province.present? ||
@@ -66,8 +61,11 @@ class Patient < ApplicationRecord
   auto_strip_attributes :given_name, :middle_name, :family_name, :family_name2,
                         :partner_name, :identifier, :cellular, :phone,
                         :policy_number
+  auto_strip_attributes :address_province, :address_district, :address_corregimiento,
+                        :address_line, virtual: true
 
-  before_save :titleize_names, :nil_identifier_type_if_identifier_blank
+  before_save :titleize_names, :nil_identifier_type_if_identifier_blank,
+              :nil_address_if_address_province_blank
   after_commit :flush_cache
 
   pg_search_scope :search_by_name, against: %i[identifier
@@ -91,6 +89,10 @@ class Patient < ApplicationRecord
   end
 
   private
+
+  def nil_address_if_address_province_blank
+    self.address = nil if address_province.blank?
+  end
 
   def nil_identifier_type_if_identifier_blank
     self.identifier_type = nil if identifier.blank?
