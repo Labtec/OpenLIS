@@ -77,7 +77,7 @@ class PatientsController < ApplicationController
       :given_name, :middle_name, :family_name, :family_name2, :partner_name,
       :gender, :birthdate, :identifier, :email, :cellular, :phone, :deceased,
       :animal_type, :insurance_provider_id, :policy_number, :identifier_type,
-      address: {}
+      :address_province, :address_district, :address_corregimiento, :address_line
     )
   end
 end
