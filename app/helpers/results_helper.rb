@@ -4,9 +4,9 @@ module ResultsHelper
   def doctor_name(doctor)
     if doctor
       t('.doctor')
-      content_tag :strong, doctor.name
+      tag.strong(doctor.name)
     else
-      content_tag :strong, t('.outpatient')
+      tag.strong(t('.outpatient'))
     end
   end
 
@@ -104,12 +104,12 @@ module ResultsHelper
   end
 
   def ranges_table(ranges)
-    content_tag :table do
-      content_tag :tbody do
+    tag.table do
+      tag.tbody do
         safe_join(ranges.collect do |range|
-          content_tag :tr do
+          tag.tr do
             range.each_with_index do |column, index|
-              concat content_tag :td, column, class: "range_#{index}"
+              concat tag.td(column, class: "range_#{index}")
             end
           end
         end)

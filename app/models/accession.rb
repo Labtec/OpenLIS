@@ -35,7 +35,7 @@ class Accession < ApplicationRecord
   scope :ordered, -> { order(id: :asc) }
   scope :pending, -> { where(reported_at: nil) }
   scope :reported, -> { where.not(reported_at: nil) }
-  scope :with_insurance_provider, -> { joins(:patient).where('patients.insurance_provider_id IS NOT NULL').ordered }
+  scope :with_insurance_provider, -> { joins(:patient).where.not('patients.insurance_provider_id' => nil).ordered }
   scope :within_claim_period, -> { where('drawn_at > :claim_period', claim_period: 8.months.ago) }
   scope :unclaimed, -> { eager_load(:claim).where('claims.claimed_at IS NULL').ordered }
   scope :claimable, -> { where.not(doctor_id: nil) }

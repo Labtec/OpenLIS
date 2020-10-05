@@ -17,7 +17,7 @@ module PatientsHelper
   end
 
   def avatar_icon(patient)
-    content_tag :svg, class: 'avatar' do
+    tag.svg(class: 'avatar') do
       case patient.animal_type
       when 0
         tag :use, 'xlink:href' => image_path('avatars.svg#U')
