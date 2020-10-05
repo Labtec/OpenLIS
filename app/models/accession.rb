@@ -23,7 +23,7 @@ class Accession < ApplicationRecord
 
   accepts_nested_attributes_for :results, allow_destroy: true
   accepts_nested_attributes_for :accession_panels, allow_destroy: true
-  accepts_nested_attributes_for :notes, allow_destroy: true, reject_if: :reject_notes
+  accepts_nested_attributes_for :notes, allow_destroy: true
 
   validates :icd9, presence: true, if: :insurable?
   validates :drawn_at, :received_at, presence: true
@@ -39,6 +39,8 @@ class Accession < ApplicationRecord
   scope :within_claim_period, -> { where('drawn_at > :claim_period', claim_period: 8.months.ago) }
   scope :unclaimed, -> { eager_load(:claim).where('claims.claimed_at IS NULL').ordered }
   scope :claimable, -> { where.not(doctor_id: nil) }
+
+  before_save :nil_empty_notes
 
   def result_attributes=(result_attributes)
     results.reject(&:new_record?).each do |result|
@@ -134,6 +136,12 @@ class Accession < ApplicationRecord
 
   private
 
+  def nil_empty_notes
+    notes.each do |note|
+      note.destroy! if note.content.blank?
+    end
+  end
+
   def panels_list
     Panel.find(panel_ids).map(&:code)
   end
@@ -145,10 +153,6 @@ class Accession < ApplicationRecord
 
   def result_of_test_coded_as(code)
     results.find_by(lab_test_id: LabTest.find_by(code: code)).try(:value).try(:to_d)
-  end
-
-  def reject_notes(attributes)
-    attributes[:content].blank? if new_record?
   end
 
   def at_least_one_panel_or_test_selected
