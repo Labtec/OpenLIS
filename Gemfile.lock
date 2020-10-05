@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Labtec/semacode.git
-  revision: dddcf4148fea0cdba154662b650161edadd0d8fe
+  revision: db3ec93026e99593b441a4d334fe730b0435f42b
   branch: barcodes
   specs:
     semacode (0.7.5)
