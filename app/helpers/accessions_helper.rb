@@ -4,9 +4,9 @@ module AccessionsHelper
   def practitioner(doctor)
     if doctor
       concat t('.doctor')
-      content_tag(:strong, doctor.name)
+      tag.strong(doctor.name)
     else
-      content_tag :strong, t('.outpatient')
+      tag.strong(t('.outpatient'))
     end
   end
 
