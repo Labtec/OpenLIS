@@ -1,14 +1,21 @@
 # frozen_string_literal: true
 
+# https://wiki.openmrs.org/display/docs/Check+Digit+Algorithm
 class Luhn
-  def self.checksum(number)
-    digits = number.to_s.reverse.scan(/\d/).map(&:to_i)
-    digits = digits.each_with_index.map do |d, i|
-      d *= 2 if i.even?
-      d > 9 ? d - 9 : d
+  VALID_CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVYWXZ_'
+
+  class InvalidIDException < StandardError; end
+
+  def self.checkdigit(id_without_checkdigit)
+    id_without_checkdigit = id_without_checkdigit.strip.upcase
+    sum = 0
+    id_without_checkdigit.each_char.reverse_each.each_with_index do |ch, i|
+      raise InvalidIDException, "#{ch} is an invalid character" unless VALID_CHARS.include?(ch)
+
+      digit = ch.ord - 48
+      sum += i.even? ? 2 * digit - digit / 5 * 9 : digit
     end
-    sum = digits.sum
-    mod = 10 - sum % 10
-    mod == 10 ? 0 : mod
+    sum = sum.abs + 10
+    (10 - sum % 10) % 10
   end
 end
