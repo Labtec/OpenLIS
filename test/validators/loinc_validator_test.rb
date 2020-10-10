@@ -15,5 +15,8 @@ class LOINCValidatorTest < ActiveSupport::TestCase
 
     t.loinc = '123-0'
     assert t.valid?, 'LOINC should be valid'
+
+    t.loinc = 'LA6576-8'
+    assert t.valid?, 'LOINC answer should be valid'
   end
 end

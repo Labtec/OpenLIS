@@ -12,8 +12,7 @@ class LabTestValue < ApplicationRecord
                        dependent: :nullify
   has_many :results, dependent: :nullify
 
-  # TODO: Add LOINC Answer code validator
-  # validates :loinc, loinc: true, length: { maximum: 10 }, allow_blank: true
+  validates :loinc, loinc: true, length: { maximum: 10 }, allow_blank: true
   validates :value, presence: true
   validates :flag, inclusion: { in: FLAGS }, allow_blank: true
 
