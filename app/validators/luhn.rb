@@ -8,14 +8,13 @@ class Luhn
 
   def self.checkdigit(id_without_checkdigit)
     id_without_checkdigit = id_without_checkdigit.strip.upcase
-    sum = 0
-    id_without_checkdigit.each_char.reverse_each.each_with_index do |ch, i|
+    weight = id_without_checkdigit.reverse.each_char.with_index.map do |ch, i|
       raise InvalidIDException, "#{ch} is an invalid character" unless VALID_CHARS.include?(ch)
 
       digit = ch.ord - 48
-      sum += i.even? ? 2 * digit - digit / 5 * 9 : digit
+      i.even? ? 2 * digit - digit / 5 * 9 : digit
     end
-    sum = sum.abs + 10
+    sum = weight.sum.abs + 10
     (10 - sum % 10) % 10
   end
 end
