@@ -4,12 +4,10 @@
 class Luhn
   VALID_CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVYWXZ_'
 
-  class InvalidIDException < StandardError; end
-
   def self.checkdigit(id_without_checkdigit)
     id_without_checkdigit = id_without_checkdigit.strip.upcase
     weight = id_without_checkdigit.reverse.each_char.with_index.map do |ch, i|
-      raise InvalidIDException, "#{ch} is an invalid character" unless VALID_CHARS.include?(ch)
+      raise ArgumentError, "invalid character (#{ch})" unless VALID_CHARS.include?(ch)
 
       digit = ch.ord - 48
       i.even? ? 2 * digit - digit / 5 * 9 : digit

@@ -26,9 +26,9 @@ class LuhnValidatorTest < ActiveSupport::TestCase
     assert_equal 8, Luhn.checkdigit('6KWKDFD79A')
     assert_equal 3, Luhn.checkdigit('HXNPKGY4EX')
     assert_equal 2, Luhn.checkdigit('91BT')
-    error = assert_raise Luhn::InvalidIDException do
+    error = assert_raise ArgumentError do
       Luhn.checkdigit('12/3')
     end
-    assert_match '/ is an invalid character', error.message
+    assert_match 'invalid character (/)', error.message
   end
 end
