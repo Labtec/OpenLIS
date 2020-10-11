@@ -12,7 +12,6 @@ class Luhn
       digit = ch.ord - 48
       i.even? ? 2 * digit - digit / 5 * 9 : digit
     end
-    sum = weight.sum.abs + 10
-    (10 - sum % 10) % 10
+    (10 - weight.sum % 10) % 10
   end
 end

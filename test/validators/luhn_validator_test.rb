@@ -2,9 +2,10 @@
 
 require 'test_helper'
 
-# https://wiki.openmrs.org/display/docs/Check+Digit+Algorithm#CheckDigitAlgorithm-Groovy
+# https://wiki.openmrs.org/display/docs/Check+Digit+Algorithm
 class LuhnValidatorTest < ActiveSupport::TestCase
   test 'valid Luhn checksum' do
+    assert_equal 8, Luhn.checkdigit('139MT')
     assert_equal 5, Luhn.checkdigit('12')
     assert_equal 0, Luhn.checkdigit('123')
     assert_equal 3, Luhn.checkdigit('1245496594')
