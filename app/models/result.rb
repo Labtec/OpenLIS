@@ -176,6 +176,11 @@ class Result < ApplicationRecord
       age = accession.patient_age[:years]
       crtsa_k = crtsa / k
       141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * gender
+    when 'EGFRMDRD'
+      crtsa = result_for 'CRTSA'
+      age = accession.patient_age[:years]
+      gender = patient.gender == 'F' ? 0.742 : 1
+      175 * crtsa**-1.154 * age**-0.203 * gender
     when 'EGBL'
       crtsa = result_for 'CRTSA'
       if patient.gender == 'F'
@@ -190,6 +195,11 @@ class Result < ApplicationRecord
       age = accession.patient_age[:years]
       crtsa_k = crtsa / k
       141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * b_gender
+    when 'EGFRMDRDBL'
+      crtsa = result_for 'CRTSA'
+      age = accession.patient_age[:years]
+      gender = patient.gender == 'F' ? 0.742 : 1
+      175 * crtsa**-1.154 * age**-0.203 * gender * 1.212
     end
   rescue StandardError
     'calc.'
