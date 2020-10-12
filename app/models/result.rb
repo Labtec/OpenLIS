@@ -121,6 +121,10 @@ class Result < ApplicationRecord
       hct = result_for 'HCT'
       rbc = result_for 'RBC'
       hct / rbc * 10
+    when 'PCT'
+      pltc = result_for 'PLTC'
+      mpv = result_for 'MPV'
+      pltc * mpv / 10_000_000
     when 'NORM'
       abhead = result_for('ABHEAD')
       abhead_v = value_for('ABHEAD')
