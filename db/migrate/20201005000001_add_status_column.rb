@@ -38,24 +38,10 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
   private
 
   def populate_status_column
-    @final_observations_with_derived_values = []
-    @preliminary_observations_with_derived_values = []
-    @cancelled_observations_with_derived_values = []
-
-    puts 'Pre-loading'
-
-    derived_observations
-
     puts 'Updating observations'
 
     ActiveRecord::Base.transaction do
       cancelled_observations.find_each do |observation|
-        observation.not_performed!
-        observation.update_columns(status: 'cancelled')
-        print '.'
-      end
-
-      @cancelled_observations_with_derived_values.each do |observation|
         observation.not_performed!
         observation.update_columns(status: 'cancelled')
         print '.'
@@ -66,20 +52,12 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
         print '.'
       end
 
-      @final_observations_with_derived_values.each do |observation|
-        observation.update_columns(status: 'final')
-        print '.'
-      end
-
       preliminary_observations.find_each do |observation|
         observation.update_columns(status: 'preliminary')
         print '.'
       end
 
-      @preliminary_observations_with_derived_values.each do |observation|
-        observation.update_columns(status: 'preliminary')
-        print '.'
-      end
+      derived_observations
     end
 
     final_accessions = Accession.where.not(reported_at: nil)
@@ -114,13 +92,14 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     observations.find_each do |observation|
       if observation.derived_value
         if observation.accession.reported_at
-          @final_observations_with_derived_values << observation
+          observation.update_columns(status: 'final')
         else
-          @preliminary_observations_with_derived_values << observation
+          observation.update_columns(status: 'preliminary')
         end
       else
         if observation.accession.reported_at
-          @cancelled_observations_with_derived_values << observation
+          observation.not_performed!
+          observation.update_columns(status: 'cancelled')
         end
       end
       print '.'
