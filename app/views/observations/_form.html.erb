@@ -1,16 +1,15 @@
-<% row_class = cycle('even', 'odd', name: 'alternating_row_colors') %>
 <tr class="<%= row_class %>">
-  <td class="lab_test <%= flag_color(object) %>">
+  <td class="lab_test <%= flag_color object %>">
     <%= f.label :value, sanitize(object.lab_test_name) %>
   </td>
-  <td class="result <%= flag_color(object) %>">
-    <%= result_input f, object %>
+  <td class="result <%= flag_color object %>">
+    <%= observation_input f, object, object.lab_test %>
   </td>
-  <td class="symbol <%= flag_color(object) %>">
+  <td class="symbol <%= flag_color object %>">
     <%= flag_name object %>
   </td>
   <td class="units">
-    <%= object.unit_name %>
+    <%= sanitize(format_units(object)) %>
   </td>
   <td class="ranges">
     <%= ranges_table object.ranges %>

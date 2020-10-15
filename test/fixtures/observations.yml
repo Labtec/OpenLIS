@@ -1,23 +1,23 @@
-result:
+observation:
   lab_test: bun
   accession: accession
 
-result_chol:
+observation_chol:
   lab_test: chol
   accession: lipid
 
-result_hdl:
+observation_hdl:
   lab_test: hdl
   accession: lipid
 
-result_trig:
+observation_trig:
   lab_test: trig
   accession: lipid
 
-result_ldl:
+observation_ldl:
   lab_test: ldl
   accession: lipid
 
-result_ldl_hdl:
+observation_ldl_hdl:
   lab_test: ldl_hdl
   accession: lipid

@@ -20,7 +20,7 @@ class ResultsTest < ActionDispatch::IntegrationTest
   end
 
   test 'wrong result format' do
-    visit edit_results_accession_path(@accession)
+    visit edit_diagnostic_report_path(@accession)
 
     fill_in 'Range', with: '1:2'
     click_on 'Save'
@@ -28,7 +28,7 @@ class ResultsTest < ActionDispatch::IntegrationTest
   end
 
   test 'valid resul format' do
-    visit edit_results_accession_path(@accession)
+    visit edit_diagnostic_report_path(@accession)
 
     fill_in 'Range', with: '1-2'
     click_on 'Save'

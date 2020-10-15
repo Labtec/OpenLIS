@@ -7,8 +7,8 @@ class LabTest < ApplicationRecord
   has_many :reference_ranges, dependent: :destroy
   has_many :lab_test_panels, dependent: :destroy
   has_many :panels, through: :lab_test_panels
-  has_many :results, dependent: :destroy
-  has_many :accessions, through: :results
+  has_many :observations, dependent: :destroy
+  has_many :accessions, through: :observations
   has_many :lab_test_value_option_joints, dependent: :destroy
   has_many :lab_test_values, through: :lab_test_value_option_joints
   has_many :prices, as: :priceable, dependent: :destroy

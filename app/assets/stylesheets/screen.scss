@@ -737,9 +737,13 @@ li.contact:hover {
       color: #0033cc;
       border-bottom: 1px #0033cc dotted;
       margin-bottom: 0px; }
-    .log ul.overdue li.contact a {
+    .log ul li.contact.registered a,
+    .log ul li.contact.partial a,
+    .log ul li.contact.preliminary a {
       color: crimson; }
-    .log ul.overdue li.contact a:hover {
+    .log ul li.contact.registered a:hover,
+    .log ul li.contact.partial a:hover,
+    .log ul li.contact.preliminary a:hover {
       background: crimson;
       color: white; }
   .log li {
@@ -753,6 +757,9 @@ li.contact:hover {
   .log input[type=checkbox] {
     float: left;
     margin: 0px 4px 0px 0px; }
+
+.not-performed {
+  text-decoration: line-through; }
 
 .list {
   padding: 0px; }

@@ -21,7 +21,7 @@
         <%= name_last_comma_first_mi(unsubmitted_claim.patient) %>
       <% end %>
     </td>
-    <td><%= link_to unsubmitted_claim.id, accession_path(unsubmitted_claim), target: '_blank' %></td>
+    <td><%= link_to unsubmitted_claim.id, diagnostic_report_path(unsubmitted_claim), target: '_blank' %></td>
     <td><%= unsubmitted_claim.claim_external_number %></td>
     <td><%= unsubmitted_claim.claim_number %></td>
     <% if unsubmitted_claim.claim %>

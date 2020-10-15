@@ -24,6 +24,63 @@ COMMENT ON EXTENSION unaccent IS 'text search dictionary that removes accents';
 
 
 --
+-- Name: data_absent_reason; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.data_absent_reason AS ENUM (
+    'unknown',
+    'asked-unknown',
+    'temp-unknown',
+    'not-asked',
+    'asked-declined',
+    'masked',
+    'not-applicable',
+    'unsupported',
+    'as-text',
+    'error',
+    'not-a-number',
+    'negative-infinity',
+    'positive-infinity',
+    'not-performed',
+    'not-permitted'
+);
+
+
+--
+-- Name: diagnostic_report_status; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.diagnostic_report_status AS ENUM (
+    'registered',
+    'partial',
+    'preliminary',
+    'final',
+    'amended',
+    'corrected',
+    'appended',
+    'cancelled',
+    'entered-in-error',
+    'unknown'
+);
+
+
+--
+-- Name: observation_status; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.observation_status AS ENUM (
+    'registered',
+    'preliminary',
+    'final',
+    'amended',
+    'corrected',
+    'cancelled',
+    'entered-in-error',
+    'unknown'
+);
+
+
+--
 -- Name: my_unaccent(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -91,7 +148,8 @@ CREATE TABLE public.accessions (
     doctor_id bigint,
     icd9 character varying(510) DEFAULT NULL::character varying,
     emailed_doctor_at timestamp without time zone,
-    emailed_patient_at timestamp without time zone
+    emailed_patient_at timestamp without time zone,
+    status public.diagnostic_report_status
 );
 
 
@@ -357,6 +415,35 @@ CREATE TABLE public.notes (
 
 
 --
+-- Name: observations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observations (
+    id bigint DEFAULT nextval('public.observations_id_seq'::regclass) NOT NULL,
+    value character varying(510) DEFAULT NULL::character varying,
+    lab_test_id bigint,
+    accession_id bigint,
+    created_at timestamp with time zone,
+    updated_at timestamp with time zone,
+    lab_test_value_id bigint,
+    status public.observation_status,
+    data_absent_reason public.data_absent_reason
+);
+
+
+--
 -- Name: panels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -504,33 +591,6 @@ CREATE TABLE public.reference_ranges (
     max numeric(15,5) DEFAULT NULL::numeric,
     animal_type integer,
     description character varying(510) DEFAULT NULL::character varying
-);
-
-
---
--- Name: results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.results_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: results; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.results (
-    id bigint DEFAULT nextval('public.results_id_seq'::regclass) NOT NULL,
-    value character varying(510) DEFAULT NULL::character varying,
-    lab_test_id bigint,
-    accession_id bigint,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    lab_test_value_id bigint
 );
 
 
@@ -718,6 +778,14 @@ ALTER TABLE ONLY public.notes
 
 
 --
+-- Name: observations observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observations
+    ADD CONSTRAINT observations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: panels panels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -755,14 +823,6 @@ ALTER TABLE ONLY public.prices
 
 ALTER TABLE ONLY public.reference_ranges
     ADD CONSTRAINT reference_ranges_pkey PRIMARY KEY (id);
-
-
---
--- Name: results results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.results
-    ADD CONSTRAINT results_pkey PRIMARY KEY (id);
 
 
 --
@@ -943,6 +1003,27 @@ CREATE INDEX index_notes_on_noticeable_id_and_noticeable_type ON public.notes US
 
 
 --
+-- Name: index_observations_on_accession_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observations_on_accession_id ON public.observations USING btree (accession_id);
+
+
+--
+-- Name: index_observations_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observations_on_lab_test_id ON public.observations USING btree (lab_test_id);
+
+
+--
+-- Name: index_observations_on_lab_test_value_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observations_on_lab_test_value_id ON public.observations USING btree (lab_test_value_id);
+
+
+--
 -- Name: index_panels_on_code; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1020,27 +1101,6 @@ CREATE INDEX index_reference_ranges_on_lab_test_id ON public.reference_ranges US
 
 
 --
--- Name: index_results_on_accession_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_results_on_accession_id ON public.results USING btree (accession_id);
-
-
---
--- Name: index_results_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_results_on_lab_test_id ON public.results USING btree (lab_test_id);
-
-
---
--- Name: index_results_on_lab_test_value_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_results_on_lab_test_value_id ON public.results USING btree (lab_test_value_id);
-
-
---
 -- Name: index_units_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1111,6 +1171,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200905000001'),
 ('20200922000001'),
 ('20200925000001'),
-('20200929000001');
+('20200929000001'),
+('20201003000001'),
+('20201005000001');
 
 

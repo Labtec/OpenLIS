@@ -7,6 +7,7 @@ ruby '~> 2.7.0'
 
 gem 'rails', '6.0.3.4'
 
+gem 'aasm'
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
 gem 'barby'

@@ -1,34 +1,16 @@
 <div class="log">
-  <% if (@reported_accessions.blank? && @pending_accessions.blank?) %>
-    <%= t('.no_requisitions_yet') %><br />
+  <% if @accessions.blank? %>
+    <%= t('.no_requisitions_yet') %><br/>
     <% if @patient %>
       <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
     <% end %>
-  <% end %>
-
-  <% unless @pending_accessions.blank? %>
-    <h3 class="overdue"><%= t('.pending_requisitions') %></h3>
-    <ul class="overdue">
-      <%= render @pending_accessions %>
-    </ul>
-
-    <div class="pending">
-      <%= paginate @pending_accessions, param_name: :pending_page %>
-    </div>
-  <% end %>
-
-  <% if !@pending_accessions.blank? && !@reported_accessions.blank? %>
-    <div class="accessions_padding"></div>
-  <% end %>
-
-  <% unless @reported_accessions.blank? %>
-    <h3 class="done"><%= t('.requisition_history') %></h3>
+  <% else %>
     <ul>
-      <%= render @reported_accessions %>
+      <%= render @accessions %>
     </ul>
 
-    <div class="paginate">
-      <%= paginate @reported_accessions %>
+    <div class="overdue">
+      <%= paginate @accessions %>
     </div>
   <% end %>
 </div>

@@ -20,19 +20,10 @@ class AccessionsRoutesTest < ActionDispatch::IntegrationTest
     assert_routing '/accessions/1/edit',
                    @defaults.merge(action: 'edit', id: '1')
 
-    assert_routing '/accessions/1',
-                   @defaults.merge(action: 'show', id: '1')
-
     assert_routing({ method: :patch, path: '/accessions/1' },
                    @defaults.merge(action: 'update', id: '1'))
 
     assert_routing({ method: :delete, path: '/accessions/1' },
                    @defaults.merge(action: 'destroy', id: '1'))
-
-    assert_routing({ method: :patch, path: '/accessions/1/report' },
-                   @defaults.merge(action: 'report', id: '1'))
-
-    assert_routing '/accessions/1/edit_results',
-                   @defaults.merge(action: 'edit_results', id: '1')
   end
 end

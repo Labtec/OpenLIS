@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 
 class Accession < ApplicationRecord
+  include DiagnosticReportStatus
+
   belongs_to :patient, touch: true
   belongs_to :doctor, counter_cache: true, optional: true
   belongs_to :receiver, inverse_of: :accessions, class_name: 'User'
   belongs_to :drawer, inverse_of: :accessions, class_name: 'User'
   belongs_to :reporter, optional: true, inverse_of: :accessions, class_name: 'User'
 
-  has_many :results, dependent: :destroy
+  has_one :claim, dependent: :destroy
+  has_one :insurance_provider, through: :patient
+
+  has_many :results, class_name: 'Observation', dependent: :destroy
   has_many :lab_tests, through: :results
   has_many :accession_panels, dependent: :destroy
   has_many :panels, through: :accession_panels
   has_many :notes, as: :noticeable, dependent: :destroy
-
-  has_one :claim, dependent: :destroy
-  has_one :insurance_provider, through: :patient
 
   delegate :birthdate, to: :patient, prefix: true
   delegate :name, to: :doctor, prefix: true, allow_nil: true
@@ -42,19 +44,6 @@ class Accession < ApplicationRecord
 
   before_save :nil_empty_notes
 
-  def result_attributes=(result_attributes)
-    results.reject(&:new_record?).each do |result|
-      next if result.lab_test.derivation
-
-      attributes = result_attributes[result.id.to_s]
-      if attributes['_delete'] == '1'
-        results.delete(result)
-      else
-        result.attributes = attributes
-      end
-    end
-  end
-
   def patient_age
     sec_per_day = 86_400
     days_per_week = 7
@@ -81,57 +70,41 @@ class Accession < ApplicationRecord
     end
   end
 
+  def complete?
+    return true if pending_tests.empty?
+
+    false
+  end
+
   def insurable?
     insurance_provider && doctor.present?
   end
 
-  def order_list
-    (panels_list + lab_tests_list).join(', ')
+  def lab_tests_list
+    panels_lab_tests_list_ids = LabTestPanel.where(panel_id: panel_ids).map(&:lab_test_id).uniq
+    LabTest.find(lab_test_ids - panels_lab_tests_list_ids).map(&:code)
   end
 
-  def pending_list
-    results.map do |result|
-      result.lab_test_code if result.pending?
-    end.compact.join(', ')
+  def no_values?
+    return false if results.preliminary.any?
+
+    true
+  end
+
+  def panels_list
+    Panel.find(panel_ids).map(&:code)
   end
 
   def pending_claim?
     true if patient.insurance_provider && !claim.try(:claimed_at)
   end
 
-  def complete?
-    results.find_each do |result|
-      return false if result.pending?
-    end
-    true
+  def pending_tests
+    results.includes(:lab_test).registered.map(&:lab_test_code)
   end
 
-  def registered?
-    results.find_each do |result|
-      return false unless result.pending? || result.derivation?
-    end
-    true
-  end
-
-  def result_for(code)
-    lab_test_by_code = LabTest.find_by(code: code)
-    results.find_by(lab_test_id: lab_test_by_code)
-  end
-
-  def status
-    if reported_at
-      # XXX: Do not use UNIX time
-      return 'amended' if updated_at.to_i > reported_at.to_i &&
-                          updated_at.to_i > emailed_doctor_at.to_i &&
-                          updated_at.to_i > emailed_patient_at.to_i
-
-      return 'final'
-    end
-
-    return 'preliminary' if complete?
-    return 'registered' if registered?
-
-    'partial'
+  def tests_list
+    (panels_list + lab_tests_list)
   end
 
   private
@@ -140,19 +113,6 @@ class Accession < ApplicationRecord
     notes.each do |note|
       note.destroy! if note.content.blank?
     end
-  end
-
-  def panels_list
-    Panel.find(panel_ids).map(&:code)
-  end
-
-  def lab_tests_list
-    panels_lab_tests_list_ids = LabTestPanel.where(panel_id: panel_ids).map(&:lab_test_id).uniq
-    LabTest.find(lab_test_ids - panels_lab_tests_list_ids).map(&:code)
-  end
-
-  def result_of_test_coded_as(code)
-    results.find_by(lab_test_id: LabTest.find_by(code: code)).try(:value).try(:to_d)
   end
 
   def at_least_one_panel_or_test_selected

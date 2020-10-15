@@ -3,7 +3,7 @@ es-PA:
     accession:
       accession: 'Solicitud #%{id}'
       by: 'por: '
-      change_requisition: Cambiar Petición
+      change_requisition: Cambiar Solicitud
       change_results: Cambiar Resultados
       confirm_destroy: ¿Está seguro?
       delete?: ¿Borrar?
@@ -15,25 +15,12 @@ es-PA:
       tests_pending: 'Pruebas pendientes: '
       outpatient: Ambulatorio
     accessions:
-      no_requisitions_yet: Sin historial de peticiones
+      no_requisitions_yet: Sin historial de solicitudes
       order_tests: Ordenar Pruebas
-      pending_requisitions: Peticiones Pendientes
-      requisition_history: Historial de Peticiones
+      pending_requisitions: Solicitudes Pendientes
+      requisition_history: Historial de Resultados
     edit:
       title: Cambiar Petición
-    edit_results:
-      accession: 'Solicitud #%{id}'
-      by: ' por: '
-      cancel: Cancelar
-      doctor: 'Doctor: '
-      drawn_at: 'Recolectado el: '
-      icd9: 'Códigos de Diagnóstico:'
-      or: o
-      received_at: 'Recibido el: '
-      reported_at: 'Reportado el: '
-      submit: Guardar Resultados
-      title: Ingresar Resultados
-      outpatient: Ambulatorio
     form:
       accession: 'Solicitud #%{id}'
       cancel: Cancelar
@@ -57,40 +44,49 @@ es-PA:
       title: Peticiones
     new:
       title: Nueva Petición
+  admin:
+    claims:
+      submit:
+        submit_alert: Debe tener External y Claim Number
+  diagnostic_reports:
+    edit:
+      accession: 'Solicitud #%{id}'
+      by: ' por: '
+      cancel: Cancelar
+      doctor: 'Doctor: '
+      drawn_at: 'Recolectado el: '
+      icd9: 'Códigos de Diagnóstico:'
+      or: o
+      received_at: 'Recibido el: '
+      reported_at: 'Reportado el: '
+      submit: Guardar Resultados
+      title: Ingresar Resultados
+      outpatient: Ambulatorio
+    index:
+      title: Reportes
     show:
       accession: 'Solicitud #%{id}'
       by: ' por: '
+      certify: Reportar
       change_accession: Cambiar Petición
       change_results: Cambiar Resultados
       confirm_email: ¿Desea enviar los resultados a %{email}?
       confirm_emailed: ¿Desea enviar nuevamente los resultados a %{email}?
+      confirm_forceful_certify: ¿Está seguro que desea cancelar resultados pendientes y reportar?
       doctor: 'Doctor: '
       drawn_at: 'Recolectado el: '
       email_report: Enviar reporte por correo
       emailed_report: Reenviar reporte por correo
       enter_results: Ingresar Resultados
+      force_certify: Forzar Reporte
       icd9: 'Códigos de Diagnóstico:'
       notes: 'Observaciones:'
       print_report: Imprimir Reporte (PDF)
       received_at: 'Recibido el: '
-      report: Reportar
       reported_at: 'Reportado el: '
       sending_email: Enviando correo…
       signed_report: Reporte Firmado
       outpatient: Ambulatorio
-    sidebar:
-      address: 'Dirección:'
-      cellular: 'Móvil:'
-      email: 'Correo Electrónico:'
-      phone: 'Tel:'
-      recent_patients: Pacientes Recientes
-      search: Buscar
-      search_patients: Buscar pacientes
-      year: año
-  admin:
-    claims:
-      submit:
-        submit_alert: Debe tener External y Claim Number
   errors:
     messages:
       cant_be_in_the_future: no puede ser del futuro
@@ -104,13 +100,14 @@ es-PA:
       at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
       create: Petición creada exitosamente.
       destroy: Petición eliminada exitosamente.
-      email_error: Correo inválido.
-      email_success: Correo enviado exitosamente.
       report: Petición reportada.
-      report_error: Todavía existen resultados pendientes.
       update: Petición actualizada exitosamente.
     accessions:
       at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
+    diagnostic_report:
+      report_error: Todavía existen resultados pendientes.
+      email_error: Correo inválido.
+      email_success: Correo enviado exitosamente.
     login:
       hello: '¡Hola '
       last_login_at: ' Su último inicio de sesión fue hace '
@@ -135,9 +132,19 @@ es-PA:
       admin: Admin
       logout: Salir
       quick_find: Búsqueda rápida
+    sidebar:
+      address: 'Dirección:'
+      cellular: 'Móvil:'
+      email: 'Correo Electrónico:'
+      phone: 'Tel:'
+      recent_patients: Pacientes Recientes
+      search: Buscar
+      search_patients: Buscar pacientes
+      year: año
     tabs:
       patients: Pacientes
-      requisitions: Peticiones
+      requisitions: Solicitudes
+      diagnostic_reports: Reportes
   notes:
     form:
       notes: 'Observaciones:'
@@ -236,10 +243,6 @@ es-PA:
       order_tests: Ordenar Pruebas
       patient_not_found: Este registro de paciente ya no está disponible.
       title: Información del Paciente
-    sidebar:
-      recent_patients: Pacientes Recientes
-      search: Buscar
-      search_patients: Buscar pacientes
     unknown: Desconocido
     unknown_age: Desconocida
     update:
@@ -305,13 +308,6 @@ es-PA:
     positive: •
     reactive: •
     resistant: •
-    sidebar:
-      address: 'Dirección:'
-      cellular: 'Móvil:'
-      email: 'Correo Electrónico:'
-      phone: 'Tel:'
-      recent_patients: Pacientes Recientes
-      year: año
     susceptible: ''
     weakly_reactive: •
   results_mailer:
@@ -389,7 +385,7 @@ es-PA:
         identifier_type: Tipo de identificación
         phone: Teléfono
         policy_number: Número de Póliza
-      results:
+      observations:
         value: El valor
       user:
         initials: Las iniciales

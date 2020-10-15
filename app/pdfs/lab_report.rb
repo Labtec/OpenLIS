@@ -351,6 +351,8 @@ class LabReport < Prawn::Document
     ##
     # Results table
     @results.each do |department, test_results|
+      next unless test_results.map(&:performed?).any?
+
       department_title = make_cell content: department.name, font_style: :bold, padding: [LINE_PADDING, 0]
       if @accession.reported_at
         run_by = make_cell content: [t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ').to_s, font_style: :italic, size: 7.5, colspan: 2, align: :right, padding: [LINE_PADDING, 0]
@@ -359,6 +361,8 @@ class LabReport < Prawn::Document
         data = [[department_title, '', '', '', '']]
       end
       test_results.each do |result|
+        next if result.not_performed?
+
         if result.flag.present?
           cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
           cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]

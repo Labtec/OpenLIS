@@ -13,21 +13,18 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#edit'
 
   resources :patients, shallow: true do
-    resources :accessions, except: :index do
-      resources :results, only: :index
-    end
+    resources :accessions, only: [:new, :create]
     member do
       get 'history'
     end
   end
 
-  resources :accessions, only: :index do
+  resources :accessions, except: [:new, :create, :show]
+
+  resources :diagnostic_reports, only: [:index, :show, :edit] do
     member do
-      get 'edit_results'
-      patch 'report'
-      put 'email_patient'
-      put 'email_doctor'
-      get 'signed_report'
+      patch 'certify'
+      put 'email'
     end
   end
 
@@ -40,7 +37,7 @@ Rails.application.routes.draw do
       resources :claims, only: :index
       resources :prices
     end
-    resources :accessions, only: :index do
+    resources :accessions, only: [] do
       resource :claim, only: :new
     end
     resources :panels do
