@@ -61,7 +61,7 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     end
 
     final_accessions = Accession.where.not(reported_at: nil)
-    partial_accessions = Accession.includes(:observations).where(reported_at: nil)
+    partial_accessions = Accession.includes(:results).where(reported_at: nil)
 
     puts 'Updating diagnostic reports'
 
@@ -74,7 +74,7 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
 
       puts 'Updating partial/preliminary diagnostic reports'
       partial_accessions.find_each do |accession|
-        if accession.observations.map(&:registered?).any?
+        if accession.results.map(&:status).any? 'registered'
           accession.update_columns(status: 'partial')
         else
           accession.update_columns(status: 'preliminary')
