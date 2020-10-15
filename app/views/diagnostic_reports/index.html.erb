@@ -5,5 +5,20 @@
 </div>
 
 <div class='list' id="requisitions">
-  <%= render @diagnostic_reports %>
+  <div class="log">
+    <% if @diagnostic_reports.blank? %>
+      <%= t('.no_requisitions_yet') %><br/>
+      <% if @patient %>
+        <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
+      <% end %>
+    <% else %>
+      <ul>
+        <%= render @diagnostic_reports %>
+      </ul>
+
+      <div class="overdue">
+        <%= paginate @diagnostic_reports %>
+      </div>
+    <% end %>
+  </div>
 </div>
