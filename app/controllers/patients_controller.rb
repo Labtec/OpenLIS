@@ -9,7 +9,7 @@ class PatientsController < ApplicationController
 
   def show
     @patient = Patient.find(params[:id])
-    @accessions = @patient.accessions.recently.page(params[:page])
+    @accessions = @patient.accessions.includes(:reporter).recently.page(params[:page])
   rescue ActiveRecord::RecordNotFound
     redirect_to patients_url, alert: t('.patient_not_found')
   end

@@ -5,7 +5,7 @@ class DiagnosticReportsController < ApplicationController
   before_action :set_diagnostic_report, only: %i[show edit certify email]
 
   def index
-    @diagnostic_reports = Accession.recently.reported.page(page)
+    @diagnostic_reports = Accession.includes(:patient, :reporter).recently.reported.page(page)
   end
 
   def show
