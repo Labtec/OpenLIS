@@ -14,11 +14,6 @@ es-PA:
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
       outpatient: Ambulatorio
-    accessions:
-      no_requisitions_yet: Sin historial de solicitudes
-      order_tests: Ordenar Pruebas
-      pending_requisitions: Solicitudes Pendientes
-      requisition_history: Historial de Resultados
     edit:
       title: Cambiar Petición
     form:
@@ -41,6 +36,10 @@ es-PA:
       submit: Guardar
       outpatient: Dejar en blanco si es ambulatorio
     index:
+      no_requisitions_yet: Sin historial de solicitudes
+      order_tests: Ordenar Pruebas
+      pending_requisitions: Solicitudes Pendientes
+      requisition_history: Historial de Resultados
       title: Peticiones
     new:
       title: Nueva Petición

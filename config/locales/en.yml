@@ -14,11 +14,6 @@ en:
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
       outpatient: Outpatient
-    accessions:
-      no_requisitions_yet: No orders
-      order_tests: Order Tests
-      pending_requisitions: Pending Orders
-      requisition_history: Results
     edit:
       title: Change Order
     form:
@@ -41,6 +36,10 @@ en:
       submit: Save
       outpatient: Leave blank if outpatient
     index:
+      no_requisitions_yet: No orders
+      order_tests: Order Tests
+      pending_requisitions: Pending Orders
+      requisition_history: Results
       title: Orders
     new:
       title: New Order
