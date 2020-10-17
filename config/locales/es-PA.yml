@@ -239,6 +239,7 @@ es-PA:
       phone: 'Tel:'
       year: año
     show:
+      no_requisitions_yet: Sin historial de solicitudes
       order_tests: Ordenar Pruebas
       patient_not_found: Este registro de paciente ya no está disponible.
       title: Información del Paciente
