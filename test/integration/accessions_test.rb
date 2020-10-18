@@ -19,7 +19,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
     Warden.test_reset!
   end
 
-  test 'create a new requisition' do
+  test 'create a new order' do
     visit patient_path(@patient)
     within('.title_tools') { click_on 'Order Tests' }
     check 'BUN'
@@ -38,7 +38,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
 
   test 'change a requisition' do
     visit edit_accession_path(@accession)
-    assert page.has_content?("Accession ##{@accession.id}"), 'Order number missing'
+    assert page.has_content?("Order ##{@accession.id}"), 'Order number missing'
     uncheck 'BUN'
     click_on 'Save'
     assert_not page.has_content?('error'), 'Requisition not updated'
@@ -54,7 +54,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
   end
 
   test 'enter test results' do
-    visit edit_results_accession_path(@accession)
+    visit edit_diagnostic_report_path(@accession)
     assert page.has_content?("Accession ##{@accession.id}"), 'Order number missing'
     fill_in 'Cholesterol', with: 180
     click_on 'Save'

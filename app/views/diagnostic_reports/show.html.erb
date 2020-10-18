@@ -1,0 +1,77 @@
+<% title t('.accession', id: @diagnostic_report.id) %>
+
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+
+<fieldset class="<%= @diagnostic_report.reported_at.blank? %>">
+  <h1><%= t('.accession', id: @diagnostic_report.id) %></h1>
+
+  <%= practitioner @diagnostic_report.doctor %>
+  <% if @diagnostic_report.doctor && @diagnostic_report.doctor.email.present? && !@diagnostic_report.registered? %>
+    <%= email_report(:practitioner, @diagnostic_report, @diagnostic_report.doctor.email) %>
+  <% end %>
+  <br/>
+
+  <% if @diagnostic_report.icd9.present? %>
+    <%= t('.icd9') %>
+    <strong><%= @diagnostic_report.icd9 %></strong><br/>
+  <% end %>
+
+  <% if @diagnostic_report.drawn_at %>
+    <%= t('.drawn_at') %>
+    <strong><%= l(@diagnostic_report.drawn_at, format: :short) %></strong>
+    <%= t('.by') %>
+    <strong><%= @diagnostic_report.drawer.initials %></strong><br/>
+  <% end %>
+
+  <% if @diagnostic_report.received_at %>
+    <%= t('.received_at') %>
+    <strong><%= l(@diagnostic_report.received_at, format: :short) %></strong>
+    <%= t('.by') %>
+    <strong><%= @diagnostic_report.receiver.initials %></strong><br/>
+  <% end %>
+
+  <% if @diagnostic_report.reported_at %>
+    <%= t('.reported_at') %>
+    <strong><%= l(@diagnostic_report.reported_at, format: :short) %></strong>
+    <%= t('.by') %>
+    <strong><%= @diagnostic_report.reporter.initials %></strong>
+  <% end %>
+
+  <% @results.each do |department, results| %>
+    <h2><%= department.name %></h2>
+
+    <table class="results">
+      <% reset_cycle("alternating_row_colors") %>
+      <%= render results %>
+    </table>
+
+    <% if @diagnostic_report.notes.find_by_department_id(department).try(:content).present? %>
+      <div class="notes">
+        <h3><%= t('.notes') %></h3>
+        <%= @diagnostic_report.notes.find_by_department_id(department).content %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="buttonbar">
+    <%= link_to t('.change_accession'), edit_accession_path(@diagnostic_report) %> |
+    <% if @diagnostic_report.reported_at %>
+      <%= link_to t('.change_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
+      <%= link_to t('.signed_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf', signature: true) %> |
+    <% else %>
+      <%= link_to t('.enter_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
+      <% if @diagnostic_report.preliminary? %>
+        <%= link_to t('.certify'), certify_diagnostic_report_path(@diagnostic_report), method: :patch %> |
+      <% end %>
+      <% if current_user.admin? && !@diagnostic_report.registered? && !@diagnostic_report.preliminary? %>
+       <%= force_certify_diagnostic_report(@diagnostic_report) %> |
+      <% end %>
+    <% end %>
+    <% if @patient.email.present? && !@diagnostic_report.registered? %>
+       <%= email_report(:patient, @diagnostic_report, @patient.email) %> |
+    <% end %>
+    <%= link_to t('.print_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf') %>
+  </div>
+</fieldset>

@@ -1,5 +1,5 @@
 <div class="filters">
-  <%= form_with(url: patients_path, local: true, method: 'get', skip_enforcing_utf8: true) do %>
+  <%= form_with(url: patients_path, local: true, method: 'get') do %>
     <%= search_field_tag :search, params[:search],
       size: 23,
       results: 5,
@@ -9,7 +9,9 @@
   <% end %>
 </div>
 
-<%= render partial: 'patients/card' if @patient %>
+<% if @patient %>
+  <%= render partial: 'patients/card' unless @patient.new_record? %>
+<% end %>
 
 <% if @recent_patients %>
   <div class="panel" id="recent">

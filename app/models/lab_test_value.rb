@@ -10,7 +10,7 @@ class LabTestValue < ApplicationRecord
   has_many :lab_test_value_option_joints, dependent: :destroy
   has_many :lab_tests, through: :lab_test_value_option_joints,
                        dependent: :nullify
-  has_many :results, dependent: :nullify
+  has_many :observations, dependent: :nullify
 
   validates :loinc, loinc: true, length: { maximum: 10 }, allow_blank: true
   validates :value, presence: true

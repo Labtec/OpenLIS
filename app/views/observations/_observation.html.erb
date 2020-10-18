@@ -1,0 +1,23 @@
+<% same_row_class = row_class %>
+<tr class="<%= same_row_class %> <%= not_performed_class(observation.not_performed?) %>">
+  <td class="lab_test <%= flag_color observation %>">
+    <%= sanitize(observation.lab_test_name) %>
+  </td>
+  <td class="result <%= flag_color observation %>">
+    <%= sanitize(format_value(observation)) %>
+  </td>
+  <td class="symbol <%= flag_color observation %>">
+    <%= flag_name observation %>
+  </td>
+  <td class="units">
+    <%= sanitize(format_units(observation)) %>
+  </td>
+  <td class="ranges">
+    <%= ranges_table observation.ranges %>
+  </td>
+</tr>
+<% if observation.lab_test_remarks.present? %>
+<tr class="<%= same_row_class %>">
+  <td class="remarks" colspan="5"><%= sanitize(observation.lab_test_remarks) %></td>
+</tr>
+<% end %>

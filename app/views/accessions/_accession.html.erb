@@ -1,35 +1,33 @@
-<% cache [I18n.locale, accession, @patient] do %>
-  <li class='contact'>
-    <div class="tools">
-      <small>
-        <% if accession.reported_at %>
-          <%= link_to t('.change_results'), edit_results_accession_url(accession) %> |
-        <% else %>
-          <%= link_to t('.enter_results'), edit_results_accession_url(accession) %> |
-        <% end %>
-        <%= link_to t('.change_requisition'), edit_accession_path(accession) %>
-        <% if @current_user.admin? %>
-          | <%= link_to t('.delete?'), accession, method: :delete, data: { confirm: t('.confirm_destroy') } %>
-        <% end %>
-      </small>
-    </div>
-    <%= link_to t('.accession', id: accession.id), accession_path(accession) %>
-    <%= content_tag :tt, full_name(accession.patient) unless @patient %>
-    <dt class="second">
-      <% if accession.reported_at %>
-        <%= t('.reported_at') %><b><%= l(accession.reported_at, format: :short) %></b>
-        <%= t('.by') %><b><%= accession.reporter.initials if accession.reporter %></b>
-        | <%= t('.tests_ordered') %><b><%= accession.order_list %></b>
+<li class="contact <%= accession.status %>">
+  <div class="tools">
+    <small>
+      <% if accession.final? %>
+        <%= link_to t('.change_results'), edit_diagnostic_report_url(accession) %> |
       <% else %>
-        <%= t('.drawn_at') %><b><%= l(accession.drawn_at, format: :short) %></b>
-        <%= t('.by') %><b><%= accession.drawer.initials if accession.drawer %></b>
-        <% if accession.pending_list.present? %>
-          | <%= t('.tests_pending') %><b><%= accession.pending_list %></b>
-        <% end %>
+        <%= link_to t('.enter_results'), edit_diagnostic_report_url(accession) %> |
       <% end %>
-      <% unless accession.doctor_id.blank? %>
-        | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= Doctor.find(accession.doctor_id).name %></b>
+      <%= link_to t('.change_requisition'), edit_accession_path(accession) %>
+      <% if @current_user.admin? %>
+        | <%= link_to t('.delete?'), accession, method: :delete, data: { confirm: t('.confirm_destroy') } %>
       <% end %>
-    </dt>
-  </li>
-<% end %>
+    </small>
+  </div>
+  <%= link_to t('.accession', id: accession.id), diagnostic_report_path(accession) %>
+  <%= content_tag :tt, full_name(accession.patient) unless @patient %>
+  <dt class="second">
+    <% if accession.final? || accession.amended? %>
+      <%= t('.reported_at') %><b><%= l(accession.reported_at, format: :short) %></b>
+      <%= t('.by') %><b><%= accession.reporter.initials if accession.reporter %></b>
+      | <%= t('.tests_ordered') %><b><%= accession.tests_list.join(', ') %></b>
+    <% else %>
+      <%= t('.drawn_at') %><b><%= l(accession.drawn_at, format: :short) %></b>
+      <%= t('.by') %><b><%= accession.drawer.initials if accession.drawer %></b>
+      <% if accession.pending_tests.present? %>
+        | <%= t('.tests_pending') %><b><%= accession.pending_tests.join(', ') %></b>
+      <% end %>
+    <% end %>
+    <% unless accession.doctor_id.blank? %>
+      | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= Doctor.find(accession.doctor_id).name %></b>
+    <% end %>
+  </dt>
+</li>

@@ -1,37 +1,7 @@
 # frozen_string_literal: true
 
-class Result < ApplicationRecord
-  RANGE_SYMBOLS = [RANGE_SYMBOL_RANGE = '–', RANGE_SYMBOL_LT = '<', RANGE_SYMBOL_GE = '≥'].freeze
-
-  belongs_to :accession
-  belongs_to :lab_test
-  belongs_to :lab_test_value, optional: true
-
-  has_many :notes, as: :noticeable, dependent: :destroy
-  has_many :reference_ranges, through: :lab_test
-
-  has_one :department, through: :lab_test
-  has_one :patient,    through: :accession
-  has_one :unit,       through: :lab_test
-
-  delegate :code,        to: :lab_test, prefix: true
-  delegate :decimals,    to: :lab_test, prefix: true
-  delegate :derivation?, to: :lab_test
-  delegate :fraction?,   to: :lab_test
-  delegate :name,        to: :lab_test, prefix: true
-  delegate :name,        to: :unit,     prefix: true, allow_nil: true
-  delegate :range?,      to: :lab_test
-  delegate :ratio?,      to: :lab_test
-  delegate :remarks,     to: :lab_test, prefix: true, allow_nil: true
-  delegate :text_length, to: :lab_test
-
-  validates :value, range: true,    allow_blank: true, if: :range?
-  validates :value, fraction: true, allow_blank: true, if: :fraction?
-  validates :value, ratio: true,    allow_blank: true, if: :ratio?
-
-  scope :ordered, -> { order('lab_tests.position') }
-
-  auto_strip_attributes :value, if: :text_length
+module Derivable
+  extend ActiveSupport::Concern
 
   def derived_value
     case lab_test_code
@@ -202,144 +172,24 @@ class Result < ApplicationRecord
       175 * crtsa**-1.154 * age**-0.203 * gender * 1.212
     end
   rescue StandardError
-    'calc.'
+    nil
   end
 
-  # TODO: This method should be in Accession
   def result_for(code)
     lab_test_by_code = LabTest.find_by(code: code)
     result_value = accession.results.find_by(lab_test_id: lab_test_by_code).try(:value)
     result_value.to_d if result_value.present?
   end
 
-  # TODO: This method should be in Accession
   def unit_for(code)
     lab_test_by_code = LabTest.find_by(code: code)
     unit_for_lab_test = accession.results.find_by(lab_test_id: lab_test_by_code).unit.name
     unit_for_lab_test.presence
   end
 
-  # TODO: This method should be in Accession
   def value_for(code)
     lab_test_by_code = LabTest.find_by(code: code)
     value_for_lab_test = accession.results.find_by(lab_test_id: lab_test_by_code).lab_test_value
     value_for_lab_test.value if value_for_lab_test.present?
-  end
-
-  def pending?
-    lab_test_value.blank? && value.blank? && !derivation?
-  end
-
-  # SUGGESTION: min and max should be renamed to min_value and max_value to avoid clashing
-  # with min and max methods for arrays.
-  def ranges?
-    if reference_ranges.present?
-      @base_ranges ||= reference_ranges.for_its_type(patient.animal_type).for_its_gender(patient.gender).for_its_age_in_units(accession.patient_age[:days], accession.patient_age[:weeks], accession.patient_age[:months], accession.patient_age[:years])
-    end
-    @range_min ||= @base_ranges.map(&:min).map(&:to_f).compact.min if @base_ranges.present?
-    @range_max ||= @base_ranges.map(&:max).map { |b| b || Float::INFINITY }.compact.max if @base_ranges.present?
-
-    @base_ranges.present?
-  end
-
-  def ranges
-    ranges = []
-    if ranges?
-      @base_ranges.each do |r|
-        gender = "#{r.gender}: " if patient.gender == 'U' && r.gender != '*'
-        description = "#{r.description}: " if r.description.present?
-
-        ranges << if ratio? || range? || fraction? || text_length
-                    [nil]
-                  elsif lab_test_value && !lab_test_value.numeric? && value.blank?
-                    [nil]
-                  elsif r.max && r.min
-                    [gender, description, format_value(r.min), RANGE_SYMBOL_RANGE, format_value(r.max)]
-                  elsif r.max
-                    [gender, description, nil, RANGE_SYMBOL_LT, format_value(r.max)]
-                  elsif r.min
-                    [gender, description, nil, RANGE_SYMBOL_GE, format_value(r.min)]
-                  else
-                    [nil]
-                  end
-      end
-    else
-      ranges << [nil]
-    end
-
-    ranges
-  end
-
-  # TODO: rename to absolute_range
-  def range
-    if ratio? || range? || fraction? || text_length
-      [nil, nil, nil]
-    elsif @range_max && @range_min
-      [@range_min, RANGE_SYMBOL_RANGE, @range_max]
-    elsif @range_max
-      [nil, RANGE_SYMBOL_LT, @range_max]
-    elsif @range_min
-      [nil, RANGE_SYMBOL_GE, @range_min]
-    else
-      [nil, nil, nil]
-    end
-  end
-
-  def flag
-    if pending?
-      nil
-    elsif lab_test_value.present?
-      lab_test_value.raise_flag
-    elsif lab_test.derivation?
-      if derived_value == 'calc.'
-        nil
-      elsif ranges?
-        check_reference_range(derived_value)
-      end
-    elsif ranges?
-      if lab_test.also_numeric?
-        check_reference_range(value.gsub(/[^\d.]/, '').to_f)
-      elsif lab_test.range?
-        value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
-        check_reference_range([Regexp.last_match(3), Regexp.last_match(5)].map(&:to_i).try(:max))
-      elsif lab_test.fraction?
-        value =~ %r{\A(\d+)/(\d+)\z}
-        check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
-      elsif lab_test.ratio?
-        value =~ /\A(\d+):(\d+)\z/
-        check_reference_range([Regexp.last_match(1), Regexp.last_match(2)].map(&:to_i).try(:max))
-      elsif value.present?
-        check_reference_range(value.gsub(/[^\d.]/, '').to_f)
-      end
-    end
-  end
-
-  def check_reference_range(numeric_value)
-    min = @range_min || -Float::INFINITY
-    max = @range_max || Float::INFINITY
-    return 'H' if numeric_value.to_f == max.to_f && @range_min.nil?
-
-    case numeric_value.to_f
-    when -Float::INFINITY...min.to_f then 'L'
-    when min.to_f..max.to_f then nil
-    when max.to_f..Float::INFINITY then 'H'
-    end
-  end
-
-  def lab_test_values?
-    LabTestValueOptionJoint.where(lab_test: lab_test).blank?
-  end
-
-  # TODO: Try using an enum for lab test:
-  # enum result_type: [:numeric, :ratio, :range, :fraction, ...]
-  def result_types?
-    lab_test.also_numeric? ||
-      ratio? || range? || fraction? || text_length.present?
-  end
-
-  private
-
-  def format_value(number)
-    ApplicationController.helpers.number_with_precision(number, precision: lab_test_decimals, delimiter: ',')
   end
 end

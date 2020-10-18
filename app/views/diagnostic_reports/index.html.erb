@@ -6,18 +6,18 @@
 
 <div class='list' id="requisitions">
   <div class="log">
-    <% if @accessions.blank? %>
+    <% if @diagnostic_reports.blank? %>
       <%= t('.no_requisitions_yet') %><br/>
       <% if @patient %>
         <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
       <% end %>
     <% else %>
       <ul>
-        <%= render @accessions %>
+        <%= render @diagnostic_reports %>
       </ul>
 
       <div class="overdue">
-        <%= paginate @accessions %>
+        <%= paginate @diagnostic_reports %>
       </div>
     <% end %>
   </div>

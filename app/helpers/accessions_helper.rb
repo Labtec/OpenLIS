@@ -10,32 +10,24 @@ module AccessionsHelper
     end
   end
 
-  def email_patient_report(accession, email)
-    if accession.emailed_patient_at
-      link_to t('.emailed_report'), email_patient_accession_path(accession),
-              data: { confirm: t('.confirm_emailed', email: email),
-                      disable_with: t('.sending_email') },
-              method: :put
-    else
-      link_to t('.email_report'), email_patient_accession_path(accession),
-              data: { confirm: t('.confirm_email', email: email),
-                      disable_with: t('.sending_email') },
-              method: :put
-    end
+  def email_report(recipient, diagnostic_report, email)
+    resend = case recipient
+             when :practitioner
+               diagnostic_report.emailed_doctor_at?
+             when :patient
+               diagnostic_report.emailed_patient_at?
+             end
+    email_report_link = resend ? t('.emailed_report') : t('.email_report')
+    email_report_confirm = resend ? t('.confirm_emailed', email: email) : t('.confirm_email', email: email)
+    link_to email_report_link, email_diagnostic_report_path(diagnostic_report, to: recipient),
+            data: { confirm: email_report_confirm, disable_with: t('.sending_email') },
+            method: :put
   end
 
-  def email_doctor_report(accession, email)
-    if accession.emailed_doctor_at
-      link_to t('.emailed_report'), email_doctor_accession_path(accession),
-              data: { confirm: t('.confirm_emailed', email: email),
-                      disable_with: t('.sending_email') },
-              method: :put
-    else
-      link_to t('.email_report'), email_doctor_accession_path(accession),
-              data: { confirm: t('.confirm_email', email: email),
-                      disable_with: t('.sending_email') },
-              method: :put
-    end
+  def force_certify_diagnostic_report(diagnostic_report)
+    link_to t('.force_certify'), certify_diagnostic_report_path(diagnostic_report, force: true),
+            method: :patch, data: { confirm: t('.confirm_forceful_certify'),
+                                    disable_with: t('.certifying') }
   end
 
   def search_icd_code

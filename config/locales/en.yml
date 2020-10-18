@@ -1,9 +1,9 @@
 en:
   accessions:
     accession:
-      accession: 'Accession #%{id}'
+      accession: 'Order #%{id}'
       by: 'by: '
-      change_requisition: Change Requisition
+      change_requisition: Change Order
       change_results: Change Results
       confirm_destroy: Are you sure?
       delete?: Delete?
@@ -14,28 +14,10 @@ en:
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
       outpatient: Outpatient
-    accessions:
-      no_requisitions_yet: No requisitions history
-      order_tests: Order Tests
-      pending_requisitions: Pending Requisitions
-      requisition_history: Requisition History
     edit:
       title: Change Order
-    edit_results:
-      accession: 'Accession #%{id}'
-      by: ' by: '
-      cancel: Cancel
-      doctor: 'Doctor: '
-      drawn_at: 'Collected at: '
-      icd9: 'Diagnosis Codes:'
-      or: or
-      received_at: 'Received at: '
-      reported_at: 'Reported at: '
-      submit: Save Results
-      title: Enter Results
-      outpatient: Outpatient
     form:
-      accession: 'Accession #%{id}'
+      accession: 'Order #%{id}'
       cancel: Cancel
       doctor: 'Ordering Doctor:'
       drawn_at: 'Collected at:'
@@ -54,43 +36,56 @@ en:
       submit: Save
       outpatient: Leave blank if outpatient
     index:
-      title: Requisitions
+      no_requisitions_yet: No orders
+      order_tests: Order Tests
+      pending_requisitions: Pending Orders
+      requisition_history: Results
+      title: Orders
     new:
       title: New Order
+  admin:
+    claims:
+      submit:
+        submit_alert: Must have External and Claim Number
+  diagnostic_reports:
+    edit:
+      accession: 'Accession #%{id}'
+      by: ' by: '
+      cancel: Cancel
+      doctor: 'Doctor: '
+      drawn_at: 'Collected at: '
+      icd9: 'Diagnosis Codes:'
+      or: or
+      received_at: 'Received at: '
+      reported_at: 'Reported at: '
+      submit: Save Results
+      title: Enter Results
+      outpatient: Outpatient
+    index:
+      title: Results
     show:
       accession: 'Accession #%{id}'
       by: ' by: '
+      certify: Certify
       change_accession: Change Order
       change_results: Change Results
       confirm_email: Would you like to email the results to %{email}?
       confirm_emailed: Would you like to email the results to %{email} again?
+      confirm_forceful_certify: Are you sure you want to cancel pending results an certify?
       doctor: 'Doctor: '
       drawn_at: 'Collected at: '
       email_report: Email Report
       emailed_report: Resend Report
       enter_results: Enter Results
+      force_certify: Force Certify
       icd9: 'Diagnosis Codes:'
       notes: 'Notes:'
       print_report: Print Report (PDF)
       received_at: 'Received at: '
-      report: Report
       reported_at: 'Reported at: '
       sending_email: Sending Email…
       signed_report: Signed Report
       outpatient: Outpatient
-    sidebar:
-      address: 'Address:'
-      cellular: 'Mobile:'
-      email: 'Email:'
-      phone: 'Phone:'
-      recent_patients: Recent Patients
-      search: Search
-      search_patients: Search patients
-      year: year
-  admin:
-    claims:
-      submit:
-        submit_alert: Must have External and Claim Number
   errors:
     messages:
       cant_be_in_the_future: cannot be in the future
@@ -104,13 +99,14 @@ en:
       at_least_one_panel_or_test_selected: Must have at least one panel or test selected.
       create: Successfully created requisition.
       destroy: Successfully removed requisition.
-      email_error: Invalid email.
-      email_success: Email sent successfully.
       report: Reported requisition.
-      report_error: There are still pending results.
       update: Successfully updated requisition.
     accessions:
       at_least_one_panel_or_test_selected: Must have at least one panel or test selected.
+    diagnostic_report:
+      report_error: There are still pending results.
+      email_error: Invalid email.
+      email_success: Email sent successfully.
     login:
       hello: 'Hello '
       last_login_at: ' Previous login: '
@@ -135,9 +131,19 @@ en:
       admin: Admin
       logout: Logout
       quick_find: Quick find
+    sidebar:
+      address: 'Address:'
+      cellular: 'Mobile:'
+      email: 'Email:'
+      phone: 'Phone:'
+      recent_patients: Recent Patients
+      search: Search
+      search_patients: Search patients
+      year: year
     tabs:
       patients: Patients
-      requisitions: Requisitions
+      requisitions: Orders
+      diagnostic_reports: Results
   notes:
     form:
       notes: 'Notes:'
@@ -233,13 +239,10 @@ en:
       phone: 'Phone:'
       year: year
     show:
+      no_requisitions_yet: No orders
       order_tests: Order Tests
       patient_not_found: Patient record no longer available.
       title: Patient Info
-    sidebar:
-      recent_patients: Recent Patients
-      search: Search
-      search_patients: Search patients
     unknown: Unknown
     unknown_age: Unknown
     update:
@@ -305,13 +308,6 @@ en:
     positive: POS
     reactive: RR
     resistant: R
-    sidebar:
-      address: 'Address:'
-      cellular: 'Mobile:'
-      email: 'Email:'
-      phone: 'Phone:'
-      recent_patients: Recent Patients
-      year: year
     susceptible: S
     weakly_reactive: WR
   results_mailer:
