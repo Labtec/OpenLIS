@@ -2,13 +2,17 @@
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Expression</th>
     <th>UCUM</th>
+    <th>SI</th>
+    <th>Conversion Factor</th>
   </tr>
   <% @units.each do |unit| %>
     <tr>
-      <td><%= unit.name %></td>
+      <td><%= unit.expression %></td>
       <td><%= unit.ucum %></td>
+      <td><%= unit.si %></td>
+      <td><%= unit.conversion_factor %></td>
       <td><%= link_to 'Show', [:admin, unit] %></td>
       <td><%= link_to 'Edit', edit_admin_unit_path(unit) %></td>
       <td>

@@ -3,15 +3,12 @@
 class Unit < ApplicationRecord
   has_many :lab_tests, dependent: :nullify
 
-  validates :name, presence: true, uniqueness: true, unless: -> { ucum.present? }
+  validates :conversion_factor, numericality: true, allow_nil: true
+  validates :conversion_factor, absence: true, unless: -> { si.present? }
+  validates :conversion_factor, presence: true, if: -> { si.present? }
+  validates :expression, presence: true, uniqueness: true, unless: -> { ucum.present? }
 
-  default_scope { order(name: :asc) }
+  default_scope { order(expression: :asc) }
 
-  auto_strip_attributes :name, :ucum
-
-  def name_display
-    return name if name.present?
-
-    ucum
-  end
+  auto_strip_attributes :expression, :si, :ucum
 end
