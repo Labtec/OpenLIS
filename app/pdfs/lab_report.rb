@@ -35,7 +35,7 @@ class LabReport < Prawn::Document
   LINE_PADDING = 2
   LOGO_HEIGHT = 50
   LOGO_WIDTH = 150
-  NOTES_INDENT = 45
+  NOTES_INDENT = 25
   NOTES_PADDING = 7
   PADDING = 5
   ROW_VERTICAL_PADDING = 1
@@ -429,8 +429,17 @@ class LabReport < Prawn::Document
       next if @accession.notes.find_by(department_id: department).try(:content).blank?
 
       pad NOTES_PADDING do
-        indent NOTES_INDENT do
-          text "#{t('results.index.notes')} #{@accession.notes.find_by(department_id: department).content}", color: COLORS[:purple], style: :bold_italic, inline_format: true
+        bounding_box([NOTES_INDENT, cursor + LINE_PADDING], width: bounds.width - NOTES_INDENT) do
+          text "#{t('results.index.notes')}", color: COLORS[:purple], style: :bold
+          text @accession.notes.find_by(department_id: department).content, inline_format: true
+
+          stroke_color COLORS[:purple]
+          self.line_width = 2
+          stroke do
+            vertical_line bounds.top + LINE_PADDING, bounds.bottom + LINE_PADDING, at: bounds.left - PADDING
+          end
+          self.line_width = 1
+          stroke_color COLORS[:black]
         end
       end
     end

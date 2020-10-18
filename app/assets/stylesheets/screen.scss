@@ -24,12 +24,6 @@ body, h1, h2, h3, h4, h5, h6, ol, ul, li {
   margin: 0px;
   padding: 0px; }
 
-form h3 {
-  font-size: 12px;
-  font-weight: normal;
-  font-style: italic;
-  padding-top: 10px; }
-
 label.required {
   font-weight: bold; }
 
@@ -472,9 +466,19 @@ td.range_1 {
   width: 200px; }
 
 .notes {
-  color: #800080;
-  padding: 20px 0;
-}
+  border-left-style: solid;
+  border-color: #800080;
+  margin: 5px 0;
+  padding: 0px 5px;
+  h3 {
+    font-size: 12px;
+    color: #800080; }
+  textarea {
+    box-sizing: border-box;
+    width: 100%; } }
+
+form .notes {
+  border-left-style: none; }
 
 .standalone {
   background: whitesmoke;
