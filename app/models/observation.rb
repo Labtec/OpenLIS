@@ -5,6 +5,7 @@ class Observation < ApplicationRecord
   include Flaggable
   include ObservationStatus
   include DataAbsentReason
+  include FHIRable::Observation
 
   belongs_to :accession
   belongs_to :lab_test

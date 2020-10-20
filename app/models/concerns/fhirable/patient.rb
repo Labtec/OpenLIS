@@ -64,7 +64,7 @@ module FHIRable
         'extension': fhirable_animal,
         'id': id,
         'active': fhirable_active,
-        'identifier': fhirable_identifier,
+        'identifier': fhirable_patient_identifier,
         'name': fhirable_name,
         'telecom': fhirable_telecom,
         'gender': ADMINISTRATIVE_GENDERS[gender],

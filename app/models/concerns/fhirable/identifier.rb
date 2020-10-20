@@ -4,8 +4,18 @@ module FHIRable
   module Identifier
     extend ActiveSupport::Concern
 
+    def fhirable_observation_identifier
+      [
+        {
+          'use': 'official',
+          'system': self.to_gid,
+          'value': id
+        }
+      ]
+    end
+
     # TODO: Implement an identifier type ['NNPAN', 'PPN']
-    def fhirable_identifier
+    def fhirable_patient_identifier
       return if identifier.blank?
 
       [
