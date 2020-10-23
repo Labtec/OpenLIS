@@ -115,6 +115,10 @@ module Derivable
       pr = result_value_quantity_for 'PR'
       np = result_value_quantity_for 'NP'
       pr + np
+    when 'TPU12H'
+      uprot12h = result_value_quantity_for 'UPROT12H'
+      uvol12h = result_value_quantity_for 'UVOL12H'
+      uprot12h * uvol12h / 100
     when 'TPU24H'
       uprot24h = result_value_quantity_for 'UPROT24H'
       uvol24h = result_value_quantity_for 'UVOL24H'
@@ -133,6 +137,9 @@ module Derivable
       glucose = result_value_quantity_for('GLU') || result_value_quantity_for('GLUC')
       na * 2 + bun / 2.8 + glucose / 18
     when 'EGNB'
+      age = patient_age[:years]
+      return if age < 18
+
       crtsa = result_value_quantity_for 'CRTSA'
       if patient.gender == 'F'
         a = -0.329
@@ -143,15 +150,19 @@ module Derivable
         k = 0.9
         gender = 1
       end
-      age = patient_age[:years]
       crtsa_k = crtsa / k
       141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * gender
     when 'EGFRMDRD'
-      crtsa = result_value_quantity_for 'CRTSA'
       age = patient_age[:years]
+      return if age < 18
+
+      crtsa = result_value_quantity_for 'CRTSA'
       gender = patient.gender == 'F' ? 0.742 : 1
       175 * crtsa**-1.154 * age**-0.203 * gender
     when 'EGBL'
+      age = patient_age[:years]
+      return if age < 18
+
       crtsa = result_value_quantity_for 'CRTSA'
       if patient.gender == 'F'
         a = -0.329
@@ -162,12 +173,13 @@ module Derivable
         k = 0.9
         b_gender = 1.159
       end
-      age = patient_age[:years]
       crtsa_k = crtsa / k
       141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * b_gender
     when 'EGFRMDRDBL'
-      crtsa = result_value_quantity_for 'CRTSA'
       age = patient_age[:years]
+      return if age < 18
+
+      crtsa = result_value_quantity_for 'CRTSA'
       gender = patient.gender == 'F' ? 0.742 : 1
       175 * crtsa**-1.154 * age**-0.203 * gender * 1.212
     end
