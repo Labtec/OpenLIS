@@ -621,7 +621,7 @@ CREATE SEQUENCE public.units_id_seq
 
 CREATE TABLE public.units (
     id bigint DEFAULT nextval('public.units_id_seq'::regclass) NOT NULL,
-    expression character varying(510) DEFAULT NULL::character varying,
+    expression character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
     ucum character varying,
