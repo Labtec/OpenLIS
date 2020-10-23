@@ -14,7 +14,6 @@ class LabTest < ApplicationRecord
   has_many :prices, as: :priceable, dependent: :destroy
 
   delegate :name, to: :department, prefix: true
-  delegate :name, to: :unit, prefix: true, allow_nil: true
 
   accepts_nested_attributes_for :prices, allow_destroy: true
 
@@ -33,6 +32,10 @@ class LabTest < ApplicationRecord
   default_scope { order(position: :asc) }
 
   auto_strip_attributes :name, :code, :procedure, :loinc
+
+  def self.unit_for(code)
+    find_by(code: code).unit.expression
+  end
 
   def also_allow=(also_allow)
     case also_allow
@@ -76,6 +79,14 @@ class LabTest < ApplicationRecord
     else
       :none
     end
+  end
+
+  def customary_unit
+    unit.ucum
+  end
+
+  def si_unit
+    unit.si
   end
 
   def name_with_description

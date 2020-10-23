@@ -13,13 +13,13 @@ module ObservationsHelper
   def format_value(observation)
     if observation.lab_test.derivation?
       number_with_precision(observation.derived_value, precision: observation.lab_test_decimals, delimiter: ',') || 'calc.'
-    elsif observation.lab_test_value && observation.value.present?
-      [observation.lab_test_value.value,
+    elsif observation.value_codeable_concept.present? && observation.value.present?
+      [observation.value_codeable_concept,
        ' [',
        number_with_precision(observation.value, precision: observation.lab_test_decimals, delimiter: ','),
        ']'].join
-    elsif observation.lab_test_value
-      observation.lab_test_value.value
+    elsif observation.value_codeable_concept.present?
+      observation.value_codeable_concept
     elsif observation.value.blank?
       'pend.'
     elsif observation.lab_test.ratio?
@@ -36,9 +36,9 @@ module ObservationsHelper
   end
 
   def format_units(observation)
-    observation.unit_name unless observation.lab_test_value &&
-                                 !observation.lab_test_value.numeric? &&
-                                 observation.value.blank?
+    observation.value_unit unless observation.lab_test_value &&
+                                  !observation.lab_test_value.numeric? &&
+                                  observation.value.blank?
   end
 
   def flag_name(observation)

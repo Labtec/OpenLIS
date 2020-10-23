@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Accession < ApplicationRecord
+  include Derivable
   include DiagnosticReportStatus
 
   belongs_to :patient, touch: true

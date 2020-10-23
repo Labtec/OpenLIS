@@ -1,14 +1,24 @@
 <%= form_with(model: [:admin, @unit], local: true) do |f| %>
   <%= render 'shared/error_messages', object: @unit %>
 
-  <div class="name">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="expression">
+    <%= f.label :expression %>
+    <%= f.text_field :expression %>
   </div>
 
   <div class="ucum">
     <%= f.label :ucum %>
     <%= f.text_field :ucum %>
+  </div>
+
+  <div class="si">
+    <%= f.label :si %>
+    <%= f.text_field :si %>
+  </div>
+
+  <div class="conversion-factor">
+    <%= f.label :conversion_factor %>
+    <%= f.text_field :conversion_factor %>
   </div>
 
   <div class="buttonbar">

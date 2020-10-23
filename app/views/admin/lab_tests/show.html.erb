@@ -30,7 +30,7 @@
 </p>
 <p>
   <strong>Units:</strong>
-  <%= @lab_test.try(:unit).try(:name_display) %>
+  <%= unit_expression_for_display(@lab_test.unit) %>
 </p>
 <p>
   <strong>Also allow Numeric:</strong>

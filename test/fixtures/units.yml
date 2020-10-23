@@ -1,8 +1,8 @@
 units:
-  name: Units
+  expression: Units
 
 unit_a:
-  name: mg/dL
+  expression: mg/dL
 
 unit_b:
-  name: mmol/L
+  expression: mmol/L

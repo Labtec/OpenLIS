@@ -430,7 +430,7 @@ class LabReport < Prawn::Document
 
       pad NOTES_PADDING do
         bounding_box([NOTES_INDENT, cursor + LINE_PADDING], width: bounds.width - NOTES_INDENT) do
-          text "#{t('results.index.notes')}", color: COLORS[:purple], style: :bold
+          text t('results.index.notes'), color: COLORS[:purple], style: :bold
           text @accession.notes.find_by(department_id: department).content, inline_format: true
 
           stroke_color COLORS[:purple]

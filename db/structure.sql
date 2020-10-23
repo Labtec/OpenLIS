@@ -621,10 +621,12 @@ CREATE SEQUENCE public.units_id_seq
 
 CREATE TABLE public.units (
     id bigint DEFAULT nextval('public.units_id_seq'::regclass) NOT NULL,
-    name character varying(510) DEFAULT NULL::character varying,
+    expression character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    ucum character varying
+    ucum character varying,
+    si character varying,
+    conversion_factor numeric
 );
 
 
@@ -1101,10 +1103,10 @@ CREATE INDEX index_reference_ranges_on_lab_test_id ON public.reference_ranges US
 
 
 --
--- Name: index_units_on_name; Type: INDEX; Schema: public; Owner: -
+-- Name: index_units_on_expression; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_units_on_name ON public.units USING btree (name);
+CREATE INDEX index_units_on_expression ON public.units USING btree (expression);
 
 
 --
@@ -1173,6 +1175,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200925000001'),
 ('20200929000001'),
 ('20201003000001'),
-('20201005000001');
+('20201005000001'),
+('20201017000001'),
+('20201017000002');
 
 

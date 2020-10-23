@@ -2,10 +2,10 @@
 
 class Observation < ApplicationRecord
   include DataAbsentReason
-  include Derivable
   include Flaggable
   include ObservationStatus
   include DataAbsentReason
+  include FHIRable::Observation
 
   belongs_to :accession
   belongs_to :lab_test
@@ -23,7 +23,6 @@ class Observation < ApplicationRecord
   delegate :derivation?, to: :lab_test
   delegate :fraction?,   to: :lab_test
   delegate :name,        to: :lab_test, prefix: true
-  delegate :name,        to: :unit,     prefix: true, allow_nil: true
   delegate :range?,      to: :lab_test
   delegate :ratio?,      to: :lab_test
   delegate :remarks,     to: :lab_test, prefix: true, allow_nil: true
@@ -36,6 +35,18 @@ class Observation < ApplicationRecord
   scope :ordered, -> { order('lab_tests.position') }
 
   auto_strip_attributes :value
+
+  def derived_value
+    accession.derived_value_for(lab_test_code)
+  end
+
+  def value_codeable_concept
+    lab_test_value&.value
+  end
+
+  def value_unit
+    unit&.expression
+  end
 
   # value -> valueQuantity, valueInteger, valueRange, valueRatio
   # lab_test_value -> valueCodeableConcept, valueString, valueBoolean
