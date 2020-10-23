@@ -8,7 +8,7 @@ module FHIRable
       [
         {
           'use': 'official',
-          'system': self.to_gid,
+          'system': to_gid,
           'value': id
         }
       ]
