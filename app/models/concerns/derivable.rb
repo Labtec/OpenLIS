@@ -131,7 +131,7 @@ module Derivable
     when 'VLDL'
       trig = result_value_quantity_for 'TRIG'
       0.2 * trig
-    when 'UOSMS'
+    when 'COSMS'
       na = result_value_quantity_for 'Na'
       bun = result_value_quantity_for 'BUN'
       glucose = result_value_quantity_for('GLU') || result_value_quantity_for('GLUC')
