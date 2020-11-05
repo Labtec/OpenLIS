@@ -59,6 +59,6 @@ class AccessionsTest < ActionDispatch::IntegrationTest
     fill_in 'Cholesterol', with: 180
     click_on 'Save'
     assert_not page.has_content?('error'), 'Results not entered'
-    assert page.has_content?('Successfully updated requisition')
+    assert page.has_content?('Successfully updated results')
   end
 end

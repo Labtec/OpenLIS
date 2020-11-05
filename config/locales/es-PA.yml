@@ -107,6 +107,7 @@ es-PA:
       report_error: Todavía existen resultados pendientes.
       email_error: Correo inválido.
       email_success: Correo enviado exitosamente.
+      update: Resultados actualizados exitosamente.
     login:
       hello: '¡Hola '
       last_login_at: ' Su último inicio de sesión fue hace '

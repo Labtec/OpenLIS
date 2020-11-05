@@ -2,7 +2,7 @@
 
 class DiagnosticReportsController < ApplicationController
   before_action :recent_patients
-  before_action :set_diagnostic_report, only: %i[show edit certify email]
+  before_action :set_diagnostic_report, only: %i[show edit update certify email]
 
   def index
     @diagnostic_reports = Accession.includes(:patient, :reporter).recently.reported.page(page)
@@ -30,6 +30,22 @@ class DiagnosticReportsController < ApplicationController
     results = @diagnostic_report.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
     results.each do |department, _result|
       @diagnostic_report.notes.build(department_id: department.id) unless @diagnostic_report.try(:notes).find_by(department_id: department.id)
+    end
+  end
+
+  def update
+    @patient = @diagnostic_report.patient
+
+    if @diagnostic_report.update(diagnostic_report_params)
+      @diagnostic_report.transaction do
+        @diagnostic_report.lock!
+        @diagnostic_report.results.map(&:evaluate!)
+        @diagnostic_report.evaluate!
+      end
+
+      redirect_to diagnostic_report_url(@diagnostic_report), notice: t('flash.diagnostic_report.update')
+    else
+      render :edit
     end
   end
 
@@ -103,6 +119,10 @@ class DiagnosticReportsController < ApplicationController
   end
 
   private
+
+  def diagnostic_report_params
+    params.require(:accession).permit({ results_attributes: %i[id lab_test_value_id value] }, notes_attributes: %i[id content department_id])
+  end
 
   def page
     params[:page].to_i

@@ -32,6 +32,6 @@ class ResultsTest < ActionDispatch::IntegrationTest
 
     fill_in 'Range', with: '1-2'
     click_on 'Save'
-    assert page.has_content?('Successfully updated requisition')
+    assert page.has_content?('Successfully updated results')
   end
 end
