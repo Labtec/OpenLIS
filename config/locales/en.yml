@@ -107,6 +107,7 @@ en:
       report_error: There are still pending results.
       email_error: Invalid email.
       email_success: Email sent successfully.
+      update: Successfully updated results.
     login:
       hello: 'Hello '
       last_login_at: ' Previous login: '

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :accessions, except: [:new, :create, :show]
 
-  resources :diagnostic_reports, only: [:index, :show, :edit] do
+  resources :diagnostic_reports, only: [:index, :show, :edit, :update] do
     member do
       patch 'certify'
       put 'email'

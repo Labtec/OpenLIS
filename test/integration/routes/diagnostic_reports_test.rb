@@ -17,6 +17,9 @@ class DiagnosticReportsRoutesTest < ActionDispatch::IntegrationTest
     assert_routing '/diagnostic_reports/1/edit',
                    @defaults.merge(action: 'edit', id: '1')
 
+    assert_routing({ method: :patch, path: '/diagnostic_reports/1' },
+                   @defaults.merge(action: 'update', id: '1'))
+
     assert_routing({ method: :patch, path: '/diagnostic_reports/1/certify' },
                    @defaults.merge(action: 'certify', id: '1'))
 
