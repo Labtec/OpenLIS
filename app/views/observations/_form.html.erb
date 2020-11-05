@@ -12,7 +12,11 @@
     <%= sanitize(format_units(object)) %>
   </td>
   <td class="ranges">
-    <%= ranges_table object.ranges %>
+    <table>
+      <tbody>
+        <%= render object.reference_ranges.includes(:lab_test), display_gender: @patient.unknown? %>
+      </tbody>
+    </table>
   </td>
 </tr>
 <% if object.lab_test_remarks.present? %>

@@ -80,48 +80,16 @@ module PatientsHelper
     ]
   end
 
-  # Returns a hash with the age of a patient at any given time.
-  # If no time is given, +Time.current+ is used.
-  #
-  # Units to be used for displaying a patient's age:
-  #
-  #     | Age         | Lower Unit | Higher Unit |
-  #     | ----------- | ---------- | ----------- |
-  #     | < 2 hours   | Minutes    | Minutes     |
-  #     | < 2 days    | Hours      | Hours       |
-  #     | < 4 weeks   | Days       | Days        |
-  #     | < 1 year    | Weeks      | Days        |
-  #     | < 2 years   | Months     | Days        |
-  #     | < 18 years  | Years      | Months      |
-  #     | >= 18 years | Years      | Years       |
-  def age_hash(birth_date, service_date = Time.current)
-    patient_age = AgeCalculator.new(birth_date, service_date)
-    age_in = patient_age.time_units
-    remainder = patient_age.remainders
-
-    if age_in[:weeks] < 4 # < 4 weeks
-      { days: age_in[:days] }
-    elsif age_in[:years] < 1 # < 1 year
-      { weeks: age_in[:weeks], days: remainder[:weeks] }.compact
-    elsif age_in[:years] < 2 # < 2 years
-      { months: age_in[:months], days: remainder[:months] }.compact
-    elsif age_in[:years] < 18 # < 18 years
-      { years: age_in[:years], months: remainder[:years] }.compact
-    else # >= 18 years
-      { years: age_in[:years] }
-    end
-  end
-
   # Returns a human-readable age string.
-  def age(birth_date, service_date = Time.current)
-    return t('patients.unknown_age') if birth_date.blank?
+  def display_pediatric_age(age)
+    return t('patients.unknown_age') unless age
 
-    age = age_hash(birth_date, service_date)
+    pediatric_age = age.pediatric.parts
 
-    years = t('patients.year', count: age[:years]) if age[:years]
-    months = t('patients.month', count: age[:months]) if age[:months]
-    weeks = t('patients.week', count: age[:weeks]) if age[:weeks]
-    days = t('patients.day', count: age[:days]) if age[:days]
+    years = t('patients.year', count: pediatric_age[:years]) if pediatric_age[:years]
+    months = t('patients.month', count: pediatric_age[:months]) if pediatric_age[:months]
+    weeks = t('patients.week', count: pediatric_age[:weeks]) if pediatric_age[:weeks]
+    days = t('patients.day', count: pediatric_age[:days]) if pediatric_age[:days]
 
     [years, months, weeks, days].compact.join(' ')
   end
@@ -129,11 +97,11 @@ module PatientsHelper
   # Returns the gender of a patient spelled out
   def gender(gender)
     case gender
-    when 'F'
+    when 'F', 'female'
       t('patients.female')
-    when 'M'
+    when 'M', 'male'
       t('patients.male')
-    when 'O'
+    when 'O', 'other'
       t('patients.other')
     else
       t('patients.unknown')

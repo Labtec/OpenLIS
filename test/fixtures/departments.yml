@@ -1,5 +1,8 @@
 chemistry:
   name: Chemistry
 
+hematology:
+  name: Hematology
+
 microbiology:
   name: Microbiology

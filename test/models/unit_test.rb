@@ -19,6 +19,13 @@ class UnitTest < ActiveSupport::TestCase
     assert unit.errors.added?(:conversion_factor, :not_a_number, value: 'invalid')
   end
 
+  test 'nil conversion factor' do
+    unit = units(:units)
+    unit.update!(conversion_factor: '')
+    assert_not unit.errors.added?(:conversion_factor, :not_a_number, value: 'invalid')
+    assert_nil unit.conversion_factor
+  end
+
   test 'expression contains extra spaces' do
     unit = Unit.create(expression: '  Unit  ')
     assert_equal 'Unit', unit.expression

@@ -89,6 +89,7 @@ es-PA:
   errors:
     messages:
       cant_be_in_the_future: no puede ser del futuro
+      cant_be_that_old: no puede ser tan viejo
       cant_begin_with_dr: no puede comenzar con Dr(a).
       fraction: debe ser N/N
       range: debe ser N-N, <N o >N
@@ -123,7 +124,7 @@ es-PA:
         lab_test_values: Valores
         lab_tests: Pruebas
         panels: Paneles
-        reference_ranges: Rangos
+        qualified_intervals: Rangos
         units: Unidades
         users: Usuarios
     auth:
@@ -256,6 +257,9 @@ es-PA:
       other: '%{count} años'
   results:
     abnormal: •
+    critical_abnormal: •••
+    critical_high: •••
+    critical_low: •••
     detected: •
     equivocal: •
     high: •
@@ -309,6 +313,8 @@ es-PA:
     positive: •
     reactive: •
     resistant: •
+    significantly_high: ••
+    significantly_low: ••
     susceptible: ''
     weakly_reactive: •
   results_mailer:
@@ -364,6 +370,11 @@ es-PA:
       next: Siguiente »
       previous: « Anterior
       truncate: …
+  interval:
+    gender:
+      female: 'F:'
+      male: 'M:'
+      unknown: ''
   activerecord:
     attributes:
       accession:
@@ -402,6 +413,6 @@ es-PA:
       lab_test_value: valor
       panel: panel
       patient: paciente
-      reference_range: rango
+      qualified_interval: rango
       unit: unidad
       user: usuario

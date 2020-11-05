@@ -446,6 +446,15 @@ td.range_1 {
   color: #777;
   display: inline; }
 
+table.qualified-interval {
+  th.range {
+    min-width: 100px;
+  }
+  th.age {
+    min-width: 60px;
+  }
+}
+
 .sortable_lab_test_name {
   display: inline-block;
   width: 260px; }
@@ -969,6 +978,17 @@ li.contact:hover {
 
 .panel, .lab_test_value {
   width: 100%; }
+
+.observation-definition {
+  ul li {
+    list-style-type: initial;
+    margin-left: 30px;
+  }
+  h3 {
+    padding-top: 10px;
+  }
+  padding: 10px;
+}
 
 div.auto_complete {
   background: white;

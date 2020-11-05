@@ -4,6 +4,7 @@ module FHIRable
   module Observation
     extend ActiveSupport::Concern
     include Identifier
+    include FHIRable::Range
 
     included do
       def self.new_from_fhir(contents)
@@ -52,7 +53,7 @@ module FHIRable
         'valueRange': observation_value_range,
         'valueRatio': observation_value_ratio,
         'dataAbsentReason': observation_data_absent_reason,
-        'interpretation': observation_interpretations,
+        'interpretation': observation_interpretations(interpretation),
         'note': observation_notes,
         'bodySite': observation_body_site,
         'method': observation_method,
@@ -83,6 +84,57 @@ module FHIRable
         FHIR::Reference.new(reference: "Practitioner/#{accession.drawer.id}", tpe: 'Practitioner', display: 'TODO_PRACTITIONER_FULL_NAME'),
         FHIR::Reference.new(reference: "Practitioner/#{accession.reporter&.id}", tpe: 'Practitioner', display: 'TODO_PRACTITIONER_FULL_NAME')
       ]
+    end
+
+    def observation_interpretations(interpretation)
+      return unless interpretation
+
+      [
+        FHIR::CodeableConcept.new(
+          coding: FHIR::Coding.new(
+            system: 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation',
+            code: interpretation,
+            display: lookup_interpretation(interpretation)
+          )
+        )
+      ]
+    end
+
+    def lookup_interpretation(flag)
+      index = ApplicationController.helpers.options_for_flag.flatten.index(flag)
+      ApplicationController.helpers.options_for_flag.flatten[index - 1]
+    end
+
+    def observation_reference_ranges
+      return if reference_ranges.blank?
+
+      ranges = []
+      reference_ranges.each do |range|
+        ranges << {
+          low: fhirable_quantity(range.range.begin, decimal_precision: lab_test.decimals.to_i, unit: lab_test.unit),
+          high: fhirable_quantity(range.range.end, decimal_precision: lab_test.decimals.to_i, unit: lab_test.unit),
+          type: observation_reference_ranges_type(range.context),
+          text: range.condition
+        }
+      end
+      ranges
+    end
+
+    def observation_reference_ranges_type(type)
+      return unless type
+
+      FHIR::CodeableConcept.new(
+        coding: FHIR::Coding.new(
+          system: 'http://terminology.hl7.org/CodeSystem/referencerange-meaning',
+          code: type,
+          display: lookup_type(type)
+        )
+      )
+    end
+
+    def lookup_type(type)
+      index = ApplicationController.helpers.options_for_context.flatten.index(type)
+      ApplicationController.helpers.options_for_context.flatten[index - 1]
     end
 
     def observation_value_quantity
@@ -120,7 +172,7 @@ module FHIRable
     end
 
     # TODO: implement each missing method
-    def method_missing(*args, &block)
+    def method_missing(*_args)
       nil
     end
   end

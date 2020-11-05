@@ -78,7 +78,7 @@
     <%= f.text_field :text_length, id: 'lab_test_text_length' %>
   </div>
 
-  <h2>Values</h2>
+  <h2>Qualitative Values</h2>
   <div class="values">
     <%= f.collection_check_boxes(:lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag) do |b| %>
       <div class="lab_test_value">

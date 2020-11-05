@@ -14,9 +14,10 @@ class Accession < ApplicationRecord
   has_one :insurance_provider, through: :patient
 
   has_many :results, class_name: 'Observation', dependent: :destroy
-  has_many :lab_tests, through: :results
+  has_many :lab_tests, -> { order('position ASC') }, through: :results
   has_many :accession_panels, dependent: :destroy
   has_many :panels, through: :accession_panels
+  has_many :departments, through: :lab_tests
   has_many :notes, as: :noticeable, dependent: :destroy
 
   delegate :birthdate, to: :patient, prefix: true
@@ -45,21 +46,8 @@ class Accession < ApplicationRecord
 
   before_save :nil_empty_notes
 
-  def patient_age
-    sec_per_day = 86_400
-    days_per_week = 7
-    days_per_month = 30.4368
-    days_per_year = 365.242
-
-    if patient_birthdate
-      age_in_days = (drawn_at - patient_birthdate.to_time(:local)) / sec_per_day
-      age_in_weeks = ((age_in_days / days_per_week) * 10).round / 10
-      age_in_months = ((age_in_days / days_per_month) * 10).round / 10
-      age_in_years = (age_in_days / days_per_year).floor
-      age_in_days = (age_in_days * 10).round / 10
-    end
-
-    { days: age_in_days, weeks: age_in_weeks, months: age_in_months, years: age_in_years }
+  def subject_age
+    ActiveSupport::Duration.age(patient_birthdate, drawn_at)
   end
 
   def doctor_name=(name)

@@ -2,14 +2,14 @@
 
 class PatientsController < ApplicationController
   before_action :recent_patients, except: %i[update destroy]
+  before_action :set_patient, only: %i[show edit update destroy history]
 
   def index
     @patients = Patient.search(params[:search]).page(params[:page])
   end
 
   def show
-    @patient = Patient.find(params[:id])
-    @accessions = @patient.accessions.includes(:reporter).recently.page(params[:page])
+    @accessions = @patient.accessions.recently.page(params[:page])
   rescue ActiveRecord::RecordNotFound
     redirect_to patients_url, alert: t('.patient_not_found')
   end
@@ -27,12 +27,9 @@ class PatientsController < ApplicationController
     end
   end
 
-  def edit
-    @patient = Patient.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @patient = Patient.find(params[:id])
     if @patient.update(patient_params)
       redirect_to @patient, notice: t('.success')
     else
@@ -41,14 +38,12 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    @patient = Patient.find(params[:id])
     @patient.destroy
     redirect_to patients_url, notice: t('.success')
   end
 
   def history
     @bundle = FHIR::Bundle.new
-    @patient = Patient.find(params[:id])
     meta = FHIR::Meta.new('lastUpdated' => @patient.updated_at.iso8601)
     @bundle.id = @patient.id
     @bundle.type = 'history'
@@ -68,6 +63,10 @@ class PatientsController < ApplicationController
   end
 
   private
+
+  def set_patient
+    @patient = Patient.find(params[:id])
+  end
 
   def patient_params
     params.require(:patient).permit(

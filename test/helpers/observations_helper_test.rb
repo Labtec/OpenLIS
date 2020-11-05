@@ -4,6 +4,7 @@ require 'test_helper'
 
 class ObservationsHelperTest < ActionView::TestCase
   include ObservationsHelper
+  include QualifiedIntervalsHelper
 
   setup do
     @observation = observations(:observation)
@@ -103,22 +104,25 @@ class ObservationsHelperTest < ActionView::TestCase
     assert_equal 'Units', format_units(@observation)
   end
 
-  test 'reference range table contains less than symbol' do
-    observation_ranges = [[nil, nil, nil, '<', '10']]
-    assert_equal '<table><tbody><tr><td class="range_0"></td><td class="range_1"></td><td class="range_2"></td><td class="range_3">&lt;</td><td class="range_4">10</td></tr></tbody></table>',
-                 ranges_table(observation_ranges)
+  test 'empty ranges table' do
+    empty_table = [[nil, nil, nil, nil, nil]]
+    assert_equal empty_table, ranges_table([])
   end
 
-  test 'reference range table contains greater than symbol' do
-    observation_ranges = [[nil, nil, nil, '≥', '10']]
-    assert_equal '<table><tbody><tr><td class="range_0"></td><td class="range_1"></td><td class="range_2"></td><td class="range_3">≥</td><td class="range_4">10</td></tr></tbody></table>',
-                 ranges_table(observation_ranges)
+  test 'reference range table' do
+    reference_range_table = [[nil, '', '10', '–', '2,000']]
+    assert_equal reference_range_table, ranges_table([qualified_intervals(:qualified_interval)])
   end
 
-  test "reference range table contains gender info if patient's gender is unknown" do
-    observation_ranges = [['M: ', nil, '0', '–', '10'],
-                          ['F: ', nil, '100', '–', '200']]
-    assert_equal '<table><tbody><tr><td class="range_0">M: </td><td class="range_1"></td><td class="range_2">0</td><td class="range_3">–</td><td class="range_4">10</td></tr><tr><td class="range_0">F: </td><td class="range_1"></td><td class="range_2">100</td><td class="range_3">–</td><td class="range_4">200</td></tr></tbody></table>',
-                 ranges_table(observation_ranges)
+  test 'reference range table with genders' do
+    reference_range_table = [[nil, 'M:', '0', '–', '10'],
+                             [nil, 'F:', '100', '–', '200']]
+    assert_equal reference_range_table,
+                 ranges_table([qualified_intervals(:gender_male), qualified_intervals(:gender_female)], display_gender: true)
+  end
+
+  test 'reference range table with condition' do
+    reference_range_table = [['Desirable:', '', '300', '–', '400']]
+    assert_equal reference_range_table, ranges_table([qualified_intervals(:desirable)])
   end
 end

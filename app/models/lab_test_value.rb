@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class LabTestValue < ApplicationRecord
-  ABNORMAL_FLAGS = %w[A AA DET E I IND NS POS R RR WR].freeze
-  HIGH_FLAGS = %w[> H HH].freeze
-  LOW_FLAGS = %w[< L LL].freeze
-  NORMAL_FLAGS = %w[N ND NEG NR S].freeze
+  ABNORMAL_FLAGS = %w[A AA DET E I IE IND NS POS R RR UNE WR].freeze
+  HIGH_FLAGS = %w[> H HU HH].freeze
+  LOW_FLAGS = %w[< L LU LL].freeze
+  NORMAL_FLAGS = %w[EXP N ND NEG NR S].freeze
   FLAGS = ABNORMAL_FLAGS + HIGH_FLAGS + LOW_FLAGS + NORMAL_FLAGS
 
   has_many :lab_test_value_option_joints, dependent: :destroy

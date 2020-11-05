@@ -10,7 +10,7 @@ class DiagnosticReportsController < ApplicationController
 
   def show
     @patient = @diagnostic_report.patient
-    @results = @diagnostic_report.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
+    @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
 
     respond_to do |format|
       format.html
@@ -27,7 +27,7 @@ class DiagnosticReportsController < ApplicationController
 
   def edit
     @patient = @diagnostic_report.patient
-    results = @diagnostic_report.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
+    results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
     results.each do |department, _result|
       @diagnostic_report.notes.build(department_id: department.id) unless @diagnostic_report.try(:notes).find_by(department_id: department.id)
     end
@@ -85,7 +85,7 @@ class DiagnosticReportsController < ApplicationController
 
   def email
     @patient = @diagnostic_report.patient
-    @results = @diagnostic_report.results.includes(:department, :lab_test_value, { lab_test: [:reference_ranges] }, :reference_ranges, :patient, :unit).ordered.group_by(&:department)
+    @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
 
     pdf = LabReport.new(@patient, @diagnostic_report, @results, true, view_context)
 
@@ -111,7 +111,7 @@ class DiagnosticReportsController < ApplicationController
   protected
 
   def set_diagnostic_report
-    @diagnostic_report = Accession.find(params[:id])
+    @diagnostic_report = Accession.includes(:patient, :drawer, :receiver).find(params[:id])
   end
 
   def recent_patients

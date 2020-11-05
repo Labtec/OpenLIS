@@ -1,0 +1,435 @@
+qualified_interval:
+  range_low_value: 10
+  range_high_value: 2_000
+  lab_test: qualified_interval
+
+less_than:
+  range_high_value: 10
+  lab_test: qualified_interval_less_than
+
+greater_than:
+  range_low_value: 10
+  lab_test: qualified_interval_greater_than
+
+gender_male:
+  gender: male
+  range_low_value: 0
+  range_high_value: 10
+  lab_test: qualified_interval_male_female
+
+gender_female:
+  gender: female
+  range_low_value: 100
+  range_high_value: 200
+  lab_test: qualified_interval_male_female
+
+multiple_intervals_1:
+  range_high_value: 10
+  lab_test: multiple_intervals_nil_min_interval
+
+multiple_intervals_2:
+  range_low_value: 2
+  range_high_value: 3
+  lab_test: multiple_intervals_nil_min_interval
+
+multiple_intervals_3:
+  range_low_value: 10
+  lab_test: multiple_intervals_nil_max_interval
+
+multiple_intervals_4:
+  range_low_value: 5
+  range_high_value: 9
+  lab_test: multiple_intervals_nil_max_interval
+
+chol:
+  lab_test: chol
+  range_high_value: 200
+
+hgb_m1:
+  lab_test: hgb
+  gender: male
+  age_high: P15D # (14 + 1)D
+  range_low_value: 13.9
+  range_high_value: 19.1
+
+hgb_m2:
+  lab_test: hgb
+  gender: male
+  age_low: P15D
+  age_high: P5W # (4 + 1)W
+  range_low_value: 10.0
+  range_high_value: 15.3
+
+hgb_m3:
+  lab_test: hgb
+  gender: male
+  age_low: P5W
+  age_high: P8W # (7 + 1)W
+  range_low_value: 8.9
+  range_high_value: 12.7
+
+hgb_m4:
+  lab_test: hgb
+  gender: male
+  age_low: P8W
+  age_high: P6M # (5 + 1)M
+  range_low_value: 9.6
+  range_high_value: 12.4
+
+hgb_m5:
+  lab_test: hgb
+  gender: male
+  age_low: P6M
+  age_high: P24M # (23 + 1)M
+  range_low_value: 10.1
+  range_high_value: 12.5
+
+hgb_m6:
+  lab_test: hgb
+  gender: male
+  age_low: P24M
+  age_high: P36M # (35 + 1)M
+  range_low_value: 10.2
+  range_high_value: 12.7
+
+hgb_m7:
+  lab_test: hgb
+  gender: male
+  age_low: P3Y
+  age_high: P6Y # (5 + 1)Y
+  range_low_value: 11.4
+  range_high_value: 14.3
+
+hgb_m8:
+  lab_test: hgb
+  gender: male
+  age_low: P6Y
+  age_high: P9Y # (8 + 1)Y
+  range_low_value: 11.5
+  range_high_value: 14.3
+
+hgb_m9:
+  lab_test: hgb
+  gender: male
+  age_low: P9Y
+  age_high: P11Y # (10 + 1)Y
+  range_low_value: 11.8
+  range_high_value: 14.7
+
+hgb_m10:
+  lab_test: hgb
+  gender: male
+  age_low: P11Y
+  age_high: P15Y # (14 + 1)Y
+  range_low_value: 12.4
+  range_high_value: 15.7
+
+hgb_m11:
+  lab_test: hgb
+  gender: male
+  age_low: P15Y
+  age_high: P18Y # (17 + 1)Y
+  range_low_value: 12.4
+  range_high_value: 15.7
+
+hgb_m12:
+  lab_test: hgb
+  gender: male
+  age_low: P18Y
+  range_low_value: 13.2
+  range_high_value: 16.6
+
+hgb_f1:
+  lab_test: hgb
+  gender: female
+  age_low: P0D
+  age_high: P15D # (14 + 1)D
+  range_low_value: 13.4
+  range_high_value: 20.0
+
+hgb_f2:
+  lab_test: hgb
+  gender: female
+  age_low: P15D
+  age_high: P5W # (4 + 1)W
+  range_low_value: 10.8
+  range_high_value: 14.6
+
+hgb_f3:
+  lab_test: hgb
+  gender: female
+  age_low: P5W
+  age_high: P8W # (7 + 1)W
+  range_low_value: 9.2
+  range_high_value: 11.4
+
+hgb_f4:
+  lab_test: hgb
+  gender: female
+  age_low: P8W
+  age_high: P6M # (5 + 1)M
+  range_low_value: 9.9
+  range_high_value: 12.4
+
+hgb_f5:
+  lab_test: hgb
+  gender: female
+  age_low: P6M
+  age_high: P36M # (35 + 1)M = 3Y
+  range_low_value: 10.2
+  range_high_value: 12.7
+
+hgb_f6:
+  lab_test: hgb
+  gender: female
+  age_low: P3Y
+  age_high: P6Y # (5 + 1)Y
+  range_low_value: 11.4
+  range_high_value: 14.3
+
+hgb_f7:
+  lab_test: hgb
+  gender: female
+  age_low: P6Y
+  age_high: P9Y # (8 + 1)Y
+  range_low_value: 11.5
+  range_high_value: 14.3
+
+hgb_f8:
+  lab_test: hgb
+  gender: female
+  age_low: P9Y
+  age_high: P11Y # (10 + 1)Y
+  range_low_value: 11.8
+  range_high_value: 14.7
+
+hgb_f9:
+  lab_test: hgb
+  gender: female
+  age_low: P11Y
+  age_high: P18Y # (17 + 1)Y
+  range_low_value: 11.9
+  range_high_value: 14.8
+
+hgb_f10:
+  lab_test: hgb
+  gender: female
+  age_low: P18Y
+  range_low_value: 11.9
+  range_high_value: 15.0
+
+fsh_m1:
+  lab_test: fsh
+  gender: male
+  age_high: P12M # (11 + 1)M
+  range_high_value: 3.3
+
+fsh_m2:
+  lab_test: fsh
+  gender: male
+  age_low: P1Y
+  age_high: P6Y # (5 + 1)Y
+  range_high_value: 1.9
+
+fsh_m3:
+  lab_test: fsh
+  gender: male
+  age_low: P6Y
+  age_high: P11Y # (10 + 1)Y
+  range_high_value: 2.3
+
+fsh_m4:
+  lab_test: fsh
+  gender: male
+  age_low: P11Y
+  age_high: P16Y # (15 + 1)Y
+  range_low_value: 0.6
+  range_high_value: 6.9
+
+fsh_m5:
+  lab_test: fsh
+  gender: male
+  age_low: P16Y
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.7
+  range_high_value: 9.6
+
+fsh_m6:
+  lab_test: fsh
+  gender: male
+  age_low: P19Y
+  range_low_value: 1.2
+  range_high_value: 15.8
+
+fsh_mt1:
+  lab_test: fsh
+  gender: male
+  age_high: P19Y # (18 + 1)Y
+  range_high_value: 1.5
+  condition: Tanner I
+
+fsh_mt2:
+  lab_test: fsh
+  gender: male
+  age_high: P19Y # (18 + 1)Y
+  range_high_value: 3.0
+  condition: Tanner II
+
+fsh_mt3:
+  lab_test: fsh
+  gender: male
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.4
+  range_high_value: 6.2
+  condition: Tanner III
+
+fsh_mt4:
+  lab_test: fsh
+  gender: male
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.6
+  range_high_value: 5.1
+  condition: Tanner IV
+
+fsh_mt5:
+  lab_test: fsh
+  gender: male
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.8
+  range_high_value: 7.2
+  condition: Tanner V
+
+fsh_f1:
+  lab_test: fsh
+  gender: female
+  age_high: P12M # (11 + 1)M = 1Y
+  range_low_value: 1.2
+  range_high_value: 12.5
+
+fsh_f2:
+  lab_test: fsh
+  gender: female
+  age_low: P1Y
+  age_high: P11Y # (10 + 1)Y
+  range_low_value: 0.5
+  range_high_value: 6.0
+
+fsh_f3:
+  lab_test: fsh
+  gender: female
+  age_low: P11Y
+  age_high: P16Y # (15 + 1)Y
+  range_low_value: 0.9
+  range_high_value: 8.9
+
+fsh_f4:
+  lab_test: fsh
+  gender: female
+  age_low: P16Y
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.7
+  range_high_value: 9.6
+
+fsh_ff:
+  lab_test: fsh
+  gender: female
+  age_low: P19Y
+  range_low_value: 2.9
+  range_high_value: 14.6
+  context: follicular
+
+fsh_fm:
+  lab_test: fsh
+  gender: female
+  age_low: P19Y
+  range_low_value: 4.7
+  range_high_value: 23.2
+  context: midcycle
+
+fsh_fl:
+  lab_test: fsh
+  gender: female
+  age_low: P19Y
+  range_low_value: 1.4
+  range_high_value: 8.9
+  context: luteal
+
+fsh_fp:
+  lab_test: fsh
+  gender: female
+  age_low: P19Y
+  range_low_value: 16.0
+  range_high_value: 157.0
+  context: postmenopausal
+
+fsh_ft1:
+  lab_test: fsh
+  gender: female
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.6
+  range_high_value: 4.1
+  condition: Tanner I
+
+fsh_ft2:
+  lab_test: fsh
+  gender: female
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.3
+  range_high_value: 5.8
+  condition: Tanner II
+
+fsh_ft3:
+  lab_test: fsh
+  gender: female
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.1
+  range_high_value: 7.2
+  condition: Tanner III
+
+fsh_ft4:
+  lab_test: fsh
+  gender: female
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.3
+  range_high_value: 7.0
+  condition: Tanner IV
+
+fsh_ft5:
+  lab_test: fsh
+  gender: female
+  age_high: P19Y # (18 + 1)Y
+  range_low_value: 0.4
+  range_high_value: 8.6
+  condition: Tanner V
+
+critical_low:
+  category: critical
+  lab_test: with_critical_ranges
+  range_high_value: 100
+  condition: Critical Low
+
+significantly_low:
+  lab_test: with_critical_ranges
+  range_low_value: 100
+  range_high_value: 200
+  interpretation: significantly_low
+  condition: Significantly Low
+
+desirable:
+  lab_test: with_critical_ranges
+  range_low_value: 300
+  range_high_value: 400
+  condition: Desirable
+
+significantly_high:
+  lab_test: with_critical_ranges
+  range_low_value: 500
+  range_high_value: 599
+  interpretation: significantly_high
+  condition: Significantly High
+
+critical_high:
+  category: critical
+  lab_test: with_critical_ranges
+  range_low_value: 600
+  condition: Critical High

@@ -24,6 +24,18 @@ COMMENT ON EXTENSION unaccent IS 'text search dictionary that removes accents';
 
 
 --
+-- Name: administrative_gender; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.administrative_gender AS ENUM (
+    'male',
+    'female',
+    'other',
+    'unknown'
+);
+
+
+--
 -- Name: data_absent_reason; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -61,6 +73,17 @@ CREATE TYPE public.diagnostic_report_status AS ENUM (
     'cancelled',
     'entered-in-error',
     'unknown'
+);
+
+
+--
+-- Name: observation_range_category; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.observation_range_category AS ENUM (
+    'reference',
+    'critical',
+    'absolute'
 );
 
 
@@ -563,10 +586,10 @@ CREATE TABLE public.prices (
 
 
 --
--- Name: reference_ranges_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: qualified_intervals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.reference_ranges_id_seq
+CREATE SEQUENCE public.qualified_intervals_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -575,22 +598,31 @@ CREATE SEQUENCE public.reference_ranges_id_seq
 
 
 --
--- Name: reference_ranges; Type: TABLE; Schema: public; Owner: -
+-- Name: qualified_intervals; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.reference_ranges (
-    id bigint DEFAULT nextval('public.reference_ranges_id_seq'::regclass) NOT NULL,
-    gender character varying(510) DEFAULT NULL::character varying,
-    min_age integer,
-    max_age integer,
-    age_unit character varying(510) DEFAULT NULL::character varying,
+CREATE TABLE public.qualified_intervals (
+    id bigint DEFAULT nextval('public.qualified_intervals_id_seq'::regclass) NOT NULL,
+    old_gender character varying(510) DEFAULT NULL::character varying,
+    old_min_age integer,
+    old_max_age integer,
+    old_age_unit character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
     lab_test_id bigint,
-    min numeric(15,5) DEFAULT NULL::numeric,
-    max numeric(15,5) DEFAULT NULL::numeric,
+    range_low_value numeric,
+    range_high_value numeric,
     animal_type integer,
-    description character varying(510) DEFAULT NULL::character varying
+    condition character varying,
+    category public.observation_range_category,
+    context character varying,
+    interpretation_id bigint,
+    gender public.administrative_gender,
+    age_low character varying,
+    age_high character varying,
+    gestational_age_low character varying,
+    gestational_age_high character varying,
+    rank integer
 );
 
 
@@ -820,11 +852,11 @@ ALTER TABLE ONLY public.prices
 
 
 --
--- Name: reference_ranges reference_ranges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: qualified_intervals qualified_intervals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.reference_ranges
-    ADD CONSTRAINT reference_ranges_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.qualified_intervals
+    ADD CONSTRAINT qualified_intervals_pkey PRIMARY KEY (id);
 
 
 --
@@ -1096,10 +1128,17 @@ CREATE INDEX index_prices_on_priceable_id_and_priceable_type ON public.prices US
 
 
 --
--- Name: index_reference_ranges_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_qualified_intervals_on_interpretation_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_reference_ranges_on_lab_test_id ON public.reference_ranges USING btree (lab_test_id);
+CREATE INDEX index_qualified_intervals_on_interpretation_id ON public.qualified_intervals USING btree (interpretation_id);
+
+
+--
+-- Name: index_qualified_intervals_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_qualified_intervals_on_lab_test_id ON public.qualified_intervals USING btree (lab_test_id);
 
 
 --
@@ -1145,6 +1184,14 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 
 
 --
+-- Name: qualified_intervals fk_rails_fa3ecce1d4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qualified_intervals
+    ADD CONSTRAINT fk_rails_fa3ecce1d4 FOREIGN KEY (interpretation_id) REFERENCES public.lab_test_values(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -1177,6 +1224,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201003000001'),
 ('20201005000001'),
 ('20201017000001'),
-('20201017000002');
+('20201017000002'),
+('20201023000001'),
+('20201023000002');
 
 

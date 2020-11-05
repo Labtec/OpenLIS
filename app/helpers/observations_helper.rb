@@ -42,7 +42,7 @@ module ObservationsHelper
   end
 
   def flag_name(observation)
-    case observation.flag
+    case observation.interpretation
     when '<'
       t('results.off_scale_low')
     when '>'
@@ -50,23 +50,27 @@ module ObservationsHelper
     when 'A'
       t('results.abnormal')
     when 'AA'
-      t('results.abnormal') * 2
+      t('results.critical_abnormal')
     when 'DET'
       t('results.detected')
     when 'E'
       t('results.equivocal')
     when 'H'
       t('results.high')
+    when 'HU'
+      t('results.significantly_high')
     when 'HH'
-      t('results.high') * 2
+      t('results.critical_high')
     when 'I'
       t('results.intermediate')
     when 'IND'
       t('results.indeterminate')
     when 'L'
       t('results.low')
+    when 'LU'
+      t('results.significantly_low')
     when 'LL'
-      t('results.low') * 2
+      t('results.critical_low')
     when 'N'
       t('results.normal')
     when 'ND'
@@ -91,7 +95,7 @@ module ObservationsHelper
   end
 
   def flag_color(observation)
-    case observation.flag
+    case observation.interpretation
     when *LabTestValue::ABNORMAL_FLAGS
       'abnormal_value'
     when *LabTestValue::HIGH_FLAGS
@@ -103,18 +107,24 @@ module ObservationsHelper
     end
   end
 
-  def ranges_table(ranges)
-    tag.table do
-      tag.tbody do
-        safe_join(ranges.collect do |range|
-          tag.tr do
-            range.each_with_index do |column, index|
-              concat tag.td(column, class: "range_#{index}")
-            end
-          end
-        end)
-      end
+  def ranges_table(intervals, display_gender: false)
+    return [[nil, nil, nil, nil, nil]] if intervals.empty?
+
+    intervals_array = []
+    intervals.each do |interval|
+      gender = display_gender && interval.gender ? t(interval.gender, scope: 'interval.gender') : ''
+      condition = "#{interval.condition}:" if interval.condition.present?
+      left_side = number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ',') if interval.range_low_value && interval.range_high_value
+      symbol = range_symbol(interval.range)
+      right_side = if interval.range_high_value
+                     number_with_precision(interval.range_high_value, precision: interval.lab_test.decimals.to_i, delimiter: ',')
+                   else
+                     number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ',')
+                   end
+
+      intervals_array << [condition, gender, left_side, symbol, right_side]
     end
+    intervals_array
   end
 
   def registration_number(inline: false)
