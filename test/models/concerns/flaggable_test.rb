@@ -103,4 +103,13 @@ class FlaggableTest < ActiveSupport::TestCase
     @observation.update(value: '3000-4000')
     assert_equal 'H', @observation.interpretation
   end
+
+  test 'value is a code (qualitative)' do
+    lab_test = lab_tests(:qualitative)
+    @observation.update(lab_test: lab_test)
+
+    # value = Positive => interpretation: A
+    @observation.update(lab_test_value: lab_test_values(:positive))
+    assert_equal 'A', @observation.interpretation
+  end
 end
