@@ -121,9 +121,9 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   # devise
-  config.to_prepare { Devise::SessionsController.force_ssl }
-  config.to_prepare { Devise::RegistrationsController.force_ssl }
-  config.to_prepare { Devise::PasswordsController.force_ssl }
+  #config.to_prepare { Devise::SessionsController.force_ssl }
+  #config.to_prepare { Devise::RegistrationsController.force_ssl }
+  #config.to_prepare { Devise::PasswordsController.force_ssl }
   config.action_mailer.default_url_options = { protocol: 'https',
                                                host: 'openlis.labtecsa.com' }
 
