@@ -25,16 +25,16 @@ class LabTestValue < ApplicationRecord
   end
 
   def value_with_flag
-    if flag.blank?
-      value
-    else
-      "#{value} (#{flag})"
-    end
+    flag.present? ? "#{value} (#{flag})" : value
   end
 
   # TODO: The database should store both values,
   # the plain value and the formatted value
   def stripped_value
     value.gsub(%r{</?i>}, '')
+  end
+
+  def stripped_value_with_flag
+    value_with_flag.gsub(%r{</?i>}, '')
   end
 end

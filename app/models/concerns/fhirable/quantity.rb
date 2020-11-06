@@ -4,7 +4,7 @@ module FHIRable
   module Quantity
     extend ActiveSupport::Concern
 
-    def fhirable_quantity(value, decimal_precision: 0, cmparator: nil, unit: nil)
+    def fhirable_quantity(value, decimal_precision: 0, comparator: nil, unit: nil)
       return unless value
 
       FHIR::Quantity.new(

@@ -27,7 +27,7 @@
 
   <div class="interpretation">
     <%= f.label :interpretation %>
-    <%= f.collection_select :interpretation_id, LabTestValue.all, :id, :value, include_blank: true %>
+    <%= f.collection_select :interpretation_id, LabTestValue.all.sorted, :id, :stripped_value_with_flag, include_blank: true %>
   </div>
 
   <div class="gender">
