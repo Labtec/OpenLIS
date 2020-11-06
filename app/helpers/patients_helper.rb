@@ -86,10 +86,10 @@ module PatientsHelper
 
     pediatric_age = age.pediatric.parts
 
-    years = t('patients.year', count: pediatric_age[:years]) if pediatric_age[:years]
-    months = t('patients.month', count: pediatric_age[:months]) if pediatric_age[:months]
-    weeks = t('patients.week', count: pediatric_age[:weeks]) if pediatric_age[:weeks]
-    days = t('patients.day', count: pediatric_age[:days]) if pediatric_age[:days]
+    years = t('patients.year', count: pediatric_age[:years]) unless pediatric_age[:years].zero?
+    months = t('patients.month', count: pediatric_age[:months]) unless pediatric_age[:months].zero?
+    weeks = t('patients.week', count: pediatric_age[:weeks]) unless pediatric_age[:weeks].zero?
+    days = t('patients.day', count: pediatric_age[:days]) unless pediatric_age[:days].zero?
 
     [years, months, weeks, days].compact.join(' ')
   end

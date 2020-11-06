@@ -18,8 +18,8 @@ class AgeDurationTest < ActiveSupport::TestCase
     today = Date.parse('2001-03-02')
 
     age = ActiveSupport::Duration.age(birth_date, today)
-    assert_nil age.parts[:years], '0 years'
-    assert_nil age.parts[:months], '0 months'
+    assert_equal 0, age.parts[:years], '0 years'
+    assert_equal 0, age.parts[:months], '0 months'
     assert_equal 2, age.parts[:days], '2 day'
 
     # 29-day month
@@ -27,8 +27,8 @@ class AgeDurationTest < ActiveSupport::TestCase
     today = Date.parse('2000-03-02')
 
     age = ActiveSupport::Duration.age(birth_date, today)
-    assert_nil age.parts[:years], '0 years'
-    assert_nil age.parts[:months], '0 months'
+    assert_equal 0, age.parts[:years], '0 years'
+    assert_equal 0, age.parts[:months], '0 months'
     assert_equal 2, age.parts[:days], '2 days'
 
     # 30-day month
@@ -36,8 +36,8 @@ class AgeDurationTest < ActiveSupport::TestCase
     today = Date.parse('2000-05-02')
 
     age = ActiveSupport::Duration.age(birth_date, today)
-    assert_nil age.parts[:years], '0 years'
-    assert_nil age.parts[:months], '0 months'
+    assert_equal 0, age.parts[:years], '0 years'
+    assert_equal 0, age.parts[:months], '0 months'
     assert_equal 3, age.parts[:days], '3 days'
 
     # 31-day month
@@ -45,8 +45,8 @@ class AgeDurationTest < ActiveSupport::TestCase
     today = Date.parse('2000-02-02')
 
     age = ActiveSupport::Duration.age(birth_date, today)
-    assert_nil age.parts[:years], '0 years'
-    assert_nil age.parts[:months], '0 months'
+    assert_equal 0, age.parts[:years], '0 years'
+    assert_equal 0, age.parts[:months], '0 months'
     assert_equal 4, age.parts[:days], '4 days'
   end
 
@@ -74,8 +74,8 @@ class AgeDurationTest < ActiveSupport::TestCase
     service_date = Date.parse('2001-03-02')
 
     age = ActiveSupport::Duration.age(birth_date, service_date)
-    assert_nil age.parts[:years], '0 years'
-    assert_nil age.parts[:months], '0 months'
+    assert_equal 0, age.parts[:years], '0 years'
+    assert_equal 0, age.parts[:months], '0 months'
     assert_equal 2, age.parts[:days], '2 day'
     travel_back
   end
