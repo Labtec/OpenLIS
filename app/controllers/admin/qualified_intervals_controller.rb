@@ -3,7 +3,7 @@
 module Admin
   class QualifiedIntervalsController < BaseController
     def index
-      @lab_tests = LabTest.includes({ qualified_intervals: [:interpretation] }).order(:position)
+      @lab_tests = LabTest.includes({ qualified_intervals: [:interpretation, :lab_test] }).order(:position)
     end
 
     def show

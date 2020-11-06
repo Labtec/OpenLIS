@@ -36,9 +36,7 @@ module ObservationsHelper
   end
 
   def format_units(observation)
-    observation.value_unit unless observation.lab_test_value &&
-                                  !observation.lab_test_value.numeric? &&
-                                  observation.value.blank?
+    observation.value_unit
   end
 
   def flag_name(observation)
@@ -185,5 +183,9 @@ module ObservationsHelper
 
   def row_class
     cycle('even', 'odd', name: 'alternating_row_colors')
+  end
+
+  def display_units(observation)
+    !observation.lab_test_value || observation.lab_test_value&.numeric? || observation.value.present?
   end
 end

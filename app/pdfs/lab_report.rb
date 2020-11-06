@@ -365,11 +365,11 @@ class LabReport < Prawn::Document
           cell_col0 = make_cell content: result.lab_test_name, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
           cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         end
-        cell_col2 = make_cell content: format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+        cell_col2 = make_cell content: display_format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: FLAG_COLORS[flag_color(result).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         ##
         # Ranges sub-table
-        pdf_ranges_table = make_table(ranges_table(result.reference_ranges, display_gender: @patient.unknown?), cell_style: { padding: [0, 0.4], borders: [] }) do
+        pdf_ranges_table = make_table(ranges_table(ranges_for_table(result), display_gender: @patient.unknown?), cell_style: { padding: [0, 0.4], borders: [] }) do
           column(0).align = :right
           column(1).align = :right
           column(2).align = :right
@@ -534,5 +534,13 @@ class LabReport < Prawn::Document
         svg Base64.strict_decode64(current_user.signature), position: :center, height: pad if current_user.signature
       end
     end
+  end
+
+  def ranges_for_table(result)
+    display_units(result) ? result.reference_ranges : []
+  end
+
+  def display_format_units(result)
+    format_units(result) if display_units(result)
   end
 end

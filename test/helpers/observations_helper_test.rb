@@ -87,13 +87,14 @@ class ObservationsHelperTest < ActionView::TestCase
     @observation.update(lab_test: lab_tests(:mixed),
                         value: nil,
                         lab_test_value: lab_test_values(:positive))
-    assert_nil format_units(@observation)
+    assert_not display_units(@observation)
   end
 
   test 'numerical-qualitative observations should have units' do
     @observation.update(lab_test: lab_tests(:mixed),
                         value: nil,
                         lab_test_value: lab_test_values(:less_than))
+    assert display_units(@observation)
     assert_equal 'Units', format_units(@observation)
   end
 
@@ -101,6 +102,7 @@ class ObservationsHelperTest < ActionView::TestCase
     @observation.update(lab_test: lab_tests(:mixed),
                         value: 10,
                         lab_test_value: lab_test_values(:positive))
+    assert display_units(@observation)
     assert_equal 'Units', format_units(@observation)
   end
 
