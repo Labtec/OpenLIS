@@ -125,4 +125,13 @@ class ObservationsHelperTest < ActionView::TestCase
     reference_range_table = [['Desirable:', '', '300', '–', '400']]
     assert_equal reference_range_table, ranges_table([qualified_intervals(:desirable)])
   end
+
+  test '#rannge_row' do
+    range = qualified_intervals(:qualified_interval)
+    assert_equal [nil, '', '10', '–', '2,000'], range_row(range), 'Quantity'
+
+    range.update(lab_test: lab_tests(:ratio))
+    assert_equal [nil, '', '1∶10', '–', '1∶2,000'], range_row(range), 'Titer'
+  end
+
 end

@@ -1,25 +1,18 @@
 <tr>
+  <% row = range_row(qualified_interval, display_gender: display_gender) %>
   <td class="range_0">
-    <%= "#{qualified_interval.condition}:" if qualified_interval.condition.present? %>
+    <%= row[0] %>
   </td>
-  <% if display_gender && qualified_interval.gender %>
-    <td class="range_1">
-      <%= t(qualified_interval.gender, scope: 'interval.gender') %>
-    </td>
-  <% end %>
+  <td class="range_1">
+    <%= row[1] %>
+  </td>
   <td class="range_2">
-    <% if qualified_interval.range_high_value %>
-      <%= number_with_precision(qualified_interval.range_low_value, precision: qualified_interval.lab_test.decimals.to_i, delimiter: ',') %>
-    <% end %>
+    <%= row[2] %>
   </td>
   <td class="range_3">
-    <%= range_symbol(qualified_interval.range) %>
+    <%= row[3] %>
   </td>
   <td class="range_4">
-    <% if qualified_interval.range_high_value %>
-      <%= number_with_precision(qualified_interval.range_high_value, precision: qualified_interval.lab_test.decimals.to_i, delimiter: ',') %>
-    <% else %>
-      <%= number_with_precision(qualified_interval.range_low_value, precision: qualified_interval.lab_test.decimals.to_i, delimiter: ',') %>
-    <% end %>
+    <%= row[4] %>
   </td>
 </tr>

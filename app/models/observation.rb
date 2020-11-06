@@ -79,9 +79,9 @@ class Observation < ApplicationRecord
     elsif lab_test.fraction?
       value =~ %r{\A(\d+)/(\d+)\z}
       Rational(Regexp.last_match(1).to_i, Regexp.last_match(2).to_i)
-    elsif lab_test.ratio?
+    elsif lab_test.ratio? # XXX: titer only
       value =~ /\A(\d+):(\d+)\z/
-      Rational(Regexp.last_match(1).to_i, Regexp.last_match(2).to_i)
+      Rational(Regexp.last_match(2).to_i, Regexp.last_match(1).to_i)
     else
       value.gsub(/[^\d.]/, '').to_d
     end

@@ -110,21 +110,35 @@ module ObservationsHelper
   def ranges_table(intervals, display_gender: false)
     return [[nil, nil, nil, nil, nil]] if intervals.empty?
 
-    intervals_array = []
+    table = []
     intervals.each do |interval|
-      gender = display_gender && interval.gender ? t(interval.gender, scope: 'interval.gender') : ''
-      condition = "#{interval.condition}:" if interval.condition.present?
+      table << range_row(interval, display_gender: display_gender)
+    end
+    table
+  end
+
+  def range_row(interval, display_gender: false)
+    return [nil, nil, nil, nil, nil] unless interval
+
+    gender = display_gender && interval.gender ? t(interval.gender, scope: 'interval.gender') : ''
+    condition = "#{interval.condition}:" if interval.condition.present?
+    symbol = range_symbol(interval.range)
+    if interval.lab_test.ratio? # XXX: titer
+      left_side = "1∶#{number_with_precision(interval.range_low_value, precision: 0, delimiter: ',')}" if interval.range_low_value && interval.range_high_value
+      right_side = if interval.range_high_value
+                     "1∶#{number_with_precision(interval.range_high_value, precision: 0, delimiter: ',')}"
+                   else
+                     "1∶#{number_with_precision(interval.range_low_value, precision: 0, delimiter: ',')}"
+                   end
+    else
       left_side = number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ',') if interval.range_low_value && interval.range_high_value
-      symbol = range_symbol(interval.range)
       right_side = if interval.range_high_value
                      number_with_precision(interval.range_high_value, precision: interval.lab_test.decimals.to_i, delimiter: ',')
                    else
                      number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ',')
                    end
-
-      intervals_array << [condition, gender, left_side, symbol, right_side]
     end
-    intervals_array
+    [condition, gender, left_side, symbol, right_side]
   end
 
   def registration_number(inline: false)
