@@ -62,6 +62,6 @@ module Flaggable
   def normal?
     flag = interpretation
 
-    flag.nil? || flag == 'N' ? true : false
+    flag.nil? || LabTestValue::NORMAL_FLAGS.include?(flag) ? true : false
   end
 end
