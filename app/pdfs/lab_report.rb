@@ -132,8 +132,8 @@ class LabReport < Prawn::Document
     column_2_width = 88
     column_3_width = 40
     column_range_width = 192
-    column_gender_range_width = 12
-    column_description_range_width = 90
+    column_gender_range_width = @patient.unknown? ? 12 : 0
+    column_description_range_width = 105
     column_range_title_width = column_gender_range_width + column_description_range_width
     column_5_width = font_size - 2
     column_4_width = (column_range_width - column_range_title_width - column_5_width) / 2
