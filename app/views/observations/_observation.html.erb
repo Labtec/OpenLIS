@@ -15,7 +15,7 @@
   <td class="ranges">
     <table>
       <tbody>
-        <%= render observation.reference_ranges.includes(:lab_test), display_gender: @patient.unknown? if display_units(observation) %>
+        <%= render observation.reference_intervals.includes(:lab_test), display_gender: @patient.unknown? if display_units(observation) %>
       </tbody>
     </table>
   </td>

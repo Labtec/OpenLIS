@@ -537,7 +537,7 @@ class LabReport < Prawn::Document
   end
 
   def ranges_for_table(result)
-    display_units(result) ? result.reference_ranges : []
+    display_units(result) ? result.reference_intervals : []
   end
 
   def display_format_units(result)
