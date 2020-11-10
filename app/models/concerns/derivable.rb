@@ -130,7 +130,7 @@ module Derivable
       tsperm.zero? ? '<0.1' : tsperm
     when 'VLDL'
       trig = result_value_quantity_for 'TRIG'
-      0.2 * trig
+      trig <= 400 ? trig / 5 : nil
     when 'COSMS'
       na = result_value_quantity_for 'Na'
       bun = result_value_quantity_for 'BUN'
