@@ -447,10 +447,10 @@ td.range_1 {
   display: inline; }
 
 table.qualified-interval {
-  th.range {
+  th.range, td.range {
     min-width: 100px;
   }
-  th.age {
+  th.age, td.age {
     min-width: 60px;
   }
 }
