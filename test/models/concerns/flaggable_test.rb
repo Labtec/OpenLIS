@@ -112,4 +112,26 @@ class FlaggableTest < ActiveSupport::TestCase
     @observation.update(lab_test_value: lab_test_values(:positive))
     assert_equal 'A', @observation.interpretation
   end
+
+  test 'gaps in ages' do
+    lab_test = lab_tests(:qualified_interval)
+    # 1 day to 4 weeks (< 5 weeks)
+    ri1 = QualifiedInterval.create(category: 'critical', age_low: 'P1D', age_high: 'P5W', range_low_value: 1, range_high_value: nil)
+    # 5 weeks to 2 years
+    ri2 = QualifiedInterval.create(category: 'critical', age_low: 'P5W', age_high: 'P2Y', range_low_value: 2, range_high_value: nil)
+    lab_test.update(qualified_intervals: [ri1, ri2])
+    patient = patients(:john)
+    accession = accessions(:accession)
+    accession.update(patient: patient, drawn_at: Time.current)
+    @observation.update(accession: accession, lab_test: lab_test)
+
+    patient.update(birthdate: 4.weeks.ago)
+    assert_equal 1.., @observation.critical_intervals.take.range
+
+    patient.update(birthdate: (4.weeks + 3.days).ago)
+    assert_equal 1.., @observation.critical_intervals.take.range
+
+    patient.update(birthdate: 6.weeks.ago)
+    assert_equal 2.., @observation.critical_intervals.take.range
+  end
 end
