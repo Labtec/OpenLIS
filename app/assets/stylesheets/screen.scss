@@ -392,10 +392,12 @@ table {
     td.lab_test {
       width: 200px; }
     td.units {
+      vertical-align: top;
       width: 100px; }
     td.result {
       width: 255px;
       text-align: right;
+      vertical-align: top;
       padding-right: 0; }
       td.result input {
         margin: 0 0 0 4px;
@@ -406,6 +408,7 @@ table {
     td.symbol {
       width: 15px;
       text-align: right;
+      vertical-align: top;
       padding-right: 0px; }
     td.low_value {
       color: #6678b1; }
