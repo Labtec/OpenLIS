@@ -12,6 +12,14 @@ class AgeDurationTest < ActiveSupport::TestCase
     assert_equal duration.value, age.value, 'values do not match'
   end
 
+  test 'built from weeks' do
+    birth_date = 6.weeks.ago
+    today = Date.today
+
+    age = ActiveSupport::Duration.age(birth_date, today)
+    assert_equal 1.month + 12.days, age
+  end
+
   test 'age duration between different months' do
     # 28-day month
     birth_date = Date.parse('2001-02-28')

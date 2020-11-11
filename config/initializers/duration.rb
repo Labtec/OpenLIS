@@ -47,7 +47,7 @@ module ActiveSupport
                            end
         else
           parts[:months] = if fd > td
-                             0
+                             tm - fm - 1
                            else
                              tm - fm
                            end
