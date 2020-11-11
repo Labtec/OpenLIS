@@ -20,6 +20,14 @@ class AgeDurationTest < ActiveSupport::TestCase
     assert_equal 6.weeks, age.in_weeks.round.weeks
   end
 
+  test 'between months with 30 and 31 days' do
+    birth_date = Date.parse('2020-09-30')
+    today = Date.parse('2020-11-11')
+
+    age = ActiveSupport::Duration.age(birth_date, today)
+    assert_equal 6.weeks, age.pediatric
+  end
+
   test 'age duration between different months' do
     # 28-day month
     birth_date = Date.parse('2001-02-28')

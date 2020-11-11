@@ -3,9 +3,9 @@
 module ActiveSupport
   class Duration
     class << self
-      # Builds the age of a person at any given time.
-      # If no time is given, +Time.current+ is used.
-      def age(from, to = Time.zone.now)
+      # Builds the age of a person at any given date/time.
+      # If no time is given, +Date.today+ is used.
+      def age(from, to = Date.today)
         return unless from
 
         from = from.to_date
