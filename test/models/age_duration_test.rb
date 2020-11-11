@@ -17,7 +17,7 @@ class AgeDurationTest < ActiveSupport::TestCase
     today = Date.today
 
     age = ActiveSupport::Duration.age(birth_date, today)
-    assert_equal 1.month + 12.days, age
+    assert_equal 6.weeks, age.in_weeks.round.weeks
   end
 
   test 'age duration between different months' do
