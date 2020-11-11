@@ -16,6 +16,7 @@ class PatientsAgeHelperTest < ActionView::TestCase
   test 'returns a pediatric age string' do
     ages = [
       # [age, output],
+      [0.days, '0 days'],
       [27.days, '27 days'],
       [28.days, '4 weeks'],
       [29.days, '4 weeks 1 day'],

@@ -91,6 +91,9 @@ module PatientsHelper
     weeks = t('patients.week', count: pediatric_age[:weeks]) unless pediatric_age[:weeks].zero?
     days = t('patients.day', count: pediatric_age[:days]) unless pediatric_age[:days].zero?
 
+    # XXX: Remove in Rails 6.1 (zero -> nil)
+    return t('patients.day', count: 0) if years.nil? && months.nil? && weeks.nil? && days.nil?
+
     [years, months, weeks, days].compact.join(' ')
   end
 
