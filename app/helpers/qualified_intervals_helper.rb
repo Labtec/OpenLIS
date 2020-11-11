@@ -14,8 +14,8 @@ module QualifiedIntervalsHelper
   def format_range(range, decimal_precision: 0)
     return unless range
 
-    range_begin = range.begin.is_a?(ActiveSupport::Duration) ? range.begin.iso8601[1..] : number_with_precision(range.begin, precision: decimal_precision.to_i, delimiter: ',')
-    range_end = range.end.is_a?(ActiveSupport::Duration) ? range.end.iso8601[1..] : number_with_precision(range.end, precision: decimal_precision.to_i, delimiter: ',')
+    range_begin = range.begin.is_a?(ActiveSupport::Duration) ? iso8601_age(range.begin.iso8601) : number_with_precision(range.begin, precision: decimal_precision.to_i, delimiter: ',')
+    range_end = range.end.is_a?(ActiveSupport::Duration) ? iso8601_age(range.end.iso8601, high: true) : number_with_precision(range.end, precision: decimal_precision.to_i, delimiter: ',')
 
     if range_begin && range_end
       "#{range_begin}#{range_symbol(range)}#{range_end}"
@@ -24,6 +24,12 @@ module QualifiedIntervalsHelper
     elsif range_end
       "#{range_symbol(range)}#{range_end}"
     end
+  end
+
+  def iso8601_age(age, high: false)
+    return unless age
+
+    high ? "#{age[1..-2].to_i - 1}#{age[-1]}" : age[1..]
   end
 
   def options_for_context
