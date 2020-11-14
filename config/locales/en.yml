@@ -89,6 +89,7 @@ en:
   errors:
     messages:
       cant_be_in_the_future: cannot be in the future
+      cant_be_that_old: cannot be that old
       cant_begin_with_dr: must not begin with Dr(a).
       fraction: must be N/N
       range: must be N-N, <N or >N
@@ -123,7 +124,7 @@ en:
         lab_test_values: Values
         lab_tests: Lab Tests
         panels: Panels
-        reference_ranges: Ranges
+        qualified_intervals: Intervals
         units: Units
         users: Users
     auth:
@@ -256,6 +257,9 @@ en:
       other: '%{count} years'
   results:
     abnormal: A
+    critical_abnormal: AA
+    critical_high: HH
+    critical_low: LL
     detected: DET
     equivocal: E
     high: H
@@ -300,7 +304,7 @@ en:
       years: years
     low: L
     negative: NEG
-    normal: N
+    normal: ''
     non_reactive: NR
     non_susceptible: NS
     not_detected: ND
@@ -309,6 +313,8 @@ en:
     positive: POS
     reactive: RR
     resistant: R
+    significantly_high: HU
+    significantly_low: LU
     susceptible: S
     weakly_reactive: WR
   results_mailer:
@@ -364,6 +370,11 @@ en:
       next: Next »
       previous: « Previous
       truncate: …
+  interval:
+    gender:
+      female: 'F:'
+      male: 'M:'
+      unknown: ''
   activerecord:
     attributes:
       accession:

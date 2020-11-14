@@ -6,3 +6,13 @@ unit_a:
 
 unit_b:
   expression: mmol/L
+
+g/dl:
+  expression: g/dL
+  ucum: g/dL
+  si: g/L
+  conversion_factor: 0.1
+
+IU/L:
+  expression: IU/L
+  ucum: '[IU]/L'

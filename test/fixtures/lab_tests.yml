@@ -34,6 +34,22 @@ ldl_hdl:
   code: LDLHDLR
   derivation: true
 
+fsh:
+  department: chemistry
+  name: Follitropin [Units/volume] in Serum or Plasma
+  code: FSH
+  unit: IU/L
+  decimals: 1
+  loinc: 15067-2
+
+hgb:
+  department: hematology
+  name: Hemoglobin [Mass/volume] in Blood
+  code: HGB
+  unit: g/dL
+  decimals: 1
+  loinc: 718-7
+
 qualitative:
   department: chemistry
   name: Qualitative
@@ -78,38 +94,44 @@ decimal:
   name: Decimal
   code: DECIMAL
 
-reference_range:
+qualified_interval:
   department: chemistry
   decimals: 0
-  name: Reference Range
+  name: Qualified Interval
   code: REFRANGE
 
-reference_range_less_than:
+qualified_interval_less_than:
   department: chemistry
   decimals: 0
-  name: Reference Range Less Than
+  name: Qualified Interval Less Than
   code: REFRANGELT
 
-reference_range_greater_than:
+qualified_interval_greater_than:
   department: chemistry
   decimals: 0
-  name: Reference Range Greater Than
+  name: Qualified Interval Greater Than
   code: REFRANGEGT
 
-reference_range_male_female:
+qualified_interval_male_female:
   department: chemistry
   decimals: 0
   name: Reference Range
   code: REFRANGEMF
 
-multiple_ranges_nil_min_range:
+multiple_intervals_nil_min_interval:
   department: chemistry
   decimals: 0
-  name: Multiple Ranges Nil Min
+  name: Multiple Intervals Nil Min
   code: MULTREFRANGESNILMIN
 
-multiple_ranges_nil_max_range:
+multiple_intervals_nil_max_interval:
   department: chemistry
   decimals: 0
-  name: Multiple Ranges Nil Max
+  name: Multiple Intervals Nil Max
   code: MULTREFRANGESNILMAX
+
+with_critical_ranges:
+  department: chemistry
+  decimals: 0
+  name: With Critical Ranges
+  code: CRITICALRANGES

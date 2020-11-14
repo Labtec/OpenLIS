@@ -26,6 +26,7 @@ class Patient < ApplicationRecord
                            unless: -> { family_name.present? || animal_type.present? }
   validates :birthdate, presence: true, unless: -> { animal_type.present? }
   validates :birthdate, not_in_the_future: true
+  validates :birthdate, not_too_old: true
   validates :identifier, uniqueness: { case_sensitive: false },
                          allow_blank: true
   validates :identifier_type, presence: true, if: -> { identifier.present? }
@@ -86,6 +87,28 @@ class Patient < ApplicationRecord
     Rails.cache.fetch([name, 'recent_patients']) do
       recent.to_a
     end
+  end
+
+  def age
+    return unless birthdate
+
+    ActiveSupport::Duration.age(birthdate)
+  end
+
+  def female?
+    gender == 'F'
+  end
+
+  def male?
+    gender == 'M'
+  end
+
+  def other?
+    gender == 'O'
+  end
+
+  def unknown?
+    gender == 'U'
   end
 
   private

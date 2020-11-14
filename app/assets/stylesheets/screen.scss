@@ -392,10 +392,12 @@ table {
     td.lab_test {
       width: 200px; }
     td.units {
+      vertical-align: top;
       width: 100px; }
     td.result {
       width: 255px;
       text-align: right;
+      vertical-align: top;
       padding-right: 0; }
       td.result input {
         margin: 0 0 0 4px;
@@ -406,6 +408,7 @@ table {
     td.symbol {
       width: 15px;
       text-align: right;
+      vertical-align: top;
       padding-right: 0px; }
     td.low_value {
       color: #6678b1; }
@@ -445,6 +448,15 @@ td.range_1 {
   cursor: move;
   color: #777;
   display: inline; }
+
+table.qualified-interval {
+  th.range, td.range {
+    min-width: 100px;
+  }
+  th.age, td.age {
+    min-width: 60px;
+  }
+}
 
 .sortable_lab_test_name {
   display: inline-block;
@@ -969,6 +981,17 @@ li.contact:hover {
 
 .panel, .lab_test_value {
   width: 100%; }
+
+.observation-definition {
+  ul li {
+    list-style-type: initial;
+    margin-left: 30px;
+  }
+  h3 {
+    padding-top: 10px;
+  }
+  padding: 10px;
+}
 
 div.auto_complete {
   background: white;

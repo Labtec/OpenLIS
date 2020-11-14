@@ -130,18 +130,18 @@ module Derivable
       tsperm.zero? ? '<0.1' : tsperm
     when 'VLDL'
       trig = result_value_quantity_for 'TRIG'
-      0.2 * trig
+      trig <= 400 ? trig / 5 : nil
     when 'COSMS'
       na = result_value_quantity_for 'Na'
       bun = result_value_quantity_for 'BUN'
       glucose = result_value_quantity_for('GLU') || result_value_quantity_for('GLUC')
       na * 2 + bun / 2.8 + glucose / 18
     when 'EGNB'
-      age = patient_age[:years]
+      age = subject_age.parts[:years]
       return if age < 18
 
       crtsa = result_value_quantity_for 'CRTSA'
-      if patient.gender == 'F'
+      if patient.female?
         a = -0.329
         k = 0.7
         gender = 1.018
@@ -153,18 +153,18 @@ module Derivable
       crtsa_k = crtsa / k
       141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * gender
     when 'EGFRMDRD'
-      age = patient_age[:years]
+      age = subject_age.parts[:years]
       return if age < 18
 
       crtsa = result_value_quantity_for 'CRTSA'
-      gender = patient.gender == 'F' ? 0.742 : 1
+      gender = patient.female? ? 0.742 : 1
       175 * crtsa**-1.154 * age**-0.203 * gender
     when 'EGBL'
-      age = patient_age[:years]
+      age = subject_age.parts[:years]
       return if age < 18
 
       crtsa = result_value_quantity_for 'CRTSA'
-      if patient.gender == 'F'
+      if patient.female?
         a = -0.329
         k = 0.7
         b_gender = 1.018 * 1.159
@@ -176,11 +176,11 @@ module Derivable
       crtsa_k = crtsa / k
       141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * b_gender
     when 'EGFRMDRDBL'
-      age = patient_age[:years]
+      age = subject_age.parts[:years]
       return if age < 18
 
       crtsa = result_value_quantity_for 'CRTSA'
-      gender = patient.gender == 'F' ? 0.742 : 1
+      gender = patient.female? ? 0.742 : 1
       175 * crtsa**-1.154 * age**-0.203 * gender * 1.212
     end
   rescue StandardError
@@ -188,10 +188,10 @@ module Derivable
   end
 
   def result_value_codeable_concept_for(code)
-    results.joins(:lab_test).where('lab_tests.code': code).take&.value_codeable_concept
+    results.joins(:lab_test).find_by('lab_tests.code': code)&.value_codeable_concept
   end
 
   def result_value_quantity_for(code)
-    results.joins(:lab_test).where('lab_tests.code': code).take&.value&.to_d
+    results.joins(:lab_test).find_by('lab_tests.code': code)&.value&.to_d
   end
 end

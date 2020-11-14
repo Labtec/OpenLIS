@@ -2,11 +2,11 @@
 
 <table>
   <tr>
-    <th>Value</th>
-    <th>Flag</th>
+    <th>Qualitative Value</th>
+    <th>Interpretation</th>
     <th>LOINC</th>
     <th>SNOMED CT</th>
-    <th>Numeric</th>
+    <th>Quantitative?</th>
     <th>Note</th>
   </tr>
   <% @lab_test_values.each do |lab_test_value| %>
@@ -15,7 +15,7 @@
       <td><%= lab_test_value.flag %></td>
       <td><%= lab_test_value.loinc %></td>
       <td><%= snomed_hyperlink(lab_test_value.snomed) %></td>
-      <td><%= 'Num' if lab_test_value.numeric? %></td>
+      <td><%= 'Yes' if lab_test_value.numeric? %></td>
       <td><%= sanitize(lab_test_value.note) %></td>
       <td><%= link_to 'Show', [:admin, lab_test_value] %></td>
       <td><%= link_to 'Edit', edit_admin_lab_test_value_path(lab_test_value) %></td>

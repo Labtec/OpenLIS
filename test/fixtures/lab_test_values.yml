@@ -12,3 +12,11 @@ greater_than:
 
 html:
   value: '<i>E. coli</i>'
+
+significantly_low:
+  value: 'Significantly Low'
+  flag: 'LU'
+
+significantly_high:
+  value: 'Significantly High'
+  flag: 'HU'

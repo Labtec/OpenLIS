@@ -1,74 +1,125 @@
 <% title 'Lab Test' %>
 
-<p>
-  <strong>Department:</strong>
-  <%= @lab_test.department_name %>
-</p>
-<p>
-  <strong>Code:</strong>
-  <%= @lab_test.code %>
-</p>
-<p>
-  <strong>Name:</strong>
-  <%= sanitize @lab_test.name %>
-</p>
-<p>
-  <strong>CPT Code:</strong>
-  <%= @lab_test.procedure %>
-</p>
-<p>
-  <strong>LOINC:</strong>
-  <%= loinc_hyperlink(@lab_test.loinc) %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @lab_test.description %>
-</p>
-<p>
-  <strong>Decimals:</strong>
-  <%= @lab_test.decimals %>
-</p>
-<p>
-  <strong>Units:</strong>
-  <%= unit_expression_for_display(@lab_test.unit) %>
-</p>
-<p>
-  <strong>Also allow Numeric:</strong>
-  <%= @lab_test.also_numeric %>
-</p>
-<p>
-  <strong>Is Ratio:</strong>
-  <%= @lab_test.ratio %>
-</p>
-<p>
-  <strong>Is Range:</strong>
-  <%= @lab_test.range %>
-</p>
-<p>
-  <strong>Is Fraction:</strong>
-  <%= @lab_test.fraction %>
-</p>
-<p>
-  <strong>Text Length:</strong>
-  <%= @lab_test.text_length %>
-</p>
-<p>
-  <strong>Lab Test Values:</strong>
-  <ul>
-  <% for lab_test_value in @lab_test.lab_test_values %>
-    <li>
-      <%= sanitize(lab_test_value.value) %>
-      <%= lab_test_value.loinc %>
-      <%= snomed_hyperlink(lab_test_value.snomed) if lab_test_value.snomed.present? %>
-      <%= "(#{lab_test_value.note})" if lab_test_value.note.present? %>
-    </li>
+<section class="observation-definition general">
+  <p>
+    <strong>Department:</strong>
+    <%= @lab_test.department_name %>
+  </p>
+  <p>
+    <strong>Identifier:</strong>
+    <%= @lab_test.code %>
+  </p>
+  <p>
+    <strong>Preferred Report Name:</strong>
+    <%= sanitize @lab_test.name %>
+  </p>
+  <p>
+    <strong>CPT Code:</strong>
+    <%= @lab_test.procedure %>
+  </p>
+  <p>
+    <strong>LOINC:</strong>
+    <%= loinc_hyperlink(@lab_test.loinc) %>
+  </p>
+  <% if @lab_test.description.present? %>
+  <p>
+    <strong>Description:</strong>
+    <%= @lab_test.description %>
+  </p>
   <% end %>
+
+  <% if @lab_test.remarks.present? %>
+  <p>
+    <strong>Remarks:</strong><br/>
+    <%= sanitize @lab_test.remarks %>
+  </p>
+  <% end %>
+</section>
+
+<section class="observation-definition permitted-data-types">
+  <h2>Permitted Data Types</h2>
+
+  <ul>
+    <% if @lab_test.allow_quantity? %>
+      <li><b>Quantity</b></li>
+    <% end %>
+
+    <% if @lab_test.lab_test_values.any? %>
+      <li><b>CodeableConcept</b></li>
+    <% end %>
+
+    <% if @lab_test.ratio %>
+      <li><b>Ratio</b></li>
+    <% end %>
+
+    <% if @lab_test.range %>
+      <li><b>Range</b></li>
+    <% end %>
+
+    <% if @lab_test.text_length %>
+      <li><b>string</b></li>
+    <% end %>
   </ul>
-</p>
-<p>
-  <strong>Remarks:</strong>
-  <%= sanitize @lab_test.remarks %>
-</p>
+
+  <% if @lab_test.allow_quantity? %>
+    <h3>Quantitative Details</h3>
+    <% if @lab_test.decimals %>
+      <p>
+        <strong>Decimal Precision:</strong>
+        <%= @lab_test.decimals %>
+      </p>
+    <% end %>
+    <% if @lab_test.unit.present? %>
+      <p>
+        <strong>Customary Unit:</strong>
+        <%= unit_expression_for_display(@lab_test.unit) %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <% if @lab_test.lab_test_values.any? %>
+    <h3>Value Codes</h3>
+    <ul>
+    <% for lab_test_value in @lab_test.lab_test_values %>
+      <li>
+        <%= sanitize(lab_test_value.value) %>
+        <%= lab_test_value.loinc %>
+        <%= snomed_hyperlink(lab_test_value.snomed) if lab_test_value.snomed.present? %>
+        <%= "(#{lab_test_value.note})" if lab_test_value.note.present? %>
+        <%= sanitize(@lab_test.unit&.expression) if lab_test_value.numeric? %>
+        <%= lab_test_value.flag %>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+</section>
+
+<% if @lab_test.qualified_intervals.any? %>
+<section class="observation-definition qualified-interval">
+  <h2>Qualified Interval</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Category</th>
+        <th>Gender</th>
+        <th class="age">Age</th>
+        <th class="range">Range</th>
+        <th>Context</th>
+        <th>Interpretation</th>
+        <th>Gestational Age</th>
+        <th>Condition</th>
+        <th>Animal Type</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @lab_test.qualified_intervals.includes(:interpretation, :lab_test) %>
+    </tbody>
+  </table>
+</section>
+<% end %>
 
 <p>
   <%= link_to 'Edit', edit_admin_lab_test_path(@lab_test) %> |

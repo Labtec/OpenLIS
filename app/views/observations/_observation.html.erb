@@ -10,10 +10,14 @@
     <%= flag_name observation %>
   </td>
   <td class="units">
-    <%= sanitize(format_units(observation)) %>
+    <%= sanitize(format_units(observation)) if display_units(observation) %>
   </td>
   <td class="ranges">
-    <%= ranges_table observation.ranges %>
+    <table>
+      <tbody>
+        <%= render observation.reference_intervals.includes(:lab_test), display_gender: @patient.unknown? if display_units(observation) %>
+      </tbody>
+    </table>
   </td>
 </tr>
 <% if observation.lab_test_remarks.present? %>

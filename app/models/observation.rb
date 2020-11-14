@@ -16,7 +16,7 @@ class Observation < ApplicationRecord
   has_one :unit,       through: :lab_test
 
   has_many :notes, as: :noticeable, dependent: :destroy
-  has_many :reference_ranges, through: :lab_test
+  has_many :qualified_intervals, through: :lab_test
 
   delegate :code,        to: :lab_test, prefix: true
   delegate :decimals,    to: :lab_test, prefix: true
@@ -36,6 +36,18 @@ class Observation < ApplicationRecord
 
   auto_strip_attributes :value
 
+  def reference_ranges
+    qualified_intervals.for_result(accession)
+  end
+
+  def reference_intervals
+    reference_ranges.reference
+  end
+
+  def critical_intervals
+    reference_ranges.critical
+  end
+
   def derived_value
     accession.derived_value_for(lab_test_code)
   end
@@ -53,5 +65,46 @@ class Observation < ApplicationRecord
   # derived_value
   def value_present?
     value.present? || lab_test_value_id.present? || derived_value.present?
+  end
+
+  # value_quantity -> valueRange, valueRatio
+  def value_quantity
+    return unless value.present? || derived_value.present?
+
+    if lab_test.derivation?
+      derived_value
+    elsif lab_test.range?
+      value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
+      Range.new(Regexp.last_match(3).to_i, Regexp.last_match(5).to_i)
+    elsif lab_test.fraction?
+      value =~ %r{\A(\d+)/(\d+)\z}
+      Rational(Regexp.last_match(1).to_i, Regexp.last_match(2).to_i)
+    elsif lab_test.ratio? # XXX: titer only
+      value =~ /\A(\d+):(\d+)\z/
+      Rational(Regexp.last_match(2).to_i, Regexp.last_match(1).to_i)
+    else
+      value.gsub(/[^\d.]/, '').to_d
+    end
+  end
+
+  def value_range
+    return unless lab_test.range?
+
+    value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
+    Range.new(Regexp.last_match(3).to_i, Regexp.last_match(5).to_i)
+  end
+
+  def value_ratio
+    return unless lab_test.ratio?
+
+    value =~ /\A(\d+):(\d+)\z/
+    Rational(Regexp.last_match(1).to_i, Regexp.last_match(2).to_i)
+  end
+
+  def value_fraction
+    return unless lab_test.fraction?
+
+    value =~ /\A(\d+):(\d+)\z/
+    Rational(Regexp.last_match(1).to_i, Regexp.last_match(2).to_i)
   end
 end

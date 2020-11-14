@@ -1,0 +1,42 @@
+<% title 'Qualified Intervals' %>
+
+<table class="qualified-interval">
+  <% @lab_tests.each do |lab_test| %>
+    <% next unless lab_test.qualified_intervals.present? %>
+    <tr><th colspan="12"><h3><%= name_with_description(lab_test) %></h3></th></tr>
+    <tr>
+      <td><b>#</b></td>
+      <td><b>Category</b></td>
+      <td><b>Gender</b></td>
+      <td class="age"><b>Age</b></td>
+      <td class="range"><b>Range</b></td>
+      <td><b>Context</b></td>
+      <td><b>Interpretation</b></td>
+      <td><b>Gestational Age</b></td>
+      <td><b>Condition</b></td>
+      <td><b>Animal Type</b></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% lab_test.qualified_intervals.each do |qualified_interval| %>
+      <tr>
+        <td><%= qualified_interval.rank %></td>
+        <td><%= qualified_interval.category %></td>
+        <td><%= qualified_interval.gender %></td>
+        <td><%= format_range(qualified_interval.age) %></td>
+        <td><%= range_row(qualified_interval)[2..4].join %></td>
+        <td><%= qualified_interval.context %></td>
+        <td><%= qualified_interval.interpretation&.value %></td>
+        <td><%= format_range(qualified_interval.gestational_age) %></td>
+        <td><%= qualified_interval.condition %></td>
+        <td><%= animal_species_name(qualified_interval.animal_type) %></td>
+        <td><%= link_to 'Edit', edit_admin_qualified_interval_path(qualified_interval) %></td>
+        <td>
+          <%= link_to 'Destroy', [:admin, qualified_interval], method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<p><%= link_to 'New Qualified Interval', new_admin_qualified_interval_path %></p>

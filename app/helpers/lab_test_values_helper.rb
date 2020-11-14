@@ -6,7 +6,8 @@ module LabTestValuesHelper
       ['Exceptions',
         [
           ['Off scale low', '<'],
-          ['Off scale high', '>']
+          ['Off scale high', '>'],
+          ['Insufficient evidence', 'IE']
         ]
       ],
       ['Normality',
@@ -15,6 +16,8 @@ module LabTestValuesHelper
           ['High', 'H'],
           ['Low', 'L'],
           ['Normal', 'N'],
+          ['Significantly high', 'HU'],
+          ['Significantly low', 'LU'],
           ['Critical abnormal', 'AA'],
           ['Critical high', 'HH'],
           ['Critical low', 'LL']
@@ -36,6 +39,12 @@ module LabTestValuesHelper
           ['Not detected', 'ND'],
           ['Positive', 'POS'],
           ['Detected', 'DET']
+        ]
+      ],
+      ['Expectation',
+        [
+          ['Expected', 'EXP'],
+          ['Unexpected', 'UNE']
         ]
       ],
       ['Reactivity',

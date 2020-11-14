@@ -132,13 +132,11 @@ class LabReport < Prawn::Document
     column_2_width = 88
     column_3_width = 40
     column_range_width = 192
-    column_6_padding_right = 28
-    column_gender_range_width = 12
-    column_description_range_width = 70
+    column_gender_range_width = @patient.unknown? ? 12 : 0
+    column_description_range_width = 105
     column_range_title_width = column_gender_range_width + column_description_range_width
     column_5_width = font_size - 2
-    column_4_width = (column_range_width - column_range_title_width - column_5_width - column_6_padding_right) / 2
-    column_6_width = column_4_width + column_6_padding_right
+    column_4_width = (column_range_width - column_range_title_width - column_5_width) / 2
     # table_padding = 2
     signature_spacing = line_height * 3
     signature_line = 180
@@ -268,7 +266,7 @@ class LabReport < Prawn::Document
             end
           end
           bounding_box([demographics_stop3, bounds.top - row_height], width: demographics_width4, height: row_height) do
-            text age(@patient.birthdate, @accession.drawn_at)
+            text display_pediatric_age(@accession.subject_age)
           end
           bounding_box([demographics_stop3, bounds.top - 2 * row_height], width: demographics_width4, height: row_height) do
             text gender(@patient.gender)
@@ -331,14 +329,11 @@ class LabReport < Prawn::Document
               text t('results.index.flag'), style: :bold, align: :center
             end
           end
-          bounding_box([title_row_stop4 + column_range_title_width / 2, bounds.top], width: column_range_width - column_range_title_width / 2, height: title_row_height) do
-            pad_top PADDING do
-              text t('results.index.range'), color: COLORS[:white], style: :bold, align: :center
-            end
-          end
-          bounding_box([title_row_stop4 + column_range_title_width / 2, bounds.top], width: column_range_width - column_range_title_width / 2, height: title_row_height) do
-            pad_top PADDING do
-              text t('results.index.range'), color: COLORS[:purple], style: :bold, align: :center
+          [:white, :purple].each do |color|
+            bounding_box([title_row_stop4 + column_range_title_width, bounds.top], width: column_4_width * 2 + column_5_width, height: title_row_height) do
+              pad_top PADDING do
+                text t('results.index.range'), color: COLORS[color], style: :bold, align: :center
+              end
             end
           end
         end
@@ -363,30 +358,30 @@ class LabReport < Prawn::Document
       test_results.each do |result|
         next if result.not_performed?
 
-        if result.flag.present?
+        if !result.normal?
           cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
           cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         else
           cell_col0 = make_cell content: result.lab_test_name, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
           cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         end
-        cell_col2 = make_cell content: format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+        cell_col2 = make_cell content: display_format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: FLAG_COLORS[flag_color(result).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         ##
         # Ranges sub-table
-        ranges_table = make_table(result.ranges, cell_style: { padding: [0, 0.4], borders: [] }) do
+        pdf_ranges_table = make_table(ranges_table(ranges_for_table(result), display_gender: @patient.unknown?), cell_style: { padding: [0, 0.4], borders: [] }) do
           column(0).align = :right
           column(1).align = :right
           column(2).align = :right
           column(3).align = :center
           column(4).align = :left
-          column(0).width = column_gender_range_width
-          column(1).width = column_description_range_width
+          column(0).width = column_description_range_width
+          column(1).width = column_gender_range_width
           column(2).width = column_4_width
           column(3).width = column_5_width
-          column(4).width = column_6_width
+          column(4).width = column_4_width
         end
-        cell_col4 = make_cell content: ranges_table, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, 0]
+        cell_col4 = make_cell content: pdf_ranges_table, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, 0]
 
         if result.lab_test_remarks.present?
           remarks = make_cell content: result.lab_test_remarks.to_s, inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
@@ -539,5 +534,13 @@ class LabReport < Prawn::Document
         svg Base64.strict_decode64(current_user.signature), position: :center, height: pad if current_user.signature
       end
     end
+  end
+
+  def ranges_for_table(result)
+    display_units(result) ? result.reference_intervals : []
+  end
+
+  def display_format_units(result)
+    format_units(result) if display_units(result)
   end
 end

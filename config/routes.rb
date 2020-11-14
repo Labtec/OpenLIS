@@ -44,7 +44,7 @@ Rails.application.routes.draw do
       resources :prices
     end
     resources :lab_test_values
-    resources :reference_ranges
+    resources :qualified_intervals
     resources :lab_tests do
       resources :prices
       collection do

@@ -34,7 +34,7 @@
   <%= form_with model: @diagnostic_report, url: diagnostic_report_path(@diagnostic_report), local: true, html: { novalidate: '' } do |a| %>
     <%= render 'shared/error_messages', object: @diagnostic_report %>
 
-    <% @diagnostic_report.results.includes(lab_test: [:department]).order('lab_tests.position').group_by(&:department).each do |department, results| %>
+    <% @diagnostic_report.results.includes(lab_test: [:department, :lab_test_values, :lab_test_value_option_joints]).order('lab_tests.position').group_by(&:department).each do |department, results| %>
       <h2><%= department.name %></h2>
 
       <table class="results">

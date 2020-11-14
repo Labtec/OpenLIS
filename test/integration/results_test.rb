@@ -27,7 +27,7 @@ class ResultsTest < ActionDispatch::IntegrationTest
     assert page.has_content?('error'), 'Wrong format not validated'
   end
 
-  test 'valid resul format' do
+  test 'valid result format' do
     visit edit_diagnostic_report_path(@accession)
 
     fill_in 'Range', with: '1-2'

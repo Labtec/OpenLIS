@@ -4,7 +4,7 @@ class LabTest < ApplicationRecord
   belongs_to :department, touch: true
   belongs_to :unit, optional: true
 
-  has_many :reference_ranges, dependent: :destroy
+  has_many :qualified_intervals, -> { order(rank: :asc) }, dependent: :destroy
   has_many :lab_test_panels, dependent: :destroy
   has_many :panels, through: :lab_test_panels
   has_many :observations, dependent: :destroy
@@ -28,8 +28,6 @@ class LabTest < ApplicationRecord
 
   scope :sorted, -> { order(name: :asc) }
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
-
-  default_scope { order(position: :asc) }
 
   auto_strip_attributes :name, :code, :procedure, :loinc
 
@@ -101,5 +99,22 @@ class LabTest < ApplicationRecord
 
   def stripped_name_with_description
     name_with_description.gsub(%r{</?i>}, '')
+  end
+
+  def allow_quantity?
+    return true if also_numeric || value_default?
+
+    false
+  end
+
+  def value_default?
+    return true if !also_numeric &&
+                   !ratio? &&
+                   !range? &&
+                   !fraction &&
+                   !text_length &&
+                   lab_test_values.empty?
+
+    false
   end
 end

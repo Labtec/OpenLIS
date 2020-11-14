@@ -46,7 +46,7 @@ class DiagnosticReportsTest < ApplicationSystemTestCase
 
     click_on 'Change Results'
 
-    fill_in 'Cholesterol', with: 150
+    fill_in 'Cholesterol in HDL', with: 150
     click_on 'Save Results'
     visit diagnostic_report_url(diagnostic_report)
     assert Accession.find(@service_request.id).amended?, 'Not Amended'

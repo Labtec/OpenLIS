@@ -36,13 +36,11 @@ module ObservationsHelper
   end
 
   def format_units(observation)
-    observation.value_unit unless observation.lab_test_value &&
-                                  !observation.lab_test_value.numeric? &&
-                                  observation.value.blank?
+    observation.value_unit
   end
 
   def flag_name(observation)
-    case observation.flag
+    case observation.interpretation
     when '<'
       t('results.off_scale_low')
     when '>'
@@ -50,23 +48,27 @@ module ObservationsHelper
     when 'A'
       t('results.abnormal')
     when 'AA'
-      t('results.abnormal') * 2
+      t('results.critical_abnormal')
     when 'DET'
       t('results.detected')
     when 'E'
       t('results.equivocal')
     when 'H'
       t('results.high')
+    when 'HU'
+      t('results.significantly_high')
     when 'HH'
-      t('results.high') * 2
+      t('results.critical_high')
     when 'I'
       t('results.intermediate')
     when 'IND'
       t('results.indeterminate')
     when 'L'
       t('results.low')
+    when 'LU'
+      t('results.significantly_low')
     when 'LL'
-      t('results.low') * 2
+      t('results.critical_low')
     when 'N'
       t('results.normal')
     when 'ND'
@@ -91,7 +93,7 @@ module ObservationsHelper
   end
 
   def flag_color(observation)
-    case observation.flag
+    case observation.interpretation
     when *LabTestValue::ABNORMAL_FLAGS
       'abnormal_value'
     when *LabTestValue::HIGH_FLAGS
@@ -103,18 +105,38 @@ module ObservationsHelper
     end
   end
 
-  def ranges_table(ranges)
-    tag.table do
-      tag.tbody do
-        safe_join(ranges.collect do |range|
-          tag.tr do
-            range.each_with_index do |column, index|
-              concat tag.td(column, class: "range_#{index}")
-            end
-          end
-        end)
-      end
+  def ranges_table(intervals, display_gender: false)
+    return [[nil, nil, nil, nil, nil]] if intervals.empty?
+
+    table = []
+    intervals.each do |interval|
+      table << range_row(interval, display_gender: display_gender)
     end
+    table
+  end
+
+  def range_row(interval, display_gender: false)
+    return [nil, nil, nil, nil, nil] unless interval
+
+    gender = display_gender && interval.gender ? t(interval.gender, scope: 'interval.gender') : ''
+    condition = "#{interval.condition}:" if interval.condition.present?
+    symbol = range_symbol(interval.range)
+    if interval.lab_test.ratio? # XXX: titer
+      left_side = "1∶#{number_with_precision(interval.range_low_value, precision: 0, delimiter: ',')}" if interval.range_low_value && interval.range_high_value
+      right_side = if interval.range_high_value
+                     "1∶#{number_with_precision(interval.range_high_value, precision: 0, delimiter: ',')}"
+                   else
+                     "1∶#{number_with_precision(interval.range_low_value, precision: 0, delimiter: ',')}"
+                   end
+    else
+      left_side = number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ',') if interval.range_low_value && interval.range_high_value
+      right_side = if interval.range_high_value
+                     number_with_precision(interval.range_high_value, precision: interval.lab_test.decimals.to_i, delimiter: ',')
+                   else
+                     number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ',')
+                   end
+    end
+    [condition, gender, left_side, symbol, right_side]
   end
 
   def registration_number(inline: false)
@@ -161,5 +183,9 @@ module ObservationsHelper
 
   def row_class
     cycle('even', 'odd', name: 'alternating_row_colors')
+  end
+
+  def display_units(observation)
+    !observation.lab_test_value || observation.lab_test_value&.numeric? || observation.value.present?
   end
 end

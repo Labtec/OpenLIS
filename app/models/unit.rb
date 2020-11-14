@@ -3,7 +3,7 @@
 class Unit < ApplicationRecord
   has_many :lab_tests, dependent: :nullify
 
-  validates :conversion_factor, numericality: true, allow_nil: true
+  validates :conversion_factor, numericality: true, allow_blank: true
   validates :conversion_factor, absence: true, unless: -> { si.present? }
   validates :conversion_factor, presence: true, if: -> { si.present? }
   validates :expression, presence: true, uniqueness: true, unless: -> { ucum.present? }
