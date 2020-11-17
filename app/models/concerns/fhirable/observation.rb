@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module FHIRable
   module Observation
     extend ActiveSupport::Concern
@@ -43,7 +45,8 @@ module FHIRable
         'basedOn': FHIR::Reference.new(reference: "ServiceRequest/#{accession.id}"),
         'status': status,
         'category': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'laboratory')]),
-        'code': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc, display: 'TODO_LOINC_CODE_LOOKUP')]),
+        # 'code': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc, display: display_loinc(lab_test&.loinc))]),
+        'code': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc)]),
         'subject': fhirable_reference(patient),
         'issued': created_at.iso8601,
         'performer': observation_performers,
@@ -184,6 +187,13 @@ module FHIRable
       return unless value_ratio
 
       fhirable_ratio(value_ratio, unit: unit)
+    end
+
+    # XXX: Use a read only table
+    def display_loinc(code)
+      loinc ||= CSV.read('db/LoincTableCore.csv', headers: true)
+      lookup = loinc.find { |row| row['LOINC_NUM'] == code }
+      lookup['LONG_COMMON_NAME']
     end
 
     # TODO: implement each missing method
