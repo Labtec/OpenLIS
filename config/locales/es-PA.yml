@@ -397,7 +397,7 @@ es-PA:
         identifier_type: Tipo de identificación
         phone: Teléfono
         policy_number: Número de Póliza
-      observations:
+      results:
         value: El valor
       user:
         initials: Las iniciales
