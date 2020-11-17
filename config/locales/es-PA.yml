@@ -92,6 +92,7 @@ es-PA:
       cant_be_that_old: no puede ser tan viejo
       cant_begin_with_dr: no puede comenzar con Dr(a).
       fraction: debe ser N/N
+      is_out_of_absolute_range: está fuera del rango absoluto
       range: debe ser N-N, <N o >N
       ratio: debe ser N:N
   flash:

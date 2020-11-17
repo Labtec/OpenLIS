@@ -28,6 +28,7 @@ class Observation < ApplicationRecord
   delegate :remarks,     to: :lab_test, prefix: true, allow_nil: true
   delegate :text_length, to: :lab_test
 
+  validates :value, out_of_absolute_range: true, allow_nil: true
   validates :value, range: true,    allow_blank: true, if: :range?
   validates :value, fraction: true, allow_blank: true, if: :fraction?
   validates :value, ratio: true,    allow_blank: true, if: :ratio?
@@ -38,6 +39,10 @@ class Observation < ApplicationRecord
 
   def reference_ranges
     qualified_intervals.for_result(accession)
+  end
+
+  def absolute_interval
+    reference_ranges.absolute.first
   end
 
   def reference_intervals

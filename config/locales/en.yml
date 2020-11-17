@@ -92,6 +92,7 @@ en:
       cant_be_that_old: cannot be that old
       cant_begin_with_dr: must not begin with Dr(a).
       fraction: must be N/N
+      is_out_of_absolute_range: is outside absolute range
       range: must be N-N, <N or >N
       ratio: must be N:N
   flash:
