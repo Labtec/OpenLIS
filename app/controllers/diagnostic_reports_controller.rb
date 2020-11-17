@@ -14,12 +14,14 @@ class DiagnosticReportsController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.json { render json: @diagnostic_report.to_json }
       format.pdf do
         signature = ActiveRecord::Type::Boolean.new.cast(params[:signature])
         pdf = LabReport.new(@patient, @diagnostic_report, @results, signature, view_context)
         send_data(pdf.render, filename: "resultados_#{@diagnostic_report.id}.pdf",
                               type: 'application/pdf', disposition: 'inline')
       end
+      format.xml { render xml: @diagnostic_report.to_xml }
     end
   rescue ActiveRecord::RecordNotFound
     redirect_to diagnostic_reports_url

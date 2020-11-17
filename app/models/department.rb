@@ -8,7 +8,7 @@ class Department < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  auto_strip_attributes :name
+  auto_strip_attributes :code, :loinc_class, :name
 
   after_commit :flush_cache
 
