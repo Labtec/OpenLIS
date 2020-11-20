@@ -10,9 +10,9 @@ module FHIRable
       FHIR::Quantity.new(
         value: ApplicationController.helpers.number_with_precision(value, precision: decimal_precision),
         comparator: comparator,
-        unit: unit.expression,
+        unit: unit&.expression,
         system: 'http://unitsofmeasure.org',
-        code: unit.ucum
+        code: unit&.ucum
       )
     end
   end

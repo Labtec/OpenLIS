@@ -236,7 +236,9 @@ CREATE TABLE public.departments (
     id bigint DEFAULT nextval('public.departments_id_seq'::regclass) NOT NULL,
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
-    updated_at timestamp with time zone
+    updated_at timestamp with time zone,
+    code character varying,
+    loinc_class character varying
 );
 
 
@@ -1226,6 +1228,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201017000001'),
 ('20201017000002'),
 ('20201023000001'),
-('20201023000002');
+('20201023000002'),
+('20201117000001');
 
 

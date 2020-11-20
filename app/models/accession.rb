@@ -3,6 +3,7 @@
 class Accession < ApplicationRecord
   include Derivable
   include DiagnosticReportStatus
+  include FHIRable::DiagnosticReport
 
   belongs_to :patient, touch: true
   belongs_to :doctor, counter_cache: true, optional: true

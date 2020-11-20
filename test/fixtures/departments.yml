@@ -1,8 +1,14 @@
 chemistry:
   name: Chemistry
+  code: CH
+  loinc_class: CHEM
 
 hematology:
   name: Hematology
+  code: HM
+  loinc_class: HEM/BC
 
 microbiology:
   name: Microbiology
+  code: MB
+  loinc_class: MICRO

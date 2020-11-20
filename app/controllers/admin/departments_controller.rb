@@ -45,7 +45,7 @@ module Admin
     private
 
     def department_params
-      params.require(:department).permit(:name)
+      params.require(:department).permit(:code, :loinc_class, :name)
     end
   end
 end

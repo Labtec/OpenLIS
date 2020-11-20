@@ -80,11 +80,11 @@ class LabTest < ApplicationRecord
   end
 
   def customary_unit
-    unit.ucum
+    unit&.ucum
   end
 
   def si_unit
-    unit.si
+    unit&.si
   end
 
   def name_with_description
