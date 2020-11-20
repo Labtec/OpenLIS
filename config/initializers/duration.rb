@@ -9,60 +9,19 @@ module ActiveSupport
         return unless from
 
         from = from.to_date
+        to = to.to_date
 
         fd = from.day
         fm = from.month
-        fy = from.year
         td = to.day
         tm = to.month
         ty = to.year
-        parts = {}
 
-        # days
         if fd == 29 && fm == 2 && td == 28 && tm == 2 && !Date.gregorian_leap?(ty)
-          parts[:days] = 0
-        elsif fd > td
-          last_month_days =
-            if Time.days_in_month(to.last_month.month, to.last_month.year) > fd
-              Time.days_in_month(to.last_month.month, to.last_month.year) - fd
-            else
-              0
-            end
-          parts[:days] = last_month_days + td
+          ActiveSupport::Duration.build(((to - from) * SECONDS_PER_DAY) + 1.day)
         else
-          parts[:days] = td - fd
+          ActiveSupport::Duration.build((to - from) * SECONDS_PER_DAY)
         end
-
-        # months
-        if fm > tm
-          last_year_months = 12 - fm
-          parts[:months] = last_year_months + tm
-        elsif fm == tm
-          parts[:months] = if fd == 29 && fm == 2 && td == 28 && tm == 2 && !Date.gregorian_leap?(ty)
-                             0
-                           elsif fd > td
-                             11
-                           else
-                             0
-                           end
-        else
-          parts[:months] = if fd > td
-                             tm - fm - 1
-                           else
-                             tm - fm
-                           end
-        end
-
-        # years
-        parts_years = ty - fy
-        parts_years -= 1 if to.to_date < from + parts_years.years
-        parts[:years] = parts_years
-
-        parts[:hours] = to.to_time.hour
-        parts[:minutes] = to.to_time.min
-        parts[:seconds] = to.to_time.sec
-
-        ActiveSupport::Duration.new(calculate_total_seconds(parts), parts)
       end
 
       private
