@@ -13,11 +13,12 @@ module FHIRable
     private
 
     def fhirable_reference_reference(reference)
-      if reference.is_a? Accession
+      case reference
+      when *Accession
         "Specimen/#{reference.id}"
-      elsif reference.is_a? Patient
+      when *Patient
         "Patient/#{reference.id}"
-      elsif reference.is_a? User
+      when *User
         "Practitioner/#{reference.id}"
       end
     end

@@ -9,24 +9,24 @@ module FHIRable
     def fhirable_diagnostic_report
       FHIR::DiagnosticReport.new(
         'id': id,
-        #'basedOn': fhirable_reference(service_request),
+        # 'basedOn': fhirable_reference(service_request),
         'status': status,
         'category': fhirable_diagnostic_report_categories,
         # XXX code is mandatory
         # This should be the LOINC code for the panel/observation.
         # If multiple panels/observations were part of the diagnostic report,
         # individual reports shall be issued.  There can only be one code present.
-        #'code': MANDATORY
+        # 'code': MANDATORY
         'subject': fhirable_reference(patient),
-        #'encounter':
+        # 'encounter':
         'effectiveDateTime': drawn_at.iso8601,
         'issued': reported_at&.iso8601,
         'performer': fhirable_reference(drawer),
         'resultsInterpreter': fhirable_reference(reporter),
         'specimen': fhirable_reference(self),
         'result': fhirable_diagnostic_report_results(results),
-        #'conclusion':
-        #'conclusionCode':
+        # 'conclusion':
+        # 'conclusionCode':
         'presentedForm': fhirable_diagnostic_report_presented_form
       )
     end
@@ -44,7 +44,7 @@ module FHIRable
     def fhirable_diagnostic_report_categories
       categories = []
       departments.uniq.each do |department|
-        next unless department.code.present?
+        next if department.code.blank?
 
         categories << FHIR::CodeableConcept.new(
           coding: [fhirable_diagnostic_report_categories_codings(department.code)],
