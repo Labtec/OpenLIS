@@ -43,11 +43,23 @@ jobs:
           restore-keys: ${{ runner.os }}-gems-
 
       - name: Bundle install
+        env:
+          RAILS_ENV: test
         run: |
           gem update --system > /dev/null
           gem update bundler > /dev/null
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
+
+      - name: Webpacker compile
+        env:
+          RAILS_ENV: test
+        run: |
+          npm install yarn
+          yarn install
+          bundle exec rails webpacker:install
+          bundle exec rake assets:precompile
+          bundle exec rails webpacker:compile
 
       - name: Setup database
         env:
