@@ -13,7 +13,7 @@
 <% end %>
 
 <%= form_with(model: resource, url: session_path(resource_name),
-              class: 'login-form', html: { id: 'webauthn-form' }) do |f| %>
+              class: 'login-form', html: { method: 'post', id: 'webauthn-form' }) do |f| %>
 
   <h3><%= t('.title') %></h3>
 

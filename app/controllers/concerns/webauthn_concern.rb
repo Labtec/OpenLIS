@@ -50,7 +50,7 @@ module WebauthnConcern
                        "#{current_user.first_name}!" +
                        t('flash.login.last_login_at') +
                        view_context.time_ago_in_words(current_user.last_sign_in_at)
-      render json: { redirect_path: root_path }, status: :ok
+      render json: { redirect_path: session[:user_return_to] || root_path }, status: :ok
     else
       render json: { error: t('webauthn_credentials.invalid_credential') }, status: :unprocessable_entity
     end
@@ -58,42 +58,7 @@ module WebauthnConcern
 
   def prompt_for_webauthn(user)
     set_attempt_session(user)
-
-    @webauthn_enabled = user.webauthn_enabled?
-    @scheme_type      = 'webauthn'
-
     set_user_language
     render :webauthn
-  end
-
-  protected
-
-  def find_user
-    if session[:attempt_user_id]
-      User.find(session[:attempt_user_id])
-    else
-      User.find_for_authentication(username: user_params[:username])
-    end
-  end
-
-  def user_params
-    params.require(:user).permit(:username, :password, credential: {})
-  end
-
-  private
-
-  def restart_session
-    clear_attempt_from_session
-    redirect_to user_session_path, alert: I18n.t('devise.failure.timeout')
-  end
-
-  def set_attempt_session(user)
-    session[:attempt_user_id]         = user.id
-    session[:attempt_user_updated_at] = user.updated_at.to_s
-  end
-
-  def clear_attempt_from_session
-    session.delete(:attempt_user_id)
-    session.delete(:attempt_user_updated_at)
   end
 end
