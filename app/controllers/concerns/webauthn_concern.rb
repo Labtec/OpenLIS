@@ -50,7 +50,7 @@ module WebauthnConcern
                        "#{current_user.first_name}!" +
                        t('flash.login.last_login_at') +
                        view_context.time_ago_in_words(current_user.last_sign_in_at)
-      render json: { redirect_path: session[:user_return_to] || root_path }, status: :ok
+      render json: { redirect_path: after_sign_in_path_for(user) }, status: :ok
     else
       render json: { error: t('webauthn_credentials.invalid_credential') }, status: :unprocessable_entity
     end
