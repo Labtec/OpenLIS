@@ -76,7 +76,7 @@ ready(() => {
     webAuthnCredentialAuthenticationForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      axios.get('/auth/sessions/security_key_options')
+      axios.get('auth/sessions/security_key_options')
         .then((response) => {
           const credentialOptions = response.data;
 
