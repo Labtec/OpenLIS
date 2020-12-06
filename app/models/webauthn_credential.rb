@@ -11,4 +11,6 @@ class WebauthnCredential < ApplicationRecord
   validates :sign_count, numericality: { only_integer: true,
                                          greater_than_or_equal_to: 0,
                                          less_than_or_equal_to: MAX_BIGINT }
+
+  auto_strip_attributes :nickname
 end
