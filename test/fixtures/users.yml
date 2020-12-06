@@ -13,3 +13,11 @@ admin:
   username: admin
   encrypted_password: <%= BCrypt::Password.create('password', cost: 1) %>
   admin: true
+
+webauthn:
+  first_name: WebAuthn
+  last_name: Doe
+  initials: WEBATUH
+  username: webauthn
+  encrypted_password: <%= BCrypt::Password.create('password', cost: 1) %>
+  admin: false

@@ -1,0 +1,27 @@
+<% title t('.title') %>
+
+<% content_for(:head) do %>
+  <%= javascript_pack_tag 'webauthn', integrity: true, crossorigin: 'anonymous' %>
+<% end %>
+
+<% content_for(:nav) do %>
+  <%= content_tag(:div, t('webauthn_credentials.not_supported'), class: 'flash_message hidden', id: 'unsupported-browser-message') %>
+  <%= content_tag(:div, t('webauthn_credentials.invalid_credential'), class: 'flash_alert hidden', id: 'security-key-error-message') %>
+<% end %>
+
+<fieldset>
+<%= form_with model: [:settings, @webauthn_credential], html: { id: :new_webauthn_credential } do |f| %>
+  <%= render 'shared/error_messages', object: @webauthn_credential %>
+
+  <div class="nickname">
+    <%= f.label :nickname, t('.nickname'), class: 'required' %>
+    <%= f.text_field :nickname, required: true %>
+  </div>
+
+  <div class="buttonbar">
+    <%= f.submit t('.submit'), class: 'js-webauthn' %>
+    <%= t('.or') %>
+    <%= link_to t('.cancel'), profile_path %>
+  </div>
+<% end %>
+</fieldset>

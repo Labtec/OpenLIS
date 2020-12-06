@@ -4,6 +4,8 @@ module Auth
   class SessionsController < Devise::SessionsController
     layout 'auth'
 
+    include WebauthnConcern
+
     def new
       respond_to do |format|
         format.html do
@@ -20,6 +22,23 @@ module Auth
                        "#{current_user.first_name}!" +
                        t('flash.login.last_login_at') +
                        view_context.time_ago_in_words(current_user.last_sign_in_at)
+    end
+
+    def webauthn_options
+      user = find_user
+
+      if user&.webauthn_enabled?
+        options_for_get = WebAuthn::Credential.options_for_get(
+          allow: user.webauthn_credentials.pluck(:external_id),
+          user_verification: 'discouraged'
+        )
+
+        session[:webauthn_challenge] = options_for_get.challenge
+
+        render json: options_for_get, status: :ok
+      else
+        render json: { error: t('webauthn_credentials.not_enabled') }, status: :unauthorized
+      end
     end
   end
 end

@@ -1,5 +1,27 @@
 {
-  "name": "OpenLIS",
+  "name": "@labtec/openlis",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Labtec/OpenLIS.git"
+  },
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@github/webauthn-json": "^0.5.7",
+    "@rails/actioncable": "^6.0.3-4",
+    "@rails/activestorage": "^6.0.3-4",
+    "@rails/ujs": "^6.0.3-4",
+    "@rails/webpacker": "5.2.1",
+    "axios": "^0.21.0",
+    "jquery": "^3.5.1",
+    "regenerator-runtime": "^0.13.7",
+    "turbolinks": "^5.2.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.0.0",
+    "webpack-dev-server": "^3.11.0"
+  }
 }

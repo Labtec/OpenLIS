@@ -27,6 +27,15 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
+  <h2><%= t('.security_keys') %></h2>
+
+  <div class="security-keys">
+    <%= render @user.webauthn_credentials, user: current_user %>
+    <div class="buttonbar">
+      <%= link_to t('.add_key'), new_settings_webauthn_credential_path %>
+    </div>
+  </div>
+
   <h2><%= t('.personal_information') %></h2>
 
   <div class="prefix">

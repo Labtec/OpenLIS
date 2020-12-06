@@ -1,0 +1,25 @@
+<% title t('.title') %>
+
+<% content_for(:head) do %>
+  <%= javascript_pack_tag 'webauthn', crossorigin: 'anonymous' %>
+<% end %>
+
+<% content_for(:errors) do %>
+  <%= content_tag(:div, t('webauthn_credentials.invalid_credential'), class: 'errors hidden', id: 'security-key-error-message') %>
+<% end %>
+
+<% content_for(:alerts) do %>
+  <%= content_tag(:div, t('webauthn_credentials.not_supported'), class: 'alerts hidden', id: 'unsupported-browser-message') %>
+<% end %>
+
+<%= form_with(model: resource, url: session_path(resource_name),
+              class: 'login-form', html: { id: 'webauthn-form' }) do |f| %>
+
+  <h3><%= t('.title') %></h3>
+
+  <div class="message">
+    <%= t('.message') %>
+  </div>
+
+  <%= f.submit t('.submit'), class: 'js-webauthn submit', autofocus: true %>
+<% end %>

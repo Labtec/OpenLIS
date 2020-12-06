@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '.well-known/change-password', to: 'well_known#change_password'
+
+  devise_scope :user do
+    namespace :auth do
+      get 'sessions/security_key_options', to: 'sessions#webauthn_options'
+    end
+  end
+
   devise_for :users, path: '',
                      path_names: { sign_in: 'login',
                                    sign_out: 'logout' },
@@ -11,6 +19,14 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[edit update]
   get 'profile', to: 'users#edit'
+
+  namespace :settings do
+    resources :webauthn_credentials, only: %i[new create destroy], path: 'security_keys' do
+      collection do
+        get :options
+      end
+    end
+  end
 
   resources :patients, shallow: true do
     resources :accessions, only: [:new, :create]

@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :trackable, :validatable
 
   has_many :accessions, dependent: :nullify
+  has_many :webauthn_credentials, dependent: :destroy
 
   validates :username, :first_name, :last_name, :initials, presence: true
   validates :initials, uniqueness: true
@@ -16,4 +17,12 @@ class User < ApplicationRecord
 
   auto_strip_attributes :username, :initials, delete_whitespaces: true
   auto_strip_attributes :first_name, :last_name
+
+  def webauthn_enabled?
+    webauthn_credentials.any?
+  end
+
+  def last_security_key?
+    webauthn_credentials.size == 1
+  end
 end
