@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 2.7.0'
 
-gem 'rails', '6.0.3.4'
+gem 'rails', '6.1.0'
 
 gem 'aasm'
 gem 'acts_as_list'
@@ -51,7 +51,6 @@ end
 group :development do
   gem 'bcrypt_pbkdf'
   gem 'brakeman', require: false
-  gem 'bullet'
   # gem 'capistrano-maintenance'
   gem 'ed25519'
   gem 'flamegraph', require: false
