@@ -94,7 +94,7 @@ module Derivable
     when 'PCT'
       pltc = result_value_quantity_for 'PLTC'
       mpv = result_value_quantity_for 'MPV'
-      pltc * mpv / 10_000_000
+      pltc * mpv / 10_000
     when 'NORM'
       abhead = result_value_quantity_for('ABHEAD')
       abhead_v = result_value_codeable_concept_for('ABHEAD')
