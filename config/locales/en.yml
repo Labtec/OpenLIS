@@ -346,6 +346,7 @@ en:
     new:
       password: Password
       submit: Log In
+      submitting: Logging In…
       username: Username
   users:
     form:

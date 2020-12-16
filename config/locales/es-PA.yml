@@ -346,6 +346,7 @@ es-PA:
     new:
       password: Contraseña
       submit: Acceder
+      submitting: Accediendo…
       username: Usuario
   users:
     form:

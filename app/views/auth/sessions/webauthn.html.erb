@@ -21,5 +21,5 @@
     <%= t('.message') %>
   </div>
 
-  <%= f.submit t('.submit'), class: 'js-webauthn submit', autofocus: true %>
+  <%= f.submit t('.submit'), class: 'js-webauthn submit', autofocus: true, data: { disable_with: false } %>
 <% end %>
