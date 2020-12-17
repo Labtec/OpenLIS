@@ -532,7 +532,7 @@ class ClaimPreview < Prawn::Document
 
   private
 
-  def method_missing(*args, &block)
-    @view.send(*args, &block)
+  def method_missing(...)
+    @view.send(...)
   end
 end

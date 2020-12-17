@@ -2,7 +2,7 @@
 
 module Settings
   class WebauthnCredentialsController < ApplicationController
-    before_action :require_webauthn_enabled, only: [:index, :destroy]
+    before_action :require_webauthn_enabled, only: :destroy
 
     def new
       @webauthn_credential = WebauthnCredential.new
@@ -73,10 +73,10 @@ module Settings
     private
 
     def require_webauthn_enabled
-      unless current_user.webauthn_enabled?
-        flash[:alert] = t('.not_enabled')
-        redirect_to profile_url
-      end
+      return if current_user.webauthn_enabled?
+
+      flash[:alert] = t('.not_enabled')
+      redirect_to profile_url
     end
   end
 end
