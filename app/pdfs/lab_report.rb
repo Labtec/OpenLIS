@@ -202,8 +202,7 @@ class LabReport < Prawn::Document
           end
         end
 
-        bounding_box([bounds.left, bounds.top - LOGO_HEIGHT], width: bounds.width, height: envelope_adjustment_height) do
-        end
+        move_down envelope_adjustment_height
 
         stroke_horizontal_rule
 
@@ -358,12 +357,12 @@ class LabReport < Prawn::Document
       test_results.each do |result|
         next if result.not_performed?
 
-        if !result.normal?
-          cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
-          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
-        else
+        if result.normal?
           cell_col0 = make_cell content: result.lab_test_name, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
           cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+        else
+          cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         end
         cell_col2 = make_cell content: display_format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: FLAG_COLORS[flag_color(result).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
@@ -519,8 +518,8 @@ class LabReport < Prawn::Document
     (length + 7) * BARCODE_XDIM
   end
 
-  def method_missing(*args, &block)
-    @view.send(*args, &block)
+  def method_missing(...)
+    @view.send(...)
   end
 
   def signature_image
