@@ -147,7 +147,7 @@ GEM
     erubi (1.10.0)
     execjs (2.7.0)
     fast_blank (1.0.0)
-    ffi (1.13.1)
+    ffi (1.14.0)
     fhir_models (4.1.1)
       bcp47 (>= 0.3)
       date_time_precision (>= 0.8)
@@ -256,7 +256,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (~> 1.0)
-    rake (13.0.1)
+    rake (13.0.2)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
