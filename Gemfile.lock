@@ -175,7 +175,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    listen (3.3.3)
+    listen (3.4.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.8.0)
@@ -268,6 +268,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.4)
     rubyzip (2.3.0)
     safety_net_attestation (0.4.0)
       jwt (~> 2.0)
@@ -385,6 +386,7 @@ DEPENDENCIES
   rails-html-sanitizer
   rails-i18n
   rb-kqueue
+  rexml
   sass-rails
   selenium-webdriver
   semacode!
@@ -398,7 +400,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-   ruby 2.7.2p137
+   ruby 3.0.0p0
 
 BUNDLED WITH
    2.2.3

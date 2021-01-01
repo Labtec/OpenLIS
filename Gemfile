@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 2.7.0'
+ruby '~> 3.0.0'
 
 gem 'rails', '6.1.0'
 
@@ -31,6 +31,7 @@ gem 'prawn-table'
 gem 'puma', '~> 4.0'
 gem 'rails-html-sanitizer'
 gem 'rails-i18n'
+gem 'rexml'
 gem 'sass-rails'
 gem 'semacode', github: 'Labtec/semacode', branch: 'barcodes'
 gem 'turbolinks'
