@@ -84,7 +84,7 @@ GEM
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.16)
-    bcrypt_pbkdf (1.0.1)
+    bcrypt_pbkdf (1.1.0)
     bindata (2.4.8)
     bindex (0.8.1)
     bootsnap (1.5.1)
@@ -175,7 +175,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    listen (3.3.3)
+    listen (3.4.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.8.0)
@@ -200,8 +200,6 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.11.0.rc4)
       mini_portile2 (~> 2.5.0)
-      racc (~> 1.4)
-    nokogiri (1.11.0.rc4-x86_64-darwin)
       racc (~> 1.4)
     openssl (2.2.0)
     openssl-signature_algorithm (1.0.0)
@@ -347,8 +345,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  x86_64-darwin-17
-  x86_64-freebsd-12
+  ruby
 
 DEPENDENCIES
   aasm
