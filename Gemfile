@@ -33,14 +33,11 @@ gem 'rails-html-sanitizer'
 gem 'rails-i18n'
 gem 'rexml'
 gem 'sass-rails'
+gem 'semacode', github: 'Labtec/semacode', branch: 'barcodes'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'webauthn'
 gem 'webpacker'
-
-source 'https://rubygems.pkg.github.com/Labtec' do
-  gem 'semacode'
-end
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
