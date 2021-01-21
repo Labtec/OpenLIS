@@ -128,7 +128,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.8)
     cose (1.2.0)
       cbor (~> 0.5.9)
       openssl-signature_algorithm (~> 1.0)
@@ -302,7 +302,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     stackprof (0.2.16)
-    thor (1.0.1)
+    thor (1.1.0)
     tilt (2.0.10)
     tpm-key_attestation (0.10.0)
       bindata (~> 2.4)
@@ -403,4 +403,4 @@ RUBY VERSION
    ruby 3.0.0p0
 
 BUNDLED WITH
-   2.2.4
+   2.2.6
