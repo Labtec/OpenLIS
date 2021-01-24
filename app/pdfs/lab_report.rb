@@ -6,26 +6,6 @@ require 'barby/barcode/data_matrix'
 require 'barby/outputter/prawn_outputter'
 
 class LabReport < Prawn::Document
-  # Corporate colors
-  COLORS = {
-    black: [0, 0, 0, 100],
-    white: [0, 0, 0, 0],
-    gray: [0, 0, 0, 75],
-    purple: [0, 100, 0, 50]
-  }.freeze
-
-  FLAG_COLORS = {
-    high_value: [0, 100, 100, 0],
-    low_value: [100, 100, 0, 0],
-    abnormal_value: [0, 100, 0, 50]
-  }.freeze
-
-  REPORT_COLORS = {
-    red: [0, 100, 100, 0],
-    light_gray: [0, 0, 0, 10],
-    highlight_gray: [0, 0, 0, 15]
-  }.freeze
-
   BARCODE_HEIGHT = 15
   BARCODE_XDIM = 1.5
   FLASH_TAG_WIDTH = 80
@@ -48,10 +28,27 @@ class LabReport < Prawn::Document
     @signature = signature
     @view = view_context
 
+    # Colors
+    rgb = signature
+    colors_background = rgb ? '000000' : [0, 0, 0, 0]
+    colors_black = rgb ? '000000' : [0, 0, 0, 100]
+    colors_gray = rgb ? '404040' : [0, 0, 0, 75]
+    colors_light_gray = rgb ? 'E6E6E6' : [0, 0, 0, 10]
+    colors_highlight_gray = rgb ? 'D9D9D9' : [0, 0, 0, 15]
+    colors_purple = rgb ? '800080' : [0, 100, 0, 50]
+    colors_red = rgb ? 'FF0000' : [0, 100, 100, 0]
+    colors_blue = rgb ? '0000FF' : [100, 100, 0, 0]
+
+    flag_color = {
+      high_value: colors_red,
+      low_value: colors_blue,
+      abnormal_value: colors_purple
+    }
+
     super(
       info: {
         Title: 'Reporte de Resultados',
-        Author: 'MasterLab—Laboratorio Clínico Especializado',
+        Author: 'MasterLab',
         Subject: "Solicitud #{@accession.id}",
         Creator: 'MasterLab',
         Producer: 'MasterLab',
@@ -67,6 +64,7 @@ class LabReport < Prawn::Document
       # left_margin: 36, # 0.5 in
       compress: true,
       optimize_objects: true,
+      enable_pdfa_1b: signature,
       print_scaling: :none
     )
 
@@ -95,8 +93,8 @@ class LabReport < Prawn::Document
 
     font 'HelveticaWorld', size: 8
 
-    fill_color COLORS[:black]
-    stroke_color COLORS[:black]
+    fill_color colors_black
+    stroke_color colors_black
 
     ##
     # Constants
@@ -169,7 +167,7 @@ class LabReport < Prawn::Document
       ##
       # Flash tag top
       bounding_box([bounds.right - FLASH_TAG_WIDTH, page_top - HALF_INCH - line_height], width: FLASH_TAG_WIDTH, height: line_height) do
-        text t("results.index.#{@accession.status}"), align: :right, color: REPORT_COLORS[:red]
+        text t("results.index.#{@accession.status}"), align: :right, color: colors_red
       end
       bounding_box([bounds.right - barcode_width, page_top - HALF_INCH - 2.4 * line_height], width: barcode_width, height: BARCODE_HEIGHT + line_height) do
         barcode
@@ -186,7 +184,7 @@ class LabReport < Prawn::Document
         ##
         # Corporate logo
         translate(bounds.left, bounds.top - LOGO_HEIGHT) do
-          logo_master_lab
+          logo_master_lab(rgb: rgb)
         end
 
         bounding_box([bounds.left + LOGO_WIDTH, bounds.top], width: bounds.width - LOGO_WIDTH, height: LOGO_HEIGHT) do
@@ -194,9 +192,9 @@ class LabReport < Prawn::Document
             indent HEADING_INDENT do
               font('MyriadPro') do
                 text 'MasterLab—Laboratorio Clínico Especializado', size: 11, style: :bold
-                text 'Villa Lucre • Consultorios Médicos San Judas Tadeo • Local 107', size: 9, color: COLORS[:gray]
-                text 'Tel: 222-9200 ext. 1107 • Fax: 277-7832 • Móvil: 6869-5210', size: 9, color: COLORS[:gray]
-                text 'Email: masterlab@labtecsa.com • Director: Lcdo. Erick Chu, TM, MSc', size: 9, color: COLORS[:gray]
+                text 'Villa Lucre • Consultorios Médicos San Judas Tadeo • Local 107', size: 9, color: colors_gray
+                text 'Tel: 222-9200 ext. 1107 • Fax: 277-7832 • Móvil: 6869-5210', size: 9, color: colors_gray
+                text 'Email: masterlab@labtecsa.com • Director: Lcdo. Erick Chu, TM, MSc', size: 9, color: colors_gray
               end
             end
           end
@@ -295,11 +293,11 @@ class LabReport < Prawn::Document
 
         ##
         # Report Header
-        fill_color REPORT_COLORS[:light_gray]
+        fill_color colors_light_gray
         fill_and_stroke do
           rectangle [bounds.left, bounds.bottom + title_row_height], bounds.width, title_row_height
         end
-        fill_color COLORS[:black]
+        fill_color colors_black
 
         bounding_box([bounds.left, bounds.bottom + title_row_height], width: bounds.width, height: title_row_height) do
           bounding_box([bounds.left, bounds.top], width: column_0_width, height: title_row_height) do
@@ -328,10 +326,10 @@ class LabReport < Prawn::Document
               text t('results.index.flag'), style: :bold, align: :center
             end
           end
-          [:white, :purple].each do |color|
+          [colors_background, colors_purple].each do |color|
             bounding_box([title_row_stop4 + column_range_title_width, bounds.top], width: column_4_width * 2 + column_5_width, height: title_row_height) do
               pad_top PADDING do
-                text t('results.index.range'), color: COLORS[color], style: :bold, align: :center
+                text t('results.index.range'), color: color, style: :bold, align: :center
               end
             end
           end
@@ -361,11 +359,11 @@ class LabReport < Prawn::Document
           cell_col0 = make_cell content: result.lab_test_name, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
           cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         else
-          cell_col0 = make_cell content: result.lab_test_name, background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
-          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: REPORT_COLORS[:highlight_gray], inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+          cell_col0 = make_cell content: result.lab_test_name, background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         end
         cell_col2 = make_cell content: display_format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
-        cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: FLAG_COLORS[flag_color(result).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+        cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: flag_color[flag_color(result).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         ##
         # Ranges sub-table
         pdf_ranges_table = make_table(ranges_table(ranges_for_table(result), display_gender: @patient.unknown?), cell_style: { padding: [0, 0.4], borders: [] }) do
@@ -415,7 +413,7 @@ class LabReport < Prawn::Document
         row(0).borders = []
         row(1..-1).column(1).align = :right
         row(1..-1).column(3).align = :center
-        row(1..-1).border_bottom_color = REPORT_COLORS[:light_gray]
+        row(1..-1).border_bottom_color = colors_light_gray
         row(1..-1).borders = [:bottom]
         row(1..-1).border_width = 0.75
       end
@@ -424,16 +422,16 @@ class LabReport < Prawn::Document
 
       pad NOTES_PADDING do
         bounding_box([NOTES_INDENT, cursor + LINE_PADDING], width: bounds.width - NOTES_INDENT) do
-          text t('results.index.notes'), color: COLORS[:purple], style: :bold
+          text t('results.index.notes'), color: colors_purple, style: :bold
           text @accession.notes.find_by(department_id: department).content, inline_format: true
 
-          stroke_color COLORS[:purple]
+          stroke_color colors_purple
           self.line_width = 2
           stroke do
             vertical_line bounds.top + LINE_PADDING, bounds.bottom + LINE_PADDING, at: bounds.left - PADDING
           end
           self.line_width = 1
-          stroke_color COLORS[:black]
+          stroke_color colors_black
         end
       end
     end
@@ -495,7 +493,7 @@ class LabReport < Prawn::Document
           pad_top PADDING do
             text "#{t('results.index.accession')} #{@accession.id}", align: :right
             text "#{t('results.index.results_of')} #{full_name(@patient)}", align: :right
-            text t("results.index.#{@accession.status}"), align: :right, color: REPORT_COLORS[:red]
+            text t("results.index.#{@accession.status}"), align: :right, color: colors_red
           end
         end
       end

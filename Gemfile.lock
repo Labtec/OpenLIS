@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/Labtec/pdf-core.git
+  revision: c9281ad5c1b5d343b463c321829d67de8bf92ee3
+  branch: pdfa-1b
+  specs:
+    pdf-core (0.9.0)
+
+GIT
   remote: https://github.com/Labtec/semacode.git
   revision: c2724816c73511f1bc92ccdf746c47794d0949c0
   branch: barcodes
@@ -204,7 +211,6 @@ GEM
     openssl (2.2.0)
     openssl-signature_algorithm (1.0.0)
     orm_adapter (0.5.0)
-    pdf-core (0.9.0)
     pg (1.2.3)
     pg_search (2.3.5)
       activerecord (>= 5.2)
@@ -374,6 +380,7 @@ DEPENDENCIES
   kaminari
   listen
   nokogiri
+  pdf-core!
   pg
   pg_search
   phonelib

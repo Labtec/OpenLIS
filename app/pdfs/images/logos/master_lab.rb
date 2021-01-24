@@ -8,9 +8,14 @@ module Images
 end
 
 # MasterLab's logo
-def logo_master_lab
+def logo_master_lab(rgb: false)
+  # Colors
+  colors_black = rgb ? '000000' : [0, 0, 0, 100]
+  colors_gray = rgb ? '404040' : [0, 0, 0, 75]
+  colors_purple = rgb ? '800080' : [0, 100, 0, 50]
+
   # Master
-  fill_color(0, 0, 0, 100)
+  fill_color(colors_black)
   save_graphics_state
   transformation_matrix(1, 0, 0, 1, 16.1582, 19.9717)
   fill do
@@ -147,7 +152,7 @@ def logo_master_lab
   end
   restore_graphics_state
   # Lab
-  fill_color(0, 0, 0, 75)
+  fill_color(colors_gray)
   save_graphics_state
   transformation_matrix(1, 0, 0, 1, 72.4126, 29.3071)
   fill do
@@ -738,7 +743,7 @@ def logo_master_lab
   end
   restore_graphics_state
   # Bottom logo
-  fill_color(0, 100, 0, 50)
+  fill_color(colors_purple)
   save_graphics_state
   transformation_matrix(1, 0, 0, 1, 109.2207, 14.9907)
   fill do
@@ -759,7 +764,7 @@ def logo_master_lab
   end
   restore_graphics_state
   # Middle logo
-  fill_color(0, 0, 0, 75)
+  fill_color(colors_gray)
   save_graphics_state
   transformation_matrix(1, 0, 0, 1, 109.6304, 28.1621)
   fill do
@@ -774,7 +779,7 @@ def logo_master_lab
   end
   restore_graphics_state
   # Top logo
-  fill_color(0, 100, 0, 50)
+  fill_color(colors_purple)
   save_graphics_state
   transformation_matrix(1, 0, 0, 1, 109.2207, 27.8608)
   fill do
