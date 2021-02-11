@@ -1084,3 +1084,17 @@ provinces:
           - San Pedrito
           - Santa Catalina o Calovébora
           - Valle Bonito
+  pa_xx: # XXX: ISO Code not yet available
+    name: Naso Tjër Di
+    capital: Sieyic
+    indigenous_region: true
+    districts:
+      -
+        name: Naso Tjër Di
+        cabecera: Sieyic
+        especial: true
+        corregimientos:
+          - Bonyik
+          - Dos Concejales
+          - San San Drui
+          - Teribe
