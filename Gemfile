@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 3.0.0'
 
-gem 'rails', '6.1.2'
+gem 'rails', '6.1.2.1'
 
 gem 'aasm'
 gem 'acts_as_list'
