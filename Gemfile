@@ -16,6 +16,7 @@ gem 'bootsnap'
 gem 'coffee-rails'
 gem 'dalli'
 gem 'devise'
+gem 'ed25519'
 gem 'fast_blank'
 gem 'fhir_models'
 gem 'jbuilder'
@@ -54,7 +55,6 @@ group :development do
   gem 'bcrypt_pbkdf'
   gem 'brakeman', require: false
   # gem 'capistrano-maintenance'
-  gem 'ed25519'
   gem 'flamegraph', require: false
   gem 'listen'
   gem 'rack-mini-profiler', require: false
