@@ -6,6 +6,7 @@ $(document).on 'turbolinks:load', ->
       $.ajax
         type: 'patch'
         data: $(this).sortable('serialize')
+        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
         dataType: 'script'
         complete: (request) ->
           $('.lab_tests').effect 'highlight'
