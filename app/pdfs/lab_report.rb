@@ -12,9 +12,12 @@ class LabReport < Prawn::Document
   HALF_INCH = 36
   HEADING_INDENT = 20
   HEADING_PADDING = 5.5
+  HEAVY_RULE_WIDTH = 2
+  LIGHT_RULE_WIDTH = 0.5
   LINE_PADDING = 2
   LOGO_HEIGHT = 50
   LOGO_WIDTH = 150
+  NORMAL_RULE_WIDTH = 1
   NOTES_INDENT = 25
   NOTES_PADDING = 7
   PADDING = 5
@@ -30,7 +33,6 @@ class LabReport < Prawn::Document
 
     # Colors
     rgb = signature
-    colors_background = rgb ? '000000' : [0, 0, 0, 0]
     colors_black = rgb ? '000000' : [0, 0, 0, 100]
     colors_gray = rgb ? '404040' : [0, 0, 0, 75]
     colors_light_gray = rgb ? 'E6E6E6' : [0, 0, 0, 10]
@@ -202,8 +204,6 @@ class LabReport < Prawn::Document
 
         move_down envelope_adjustment_height
 
-        stroke_horizontal_rule
-
         ##
         # Patient demographics
         bounding_box([bounds.left, cursor - PADDING * 2], width: bounds.width, height: patient_demographics_height) do
@@ -293,11 +293,8 @@ class LabReport < Prawn::Document
 
         ##
         # Report Header
-        fill_color colors_light_gray
-        fill_and_stroke do
-          rectangle [bounds.left, bounds.bottom + title_row_height], bounds.width, title_row_height
-        end
-        fill_color colors_black
+        line_width(HEAVY_RULE_WIDTH)
+        stroke_line(bounds.left, bounds.bottom + title_row_height, bounds.width, bounds.bottom + title_row_height)
 
         bounding_box([bounds.left, bounds.bottom + title_row_height], width: bounds.width, height: title_row_height) do
           bounding_box([bounds.left, bounds.top], width: column_0_width, height: title_row_height) do
@@ -309,7 +306,7 @@ class LabReport < Prawn::Document
           end
           bounding_box([title_row_stop1, bounds.top], width: column_1_width, height: title_row_height) do
             pad_top PADDING do
-              indent 0, PADDING do
+              indent 0, 4 do
                 text t('results.index.result'), style: :bold, align: :right
               end
             end
@@ -326,28 +323,32 @@ class LabReport < Prawn::Document
               text t('results.index.flag'), style: :bold, align: :center
             end
           end
-          [colors_background, colors_purple].each do |color|
-            bounding_box([title_row_stop4 + column_range_title_width, bounds.top], width: column_4_width * 2 + column_5_width, height: title_row_height) do
-              pad_top PADDING do
-                text t('results.index.range'), color: color, style: :bold, align: :center
-              end
+          bounding_box([title_row_stop4 + column_range_title_width, bounds.top], width: column_4_width * 2 + column_5_width, height: title_row_height) do
+            pad_top PADDING do
+              text t('results.index.range'), style: :bold, align: :center
             end
           end
         end
+
+        line_width(LIGHT_RULE_WIDTH)
+        stroke_horizontal_line(bounds.left, bounds.width)
+        line_width(NORMAL_RULE_WIDTH)
       end
     end
 
     ##
     # Begin report
 
+    move_up LIGHT_RULE_WIDTH
+
     ##
     # Results table
     @results.each do |department, test_results|
       next unless test_results.map(&:performed?).any?
 
-      department_title = make_cell content: department.name, font_style: :bold, padding: [LINE_PADDING, 0]
+      department_title = make_cell content: department.name, font_style: :bold, padding: [PADDING, 0, LINE_PADDING, 0]
       if @accession.reported_at
-        run_by = make_cell content: [t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ').to_s, font_style: :italic, size: 7.5, colspan: 2, align: :right, padding: [LINE_PADDING, 0]
+        run_by = make_cell content: [t('results.index.run_by'), @accession.reporter.initials, t('results.index.on_date'), l(@accession.reported_at, format: :long)].join(' ').to_s, font_style: :italic, size: 7, colspan: 2, align: :right, padding: [PADDING, PADDING, LINE_PADDING, 0]
         data = [[department_title, '', '', run_by]]
       else
         data = [[department_title, '', '', '', '']]
@@ -415,22 +416,22 @@ class LabReport < Prawn::Document
         row(1..-1).column(3).align = :center
         row(1..-1).border_bottom_color = colors_light_gray
         row(1..-1).borders = [:bottom]
-        row(1..-1).border_width = 0.75
+        row(1..-1).border_width = LIGHT_RULE_WIDTH
       end
 
       next if @accession.notes.find_by(department_id: department).try(:content).blank?
 
-      pad NOTES_PADDING do
+      pad_top NOTES_PADDING do
         bounding_box([NOTES_INDENT, cursor + LINE_PADDING], width: bounds.width - NOTES_INDENT) do
           text t('results.index.notes'), color: colors_purple, style: :bold
           text @accession.notes.find_by(department_id: department).content, inline_format: true
 
           stroke_color colors_purple
-          self.line_width = 2
+          line_width(HEAVY_RULE_WIDTH)
           stroke do
             vertical_line bounds.top + LINE_PADDING, bounds.bottom + LINE_PADDING, at: bounds.left - PADDING
           end
-          self.line_width = 1
+          line_width(NORMAL_RULE_WIDTH)
           stroke_color colors_black
         end
       end
@@ -438,7 +439,7 @@ class LabReport < Prawn::Document
 
     ##
     # End of report
-    horizontal_rule
+    stroke_horizontal_rule
 
     ##
     # Signature block
@@ -451,7 +452,9 @@ class LabReport < Prawn::Document
           end
         end
         bounding_box([bounds.width / 2 + LINE_PADDING, cursor], width: signature_line, height: 2 * line_height + PADDING) do
+          line_width(LIGHT_RULE_WIDTH)
           stroke_horizontal_rule
+          line_width(NORMAL_RULE_WIDTH)
           signature_image
           pad_top PADDING do
             text current_user_name, align: :center
@@ -460,13 +463,15 @@ class LabReport < Prawn::Document
         end
       end
     elsif @accession.reported_at
-      bounding_box([bounds.left + SIGNATURE_BLOCK_SHIM, bounds.bottom - line_height - PADDING], width: column_0_width, height: line_height) do
+      bounding_box([bounds.left + SIGNATURE_BLOCK_SHIM, page_bottom + footer_margin_bottom + footer_height * 2 / 3 + LIGHT_RULE_WIDTH], width: column_0_width, height: line_height) do
         pad_top LINE_PADDING do
           text t('results.index.reviewed_by'), align: :right
         end
       end
-      bounding_box([SIGNATURE_BLOCK_SHIM + column_0_width + LINE_PADDING, cursor], width: signature_line, height: line_height + PADDING) do
+      bounding_box([SIGNATURE_BLOCK_SHIM + column_0_width + LINE_PADDING, cursor - NORMAL_RULE_WIDTH], width: signature_line, height: line_height + PADDING) do
+        line_width(LIGHT_RULE_WIDTH)
         stroke_horizontal_rule
+        line_width(NORMAL_RULE_WIDTH)
         signature_image
         pad_top PADDING do
           text current_user_name + registration_number(inline: true), align: :center
