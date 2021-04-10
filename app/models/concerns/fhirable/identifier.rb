@@ -7,9 +7,9 @@ module FHIRable
     def fhirable_observation_identifier
       [
         {
-          'use': 'official',
-          'system': to_gid,
-          'value': id
+          use: 'official',
+          system: to_gid,
+          value: id
         }
       ]
     end
@@ -20,15 +20,15 @@ module FHIRable
 
       [
         {
-          'use': 'official',
-          'type': {
-            'coding': [
-              'system': 'http://terminology.hl7.org/CodeSystem/v2-0203',
-              'code': fhirable_identifier_code
+          use: 'official',
+          type: {
+            coding: [
+              system: 'http://terminology.hl7.org/CodeSystem/v2-0203',
+              code: fhirable_identifier_code
             ]
           },
-          'system': fhirable_identifier_system,
-          'value': identifier
+          system: fhirable_identifier_system,
+          value: identifier
         },
         fhirable_identifier_member_number
       ]
@@ -48,14 +48,14 @@ module FHIRable
       return if policy_number.blank?
 
       {
-        'type': {
-          'coding': [
-            'system': 'http://terminology.hl7.org/CodeSystem/v2-0203',
-            'code': 'MB'
+        type: {
+          coding: [
+            system: 'http://terminology.hl7.org/CodeSystem/v2-0203',
+            code: 'MB'
           ]
         },
-        'system': 'https://www.axa-assistance.com.pa',
-        'value': policy_number
+        system: 'https://www.axa-assistance.com.pa',
+        value: policy_number
       }
     end
   end

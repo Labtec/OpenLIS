@@ -8,16 +8,16 @@ module FHIRable
       return unless animal_type
 
       {
-        'url': 'http://hl7.org/fhir/StructureDefinition/patient-animal',
-        'extension': [
+        url: 'http://hl7.org/fhir/StructureDefinition/patient-animal',
+        extension: [
           {
-            'url': 'species',
-            'valueCodeableConcept': {
-              'coding': [
+            url: 'species',
+            valueCodeableConcept: {
+              coding: [
                 {
-                  'system': 'http://snomed.info/sct',
-                  'code': code_for_species,
-                  'display': display_for_species
+                  system: 'http://snomed.info/sct',
+                  code: code_for_species,
+                  display: display_for_species
                 }
               ]
             }

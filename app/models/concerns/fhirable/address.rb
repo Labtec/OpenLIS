@@ -9,16 +9,16 @@ module FHIRable
 
       [
         {
-          'use': 'home',
-          'type': 'physical',
-          'text': address_text,
-          'line': [
+          use: 'home',
+          type: 'physical',
+          text: address_text,
+          line: [
             address_line
           ],
-          'city': address_corregimiento,
-          'district': address_district,
-          'state': address_province,
-          'country': 'PAN'
+          city: address_corregimiento,
+          district: address_district,
+          state: address_province,
+          country: 'PAN'
         }
       ]
     end
