@@ -7,17 +7,17 @@ module FHIRable
     def fhirable_communication
       [
         {
-          'language': {
-            'coding': [
+          language: {
+            coding: [
               {
-                'system': 'http://hl7.org/fhir/ValueSet/languages',
-                'code': 'es',
-                'display': 'Spanish'
+                system: 'http://hl7.org/fhir/ValueSet/languages',
+                code: 'es',
+                display: 'Spanish'
               }
             ],
-            'text': 'Spanish'
+            text: 'Spanish'
           },
-          'preferred': true
+          preferred: true
         }
       ]
     end

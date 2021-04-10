@@ -7,9 +7,9 @@ module FHIRable
     def fhirable_name
       [
         {
-          'use': animal_type.present? ? 'usual' : 'official',
-          'family': family_name || partner_name,
-          'given': [
+          use: animal_type.present? ? 'usual' : 'official',
+          family: family_name || partner_name,
+          given: [
             given_name,
             middle_name
           ]

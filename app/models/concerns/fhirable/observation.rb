@@ -40,30 +40,30 @@ module FHIRable
 
     def fhirable_observation
       FHIR::Observation.new(
-        'id': id,
-        'identifier': fhirable_observation_identifier,
-        'basedOn': FHIR::Reference.new(reference: "ServiceRequest/#{accession.id}"),
-        'status': status,
-        'category': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'laboratory')]),
+        id: id,
+        identifier: fhirable_observation_identifier,
+        basedOn: FHIR::Reference.new(reference: "ServiceRequest/#{accession.id}"),
+        status: status,
+        category: FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'laboratory')]),
         # 'code': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc, display: display_loinc(lab_test&.loinc))]),
-        'code': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc)]),
-        'subject': fhirable_reference(patient),
-        'issued': created_at.iso8601,
-        'performer': observation_performers,
-        'valueQuantity': observation_value_quantity,
-        'valueCodeableConcept': observation_value_codeable_concept,
-        'valueString': observation_value_string,
-        'valueBoolean': observation_value_boolean,
-        'valueInteger': observation_value_integer,
-        'valueRange': observation_value_range,
-        'valueRatio': observation_value_ratio,
-        'dataAbsentReason': observation_data_absent_reason,
-        'interpretation': observation_interpretations(interpretation),
-        'note': observation_notes,
-        'bodySite': observation_body_site,
-        'method': observation_method,
-        'specimen': fhirable_reference(accession),
-        'referenceRange': observation_reference_ranges
+        code: FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc)]),
+        subject: fhirable_reference(patient),
+        issued: created_at.iso8601,
+        performer: observation_performers,
+        valueQuantity: observation_value_quantity,
+        valueCodeableConcept: observation_value_codeable_concept,
+        valueString: observation_value_string,
+        valueBoolean: observation_value_boolean,
+        valueInteger: observation_value_integer,
+        valueRange: observation_value_range,
+        valueRatio: observation_value_ratio,
+        dataAbsentReason: observation_data_absent_reason,
+        interpretation: observation_interpretations(interpretation),
+        note: observation_notes,
+        bodySite: observation_body_site,
+        method: observation_method,
+        specimen: fhirable_reference(accession),
+        referenceRange: observation_reference_ranges
       )
     end
 
@@ -148,11 +148,11 @@ module FHIRable
       return unless derived_value || value.present?
 
       FHIR::Quantity.new(
-        'value': observation_value_quantity_value,
-        'comparator': observation_value_quantity_comparator,
-        'unit': value_unit,
-        'system': 'http://unitsofmeasure.org',
-        'code': lab_test.customary_unit
+        value: observation_value_quantity_value,
+        comparator: observation_value_quantity_comparator,
+        unit: value_unit,
+        system: 'http://unitsofmeasure.org',
+        code: lab_test.customary_unit
       )
     end
 

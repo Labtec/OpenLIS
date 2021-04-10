@@ -8,26 +8,26 @@ module FHIRable
 
     def fhirable_diagnostic_report
       FHIR::DiagnosticReport.new(
-        'id': id,
+        id: id,
         # 'basedOn': fhirable_reference(service_request),
-        'status': status,
-        'category': fhirable_diagnostic_report_categories,
+        status: status,
+        category: fhirable_diagnostic_report_categories,
         # XXX code is mandatory
         # This should be the LOINC code for the panel/observation.
         # If multiple panels/observations were part of the diagnostic report,
         # individual reports shall be issued.  There can only be one code present.
         # 'code': MANDATORY
-        'subject': fhirable_reference(patient),
+        subject: fhirable_reference(patient),
         # 'encounter':
-        'effectiveDateTime': drawn_at.iso8601,
-        'issued': reported_at&.iso8601,
-        'performer': fhirable_reference(drawer),
-        'resultsInterpreter': fhirable_reference(reporter),
-        'specimen': fhirable_reference(self),
-        'result': fhirable_diagnostic_report_results(results),
+        effectiveDateTime: drawn_at.iso8601,
+        issued: reported_at&.iso8601,
+        performer: fhirable_reference(drawer),
+        resultsInterpreter: fhirable_reference(reporter),
+        specimen: fhirable_reference(self),
+        result: fhirable_diagnostic_report_results(results),
         # 'conclusion':
         # 'conclusionCode':
-        'presentedForm': fhirable_diagnostic_report_presented_form
+        presentedForm: fhirable_diagnostic_report_presented_form
       )
     end
 

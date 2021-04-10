@@ -61,16 +61,16 @@ module FHIRable
 
     def fhirable_patient
       FHIR::Patient.new(
-        'extension': fhirable_animal,
-        'id': id,
-        'active': fhirable_active,
-        'identifier': fhirable_patient_identifier,
-        'name': fhirable_name,
-        'telecom': fhirable_telecom,
-        'gender': ADMINISTRATIVE_GENDERS[gender],
-        'birthDate': birthdate,
-        'deceasedBoolean': deceased?,
-        'address': fhirable_address
+        extension: fhirable_animal,
+        id: id,
+        active: fhirable_active,
+        identifier: fhirable_patient_identifier,
+        name: fhirable_name,
+        telecom: fhirable_telecom,
+        gender: ADMINISTRATIVE_GENDERS[gender],
+        birthDate: birthdate,
+        deceasedBoolean: deceased?,
+        address: fhirable_address
       )
     end
 
@@ -83,7 +83,7 @@ module FHIRable
     end
 
     def fhirable_active
-      deceased? ? false : true
+      !deceased?
     end
   end
 end
