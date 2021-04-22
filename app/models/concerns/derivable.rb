@@ -62,7 +62,7 @@ module Derivable
     when 'ElphAlb'
       prot = result_value_quantity_for 'ElphProt'
       albp = result_value_quantity_for 'ElphAlb%'
-      prot * albp
+      prot * albp / 100
     when 'ElphAlbGlob'
       albp = result_value_quantity_for 'ElphAlb%'
       alpha1p = result_value_quantity_for 'ElphAlpha1%'
@@ -74,23 +74,23 @@ module Derivable
     when 'ElphAlpha1'
       prot = result_value_quantity_for 'ElphProt'
       alpha1p = result_value_quantity_for 'ElphAlpha1%'
-      prot * alpha1p
+      prot * alpha1p / 100
     when 'ElphAlpha2'
       prot = result_value_quantity_for 'ElphProt'
       alpha2p = result_value_quantity_for 'ElphAlpha2%'
-      prot * alpha2p
+      prot * alpha2p / 100
     when 'ElphBeta1'
       prot = result_value_quantity_for 'ElphProt'
       beta1p = result_value_quantity_for 'ElphBeta1%'
-      prot * beta1p
+      prot * beta1p / 100
     when 'ElphBeta2'
       prot = result_value_quantity_for 'ElphProt'
       beta2p = result_value_quantity_for 'ElphBeta2%'
-      prot * beta2p
+      prot * beta2p / 100
     when 'ElphGamma'
       prot = result_value_quantity_for 'ElphProt'
       gammap = result_value_quantity_for 'ElphGamma%'
-      prot * gammap
+      prot * gammap / 100
     when 'IBIL'
       tbil = result_value_quantity_for 'TBIL'
       dbil = result_value_quantity_for 'DBIL'
