@@ -59,6 +59,38 @@ module Derivable
       glo2 = tp - alb
       glo = glo1.zero? ? glo2 : glo1
       alb / glo
+    when 'ElphAlb'
+      prot = result_value_quantity_for 'ElphProt'
+      albp = result_value_quantity_for 'ElphAlb%'
+      prot * albp
+    when 'ElphAlbGlob'
+      albp = result_value_quantity_for 'ElphAlb%'
+      alpha1p = result_value_quantity_for 'ElphAlpha1%'
+      alpha2p = result_value_quantity_for 'ElphAlpha2%'
+      beta1p = result_value_quantity_for 'ElphBeta1%'
+      beta2p = result_value_quantity_for 'ElphBeta2%'
+      gammap = result_value_quantity_for 'ElphGamma%'
+      albp / (alpha1p + alpha2p + beta1p + beta2p + gammap)
+    when 'ElphAlpha1'
+      prot = result_value_quantity_for 'ElphProt'
+      alpha1p = result_value_quantity_for 'ElphAlpha1%'
+      prot * alpha1p
+    when 'ElphAlpha2'
+      prot = result_value_quantity_for 'ElphProt'
+      alpha2p = result_value_quantity_for 'ElphAlpha2%'
+      prot * alpha2p
+    when 'ElphBeta1'
+      prot = result_value_quantity_for 'ElphProt'
+      beta1p = result_value_quantity_for 'ElphBeta1%'
+      prot * beta1p
+    when 'ElphBeta2'
+      prot = result_value_quantity_for 'ElphProt'
+      beta2p = result_value_quantity_for 'ElphBeta2%'
+      prot * beta2p
+    when 'ElphGamma'
+      prot = result_value_quantity_for 'ElphProt'
+      gammap = result_value_quantity_for 'ElphGamma%'
+      prot * gammap
     when 'IBIL'
       tbil = result_value_quantity_for 'TBIL'
       dbil = result_value_quantity_for 'DBIL'
