@@ -39,7 +39,7 @@ gem 'semacode', github: 'Labtec/semacode', branch: 'barcodes'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'webauthn'
-gem 'webpacker', '6.0.0.beta.6'
+gem 'webpacker', '6.0.0.beta.7'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
