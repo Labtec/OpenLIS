@@ -152,7 +152,7 @@ GEM
       warden (~> 1.2.3)
     ed25519 (1.2.4)
     erubi (1.10.0)
-    execjs (2.8.0)
+    execjs (2.8.1)
     fast_blank (1.0.0)
     ffi (1.15.0)
     fhir_models (4.1.2)
@@ -410,4 +410,4 @@ RUBY VERSION
    ruby 3.0.0p0
 
 BUNDLED WITH
-   2.2.16
+   2.2.17
