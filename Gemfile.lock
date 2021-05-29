@@ -143,6 +143,7 @@ GEM
     css_parser (1.9.0)
       addressable
     dalli (2.7.11)
+    date (3.1.0)
     date_time_precision (0.8.1)
     devise (4.8.0)
       bcrypt (~> 3.0)
@@ -165,6 +166,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    io-wait (0.1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jquery-ui-rails (6.0.1)
@@ -196,14 +198,21 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.0225)
     mini_mime (1.0.3)
-    mini_portile2 (2.5.1)
+    mini_portile2 (2.5.2)
+      net-ftp (~> 0.1)
     minitest (5.14.4)
     msgpack (1.4.2)
+    net-ftp (0.1.2)
+      net-protocol
+      time
+    net-protocol (0.1.0)
+      io-wait
+      timeout
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.7)
-    nokogiri (1.11.5)
+    nokogiri (1.11.6)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     openssl (2.2.0)
@@ -231,7 +240,7 @@ GEM
     rack (2.2.3)
     rack-mini-profiler (2.3.2)
       rack (>= 1.2.0)
-    rack-proxy (0.6.5)
+    rack-proxy (0.7.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -310,6 +319,9 @@ GEM
     stackprof (0.2.17)
     thor (1.1.0)
     tilt (2.0.10)
+    time (0.1.0)
+      date
+    timeout (0.1.1)
     tpm-key_attestation (0.10.0)
       bindata (~> 2.4)
       openssl-signature_algorithm (~> 1.0)
@@ -343,7 +355,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    websocket-driver (0.7.3)
+    websocket-driver (0.7.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
