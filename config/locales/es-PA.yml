@@ -261,11 +261,11 @@ es-PA:
   results:
     abnormal: •
     critical_abnormal: •••
-    critical_high: •••
-    critical_low: •••
+    critical_high: ▲▲▲
+    critical_low: ▼▼▼
     detected: •
     equivocal: •
-    high: •
+    high: ▲
     indeterminate: •
     intermediate: •
     index:
@@ -305,19 +305,19 @@ es-PA:
       outpatient: Ambulatorio
       year: año
       years: años
-    low: •
+    low: ▼
     negative: ''
     normal: ''
     non_reactive: ''
     non_susceptible: •
     not_detected: ''
-    off_scale_low: •
-    off_scale_high: •
+    off_scale_high: ▲
+    off_scale_low: ▼
     positive: •
     reactive: •
     resistant: •
-    significantly_high: ••
-    significantly_low: ••
+    significantly_high: ▲▲
+    significantly_low: ▼▼
     susceptible: ''
     weakly_reactive: •
   results_mailer:
