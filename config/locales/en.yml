@@ -311,8 +311,8 @@ en:
     non_reactive: NR
     non_susceptible: NS
     not_detected: ND
-    off_scale_low: '<'
     off_scale_high: '>'
+    off_scale_low: '<'
     positive: POS
     reactive: RR
     resistant: R
