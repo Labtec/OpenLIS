@@ -308,6 +308,8 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     stackprof (0.2.17)
+    terser (1.1.5)
+      execjs (>= 0.3.0, < 3)
     thor (1.1.0)
     tilt (2.0.10)
     tpm-key_attestation (0.10.0)
@@ -319,8 +321,6 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -400,8 +400,8 @@ DEPENDENCIES
   spring
   spring-watcher-listen
   stackprof
+  terser
   turbolinks
-  uglifier
   web-console
   webauthn
   webpacker
