@@ -60,7 +60,6 @@ group :development do
   gem 'rack-mini-profiler', require: false
   gem 'rb-kqueue'
   gem 'spring'
-  gem 'spring-watcher-listen'
   gem 'stackprof'
   gem 'web-console'
 end
