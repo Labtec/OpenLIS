@@ -14,7 +14,7 @@
     "@rails/actioncable": "^6.1.4",
     "@rails/activestorage": "^6.1.4",
     "@rails/ujs": "^6.1.4",
-    "@rails/webpacker": "^6.0.0-beta.7",
+    "@rails/webpacker": "^6.0.0-pre.2",
     "axios": "^0.21.1",
     "jquery": "^3.6.0",
     "regenerator-runtime": "^0.13.7",
