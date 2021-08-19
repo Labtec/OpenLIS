@@ -59,7 +59,6 @@ group :development do
   gem 'listen'
   gem 'rack-mini-profiler', require: false
   gem 'rb-kqueue'
-  gem 'spring'
   gem 'stackprof'
   gem 'web-console'
 end
