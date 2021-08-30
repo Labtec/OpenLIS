@@ -33,6 +33,7 @@ ldl_hdl:
   name: LDL/HDL Ratio
   code: LDLHDLR
   derivation: true
+  decimals: 1
 
 fsh:
   department: chemistry

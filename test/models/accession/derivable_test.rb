@@ -18,15 +18,15 @@ class AccessionDerivableTest < ActiveSupport::TestCase
     ldl = result_for(@accession, 'LDL')
     ldl.update unit: units(:unit_a)
 
-    assert_equal 78, ldl.derived_value, 'CHOL - (HDL + TRIG / 5)'
+    assert_equal 78, @accession.derived_value_for('LDL'), 'CHOL - (HDL + TRIG / 5)'
 
     ldl.update unit: units(:unit_b)
 
-    assert_equal 50, ldl.derived_value, 'CHOL - (HDL + TRIG / 2.2)'
+    assert_equal 50, @accession.derived_value_for('LDL'), 'CHOL - (HDL + TRIG / 2.2)'
 
     ldl.update unit: units(:units)
 
-    assert_nil ldl.derived_value
+    assert_nil @accession.derived_value_for('LDL')
   end
 
   test 'derivation of LDL/HDL ratio' do
@@ -35,17 +35,16 @@ class AccessionDerivableTest < ActiveSupport::TestCase
     result_for(@accession, 'TRIG').update value: 110
     ldl = result_for(@accession, 'LDL')
     ldl.update unit: units(:unit_a)
-    ldl_hdl = result_for(@accession, 'LDLHDLR')
 
-    assert_equal 0.78, ldl_hdl.derived_value, 'mg/dL'
+    assert_equal 0.78, @accession.derived_value_for('LDLHDLR'), 'mg/dL'
 
     ldl.update unit: units(:unit_b)
 
-    assert_equal 0.50, ldl_hdl.derived_value, 'mmol/L'
+    assert_equal 0.50, @accession.derived_value_for('LDLHDLR'), 'mmol/L'
 
     ldl.update unit: units(:units)
 
-    assert_nil ldl_hdl.derived_value
+    assert_nil @accession.derived_value_for('LDLHDLR')
   end
 
   test '#value_present? for derived values' do
