@@ -124,4 +124,27 @@ class QualifiedIntervalTest < ActiveSupport::TestCase
     @qualified_interval.update(gestational_age_low: nil, gestational_age_high: 'P2D')
     assert_equal (...2.days), @qualified_interval.gestational_age
   end
+
+  test 'flag of a rounded derivation' do
+    chol = observations(:observation_chol)
+    hdl = observations(:observation_hdl)
+    trig = observations(:observation_trig)
+    ldl = observations(:observation_ldl)
+
+    # ldl = chol - (hdl + trig / 5)
+    chol.update(value: 200)
+    hdl.update(value: 99)
+    trig.update(value: 5)
+
+    assert_equal 100, ldl.value_quantity
+    assert_equal 'H', ldl.interpretation
+
+    hdl.update(value: 99.6)
+    assert_equal 99, ldl.value_quantity
+    assert_equal 'N', ldl.interpretation
+
+    hdl.update(value: 99.4)
+    assert_equal 100, ldl.value_quantity
+    assert_equal 'H', ldl.interpretation
+  end
 end

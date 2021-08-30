@@ -54,7 +54,10 @@ class Observation < ApplicationRecord
   end
 
   def derived_value
-    accession.derived_value_for(lab_test_code)
+    dv = accession.derived_value_for(lab_test_code)
+    return dv unless dv.is_a?(Numeric)
+
+    dv.round(lab_test_decimals.to_i)
   end
 
   def value_codeable_concept

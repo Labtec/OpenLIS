@@ -45,6 +45,10 @@ chol:
   lab_test: chol
   range_high_value: 200
 
+ldl:
+  lab_test: ldl
+  range_high_value: 100
+
 hgb_m1:
   lab_test: hgb
   gender: male
