@@ -15,7 +15,7 @@
     "@rails/activestorage": "^6.1.4-1",
     "@rails/ujs": "^6.1.4-1",
     "@rails/webpacker": "5.4.2",
-    "axios": "^0.21.1",
+    "axios": "^0.21.3",
     "jquery": "^3.6.0",
     "regenerator-runtime": "^0.13.7",
     "turbolinks": "^5.2.0"
