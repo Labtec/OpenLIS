@@ -31,6 +31,17 @@ class QualifiedIntervalTest < ActiveSupport::TestCase
     assert_equal 'N', @observation.interpretation
   end
 
+  test 'flag of a rounded lab test' do
+    lab_test = lab_tests(:qualified_interval_greater_than)
+    @observation.update(lab_test: lab_test)
+
+    @observation.update(value: 9.4)
+    assert_equal 'L', @observation.interpretation
+
+    @observation.update(value: 9.5)
+    assert_equal 'N', @observation.interpretation
+  end
+
   test 'flag of a lab test with min and max intervals' do
     @observation.update(lab_test: lab_tests(:qualified_interval))
 
