@@ -91,7 +91,7 @@ class Observation < ApplicationRecord
       value =~ /\A(\d+):(\d+)\z/
       Rational(Regexp.last_match(2).to_i, Regexp.last_match(1).to_i)
     else
-      value.gsub(/[^\d.]/, '').to_d
+      value.gsub(/[^\d.]/, '').to_d.round(lab_test_decimals.to_i)
     end
   end
 
