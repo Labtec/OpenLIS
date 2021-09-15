@@ -52,6 +52,7 @@ class Patient < ApplicationRecord
   # validates :address_province, province: true
   # validates :address_district, district: true
   # validates :address_corregimiento, corregimiento: true
+  # TODO: line -> street + neighborhood + number
 
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
