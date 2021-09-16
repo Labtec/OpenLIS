@@ -4,19 +4,19 @@
 # are locale specific, and you may define rules for as many different
 # locales as you wish. All of these examples are active by default:
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.plural /^(ox)$/i, '\1en'
-#   inflect.singular /^(ox)en/i, '\1'
-#   inflect.irregular 'person', 'people'
+#   inflect.plural /^(ox)$/i, "\\1en"
+#   inflect.singular /^(ox)en/i, "\\1"
+#   inflect.irregular "person", "people"
 #   inflect.uncountable %w( fish sheep )
 # end
 
 # These inflection rules are supported but not enabled by default:
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.acronym 'OpenLIS'
-  inflect.acronym 'FHIRable'
-  inflect.acronym 'LOINC'
-  inflect.acronym 'SNOMED'
-  inflect.acronym 'UB04'
-  inflect.acronym 'UB92'
-  inflect.acronym 'UCUM'
+  inflect.acronym "OpenLIS"
+  inflect.acronym "FHIRable"
+  inflect.acronym "LOINC"
+  inflect.acronym "SNOMED"
+  inflect.acronym "UB04"
+  inflect.acronym "UB92"
+  inflect.acronym "UCUM"
 end

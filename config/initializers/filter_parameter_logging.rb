@@ -17,5 +17,6 @@ Rails.application.config.filter_parameters += [
   :middle_name,
   :password,
   :phone,
-  :search
+  :search,
+  :passw, :secret, :token, :_key, :crypt, :salt, :certificate, :otp, :ssn
 ]

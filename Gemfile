@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 3.0.0'
 
-gem 'rails', '6.1.4.4'
+gem 'rails', '7.0.0'
 
 gem 'aasm'
 gem 'acts_as_list'
@@ -34,7 +34,7 @@ gem 'puma'
 gem 'rails-html-sanitizer'
 gem 'rails-i18n'
 gem 'rexml'
-gem 'sass-rails'
+gem 'sassc-rails'
 gem 'semacode', github: 'Labtec/semacode', branch: 'barcodes'
 gem 'terser'
 gem 'turbolinks'
