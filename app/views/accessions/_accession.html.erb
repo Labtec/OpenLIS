@@ -7,7 +7,7 @@
         <%= link_to t('.enter_results'), edit_diagnostic_report_url(accession) %> |
       <% end %>
       <%= link_to t('.change_requisition'), edit_accession_path(accession) %>
-      <% if @current_user.admin? %>
+      <% if current_user.admin? %>
         | <%= link_to t('.delete?'), accession, method: :delete, data: { confirm: t('.confirm_destroy') } %>
       <% end %>
     </small>
