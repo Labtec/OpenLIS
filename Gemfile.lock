@@ -94,7 +94,7 @@ GEM
     bcrypt_pbkdf (1.1.0)
     bindata (2.4.10)
     bindex (0.8.1)
-    bootsnap (1.8.1)
+    bootsnap (1.9.0)
       msgpack (~> 1.0)
     brakeman (5.1.1)
     builder (3.2.4)
