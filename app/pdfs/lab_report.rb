@@ -6,8 +6,18 @@ require 'barby/barcode/data_matrix'
 require 'barby/outputter/prawn_outputter'
 
 class LabReport < Prawn::Document
-  BARCODE_HEIGHT = 15
   BARCODE_XDIM = 1.5
+  COLUMN_0_WIDTH = 140
+  COLUMN_1_WIDTH = 80
+  COLUMN_2_WIDTH = 88
+  COLUMN_3_WIDTH = 40
+  COLUMN_RANGE_WIDTH = 192
+  DEMOGRAPHICS_WIDTH1 = 45
+  DEMOGRAPHICS_WIDTH2 = 155
+  DEMOGRAPHICS_WIDTH4 = 80
+  DEMOGRAPHICS_WIDTH5 = 80
+  DEMOGRAPHICS_WIDTH6 = 150
+  ENVELOPE_ADJUSTMENT_HEIGHT = 47
   FLASH_TAG_WIDTH = 80
   HALF_INCH = 36
   HEADING_INDENT = 20
@@ -24,28 +34,27 @@ class LabReport < Prawn::Document
   ROW_VERTICAL_PADDING = 1
   SIGNATURE_BLOCK_SHIM = 75
 
+  DEMOGRAPHICS_STOP1 = DEMOGRAPHICS_WIDTH1
+  DEMOGRAPHICS_STOP2 = DEMOGRAPHICS_STOP1 + DEMOGRAPHICS_WIDTH2
+  FOOTER_MARGIN_BOTTOM = HALF_INCH
+  TITLE_ROW_STOP1 = COLUMN_0_WIDTH
+  TITLE_ROW_STOP2 = TITLE_ROW_STOP1 + COLUMN_1_WIDTH
+  TITLE_ROW_STOP3 = TITLE_ROW_STOP2 + COLUMN_2_WIDTH
+  TITLE_ROW_STOP4 = TITLE_ROW_STOP3 + COLUMN_3_WIDTH
+
+  ##
+  # Folding marks and window (do not print)
+  # ONE_INCH = HALF_INCH * 2
+  # PRINT_SAFETY_AREA = 17
+  # WINDOW_HEIGHT = 36 * 2.25
+  # WINDOW_WIDTH = 36 * 9
+
   def initialize(patient, accession, results, signature, view_context)
     @patient = patient
     @accession = accession
     @results = results
     @signature = signature
     @view = view_context
-
-    # Colors
-    rgb = signature
-    colors_black = rgb ? '000000' : [0, 0, 0, 100]
-    colors_gray = rgb ? '404040' : [0, 0, 0, 75]
-    colors_light_gray = rgb ? 'E6E6E6' : [0, 0, 0, 10]
-    colors_highlight_gray = rgb ? 'D9D9D9' : [0, 0, 0, 15]
-    colors_purple = rgb ? '800080' : [0, 100, 0, 50]
-    colors_red = rgb ? 'FF0000' : [0, 100, 100, 0]
-    colors_blue = rgb ? '0000FF' : [100, 100, 0, 0]
-
-    flag_color = {
-      high_value: colors_red,
-      low_value: colors_blue,
-      abnormal_value: colors_purple
-    }
 
     super(
       info: {
@@ -95,73 +104,43 @@ class LabReport < Prawn::Document
 
     font 'HelveticaWorld', size: 8
 
+    ##
+    # Colors
     fill_color colors_black
     stroke_color colors_black
-
-    ##
-    # Constants
-    # one_inch = HALF_INCH * 2
-    # min_hp_print = 17
-    # safe_print = HALF_INCH
-    # fold = page.dimensions[3] / 3
-    top_margin = page.margins[:top]
-    # right_margin = page.margins[:right]
-    bottom_margin = page.margins[:bottom]
-    # left_margin = page.margins[:left]
-    page_top = bounds.top + top_margin
-    page_bottom = bounds.bottom - bottom_margin
-    # page_left = bounds.left - left_margin
-    footer_margin_bottom = HALF_INCH
+    flag_color = {
+      high_value: colors_red,
+      low_value: colors_blue,
+      abnormal_value: colors_purple
+    }
 
     ##
     # Variables
-    line_height = font_size + LINE_PADDING
-    row_height = font_size + 4
-    title_row_height = line_height * 1.5
+    top_margin = page.margins[:top]
+    bottom_margin = page.margins[:bottom]
+    page_top = bounds.top + top_margin
+    page_bottom = bounds.bottom - bottom_margin
+    colors_light_gray = @signature ? 'E6E6E6' : [0, 0, 0, 10]
+    column_0_width = column_description_range_width
+    column_1_width = column_gender_range_width
+    column_2_width = column_left_range_width
+    column_3_width = column_range_symbol_width
+    column_4_width = column_right_range_width
     page_number_height = font_size - 0.25
-    # number_of_rows = 600 / row_height
     footer_height = line_height * 3 + PADDING
-    demographics_width1 = 45
-    demographics_width2 = 155
-    demographics_width3 = @patient.animal_type ? 40 : 30
-    demographics_width4 = 80
-    demographics_width5 = 80
-    demographics_width6 = 150
-    column_0_width = 140
-    column_1_width = 80
-    column_2_width = 88
-    column_3_width = 40
-    column_range_width = 192
-    column_gender_range_width = @patient.unknown? ? 12 : 0
-    column_description_range_width = @patient.unknown? ? 93 : 105
-    column_range_title_width = column_gender_range_width + column_description_range_width
-    column_5_width = font_size - 2
-    column_4_width = (column_range_width - column_range_title_width - column_5_width) / 2
-    # table_padding = 2
     signature_spacing = line_height * 3
     signature_line = 180
-    patient_demographics_height = row_height * 3
-    # window_height = 36 * 2.25
-    # window_width = 36 * 9
-    envelope_adjustment_height = 34
-    header_height = LOGO_HEIGHT + envelope_adjustment_height + patient_demographics_height + title_row_height + PADDING * 2.5
     signature_block_height = signature_spacing + line_height * 3 + PADDING
-    demographics_stop1 = demographics_width1
-    demographics_stop2 = demographics_stop1 + demographics_width2
-    demographics_stop3 = demographics_stop2 + demographics_width3
-    demographics_stop4 = demographics_stop3 + demographics_width4
-    demographics_stop5 = demographics_stop4 + demographics_width5
-    title_row_stop1 = column_0_width
-    title_row_stop2 = title_row_stop1 + column_1_width
-    title_row_stop3 = title_row_stop2 + column_2_width
-    title_row_stop4 = title_row_stop3 + column_3_width
-    page.margins[:top] = header_height + top_margin
+    page.margins[:top] = top_margin + LOGO_HEIGHT + header_height
 
     ##
     # Folding marks and window (do not print)
-    # horizontal_line page_left, page_left + min_hp_print, at: page_top - fold
-    # horizontal_line page_left, page_left + min_hp_print, at: page_top - 2 * fold
-    # rounded_rectangle [page_left + HALF_INCH / 2, page_top - fold + one_inch + window_height], window_width, window_height, 10
+    # fold = page.dimensions[3] / 3
+    # left_margin = page.margins[:left]
+    # page_left = bounds.left - left_margin
+    # horizontal_line page_left, page_left + PRINT_SAFETY_AREA, at: page_top - fold
+    # horizontal_line page_left, page_left + PRINT_SAFETY_AREA, at: page_top - 2 * fold
+    # rounded_rectangle [page_left + HALF_INCH / 2, page_top - fold + ONE_INCH + WINDOW_HEIGHT], WINDOW_WIDTH, WINDOW_HEIGHT, 10
 
     ##
     # Header
@@ -171,175 +150,25 @@ class LabReport < Prawn::Document
       bounding_box([bounds.right - FLASH_TAG_WIDTH, page_top - HALF_INCH - line_height], width: FLASH_TAG_WIDTH, height: line_height) do
         text t("results.index.#{@accession.status}"), align: :right, color: colors_red
       end
-      bounding_box([bounds.right - barcode_width, page_top - HALF_INCH - 2.4 * line_height], width: barcode_width, height: BARCODE_HEIGHT + line_height) do
+      bounding_box([bounds.right - barcode_width, bounds.top], width: barcode_width, height: barcode_height) do
         barcode
       end
-      bounding_box([bounds.right - barcode_width, page_top - HALF_INCH - 3.6 * line_height - BARCODE_HEIGHT], width: barcode_width, height: BARCODE_HEIGHT + 2 * line_height) do
+      bounding_box([bounds.right - barcode_width, bounds.top - barcode_height - LINE_PADDING], width: barcode_width, height: 5.5) do
         font('OCRB') do
           text @accession.id.to_s, size: 5, align: :center
         end
       end
 
-      ##
-      # Letterhead
-      bounding_box([bounds.left, page_top - top_margin], width: bounds.width, height: header_height) do
-        ##
-        # Corporate logo
-        translate(bounds.left, bounds.top - LOGO_HEIGHT) do
-          logo_master_lab(rgb: rgb)
-        end
-
-        bounding_box([bounds.left + LOGO_WIDTH, bounds.top], width: bounds.width - LOGO_WIDTH, height: LOGO_HEIGHT) do
-          pad_top HEADING_PADDING do
-            indent HEADING_INDENT do
-              font('MyriadPro') do
-                text 'MasterLab—Laboratorio Clínico Especializado', size: 11, style: :bold
-                text 'Villa Lucre • Consultorios Médicos San Judas Tadeo • Local 107', size: 9, color: colors_gray
-                text 'Tel.: 222-9200 ext. 1107 • Fax: 277-7832 • Móvil: 6869-5210', size: 9, color: colors_gray
-                text 'Email: masterlab@labtecsa.com • Director: Lcdo. Erick Chu, TM, MSc', size: 9, color: colors_gray
-              end
-            end
-          end
-        end
-
-        move_down envelope_adjustment_height
-
-        ##
-        # Patient demographics
-        bounding_box([bounds.left, cursor - PADDING * 2], width: bounds.width, height: patient_demographics_height) do
-          bounding_box([bounds.left, bounds.top], width: demographics_width1, height: row_height) do
-            indent PADDING do
-              text t('results.index.full_name'), style: :bold
-            end
-          end
-          bounding_box([bounds.left, bounds.top - row_height], width: demographics_width1, height: row_height) do
-            indent PADDING do
-              text t("results.index.#{@patient.identifier_type}") if @patient.identifier_type
-            end
-          end
-          if @accession.doctor
-            bounding_box([bounds.left, bounds.top - 2 * row_height], width: demographics_width1, height: row_height) do
-              indent PADDING do
-                text t('results.index.doctor')
-              end
-            end
-          else
-            bounding_box([bounds.left, bounds.top - 2 * row_height], width: demographics_width1 + demographics_width2, height: row_height) do
-              indent PADDING do
-                text t('results.index.outpatient')
-              end
-            end
-          end
-          text_box full_name(@patient), at: [demographics_stop1, bounds.top],
-                                        width: demographics_width2 +
-                                               demographics_width3 +
-                                               demographics_width4,
-                                        height: row_height,
-                                        overflow: :shrink_to_fit,
-                                        style: :bold
-          bounding_box([demographics_stop1, bounds.top - row_height], width: demographics_width2, height: row_height) do
-            text @patient.identifier
-          end
-          bounding_box([demographics_stop1, bounds.top - 2 * row_height], width: demographics_width2, height: row_height) do
-            text @accession.doctor_name if @accession.doctor
-          end
-
-          ########################
-
-          if @patient.animal_type
-            bounding_box([demographics_stop2, bounds.top], width: demographics_width3, height: row_height) do
-              text t('results.index.type'), style: :bold
-            end
-          end
-          bounding_box([demographics_stop2, bounds.top - row_height], width: demographics_width3, height: row_height) do
-            text t('results.index.age')
-          end
-          bounding_box([demographics_stop2, bounds.top - 2 * row_height], width: demographics_width3, height: row_height) do
-            text t('results.index.gender')
-          end
-          if @patient.animal_type
-            bounding_box([demographics_stop3, bounds.top], width: demographics_width4, height: row_height) do
-              text animal_species_name(@patient.animal_type), style: :bold
-            end
-          end
-          bounding_box([demographics_stop3, bounds.top - row_height], width: demographics_width4, height: row_height) do
-            text display_pediatric_age(@accession.subject_age)
-          end
-          bounding_box([demographics_stop3, bounds.top - 2 * row_height], width: demographics_width4, height: row_height) do
-            text gender(@patient.gender)
-          end
-
-          ########################
-
-          bounding_box([demographics_stop4, bounds.top], width: demographics_width5, height: row_height) do
-            text t('results.index.accession'), style: :bold
-          end
-          bounding_box([demographics_stop4, bounds.top - row_height], width: demographics_width5, height: row_height) do
-            text t('results.index.drawn_at')
-          end
-          bounding_box([demographics_stop4, bounds.top - 2 * row_height], width: demographics_width5, height: row_height) do
-            text t('results.index.received_at')
-          end
-          bounding_box([demographics_stop5, bounds.top], width: demographics_width6, height: row_height) do
-            text @accession.id.to_s, style: :bold
-          end
-          bounding_box([demographics_stop5, bounds.top - row_height], width: demographics_width6, height: row_height) do
-            text l(@accession.drawn_at, format: :long)
-          end
-          bounding_box([demographics_stop5, bounds.top - 2 * row_height], width: demographics_width6, height: row_height) do
-            text l(@accession.received_at, format: :long)
-          end
-        end
-
-        ##
-        # Report Header
-        line_width(HEAVY_RULE_WIDTH)
-        stroke_line(bounds.left, bounds.bottom + title_row_height, bounds.width, bounds.bottom + title_row_height)
-
-        bounding_box([bounds.left, bounds.bottom + title_row_height], width: bounds.width, height: title_row_height) do
-          bounding_box([bounds.left, bounds.top], width: column_0_width, height: title_row_height) do
-            pad_top PADDING do
-              indent PADDING do
-                text t('results.index.lab_test'), style: :bold, align: :left
-              end
-            end
-          end
-          bounding_box([title_row_stop1, bounds.top], width: column_1_width, height: title_row_height) do
-            pad_top PADDING do
-              indent 0, 4 do
-                text t('results.index.result'), style: :bold, align: :right
-              end
-            end
-          end
-          bounding_box([title_row_stop2, bounds.top], width: column_2_width, height: title_row_height) do
-            pad_top PADDING do
-              indent PADDING do
-                text t('results.index.units'), style: :bold, align: :left
-              end
-            end
-          end
-          bounding_box([title_row_stop3, bounds.top], width: column_3_width, height: title_row_height) do
-            pad_top PADDING do
-              text t('results.index.flag'), style: :bold, align: :center
-            end
-          end
-          bounding_box([title_row_stop4 + column_range_title_width, bounds.top], width: column_4_width * 2 + column_5_width, height: title_row_height) do
-            pad_top PADDING do
-              text t('results.index.range'), style: :bold, align: :center
-            end
-          end
-        end
-
-        line_width(LIGHT_RULE_WIDTH)
-        stroke_horizontal_line(bounds.left, bounds.width)
-        line_width(NORMAL_RULE_WIDTH)
-      end
+      letterhead
+      move_down ENVELOPE_ADJUSTMENT_HEIGHT
+      patient_demographics
+      report_header
     end
 
     ##
     # Begin report
 
-    move_up LIGHT_RULE_WIDTH
+    move_up LINE_PADDING
 
     ##
     # Results table
@@ -373,10 +202,10 @@ class LabReport < Prawn::Document
           column(2).align = :right
           column(3).align = :center
           column(4).align = :left
-          column(0).width = column_description_range_width
-          column(1).width = column_gender_range_width
-          column(2).width = column_4_width
-          column(3).width = column_5_width
+          column(0).width = column_0_width
+          column(1).width = column_1_width
+          column(2).width = column_2_width
+          column(3).width = column_3_width
           column(4).width = column_4_width
         end
         cell_col4 = make_cell content: pdf_ranges_table, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, 0]
@@ -388,11 +217,11 @@ class LabReport < Prawn::Document
           data_remarks << [remarks]
 
           data_remarks_table = make_table(data_remarks, cell_style: { borders: [] }) do
-            column(0).width = column_0_width
-            column(1).width = column_1_width
-            column(2).width = column_2_width
-            column(3).width = column_3_width
-            column(4).width = column_range_width
+            column(0).width = COLUMN_0_WIDTH
+            column(1).width = COLUMN_1_WIDTH
+            column(2).width = COLUMN_2_WIDTH
+            column(3).width = COLUMN_3_WIDTH
+            column(4).width = COLUMN_RANGE_WIDTH
             column(1).align = :right
             column(3).align = :center
           end
@@ -406,11 +235,11 @@ class LabReport < Prawn::Document
 
       # Department table
       table(data, header: true) do
-        column(0).width = column_0_width
-        column(1).width = column_1_width
-        column(2).width = column_2_width
-        column(3).width = column_3_width
-        column(4).width = column_range_width
+        column(0).width = COLUMN_0_WIDTH
+        column(1).width = COLUMN_1_WIDTH
+        column(2).width = COLUMN_2_WIDTH
+        column(3).width = COLUMN_3_WIDTH
+        column(4).width = COLUMN_RANGE_WIDTH
         row(0).borders = []
         row(1..-1).column(1).align = :right
         row(1..-1).column(3).align = :center
@@ -463,12 +292,12 @@ class LabReport < Prawn::Document
         end
       end
     elsif @accession.reported_at
-      bounding_box([bounds.left + SIGNATURE_BLOCK_SHIM, page_bottom + footer_margin_bottom + footer_height * 2 / 3 + LIGHT_RULE_WIDTH], width: column_0_width, height: line_height) do
+      bounding_box([bounds.left + SIGNATURE_BLOCK_SHIM, page_bottom + FOOTER_MARGIN_BOTTOM + footer_height * 2 / 3 + LIGHT_RULE_WIDTH], width: COLUMN_0_WIDTH, height: line_height) do
         pad_top LINE_PADDING do
           text t('results.index.reviewed_by'), align: :right
         end
       end
-      bounding_box([SIGNATURE_BLOCK_SHIM + column_0_width + LINE_PADDING, cursor - NORMAL_RULE_WIDTH], width: signature_line, height: line_height + PADDING) do
+      bounding_box([SIGNATURE_BLOCK_SHIM + COLUMN_0_WIDTH + LINE_PADDING, cursor - NORMAL_RULE_WIDTH], width: signature_line, height: line_height + PADDING) do
         line_width(LIGHT_RULE_WIDTH)
         stroke_horizontal_rule
         line_width(NORMAL_RULE_WIDTH)
@@ -482,7 +311,7 @@ class LabReport < Prawn::Document
     ##
     # Footer
     repeat :all do
-      bounding_box([bounds.left, page_bottom + footer_height + footer_margin_bottom], width: bounds.width, height: footer_height) do
+      bounding_box([bounds.left, page_bottom + footer_height + FOOTER_MARGIN_BOTTOM], width: bounds.width, height: footer_height) do
         stroke_horizontal_rule
         bounding_box([bounds.left, bounds.top], width: bounds.width / 2, height: footer_height) do
           pad_top PADDING do
@@ -506,7 +335,7 @@ class LabReport < Prawn::Document
 
     ##
     # Page number
-    number_pages "#{t('results.index.page')} <page> #{t('results.index.of')} <total>", at: [bounds.left, page_bottom + footer_margin_bottom + page_number_height]
+    number_pages "#{t('results.index.page')} <page> #{t('results.index.of')} <total>", at: [bounds.left, page_bottom + FOOTER_MARGIN_BOTTOM + page_number_height]
   end
 
   private
@@ -516,13 +345,242 @@ class LabReport < Prawn::Document
     barcode.annotate_pdf(self, xdim: BARCODE_XDIM)
   end
 
+  def barcode_height
+    barcode_width + HEADING_PADDING
+  end
+
   def barcode_width
     length = @accession.id.to_s.length
     (length + 7) * BARCODE_XDIM
   end
 
-  def method_missing(...)
-    @view.send(...)
+  def colors_black
+    @signature ? '000000' : [0, 0, 0, 100]
+  end
+
+  def colors_gray
+    @signature ? '404040' : [0, 0, 0, 75]
+  end
+
+  def colors_highlight_gray
+    @signature ? 'D9D9D9' : [0, 0, 0, 15]
+  end
+
+  def colors_purple
+    @signature ? '800080' : [0, 100, 0, 50]
+  end
+
+  def colors_red
+    @signature ? 'FF0000' : [0, 100, 100, 0]
+  end
+
+  def colors_blue
+    @signature ? '0000FF' : [100, 100, 0, 0]
+  end
+
+  def column_range_symbol_width
+    font_size - 2
+  end
+
+  def column_description_range_width
+    @patient.unknown? ? 93 : 105
+  end
+
+  def column_gender_range_width
+    @patient.unknown? ? 12 : 0
+  end
+
+  def column_left_range_width
+    (COLUMN_RANGE_WIDTH - column_range_title_width - column_range_symbol_width) / 2
+  end
+
+  def column_range_title_width
+    column_gender_range_width + column_description_range_width
+  end
+
+  def column_right_range_width
+    column_left_range_width
+  end
+
+  def demographics_stop3
+    DEMOGRAPHICS_STOP2 + demographics_width3
+  end
+
+  def demographics_stop4
+    demographics_stop3 + DEMOGRAPHICS_WIDTH4
+  end
+
+  def demographics_stop5
+    demographics_stop4 + DEMOGRAPHICS_WIDTH5
+  end
+
+  def demographics_width3
+    @patient.animal_type ? 40 : 30
+  end
+
+  def display_format_units(result)
+    format_units(result) if display_units(result)
+  end
+
+  def header_height
+    ENVELOPE_ADJUSTMENT_HEIGHT + patient_demographics_height + title_row_height
+  end
+
+  def letterhead
+    translate(bounds.left, bounds.top - LOGO_HEIGHT) do
+      logo_master_lab(rgb: @signature)
+    end
+
+    bounding_box([bounds.left + LOGO_WIDTH, bounds.top], width: bounds.width - LOGO_WIDTH, height: LOGO_HEIGHT) do
+      pad_top HEADING_PADDING do
+        indent HEADING_INDENT do
+          font('MyriadPro') do
+            text 'MasterLab—Laboratorio Clínico Especializado', size: 11, style: :bold
+            text 'Villa Lucre • Consultorios Médicos San Judas Tadeo • Local 107', size: 9, color: colors_gray
+            text 'Tel.: 222-9200 ext. 1107 • Fax: 277-7832 • Móvil: 6869-5210', size: 9, color: colors_gray
+            text 'Email: masterlab@labtecsa.com • Director: Lcdo. Erick Chu, TM, MSc', size: 9, color: colors_gray
+          end
+        end
+      end
+    end
+  end
+
+  def line_height
+    font_size + LINE_PADDING
+  end
+
+  def patient_demographics
+    bounding_box([bounds.left, cursor], width: bounds.width, height: patient_demographics_height) do
+      bounding_box([bounds.left, bounds.top], width: DEMOGRAPHICS_WIDTH1, height: row_height) do
+        indent PADDING do
+          text t('results.index.full_name'), style: :bold
+        end
+      end
+      bounding_box([bounds.left, bounds.top - row_height], width: DEMOGRAPHICS_WIDTH1, height: row_height) do
+        indent PADDING do
+          text t("results.index.#{@patient.identifier_type}") if @patient.identifier_type
+        end
+      end
+      if @accession.doctor
+        bounding_box([bounds.left, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH1, height: row_height) do
+          indent PADDING do
+            text t('results.index.doctor')
+          end
+        end
+      else
+        bounding_box([bounds.left, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH1 + DEMOGRAPHICS_WIDTH2, height: row_height) do
+          indent PADDING do
+            text t('results.index.outpatient')
+          end
+        end
+      end
+      text_box full_name(@patient), at: [DEMOGRAPHICS_STOP1, bounds.top],
+                                    width: DEMOGRAPHICS_WIDTH2 +
+                                           demographics_width3 +
+                                           DEMOGRAPHICS_WIDTH4,
+                                    height: row_height,
+                                    overflow: :shrink_to_fit,
+                                    style: :bold
+      bounding_box([DEMOGRAPHICS_STOP1, bounds.top - row_height], width: DEMOGRAPHICS_WIDTH2, height: row_height) do
+        text @patient.identifier
+      end
+      bounding_box([DEMOGRAPHICS_STOP1, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH2, height: row_height) do
+        text @accession.doctor_name if @accession.doctor
+      end
+
+      ########################
+
+      if @patient.animal_type
+        bounding_box([DEMOGRAPHICS_STOP2, bounds.top], width: demographics_width3, height: row_height) do
+          text t('results.index.type'), style: :bold
+        end
+      end
+      bounding_box([DEMOGRAPHICS_STOP2, bounds.top - row_height], width: demographics_width3, height: row_height) do
+        text t('results.index.age')
+      end
+      bounding_box([DEMOGRAPHICS_STOP2, bounds.top - 2 * row_height], width: demographics_width3, height: row_height) do
+        text t('results.index.gender')
+      end
+      if @patient.animal_type
+        bounding_box([demographics_stop3, bounds.top], width: DEMOGRAPHICS_WIDTH4, height: row_height) do
+          text animal_species_name(@patient.animal_type), style: :bold
+        end
+      end
+      bounding_box([demographics_stop3, bounds.top - row_height], width: DEMOGRAPHICS_WIDTH4, height: row_height) do
+        text display_pediatric_age(@accession.subject_age)
+      end
+      bounding_box([demographics_stop3, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH4, height: row_height) do
+        text gender(@patient.gender)
+      end
+
+      ########################
+
+      bounding_box([demographics_stop4, bounds.top], width: DEMOGRAPHICS_WIDTH5, height: row_height) do
+        text t('results.index.accession'), style: :bold
+      end
+      bounding_box([demographics_stop4, bounds.top - row_height], width: DEMOGRAPHICS_WIDTH5, height: row_height) do
+        text t('results.index.drawn_at')
+      end
+      bounding_box([demographics_stop4, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH5, height: row_height) do
+        text t('results.index.received_at')
+      end
+      bounding_box([demographics_stop5, bounds.top], width: DEMOGRAPHICS_WIDTH6, height: row_height) do
+        text @accession.id.to_s, style: :bold
+      end
+      bounding_box([demographics_stop5, bounds.top - row_height], width: DEMOGRAPHICS_WIDTH6, height: row_height) do
+        text l(@accession.drawn_at, format: :long)
+      end
+      bounding_box([demographics_stop5, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH6, height: row_height) do
+        text l(@accession.received_at, format: :long)
+      end
+    end
+  end
+
+  def patient_demographics_height
+    row_height * 3
+  end
+
+  def report_header
+    line_width(HEAVY_RULE_WIDTH)
+    stroke_line(bounds.left, cursor, bounds.width, cursor)
+
+    bounding_box([bounds.left, cursor], width: bounds.width, height: title_row_height) do
+      bounding_box([bounds.left, bounds.top], width: COLUMN_0_WIDTH, height: title_row_height) do
+        pad_top PADDING do
+          indent PADDING do
+            text t('results.index.lab_test'), style: :bold, align: :left
+          end
+        end
+      end
+      bounding_box([TITLE_ROW_STOP1, bounds.top], width: COLUMN_1_WIDTH, height: title_row_height) do
+        pad_top PADDING do
+          indent 0, 4 do
+            text t('results.index.result'), style: :bold, align: :right
+          end
+        end
+      end
+      bounding_box([TITLE_ROW_STOP2, bounds.top], width: COLUMN_2_WIDTH, height: title_row_height) do
+        pad_top PADDING do
+          indent PADDING do
+            text t('results.index.units'), style: :bold, align: :left
+          end
+        end
+      end
+      bounding_box([TITLE_ROW_STOP3, bounds.top], width: COLUMN_3_WIDTH, height: title_row_height) do
+        pad_top PADDING do
+          text t('results.index.flag'), style: :bold, align: :center
+        end
+      end
+      bounding_box([TITLE_ROW_STOP4 + column_range_title_width, bounds.top], width: column_left_range_width + column_range_symbol_width + column_right_range_width, height: title_row_height) do
+        pad_top PADDING do
+          text t('results.index.range'), style: :bold, align: :center
+        end
+      end
+    end
+
+    line_width(LIGHT_RULE_WIDTH)
+    stroke_horizontal_line(bounds.left, bounds.width)
+    line_width(NORMAL_RULE_WIDTH)
   end
 
   def signature_image
@@ -542,7 +600,15 @@ class LabReport < Prawn::Document
     display_units(result) ? result.reference_intervals : []
   end
 
-  def display_format_units(result)
-    format_units(result) if display_units(result)
+  def row_height
+    font_size + 4
+  end
+
+  def title_row_height
+    line_height * 1.5
+  end
+
+  def method_missing(...)
+    @view.send(...)
   end
 end
