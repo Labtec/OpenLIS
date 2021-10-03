@@ -137,7 +137,7 @@ class LabPriceList < Prawn::Document
               font('MyriadPro') do
                 text 'MasterLab—Laboratorio Clínico Especializado', size: 11, style: :bold
                 text 'Villa Lucre • Consultorios Médicos San Judas Tadeo • Local 107', size: 9, color: colors[:logo_gray]
-                text 'Tel: 222-9200 ext. 1107 • Fax: 277-7832 • Móvil: 6869-5210', size: 9, color: colors[:logo_gray]
+                text 'Tel.: 222-9200 ext. 1107 • Fax: 277-7832 • Móvil: 6869-5210', size: 9, color: colors[:logo_gray]
                 text 'Email: masterlab@labtecsa.com • Director: Lcdo. Erick Chu, TM, MSc', size: 9, color: colors[:logo_gray]
               end
             end
