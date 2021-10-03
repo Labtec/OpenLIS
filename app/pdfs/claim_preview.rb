@@ -119,7 +119,7 @@ class ClaimPreview < Prawn::Document
     bounding_box([left_margin, (top_margin + field_height * 2)], width: provider_info_width, height: field_height) do
       pad(form_padding) do
         indent(form_indenting * 3) do
-          text 'Tel: 222-9200 ext. 1107 • Fax: 277-7832'
+          text 'Tel.: 222-9200 ext. 1107 • Fax: 277-7832'
         end
       end
     end
@@ -379,7 +379,7 @@ class ClaimPreview < Prawn::Document
               bounding_box([0, field_height * (main_table_rows + 15)], width: provider_info_width, height: field_height) do
                 pad(form_padding) do
                   indent(form_indenting * 3) do
-                    text 'Tel: 222-9200 ext. 1107 • Fax: 277-7832'
+                    text 'Tel.: 222-9200 ext. 1107 • Fax: 277-7832'
                   end
                 end
               end

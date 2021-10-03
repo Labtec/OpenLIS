@@ -140,7 +140,7 @@ es-PA:
       address: 'Dirección:'
       cellular: 'Móvil:'
       email: 'Correo Electrónico:'
-      phone: 'Tel:'
+      phone: 'Tel.:'
       recent_patients: Pacientes Recientes
       search: Buscar
       search_patients: Buscar pacientes
@@ -163,7 +163,7 @@ es-PA:
       cellular: 'Móvil:'
       edit: Editar
       email: 'Email:'
-      phone: 'Tel:'
+      phone: 'Tel.:'
     create:
       success: Paciente creado exitosamente.
     day:
@@ -233,7 +233,7 @@ es-PA:
       gender: 'Sexo:'
       cedula: 'Cédula:'
       passport: 'Pasaporte:'
-      phone: 'Tel:'
+      phone: 'Tel.:'
       year: año
     patients:
       cellular: 'Móvil:'
@@ -241,7 +241,7 @@ es-PA:
       delete?: ¿Borrar?
       edit: Editar
       not_found: No se encontró ningún paciente
-      phone: 'Tel:'
+      phone: 'Tel.:'
       year: año
     show:
       no_requisitions_yet: Sin historial de solicitudes
