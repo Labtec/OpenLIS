@@ -20,15 +20,15 @@ module PatientsHelper
     tag.svg(class: 'avatar') do
       case patient.animal_type
       when 0
-        tag :use, 'xlink:href' => image_path('avatars.svg#U')
+        tag.use('xlink:href' => image_path('avatars.svg#U'))
       when 1
-        tag :use, 'xlink:href' => image_path('avatars.svg#canine')
+        tag.use('xlink:href' => image_path('avatars.svg#canine'))
       when 2
-        tag :use, 'xlink:href' => image_path('avatars.svg#feline')
+        tag.use('xlink:href' => image_path('avatars.svg#feline'))
       when 3
-        tag :use, 'xlink:href' => image_path('avatars.svg#equine')
+        tag.use('xlink:href' => image_path('avatars.svg#equine'))
       else
-        tag :use, 'xlink:href' => image_path("avatars.svg##{patient.gender}")
+        tag.use('xlink:href' => image_path("avatars.svg##{patient.gender}"))
       end
     end
   end
