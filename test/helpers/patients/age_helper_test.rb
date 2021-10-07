@@ -9,10 +9,6 @@ class PatientsAgeHelperTest < ActionView::TestCase
     travel_to Time.new(2016, 2, 28, 12, 0, 0, 0)
   end
 
-  def teardown
-    travel_back
-  end
-
   test 'returns a pediatric age string' do
     ages = [
       # [age, output],
