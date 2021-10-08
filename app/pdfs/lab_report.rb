@@ -153,11 +153,15 @@ class LabReport < Prawn::Document
       bounding_box([bounds.right - barcode_width, bounds.top], width: barcode_width, height: barcode_height) do
         barcode
       end
-      bounding_box([bounds.right - barcode_width, bounds.top - barcode_height - LINE_PADDING], width: barcode_width, height: 5.5) do
-        font('OCRB') do
-          text @accession.id.to_s, size: 5, align: :center
-        end
-      end
+      formatted_text_box(
+        [
+          { text: @accession.id.to_s, font: 'OCRB', size: 5, overflow: :shrink_to_fit }
+        ],
+        at: [bounds.right - barcode_width, bounds.top - barcode_height - LINE_PADDING],
+        width: barcode_width,
+        height: 5.5,
+        align: :center
+      )
 
       letterhead
       move_down ENVELOPE_ADJUSTMENT_HEIGHT
