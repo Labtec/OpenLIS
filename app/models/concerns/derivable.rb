@@ -199,7 +199,7 @@ module Derivable
         gender = 1
       end
       crtsa_k = crtsa / k
-      141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * gender
+      141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.9929**age * gender
     when 'EGFRMDRD'
       age = subject_age.parts[:years]
       return if age < 18
@@ -222,7 +222,7 @@ module Derivable
         b_gender = 1.159
       end
       crtsa_k = crtsa / k
-      141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.993**age * b_gender
+      141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.9929**age * b_gender
     when 'EGFRMDRDBL'
       age = subject_age.parts[:years]
       return if age < 18
