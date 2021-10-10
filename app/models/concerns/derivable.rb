@@ -168,6 +168,22 @@ module Derivable
       bun = result_value_quantity_for 'BUN'
       glucose = result_value_quantity_for('GLU') || result_value_quantity_for('GLUC')
       na * 2 + bun / 2.8 + glucose / 18
+    when 'eGFRcr'
+      age = subject_age.parts[:years]
+      return if age < 18
+
+      crtsa = result_value_quantity_for 'CRTSA'
+      if patient.female?
+        a = -0.241
+        k = 0.7
+        gender = 143
+      else
+        a = -0.302
+        k = 0.9
+        gender = 142
+      end
+      crtsa_k = crtsa / k
+      gender * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.2 * 0.9938**age
     when 'EGNB'
       age = subject_age.parts[:years]
       return if age < 18
