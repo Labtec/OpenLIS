@@ -29,7 +29,7 @@
   <fieldset>
     <legend>Values</legend>
       <div class="values">
-        <%= f.collection_check_boxes(:lab_test_ids, LabTest.all, :id, :name) do |b| %>
+        <%= f.collection_check_boxes(:lab_test_ids, LabTest.sorted, :id, :name) do |b| %>
           <div class="lab_test">
             <%= b.check_box %>
             <label class="checkbox" for="panel_lab_test_ids_<%= b.object.id %>"><%= sanitize(b.text) %><%= " (#{b.object.description})" if b.object.description.present? %></label>
