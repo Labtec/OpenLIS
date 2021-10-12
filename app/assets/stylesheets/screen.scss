@@ -991,8 +991,7 @@ li.contact:hover {
 
 .panels, .values {
   column-width: 15em;
-  -moz-column-width: 15em;
-  -webkit-column-width: 15em; }
+  column-count: 4; }
 
 .panel, .lab_test_value {
   width: 100%; }
