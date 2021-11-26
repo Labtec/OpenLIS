@@ -3,7 +3,7 @@
     <h1><%= t('.accession', id: @accession.id) %></h1>
   <% end %>
 
-  <%= form_with(model: shallow_args(@patient, @accession), local: true, class: css_class, html: { novalidate: '' }) do |f| %>
+  <%= form_with(model: shallow_args(@patient, @accession), local: true, class: css_class, html: { novalidate: '', autocomplete: 'off' }) do |f| %>
     <%= render 'shared/error_messages', object: @accession %>
 
     <h2><%= t('.order_details') %></h2>
