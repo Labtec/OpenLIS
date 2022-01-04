@@ -198,7 +198,7 @@ module FHIRable
     def get_quantity_comparator(value)
       return unless value
 
-      value.scan(/[^\d.]/).reject(&:blank?).first
+      value.scan(/[^\d.]/).join.squish
     end
 
     # TODO: implement each missing method
