@@ -157,7 +157,7 @@ module FHIRable
     end
 
     def observation_value_quantity_comparator
-      quantity_comparator = strip_quantity_comparator(value)
+      quantity_comparator = get_quantity_comparator(value)
       return unless quantity_comparator
 
       case quantity_comparator
@@ -173,8 +173,7 @@ module FHIRable
     end
 
     def observation_value_quantity_value
-      quantity_value = derivation? ? derived_value : value
-      ApplicationController.helpers.number_with_precision(quantity_value, precision: lab_test_decimals)
+      ApplicationController.helpers.number_with_precision(value_quantity, precision: lab_test_decimals)
     end
 
     def observation_value_range
@@ -194,6 +193,12 @@ module FHIRable
       loinc ||= CSV.read('db/LoincTableCore.csv', headers: true)
       lookup = loinc.find { |row| row['LOINC_NUM'] == code }
       lookup['LONG_COMMON_NAME']
+    end
+
+    def get_quantity_comparator(value)
+      return unless value
+
+      value.scan(/[^\d.]/).reject(&:blank?).first
     end
 
     # TODO: implement each missing method
