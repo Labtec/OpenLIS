@@ -88,7 +88,7 @@ module FHIRable
       performers = []
       performers << fhirable_reference(accession.drawer) if accession.drawer
       performers << fhirable_reference(accession.reporter) if accession.reporter
-      performers
+      performers.uniq
     end
 
     def observation_interpretations(interpretation)
