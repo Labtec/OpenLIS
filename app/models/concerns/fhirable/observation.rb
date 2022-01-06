@@ -188,6 +188,18 @@ module FHIRable
       fhirable_ratio(value_ratio, unit: unit)
     end
 
+    def observation_value_codeable_concept
+      return unless value_codeable_concept.present?
+
+      codes = []
+      codes << FHIR::Coding.new(system: 'http://loinc.org', code: lab_test_value&.loinc) if lab_test_value&.loinc.present?
+      codes << FHIR::Coding.new(system: 'http://snomed.info/sct', code: lab_test_value&.snomed) if lab_test_value&.snomed.present?
+
+      return if codes.empty?
+
+      FHIR::CodeableConcept.new(coding: codes, text: lab_test_value.value)
+    end
+
     # XXX: Use a read only table
     def display_loinc(code)
       loinc ||= CSV.read('db/LoincTableCore.csv', headers: true)
