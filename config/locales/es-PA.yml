@@ -15,7 +15,7 @@ es-PA:
       tests_pending: 'Pruebas pendientes: '
       outpatient: Ambulatorio
     edit:
-      title: Cambiar Petición
+      title: Cambiar Solicitud
     form:
       accession: 'Solicitud #%{id}'
       cancel: Cancelar
@@ -26,7 +26,7 @@ es-PA:
       icd9_placeholder: Separados por comas
       labels: Etiquetas
       or: o
-      order_details: Detalles de la Petición
+      order_details: Detalles de la Solicitud
       processing: Procesando...
       received_at: 'Recibido el:'
       received_by: 'Recibido por:'
@@ -40,9 +40,9 @@ es-PA:
       order_tests: Ordenar Pruebas
       pending_requisitions: Solicitudes Pendientes
       requisition_history: Historial de Resultados
-      title: Peticiones
+      title: Solicitudes
     new:
-      title: Nueva Petición
+      title: Nueva Solicitud
   admin:
     claims:
       submit:
@@ -67,7 +67,7 @@ es-PA:
       accession: 'Solicitud #%{id}'
       by: ' por: '
       certify: Reportar
-      change_accession: Cambiar Petición
+      change_accession: Cambiar Solicitud
       change_results: Cambiar Resultados
       confirm_email: ¿Desea enviar los resultados a %{email}?
       confirm_emailed: ¿Desea enviar nuevamente los resultados a %{email}?
@@ -97,12 +97,12 @@ es-PA:
       ratio: debe ser N:N
   flash:
     accession:
-      accession_not_found: Este registro de petición ya no está disponible.
+      accession_not_found: Este registro de solicitud ya no está disponible.
       at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
-      create: Petición creada exitosamente.
-      destroy: Petición eliminada exitosamente.
-      report: Petición reportada.
-      update: Petición actualizada exitosamente.
+      create: Solicitud creada exitosamente.
+      destroy: Solicitud eliminada exitosamente.
+      report: Solicitud reportada.
+      update: Solicitud actualizada exitosamente.
     accessions:
       at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
     diagnostic_report:
@@ -221,7 +221,7 @@ es-PA:
       title: Nuevo Paciente
     other: Otro
     patient:
-      accessions: Peticiones
+      accessions: Solicitudes
       address: 'Dirección:'
       age: 'Edad:'
       cellular: 'Móvil:'
@@ -442,7 +442,7 @@ es-PA:
         password_confirmation: La contraseña
         username: El nombre de usuario
     models:
-      accession: petición
+      accession: solicitud
       department: departamento
       doctor: doctor
       insurance_provider: aseguradora
