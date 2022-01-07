@@ -404,6 +404,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   listen
+  matrix
   nokogiri
   pdf-core!
   pg
