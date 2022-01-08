@@ -157,15 +157,14 @@ module FHIRable
     end
 
     def observation_value_quantity_comparator
-      quantity_comparator = get_quantity_comparator(value)
-      return unless quantity_comparator
+      return unless value_quantity_comparator
 
-      case quantity_comparator
+      case value_quantity_comparator
       when '<'
         '<'
-      when '<=', '≤'
+      when '≤'
         '<='
-      when '>=', '≥'
+      when '≥'
         '>='
       when '>'
         '>'
@@ -205,12 +204,6 @@ module FHIRable
       loinc ||= CSV.read('db/LoincTableCore.csv', headers: true)
       lookup = loinc.find { |row| row['LOINC_NUM'] == code }
       lookup['LONG_COMMON_NAME']
-    end
-
-    def get_quantity_comparator(value)
-      return unless value
-
-      value.scan(/[^\d.]/).join.squish
     end
 
     # TODO: implement each missing method

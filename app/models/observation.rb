@@ -95,6 +95,21 @@ class Observation < ApplicationRecord
     end
   end
 
+  def value_quantity_comparator
+    return unless value.present?
+
+    case value.scan(/[^\d.]/).join.squish
+    when '<'
+      '<'
+    when '<=', '=<' ,'≤'
+      '≤'
+    when '>=', '=>', '≥'
+      '≥'
+    when '>'
+      '>'
+    end
+  end
+
   def value_range
     return unless lab_test.range?
 

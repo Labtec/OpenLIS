@@ -31,14 +31,8 @@ module ObservationsHelper
     elsif observation.lab_test.text_length?
       observation.value
     else
-      if observation_value_comparator(observation.value).present?
-        [
-          observation_value_comparator(observation.value),
-          number_with_precision(observation.value.scan(/[\d.]/).join, precision: observation.lab_test_decimals, delimiter: ',')
-        ].join
-      else
-        number_with_precision(observation.value, precision: observation.lab_test_decimals, delimiter: ',')
-      end
+      observation.value_quantity_comparator.to_s +
+        number_with_precision(observation.value_quantity, precision: observation.lab_test_decimals, delimiter: ',')
     end
   end
 
