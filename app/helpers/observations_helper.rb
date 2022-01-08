@@ -31,8 +31,19 @@ module ObservationsHelper
     elsif observation.lab_test.text_length?
       observation.value
     else
-      number_with_precision(observation.value, precision: observation.lab_test_decimals, delimiter: ',')
+      if observation_value_comparator(observation.value).present?
+        [
+          observation_value_comparator(observation.value),
+          number_with_precision(observation.value.scan(/[\d.]/).join, precision: observation.lab_test_decimals, delimiter: ',')
+        ].join
+      else
+        number_with_precision(observation.value, precision: observation.lab_test_decimals, delimiter: ',')
+      end
     end
+  end
+
+  def observation_value_comparator(value)
+    value.scan(/[^\d.]/).join.squish
   end
 
   def format_units(observation)
