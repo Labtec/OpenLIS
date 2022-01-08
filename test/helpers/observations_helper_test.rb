@@ -27,8 +27,8 @@ class ObservationsHelperTest < ActionView::TestCase
     @observation.value = '> 1000'
     assert_equal '>1,000.0', format_value(@observation)
 
-    @observation.value = '>1000'
-    assert_equal '>1,000.0', format_value(@observation)
+    @observation.value = '>=1000'
+    assert_equal '≥1,000.0', format_value(@observation)
   end
 
   test 'format qualitative observation' do
