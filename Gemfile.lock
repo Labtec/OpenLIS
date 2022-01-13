@@ -230,7 +230,7 @@ GEM
       timeout
     net-ssh (6.1.0)
     nio4r (2.5.8)
-    nokogiri (1.13.0)
+    nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
     openssl (2.2.1)
