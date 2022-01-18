@@ -457,3 +457,4 @@ es-PA:
     transliterate:
       rule:
         ñ: ñ
+        Ñ: Ñ
