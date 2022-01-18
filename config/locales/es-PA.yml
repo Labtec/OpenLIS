@@ -453,3 +453,7 @@ es-PA:
       qualified_interval: rango
       unit: unidad
       user: usuario
+  i18n:
+    transliterate:
+      rule:
+        ñ: ñ

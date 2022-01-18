@@ -52,7 +52,15 @@ module PatientsHelper
     family_name[0] = family_name[0].mb_chars.upcase
     last_comma_first = [family_name, patient.given_name].join(', ')
     mi = "#{patient.middle_name[0, 1]}." if patient.middle_name.present?
-    [last_comma_first, mi].join(' ').squish
+    ActiveSupport::Inflector.transliterate([last_comma_first, mi].join(' ').squish)
+  end
+
+  # XXX: Unused helper.
+  # Returns the official full name of a patient without accents.
+  # Historically, names were registered using typewriters, and in capital
+  # letters, which did not have accents, except for the letter "Ñ".
+  def es_official_name(patient)
+    ActiveSupport::Inflector.transliterate(full_name(patient)).upcase
   end
 
   def options_for_gender
