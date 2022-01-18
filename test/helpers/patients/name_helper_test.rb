@@ -28,8 +28,13 @@ class PatientsNameHelperTest < ActionView::TestCase
   end
 
   test 'if last name starts with a lowercase, uppercase when Last, First' do
+    @patient.update(family_name: 'nel Tomasso')
+    assert_equal 'Nel Tomasso, John F.', name_last_comma_first_mi(@patient)
+  end
+
+  test 'if last name contains an accented letter, remove accent accordingly' do
     @patient.update(family_name: 'ñel Tomasso')
-    assert_equal 'Ñel Tomasso, John F.', name_last_comma_first_mi(@patient)
+    assert_equal 'Nel Tomasso, John F.', name_last_comma_first_mi(@patient)
   end
 
   test '#animal_species_name' do
