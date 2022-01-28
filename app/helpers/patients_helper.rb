@@ -37,6 +37,7 @@ module PatientsHelper
   def full_name(patient)
     if patient.family_name.blank? && patient.animal_type.present?
       return [patient.given_name,
+              patient.middle_name,
               "(#{animal_species_name(patient.animal_type)})"].join(' ').squish
     end
 
