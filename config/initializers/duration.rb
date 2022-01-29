@@ -23,14 +23,6 @@ module ActiveSupport
           ActiveSupport::Duration.build((to - from) * SECONDS_PER_DAY)
         end
       end
-
-      private
-
-      def calculate_total_seconds(parts)
-        parts.inject(0) do |total, (part, value)|
-          total + value * ActiveSupport::Duration::PARTS_IN_SECONDS[part]
-        end
-      end
     end
 
     # Returns a pediatric age duration.
