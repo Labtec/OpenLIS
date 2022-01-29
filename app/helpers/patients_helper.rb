@@ -61,7 +61,14 @@ module PatientsHelper
   # Historically, names were registered using typewriters, and in capital
   # letters, which did not have accents, except for the letter "Ñ".
   def es_official_name(patient)
-    ActiveSupport::Inflector.transliterate(full_name(patient)).upcase
+    return if patient.family_name.blank? || patient.animal_type.present?
+
+    full_name = [patient.given_name,
+     patient.middle_name,
+     patient.family_name,
+     patient.family_name2].join(' ').squish
+
+    ActiveSupport::Inflector.transliterate(full_name).upcase
   end
 
   def options_for_gender
