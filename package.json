@@ -2,7 +2,7 @@
   "name": "@labtec/openlis",
   "license": "MIT",
   "engines": {
-    "node": ">=10.13"
+    "node": ">=16.13"
   },
   "repository": {
     "type": "git",
@@ -10,12 +10,12 @@
   },
   "private": true,
   "dependencies": {
-    "@github/webauthn-json": "^0.5.7",
+    "@github/webauthn-json": "^0.6.6",
     "@rails/actioncable": "^7.0.1",
     "@rails/activestorage": "^7.0.1",
     "@rails/ujs": "^7.0.1",
     "@rails/webpacker": "5.4.3",
-    "axios": "^0.24.0",
+    "axios": "^0.25.0",
     "jquery": "^3.6.0",
     "regenerator-runtime": "^0.13.9",
     "turbolinks": "^5.2.0"
