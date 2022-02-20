@@ -50,7 +50,7 @@
     <% if @diagnostic_report.notes.find_by_department_id(department).try(:content).present? %>
       <div class="notes">
         <h3><%= t('.notes') %></h3>
-        <%= @diagnostic_report.notes.find_by_department_id(department).content %>
+        <%= sanitize(@diagnostic_report.notes.find_by_department_id(department).content) %>
       </div>
     <% end %>
   <% end %>
