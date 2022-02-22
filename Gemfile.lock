@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Labtec/pdf-core.git
-  revision: ba07b84574d5cfbf0308d0f618a34d01847479e0
+  revision: 2a03b0ad70e03b3e3bcfcdeabdd8937365eb97a4
   branch: pdfa-1b
   specs:
     pdf-core (0.9.0)
@@ -112,7 +112,7 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (2.0.1)
       capistrano (~> 3.1)
-    capistrano-rails (1.6.1)
+    capistrano-rails (1.6.2)
       capistrano (~> 3.1)
       capistrano-bundler (>= 1.1, < 3)
     capistrano-rbenv (2.2.0)
@@ -208,7 +208,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
-    mini_portile2 (2.7.1)
+    mini_portile2 (2.8.0)
     minitest (5.15.0)
     msgpack (1.4.5)
     net-imap (0.2.3)
@@ -230,8 +230,8 @@ GEM
       timeout
     net-ssh (6.1.0)
     nio4r (2.5.8)
-    nokogiri (1.13.1)
-      mini_portile2 (~> 2.7.0)
+    nokogiri (1.13.2)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     openssl (2.2.1)
       ipaddr
