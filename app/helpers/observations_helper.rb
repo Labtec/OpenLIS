@@ -163,7 +163,7 @@ module ObservationsHelper
       builder.text_field :value
     else
       builder.collection_select(:lab_test_value_id,
-                                lab_test.lab_test_values,
+                                lab_test.lab_test_values.sorted,
                                 :id, :stripped_value,
                                 include_blank: true) +
         (builder.text_field(:value) if result_types?(lab_test))
