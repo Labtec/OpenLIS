@@ -10,7 +10,7 @@ class LabTest < ApplicationRecord
   has_many :observations, dependent: :destroy
   has_many :accessions, through: :observations
   has_many :lab_test_value_option_joints, dependent: :destroy
-  has_many :lab_test_values, -> { order(name: :asc) }, through: :lab_test_value_option_joints
+  has_many :lab_test_values, through: :lab_test_value_option_joints
   has_many :prices, as: :priceable, dependent: :destroy
 
   delegate :name, to: :department, prefix: true
