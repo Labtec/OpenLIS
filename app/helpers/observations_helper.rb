@@ -145,15 +145,9 @@ module ObservationsHelper
   end
 
   def registration_number(inline: false)
-    if current_user.register.present?
-      if inline
-        " / #{t('results.index.register')} #{current_user.register}"
-      else
-        "#{t('results.index.register')} #{current_user.register}"
-      end
-    else
-      ''
-    end
+    return '' if current_user.register.blank?
+
+    "#{inline ? ' / ' : ''}#{t('results.index.register')} #{current_user.register}"
   end
 
   def observation_input(builder, observation, lab_test)
