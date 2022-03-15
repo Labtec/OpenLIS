@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 3.0.0'
+ruby '~> 3.1.0'
 
 gem 'rails', '6.1.5'
 
@@ -22,6 +22,7 @@ gem 'fhir_models'
 gem 'jbuilder'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'net-smtp'
 gem 'nokogiri'
 gem 'pdf-core', github: 'Labtec/pdf-core', branch: 'pdfa-1b'
 gem 'pg'
