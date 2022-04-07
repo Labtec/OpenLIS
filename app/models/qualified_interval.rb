@@ -73,7 +73,7 @@ class QualifiedInterval < ApplicationRecord
   end
 
   def self.arel_age_interval(age)
-    Arel.sql("INTERVAL '#{age.iso8601}'") if age
+    Arel.sql("INTERVAL '#{sanitize_sql(age.iso8601)}'") if age
   end
 
   def range
