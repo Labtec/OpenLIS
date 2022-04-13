@@ -53,6 +53,4 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-        run: |
-          bin/rails test
-          bin/rails test:system
+        run: bin/rails test:all
