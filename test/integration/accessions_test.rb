@@ -22,6 +22,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
   test 'create a new order' do
     visit patient_path(@patient)
     within('.title_tools') { click_on 'Order Tests' }
+    within('#order_tests') { click_on 'Chemistry' }
     check 'BUN'
     click_on 'Save'
     assert_not page.has_content?('error'), 'Requisition not created'
@@ -39,6 +40,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
   test 'change a requisition' do
     visit edit_accession_path(@accession)
     assert page.has_content?("Order ##{@accession.id}"), 'Order number missing'
+    within('#order_tests') { click_on 'Chemistry' }
     uncheck 'BUN'
     click_on 'Save'
     assert_not page.has_content?('error'), 'Requisition not updated'
@@ -47,6 +49,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
 
   test 'clear a requisition' do
     visit edit_accession_path(@accession)
+    within('#order_tests') { click_on 'Chemistry' }
     uncheck 'BUN'
     uncheck 'Cholesterol'
     click_on 'Save'
