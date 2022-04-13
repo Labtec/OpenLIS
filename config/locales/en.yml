@@ -399,7 +399,7 @@ en:
   webauthn_credentials:
     invalid_credential: Invalid security key
     not_enabled: WebAuthn is not enabled
-    not_supported: This browser doesn't support security keys
+    not_supported: "This browser doesn't support security keys"
     webauthn_credential:
       confirm_destroy: Are you sure you want to delete this security key?
       delete: Delete
