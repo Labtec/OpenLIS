@@ -1,26 +1,20 @@
 <% title 'Units' %>
 
+<%= turbo_stream_from [:admin, :units] %>
+
+<%= turbo_frame_tag :units %>
+
 <table>
   <tr>
     <th>Expression</th>
     <th>UCUM</th>
     <th>SI</th>
     <th>Conversion Factor</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
-  <% @units.each do |unit| %>
-    <tr>
-      <td><%= unit.expression %></td>
-      <td><%= unit.ucum %></td>
-      <td><%= unit.si %></td>
-      <td><%= unit.conversion_factor %></td>
-      <td><%= link_to 'Show', [:admin, unit] %></td>
-      <td><%= link_to 'Edit', edit_admin_unit_path(unit) %></td>
-      <td>
-        <%= link_to 'Destroy', [:admin, unit], method: :delete,
-          data: { confirm: 'Are you sure?' } %>
-      </td>
-    </tr>
-  <% end %>
+  <%= render @units %>
 </table>
 
-<p><%= link_to 'Unit', new_admin_unit_path %></p>
+<%= link_to 'New Unit', new_admin_unit_path %>

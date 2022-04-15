@@ -1,4 +1,4 @@
-<%= form_with(url: submit_selected_admin_claims_path, local: true) do %>
+<%= form_with(url: submit_selected_admin_claims_path) do %>
 <table>
   <tr>
     <th></th>
@@ -26,8 +26,8 @@
     <td><%= unsubmitted_claim.claim_number %></td>
     <% if unsubmitted_claim.claim %>
       <td><%= link_to 'Info', edit_admin_claim_path(unsubmitted_claim.claim), class: 'edit_claim' %></td>
-      <td><%= link_to 'Preview', [:admin, unsubmitted_claim.claim], data: { turbolinks: false } %></td>
-      <td><%= link_to 'Submit', submit_admin_claim_path(unsubmitted_claim.claim), method: :put if unsubmitted_claim.claim&.valid_submission? %></td>
+      <td><%= link_to 'Preview', [:admin, unsubmitted_claim.claim], data: { turbo: false } %></td>
+      <td><%= link_to 'Submit', submit_admin_claim_path(unsubmitted_claim.claim), data: { turbo_method: :put } if unsubmitted_claim.claim&.valid_submission? %></td>
     <% else %>
       <td><%= link_to 'Info', new_admin_accession_claim_path(unsubmitted_claim), class: 'edit_claim' %></td>
       <td></td>
@@ -37,5 +37,5 @@
 <% end %>
 </table>
 
-<p><%= submit_tag 'Submit Selected' %></p>
+<p><%= submit_tag 'Submit Selected', data: { turbo: false } %></p>
 <% end %>

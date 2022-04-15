@@ -1,5 +1,7 @@
 <% title 'New Insurance Provider' %>
 
-<%= render 'form' %>
+<%= turbo_frame_tag [:admin, @insurance_provider] do %>
+  <%= render 'form' %>
+<% end %>
 
 <p><%= link_to 'Back to List', admin_insurance_providers_path %></p>

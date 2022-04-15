@@ -1,41 +1,54 @@
 <% title 'Qualified Interval' %>
 
+<%= turbo_stream_from [:admin, :qualified_interval] %>
+
+<%= turbo_frame_tag :qualified_interval %>
+
 <p>
   <strong>Test:</strong>
   <%= sanitize(@qualified_interval.lab_test.name) %>
 </p>
+
 <p>
   <strong>Category:</strong>
   <%= @qualified_interval.category %>
 </p>
+
 <p>
   <strong>Range:</strong>
   <%= format_range(@qualified_interval.range, decimal_precision: @qualified_interval.lab_test.decimals) %>
 </p>
+
 <p>
   <strong>Context:</strong>
   <%= @qualified_interval.context %>
 </p>
+
 <p>
   <strong>Interpretation:</strong>
   <%= @qualified_interval.interpretation&.value %>
 </p>
+
 <p>
   <strong>Gender:</strong>
   <%= @qualified_interval.gender %>
 </p>
+
 <p>
   <strong>Age:</strong>
   <%= format_range(@qualified_interval.age) %>
 </p>
+
 <p>
   <strong>Gestational Age:</strong>
   <%= format_range(@qualified_interval.gestational_age) %>
 </p>
+
 <p>
   <strong>Condition:</strong>
   <%= @qualified_interval.condition %>
 </p>
+
 <p>
   <strong>Animal Species:</strong>
   <%= animal_species_name(@qualified_interval.animal_type) %>
@@ -43,6 +56,6 @@
 
 <p>
   <%= link_to 'Edit', edit_admin_qualified_interval_path(@qualified_interval) %> |
-  <%= link_to 'Destroy', [:admin, @qualified_interval], method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Destroy', [:admin, @qualified_interval], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %> |
   <%= link_to 'View All', admin_qualified_intervals_path %>
 </p>

@@ -1,3 +1,5 @@
 <% title 'New Lab Test' %>
 
-<%= render 'form' %>
+<%= turbo_frame_tag [:admin, @lab_test] do %>
+  <%= render 'form' %>
+<% end %>

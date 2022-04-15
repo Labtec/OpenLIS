@@ -1,8 +1,10 @@
 <% title 'Edit Lab Test Value' %>
 
-<%= render 'form' %>
+<%= turbo_frame_tag [:admin, @lab_test_value] do %>
+  <%= render 'form' %>
+<% end %>
 
 <p>
-  <%= link_to 'Show', [:admin, @lab_test_value] %> |
+  <%= link_to 'Show', admin_lab_test_value_path(@lab_test_value) %> |
   <%= link_to 'View All', admin_lab_test_values_path %>
 </p>

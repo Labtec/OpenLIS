@@ -6,6 +6,9 @@ class Claim < ApplicationRecord
 
   has_one :patient, through: :accession
 
+  has_many :lab_tests, through: :accession
+  has_many :panels, through: :accession
+
   validates :external_number, :number, uniqueness: true, allow_blank: true
   validates :accession, :insurance_provider, presence: true
 
@@ -30,6 +33,10 @@ class Claim < ApplicationRecord
     else
       patient.policy_number || 'pend.'
     end
+  end
+
+  def to_partial_path
+    'admin/claims/claim'
   end
 
   def valid_submission?

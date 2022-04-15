@@ -2,50 +2,52 @@
 
 module Admin
   class LabTestValuesController < BaseController
+    before_action :set_lab_test_value, only: %i[show edit update destroy]
+
     def index
       @lab_test_values = LabTestValue.sorted
     end
 
-    def show
-      @lab_test_value = LabTestValue.find(params[:id])
-    end
+    def show; end
 
     def new
       @lab_test_value = LabTestValue.new
     end
 
+    def edit; end
+
     def create
       @lab_test_value = LabTestValue.new(lab_test_value_params)
+
       if @lab_test_value.save
-        flash[:notice] = 'Successfully created lab test value.'
-        redirect_to [:admin, @lab_test_value]
+        redirect_to admin_lab_test_values_url, notice: 'Successfully created lab test value.'
       else
-        render action: 'new'
+        render :new, status: :unprocessable_entity
       end
     end
 
-    def edit
-      @lab_test_value = LabTestValue.find(params[:id])
-    end
-
     def update
-      @lab_test_value = LabTestValue.find(params[:id])
       if @lab_test_value.update(lab_test_value_params)
-        flash[:notice] = 'Successfully updated lab test value.'
-        redirect_to [:admin, @lab_test_value]
+        redirect_to admin_lab_test_values_url, notice: 'Successfully updated lab test value.'
       else
-        render action: 'edit'
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
-      @lab_test_value = LabTestValue.find(params[:id])
       @lab_test_value.destroy
-      flash[:notice] = 'Successfully destroyed lab test value.'
-      redirect_to admin_lab_test_values_url
+
+      respond_to do |format|
+        format.html { redirect_to admin_lab_test_values_url, notice: 'Successfully destroyed lab test value.' }
+        format.turbo_stream { flash.now[:notice] = 'Successfully destroyed lab test value.' }
+      end
     end
 
     private
+
+    def set_lab_test_value
+      @lab_test_value = LabTestValue.find(params[:id])
+    end
 
     def lab_test_value_params
       params.require(:lab_test_value).permit(:value, :flag, :loinc, :numeric, :note, :snomed)

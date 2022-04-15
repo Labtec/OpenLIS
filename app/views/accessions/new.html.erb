@@ -1,3 +1,5 @@
 <% title t('.title') %>
 
-<%= render 'form', css_class: 'new_accession' %>
+<%= turbo_frame_tag @accession do %>
+  <%= render 'form', css_class: 'new_accession' %>
+<% end %>

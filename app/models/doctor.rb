@@ -16,8 +16,19 @@ class Doctor < ApplicationRecord
 
   default_scope { order(name: :asc) }
 
+  after_create_commit -> { broadcast_prepend_later_to 'admin:doctors', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_doctors_path } }
+  after_update_commit -> { broadcast_replace_later_to 'admin:doctors' }
+  after_destroy_commit -> { broadcast_remove_to 'admin:doctors' }
+
+  after_update_commit -> { broadcast_replace_later_to 'admin:doctor', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_doctor_path(self) }, target: :doctor }
+  after_destroy_commit -> { broadcast_replace_to 'admin:doctor', partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.admin_doctors_path }, target: :doctor }
+
   def self.cached_doctors_list
     Rails.cache.fetch('doctors') { all.map(&:name).to_a }
+  end
+
+  def to_partial_path
+    'admin/doctors/doctor'
   end
 
   private

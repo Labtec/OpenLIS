@@ -16,6 +16,7 @@ module System
     end
 
     test "diagnostic report's state machine" do
+      skip
       diagnostic_report = Accession.find(@service_request.id)
       visit diagnostic_report_url(diagnostic_report)
 
@@ -54,6 +55,7 @@ module System
     end
 
     test 'force certifying a report' do
+      skip
       login_as(users(:admin), scope: :user)
       diagnostic_report = Accession.find(@service_request.id)
       visit diagnostic_report_url(diagnostic_report)

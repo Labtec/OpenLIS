@@ -18,9 +18,9 @@ module ActiveSupport
         ty = to.year
 
         if fd == 29 && fm == 2 && td == 28 && tm == 2 && !Date.gregorian_leap?(ty)
-          ActiveSupport::Duration.build(((to - from) * SECONDS_PER_DAY) + 1.day)
+          ActiveSupport::Duration.build(((to - from).to_i * SECONDS_PER_DAY) + 1.day)
         else
-          ActiveSupport::Duration.build((to - from) * SECONDS_PER_DAY)
+          ActiveSupport::Duration.build((to - from).to_i * SECONDS_PER_DAY)
         end
       end
     end

@@ -1,8 +1,9 @@
 <% content_for(:head) do %>
-  <%= javascript_pack_tag 'webauthn', crossorigin: 'anonymous' %>
+  <%= javascript_import_module_tag 'webauthn/webauthn' %>
 <% end %>
 
-<%= form_with(model: resource, url: session_path(resource_name), local: true,
+<%= form_with(model: resource, url: session_path(resource_name),
+              data: { turbo: false},
               class: 'login-form', html: { novalidate: true }) do |f| %>
   <div class="username">
     <%= f.label :username, t('user_sessions.new.username') %>

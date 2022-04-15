@@ -29,10 +29,23 @@ class LabTest < ApplicationRecord
   scope :sorted, -> { order(name: :asc) }
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
 
+  after_create_commit -> { broadcast_prepend_later_to 'admin:lab_tests', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_lab_tests_path } }
+  after_update_commit -> { broadcast_replace_later_to 'admin:lab_tests' }
+  after_destroy_commit -> { broadcast_remove_to 'admin:lab_tests' }
+
+  after_update_commit -> { broadcast_replace_later_to 'admin:lab_test', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_lab_test_path(self) }, target: :lab_test }
+  after_destroy_commit -> { broadcast_replace_to 'admin:lab_test', partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.admin_lab_tests_path }, target: :lab_test }
+
   auto_strip_attributes :name, :code, :procedure, :loinc
 
   def self.unit_for(code)
     find_by(code: code).unit.expression
+  end
+
+  def allow_quantity?
+    return true if also_numeric || value_default?
+
+    false
   end
 
   def also_allow=(also_allow)
@@ -83,12 +96,12 @@ class LabTest < ApplicationRecord
     unit&.ucum
   end
 
-  def si_unit
-    unit&.si
-  end
-
   def name_with_description
     description.present? ? "#{name} (#{description})" : name
+  end
+
+  def si_unit
+    unit&.si
   end
 
   # TODO: The database should store both names,
@@ -101,10 +114,8 @@ class LabTest < ApplicationRecord
     name_with_description.gsub(%r{</?i>}, '')
   end
 
-  def allow_quantity?
-    return true if also_numeric || value_default?
-
-    false
+  def to_partial_path
+    'admin/lab_tests/lab_test'
   end
 
   def value_default?

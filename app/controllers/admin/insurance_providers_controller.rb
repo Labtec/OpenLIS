@@ -2,50 +2,52 @@
 
 module Admin
   class InsuranceProvidersController < BaseController
+    before_action :set_insurance_provider, only: %i[show edit update destroy]
+
     def index
       @insurance_providers = InsuranceProvider.all
     end
 
-    def show
-      @insurance_provider = InsuranceProvider.find(params[:id])
-    end
+    def show; end
 
     def new
       @insurance_provider = InsuranceProvider.new
     end
 
+    def edit; end
+
     def create
       @insurance_provider = InsuranceProvider.new(insurance_provider_params)
+
       if @insurance_provider.save
-        flash[:notice] = 'Successfully created insurance provider.'
-        redirect_to [:admin, @insurance_provider], only_path: true
+        redirect_to admin_insurance_providers_url, notice: 'Successfully created insurance provider.'
       else
-        render action: 'new'
+        render :new, status: :unprocessable_entity
       end
     end
 
-    def edit
-      @insurance_provider = InsuranceProvider.find(params[:id])
-    end
-
     def update
-      @insurance_provider = InsuranceProvider.find(params[:id])
       if @insurance_provider.update(insurance_provider_params)
-        flash[:notice] = 'Successfully updated insurance provider.'
-        redirect_to [:admin, @insurance_provider], only_path: true
+        redirect_to admin_insurance_providers_url, notice: 'Successfully updated insurance provider.'
       else
-        render action: 'edit'
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
-      @insurance_provider = InsuranceProvider.find(params[:id])
       @insurance_provider.destroy
-      flash[:notice] = 'Successfully destroyed insurance provider.'
-      redirect_to admin_insurance_providers_url
+
+      respond_to do |format|
+        format.html { redirect_to admin_insurance_providers_url, notice: 'Successfully destroyed insurance provider.' }
+        format.turbo_stream { flash.now[:notice] = 'Successfully destroyed insurance provider.' }
+      end
     end
 
     private
+
+    def set_insurance_provider
+      @insurance_provider = InsuranceProvider.find(params[:id])
+    end
 
     def insurance_provider_params
       params.require(:insurance_provider).permit(:name, :price_list_id)

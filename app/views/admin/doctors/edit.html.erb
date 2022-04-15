@@ -1,8 +1,7 @@
 <% title 'Edit Doctor' %>
 
-<%= render 'form' %>
+<%= turbo_frame_tag [:admin, @doctor] do %>
+  <%= render 'form' %>
+<% end %>
 
-<p>
-  <%= link_to 'Show', [:admin, @doctor] %> |
-  <%= link_to 'View All', admin_doctors_path %>
-</p>
+<%= link_to 'View All', admin_doctors_path %>

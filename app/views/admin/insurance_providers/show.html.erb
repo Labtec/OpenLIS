@@ -1,16 +1,19 @@
 <% title 'Insurance Provider' %>
 
+<%= turbo_stream_from [:admin, :insurance_provider] %>
+
+<%= turbo_frame_tag :insurance_provider %>
+
 <p>
   <strong>Name:</strong>
   <%= @insurance_provider.name %>
 </p>
 <p>
   <strong>Price List:</strong>
-  <%= @insurance_provider.price_list.name %>
+  <%= link_to @insurance_provider.price_list.name, admin_insurance_provider_prices_path(@insurance_provider, format: 'pdf'), data: { turbo_frame: '_top' } %>
 </p>
 
 <p>
   <%= link_to 'Edit', edit_admin_insurance_provider_path(@insurance_provider) %> |
-  <%= link_to 'Destroy', [:admin, @insurance_provider], method: :delete, data: { confirm: 'Are you sure?' } %> |
   <%= link_to 'View All', admin_insurance_providers_path %>
 </p>

@@ -1,4 +1,5 @@
-<li class="contact <%= accession.status %>">
+<%= content_tag :li, id: dom_id(accession), is: 'turbo-frame',
+  class: "contact #{accession.status}" do %>
   <div class="tools">
     <small>
       <% if accession.final? %>
@@ -7,9 +8,9 @@
         <%= link_to t('.enter_results'), edit_diagnostic_report_url(accession) %> |
       <% end %>
       <%= link_to t('.change_requisition'), edit_accession_path(accession) %>
-      <% if current_user.admin? %>
-        | <%= link_to t('.delete?'), accession, method: :delete, data: { confirm: t('.confirm_destroy') } %>
-      <% end %>
+      <%# XXXJL stimulus controller:  if current_user.admin? %>
+        | <%= link_to t('.delete?'), accession, data: { turbo_method: :delete, turbo_confirm: t('.confirm_destroy') } %>
+      <%# end %>
     </small>
   </div>
   <%= link_to t('.accession', id: accession.id), diagnostic_report_path(accession) %>
@@ -30,4 +31,4 @@
       | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= Doctor.find(accession.doctor_id).name %></b>
     <% end %>
   </dt>
-</li>
+<% end %>

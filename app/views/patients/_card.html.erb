@@ -1,44 +1,44 @@
-<% cache [I18n.locale, @patient] do %>
-  <div class="panel <%= 'deceased' if @patient.deceased? %>" id="summary">
+<%= turbo_stream_from :patient %>
 
-    <%= avatar_icon(@patient) %>
+<div class="panel <%= 'deceased' if @patient.deceased? %>" id="summary">
 
-    <h4><%= link_to full_name(@patient), patient_path(@patient) %></h4>
-    <div>
-      <%= @patient.identifier %><br />
-      <% unless @patient.deceased? %>
-      <%= t('.age') %> <%= display_pediatric_age(@patient.age) %>
-      <% end %>
-    </div>
-    <div>
-      <% if @patient.address_line.present? %>
-        <%= t('.address') %> <%= @patient.address_line %><br />
-      <% end %>
-      <% if @patient.cellular.present? %>
-        <%= t('.cellular') %> <b><%= link_to format_phone_number(@patient.cellular),
-          whatsapp_click_to_chat_url(@patient.cellular), target: :_blank %></b><br />
-      <% end %>
-      <% if @patient.phone.present? %>
-        <%= t('.phone') %> <b><%= link_to format_phone_number(@patient.phone),
-          "tel:#{format_phone_number_e164(@patient.phone)}" %></b>
-      <% end %>
-    </div>
-    <div>
-      <% if @patient.email.present? %>
-        <%= t('.email') %> <b><%= mail_to @patient.email %></b>
-      <% end %>
-    </div>
-    <div class="bottom_card">
-      <%= link_to history_patient_path @patient, format: :json do %>
-        <%= image_tag('logo_fhir.svg', size: '15x15', class: 'fhir_icon') %>
-      <% end %>
-      <% if @patient.insurance_provider %>
-        <%= image_tag('axa.svg', size: '15x15') %>
-        <%= @patient.policy_number %>
-      <% end %>
-      <div class="edit_patient_card">
-        <%= link_to t('.edit'), edit_patient_path(@patient) %>
-      </div>
+  <%= avatar_icon(@patient) %>
+
+  <h4><%= link_to full_name(@patient), patient_path(@patient) %></h4>
+  <div>
+    <%= @patient.identifier %><br />
+    <% unless @patient.deceased? %>
+    <%= t('.age') %> <%= display_pediatric_age(@patient.age) %>
+    <% end %>
+  </div>
+  <div>
+    <% if @patient.address_line.present? %>
+      <%= t('.address') %> <%= @patient.address_line %><br />
+    <% end %>
+    <% if @patient.cellular.present? %>
+      <%= t('.cellular') %> <b><%= link_to format_phone_number(@patient.cellular),
+        whatsapp_click_to_chat_url(@patient.cellular), target: :_blank %></b><br />
+    <% end %>
+    <% if @patient.phone.present? %>
+      <%= t('.phone') %> <b><%= link_to format_phone_number(@patient.phone),
+        "tel:#{format_phone_number_e164(@patient.phone)}" %></b>
+    <% end %>
+  </div>
+  <div>
+    <% if @patient.email.present? %>
+      <%= t('.email') %> <b><%= mail_to @patient.email %></b>
+    <% end %>
+  </div>
+  <div class="bottom_card">
+    <%= link_to history_patient_path @patient, format: :json do %>
+      <%= image_tag('logo_fhir.svg', size: '15x15', class: 'fhir_icon') %>
+    <% end %>
+    <% if @patient.insurance_provider %>
+      <%= image_tag('axa.svg', size: '15x15') %>
+      <%= @patient.policy_number %>
+    <% end %>
+    <div class="edit_patient_card">
+      <%= link_to t('.edit'), edit_patient_path(@patient) %>
     </div>
   </div>
-<% end %>
+</div>

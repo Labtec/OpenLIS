@@ -1,5 +1,7 @@
 <% title t('.title') %>
 
 <fieldset class="false">
-  <%= render 'form', patient: @patient %>
+  <%= turbo_frame_tag @patient do %>
+    <%= render 'form' %>
+  <% end %>
 </fieldset>

@@ -1,6 +1,6 @@
 <fieldset>
   <h2><%= sanitize(@priceable.name) if @priceable %></h2>
-  <%= form_with(model: [:admin, @priceable, @price], local: true)do |f| %>
+  <%= form_with(model: [:admin, @priceable, @price])do |f| %>
     <%= render 'shared/error_messages', object: @price %>
 
     <div class="price_list_id">

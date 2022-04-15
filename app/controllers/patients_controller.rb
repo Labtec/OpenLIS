@@ -18,28 +18,33 @@ class PatientsController < ApplicationController
     @patient = Patient.new
   end
 
+  def edit; end
+
   def create
     @patient = Patient.new(patient_params)
+
     if @patient.save
-      redirect_to @patient, notice: t('.success')
+      redirect_to patient_url(@patient), notice: t('.success')
     else
-      render action: 'new'
+      render :new, status: :unprocessable_entity
     end
   end
 
-  def edit; end
-
   def update
     if @patient.update(patient_params)
-      redirect_to @patient, notice: t('.success')
+      redirect_to patient_url(@patient), notice: t('.success')
     else
-      render action: 'edit'
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @patient.destroy
-    redirect_to patients_url, notice: t('.success')
+
+    respond_to do |format|
+      format.html { redirect_to patients_url, notice: t('.success') }
+      format.turbo_stream { flash.now[:notice] = t('.success') }
+    end
   end
 
   def history

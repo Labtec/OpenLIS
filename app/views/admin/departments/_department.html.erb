@@ -1,0 +1,5 @@
+<%= content_tag :li, id: dom_id(department), is: 'turbo-frame', role: 'tab',
+  class: 'ui-tabs-tab ui-corner-top ui-state-default ui-tab' do %>
+  <%= link_to department.name, admin_departments_path(anchor: department.id),
+    role: 'presentation', class: 'ui-tabs-anchor' %>
+<% end %>

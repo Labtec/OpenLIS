@@ -1,5 +1,7 @@
 <% title 'New Doctor' %>
 
-<%= render 'form' %>
+<%= turbo_frame_tag [:admin, @doctor] do %>
+  <%= render 'form' %>
+<% end %>
 
-<p><%= link_to 'Back to List', admin_doctors_path %></p>
+<%= link_to 'Back to List', admin_doctors_path %>

@@ -120,6 +120,8 @@ es-PA:
       order_tests: Ordenar Pruebas
   layouts:
     admin:
+      header:
+        logout: Salir
       tabs:
         departments: Deptos.
         doctors: Doctores

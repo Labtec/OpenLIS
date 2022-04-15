@@ -56,6 +56,13 @@ class QualifiedInterval < ApplicationRecord
   validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_nil: true
   validates :gender, inclusion: { in: GENDERS }, allow_nil: true
 
+  after_create_commit -> { broadcast_prepend_later_to 'admin:qualified_intervals', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_qualified_intervals_path } }
+  after_update_commit -> { broadcast_replace_later_to 'admin:qualified_intervals' }
+  after_destroy_commit -> { broadcast_remove_to 'admin:qualified_intervals' }
+
+  after_update_commit -> { broadcast_replace_later_to 'admin:qualified_interval', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_qualified_interval_path(self) }, target: :qualified_interval }
+  after_destroy_commit -> { broadcast_replace_to 'admin:qualified_interval', partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.admin_qualified_intervals_path }, target: :qualified_interval }
+
   auto_strip_attributes :category,
                         :range_low_value, :range_high_value,
                         :context,
@@ -63,10 +70,6 @@ class QualifiedInterval < ApplicationRecord
                         :age_low, :age_high,
                         :gestational_age_low, :gestational_age_high,
                         :condition
-
-  def self.arel_age_low
-    Arel::Nodes::NamedFunction.new('CAST', [Arel.sql('"age_low" AS INTERVAL')])
-  end
 
   def self.arel_age_high
     Arel::Nodes::NamedFunction.new('CAST', [Arel.sql('"age_high" AS INTERVAL')])
@@ -76,10 +79,12 @@ class QualifiedInterval < ApplicationRecord
     Arel.sql("INTERVAL '#{sanitize_sql(age.iso8601)}'") if age
   end
 
-  def range
-    return Range.new(nil, range_high_value, true) if range_low_value.nil?
+  def self.arel_age_low
+    Arel::Nodes::NamedFunction.new('CAST', [Arel.sql('"age_low" AS INTERVAL')])
+  end
 
-    Range.new(range_low_value, range_high_value)
+  def absolute?
+    category == 'absolute'
   end
 
   def age
@@ -88,30 +93,36 @@ class QualifiedInterval < ApplicationRecord
     Range.new(duration_parse(age_low), duration_parse(age_high))
   end
 
+  def critical?
+    category == 'critical'
+  end
+
+  def female?
+    gender == 'female'
+  end
+
   def gestational_age
     return Range.new(nil, duration_parse(gestational_age_high), true) if gestational_age_low.nil?
 
     Range.new(duration_parse(gestational_age_low), duration_parse(gestational_age_high))
   end
 
-  def absolute?
-    category == 'absolute'
+  def male?
+    gender == 'male'
   end
 
-  def critical?
-    category == 'critical'
+  def range
+    return Range.new(nil, range_high_value, true) if range_low_value.nil?
+
+    Range.new(range_low_value, range_high_value)
   end
 
   def reference?
     category.nil? || category == 'reference'
   end
 
-  def male?
-    gender == 'male'
-  end
-
-  def female?
-    gender == 'female'
+  def to_partial_path
+    'admin/qualified_intervals/qualified_interval'
   end
 
   private

@@ -1,4 +1,4 @@
-<%= form_with(url: print_selected_admin_claims_path, local: true) do %>
+<%= form_with(url: print_selected_admin_claims_path) do %>
   <table>
     <tr>
       <th></th>
@@ -19,5 +19,5 @@
     </tr>
     <% end %>
   </table>
-  <p><%= submit_tag 'Print Selected', data: { turbolinks: false } %></p>
+  <p><%= submit_tag 'Print Selected', data: { turbo: false } %></p>
 <% end %>

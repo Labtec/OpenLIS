@@ -1,7 +1,7 @@
 <% title t('.title') %>
 
 <% content_for(:head) do %>
-  <%= javascript_pack_tag 'webauthn', crossorigin: 'anonymous' %>
+  <%= javascript_import_module_tag 'webauthn/webauthn' %>
 <% end %>
 
 <% content_for(:errors) do %>

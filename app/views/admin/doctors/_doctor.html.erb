@@ -1,0 +1,9 @@
+<%= content_tag :tr, id: dom_id(doctor), is: 'turbo-frame', class: "empty-#{doctor.accessions_count.zero?}" do %>
+  <td><%= doctor.name %></td>
+  <td><%= doctor.email %></td>
+  <td><%= link_to 'Show', [:admin, doctor], data: { turbo_frame: '_top' } %></td>
+  <td><%= link_to 'Edit', edit_admin_doctor_path(doctor), data: { turbo_frame: '_top' } %></td>
+  <td>
+    <%= link_to 'Destroy', [:admin, doctor], data: { turbo_method: :delete, turbo_confirm: "If you erase a Doctor, all its requisitions will be gone!\nAre you sure?" } if doctor.accessions_count.zero? %>
+  </td>
+<% end %>

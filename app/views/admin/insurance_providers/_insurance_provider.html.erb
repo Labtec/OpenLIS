@@ -1,0 +1,7 @@
+<%= content_tag :tr, id: dom_id(insurance_provider), is: 'turbo-frame' do %>
+  <td><%= insurance_provider.name %></td>
+  <td><%= link_to 'Show', [:admin, insurance_provider], data: { turbo_frame: '_top' } %></td>
+  <td><%= link_to 'Edit', edit_admin_insurance_provider_path(insurance_provider), data: { turbo_frame: '_top' } %></td>
+  <td><%= link_to 'Claims', admin_insurance_provider_claims_path(insurance_provider), data: { turbo_frame: '_top' } %></td>
+  <td><%= link_to 'Price List', admin_insurance_provider_prices_path(insurance_provider, format: 'pdf'), data: { turbo_frame: '_top' } %></td>
+<% end %>

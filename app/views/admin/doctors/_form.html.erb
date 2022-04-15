@@ -1,12 +1,12 @@
-<%= form_with(model: [:admin, @doctor], local: true) do |f| %>
+<%= form_with(model: [:admin, @doctor], data: { turbo: false }) do |form| %>
   <%= render 'shared/error_messages', object: @doctor %>
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
   </p>
   <p>
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
+    <%= form.label :email %><br />
+    <%= form.email_field :email %>
   </p>
-  <p><%= f.submit 'Submit' %></p>
+  <p><%= form.submit 'Submit' %></p>
 <% end %>

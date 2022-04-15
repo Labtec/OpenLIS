@@ -21,7 +21,7 @@ module AddressesHelper
     (Address::PROVINCES + Address::COMARCAS).each do |id|
       districts = []
       Address::SUBDIVISIONS['provinces']["pa_#{id}"]['districts'].each do |d|
-        districts << d['name'] if d['is_district'].nil? || d['is_district']
+        districts << d['name'] unless d['name'].nil?
       end
       provinces << [Address::SUBDIVISIONS['provinces']["pa_#{id}"]['name'], districts]
     end

@@ -1,69 +1,69 @@
-<%= form_with(model: [:admin, @qualified_interval], local: true) do |f| %>
+<%= form_with(model: [:admin, @qualified_interval], data: { turbo: false }) do |form| %>
   <%= render 'shared/error_messages', object: @qualified_interval %>
 
   <div class="lab-test">
-    <%= f.label :lab_test_id %>
-    <%= f.grouped_collection_select :lab_test_id, Department.cached_tests, :lab_tests, :name, :id, :stripped_name_with_description %>
+    <%= form.label :lab_test_id %>
+    <%= form.grouped_collection_select :lab_test_id, Department.cached_tests, :lab_tests, :name, :id, :stripped_name_with_description %>
   </div>
 
   <div class="category">
-    <%= f.label :category %>
-    <%= f.select :category, QualifiedInterval::CATEGORIES %>
+    <%= form.label :category %>
+    <%= form.select :category, QualifiedInterval::CATEGORIES %>
   </div>
 
   <div class="range">
     Range
-    <%= f.label :range_low_value, 'Low' %>
-    <%= f.text_field :range_low_value %>
+    <%= form.label :range_low_value, 'Low' %>
+    <%= form.text_field :range_low_value %>
 
-    <%= f.label :range_high_value, 'High' %>
-    <%= f.text_field :range_high_value %>
+    <%= form.label :range_high_value, 'High' %>
+    <%= form.text_field :range_high_value %>
   </div>
 
   <div class="context">
-    <%= f.label :context %>
-    <%= f.select :context, options_for_context, include_blank: true %>
+    <%= form.label :context %>
+    <%= form.select :context, options_for_context, include_blank: true %>
   </div>
 
   <div class="interpretation">
-    <%= f.label :interpretation %>
-    <%= f.collection_select :interpretation_id, LabTestValue.all.sorted, :id, :stripped_value_with_flag, include_blank: true %>
+    <%= form.label :interpretation %>
+    <%= form.collection_select :interpretation_id, LabTestValue.all.sorted, :id, :stripped_value_with_flag, include_blank: true %>
   </div>
 
   <div class="gender">
-    <%= f.label :gender %>
-    <%= f.select :gender, QualifiedInterval::GENDERS, include_blank: true %>
+    <%= form.label :gender %>
+    <%= form.select :gender, QualifiedInterval::GENDERS, include_blank: true %>
   </div>
 
   <div class="age">
     Age
-    <%= f.label :age_low, 'Low' %>
-    <%= f.text_field :age_low %>
+    <%= form.label :age_low, 'Low' %>
+    <%= form.text_field :age_low %>
 
-    <%= f.label :age_high, 'High (P value + 1)' %>
-    <%= f.text_field :age_high %>
+    <%= form.label :age_high, 'High (P value + 1)' %>
+    <%= form.text_field :age_high %>
   </div>
 
   <div class="gestational-age">
     Gestational Age
-    <%= f.label :gestational_age_low, 'Low' %>
-    <%= f.text_field :gestational_age_low %>
+    <%= form.label :gestational_age_low, 'Low' %>
+    <%= form.text_field :gestational_age_low %>
 
-    <%= f.label :gestational_age_high, 'High (P value + 1)' %>
-    <%= f.text_field :gestational_age_high %>
+    <%= form.label :gestational_age_high, 'High (P value + 1)' %>
+    <%= form.text_field :gestational_age_high %>
   </div>
 
   <div class="condition">
-    <%= f.label :condition %>
-    <%= f.text_field :condition %>
+    <%= form.label :condition %>
+    <%= form.text_field :condition %>
   </div>
 
   <div class="animal-species">
-    <%= f.label :animal_type, 'Animal Species' %>
-    <%= f.select :animal_type, options_for_animal_species, include_blank: true %>
+    <%= form.label :animal_type, 'Animal Species' %>
+    <%= form.select :animal_type, options_for_animal_species, include_blank: true %>
   </div>
 
   <div class="buttonbar">
-    <%= f.submit 'Submit' %>
+    <%= form.submit 'Submit' %>
   </div>
 <% end %>

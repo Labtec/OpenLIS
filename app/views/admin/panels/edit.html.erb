@@ -1,8 +1,10 @@
 <% title 'Edit Panel' %>
 
-<%= render 'form' %>
+<%= turbo_frame_tag [:admin, @panel] do %>
+  <%= render 'form' %>
+<% end %>
 
 <p>
-  <%= link_to 'Show', [:admin, @panel] %> |
+  <%= link_to 'Show', admin_panel_path(@panel) %> |
   <%= link_to 'View All', admin_panels_path %>
 </p>

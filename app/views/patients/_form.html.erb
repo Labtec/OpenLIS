@@ -1,14 +1,14 @@
-<%= form_with(model: patient, local: true, html: { novalidate: '', autocomplete: 'off' }) do |f| %>
-  <%= render 'shared/error_messages', object: patient %>
+<%= form_with(model: @patient, html: { novalidate: '', autocomplete: 'off' }, data: { turbo: false }) do |form| %>
+  <%= render 'shared/error_messages', object: @patient %>
 
   <div class="given_name">
-    <%= f.label :given_name, t('.given_name'), class: 'required' %>
-    <%= f.text_field :given_name, id: :patient_given_name, autocorrect: "off" %>
+    <%= form.label :given_name, t('.given_name'), class: 'required' %>
+    <%= form.text_field :given_name, id: :patient_given_name, autocorrect: "off" %>
   </div>
 
   <div class="middle_name">
-    <%= f.label :middle_name, t('.middle_name') %>
-    <%= f.text_field :middle_name, id: :patient_middle_name, autocorrect: "off" %>
+    <%= form.label :middle_name, t('.middle_name') %>
+    <%= form.text_field :middle_name, id: :patient_middle_name, autocorrect: "off" %>
   </div>
 
   <div class="scan">
@@ -16,108 +16,108 @@
   </div>
 
   <div class="family_name">
-    <%= f.label :family_name, t('.family_name'), class: 'required' %>
-    <%= f.text_field :family_name, id: :patient_family_name, autocorrect: "off" %>
+    <%= form.label :family_name, t('.family_name'), class: 'required' %>
+    <%= form.text_field :family_name, id: :patient_family_name, autocorrect: "off" %>
   </div>
 
   <div class="family_name2">
-    <%= f.label :family_name2, t('.family_name2') %>
-    <%= f.text_field :family_name2, id: :patient_family_name2, autocorrect: "off" %>
+    <%= form.label :family_name2, t('.family_name2') %>
+    <%= form.text_field :family_name2, id: :patient_family_name2, autocorrect: "off" %>
   </div>
 
   <div class="partner_name">
-    <%= f.label :partner_name, t('.partner_name'), class: 'required' %>
-    <%= f.text_field :partner_name, id: :patient_partner_name, autocorrect: "off" %>
+    <%= form.label :partner_name, t('.partner_name'), class: 'required' %>
+    <%= form.text_field :partner_name, id: :patient_partner_name, autocorrect: "off" %>
   </div>
 
   <div class="gender">
-    <%= f.label :gender, t('.gender'), class: 'required' %>
-    <%= f.select :gender, options_for_gender, { prompt: t('.prompt_gender') }, { id: :patient_gender } %>
+    <%= form.label :gender, t('.gender'), class: 'required' %>
+    <%= form.select :gender, options_for_gender, { prompt: t('.prompt_gender') }, { id: :patient_gender } %>
   </div>
 
   <div class="birthdate">
   <% if request.variant.include? :mobile %>
-    <%= f.label :birthdate, t('.birthdate'), class: 'required' %>
-    <%= f.date_field :birthdate, id: :patient_birthdate %>
+    <%= form.label :birthdate, t('.birthdate'), class: 'required' %>
+    <%= form.date_field :birthdate, id: :patient_birthdate %>
   <% else %>
-    <%= f.label :birthdate, t('.birthdate'), class: 'required' %>
-    <%= f.date_select :birthdate, start_year: Time.current.year, end_year: Time.current.year - 130,
+    <%= form.label :birthdate, t('.birthdate'), class: 'required' %>
+    <%= form.date_select :birthdate, start_year: Time.current.year, end_year: Time.current.year - 130,
       prompt: {day: t('.day'), month: t('.month'), year: t('.year')}, id: :patient_birthdate %>
   <% end %>
   </div>
 
   <div class="identifier">
-    <%= f.select :identifier_type, options_for_identifier_type, id: :patient_identifier_type %>
-    <%= f.text_field :identifier, id: :patient_identifier, autocorrect: "off" %>
+    <%= form.select :identifier_type, options_for_identifier_type, id: :patient_identifier_type %>
+    <%= form.text_field :identifier, id: :patient_identifier, autocorrect: "off" %>
   </div>
 
   <div class="deceased">
-    <%= f.label :deceased, t('.deceased') %>
-    <%= f.check_box :deceased, id: :patient_deceased %>
+    <%= form.label :deceased, t('.deceased') %>
+    <%= form.check_box :deceased, id: :patient_deceased %>
   </div>
 
   <div class="email">
-    <%= f.label :email, t('.email') %>
-    <%= f.email_field :email, id: :patient_email %>
+    <%= form.label :email, t('.email') %>
+    <%= form.email_field :email, id: :patient_email %>
   </div>
 
   <div class="cellular">
-    <%= f.label :cellular, t('.cellular') %>
-    <%= f.telephone_field :cellular, id: :patient_cellular %>
+    <%= form.label :cellular, t('.cellular') %>
+    <%= form.telephone_field :cellular, id: :patient_cellular %>
   </div>
 
   <div class="phone">
-    <%= f.label :phone, t('.phone') %>
-    <%= f.telephone_field :phone, id: :patient_phone %>
+    <%= form.label :phone, t('.phone') %>
+    <%= form.telephone_field :phone, id: :patient_phone %>
   </div>
 
   <h2><%= t('.additional_information') %></h2>
 
   <div class="address">
-    <%= f.label :address, t('.address') %>
+    <%= form.label :address, t('.address') %>
     <div class="province">
-      <%= f.label :address_province, t('.province') %>
-      <%= f.select :address_province, options_for_province, include_blank: true %>
+      <%= form.label :address_province, t('.province') %>
+      <%= form.select :address_province, options_for_province, include_blank: true %>
     </div>
 
     <div class="district">
-      <%= f.label :address_district, t('.district') %>
-      <%= f.select :address_district, options_for_district, include_blank: true %>
+      <%= form.label :address_district, t('.district') %>
+      <%= form.select :address_district, options_for_district, include_blank: true %>
     </div>
 
     <div class="corregimiento">
-      <%= f.label :address_corregimiento, t('.corregimiento') %>
-      <%= f.select :address_corregimiento, options_for_corregimiento, include_blank: true %>
+      <%= form.label :address_corregimiento, t('.corregimiento') %>
+      <%= form.select :address_corregimiento, options_for_corregimiento, include_blank: true %>
     </div>
 
     <div class="map">
-      <%= map_link(f.object.address_province, f.object.address_district, f.object.address_corregimiento) %>
+      <%= map_link(form.object.address_province, form.object.address_district, form.object.address_corregimiento) %>
     </div>
 
     <div class="line">
-      <%= f.label :address_line, t('.line') %>
-      <%= f.text_field :address_line %>
+      <%= form.label :address_line, t('.line') %>
+      <%= form.text_field :address_line %>
     </div>
   </div>
 
   <div class="animal_type">
-    <%= f.label :animal_type, t('.type') %>
-    <%= f.select :animal_type, options_for_animal_species, include_blank: true, id: :patient_animal_type %>
+    <%= form.label :animal_type, t('.type') %>
+    <%= form.select :animal_type, options_for_animal_species, include_blank: true, id: :patient_animal_type %>
   </div>
 
   <div class="insurance_provider_id">
-    <%= f.label :insurance_provider_id, t('.insurance_provider') %>
-    <%= f.collection_select :insurance_provider_id, InsuranceProvider.all, :id,
+    <%= form.label :insurance_provider_id, t('.insurance_provider') %>
+    <%= form.collection_select :insurance_provider_id, InsuranceProvider.all, :id,
       :name, { include_blank: true }, id: :patient_insurance_provider %>
   </div>
 
   <div class="policy_number">
-    <%= f.label :policy_number, t('.policy_number') %>
-    <%= f.text_field :policy_number, id: :patient_policy_number, autocorrect: "off" %>
+    <%= form.label :policy_number, t('.policy_number') %>
+    <%= form.text_field :policy_number, id: :patient_policy_number, autocorrect: "off" %>
   </div>
 
   <div class="buttonbar">
-    <%= f.submit t('.submit') %>
+    <%= form.submit t('.submit') %>
     <%= t('.or') %>
     <%= link_to t('.cancel'), patients_path %>
   </div>

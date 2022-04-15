@@ -1,5 +1,7 @@
 <% title 'New Qualified Interval' %>
 
-<%= render 'form' %>
+<%= turbo_frame_tag [:admin, @qualified_interval] do %>
+  <%= render 'form' %>
+<% end %>
 
-<p><%= link_to 'Back to List', admin_qualified_intervals_path %></p>
+<%= link_to 'Back to List', admin_qualified_intervals_path %>

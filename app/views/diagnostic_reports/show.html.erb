@@ -1,8 +1,8 @@
 <% title t('.accession', id: @diagnostic_report.id) %>
 
-<% content_for :head do %>
-  <meta name="turbolinks-cache-control" content="no-cache">
-<% end %>
+<%= turbo_stream_from :accession %>
+
+<%= turbo_frame_tag :accession %>
 
 <fieldset class="<%= @diagnostic_report.reported_at.blank? %>">
   <h1><%= t('.accession', id: @diagnostic_report.id) %></h1>
@@ -63,7 +63,7 @@
     <% else %>
       <%= link_to t('.enter_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
       <% if @diagnostic_report.preliminary? %>
-        <%= link_to t('.certify'), certify_diagnostic_report_path(@diagnostic_report), method: :patch %> |
+        <%= link_to t('.certify'), certify_diagnostic_report_path(@diagnostic_report), data: { turbo_method: :patch } %> |
       <% end %>
       <% if current_user.admin? && !@diagnostic_report.registered? && !@diagnostic_report.preliminary? %>
        <%= force_certify_diagnostic_report(@diagnostic_report) %> |

@@ -120,6 +120,8 @@ en:
       order_tests: Order Tests
   layouts:
     admin:
+      header:
+        logout: Logout
       tabs:
         departments: Departments
         doctors: Doctors

@@ -8,10 +8,10 @@
   </ul>
   <% @departments.each do |department| %>
     <div id="<%= department.id %>">
-      <%= f.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |b| %>
+      <%= form.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |builder| %>
         <div class="lab_test">
-          <%= b.check_box %>
-          <label class="checkbox" for="accession_lab_test_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
+          <%= builder.check_box %>
+          <label class="checkbox" for="accession_lab_test_ids_<%= builder.object.id %>"><%= sanitize(builder.text) %></label>
         </div>
       <% end %>
     </div>

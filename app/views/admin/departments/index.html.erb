@@ -1,15 +1,17 @@
 <% title 'Departments' %>
 
+<%= turbo_stream_from [:admin, :departments] %>
+
+<%#= turbo_frame_tag :departments %>
+
 <div id="departments">
   <ul>
-    <% @departments.each do |department| %>
-      <li><%= link_to department.name, admin_departments_path(anchor: department.id) %></li>
-    <% end %>
     <li><%= link_to '+', new_admin_department_path %></li>
+    <%= render @departments %>
   </ul>
 
   <% @departments.each do |department| %>
-    <div id="<%= department.id %>">
+    <%= content_tag :div, id: department.id do %>
       <ul>
       <% department.lab_tests.each do |lab_test| %>
         <li><%= link_to sanitize(lab_test.name), admin_lab_test_path(lab_test) %></li>
@@ -20,6 +22,6 @@
           <%= link_to 'Edit', edit_admin_department_path(department) %>
         </p>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>

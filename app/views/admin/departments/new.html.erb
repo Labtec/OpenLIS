@@ -1,1 +1,3 @@
-<%= render 'form' %>
+<%= turbo_frame_tag [:admin, @department] do %>
+  <%= render 'form' %>
+<% end %>

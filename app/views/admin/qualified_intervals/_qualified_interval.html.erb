@@ -1,4 +1,4 @@
-<tr>
+<%= content_tag :tr, id: dom_id(qualified_interval), is: 'turbo-frame' do %>
   <td><%= qualified_interval.rank %></td>
   <td><%= qualified_interval.category %></td>
   <td><%= qualified_interval.gender %></td>
@@ -9,8 +9,8 @@
   <td><%= format_range(qualified_interval.gestational_age) %></td>
   <td><%= qualified_interval.condition %></td>
   <td><%= animal_species_name(qualified_interval.animal_type) %></td>
-  <td><%= link_to 'Edit', edit_admin_qualified_interval_path(qualified_interval) %></td>
+  <td><%= link_to 'Edit', edit_admin_qualified_interval_path(qualified_interval), data: { turbo_frame: '_top' } %></td>
   <td>
-    <%= link_to 'Destroy', [:admin, qualified_interval], method: :delete,
-      data: { confirm: 'Are you sure?' } %></td>
-</tr>
+    <%= link_to 'Destroy', [:admin, qualified_interval], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+  </td>
+<% end %>

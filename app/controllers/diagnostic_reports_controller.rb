@@ -9,7 +9,6 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def show
-    @patient = @diagnostic_report.patient
     @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
 
     respond_to do |format|
@@ -28,7 +27,6 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def edit
-    @patient = @diagnostic_report.patient
     results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
     results.each do |department, _result|
       @diagnostic_report.notes.build(department_id: department.id) unless @diagnostic_report.try(:notes).find_by(department_id: department.id)
@@ -36,8 +34,6 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def update
-    @patient = @diagnostic_report.patient
-
     if @diagnostic_report.update(diagnostic_report_params)
       @diagnostic_report.transaction do
         @diagnostic_report.lock!
@@ -47,7 +43,7 @@ class DiagnosticReportsController < ApplicationController
 
       redirect_to diagnostic_report_url(@diagnostic_report), notice: t('flash.diagnostic_report.update')
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -79,14 +75,13 @@ class DiagnosticReportsController < ApplicationController
           redirect_to diagnostic_report_url(@diagnostic_report, format: 'pdf')
         else
           flash[:error] = t('flash.diagnostic_report.report_error')
-          redirect_to diagnostic_report_url(@diagnostic_report)
+          redirect_to diagnostic_report_url(@diagnostic_report), status: :unprocessable_entity
         end
       end
     end
   end
 
   def email
-    @patient = @diagnostic_report.patient
     @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
 
     pdf = LabReport.new(@patient, @diagnostic_report, @results, true, view_context)
@@ -112,15 +107,16 @@ class DiagnosticReportsController < ApplicationController
 
   protected
 
-  def set_diagnostic_report
-    @diagnostic_report = Accession.includes(:patient, :drawer, :receiver).find(params[:id])
-  end
-
   def recent_patients
     @recent_patients ||= Patient.cached_recent
   end
 
   private
+
+  def set_diagnostic_report
+    @diagnostic_report = Accession.includes(:patient, :drawer, :receiver).find(params[:id])
+    @patient = @diagnostic_report.patient
+  end
 
   def diagnostic_report_params
     params.require(:accession).permit({ results_attributes: %i[id lab_test_value_id value] }, notes_attributes: %i[id content department_id])

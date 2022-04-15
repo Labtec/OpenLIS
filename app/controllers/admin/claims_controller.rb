@@ -2,6 +2,8 @@
 
 module Admin
   class ClaimsController < BaseController
+    before_action :set_claim, only: %i[show edit update submit]
+
     def index
       if params[:insurance_provider_id]
         provider = InsuranceProvider.find(params[:insurance_provider_id])
@@ -14,8 +16,6 @@ module Admin
     end
 
     def show
-      @claim = Claim.includes(:accession).find(params[:id])
-
       pdf = ClaimPreview.new(@claim, view_context)
       send_data(pdf.render, filename: "claim_#{@claim.try(:external_number)}.pdf",
                             type: 'application/pdf', disposition: 'inline')
@@ -26,39 +26,35 @@ module Admin
       @claim = @accession.build_claim(insurance_provider: @accession.insurance_provider)
     end
 
+    def edit; end
+
     def create
       @claim = Claim.new(claim_params)
+
       if @claim.save
-        flash[:notice] = 'Successfully created claim.'
-        redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider)
+        redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
+                    notice: 'Successfully created claim.'
       else
-        render action: 'new'
+        render :new, status: :unprocessable_entity
       end
     end
 
-    def edit
-      @claim = Claim.find(params[:id])
-    end
-
     def update
-      @claim = Claim.find(params[:id])
       if @claim.update(claim_params)
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
                     notice: 'Successfully updated claim.'
       else
-        render action: 'edit'
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def submit
-      @claim = Claim.find(params[:id])
       if @claim.valid_submission?
         @claim.update(claimed_at: Time.current)
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
                     notice: 'Successfully submitted claim.'
       else
-        redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
-                    alert: t('.submit_alert')
+        render :index, alert: t('.submit_alert'), status: :unprocessable_entity
       end
     end
 
@@ -75,7 +71,7 @@ module Admin
         end
         redirect_to admin_claims_url
       else
-        redirect_to admin_claims_url, alert: 'No claims selected!'
+        render :index, alert: 'No claims selected!', status: :unprocessable_entity
       end
     end
 
@@ -87,12 +83,15 @@ module Admin
         send_data(pdf.render, filename: 'entrada_de_reclamos.pdf',
                               type: 'application/pdf', disposition: 'inline')
       else
-        flash[:alert] = 'No claims selected!'
-        redirect_to admin_claims_url
+        render :index, alert: 'No claims selected!', status: :unprocessable_entity
       end
     end
 
     private
+
+    def set_claim
+      @claim = Claim.find(params[:id])
+    end
 
     def claim_params
       params.require(:claim).permit(:accession_id, :number, :external_number, :claimed_at, :insurance_provider_id)

@@ -1,5 +1,9 @@
 <% title t('.title') %>
 
+<%= turbo_stream_from :accessions %>
+
+<%= turbo_frame_tag :accessions %>
+
 <div class="title">
   <span><%= t('.title')%></span>
 </div>

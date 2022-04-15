@@ -6,6 +6,7 @@ class AccessionsController < ApplicationController
   before_action :panels, only: %i[new create edit update]
   before_action :set_accession, only: %i[edit update destroy]
   before_action :set_patient, only: %i[new create]
+  before_action :set_accession_patient, only: %i[edit update]
   before_action :set_users, only: %i[new create edit update]
 
   def index
@@ -13,13 +14,15 @@ class AccessionsController < ApplicationController
   end
 
   def new
-    @accession = @patient.accessions.build
-
-    @accession.drawn_at = Time.current
-    @accession.drawer_id = current_user.id
-    @accession.received_at = Time.current
-    @accession.receiver_id = current_user.id
+    @accession = @patient.accessions.build(
+      drawn_at: Time.current,
+      drawer_id: current_user.id,
+      received_at: Time.current,
+      receiver_id: current_user.id
+    )
   end
+
+  def edit; end
 
   def create
     @accession = @patient.accessions.build(accession_params)
@@ -27,36 +30,33 @@ class AccessionsController < ApplicationController
     if @accession.save
       redirect_to diagnostic_report_url(@accession), notice: t('flash.accession.create')
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
-    @patient = @accession.patient
-  end
-
   def update
-    @patient = @accession.patient
-
     if @accession.update(accession_params)
       @accession.transaction do
         @accession.lock!
-        unless current_user.admin?
-          @accession.update(reporter_id: current_user.id, reported_at: Time.current) if @accession.reported_at
-        end
+        @accession.update(reporter_id: current_user.id,
+                          reported_at: Time.current) if @accession.reported_at && !current_user.admin?
         @accession.results.map(&:evaluate!)
         @accession.evaluate!
       end
 
       redirect_to diagnostic_report_url(@accession), notice: t('flash.accession.update')
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @accession.destroy
-    redirect_to patients_url, notice: t('flash.accession.destroy')
+
+    respond_to do |format|
+      format.html { redirect_to root_url, notice: t('flash.accession.destroy') }
+      format.turbo_stream { flash.now[:notice] = t('flash.accession.destroy') }
+    end
   end
 
   protected
@@ -77,6 +77,10 @@ class AccessionsController < ApplicationController
 
   def set_accession
     @accession = Accession.find(params[:id])
+  end
+
+  def set_accession_patient
+    @patient = @accession.patient
   end
 
   def set_patient

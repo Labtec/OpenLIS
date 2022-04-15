@@ -20,23 +20,27 @@ module Admin
       @unit = Unit.new(unit_params)
 
       if @unit.save
-        redirect_to [:admin, @unit], notice: 'Unit was successfully created.'
+        redirect_to admin_units_url, notice: 'Unit was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
     def update
       if @unit.update(unit_params)
-        redirect_to [:admin, @unit], notice: 'Unit was successfully updated.'
+        redirect_to admin_units_url, notice: 'Unit was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       @unit.destroy
-      redirect_to admin_units_url, notice: 'Unit was successfully destroyed.'
+
+      respond_to do |format|
+        format.html { redirect_to admin_units_url, notice: 'Unit was successfully destroyed.' }
+        format.turbo_stream { flash.now[:notice] = 'Unit was successfully destroyed.' }
+      end
     end
 
     private

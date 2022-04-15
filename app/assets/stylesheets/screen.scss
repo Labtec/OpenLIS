@@ -70,7 +70,7 @@ form {
   form #patient_address_line {
     width: 528px; }
   form div.address {
-    width: 550px; }
+    width: 620px; }
   form div.gender {
     padding-top: 5px;
     width: 110px; }
@@ -1105,4 +1105,10 @@ div.auto_complete {
 
 tr.empty-true {
   background-color: crimson;
+}
+
+.stale-link {
+  background: rgba(51, 34, 17, .4) !important;
+  border: 1px solid #542 !important;
+  color: #f3582c !important;
 }
