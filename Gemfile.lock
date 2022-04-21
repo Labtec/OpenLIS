@@ -401,6 +401,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
+  matrix
   nokogiri
   pdf-core!
   pg
