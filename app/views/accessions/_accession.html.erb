@@ -2,11 +2,7 @@
   class: "contact #{accession.status}" do %>
   <div class="tools">
     <small>
-      <% if accession.final? %>
-        <%= link_to t('.change_results'), edit_diagnostic_report_url(accession) %> |
-      <% else %>
-        <%= link_to t('.enter_results'), edit_diagnostic_report_url(accession) %> |
-      <% end %>
+      <%= link_to change_or_enter_results(accession), edit_diagnostic_report_url(accession) %> |
       <%= link_to t('.change_requisition'), edit_accession_path(accession) %>
       <%# XXXJL stimulus controller:  if current_user.admin? %>
         | <%= link_to t('.delete?'), accession, data: { turbo_method: :delete, turbo_confirm: t('.confirm_destroy') } %>

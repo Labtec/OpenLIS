@@ -28,6 +28,14 @@ module AccessionsHelper
             data: { turbo_method: :patch, turbo_confirm: t('.confirm_forceful_certify') }
   end
 
+  def change_or_enter_results(diagnostic_report)
+    if diagnostic_report.final? || diagnostic_report.amended?
+      t('.change_results')
+    else
+      t('.enter_results')
+    end
+  end
+
   def search_icd_code
     link_to t('.search_icd_code'), 'http://ais.paho.org/classifications/Chapters/',
             target: :_blank, rel: :noopener, id: :search_icd_code
