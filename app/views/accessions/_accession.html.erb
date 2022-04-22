@@ -23,8 +23,8 @@
         | <%= t('.tests_pending') %><b><%= accession.pending_tests.join(', ') %></b>
       <% end %>
     <% end %>
-    <% if accession.doctor_id.present? %>
-      | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= Doctor.find(accession.doctor_id).name %></b>
+    <% if accession.doctor.present? %>
+      | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= accession.doctor_name %></b>
     <% end %>
   </dt>
 <% end %>
