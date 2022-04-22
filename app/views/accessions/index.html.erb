@@ -2,13 +2,11 @@
 
 <%= turbo_stream_from :accessions %>
 
-<%= turbo_frame_tag :accessions %>
-
 <div class="title">
   <span><%= t('.title')%></span>
 </div>
 
-<div class='list' id="requisitions">
+<div class='list'>
   <div class="log">
     <% if @accessions.blank? %>
       <%= t('.no_requisitions_yet') %><br/>
@@ -16,9 +14,9 @@
         <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
       <% end %>
     <% else %>
-      <ul>
+      <%= content_tag :ul, id: 'accessions', is: 'turbo-frame' do %>
         <%= render @accessions %>
-      </ul>
+      <% end %>
 
       <div class="overdue">
         <%= paginate @accessions %>
