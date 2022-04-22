@@ -2,8 +2,6 @@
 
 <%= turbo_stream_from :patient %>
 
-<%= turbo_frame_tag :patient %>
-
 <div class="title_tools">
   <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
 </div>
