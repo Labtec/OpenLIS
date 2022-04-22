@@ -36,7 +36,7 @@
   <% end %>
 
   <%= form_with model: @diagnostic_report, url: diagnostic_report_path(@diagnostic_report),
-    data: { turbo: false }, html: { novalidate: '', autocomplete: 'off' } do |a| %>
+    data: { turbo: false }, html: { novalidate: '', autocomplete: 'off' } do |form| %>
     <%= render 'shared/error_messages', object: @diagnostic_report %>
 
     <% @diagnostic_report.results.includes(lab_test: [:department, :lab_test_values, :lab_test_value_option_joints]).order('lab_tests.position').group_by(&:department).each do |department, results| %>
@@ -44,22 +44,22 @@
 
       <table class="results">
         <% reset_cycle('alternating_row_colors') %>
-        <%= a.fields_for :results do |results_form| %>
+        <%= form.fields_for :results do |results_form| %>
           <% if results_form.object.department == department %>
-            <%= render 'observations/form', object: results_form.object, f: results_form %>
+            <%= render 'observations/form', object: results_form.object, form: results_form %>
           <% end %>
         <% end %>
       </table>
 
-      <%= a.fields_for :notes do |notes_form| %>
+      <%= form.fields_for :notes do |notes_form| %>
         <% if notes_form.object.department == department %>
-          <%= render 'notes/form', f: notes_form %>
+          <%= render 'notes/form', form: notes_form %>
         <% end %>
       <% end %>
     <% end %>
 
     <div class="buttonbar">
-      <%= a.submit t('.submit') %>
+      <%= form.submit t('.submit') %>
       <%= t('.or') %>
       <%= link_to t('.cancel'), diagnostic_report_path(@diagnostic_report) %>
     </div>

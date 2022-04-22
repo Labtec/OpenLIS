@@ -1,10 +1,10 @@
 <% same_row_class = row_class %>
 <tr class="<%= same_row_class %>">
   <td class="lab_test <%= flag_color object %>">
-    <%= f.label :value, sanitize(object.lab_test_name) %>
+    <%= form.label :value, sanitize(object.lab_test_name) %>
   </td>
   <td class="result <%= flag_color object %>">
-    <%= observation_input f, object, object.lab_test %>
+    <%= observation_input form, object, object.lab_test %>
   </td>
   <td class="symbol <%= flag_color object %>">
     <%= flag_name object %>
