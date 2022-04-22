@@ -67,6 +67,7 @@ en:
       accession: 'Accession #%{id}'
       by: ' by: '
       certify: Certify
+      certifying: Certifying…
       change_accession: Change Order
       change_results: Change Results
       confirm_email: Would you like to email the results to %{email}?

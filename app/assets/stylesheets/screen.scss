@@ -34,6 +34,8 @@ label.checkbox {
 
 form {
   text-align: left; }
+  form.button_to {
+    display: inline; }
   form label {
     display: block; }
   form div {
@@ -1112,3 +1114,20 @@ tr.empty-true {
   border: 1px solid #542 !important;
   color: #f3582c !important;
 }
+
+input[type="submit"],
+button {
+  cursor: pointer;
+}
+
+button.show-when-disabled {
+  display: none; }
+
+button[disabled].show-when-disabled {
+  display: initial; }
+
+button.show-when-enabled {
+  display: initial; }
+
+button[disabled].show-when-enabled {
+  display: none; }

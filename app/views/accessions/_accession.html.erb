@@ -5,7 +5,7 @@
       <%= link_to change_or_enter_results(accession), edit_diagnostic_report_url(accession) %> |
       <%= link_to t('.change_requisition'), edit_accession_path(accession) %>
       <%# XXXJL stimulus controller:  if current_user.admin? %>
-        | <%= link_to t('.delete?'), accession, data: { turbo_method: :delete, turbo_confirm: t('.confirm_destroy') } %>
+      | <%= button_to t('.delete?'), accession, method: :delete, form: { data: { turbo_confirm: t('.confirm_destroy') } } %>
       <%# end %>
     </small>
   </div>

@@ -6,8 +6,8 @@
     <small>
       <%= link_to t('.edit'), edit_patient_path(patient) %>
       <%# XXXJL stimulus controller: if current_user.admin? %> |
-        <%= link_to t('.delete?'), patient, data: { turbo_method: :delete,
-                                                    turbo_confirm: t('.confirm_destroy') } %>
+        <%= button_to t('.delete?'), patient, method: :delete,
+        form: { data: { turbo_confirm: t('.confirm_destroy') } } %>
       <%# end %>
     </small>
   </div>

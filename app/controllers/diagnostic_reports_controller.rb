@@ -59,7 +59,7 @@ class DiagnosticReportsController < ApplicationController
           @diagnostic_report.results.map(&:certify!)
           @diagnostic_report.certify!
           @diagnostic_report.save
-          redirect_to diagnostic_report_url(@diagnostic_report, format: 'pdf')
+          redirect_to diagnostic_report_url(@diagnostic_report)
         end
       end
     else
@@ -72,7 +72,7 @@ class DiagnosticReportsController < ApplicationController
           @diagnostic_report.results.map(&:certify!)
           @diagnostic_report.certify!
           @diagnostic_report.save
-          redirect_to diagnostic_report_url(@diagnostic_report, format: 'pdf')
+          redirect_to diagnostic_report_url(@diagnostic_report)
         else
           flash[:error] = t('flash.diagnostic_report.report_error')
           redirect_to diagnostic_report_url(@diagnostic_report), status: :unprocessable_entity
