@@ -1,5 +1,5 @@
 <% same_row_class = row_class %>
-<tr class="<%= same_row_class %> <%= not_performed_class(observation.not_performed?) %>">
+<tr id="<%= dom_id(observation) %>" is="turbo-frame" class="<%= same_row_class %> <%= not_performed_class(observation.not_performed?) %>">
   <td class="lab_test <%= flag_color observation %>">
     <%= sanitize(observation.lab_test_name) %>
   </td>

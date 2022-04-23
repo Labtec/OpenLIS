@@ -14,6 +14,20 @@ en:
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
       outpatient: Outpatient
+    admin_accession:
+      accession: 'Order #%{id}'
+      by: 'by: '
+      change_requisition: Change Order
+      change_results: Change Results
+      confirm_destroy: Are you sure?
+      delete?: Delete?
+      drawn_at: 'Drawn at: '
+      enter_results: Enter Results
+      ordered_by: 'Ordered by:'
+      reported_at: 'Reported at: '
+      tests_ordered: 'Tests ordered: '
+      tests_pending: 'Tests pending: '
+      outpatient: Outpatient
     edit:
       title: Change Order
     form:

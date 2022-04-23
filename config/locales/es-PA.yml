@@ -14,6 +14,20 @@ es-PA:
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
       outpatient: Ambulatorio
+    admin_accession:
+      accession: 'Solicitud #%{id}'
+      by: 'por: '
+      change_requisition: Cambiar Solicitud
+      change_results: Cambiar Resultados
+      confirm_destroy: ¿Está seguro?
+      delete?: ¿Borrar?
+      drawn_at: 'Extraído el: '
+      enter_results: Ingresar Resultados
+      ordered_by: 'Ordenado por:'
+      reported_at: 'Reportado el: '
+      tests_ordered: 'Pruebas ordenadas: '
+      tests_pending: 'Pruebas pendientes: '
+      outpatient: Ambulatorio
     edit:
       title: Cambiar Solicitud
     form:

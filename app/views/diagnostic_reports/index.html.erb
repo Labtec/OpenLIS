@@ -1,8 +1,6 @@
 <% title t('.title') %>
 
-<%= turbo_stream_from :accessions %>
-
-<%= turbo_frame_tag :accessions %>
+<%= turbo_stream_from [current_user.admin?, :accessions] %>
 
 <div class="title">
   <span><%= t('.title')%></span>
@@ -17,7 +15,11 @@
       <% end %>
     <% else %>
       <ul>
-        <%= render @diagnostic_reports %>
+        <% if current_user.admin? %>
+          <%= render partial: 'accessions/admin_accession', collection: @diagnostic_reports, as: :accession %>
+        <% else %>
+          <%= render @diagnostic_reports %>
+        <% end %>
       </ul>
 
       <div class="overdue">

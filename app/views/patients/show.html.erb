@@ -16,7 +16,11 @@
       <% end %>
     <% else %>
       <ul>
-        <%= render @accessions %>
+        <% if current_user.admin? %>
+          <%= render partial: 'accessions/admin_accession', collection: @accessions, as: :accession %>
+        <% else %>
+          <%= render @accessions %>
+        <% end %>
       </ul>
 
       <div class="overdue">

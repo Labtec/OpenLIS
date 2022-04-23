@@ -3,7 +3,8 @@
   <div class="tools">
     <small>
       <%= link_to change_or_enter_results(accession), edit_diagnostic_report_path(accession) %> |
-      <%= link_to t('.change_requisition'), edit_accession_path(accession) %>
+      <%= link_to t('.change_requisition'), edit_accession_path(accession) %> |
+      <%= button_to t('.delete?'), accession, method: :delete, form: { data: { turbo_confirm: t('.confirm_destroy') } } %>
     </small>
   </div>
   <%= link_to t('.accession', id: accession.id), diagnostic_report_path(accession) %>

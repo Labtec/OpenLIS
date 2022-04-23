@@ -1,6 +1,6 @@
 <% title t('.title') %>
 
-<%= turbo_stream_from :accessions %>
+<%= turbo_stream_from [current_user.admin?, :accessions] %>
 
 <div class="title">
   <span><%= t('.title')%></span>
@@ -14,9 +14,13 @@
         <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
       <% end %>
     <% else %>
-      <%= content_tag :ul, id: 'accessions', is: 'turbo-frame' do %>
-        <%= render @accessions %>
-      <% end %>
+      <ul>
+        <% if current_user.admin? %>
+          <%= render partial: 'admin_accession', collection: @accessions, as: :accession %>
+        <% else %>
+          <%= render @accessions %>
+        <% end %>
+      </ul>
 
       <div class="overdue">
         <%= paginate @accessions %>
