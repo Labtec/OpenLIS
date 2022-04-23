@@ -532,8 +532,9 @@ li.lab_test,
 h3.department {
   padding: 2px; }
 
-tr.admin_qualified_interval:hover,
 tr.admin_doctor:hover,
+tr.admin_lab_test_value:hover,
+tr.admin_qualified_interval:hover,
 li.lab_test:hover {
   background: seashell; }
 

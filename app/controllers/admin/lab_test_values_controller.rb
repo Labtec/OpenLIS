@@ -2,13 +2,11 @@
 
 module Admin
   class LabTestValuesController < BaseController
-    before_action :set_lab_test_value, only: %i[show edit update destroy]
+    before_action :set_lab_test_value, only: %i[edit update destroy]
 
     def index
       @lab_test_values = LabTestValue.sorted
     end
-
-    def show; end
 
     def new
       @lab_test_value = LabTestValue.new

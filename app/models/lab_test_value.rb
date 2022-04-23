@@ -22,9 +22,6 @@ class LabTestValue < ApplicationRecord
   after_update_commit -> { broadcast_replace_later_to 'admin:lab_test_values' }
   after_destroy_commit -> { broadcast_remove_to 'admin:lab_test_values' }
 
-  after_update_commit -> { broadcast_replace_later_to 'admin:lab_test_value', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_lab_test_value_path(self) }, target: :lab_test_value }
-  after_destroy_commit -> { broadcast_replace_to 'admin:lab_test_value', partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.admin_lab_test_values_path }, target: :lab_test_value }
-
   auto_strip_attributes :value
 
   def raise_flag

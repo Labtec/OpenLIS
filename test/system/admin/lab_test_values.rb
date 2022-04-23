@@ -49,7 +49,7 @@ module System
 
         accept_confirm do
           within id: dom_id(@lab_test_value) do
-            click_on 'Destroy'
+            click_on 'Delete'
           end
         end
 
