@@ -1,9 +1,9 @@
-<%= form_with(model: [:admin, @qualified_interval], data: { turbo: false }) do |form| %>
+<%= form_with(model: [:admin, @qualified_interval]) do |form| %>
   <%= render 'shared/error_messages', object: @qualified_interval %>
 
   <div class="lab-test">
     <%= form.label :lab_test_id %>
-    <%= form.grouped_collection_select :lab_test_id, Department.cached_tests, :lab_tests, :name, :id, :stripped_name_with_description %>
+    <%= form.grouped_collection_select :lab_test_id, Department.cached_tests, :lab_tests, :name, :id, :stripped_name_with_description, include_blank: true %>
   </div>
 
   <div class="category">

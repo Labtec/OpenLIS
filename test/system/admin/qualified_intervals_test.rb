@@ -65,7 +65,7 @@ module System
 
         accept_confirm do
           within id: dom_id(@qualified_interval) do
-            click_on 'Destroy'
+            click_on 'Delete'
           end
         end
 

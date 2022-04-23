@@ -2,13 +2,11 @@
 
 module Admin
   class QualifiedIntervalsController < BaseController
-    before_action :set_qualified_interval, only: %i[show edit update destroy]
+    before_action :set_qualified_interval, only: %i[edit update destroy]
 
     def index
       @lab_tests = LabTest.includes({ qualified_intervals: [:interpretation, :lab_test] }).order(:position)
     end
-
-    def show; end
 
     def new
       @qualified_interval = QualifiedInterval.new

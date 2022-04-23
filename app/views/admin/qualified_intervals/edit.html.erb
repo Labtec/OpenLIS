@@ -1,10 +1,7 @@
 <% title 'Edit Qualified Interval' %>
 
-<%= turbo_frame_tag [:admin, @qualified_interval] do %>
-  <%= render 'form' %>
-<% end %>
+<%= render 'form' %>
 
 <p>
-  <%= link_to 'Show', admin_qualified_interval_path(@qualified_interval) %> |
   <%= link_to 'View All', admin_qualified_intervals_path %>
 </p>

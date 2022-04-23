@@ -60,7 +60,7 @@ Rails.application.routes.draw do
       resources :prices
     end
     resources :lab_test_values
-    resources :qualified_intervals
+    resources :qualified_intervals, except: [:show]
     resources :lab_tests do
       resources :prices
       collection do

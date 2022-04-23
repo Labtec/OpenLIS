@@ -60,9 +60,6 @@ class QualifiedInterval < ApplicationRecord
   after_update_commit -> { broadcast_replace_later_to 'admin:qualified_intervals' }
   after_destroy_commit -> { broadcast_remove_to 'admin:qualified_intervals' }
 
-  after_update_commit -> { broadcast_replace_later_to 'admin:qualified_interval', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_qualified_interval_path(self) }, target: :qualified_interval }
-  after_destroy_commit -> { broadcast_replace_to 'admin:qualified_interval', partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.admin_qualified_intervals_path }, target: :qualified_interval }
-
   auto_strip_attributes :category,
                         :range_low_value, :range_high_value,
                         :context,
