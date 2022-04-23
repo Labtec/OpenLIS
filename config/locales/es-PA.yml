@@ -159,6 +159,21 @@ es-PA:
     form:
       order_panels: Ordenar Paneles
   patients:
+    admin_patient:
+      accessions: Solicitudes
+      address: 'Dirección:'
+      age: 'Edad:'
+      cellular: 'Móvil:'
+      confirm_destroy: ¿Está seguro?
+      delete: Borrar
+      delete?: ¿Borrar?
+      edit: Editar
+      email: 'Correo Electrónico:'
+      gender: 'Sexo:'
+      cedula: 'Cédula:'
+      passport: 'Pasaporte:'
+      phone: 'Tel.:'
+      year: año
     canine: Perro
     card:
       address: 'Dirección:'

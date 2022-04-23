@@ -71,7 +71,6 @@ module System
     end
 
     test 'user can not #delete patient' do
-      skip
       visit patients_path
 
       assert_selector '.list', text: @patient.given_name

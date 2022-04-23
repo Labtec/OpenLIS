@@ -159,6 +159,21 @@ en:
     form:
       order_panels: Order Panels
   patients:
+    admin_patient:
+      accessions: Accessions
+      address: 'Address:'
+      age: 'Age:'
+      cellular: 'Mobile:'
+      confirm_destroy: Are you sure?
+      delete: Delete
+      delete?: Delete?
+      edit: Edit
+      email: 'Email:'
+      gender: 'Sex:'
+      cedula: 'National ID:'
+      passport: 'Passport:'
+      phone: 'Phone:'
+      year: year
     canine: Dog
     card:
       address: 'Address:'
