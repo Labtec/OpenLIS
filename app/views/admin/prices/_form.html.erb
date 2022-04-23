@@ -1,21 +1,21 @@
 <fieldset>
   <h2><%= sanitize(@priceable.name) if @priceable %></h2>
-  <%= form_with(model: [:admin, @priceable, @price])do |f| %>
+  <%= form_with(model: [:admin, @priceable, @price]) do |form| %>
     <%= render 'shared/error_messages', object: @price %>
 
     <div class="price_list_id">
-      <%= f.label :price_list_id %>
-      <%= f.collection_select :price_list_id, PriceList.all, :id, :name, include_blank: true %>
+      <%= form.label :price_list_id %>
+      <%= form.collection_select :price_list_id, PriceList.all, :id, :name, include_blank: true %>
     </div>
 
     <div class="amount">
-      <%= f.label :amount %>
-      <%= f.text_field :amount %>
+      <%= form.label :amount %>
+      <%= form.text_field :amount %>
     </div>
 
     <div class="buttonbar">
-      <%= f.submit 'Submit' %>
-      <%= link_to 'Cancel', admin_prices_path %>
+      <%= form.submit 'Submit' %>
+      <%= link_to 'Cancel', admin_prices_path, data: { turbo: false } %>
     </div>
   <% end %>
 </fieldset>

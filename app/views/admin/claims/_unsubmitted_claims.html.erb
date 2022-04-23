@@ -12,7 +12,7 @@
   </tr>
 
 <% @unsubmitted_claims.each do |unsubmitted_claim| %>
-  <tr>
+  <tr class="admin_claim">
     <td><%= check_box_tag 'unsubmitted_claim_ids[]', unsubmitted_claim.claim.id, false, id: "unsubmitted_claim_id_#{unsubmitted_claim.claim.id}" if unsubmitted_claim.claim&.valid_submission? %></td>
     <td>
       <% if unsubmitted_claim.claim&.valid_submission? %>

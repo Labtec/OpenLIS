@@ -10,7 +10,7 @@
 </p>
 <p>
   <strong>Price List:</strong>
-  <%= link_to @insurance_provider.price_list.name, admin_insurance_provider_prices_path(@insurance_provider, format: 'pdf'), data: { turbo_frame: '_top' } %>
+  <%= link_to @insurance_provider.price_list.name, admin_insurance_provider_prices_path(@insurance_provider, format: 'pdf'), data: { turbo: false } %>
 </p>
 
 <p>

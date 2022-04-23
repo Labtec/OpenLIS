@@ -40,6 +40,6 @@
 
 <p>
   <%= link_to 'Edit', edit_admin_panel_path(@panel) %> |
-  <%= link_to 'Destroy', [:admin, @panel], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %> |
+  <%= link_to 'Delete', [:admin, @panel], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %> |
   <%= link_to 'View All', admin_panels_path %>
 </p>

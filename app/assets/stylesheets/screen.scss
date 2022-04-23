@@ -532,16 +532,21 @@ li.lab_test,
 h3.department {
   padding: 2px; }
 
+tr.admin_claim:hover,
 tr.admin_doctor:hover,
+tr.admin_insurance_provider:hover,
 tr.admin_lab_test_value:hover,
+tr.admin_panel:hover,
 tr.admin_qualified_interval:hover,
 tr.admin_unit:hover,
-li.lab_test:hover {
+li.admin_lab_test:hover {
   background: seashell; }
 
 h3.department {
-  border-bottom: 3px black solid;
-  margin-bottom: 5px; }
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 8px;
+  border-bottom: 2px solid #6678b1; }
 
 .main {
   background: white;
@@ -631,6 +636,9 @@ h3.department {
   border-top: 1px gray solid;
   margin: auto;
   padding-top: 8px; }
+
+.buttonbar a:hover {
+  background: #0033cc !important; }
 
 .section input, .sidebar input, .inline input,
 .section select, .sidebar select, .inline select,

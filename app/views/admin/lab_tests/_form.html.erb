@@ -1,5 +1,5 @@
 <fieldset class="<%= @lab_test.new_record? %>">
-  <%= form_with(model: [:admin, @lab_test], htmt: { novalidate: '', autocomplete: 'off' }, data: { turbo: false }) do |form| %>
+  <%= form_with(model: [:admin, @lab_test], htmt: { novalidate: '', autocomplete: 'off' }) do |form| %>
     <%= render 'shared/error_messages', object: @lab_test %>
 
     <div class="department_id">

@@ -62,7 +62,7 @@ module System
 
         accept_confirm do
           within id: dom_id(@panel) do
-            click_on 'Destroy'
+            click_on 'Delete'
           end
         end
 

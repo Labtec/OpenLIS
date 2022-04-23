@@ -1,6 +1,6 @@
-<%= content_tag :li, class: 'lab_test', id: dom_id(lab_test), is: 'turbo-frame' do %>
+<%= content_tag :li, id: dom_id(lab_test), is: 'turbo-frame', class: 'admin_lab_test' do %>
   <div class="handle">☰</div>
-  <span class="sortable_lab_test_name"><%= sanitize lab_test.name %> <%= "(#{lab_test.description})" if lab_test.description.present? %></span>
+  <span class="sortable_lab_test_name"><%= link_to name_with_description(lab_test), [:admin, lab_test] %></span>
   <span class="sortable_lab_test_code"><%= lab_test.code %></span>
   <span class="sortable_lab_test_loinc"><%= loinc_hyperlink(lab_test.loinc) if lab_test.loinc.present? %></span>
   <span class="sortable_lab_test_procedure"><%= lab_test.procedure if lab_test.procedure.present? %></span>
@@ -9,8 +9,7 @@
     <%= unit_expression_for_display(lab_test.unit) %>
   </span>
   <span class="sortable_lab_test_actions">
-    <%= link_to 'Show', [:admin, lab_test], data: { turbo_frame: '_top' } %> |
-    <%= link_to 'Edit', edit_admin_lab_test_path(lab_test), data: { turbo_frame: '_top' } %> |
-    <%= link_to 'Destroy', [:admin, lab_test], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    <%= link_to 'Edit', edit_admin_lab_test_path(lab_test) %> |
+    <%= link_to 'Delete', [:admin, lab_test], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
   </span>
 <% end %>

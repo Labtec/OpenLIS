@@ -1,13 +1,12 @@
-<%= content_tag :tr, id: dom_id(panel), is: 'turbo-frame' do %>
+<%= content_tag :tr, id: dom_id(panel), is: 'turbo-frame', class: 'admin_panel' do %>
   <td><%= panel.code %></td>
-  <td><%= sanitize panel.name %></td>
+  <td><%= link_to(sanitize(panel.name), [:admin, panel]) %></td>
   <td><%= panel.procedure %></td>
   <td><%= loinc_hyperlink(panel.loinc) %></td>
   <td><%= panel.description %></td>
   <td><%= panel.lab_test_code_list %></td>
-  <td><%= link_to 'Show', [:admin, panel], data: { turbo_frame: '_top' } %></td>
-  <td><%= link_to 'Edit', edit_admin_panel_path(panel), data: { turbo_frame: '_top' } %></td>
+  <td><%= link_to 'Edit', edit_admin_panel_path(panel) %></td>
   <td>
-    <%= link_to 'Destroy', [:admin, panel], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', [:admin, panel], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
   </td>
 <% end %>

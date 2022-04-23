@@ -1,4 +1,4 @@
-<% title "Prices" %>
+<% title 'Prices' %>
 
 <table>
   <tr>
@@ -16,8 +16,7 @@
     <td><%= number_to_currency price.amount %></td>
     <td><%= link_to 'Show', [:admin, price] %></td>
     <td><%= link_to 'Edit', edit_admin_price_path(price) %></td>
-    <td><%= button_to 'Destroy', [:admin, price], method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %></td>
+    <td><%= button_to 'Delete', [:admin, price], method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %></td>
   </tr>
 <% end %>
 </table>
-

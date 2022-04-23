@@ -1,7 +1,3 @@
 <% title 'Edit Insurance Provider' %>
 
-<%= turbo_frame_tag [:admin, @insurance_provider] do %>
-  <%= render 'form' %>
-<% end %>
-
-<%= link_to 'View All', admin_insurance_providers_path %>
+<%= render 'form', cancel: 'View All' %>

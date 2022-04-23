@@ -1,9 +1,3 @@
 <% title 'Edit Department' %>
 
-<%= turbo_frame_tag [:admin, @department] do %>
-  <%= render 'form' %>
-<% end %>
-
-<p>
-  <%= link_to 'View All', admin_departments_path %>
-</p>
+<%= render 'form', cancel: true %>

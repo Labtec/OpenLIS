@@ -8,5 +8,9 @@
     <%= form.label :email %><br />
     <%= form.email_field :email %>
   </p>
-  <p><%= form.submit 'Submit' %></p>
+
+  <div class="buttonbar">
+    <%= form.submit 'Submit' %> |
+    <%= link_to cancel, admin_doctors_path %>
+  </div>
 <% end %>
