@@ -67,7 +67,7 @@ Rails.application.routes.draw do
         patch 'sort'
       end
     end
-    resources :units
+    resources :units, except: [:show]
     resources :departments
     resources :claims, except: :new do
       collection do

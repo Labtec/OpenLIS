@@ -14,9 +14,6 @@ class Unit < ApplicationRecord
   after_update_commit -> { broadcast_replace_later_to 'admin:units' }
   after_destroy_commit -> { broadcast_remove_to 'admin:units' }
 
-  after_update_commit -> { broadcast_replace_later_to 'admin:unit', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_unit_path(self) }, target: :unit }
-  after_destroy_commit -> { broadcast_replace_to 'admin:unit', partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.admin_units_path }, target: :unit }
-
   auto_strip_attributes :expression, :si, :ucum
 
   def to_partial_path

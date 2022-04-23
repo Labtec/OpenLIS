@@ -1,7 +1,5 @@
 <% title 'New Unit' %>
 
-<%= turbo_frame_tag [:admin, @unit] do %>
-  <%= render 'form' %>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Back to List', admin_units_path %>

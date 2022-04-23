@@ -1,11 +1,10 @@
-<%= content_tag :tr, id: dom_id(unit), is: 'turbo-frame' do %>
+<%= content_tag :tr, id: dom_id(unit), is: 'turbo-frame', class: 'admin_unit' do %>
   <td><%= unit.expression %></td>
   <td><%= unit.ucum %></td>
   <td><%= unit.si %></td>
   <td><%= unit.conversion_factor %></td>
-  <td><%= link_to 'Show', [:admin, unit], data: { turbo_frame: '_top' } %></td>
-  <td><%= link_to 'Edit', edit_admin_unit_path(unit), data: { turbo_frame: '_top' } %></td>
+  <td><%= link_to 'Edit', edit_admin_unit_path(unit) %></td>
   <td>
-    <%= link_to 'Destroy', [:admin, unit], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', [:admin, unit], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
   </td>
 <% end %>

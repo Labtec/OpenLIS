@@ -1,10 +1,7 @@
 <% title 'Edit Unit' %>
 
-<%= turbo_frame_tag [:admin, @unit] do %>
-  <%= render 'form' %>
-<% end %>
+<%= render 'form' %>
 
 <p>
-  <%= link_to 'Show', admin_unit_path(@unit) %> |
   <%= link_to 'View All', admin_units_path %>
 </p>

@@ -2,13 +2,11 @@
 
 module Admin
   class UnitsController < BaseController
-    before_action :set_unit, only: %i[show edit update destroy]
+    before_action :set_unit, only: %i[edit update destroy]
 
     def index
       @units = Unit.all
     end
-
-    def show; end
 
     def new
       @unit = Unit.new
