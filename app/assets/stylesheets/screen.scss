@@ -532,6 +532,7 @@ li.lab_test,
 h3.department {
   padding: 2px; }
 
+tr.doctor:hover,
 li.lab_test:hover {
   background: seashell; }
 
@@ -1107,6 +1108,9 @@ div.auto_complete {
 
 tr.empty-true {
   background-color: crimson;
+}
+tr.empty-true:hover {
+  background-color: salmon;
 }
 
 .stale-link {
