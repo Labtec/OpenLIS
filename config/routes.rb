@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :doctors
+    resources :doctors, except: [:show]
     resources :insurance_providers do
       resources :claims, only: :index
       resources :prices

@@ -2,13 +2,11 @@
 
 module Admin
   class DoctorsController < BaseController
-    before_action :set_doctor, only: %i[show edit update destroy]
+    before_action :set_doctor, only: %i[edit update destroy]
 
     def index
       @doctors = Doctor.all
     end
-
-    def show; end
 
     def new
       @doctor = Doctor.new

@@ -1110,9 +1110,12 @@ tr.empty-true {
 }
 
 .stale-link {
-  background: rgba(51, 34, 17, .4) !important;
-  border: 1px solid #542 !important;
-  color: #f3582c !important;
+  background: #fdba74 !important;
+  border: 1px solid #9a3412 !important;
+  border-radius: 0.125rem !important;
+  color: #f97316 !important;
+  padding: 2px 4px;
+  margin-left: 45%;
 }
 
 input[type="submit"],

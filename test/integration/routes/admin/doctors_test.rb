@@ -20,9 +20,6 @@ class AdminDoctorsRoutesTest < ActionDispatch::IntegrationTest
     assert_routing '/admin/doctors/1/edit',
                    @defaults.merge(action: 'edit', id: '1')
 
-    assert_routing '/admin/doctors/1',
-                   @defaults.merge(action: 'show', id: '1')
-
     assert_routing({ method: :patch, path: '/admin/doctors/1' },
                    @defaults.merge(action: 'update', id: '1'))
 
