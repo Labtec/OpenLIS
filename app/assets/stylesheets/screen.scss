@@ -581,6 +581,21 @@ h3.department {
   float: right;
   padding: 0px 0px 0px 4px; }
 
+button.tools {
+  font-size: 10px;
+  font-family: "Lucida Grande", Geneva, Arial, Helvetica, sans-serif;
+  padding: 0px;
+  margin: 2px 4px;
+  color: crimson;
+  border: none;
+  background-color: initial;
+}
+
+button.tools:hover {
+  color: white;
+  background-color: crimson;
+}
+
 .second {
   padding-top: 2px;
   padding-left: 0px !important;

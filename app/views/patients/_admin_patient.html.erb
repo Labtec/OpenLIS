@@ -5,7 +5,7 @@
   <div class="tools">
     <small>
       <%= link_to t('.edit'), edit_patient_path(patient) %> |
-        <%= button_to t('.delete?'), patient, method: :delete,
+        <%= button_to t('.delete?'), patient, method: :delete, class: 'tools',
         form: { data: { turbo_confirm: t('.confirm_destroy') } } %>
     </small>
   </div>
