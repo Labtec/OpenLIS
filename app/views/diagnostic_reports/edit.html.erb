@@ -40,7 +40,9 @@
       <table class="results">
         <% reset_cycle('alternating_row_colors') %>
         <%= a.fields_for :results do |results_form| %>
-          <%= render 'observations/form', object: results_form.object, f: results_form %>
+          <% if results_form.object.department == department %>
+            <%= render 'observations/form', object: results_form.object, f: results_form %>
+          <% end %>
         <% end %>
       </table>
 
