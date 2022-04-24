@@ -100,6 +100,10 @@ class Accession < ApplicationRecord
     results.includes(:lab_test).registered.map(&:lab_test_code)
   end
 
+  def results_changed?
+    results.map(&:changed?)
+  end
+
   def tests_list
     (panels_list + lab_tests_list)
   end

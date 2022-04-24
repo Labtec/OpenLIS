@@ -17,7 +17,7 @@
       <tbody>
         <%= render partial: 'observations/qualified_interval',
           collection: observation.reference_intervals.includes(:lab_test),
-          locals: { display_gender: @patient.unknown? } if display_units(observation) %>
+          locals: { display_gender: observation.patient.unknown? } if display_units(observation) %>
       </tbody>
     </table>
   </td>

@@ -77,15 +77,15 @@ class DiagnosticcertifyStatusTest < ActiveSupport::TestCase
   test 'does not transition from final to preliminary' do
     @result.value = 1
     @result.evaluate!
-    assert @diagnostic_report.complete?
+    assert @diagnostic_report.complete?, 'Not complete'
     @diagnostic_report.evaluate!
-    assert_equal 'preliminary', @diagnostic_report.status
+    assert_equal 'preliminary', @diagnostic_report.status, 'Not preliminary'
     @diagnostic_report.certify!
-    assert_equal 'final', @diagnostic_report.status
+    assert_equal 'final', @diagnostic_report.status, 'Not final'
     @result.value = nil
     @result.evaluate!
     @diagnostic_report.evaluate!
 
-    assert_equal 'amended', @diagnostic_report.status
+    assert_equal 'amended', @diagnostic_report.status, 'Not amended'
   end
 end

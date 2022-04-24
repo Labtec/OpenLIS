@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   resources :diagnostic_reports, only: [:index, :show, :edit, :update] do
     member do
       patch 'certify'
+      patch 'force_certify'
       put 'email'
     end
   end

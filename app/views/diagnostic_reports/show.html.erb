@@ -56,6 +56,8 @@
   <div class="buttonbar">
     <% if @diagnostic_report.preliminary? %>
       <%= button_to t('.certify'), certify_diagnostic_report_path(@diagnostic_report), method: :patch %> |
+    <% elsif current_user.admin? && !@diagnostic_report.registered? && !@diagnostic_report.reported_at %>
+       <%= force_certify_diagnostic_report(@diagnostic_report) %> |
     <% end %>
     <%= link_to t('.change_accession'), edit_accession_path(@diagnostic_report) %> |
     <% if @diagnostic_report.reported_at %>
@@ -63,9 +65,6 @@
       <%= link_to t('.signed_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf', signature: true) %> |
     <% else %>
       <%= link_to t('.enter_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
-      <% if current_user.admin? && !@diagnostic_report.registered? && !@diagnostic_report.preliminary? %>
-       <%= force_certify_diagnostic_report(@diagnostic_report) %> |
-      <% end %>
     <% end %>
     <% if @patient.email.present? && !@diagnostic_report.registered? %>
        <%= email_report(:patient, @diagnostic_report, @patient.email) %> |

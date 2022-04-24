@@ -2,7 +2,7 @@
 
 class DiagnosticReportsController < ApplicationController
   before_action :recent_patients
-  before_action :set_diagnostic_report, only: %i[show edit update certify email]
+  before_action :set_diagnostic_report, only: %i[show edit update certify force_certify email]
 
   def index
     @diagnostic_reports = Accession.includes(:patient, :reporter).recently.reported.page(page)
@@ -48,35 +48,35 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def certify
-    if ActiveRecord::Type::Boolean.new.cast(params[:force])
-      if current_user.admin?
-        @diagnostic_report.transaction do
-          @diagnostic_report.lock!
-          @diagnostic_report.results.map(&:evaluate!)
-          @diagnostic_report.reporter_id = current_user.id
-          @diagnostic_report.reported_at = Time.current
-          @diagnostic_report.results.map(&:not_performed!)
-          @diagnostic_report.results.map(&:certify!)
-          @diagnostic_report.certify!
-          @diagnostic_report.save
-          redirect_to diagnostic_report_url(@diagnostic_report)
-        end
+    @diagnostic_report.transaction do
+      @diagnostic_report.lock!
+      @diagnostic_report.results.map(&:evaluate!)
+      if @diagnostic_report.complete?
+        @diagnostic_report.reporter_id = current_user.id
+        @diagnostic_report.reported_at = Time.current
+        @diagnostic_report.results.map(&:certify!)
+        @diagnostic_report.certify!
+        @diagnostic_report.save
+        redirect_to diagnostic_report_url(@diagnostic_report)
+      else
+        flash[:error] = t('flash.diagnostic_report.report_error')
+        redirect_to diagnostic_report_url(@diagnostic_report), status: :unprocessable_entity
       end
-    else
+    end
+  end
+
+  def force_certify
+    if current_user.admin?
       @diagnostic_report.transaction do
         @diagnostic_report.lock!
         @diagnostic_report.results.map(&:evaluate!)
-        if @diagnostic_report.complete?
-          @diagnostic_report.reporter_id = current_user.id
-          @diagnostic_report.reported_at = Time.current
-          @diagnostic_report.results.map(&:certify!)
-          @diagnostic_report.certify!
-          @diagnostic_report.save
-          redirect_to diagnostic_report_url(@diagnostic_report)
-        else
-          flash[:error] = t('flash.diagnostic_report.report_error')
-          redirect_to diagnostic_report_url(@diagnostic_report), status: :unprocessable_entity
-        end
+        @diagnostic_report.reporter_id = current_user.id
+        @diagnostic_report.reported_at = Time.current
+        @diagnostic_report.results.map(&:not_performed!)
+        @diagnostic_report.results.map(&:force_certify!)
+        @diagnostic_report.force_certify!
+        @diagnostic_report.save
+        redirect_to diagnostic_report_url(@diagnostic_report)
       end
     end
   end

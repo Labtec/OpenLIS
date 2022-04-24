@@ -24,8 +24,8 @@ module AccessionsHelper
   end
 
   def force_certify_diagnostic_report(diagnostic_report)
-    link_to t('.force_certify'), certify_diagnostic_report_path(diagnostic_report, force: true),
-            data: { turbo_method: :patch, turbo_confirm: t('.confirm_forceful_certify') }
+    button_to t('.force_certify'), force_certify_diagnostic_report_path(diagnostic_report),
+            method: :patch, form: { data: { turbo_confirm: t('.confirm_forceful_certify') } }
   end
 
   def change_or_enter_results(diagnostic_report)

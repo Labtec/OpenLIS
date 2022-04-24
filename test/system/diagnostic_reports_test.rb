@@ -16,9 +16,8 @@ module System
     end
 
     test "diagnostic report's state machine" do
-      skip
       diagnostic_report = Accession.find(@service_request.id)
-      visit diagnostic_report_url(diagnostic_report)
+      visit diagnostic_report_url(@service_request)
 
       assert page.has_content?('LDL/HDL Ratio')
       assert page.has_content?('Cholesterol in LDL')
@@ -27,7 +26,7 @@ module System
       assert page.has_content?('Cholesterol')
       assert page.has_content?('calc.')
       assert page.has_content?('pend.')
-      assert Accession.find(@service_request.id).registered?, 'Not Registered'
+      assert Accession.find(diagnostic_report.id).registered?, 'Not Registered'
 
       click_on 'Enter Results'
 
@@ -37,28 +36,27 @@ module System
 
       click_on 'Save Results'
 
-      visit diagnostic_report_url(diagnostic_report)
       assert_not page.has_content?('calc.')
       assert_not page.has_content?('pend.')
-      assert Accession.find(@service_request.id).preliminary?, 'Not Preliminary'
+      assert Accession.find(diagnostic_report.id).preliminary?, 'Not Preliminary'
 
       click_on 'Certify'
       visit diagnostic_report_url(diagnostic_report)
-      assert Accession.find(@service_request.id).final?, 'Not Final'
+
+      assert Accession.find(diagnostic_report.id).final?, 'Not Final'
 
       click_on 'Change Results'
 
       fill_in 'Cholesterol in HDL', with: 150
       click_on 'Save Results'
       visit diagnostic_report_url(diagnostic_report)
-      assert Accession.find(@service_request.id).amended?, 'Not Amended'
+
+      assert Accession.find(diagnostic_report.id).amended?, 'Not Amended'
     end
 
     test 'force certifying a report' do
-      skip
       login_as(users(:admin), scope: :user)
-      diagnostic_report = Accession.find(@service_request.id)
-      visit diagnostic_report_url(diagnostic_report)
+      visit diagnostic_report_url(@service_request)
 
       assert page.has_content?('LDL/HDL Ratio')
       assert page.has_content?('Cholesterol in LDL')
@@ -74,11 +72,9 @@ module System
       fill_in 'Cholesterol', with: 200
       fill_in 'Cholesterol in HDL', with: 100
       click_on 'Save Results'
-      click_on 'Force Certify'
-
-      wait = Selenium::WebDriver::Wait.new(ignore: Selenium::WebDriver::Error::NoSuchAlertError)
-      alert = wait.until { page.driver.browser.switch_to.alert }
-      alert.accept
+      accept_confirm do
+        click_on 'Force Certify'
+      end
 
       assert page.has_content?('calc.')
       assert page.has_content?('pend.')
