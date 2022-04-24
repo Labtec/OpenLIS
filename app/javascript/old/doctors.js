@@ -1,4 +1,4 @@
-$(document).on('turbo:load', function() {
+$(document).on('turbo:load turbo:render', function() {
   var doctors;
   doctors = $('input#accession_doctor_name').data('doctors');
   return $('input#accession_doctor_name').autocomplete({

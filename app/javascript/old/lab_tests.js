@@ -1,4 +1,4 @@
-$(document).on('turbo:load', function() {
+$(document).on('turbo:load turbo:render', function() {
   return $('.lab_tests').sortable({
     axis: 'y',
     handle: '.handle',

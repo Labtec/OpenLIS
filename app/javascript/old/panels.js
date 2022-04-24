@@ -16,7 +16,7 @@ $(document).on('change click', '.edit_accession', function() {
   });
 });
 
-$(document).on('turbo:load change click', function() {
+$(document).on('turbo:load turbo:render change click', function() {
   var panels;
   panels = $('.panels').data('panel-ids');
   if (panels) {

@@ -1,4 +1,4 @@
-$(document).on('turbo:load', function() {
+$(document).on('turbo:load turbo:render', function() {
   var $panels, $tabs;
   $tabs = $('#lab_tests').tabs();
   $panels = $('.ui-tabs-panel');

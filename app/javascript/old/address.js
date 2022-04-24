@@ -1,4 +1,4 @@
-$(document).on('turbo:load', function() {
+$(document).on('turbo:load turbo:render', function() {
   var blank_option, corregimiento_options, corregimientos, district_options, districts, provinces, selected_district, selected_province;
   provinces = $('#patient_address_province').html();
   districts = $('#patient_address_district').html();
