@@ -13,13 +13,9 @@
     <%= sanitize(format_units(object)) %>
   </td>
   <td class="ranges">
-    <table>
-      <tbody>
-        <%= render partial: 'observations/qualified_interval',
-          collection: object.reference_intervals.includes(:lab_test),
-          locals: { display_gender: @patient.unknown? } %>
-      </tbody>
-    </table>
+    <%= render partial: 'observations/qualified_interval',
+      collection: object.reference_intervals.includes(:lab_test),
+      locals: { display_gender: @patient.unknown? } %>
   </td>
 </tr>
 <% if object.lab_test_remarks.present? %>

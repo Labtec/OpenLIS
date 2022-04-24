@@ -1,0 +1,12 @@
+<table>
+  <tbody>
+    <tr class="<%= flag_color(analyte) %>">
+      <td class="table_lab_test">
+        <%= sanitize(analyte.lab_test_name) %>
+      </td>
+      <td class="value">
+        <%= render partial: 'observations/value', object: analyte %>
+      </td>
+    </tr>
+  </tbody>
+</table>

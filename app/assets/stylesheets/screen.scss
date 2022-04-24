@@ -403,15 +403,16 @@ table {
   td {
     padding: .4em .5em;
     border: none; }
-    td.lab_test {
+    td.analyte {
+      width: 475px;
+    }
+    td.table_lab_test {
       width: 200px; }
     td.units {
-      vertical-align: top;
       width: 100px; }
-    td.result {
+    td.value {
       width: 255px;
       text-align: right;
-      vertical-align: top;
       padding-right: 0; }
       td.result input {
         margin: 0 0 0 4px;
@@ -441,6 +442,15 @@ table {
     border: none;
     clear: both; }
   tr.odd {
+    border: none;
+    clear: both;
+    background-color: #e5e5e5; }
+  table:nth-child(even).row-stripes {
+    background-color: #e5e5e5; }
+  tbody.even {
+    border: none;
+    clear: both; }
+  tbody.odd {
     border: none;
     clear: both;
     background-color: #e5e5e5; }

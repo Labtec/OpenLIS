@@ -40,10 +40,10 @@
   <% @results.each do |department, results| %>
     <h2><%= department.name %></h2>
 
-    <table class="results">
-      <% reset_cycle("alternating_row_colors") %>
+    <div class="results">
+      <% reset_cycle('alternating_row_colors') %>
       <%= render results %>
-    </table>
+    </div>
 
     <% if @diagnostic_report.notes.find_by_department_id(department).try(:content).present? %>
       <div class="notes">

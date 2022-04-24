@@ -35,6 +35,12 @@ class Observation < ApplicationRecord
 
   scope :ordered, -> { order('lab_tests.position') }
 
+  before_update -> do
+    @old_value = value_was
+  end
+
+  after_update_commit -> { broadcast_replace_later_to :results }
+
   auto_strip_attributes :value
 
   def reference_ranges

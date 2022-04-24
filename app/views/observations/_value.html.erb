@@ -1,0 +1,12 @@
+<table>
+  <tbody>
+    <tr class="<%= not_performed_class(value.not_performed?) %>">
+      <td>
+        <%= sanitize(format_value(value)) %>
+      </td>
+      <td>
+        <%= flag_name(value) %>
+      </td>
+    </tr>
+  </tbody>
+</table>

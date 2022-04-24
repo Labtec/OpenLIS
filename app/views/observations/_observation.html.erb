@@ -1,29 +1,25 @@
-<% same_row_class = row_class %>
-<tr id="<%= dom_id(observation) %>" is="turbo-frame" class="<%= same_row_class %> <%= not_performed_class(observation.not_performed?) %>">
-  <td class="lab_test <%= flag_color observation %>">
-    <%= sanitize(observation.lab_test_name) %>
-  </td>
-  <td class="result <%= flag_color observation %>">
-    <%= sanitize(format_value(observation)) %>
-  </td>
-  <td class="symbol <%= flag_color observation %>">
-    <%= flag_name observation %>
-  </td>
-  <td class="units">
-    <%= sanitize(format_units(observation)) if display_units(observation) %>
-  </td>
-  <td class="ranges">
-    <table>
-      <tbody>
+<table id="<%= dom_id(observation) %>" is="turbo-frame" class="row-stripes">
+  <tbody>
+    <tr>
+      <td class="analyte">
+        <%= render partial: 'observations/analyte', object: observation %>
+      </td>
+      <td class="units">
+        <%= sanitize(format_units(observation)) if display_units(observation) %>
+      </td>
+      <td class="ranges">
         <%= render partial: 'observations/qualified_interval',
           collection: observation.reference_intervals.includes(:lab_test),
           locals: { display_gender: observation.patient.unknown? } if display_units(observation) %>
-      </tbody>
-    </table>
-  </td>
-</tr>
-<% if observation.lab_test_remarks.present? %>
-<tr class="<%= same_row_class %>">
-  <td class="remarks" colspan="5"><%= sanitize(observation.lab_test_remarks) %></td>
-</tr>
-<% end %>
+      </td>
+    </tr>
+
+    <% if observation.lab_test_remarks.present? %>
+    <tr>
+      <td class="remarks" colspan="3">
+        <%= sanitize(observation.lab_test_remarks) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
