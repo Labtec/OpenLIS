@@ -35,16 +35,6 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Webpacker compile
-        env:
-          RAILS_ENV: test
-        run: |
-          npm install yarn
-          yarn install
-          bundle exec rails webpacker:install
-          bundle exec rake assets:precompile
-          bundle exec rails webpacker:compile
-
       - name: Setup database
         env:
           RAILS_ENV: test
