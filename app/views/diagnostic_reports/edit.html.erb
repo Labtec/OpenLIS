@@ -38,14 +38,14 @@
     <% @diagnostic_report.results.includes(lab_test: [:department, :lab_test_values, :lab_test_value_option_joints]).order('lab_tests.position').group_by(&:department).each do |department, results| %>
       <h2><%= department.name %></h2>
 
-      <table class="results">
-        <% reset_cycle('alternating_row_colors') %>
+      <div class="results">
+        <% reset_cycle("alternating_row_colors") %>
         <%= form.fields_for :results do |results_form| %>
           <% if results_form.object.department == department %>
-            <%= render 'observations/form', object: results_form.object, form: results_form %>
+            <%= render 'observations/form', form: results_form %>
           <% end %>
         <% end %>
-      </table>
+      </div>
 
       <%= form.fields_for :notes do |notes_form| %>
         <% if notes_form.object.department == department %>

@@ -1,0 +1,12 @@
+<table>
+  <tbody>
+    <tr class="value_result <%= not_performed_class(form.object.not_performed?) %>">
+      <td class="formatted_value">
+        <%= observation_input form, form.object, form.object.lab_test %>
+      </td>
+      <td class="flag">
+        <%= flag_name(form.object) %>
+      </td>
+    </tr>
+  </tbody>
+</table>

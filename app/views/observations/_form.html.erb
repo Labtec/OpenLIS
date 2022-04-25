@@ -1,25 +1,25 @@
-<% same_row_class = row_class %>
-<tr class="<%= same_row_class %>">
-  <td class="lab_test <%= flag_color object %>">
-    <%= form.label :value, sanitize(object.lab_test_name) %>
-  </td>
-  <td class="result <%= flag_color object %>">
-    <%= observation_input form, object, object.lab_test %>
-  </td>
-  <td class="symbol <%= flag_color object %>">
-    <%= flag_name object %>
-  </td>
-  <td class="units">
-    <%= sanitize(format_units(object)) %>
-  </td>
-  <td class="ranges">
-    <%= render partial: 'observations/qualified_interval',
-      collection: object.reference_intervals.includes(:lab_test),
-      locals: { display_gender: @patient.unknown? } %>
-  </td>
-</tr>
-<% if object.lab_test_remarks.present? %>
-<tr class="<%= same_row_class %>">
-  <td class="remarks" colspan="5"><%= sanitize(object.lab_test_remarks) %></td>
-</tr>
-<% end %>
+<table class="<%= row_class %>">
+  <tbody>
+    <tr>
+      <td class="analyte">
+        <%= render partial: 'observations/form_analyte', locals: { form: form } %>
+      </td>
+      <td class="units">
+        <%= sanitize(format_units(form.object)) if display_units(form.object) %>
+      </td>
+      <td class="ranges">
+        <%= render partial: 'observations/qualified_interval',
+          collection: form.object.reference_intervals.includes(:lab_test),
+          locals: { display_gender: form.object.patient.unknown? } if display_units(form.object) %>
+      </td>
+    </tr>
+
+    <% if form.object.lab_test_remarks.present? %>
+    <tr>
+      <td class="remarks" colspan="3">
+        <%= sanitize(form.object.lab_test_remarks) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

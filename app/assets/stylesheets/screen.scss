@@ -401,19 +401,25 @@ table {
     padding: 8px 8px;
     border-bottom: 2px solid #6678b1; }
   td {
-    padding: .4em .5em;
+    padding: .2em .1em;
     border: none; }
     td.analyte {
-      width: 475px;
     }
     td.table_lab_test {
-      width: 200px; }
+      padding-right: 0;
+      width: 210px; }
     td.units {
       width: 100px; }
     td.value {
-      width: 255px;
-      text-align: right;
       padding-right: 0; }
+      td.formatted_value {
+      text-align: right;
+      width: 260px; }
+      td.formatted_value input[type="text"] {
+      text-align: right; }
+      td.flag {
+      text-align: center;
+      width: 25px;}
       td.result input {
         margin: 0 0 0 4px;
         width: 71px;
@@ -425,25 +431,19 @@ table {
       text-align: right;
       vertical-align: top;
       padding-right: 0px; }
-    td.low_value {
+    tr.low_value {
       color: #6678b1; }
-    td.high_value {
+    tr.high_value {
       color: #a66662; }
-    td.abnormal_value {
+    tr.abnormal_value {
       color: #800080; }
     td.ranges {
-      width: 250px;
-      text-align: center; }
+      width: 250px; }
     td.remarks {
       padding-top: 0px !important;
       padding-left: 15px !important;
       font-size: 10px; }
-  tr.even {
-    border: none;
-    clear: both; }
-  tr.odd {
-    border: none;
-    clear: both;
+  table.odd {
     background-color: #e5e5e5; }
   table:nth-child(even).row-stripes {
     background-color: #e5e5e5; }
@@ -454,6 +454,10 @@ table {
     border: none;
     clear: both;
     background-color: #e5e5e5; }
+td.range_0 {
+  width: 150px; }
+td.range_4 {
+  text-align: right; }
 td.range_0,
 td.range_1,
 td.range_2,

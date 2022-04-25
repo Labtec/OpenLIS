@@ -1,0 +1,12 @@
+<table>
+  <tbody>
+    <tr class="<%= flag_color(form.object.interpretation) %>">
+      <td class="table_lab_test">
+        <%= form.label :value, sanitize(form.object.lab_test_name) %>
+      </td>
+      <td class="value">
+        <%= render partial: 'observations/form_value', locals: { form: form } %>
+      </td>
+    </tr>
+  </tbody>
+</table>
