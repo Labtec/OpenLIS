@@ -73,21 +73,24 @@
 
   <h2><%= t('.additional_information') %></h2>
 
-  <div class="address">
+  <div class="address" data-controller="address">
     <%= form.label :address, t('.address') %>
     <div class="province">
       <%= form.label :address_province, t('.province') %>
-      <%= form.select :address_province, options_for_province, include_blank: true %>
+      <%= form.select :address_province, options_for_province, { include_blank: true },
+        data: { action: 'address#select_province', address_target: :province } %>
     </div>
 
     <div class="district">
       <%= form.label :address_district, t('.district') %>
-      <%= form.select :address_district, options_for_district, include_blank: true %>
+      <%= form.select :address_district, options_for_district, { include_blank: true },
+        data: { action: 'address#select_district', address_target: :district } %>
     </div>
 
     <div class="corregimiento">
       <%= form.label :address_corregimiento, t('.corregimiento') %>
-      <%= form.select :address_corregimiento, options_for_corregimiento, include_blank: true %>
+      <%= form.select :address_corregimiento, options_for_corregimiento, { include_blank: true },
+        data: { action: 'address#select_corregimiento', address_target: :corregimiento } %>
     </div>
 
     <div class="map">
@@ -96,7 +99,7 @@
 
     <div class="line">
       <%= form.label :address_line, t('.line') %>
-      <%= form.text_field :address_line %>
+      <%= form.text_field :address_line, data: { address_target: :line } %>
     </div>
   </div>
 
