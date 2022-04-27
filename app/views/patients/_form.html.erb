@@ -11,8 +11,8 @@
     <%= form.text_field :middle_name, id: :patient_middle_name, autocorrect: "off" %>
   </div>
 
-  <div class="scan">
-    <input tabindex="-1" id="barcode_scan" placeholder="❚❘❙❘❘❘❙❘❙❘❘"></input>
+  <div class="scan" data-controller="cedula-reader">
+    <input tabindex="-1" id="barcode_scan" placeholder="❚❘❙❘❘❘❙❘❙❘❘" data-action="click->cedula-reader#scan"></input>
   </div>
 
   <div class="family_name">
