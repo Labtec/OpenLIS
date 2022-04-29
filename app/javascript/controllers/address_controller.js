@@ -34,7 +34,12 @@ export default class extends Controller {
 
     if (this.lineTarget.value === "" && this.corregimientoTarget.value === "") {
       this.lineTarget.disabled = true
+    }
+
+    if (this.provinceTarget.value === "") {
       this.mapTarget.hidden = true
+    } else {
+      this.mapTarget.hidden = false
     }
   }
 
