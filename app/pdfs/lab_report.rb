@@ -197,7 +197,7 @@ class LabReport < Prawn::Document
           cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         end
         cell_col2 = make_cell content: display_format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
-        cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: flag_color[flag_color(result).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+        cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: flag_color[flag_color(result.interpretation).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
         ##
         # Ranges sub-table
         pdf_ranges_table = make_table(ranges_table(ranges_for_table(result), display_gender: @patient.unknown?), cell_style: { padding: [0, 0.4], borders: [] }) do
