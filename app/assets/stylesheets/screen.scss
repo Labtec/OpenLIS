@@ -610,6 +610,21 @@ button.tools:hover {
   background-color: crimson;
 }
 
+button.welcome {
+  font-size: 11px;
+  font-family: "Lucida Grande", Geneva, Arial, Helvetica, sans-serif;
+  padding: 0px;
+  margin: 2px 4px;
+  color: lightyellow;
+  border: none;
+  background-color: initial;
+}
+
+button.welcome:hover {
+  color: yellow;
+  background-color: #1e4262;
+}
+
 .second {
   padding-top: 2px;
   padding-left: 0px !important;

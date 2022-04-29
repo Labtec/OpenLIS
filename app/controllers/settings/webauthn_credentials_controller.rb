@@ -52,22 +52,28 @@ module Settings
     end
 
     def destroy
-      credential = current_user.webauthn_credentials.find_by(id: params[:id])
-      if credential
-        if current_user.last_security_key?
-          flash[:alert] = t('flash.users.cant_delete_last_security_key')
-        else
-          credential.destroy
-          if credential.destroyed?
-            flash[:notice] = t('.success')
+      @credential = current_user.webauthn_credentials.find_by(id: params[:id])
+      respond_to do |format|
+        if @credential
+          if current_user.last_security_key?
+              format.html { flash[:alert] = t('flash.users.cant_delete_last_security_key') }
+              format.turbo_stream { flash.now[:alert] = t('flash.users.cant_delete_last_security_key') }
           else
-            flash[:alert] = t('.error')
+            @credential.destroy
+            if @credential.destroyed?
+              format.html { flash[:notice] = t('.success') }
+              format.turbo_stream { flash.now[:notice] = t('.success') }
+            else
+              format.html { flash[:alert] = t('.error') }
+              format.turbo_stream { flash.now[:alert] = t('.error') }
+            end
           end
+        else
+          format.html { flash[:alert] = t('.error') }
+          format.turbo_stream { flash.now[:alert] = t('.error') }
         end
-      else
-        flash[:alert] = t('.error')
+        format.html { redirect_to profile_url }
       end
-      redirect_to profile_url
     end
 
     private

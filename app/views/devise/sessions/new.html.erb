@@ -1,7 +1,3 @@
-<% content_for(:head) do %>
-  <%= javascript_import_module_tag 'webauthn/webauthn' %>
-<% end %>
-
 <%= form_with(model: resource, url: session_path(resource_name),
               data: { turbo: false},
               class: 'login-form', html: { novalidate: true }) do |f| %>

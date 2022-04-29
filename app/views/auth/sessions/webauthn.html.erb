@@ -1,25 +1,23 @@
 <% title t('.title') %>
 
-<% content_for(:head) do %>
-  <%= javascript_import_module_tag 'webauthn/webauthn' %>
-<% end %>
-
 <% content_for(:errors) do %>
   <%= content_tag(:div, t('webauthn_credentials.invalid_credential'), class: 'errors hidden', id: 'security-key-error-message') %>
 <% end %>
 
 <% content_for(:alerts) do %>
-  <%= content_tag(:div, t('webauthn_credentials.not_supported'), class: 'alerts hidden', id: 'unsupported-browser-message') %>
+  <%= content_tag :div, t('webauthn_credentials.not_supported'), class: 'alerts', hidden: true, data: { controller: :alerts, alerts_target: 'unsupportedBrowserMessage' } %>
 <% end %>
 
 <%= form_with(model: resource, url: session_path(resource_name),
-              class: 'login-form', html: { method: 'post', id: 'webauthn-form' }) do |f| %>
+              class: 'login-form', html: { method: 'post' },
+              data: { controller: :webauthn, webauthn_target: 'webauthnForm',
+                      action: 'webauthn#authenticate' }) do |form| %>
 
   <h3><%= t('.title') %></h3>
 
-  <div class="message">
+  <div class="message" data-webauthn-target="webauthnMessage">
     <%= t('.message') %>
   </div>
 
-  <%= f.submit t('.submit'), class: 'js-webauthn submit', autofocus: true, data: { disable_with: false } %>
+  <%= form.submit t('.submit'), class: 'submit', autofocus: true, data: { disable_with: false, webauthn_target: 'submitButton' } %>
 <% end %>
