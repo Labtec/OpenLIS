@@ -34,6 +34,7 @@ class Observation < ApplicationRecord
   validates :value, ratio: true,    allow_blank: true, if: :ratio?
 
   scope :ordered, -> { order('lab_tests.position') }
+  default_scope -> { joins(:lab_test).order('lab_tests.position ASC') }
 
   before_update -> do
     @old_value = value_was
