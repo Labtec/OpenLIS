@@ -2,8 +2,11 @@
 
 <%= content_tag :div, class: 'panels', data: { panel_ids: @panels.map(&:id) } do %>
   <%= form.collection_check_boxes(:panel_ids, @panels, :id, :name_with_description) do |builder| %>
-    <%= content_tag :div, class: 'panel', id: "panel_#{builder.object.id}", data: { lab_test_ids: builder.object.lab_test_ids } do %>
-      <%= builder.check_box %>
+    <%= content_tag :div, class: 'panel', id: "panel_#{builder.object.id}" do %>
+      <%= builder.check_box data: { service_request_target: 'panel',
+                                    action: 'service-request#select',
+                                    service_request_new_order_param: form.object.new_record?,
+                                    lab_test_ids: builder.object.lab_test_ids } %>
       <label class="checkbox" for="accession_panel_ids_<%= builder.object.id %>"><%= sanitize(builder.text) %></label>
     <% end %>
   <% end %>

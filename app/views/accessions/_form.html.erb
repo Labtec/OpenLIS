@@ -4,7 +4,9 @@
   <% end %>
 
   <%= form_with(model: shallow_args(@patient, @accession), class: css_class,
-                html: { novalidate: '', autocomplete: 'off' }) do |form| %>
+                html: { novalidate: '', autocomplete: 'off' },
+                data: { controller: 'service-request',
+                        action: 'service-request#submit' }) do |form| %>
     <%= render 'shared/error_messages', object: @accession %>
 
     <h2><%= t('.order_details') %></h2>
