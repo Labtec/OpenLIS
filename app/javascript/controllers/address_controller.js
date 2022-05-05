@@ -15,6 +15,7 @@ export default class extends Controller {
     } else {
       if (this.districtTarget.value === "") {
         this.filterDistricts()
+        this.districtTarget.add(document.createElement("option"), this.districtTarget[0])
         this.districtTarget.value = ""
       } else {
         this.filterDistricts()
@@ -26,6 +27,7 @@ export default class extends Controller {
     } else {
       if (this.corregimientoTarget.value === "") {
         this.filterCorregimientos()
+        this.corregimientoTarget.add(document.createElement("option"), this.corregimientoTarget[0])
         this.corregimientoTarget.value = ""
       } else {
         this.filterCorregimientos()
@@ -47,10 +49,13 @@ export default class extends Controller {
   select_province() {
     let allDistricts = this.allDistricts
     let allCorregimientos = this.allCorregimientos
+
     // When the province is cleared:
     if (this.provinceTarget.value === "") {
       // Empty all selection boxes and the address line
+      this.districtTarget.add(document.createElement("option"), this.districtTarget[0])
       this.districtTarget.value = ""
+      this.corregimientoTarget.add(document.createElement("option"), this.corregimientoTarget[0])
       this.corregimientoTarget.value = ""
       this.lineTarget.value = ""
       // Restore all selecttion boxes
@@ -66,19 +71,24 @@ export default class extends Controller {
       // If the province is Guna Yala:
       if (this.provinceTarget.value === "Guna Yala") {
         // Clear and disable the selection of a district
+        this.districtTarget.add(document.createElement("option"), this.districtTarget[0])
         this.districtTarget.value = ""
         this.districtTarget.disabled = true
         // Filter corregimientos accordingly
         this.filterCorregimientos()
         // Clear and enable the selection of corregimientos
+        this.corregimientoTarget.add(document.createElement("option"), this.corregimientoTarget[0])
         this.corregimientoTarget.value = ""
         this.corregimientoTarget.disabled = false
       } else {
         // Clear and enable the selection of filtered districts
         this.filterDistricts()
+        this.districtTarget.add(document.createElement("option"), this.districtTarget[0])
         this.districtTarget.value = ""
         this.districtTarget.disabled = false
         // Clear and disable the selection of a corregimiento
+        this.corregimientoTarget.add(document.createElement("option"), this.corregimientoTarget[0])
+        this.corregimientoTarget.add(document.createElement("option"), this.corregimientoTarget[0])
         this.corregimientoTarget.value = ""
         this.corregimientoTarget.disabled = true
       }
@@ -105,6 +115,7 @@ export default class extends Controller {
       // When the district is selected:
       // Clear and enable the selection of filtered corregimientos
       this.filterCorregimientos()
+      this.corregimientoTarget.add(document.createElement("option"), this.corregimientoTarget[0])
       this.corregimientoTarget.value = ""
       this.corregimientoTarget.disabled = false
     }
