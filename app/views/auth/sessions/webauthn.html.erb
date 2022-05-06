@@ -11,6 +11,7 @@
 <%= form_with(model: resource, url: session_path(resource_name),
               class: 'login-form', html: { method: 'post' },
               data: { controller: :webauthn, webauthn_target: 'webauthnForm',
+                      webauthn_callback_url_value: '/auth/sessions/security_key_options',
                       action: 'webauthn#authenticate' }) do |form| %>
 
   <h3><%= t('.title') %></h3>

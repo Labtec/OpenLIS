@@ -1,12 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
-import * as WebAuthnJSON from "@github/webauthn-json"
+import { supported } from "@github/webauthn-json"
 import * as Credential from "webauthn/credential"
 
 export default class extends Controller {
   static targets = [ "nickname", "submitButton", "webauthnMessage", "webauthnForm" ]
+  static values = { callbackUrl: String }
 
   connect() {
-    if (!WebAuthnJSON.supported()) {
+    if (!supported()) {
       this.submitButtonTarget.disabled = true
       if (this.hasWebauthnMessageTarget) {
         this.webauthnMessageTarget.hidden = true
@@ -18,10 +19,8 @@ export default class extends Controller {
     event.preventDefault()
 
     if (this.hasWebauthnFormTarget) {
-      fetch("/auth/sessions/security_key_options").then(function(response) {
-        response.json().then(function(credentialOptions) {
-          Credential.get(credentialOptions)
-        })
+      fetch(this.callbackUrlValue).then(response => {
+        response.json().then(credentialOptions => Credential.get(credentialOptions))
       })
     }
   }
@@ -32,10 +31,8 @@ export default class extends Controller {
     if (this.hasNicknameTarget && this.nicknameTarget.value) {
       let nickname = this.nicknameTarget.value
 
-      fetch("/settings/security_keys/options").then(function(response) {
-        response.json().then(function(credentialOptions) {
-          Credential.create(nickname, credentialOptions)
-        })
+      fetch(this.callbackUrlValue).then(response => {
+        response.json().then(credentialOptions => Credential.create(nickname, credentialOptions))
       })
     } else {
       this.nicknameTarget.focus()
