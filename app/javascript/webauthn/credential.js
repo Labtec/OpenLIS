@@ -1,37 +1,20 @@
 import * as WebAuthnJSON from "@github/webauthn-json"
+import { post } from "@rails/request.js"
 
-function getCSRFToken() {
-  let CSRFSelector = document.querySelector('meta[name="csrf-token"]')
-  if (CSRFSelector) {
-    return CSRFSelector.getAttribute("content")
-  } else {
-    return null
-  }
-}
-
-function callback(url, body) {
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(body),
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "X-CSRF-Token": getCSRFToken()
-    },
-    credentials: 'same-origin'
-  }).then(function(response) {
-    response.json().then(function(result) {
+async function callback(url, body) {
+  const response = await post(url, { body: JSON.stringify(body) })
+  if (response.ok) {
+    response.json.then(result => {
       window.location.replace(result.redirect_path)
     })
-  }).catch(function(error) {
-    if (error.response.status === 422) {
-      const errorMessage = document.getElementById('security-key-error-message')
-      errorMessage.classList.remove('hidden');
-      console.error(error.response.data.error)
+  } else {
+    if (response.statusCode === 422) {
+      const errorMessage = document.getElementById("security-key-error-message")
+      errorMessage.classList.remove("hidden")
     } else {
-      console.error(error)
+      console.error(response)
     }
-  })
+  }
 }
 
 function create(nickname, credentialOptions) {
@@ -39,8 +22,8 @@ function create(nickname, credentialOptions) {
     let params = { "credential": credential, "nickname": nickname }
     callback("/settings/security_keys", params)
   }).catch(function(error) {
-    const errorMessage = document.getElementById('security-key-error-message')
-    errorMessage.classList.remove('hidden')
+    const errorMessage = document.getElementById("security-key-error-message")
+    errorMessage.classList.remove("hidden")
     console.error(error)
   })
 }
@@ -50,8 +33,8 @@ function get(credentialOptions) {
     let params = { "user": { "credential": credential } }
     callback("login", params)
   }).catch(function(error) {
-    const errorMessage = document.getElementById('security-key-error-message')
-    errorMessage.classList.remove('hidden')
+    const errorMessage = document.getElementById("security-key-error-message")
+    errorMessage.classList.remove("hidden")
     console.error(error)
   })
 }
