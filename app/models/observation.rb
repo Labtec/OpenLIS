@@ -36,10 +36,6 @@ class Observation < ApplicationRecord
   scope :ordered, -> { order('lab_tests.position') }
   default_scope -> { joins(:lab_test).order('lab_tests.position ASC') }
 
-  before_update -> do
-    @old_value = value_was
-  end
-
   after_update_commit -> { broadcast_replace_later_to :results }
 
   auto_strip_attributes :value
