@@ -9,7 +9,7 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def show
-    @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
+    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department)
 
     respond_to do |format|
       format.html
@@ -37,7 +37,7 @@ class DiagnosticReportsController < ApplicationController
     if @diagnostic_report.update(diagnostic_report_params)
       @diagnostic_report.transaction do
         @diagnostic_report.lock!
-        @diagnostic_report.results.map(&:evaluate!)
+        @diagnostic_report.results.map(&:evaluate!) # XXXJL
         @diagnostic_report.evaluate!
       end
 
@@ -114,7 +114,7 @@ class DiagnosticReportsController < ApplicationController
   private
 
   def set_diagnostic_report
-    @diagnostic_report = Accession.includes(:patient, :drawer, :receiver).find(params[:id])
+    @diagnostic_report = Accession.includes(:patient).find(params[:id])
     @patient = @diagnostic_report.patient
   end
 

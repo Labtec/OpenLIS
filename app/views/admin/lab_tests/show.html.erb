@@ -120,7 +120,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @lab_test.qualified_intervals %>
+      <%= render @lab_test.qualified_intervals.includes(:lab_test, :interpretation) %>
     </tbody>
   </table>
 </section>

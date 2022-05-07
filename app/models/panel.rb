@@ -40,7 +40,7 @@ class Panel < ApplicationRecord
 
   def self.cached_panels
     Rails.cache.fetch([name, 'cached_panels']) do
-      sorted.includes(:lab_tests).to_a
+      sorted.to_a
     end
   end
 
