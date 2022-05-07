@@ -582,6 +582,7 @@ class LabReport < Prawn::Document
       end
     end
 
+    move_down ROW_VERTICAL_PADDING
     line_width(LIGHT_RULE_WIDTH)
     stroke_horizontal_line(bounds.left, bounds.width)
     line_width(NORMAL_RULE_WIDTH)
