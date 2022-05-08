@@ -1,0 +1,8 @@
+<li class="empty">
+  <div>
+    <%= t('.no_requisitions_yet') %>
+  </div>
+  <% if patient %>
+    <%= link_to t('.order_tests'), new_patient_accession_path(patient) %>
+  <% end %>
+</li>

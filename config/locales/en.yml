@@ -30,6 +30,9 @@ en:
       outpatient: Outpatient
     edit:
       title: Change Order
+    empty:
+      order_tests: Order Tests
+      no_requisitions_yet: No orders
     form:
       accession: 'Order #%{id}'
       cancel: Cancel
@@ -50,8 +53,6 @@ en:
       submit: Save
       outpatient: Leave blank if outpatient
     index:
-      no_requisitions_yet: No orders
-      order_tests: Order Tests
       pending_requisitions: Pending Orders
       requisition_history: Results
       title: Orders
@@ -276,8 +277,6 @@ en:
       phone: 'Phone:'
       year: year
     show:
-      no_requisitions_yet: No orders
-      order_tests: Order Tests
       patient_not_found: Patient record no longer available.
       title: Patient Info
     unknown: Unknown

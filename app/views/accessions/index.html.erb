@@ -8,21 +8,15 @@
 
 <div class='list'>
   <div class="log">
-    <% if @accessions.blank? %>
-      <%= t('.no_requisitions_yet') %><br/>
-      <% if @patient %>
-        <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
+    <ul>
+      <%= render 'accessions/empty', patient: nil %>
+      <% if current_user.admin? %>
+        <%= render partial: 'admin_accession', collection: @accessions, as: :accession %>
+      <% else %>
+        <%= render @accessions %>
       <% end %>
-    <% else %>
-      <ul>
-        <% if current_user.admin? %>
-          <%= render partial: 'admin_accession', collection: @accessions, as: :accession %>
-        <% else %>
-          <%= render @accessions %>
-        <% end %>
-      </ul>
+    </ul>
 
-      <%= paginate @accessions %>
-    <% end %>
+    <%= paginate @accessions %>
   </div>
 </div>

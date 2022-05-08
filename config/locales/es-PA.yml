@@ -30,6 +30,9 @@ es-PA:
       outpatient: Ambulatorio
     edit:
       title: Cambiar Solicitud
+    empty:
+      order_tests: Ordenar Pruebas
+      no_requisitions_yet: Sin historial de solicitudes
     form:
       accession: 'Solicitud #%{id}'
       cancel: Cancelar
@@ -50,8 +53,6 @@ es-PA:
       submit: Guardar
       outpatient: Dejar en blanco si es ambulatorio
     index:
-      no_requisitions_yet: Sin historial de solicitudes
-      order_tests: Ordenar Pruebas
       pending_requisitions: Solicitudes Pendientes
       requisition_history: Historial de Resultados
       title: Solicitudes
@@ -276,8 +277,6 @@ es-PA:
       phone: 'Tel.:'
       year: año
     show:
-      no_requisitions_yet: Sin historial de solicitudes
-      order_tests: Ordenar Pruebas
       patient_not_found: Este registro de paciente ya no está disponible.
       title: Información del Paciente
     unknown: Desconocido
