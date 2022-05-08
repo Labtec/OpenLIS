@@ -413,22 +413,22 @@ table {
       width: 210px; }
     td.units {
       width: 100px; }
-    td.value {
-      padding-right: 0; }
-      td.formatted_value {
+    td.formatted_value {
+      padding-right: 0;
       text-align: right;
       width: 260px; }
-      td.formatted_value input[type="text"] {
-      text-align: right; }
-      td.flag {
+    td.formatted_value input[type="text"] {
+     text-align: right; }
+    td.flag {
+      padding-right: 0;
       text-align: center;
       width: 25px;}
-      td.result input {
-        margin: 0 0 0 4px;
-        width: 71px;
-        text-align: right; }
-      td.result select {
-        width: 125px; }
+    td.result input {
+      margin: 0 0 0 4px;
+      width: 71px;
+      text-align: right; }
+    td.result select {
+      width: 125px; }
     td.symbol {
       width: 15px;
       text-align: right;

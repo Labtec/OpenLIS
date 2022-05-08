@@ -1,11 +1,14 @@
 <table>
   <tbody>
-    <tr class="<%= flag_color(analyte.interpretation) %>">
+    <tr id="<%= dom_id(analyte) %>" class="<%= flag_color(analyte.interpretation) %>">
       <td class="table_lab_test">
         <%= sanitize(analyte.lab_test_name) %>
       </td>
-      <td class="value">
-        <%= render partial: 'observations/value', object: analyte %>
+      <td class="formatted_value <%= not_performed_class(analyte.not_performed?) %>">
+        <%= sanitize(format_value(analyte)) %>
+      </td>
+      <td class="flag">
+        <%= flag_name(analyte) %>
       </td>
     </tr>
   </tbody>

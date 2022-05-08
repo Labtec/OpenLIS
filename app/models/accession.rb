@@ -46,13 +46,13 @@ class Accession < ApplicationRecord
   scope :claimable, -> { where.not(doctor_id: nil) }
 
   before_save :nil_empty_notes
-  after_create_commit -> { broadcast_prepend_later_to :accessions, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.accessions_path } }
-  #after_update_commit -> { broadcast_replace_later_to [true, :accessions], partial: 'accessions/admin_accession' }
-  #after_update_commit -> { broadcast_replace_later_to [false, :accessions] }
+  #after_create_commit -> { broadcast_prepend_later_to :accessions, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.accessions_path } }
+  after_update_commit -> { broadcast_replace_later_to [true, :accessions], partial: 'accessions/admin_accession' }
+  after_update_commit -> { broadcast_replace_later_to [false, :accessions] }
   after_destroy_commit -> { broadcast_remove_to [true, :accessions] }
   after_destroy_commit -> { broadcast_remove_to [false, :accessions] }
 
-  after_destroy_commit -> { broadcast_replace_to :accession, partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.accessions_path }, target: :accession }
+  #after_destroy_commit -> { broadcast_replace_to :accession, partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.accessions_path }, target: :accession }
 
   def subject_age
     ActiveSupport::Duration.age(patient_birthdate, drawn_at)
