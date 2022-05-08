@@ -206,6 +206,7 @@ es-PA:
     edit:
       title: Editar Información del Paciente
     empty:
+      new_patient: Nuevo Paciente
       not_found: No se encontró ningún paciente
     equine: Caballo
     feline: Gato

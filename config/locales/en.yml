@@ -206,6 +206,7 @@ en:
     edit:
       title: Edit Patient Info
     empty:
+      new_patient: New Patient
       not_found: No patients found
     equine: Horse
     feline: Cat
