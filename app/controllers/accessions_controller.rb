@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class AccessionsController < ApplicationController
-  before_action :recent_patients, except: [:destroy]
   before_action :departments, only: %i[new create edit update]
   before_action :panels, only: %i[new create edit update]
   before_action :set_accession, only: %i[edit update destroy]
@@ -60,10 +59,6 @@ class AccessionsController < ApplicationController
   end
 
   protected
-
-  def recent_patients
-    @recent_patients ||= Patient.cached_recent
-  end
 
   def departments
     @departments ||= Department.cached_tests

@@ -62,7 +62,7 @@ class Patient < ApplicationRecord
 
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
-  scope :recent, -> { order(updated_at: :desc).limit(10) }
+  scope :recent, -> { order(updated_at: :desc) }
   scope :sorted, -> { order(Arel.sql('LOWER(my_unaccent(family_name))')) }
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
@@ -74,7 +74,6 @@ class Patient < ApplicationRecord
 
   before_save :titleize_names, :nil_identifier_type_if_identifier_blank,
               :nil_address_if_address_province_blank
-  after_commit :flush_cache
   after_create_commit -> { broadcast_prepend_later_to :patients, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.patients_path } }
   after_update_commit -> { broadcast_replace_later_to [true, :patients], partial: 'patients/admin_patient' }
   after_update_commit -> { broadcast_replace_later_to [false, :patients] }
@@ -92,15 +91,9 @@ class Patient < ApplicationRecord
 
   def self.search(query)
     if query.present?
-      search_by_name(query)
+      search_by_name(query).recent
     else
-      all.sorted
-    end
-  end
-
-  def self.cached_recent
-    Rails.cache.fetch([name, 'recent_patients']) do
-      recent.to_a
+      all.recent
     end
   end
 
@@ -139,9 +132,5 @@ class Patient < ApplicationRecord
   def titleize_names
     self.given_name = given_name.mb_chars.titleize if given_name
     self.middle_name = middle_name.mb_chars.titleize if middle_name
-  end
-
-  def flush_cache
-    Rails.cache.delete([self.class.name, 'recent_patients'])
   end
 end

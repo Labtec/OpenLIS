@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class PatientsController < ApplicationController
-  before_action :recent_patients, except: %i[update destroy]
   before_action :set_patient, only: %i[show edit update destroy history]
 
   def index
@@ -59,12 +58,6 @@ class PatientsController < ApplicationController
       format.json { render json: @bundle.to_json }
       format.xml { render xml: @bundle.to_xml }
     end
-  end
-
-  protected
-
-  def recent_patients
-    @recent_patients ||= Patient.cached_recent
   end
 
   private

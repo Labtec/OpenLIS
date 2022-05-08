@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class DiagnosticReportsController < ApplicationController
-  before_action :recent_patients
   before_action :set_diagnostic_report, only: %i[show edit update certify force_certify email]
 
   def index
@@ -103,12 +102,6 @@ class DiagnosticReportsController < ApplicationController
       end
     end
     redirect_to diagnostic_report_url(@diagnostic_report), error: t('flash.diagnostic_report.email_error')
-  end
-
-  protected
-
-  def recent_patients
-    @recent_patients ||= Patient.cached_recent
   end
 
   private

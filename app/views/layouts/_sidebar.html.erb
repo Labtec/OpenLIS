@@ -12,15 +12,3 @@
 <% if @patient %>
   <%= render partial: 'patients/card' unless @patient.new_record? %>
 <% end %>
-
-<% if @recent_patients %>
-  <div class="panel" id="recent">
-    <div class="caption"><%= t('.recent_patients') %></div>
-    <% cache @recent_patients do %>
-      <ul>
-        <%= render partial: 'shared/recent_patients',
-          collection: @recent_patients, as: :patient, cached: true %>
-      </ul>
-    <% end %>
-  </div>
-<% end %>
