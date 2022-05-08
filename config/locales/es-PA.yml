@@ -204,6 +204,8 @@ es-PA:
       success: Paciente borrado exitosamente.
     edit:
       title: Editar Información del Paciente
+    empty:
+      not_found: No se encontró ningún paciente
     equine: Caballo
     feline: Gato
     female: Femenino
@@ -271,7 +273,6 @@ es-PA:
       confirm_destroy: ¿Está seguro?
       delete?: ¿Borrar?
       edit: Editar
-      not_found: No se encontró ningún paciente
       phone: 'Tel.:'
       year: año
     show:

@@ -204,6 +204,8 @@ en:
       success: Successfully removed patient.
     edit:
       title: Edit Patient Info
+    empty:
+      not_found: No patients found
     equine: Horse
     feline: Cat
     female: Female
@@ -271,7 +273,6 @@ en:
       confirm_destroy: Are you sure?
       delete?: Delete?
       edit: Edit
-      not_found: No patients found
       phone: 'Phone:'
       year: year
     show:

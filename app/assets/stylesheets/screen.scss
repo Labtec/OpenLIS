@@ -1175,6 +1175,15 @@ tr.empty-true:hover {
   background-color: salmon;
 }
 
+.empty {
+  display: none;
+}
+
+.empty:only-child {
+  display: revert;
+  border-bottom: none;
+}
+
 .stale-link {
   background: #fdba74 !important;
   border: 1px solid #9a3412 !important;

@@ -11,17 +11,14 @@
 </div>
 
 <div class="list">
-  <% if @patients.empty? %>
-    <p class="content"><%= t('.not_found') %></p>
-  <% else %>
-    <ul>
-      <% if current_user.admin? %>
-        <%= render partial: 'admin_patient', collection: @patients, as: :patient %>
-      <% else %>
-        <%= render @patients %>
-      <% end %>
-    </ul>
+  <ul>
+    <%= render 'patients/empty' %>
+    <% if current_user.admin? %>
+      <%= render partial: 'admin_patient', collection: @patients, as: :patient %>
+    <% else %>
+      <%= render @patients %>
+    <% end %>
+  </ul>
 
-    <%= paginate @patients %>
-  <% end %>
+  <%= paginate @patients %>
 </div>
