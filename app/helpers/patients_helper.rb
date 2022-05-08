@@ -64,9 +64,9 @@ module PatientsHelper
     return if patient.family_name.blank? || patient.animal_type.present?
 
     full_name = [patient.given_name,
-     patient.middle_name,
-     patient.family_name,
-     patient.family_name2].join(' ').squish
+                 patient.middle_name,
+                 patient.family_name,
+                 patient.family_name2].join(' ').squish
 
     ActiveSupport::Inflector.transliterate(full_name).upcase
   end

@@ -56,8 +56,8 @@ module System
           click_on 'Edit'
         end
         within '.range' do
-          fill_in 'Low', with: 123456789
-          fill_in 'High', with: 987654321
+          fill_in 'Low', with: 123_456_789
+          fill_in 'High', with: 987_654_321
         end
         click_on 'Submit'
 

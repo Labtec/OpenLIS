@@ -56,8 +56,8 @@ module Settings
       respond_to do |format|
         if @credential
           if current_user.last_security_key?
-              format.html { flash[:alert] = t('flash.users.cant_delete_last_security_key') }
-              format.turbo_stream { flash.now[:alert] = t('flash.users.cant_delete_last_security_key') }
+            format.html { flash[:alert] = t('flash.users.cant_delete_last_security_key') }
+            format.turbo_stream { flash.now[:alert] = t('flash.users.cant_delete_last_security_key') }
           else
             @credential.destroy
             if @credential.destroyed?
