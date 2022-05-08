@@ -1,6 +1,6 @@
 <table>
   <tbody>
-    <tr id="<%= dom_id(analyte) %>" class="<%= flag_color(analyte.interpretation) %>">
+    <%= content_tag :tr, id: dom_id(analyte), class: flag_color(analyte.interpretation) do %>
       <td class="table_lab_test">
         <%= sanitize(analyte.lab_test_name) %>
       </td>
@@ -10,6 +10,6 @@
       <td class="flag">
         <%= flag_name(analyte) %>
       </td>
-    </tr>
+      <% end %>
   </tbody>
 </table>

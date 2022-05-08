@@ -1,5 +1,7 @@
 <% title t('.accession', id: @diagnostic_report.id) %>
 
+<%= turbo_stream_from :results %>
+
 <fieldset class="<%= @diagnostic_report.reported_at.blank? %>">
   <h1><%= t('.accession', id: @diagnostic_report.id) %></h1>
 

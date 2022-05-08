@@ -1,12 +1,15 @@
 <table>
   <tbody>
-    <tr class="<%= flag_color(form.object.interpretation) %>">
+    <%= content_tag :tr, id: dom_id(form.object), class: flag_color(form.object.interpretation) do %>
       <td class="table_lab_test">
         <%= form.label :value, sanitize(form.object.lab_test_name) %>
       </td>
-      <td class="value">
-        <%= render partial: 'observations/form_value', locals: { form: form } %>
+      <td class="formatted_value <%= not_performed_class(form.object.not_performed?) %>">
+        <%= observation_input form, form.object, form.object.lab_test %>
       </td>
-    </tr>
+      <td class="flag">
+        <%= flag_name(form.object) %>
+      </td>
+    <% end %>
   </tbody>
 </table>
