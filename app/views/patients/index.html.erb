@@ -11,7 +11,7 @@
 </div>
 
 <div class="list">
-  <ul>
+  <ul id="patients" is="turbo-frame">
     <%= render 'patients/empty' %>
     <% if current_user.admin? %>
       <%= render partial: 'admin_patient', collection: @patients, as: :patient %>

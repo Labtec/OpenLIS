@@ -5,13 +5,13 @@ module Broadcastable
     extend ActiveSupport::Concern
 
     included do
-      #after_create_commit -> { broadcast_prepend_later_to :patients, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.patients_path } }
+      after_create_commit -> { broadcast_prepend_later_to [true, :patients], partial: 'patients/admin_patient' }
+      after_create_commit -> { broadcast_prepend_later_to [false, :patients] }
 
       after_update_commit -> { broadcast_replace_later_to [true, :patients], partial: 'patients/admin_patient' }
       after_update_commit -> { broadcast_replace_later_to [false, :patients] }
       after_update_commit -> { broadcast_replace_later_to :patient_card, partial: 'patients/card', locals: { patient: self }, target: "patient_#{id}_card" }
       after_update_commit -> { broadcast_replace_later_to :patient_name, partial: 'patients/name', locals: { patient: self }, target: "patient_#{id}_name" }
-      #after_update_commit -> { broadcast_replace_later_to :patient, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.patient_path(self) }, target: :patient }
 
       after_destroy_commit -> { broadcast_remove_to [true, :patients] }
       after_destroy_commit -> { broadcast_remove_to [false, :patients] }
