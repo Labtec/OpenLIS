@@ -1,12 +1,13 @@
 <% title t('.title') %>
 
-<%= turbo_stream_from :patient %>
+<%= turbo_stream_from :patient_name %>
 <%= turbo_stream_from [current_user.admin?, :accessions] %>
 
 <div class="title_tools">
   <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
 </div>
-<div class="title"><%= full_name(@patient) %></div>
+
+<%= render partial: 'name', locals: { patient: @patient } %>
 
 <div class="list">
   <div class="log">

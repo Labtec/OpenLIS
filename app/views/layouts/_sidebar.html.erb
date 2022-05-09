@@ -10,5 +10,5 @@
 </div>
 
 <% if @patient %>
-  <%= render partial: 'patients/card' unless @patient.new_record? %>
+  <%= render partial: 'patients/card', locals: { patient: @patient } unless @patient.new_record? %>
 <% end %>

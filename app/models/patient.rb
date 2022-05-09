@@ -3,6 +3,7 @@
 class Patient < ApplicationRecord
   include PgSearch::Model
   include FHIRable::Patient
+  include Broadcastable::Patient
 
   ANIMAL_SPECIES = (0..3).to_a
   GENDERS = %w[F M O U].freeze
@@ -74,14 +75,6 @@ class Patient < ApplicationRecord
 
   before_save :titleize_names, :nil_identifier_type_if_identifier_blank,
               :nil_address_if_address_province_blank
-  #after_create_commit -> { broadcast_prepend_later_to :patients, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.patients_path } }
-  after_update_commit -> { broadcast_replace_later_to [true, :patients], partial: 'patients/admin_patient' }
-  after_update_commit -> { broadcast_replace_later_to [false, :patients] }
-  after_destroy_commit -> { broadcast_remove_to [true, :patients] }
-  after_destroy_commit -> { broadcast_remove_to [false, :patients] }
-
-  #after_update_commit -> { broadcast_replace_later_to :patient, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.patient_path(self) }, target: :patient }
-  #after_destroy_commit -> { broadcast_replace_to :patient, partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.patients_path }, target: :patient }
 
   pg_search_scope :search_by_name, against: %i[identifier
                                                family_name family_name2
