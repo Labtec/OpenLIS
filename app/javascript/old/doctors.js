@@ -1,4 +1,3 @@
-// XXXJL @github/auto-complete-element
 $(document).on('turbo:load turbo:render', function() {
   var doctors;
   doctors = $('input#accession_doctor_name').data('doctors');

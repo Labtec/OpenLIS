@@ -1,4 +1,3 @@
-// XXXJL @github/task-lists-element
 $(document).on('turbo:load turbo:render', function() {
   return $('.lab_tests').sortable({
     axis: 'y',
