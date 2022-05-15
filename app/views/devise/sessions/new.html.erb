@@ -1,5 +1,5 @@
 <%= form_with(model: resource, url: session_path(resource_name),
-              data: { turbo: false},
+              data: { turbo: false },
               class: 'login-form', html: { novalidate: true }) do |f| %>
   <div class="username">
     <%= f.label :username, t('user_sessions.new.username') %>
