@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { supported } from "@github/webauthn-json"
+import { get } from "@rails/request.js"
 import * as Credential from "webauthn/credential"
 
 export default class extends Controller {
@@ -15,26 +16,28 @@ export default class extends Controller {
     }
   }
 
-  authenticate(event) {
+  async authenticate(event) {
     event.preventDefault()
 
     if (this.hasCallbackUrlValue) {
-      fetch(this.callbackUrlValue).then(response => {
-        response.json().then(credentialOptions => Credential.get(credentialOptions))
-      })
+      const response = await get(this.callbackUrlValue)
+      if (response.ok) {
+        response.json.then(credentialOptions => Credential.get(credentialOptions))
+      }
     }
   }
 
-  register(event) {
+  async register(event) {
     event.preventDefault()
 
     if (this.hasNicknameTarget && this.nicknameTarget.value) {
       let nickname = this.nicknameTarget.value
 
       if (this.hasCallbackUrlValue) {
-        fetch(this.callbackUrlValue).then(response => {
-          response.json().then(credentialOptions => Credential.create(nickname, credentialOptions))
-        })
+        const response = await get(this.callbackUrlValue)
+        if (response.ok) {
+          response.json.then(credentialOptions => Credential.create(nickname, credentialOptions))
+        }
       }
     } else {
       this.nicknameTarget.focus()
