@@ -8,7 +8,6 @@
 <fieldset>
 <%= form_with(model: [:settings, @webauthn_credential],
               data: { controller: :webauthn,
-                      webauthn_target: 'webauthnForm',
                       webauthn_callback_url_value: '/settings/security_keys/options',
                       action: 'webauthn#register' }) do |form| %>
   <%= render 'shared/error_messages', object: @webauthn_credential %>

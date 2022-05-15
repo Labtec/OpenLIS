@@ -3,7 +3,7 @@ import { supported } from "@github/webauthn-json"
 import * as Credential from "webauthn/credential"
 
 export default class extends Controller {
-  static targets = [ "nickname", "submitButton", "webauthnMessage", "webauthnForm" ]
+  static targets = [ "nickname", "submitButton", "webauthnMessage" ]
   static values = { callbackUrl: String }
 
   connect() {
@@ -18,7 +18,7 @@ export default class extends Controller {
   authenticate(event) {
     event.preventDefault()
 
-    if (this.hasWebauthnFormTarget) {
+    if (this.hasCallbackUrlValue) {
       fetch(this.callbackUrlValue).then(response => {
         response.json().then(credentialOptions => Credential.get(credentialOptions))
       })
@@ -31,9 +31,11 @@ export default class extends Controller {
     if (this.hasNicknameTarget && this.nicknameTarget.value) {
       let nickname = this.nicknameTarget.value
 
-      fetch(this.callbackUrlValue).then(response => {
-        response.json().then(credentialOptions => Credential.create(nickname, credentialOptions))
-      })
+      if (this.hasCallbackUrlValue) {
+        fetch(this.callbackUrlValue).then(response => {
+          response.json().then(credentialOptions => Credential.create(nickname, credentialOptions))
+        })
+      }
     } else {
       this.nicknameTarget.focus()
     }
