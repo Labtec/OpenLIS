@@ -19,8 +19,8 @@ module AccessionsHelper
              end
     email_report_link = resend ? t('.emailed_report') : t('.email_report')
     email_report_confirm = resend ? t('.confirm_emailed', email: email) : t('.confirm_email', email: email)
-    link_to email_report_link, email_diagnostic_report_path(diagnostic_report, to: recipient),
-            data: { turbo_method: :put, turbo_confirm: email_report_confirm }
+    button_to email_report_link, email_diagnostic_report_path(diagnostic_report, to: recipient),
+              method: :put, form: { data: { turbo_method: :put, turbo_confirm: email_report_confirm } }
   end
 
   def force_certify_diagnostic_report(diagnostic_report)

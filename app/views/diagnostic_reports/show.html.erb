@@ -65,9 +65,9 @@
     <% else %>
       <%= link_to t('.enter_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
     <% end %>
-    <% if @patient.email.present? && !@diagnostic_report.registered? %>
-       <%= email_report(:patient, @diagnostic_report, @patient.email) %> |
-    <% end %>
     <%= link_to t('.print_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf') %>
+    <% if @patient.email.present? && !@diagnostic_report.registered? %>
+       | <%= email_report(:patient, @diagnostic_report, @patient.email) %>
+    <% end %>
   </div>
 </fieldset>
