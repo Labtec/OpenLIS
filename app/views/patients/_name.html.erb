@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "#{dom_id(patient)}_name" do %>
+<%= turbo_frame_tag dom_id(patient, :name) do %>
   <div class="title">
     <%= full_name(patient) %>
   </div>

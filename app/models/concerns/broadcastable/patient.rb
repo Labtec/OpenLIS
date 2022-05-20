@@ -15,8 +15,8 @@ module Broadcastable
 
       after_destroy_commit -> { broadcast_remove_to [true, :patients] }
       after_destroy_commit -> { broadcast_remove_to [false, :patients] }
-      after_destroy_commit -> { broadcast_remove_to :patient_card, target: "patient_#{id}_card" }
-      after_destroy_commit -> { broadcast_remove_to :patient_name, target: "patient_#{id}_name" }
+      after_destroy_commit -> { broadcast_remove_to :patient_card, target: "card_patient_#{id}" }
+      after_destroy_commit -> { broadcast_remove_to :patient_name, target: "name_patient_#{id}" }
       #after_destroy_commit -> { broadcast_replace_to :patient, partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.patients_path }, target: :patient }
     end
   end
