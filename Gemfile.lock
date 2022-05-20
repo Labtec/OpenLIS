@@ -96,7 +96,7 @@ GEM
     barby (0.6.8)
     bcp47 (0.3.3)
       i18n
-    bcrypt (3.1.17)
+    bcrypt (3.1.18)
     bindata (2.4.10)
     bindex (0.8.1)
     bootsnap (1.11.1)
@@ -432,4 +432,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.12
+   2.3.14
