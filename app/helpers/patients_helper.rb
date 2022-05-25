@@ -50,7 +50,7 @@ module PatientsHelper
 
   def name_last_comma_first_mi(patient)
     family_name = (patient.partner_name || patient.family_name)
-    family_name[0] = family_name[0].mb_chars.upcase if family_name # XXX Bug in production
+    family_name[0] = family_name[0].mb_chars.upcase
     last_comma_first = [family_name, patient.given_name].join(', ')
     mi = "#{patient.middle_name[0, 1]}." if patient.middle_name.present?
     ActiveSupport::Inflector.transliterate([last_comma_first, mi].join(' ').squish)
