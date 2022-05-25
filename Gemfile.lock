@@ -320,7 +320,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     thor (1.2.1)
     tilt (2.0.10)
-    timeout (0.2.0)
+    timeout (0.3.0)
     tpm-key_attestation (0.10.0)
       bindata (~> 2.4)
       openssl-signature_algorithm (~> 1.0)
