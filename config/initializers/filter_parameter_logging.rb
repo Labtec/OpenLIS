@@ -12,12 +12,15 @@ Rails.application.config.filter_parameters += [
   :email,
   :family_name,
   :family_name2,
+  :gender,
   :given_name,
   :identifier,
   :identifier_type,
   :insurance_provider_id,
   :middle_name,
+  :partner_name,
   :phone,
+  :policy_number,
   :search,
   :passw, :secret, :token, :_key, :crypt, :salt, :certificate, :otp, :ssn
 ]
