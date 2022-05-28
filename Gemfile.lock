@@ -297,8 +297,7 @@ GEM
     rake (13.0.6)
     rb-kqueue (0.2.8)
       ffi (>= 0.5.0)
-    redis (4.6.0)
-    regexp_parser (2.4.0)
+    regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
     responders (3.0.1)
@@ -419,7 +418,6 @@ DEPENDENCIES
   rails-html-sanitizer
   rails-i18n
   rb-kqueue
-  redis
   sassc-rails
   selenium-webdriver
   semacode!
