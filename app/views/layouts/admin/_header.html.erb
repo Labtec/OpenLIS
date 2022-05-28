@@ -2,7 +2,7 @@
   <div id="welcome">
     <%= link_to current_username, profile_path %> |
     <%= link_to "Back to OpenLIS", root_path %> |
-    <%= link_to t('.logout'), destroy_user_session_path, data: { turbo_method: :delete } %>
+    <%= button_to t('.logout'), destroy_user_session_path, method: :delete, class: 'welcome', data: { turbo: false } %>
 
   </div>
   <h3><%= link_to "MasterLab", root_path, data: { turbo: false } %></h3>
