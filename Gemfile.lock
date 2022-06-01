@@ -99,7 +99,7 @@ GEM
     bcrypt (3.1.18)
     bindata (2.4.10)
     bindex (0.8.1)
-    bootsnap (1.11.1)
+    bootsnap (1.12.0)
       msgpack (~> 1.2)
     brakeman (5.2.3)
     builder (3.2.4)
@@ -108,7 +108,7 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
-    capistrano-bundler (2.0.1)
+    capistrano-bundler (2.1.0)
       capistrano (~> 3.1)
     capistrano-rails (1.6.2)
       capistrano (~> 3.1)
@@ -315,7 +315,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.2.0)
+    selenium-webdriver (4.2.1)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -433,4 +433,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.14
+   2.3.15
