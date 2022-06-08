@@ -76,7 +76,7 @@
   <% end %>
 
   <div class="buttonbar">
-    <%= f.submit t('.submit') %>
+    <%= f.submit t('.submit'), data: { turbo: false } %>
     <%= t('.or') %>
     <%= link_to t('.cancel'), root_url %>
   </div>
