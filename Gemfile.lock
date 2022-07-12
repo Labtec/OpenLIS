@@ -165,7 +165,7 @@ GEM
     flamegraph (0.9.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    i18n (1.10.0)
+    i18n (1.11.0)
       concurrent-ruby (~> 1.0)
     ipaddr (1.2.4)
     jbuilder (2.11.5)
