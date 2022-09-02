@@ -11,12 +11,12 @@
   "private": true,
   "dependencies": {
     "@github/webauthn-json": "^1.0.2",
-    "@rails/actioncable": "^6.1.6",
-    "@rails/activestorage": "^6.1.6",
-    "@rails/ujs": "^6.1.6",
+    "@rails/actioncable": "^6.1.6-1",
+    "@rails/activestorage": "^6.1.6-1",
+    "@rails/ujs": "^6.1.6-1",
     "@rails/webpacker": "5.4.3",
     "axios": "^0.27.2",
-    "jquery": "^3.6.0",
+    "jquery": "^3.6.1",
     "regenerator-runtime": "^0.13.9",
     "turbolinks": "^5.2.0"
   }
