@@ -40,6 +40,10 @@ module Derivable
               raise
             end
       ldl / hdl
+    when 'TRIGHDLR'
+      hdl = result_value_quantity_for 'HDL'
+      trig = result_value_quantity_for 'TRIG'
+      trig / hdl
     when 'NHDCH'
       chol = result_value_quantity_for 'CHOL'
       hdl = result_value_quantity_for 'HDL'
@@ -168,6 +172,10 @@ module Derivable
       bun = result_value_quantity_for 'BUN'
       glucose = result_value_quantity_for('GLU') || result_value_quantity_for('GLUC')
       na * 2 + bun / 2.8 + glucose / 18
+    when 'HOMAIR'
+      glucose = result_value_quantity_for('GLU') || result_value_quantity_for('GLUC')
+      insulin = result_value_quantity_for('INS') || result_value_quantity_for('INSI') ||result_value_quantity_for('INSG')
+      glucose * insulin / 405
     when 'eGFRcr'
       age = subject_age.parts[:years]
       return if age < 18
