@@ -36,10 +36,6 @@ module ObservationsHelper
     end
   end
 
-  def observation_value_comparator(value)
-    value.scan(/[^\d.]/).join.squish
-  end
-
   def format_units(observation)
     observation.value_unit
   end
