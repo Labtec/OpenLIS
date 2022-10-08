@@ -134,7 +134,7 @@ class ObservationsHelperTest < ActionView::TestCase
     assert_equal reference_range_table, ranges_table([qualified_intervals(:desirable)])
   end
 
-  test '#rannge_row' do
+  test '#range_row' do
     range = qualified_intervals(:qualified_interval)
     assert_equal [nil, '', '10', '–', '2,000'], range_row(range), 'Quantity'
 
