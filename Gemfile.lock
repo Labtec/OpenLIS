@@ -232,7 +232,7 @@ GEM
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
     public_suffix (5.0.0)
-    puma (6.0.0)
+    puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
@@ -354,7 +354,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.4)
+    zeitwerk (2.6.5)
 
 PLATFORMS
   ruby
@@ -394,7 +394,7 @@ DEPENDENCIES
   prawn
   prawn-svg
   prawn-table
-  puma
+  puma (< 6)
   rack-mini-profiler
   rails (= 6.1.7)
   rails-html-sanitizer
