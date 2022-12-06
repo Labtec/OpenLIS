@@ -79,5 +79,16 @@ class DerivableTest < ActiveSupport::TestCase
     @patient.update(gender: 'F')
     @creatinine.update(value: nil)
     assert_nil @egfrcr.derived_value
+
+    # NKF KDOQI and KDIGO guidelines recommend confirming eGFR of
+    # 45-59 mL/min/1.73m2 with uACR <30 mg/g based on eGFR calculated
+    # using both creatinine and cystatin C.
+    @creatinine.update(value: 1.50)
+    assert_equal 33, @egfrcr.derived_value
+    assert_nil @egfrcr.derived_remarks
+
+    @creatinine.update(value: 1.10)
+    assert_equal 48, @egfrcr.derived_value
+    assert_not_nil @egfrcr.derived_remarks
   end
 end

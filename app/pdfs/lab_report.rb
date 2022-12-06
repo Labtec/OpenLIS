@@ -216,9 +216,11 @@ class LabReport < Prawn::Document
 
         if result.lab_test_remarks.present?
           remarks = make_cell content: result.lab_test_remarks.to_s, inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
+          derived_remarks = make_cell content: result.derived_remarks.to_s, inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
 
           data_remarks = [[cell_col0, cell_col1, cell_col2, cell_col3, cell_col4]]
           data_remarks << [remarks]
+          data_remarks << [derived_remarks]
 
           data_remarks_table = make_table(data_remarks, cell_style: { borders: [] }) do
             column(0).width = COLUMN_0_WIDTH
