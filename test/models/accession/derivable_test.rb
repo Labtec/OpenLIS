@@ -16,11 +16,11 @@ class AccessionDerivableTest < ActiveSupport::TestCase
     result_for(@accession, 'HDL').update value: 100
     result_for(@accession, 'TRIG').update value: 110
     ldl = result_for(@accession, 'LDL')
-    ldl.update unit: units(:unit_a)
+    ldl.update unit: units('mg/dl')
 
     assert_equal 78, @accession.derived_value_for('LDL'), 'CHOL - (HDL + TRIG / 5)'
 
-    ldl.update unit: units(:unit_b)
+    ldl.update unit: units('mmol/l')
 
     assert_equal 50, @accession.derived_value_for('LDL'), 'CHOL - (HDL + TRIG / 2.2)'
 
@@ -34,11 +34,11 @@ class AccessionDerivableTest < ActiveSupport::TestCase
     result_for(@accession, 'HDL').update value: 100
     result_for(@accession, 'TRIG').update value: 110
     ldl = result_for(@accession, 'LDL')
-    ldl.update unit: units(:unit_a)
+    ldl.update unit: units('mg/dl')
 
     assert_equal 0.78, @accession.derived_value_for('LDLHDLR'), 'mg/dL'
 
-    ldl.update unit: units(:unit_b)
+    ldl.update unit: units('mmol/l')
 
     assert_equal 0.50, @accession.derived_value_for('LDLHDLR'), 'mmol/L'
 

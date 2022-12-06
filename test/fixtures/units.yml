@@ -2,10 +2,7 @@ units:
   expression: Units
 
 unit_a:
-  expression: mg/dL
-
-unit_b:
-  expression: mmol/L
+  expression: UnitA
 
 g/dl:
   expression: g/dL
@@ -16,3 +13,10 @@ g/dl:
 IU/L:
   expression: IU/L
   ucum: '[IU]/L'
+
+mg/dl:
+  expression: mg/dL
+  ucum: mg/dL
+
+mmol/l:
+  expression: mmol/L
