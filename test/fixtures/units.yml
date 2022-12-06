@@ -20,3 +20,7 @@ mg/dl:
 
 mmol/l:
   expression: mmol/L
+
+ml/min/1_73m2:
+  expression: mL/min/1.73m²
+  ucum: mL/min/{1.73_m2}

@@ -31,3 +31,10 @@ lipid:
   received_at: <%= 1.day.ago %>
   drawer: user
   receiver: user
+
+egfrcr:
+  patient: john
+  drawn_at: <%= 1.day.ago %>
+  received_at: <%= 1.day.ago %>
+  drawer: user
+  receiver: user
