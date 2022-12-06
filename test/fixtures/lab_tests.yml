@@ -7,26 +7,26 @@ chol:
   department: chemistry
   name: Cholesterol
   code: CHOL
-  unit: unit_a
+  unit: mg/dl
 
 hdl:
   department: chemistry
   name: Cholesterol in HDL
   code: HDL
-  unit: unit_a
+  unit: mg/dl
 
 trig:
   department: chemistry
   name: Triglyceride
   code: TRIG
-  unit: unit_a
+  unit: mg/dl
 
 ldl:
   department: chemistry
   name: Cholesterol in LDL
   code: LDL
   derivation: true
-  unit: unit_a
+  unit: mg/dl
 
 ldl_hdl:
   department: chemistry
