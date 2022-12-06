@@ -30,9 +30,11 @@ class DerivableTest < ActiveSupport::TestCase
     # Creatinine below or above the measuring interval  do not calculate
     # (analytical measurement range)                    [not tested]
 
+    @creatinine.update(value: 1.00)
     @patient.update(birthdate: 18.years.ago, gender: 'M')
     assert_nil @egfrcr.derived_value
 
+    @creatinine.update(value: 1.00)
     @patient.update(birthdate: 18.years.ago, gender: 'F')
     assert_nil @egfrcr.derived_value
 
