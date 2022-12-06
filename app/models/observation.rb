@@ -63,6 +63,10 @@ class Observation < ApplicationRecord
     dv.round(lab_test_decimals.to_i)
   end
 
+  def derived_remarks
+    accession.derived_remarks_for(lab_test_code)
+  end
+
   def value_codeable_concept
     lab_test_value&.value
   end

@@ -250,4 +250,20 @@ module Derivable
   def result_value_quantity_for(code)
     results.joins(:lab_test).find_by('lab_tests.code': code)&.value&.to_d
   end
+
+  def result_derived_value_for(code)
+    results.joins(:lab_test).find_by('lab_tests.code': code)&.derived_value&.to_d
+  end
+
+  def derived_remarks_for(code)
+    case code
+    when 'eGFRcr'
+      egfrcr = result_derived_value_for 'eGFRcr'
+      if egfrcr.between?(45, 59)
+        return I18n.t('observations.derived_remarks.egfrcr')
+      end
+    end
+  rescue StandardError
+    nil
+  end
 end

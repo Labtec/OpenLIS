@@ -169,6 +169,9 @@ es-PA:
   notes:
     form:
       notes: 'Observaciones:'
+  observations:
+    derived_remarks:
+      egfrcr: Las directrices de NKF KDOQI y KDIGO recomiendan confirmar una Tasa de Filtración Glomerular estimada (eGFR) de 45–59 mL/min/1.73m² con una Tasa Albúmina-Creatinina en orina (uACR) &lt;30 mg/g, en función de una eGFR calculada con Creatinina y Cistatina C.
   panels:
     form:
       order_panels: Ordenar Paneles
