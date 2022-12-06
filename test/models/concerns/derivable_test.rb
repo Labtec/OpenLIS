@@ -73,7 +73,10 @@ class DerivableTest < ActiveSupport::TestCase
     @patient.update(birthdate: nil)
     assert_nil @egfrcr.derived_value
 
-    @patient.update(birthdate: 19.years.ago)
+    @patient.update(birthdate: 91.years.ago, gender: nil)
+    assert_nil @egfrcr.derived_value
+
+    @patient.update(gender: 'F')
     @creatinine.update(value: nil)
     assert_nil @egfrcr.derived_value
   end

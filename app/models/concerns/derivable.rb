@@ -185,7 +185,7 @@ module Derivable
         a = -0.241
         k = 0.7
         gender = 1.012
-      else
+      elsif patient.male?
         a = -0.302
         k = 0.9
         gender = 1
