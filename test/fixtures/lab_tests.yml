@@ -136,3 +136,19 @@ with_critical_ranges:
   decimals: 0
   name: With Critical Ranges
   code: CRITICALRANGES
+
+crtsa:
+  department: chemistry
+  decimals: 2
+  name: Serum Creatinine
+  unit: mg/dl
+  code: CRTSA
+
+egfrcr:
+  department: chemistry
+  decimals: 0
+  name: eGFRcr (CKD-EPI 2021)
+  unit: ml/min/1_73m2
+  code: eGFRcr
+  derivation: true
+  remarks: Reported eGFR is based on the CKD-EPI 2021 equation that does not use a race coefficient.

@@ -21,3 +21,11 @@ observation_ldl:
 observation_ldl_hdl:
   lab_test: ldl_hdl
   accession: lipid
+
+egfrcr:
+  lab_test: egfrcr
+  accession: egfrcr
+
+crtsa:
+  lab_test: crtsa
+  accession: egfrcr
