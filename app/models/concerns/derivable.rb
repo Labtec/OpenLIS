@@ -177,7 +177,7 @@ module Derivable
       insulin = result_value_quantity_for('INS') || result_value_quantity_for('INSI') ||result_value_quantity_for('INSG')
       glucose * insulin / 405
     when 'eGFRcr'
-      age = subject_age.parts[:years]
+      age = subject_age.in_years.round
       return if age < 18
 
       crtsa = result_value_quantity_for 'CRTSA'
@@ -193,7 +193,7 @@ module Derivable
       crtsa_k = crtsa / k
       142 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.2 * 0.9938**age * gender
     when 'EGNB'
-      age = subject_age.parts[:years]
+      age = subject_age.in_years.round
       return if age < 18
 
       crtsa = result_value_quantity_for 'CRTSA'
@@ -209,14 +209,14 @@ module Derivable
       crtsa_k = crtsa / k
       141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.9929**age * gender
     when 'EGFRMDRD'
-      age = subject_age.parts[:years]
+      age = subject_age.in_years.round
       return if age < 18
 
       crtsa = result_value_quantity_for 'CRTSA'
       gender = patient.female? ? 0.742 : 1
       175 * crtsa**-1.154 * age**-0.203 * gender
     when 'EGBL'
-      age = subject_age.parts[:years]
+      age = subject_age.in_years.round
       return if age < 18
 
       crtsa = result_value_quantity_for 'CRTSA'
@@ -232,7 +232,7 @@ module Derivable
       crtsa_k = crtsa / k
       141 * [crtsa_k, 1].min**a * [crtsa_k, 1].max**-1.209 * 0.9929**age * b_gender
     when 'EGFRMDRDBL'
-      age = subject_age.parts[:years]
+      age = subject_age.in_years.round
       return if age < 18
 
       crtsa = result_value_quantity_for 'CRTSA'

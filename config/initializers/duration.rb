@@ -4,24 +4,36 @@ module ActiveSupport
   class Duration
     class << self
       # Builds the age of a person at any given date/time.
-      # If no time is given, +Date.today+ is used.
-      def age(from, to = Date.today)
+      # If no time is given, +Time.zone.now.to_date+ is used.
+      def age(from, to = Time.zone.now.to_date)
         return unless from
 
-        from = from.to_date
-        to = to.to_date
+        return if from > to
+
+        # Account for local time zone first, then
+        # strip time information.
+        from = from.in_time_zone.to_date
+        to = to.in_time_zone.to_date
 
         fd = from.day
         fm = from.month
         td = to.day
         tm = to.month
+        fy = from.year
         ty = to.year
 
+        # Account for leap days from date.
         if fd == 29 && fm == 2 && td == 28 && tm == 2 && !Date.gregorian_leap?(ty)
-          ActiveSupport::Duration.build(((to - from).to_i * SECONDS_PER_DAY) + 1.day)
+          duration = (to - from).to_i + 0.2425 * (ty - fy)
         else
-          ActiveSupport::Duration.build((to - from).to_i * SECONDS_PER_DAY)
+          duration = (to - from).to_i
         end
+
+        # Convert duration to ISO 8601 duration format.
+        duration_iso8601 = "P#{duration}D"
+
+        # Return an ActiveSupport::Duration
+        ActiveSupport::Duration.parse(duration_iso8601)
       end
     end
 
