@@ -96,6 +96,12 @@ class Patient < ApplicationRecord
     ActiveSupport::Duration.age(birthdate)
   end
 
+  def pediatric_age
+    return unless birthdate
+
+    ActiveSupport::Duration.pediatric_age(birthdate)
+  end
+
   def female?
     gender == 'F'
   end

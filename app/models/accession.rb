@@ -51,6 +51,10 @@ class Accession < ApplicationRecord
     ActiveSupport::Duration.age(patient_birthdate, drawn_at)
   end
 
+  def subject_pediatric_age
+    ActiveSupport::Duration.pediatric_age(patient_birthdate, drawn_at)
+  end
+
   def doctor_name=(name)
     name = name.squish if name
     if name.blank?

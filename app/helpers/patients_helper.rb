@@ -100,7 +100,7 @@ module PatientsHelper
   def display_pediatric_age(age)
     return t('patients.unknown_age') unless age
 
-    pediatric_age = age.pediatric.parts
+    pediatric_age = age.parts
 
     years = t('patients.year', count: pediatric_age[:years]) if pediatric_age[:years]
     months = t('patients.month', count: pediatric_age[:months]) if pediatric_age[:months]
