@@ -13,7 +13,7 @@
   <%= link_to full_name(patient), patient_path(patient) %>
   <tt><%= patient.identifier %></tt>
   <dt class="second">
-    <%= display_pediatric_age(patient.age) unless patient.deceased? %>
+    <%= display_pediatric_age(patient.pediatric_age) unless patient.deceased? %>
     <% if patient.email.present? %>
       | <%= mail_to patient.email %>
     <% end %>

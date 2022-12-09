@@ -10,25 +10,26 @@ class PatientsAgeHelperTest < ActionView::TestCase
   end
 
   test 'returns a pediatric age string' do
+    travel_to Time.new(2000, 1, 1, 12, 0, 0, 0)
     ages = [
       # [age, output],
-      [0.days, '0 days'],
-      [27.days, '27 days'],
-      [28.days, '4 weeks'],
-      [29.days, '4 weeks 1 day'],
-      [11.months + 30.days, '52 weeks'],
-      [11.months + 30.days + 23.hours + 59.seconds, '52 weeks 1 day'],
-      [1.year, '12 months'],
-      [1.year + 1.day, '12 months 1 day'],
-      [1.year + 8.days, '12 months 8 days'],
-      [1.year + 1.month + 9.days, '13 months 9 days'],
-      [4.years + 1.month + 9.days, '4 years 1 month'],
-      [17.years + 11.months, '17 years 11 months'],
-      [19.years + 39.days, '19 years']
+      [ActiveSupport::Duration.pediatric_age(0.days.ago), '0 days'],
+      [ActiveSupport::Duration.pediatric_age(27.days.ago), '27 days'],
+      [ActiveSupport::Duration.pediatric_age(28.days.ago), '4 weeks'],
+      [ActiveSupport::Duration.pediatric_age(29.days.ago), '4 weeks 1 day'],
+      [ActiveSupport::Duration.pediatric_age((11.months + 30.days).ago), '52 weeks'],
+      [ActiveSupport::Duration.pediatric_age(1.year.ago), '12 months'],
+      [ActiveSupport::Duration.pediatric_age((1.year + 1.day).ago), '12 months 1 day'],
+      [ActiveSupport::Duration.pediatric_age((1.year + 8.days).ago), '12 months 8 days'],
+      [ActiveSupport::Duration.pediatric_age((1.year + 1.month + 9.days).ago), '13 months 10 days'],
+      [ActiveSupport::Duration.pediatric_age((4.years + 1.month + 9.days).ago), '4 years 1 month'],
+      [ActiveSupport::Duration.pediatric_age((17.years + 11.months).ago), '17 years 11 months'],
+      [ActiveSupport::Duration.pediatric_age((19.years + 39.days).ago), '19 years']
     ]
 
     ages.each do |age|
       assert_equal age[1], display_pediatric_age(age[0])
     end
+    travel_back
   end
 end

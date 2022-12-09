@@ -513,7 +513,7 @@ class LabReport < Prawn::Document
         end
       end
       bounding_box([demographics_stop3, bounds.top - row_height], width: DEMOGRAPHICS_WIDTH4, height: row_height) do
-        text display_pediatric_age(@accession.subject_age)
+        text display_pediatric_age(@accession.subject_pediatric_age)
       end
       bounding_box([demographics_stop3, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH4, height: row_height) do
         text gender(@patient.gender)

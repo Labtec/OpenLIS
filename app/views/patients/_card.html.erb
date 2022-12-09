@@ -9,7 +9,7 @@
     <div>
       <%= patient.identifier %><br />
       <% unless patient.deceased? %>
-      <%= t('.age') %> <%= display_pediatric_age(patient.age) %>
+      <%= t('.age') %> <%= display_pediatric_age(patient.pediatric_age) %>
       <% end %>
     </div>
     <div>
