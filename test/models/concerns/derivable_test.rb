@@ -5,6 +5,7 @@ require 'test_helper'
 class DerivableTest < ActiveSupport::TestCase
   setup do
     @accession = accessions(:egfrcr)
+    @accession.update!(drawn_at: Time.zone.now)
     @patient = @accession.patient
     @creatinine = observations(:crtsa)
     @egfrcr = @accession.results.where(lab_test_id: LabTest.where(code: 'eGFRcr')).take
@@ -31,49 +32,49 @@ class DerivableTest < ActiveSupport::TestCase
     # (analytical measurement range)                    [not tested]
 
     @creatinine.update(value: 1.00)
-    @patient.update(birthdate: 18.years.ago, gender: 'M')
+    @patient.update(birthdate: 17.years.ago, gender: 'M')
     assert_nil @egfrcr.derived_value
 
     @creatinine.update(value: 1.00)
-    @patient.update(birthdate: 18.years.ago, gender: 'F')
+    @patient.update(birthdate: 17.years.ago, gender: 'F')
     assert_nil @egfrcr.derived_value
 
-    @patient.update(birthdate: 19.years.ago, gender: 'M')
+    @patient.update(birthdate: 18.years.ago, gender: 'M')
     @creatinine.update(value: 0.90)
     assert_equal 127, @egfrcr.derived_value
 
-    @patient.update(birthdate: 19.years.ago, gender: 'M')
+    @patient.update(birthdate: 18.years.ago, gender: 'M')
     @creatinine.update(value: 0.91)
     assert_equal 125, @egfrcr.derived_value
 
-    @patient.update(birthdate: 19.years.ago, gender: 'F')
+    @patient.update(birthdate: 18.years.ago, gender: 'F')
     @creatinine.update(value: 0.70)
     assert_equal 128, @egfrcr.derived_value
 
-    @patient.update(birthdate: 19.years.ago, gender: 'F')
+    @patient.update(birthdate: 18.years.ago, gender: 'F')
     @creatinine.update(value: 0.71)
     assert_equal 126, @egfrcr.derived_value
 
-    @patient.update(birthdate: 91.years.ago, gender: 'M')
+    @patient.update(birthdate: 90.years.ago, gender: 'M')
     @creatinine.update(value: 0.50)
     assert_equal 97, @egfrcr.derived_value
 
-    @patient.update(birthdate: 91.years.ago, gender: 'M')
+    @patient.update(birthdate: 90.years.ago, gender: 'M')
     @creatinine.update(value: 1.50)
     assert_equal 44, @egfrcr.derived_value
 
-    @patient.update(birthdate: 91.years.ago, gender: 'F')
+    @patient.update(birthdate: 90.years.ago, gender: 'F')
     @creatinine.update(value: 0.50)
     assert_equal 89, @egfrcr.derived_value
 
-    @patient.update(birthdate: 91.years.ago, gender: 'F')
+    @patient.update(birthdate: 90.years.ago, gender: 'F')
     @creatinine.update(value: 1.50)
     assert_equal 33, @egfrcr.derived_value
 
     @patient.update(birthdate: nil)
     assert_nil @egfrcr.derived_value
 
-    @patient.update(birthdate: 91.years.ago, gender: nil)
+    @patient.update(birthdate: 90.years.ago, gender: nil)
     assert_nil @egfrcr.derived_value
 
     @patient.update(gender: 'F')
