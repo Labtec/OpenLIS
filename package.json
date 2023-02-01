@@ -10,14 +10,14 @@
   },
   "private": true,
   "dependencies": {
-    "@github/webauthn-json": "^1.0.2",
-    "@rails/actioncable": "^6.1.7",
-    "@rails/activestorage": "^6.1.7",
-    "@rails/ujs": "^6.1.7",
+    "@github/webauthn-json": "^2.1.1",
+    "@rails/actioncable": "^6.1.7-1",
+    "@rails/activestorage": "^6.1.7-1",
+    "@rails/ujs": "^6.1.7-1",
     "@rails/webpacker": "5.4.3",
-    "axios": "^0.27.2",
-    "jquery": "^3.6.1",
-    "regenerator-runtime": "^0.13.9",
+    "axios": "^1.3.0",
+    "jquery": "^3.6.3",
+    "regenerator-runtime": "^0.13.11",
     "turbolinks": "^5.2.0"
   }
 }
