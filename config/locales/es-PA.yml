@@ -77,7 +77,7 @@ es-PA:
       email_report: Enviar reporte por correo
       emailed_report: Reenviar reporte por correo
       enter_results: Ingresar Resultados
-      force_certify: Certificación Forzada
+      force_certify: Forzar Certificación
       icd9: 'Códigos de Diagnóstico:'
       notes: 'Observaciones:'
       print_report: Imprimir Reporte (PDF)
