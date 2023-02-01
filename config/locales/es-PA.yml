@@ -66,18 +66,18 @@ es-PA:
     show:
       accession: 'Solicitud #%{id}'
       by: ' por: '
-      certify: Reportar
+      certify: Certificar
       change_accession: Cambiar Solicitud
       change_results: Cambiar Resultados
       confirm_email: ¿Desea enviar los resultados a %{email}?
       confirm_emailed: ¿Desea enviar nuevamente los resultados a %{email}?
-      confirm_forceful_certify: ¿Está seguro que desea cancelar resultados pendientes y reportar?
+      confirm_forceful_certify: ¿Está seguro que desea cancelar resultados pendientes y certificar?
       doctor: 'Doctor: '
       drawn_at: 'Recolectado el: '
       email_report: Enviar reporte por correo
       emailed_report: Reenviar reporte por correo
       enter_results: Ingresar Resultados
-      force_certify: Forzar Reporte
+      force_certify: Certificación Forzada
       icd9: 'Códigos de Diagnóstico:'
       notes: 'Observaciones:'
       print_report: Imprimir Reporte (PDF)
