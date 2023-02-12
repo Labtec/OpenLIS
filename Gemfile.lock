@@ -290,7 +290,7 @@ GEM
     rake (13.0.6)
     rb-kqueue (0.2.8)
       ffi (>= 0.5.0)
-    regexp_parser (2.6.2)
+    regexp_parser (2.7.0)
     reline (0.3.2)
       io-console (~> 0.5)
     responders (3.1.0)
@@ -365,7 +365,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.6)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   ruby
