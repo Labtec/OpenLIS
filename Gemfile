@@ -60,6 +60,7 @@ group :development do
   gem "rb-kqueue"
   gem "stackprof"
   gem "web-console"
+  gem "bcrypt_pbkdf"
 end
 
 group :test do

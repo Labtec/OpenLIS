@@ -97,6 +97,7 @@ GEM
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.18)
+    bcrypt_pbkdf (1.1.0)
     bindata (2.4.15)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -308,7 +309,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.8.0)
+    selenium-webdriver (4.8.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -326,7 +327,7 @@ GEM
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.1)
-    tilt (2.0.11)
+    tilt (2.1.0)
     timeout (0.3.2)
     tpm-key_attestation (0.12.0)
       bindata (~> 2.4)
@@ -376,6 +377,7 @@ DEPENDENCIES
   auto_strip_attributes
   barby
   bcrypt
+  bcrypt_pbkdf
   bootsnap
   brakeman
   capistrano-rails
