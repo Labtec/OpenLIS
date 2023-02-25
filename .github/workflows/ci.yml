@@ -38,6 +38,7 @@ jobs:
       - name: Webpacker compile
         env:
           RAILS_ENV: test
+          NODE_OPTIONS: --openssl-legacy-provider
         run: |
           npm install yarn
           yarn install
