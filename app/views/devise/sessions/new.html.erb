@@ -1,17 +1,16 @@
-<%= form_with(model: resource, url: session_path(resource_name), local: true,
-              data: { turbo: false }, class: 'login-form') do |f| %>
+<%= form_with(model: resource, url: session_path(resource_name),
+              data: { turbo: false },
+              class: 'login-form', html: { novalidate: true }) do |f| %>
   <div class="username">
     <%= f.label :username, t('user_sessions.new.username') %>
-    <%= f.text_field :username, id: 'user_username', required: true,
-      'aria-label': t('user_sessions.new.username'),
-      autofocus: true, autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off' %>
+    <%= f.email_field :username, id: 'user_username',
+      'aria-label': t('user_sessions.new.username'), autofocus: true, autocomplete: 'off' %>
   </div>
 
   <div class="password">
     <%= f.label :password, t('user_sessions.new.password') %>
-    <%= f.password_field :password, id: 'user_password', required: true,
-      'aria-label': t('user_sessions.new.password'),
-      autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off' %>
+    <%= f.password_field :password, id: 'user_password',
+      'aria-label': t('user_sessions.new.password'), autocomplete: 'off' %>
   </div>
 
   <%= f.submit t('user_sessions.new.submit'), class: 'submit', data: { disable_with: t('user_sessions.new.submitting') } %>

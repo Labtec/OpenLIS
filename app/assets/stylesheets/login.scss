@@ -90,7 +90,6 @@ label {
 }
 
 input[type="email"],
-input[type="text"],
 input[type="password"] {
   font-size: 24px;
   width: 97%;
@@ -103,7 +102,6 @@ input[type="password"] {
 }
 
 input[type="email"]:focus,
-input[type="text"]:focus,
 input[type="password"]:focus,
 .submit:focus {
   border-color: rgba(153, 51, 153, 0.5);

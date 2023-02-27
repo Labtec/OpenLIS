@@ -27,6 +27,3 @@ pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.6
 #pin "@github/tab-container-element"
 # Localized DateTime
 #pin "@github/time-elements"
-
-# Login page
-pin "@rails/ujs", to: "@rails--ujs.js" # @7.0.4
