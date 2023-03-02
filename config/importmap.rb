@@ -11,9 +11,9 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
 
 # WebAuthn
-pin "@github/webauthn-json", to: "@github--webauthn-json.js" # @2.0.1
+pin "@github/webauthn-json", to: "@github--webauthn-json.js" # @2.1.1
 pin_all_from "app/javascript/webauthn", under: "webauthn"
-pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.6
+pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.8
 
 # XXXJL TODO
 # Notes:
