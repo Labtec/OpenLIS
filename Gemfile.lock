@@ -303,7 +303,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.8.1)
+    selenium-webdriver (4.8.2)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -318,7 +318,7 @@ GEM
     sshkit (1.21.4)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    stackprof (0.2.23)
+    stackprof (0.2.24)
     terser (1.1.14)
       execjs (>= 0.3.0, < 3)
     thor (1.2.1)
