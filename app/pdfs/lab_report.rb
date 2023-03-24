@@ -28,7 +28,7 @@ class LabReport < Prawn::Document
   LOGO_HEIGHT = 50
   LOGO_WIDTH = 150
   NORMAL_RULE_WIDTH = 1
-  NOTES_INDENT = 25
+  NOTES_INDENT = 19
   NOTES_PADDING = 7
   PADDING = 5
   ROW_VERTICAL_PADDING = 1
@@ -190,14 +190,15 @@ class LabReport < Prawn::Document
         next if result.not_performed?
 
         if result.normal?
-          cell_col0 = make_cell content: result.lab_test_name, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
-          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+          cell_col0 = make_cell content: result.lab_test_name, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
         else
-          cell_col0 = make_cell content: result.lab_test_name, background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
-          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+          cell_col0 = make_cell content: result.lab_test_name, background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
+          cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
         end
-        cell_col2 = make_cell content: display_format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
-        cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: flag_color[flag_color(result.interpretation).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING]
+        cell_col2 = make_cell content: display_format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
+        cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: flag_color[flag_color(result.interpretation).to_sym], padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
+
         ##
         # Ranges sub-table
         pdf_ranges_table = make_table(ranges_table(ranges_for_table(result), display_gender: @patient.unknown?), cell_style: { padding: [0, 0.4], borders: [] }) do
@@ -212,7 +213,7 @@ class LabReport < Prawn::Document
           column(3).width = column_3_width
           column(4).width = column_4_width
         end
-        cell_col4 = make_cell content: pdf_ranges_table, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, 0]
+        cell_col4 = make_cell content: pdf_ranges_table, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, 0], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
 
         if result.lab_test_remarks.present?
           remarks = make_cell content: result.lab_test_remarks.to_s, inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
@@ -232,14 +233,32 @@ class LabReport < Prawn::Document
             column(3).align = :center
           end
 
-          data_remarks_cell = make_cell content: data_remarks_table, colspan: 5
+          data_remarks_cell = make_cell content: data_remarks_table, colspan: 5, borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
           data << [data_remarks_cell]
         else
           data << [cell_col0, cell_col1, cell_col2, cell_col3, cell_col4]
         end
       end
 
-      # Department table
+      ##
+      # Notes sub-table
+      notes_content = @accession.notes.find_by(department_id: department).try(:content)
+
+      if !notes_content.blank?
+        data_notes_padding = make_cell(content: '', height: NOTES_PADDING, borders: [])
+        data_notes_title = make_cell(content: t('results.index.notes'), inline_format: true, borders: [:left], text_color: colors_purple, font_style: :bold)
+        data_notes_contents = make_cell(content: sanitize(notes_content), inline_format: true, borders: [:left])
+        data_notes = [[data_notes_padding]]
+        data_notes << [data_notes_title]
+        data_notes << [data_notes_contents]
+        data_notes_table = make_table(data_notes, header: true, cell_style: { padding: [0, 0, 0, PADDING], width: bounds.width - NOTES_INDENT, border_left_color: colors_purple, border_width: HEAVY_RULE_WIDTH }, position: :right)
+        data_notes_cell = make_cell(content: data_notes_table, colspan: 5, borders: [])
+
+        data << [data_notes_cell]
+      end
+
+      ##
+      # Main table
       table(data, header: true) do
         column(0).width = COLUMN_0_WIDTH
         column(1).width = COLUMN_1_WIDTH
@@ -249,26 +268,6 @@ class LabReport < Prawn::Document
         row(0).borders = []
         row(1..-1).column(1).align = :right
         row(1..-1).column(3).align = :center
-        row(1..-1).border_bottom_color = colors_light_gray
-        row(1..-1).borders = [:bottom]
-        row(1..-1).border_width = LIGHT_RULE_WIDTH
-      end
-
-      next if @accession.notes.find_by(department_id: department).try(:content).blank?
-
-      pad_top NOTES_PADDING do
-        bounding_box([NOTES_INDENT, cursor + LINE_PADDING], width: bounds.width - NOTES_INDENT) do
-          text t('results.index.notes'), color: colors_purple, style: :bold
-          text @accession.notes.find_by(department_id: department).content, inline_format: true
-
-          stroke_color colors_purple
-          line_width(HEAVY_RULE_WIDTH)
-          stroke do
-            vertical_line bounds.top + LINE_PADDING, bounds.bottom + LINE_PADDING, at: bounds.left - PADDING
-          end
-          line_width(NORMAL_RULE_WIDTH)
-          stroke_color colors_black
-        end
       end
     end
 
