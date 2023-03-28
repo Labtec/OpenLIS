@@ -245,12 +245,14 @@ class LabReport < Prawn::Document
       notes_content = @accession.notes.find_by(department_id: department).try(:content)
 
       if !notes_content.blank?
-        data_notes_padding = make_cell(content: '', height: NOTES_PADDING, borders: [])
+        data_notes_padding_top = make_cell(content: '', height: NOTES_PADDING, borders: [])
+        data_notes_padding_bottom = make_cell(content: '', height: PADDING, borders: [])
         data_notes_title = make_cell(content: t('results.index.notes'), inline_format: true, borders: [:left], text_color: colors_purple, font_style: :bold)
         data_notes_contents = make_cell(content: sanitize(notes_content), inline_format: true, borders: [:left])
-        data_notes = [[data_notes_padding]]
+        data_notes = [[data_notes_padding_top]]
         data_notes << [data_notes_title]
         data_notes << [data_notes_contents]
+        data_notes << [data_notes_padding_bottom]
         data_notes_table = make_table(data_notes, header: true, cell_style: { padding: [0, 0, 0, PADDING], width: bounds.width - NOTES_INDENT, border_left_color: colors_purple, border_width: HEAVY_RULE_WIDTH }, position: :right)
         data_notes_cell = make_cell(content: data_notes_table, colspan: 5, borders: [])
 
