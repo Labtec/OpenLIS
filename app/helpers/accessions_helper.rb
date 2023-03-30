@@ -37,7 +37,7 @@ module AccessionsHelper
   end
 
   def search_icd_code
-    link_to t('.search_icd_code'), 'http://ais.paho.org/classifications/Chapters/',
+    link_to t('.search_icd_code'), 'https://icd.who.int/browse11/l-m/es',
             target: :_blank, rel: :noopener, id: :search_icd_code
   end
 end
