@@ -58,7 +58,7 @@ class Observation < ApplicationRecord
 
   def derived_value
     dv = accession.derived_value_for(lab_test_code)
-    return dv unless dv.is_a?(Numeric)
+    return dv unless (dv.is_a?(Numeric) && dv.finite?)
 
     dv.round(lab_test_decimals.to_i)
   end
