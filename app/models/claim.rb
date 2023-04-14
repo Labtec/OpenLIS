@@ -17,7 +17,8 @@ class Claim < ApplicationRecord
   def insured_name
     patient.try(:policy_number) =~ /(\d+)-(\d+)/
     if Regexp.last_match(1) && Regexp.last_match(2)
-      Patient.find_by(policy_number: Regexp.last_match(1)) || patient
+      insured_policy_number = "#{Regexp.last_match(1)}-00"
+      Patient.find_by(policy_number: insured_policy_number) || patient
     else
       patient
     end
@@ -26,7 +27,8 @@ class Claim < ApplicationRecord
   def insured_policy_number
     patient.try(:policy_number) =~ /(\d+)-(\d+)/
     if Regexp.last_match(1) && Regexp.last_match(2)
-      Patient.find_by(policy_number: Regexp.last_match(1)).try(:policy_number) || patient.policy_number
+      insured_policy_number = "#{Regexp.last_match(1)}-00"
+      Patient.find_by(policy_number: insured_policy_number).try(:policy_number) || patient.policy_number
     else
       patient.policy_number || 'pend.'
     end
