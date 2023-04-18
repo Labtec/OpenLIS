@@ -293,7 +293,7 @@ GEM
     rake (13.0.6)
     rb-kqueue (0.2.8)
       ffi (>= 0.5.0)
-    regexp_parser (2.7.0)
+    regexp_parser (2.8.0)
     reline (0.3.3)
       io-console (~> 0.5)
     responders (3.1.0)
@@ -432,4 +432,4 @@ RUBY VERSION
    ruby 3.2.0p0
 
 BUNDLED WITH
-   2.4.11
+   2.4.12
