@@ -218,7 +218,7 @@ GEM
       net-protocol
     net-ssh (7.1.0)
     nio4r (2.5.9)
-    nokogiri (1.14.3)
+    nokogiri (1.14.4)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     openssl (3.1.0)
@@ -321,7 +321,7 @@ GEM
     stackprof (0.2.25)
     terser (1.1.15)
       execjs (>= 0.3.0, < 3)
-    thor (1.2.1)
+    thor (1.2.2)
     tilt (2.1.0)
     timeout (0.3.2)
     tpm-key_attestation (0.12.0)
