@@ -31,7 +31,7 @@ module FHIRable
           value: identifier
         },
         fhirable_identifier_member_number
-      ]
+      ].compact
     end
 
     private
