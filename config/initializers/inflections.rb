@@ -22,4 +22,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym "UB04"
   inflect.acronym "UB92"
   inflect.acronym "UCUM"
+  inflect.acronym "UUID"
 end

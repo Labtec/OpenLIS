@@ -17,9 +17,9 @@ module FHIRable
       when *Accession
         "Specimen/#{reference.id}"
       when *Patient
-        "Patient/#{reference.id}"
+        "Patient/#{reference.uuid}"
       when *User
-        "Practitioner/#{reference.id}"
+        "Practitioner/#{reference.uuid}"
       end
     end
   end

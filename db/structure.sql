@@ -10,6 +10,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
+
+
+--
 -- Name: unaccent; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -265,7 +279,8 @@ CREATE TABLE public.doctors (
     updated_at timestamp with time zone,
     gender character varying(510) DEFAULT NULL::character varying,
     email character varying,
-    accessions_count integer DEFAULT 0
+    accessions_count integer DEFAULT 0,
+    uuid uuid DEFAULT gen_random_uuid() NOT NULL
 );
 
 
@@ -290,7 +305,8 @@ CREATE TABLE public.insurance_providers (
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    price_list_id bigint
+    price_list_id bigint,
+    uuid uuid DEFAULT gen_random_uuid() NOT NULL
 );
 
 
@@ -532,7 +548,8 @@ CREATE TABLE public.patients (
     cellular character varying(32),
     address jsonb DEFAULT '{}'::jsonb,
     deceased boolean,
-    identifier_type integer
+    identifier_type integer,
+    uuid uuid DEFAULT gen_random_uuid() NOT NULL
 );
 
 
@@ -714,7 +731,8 @@ CREATE TABLE public.users (
     failed_attempts integer DEFAULT 0,
     signature text,
     descender boolean,
-    webauthn_id character varying
+    webauthn_id character varying,
+    uuid uuid DEFAULT gen_random_uuid() NOT NULL
 );
 
 
@@ -1304,6 +1322,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201023000002'),
 ('20201117000001'),
 ('20201123000001'),
-('20201123000002');
+('20201123000002'),
+('20230517220001');
 
 

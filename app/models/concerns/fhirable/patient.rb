@@ -62,7 +62,7 @@ module FHIRable
     def fhirable_patient
       FHIR::Patient.new(
         extension: fhirable_animal,
-        id: id,
+        id: uuid,
         active: fhirable_active,
         identifier: fhirable_patient_identifier,
         name: fhirable_name,
