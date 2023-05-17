@@ -9,7 +9,7 @@ module FHIRable
         fhirable_telecom_phone,
         fhirable_telecom_cellular,
         fhirable_telecom_email
-      ]
+      ].compact
     end
 
     private
