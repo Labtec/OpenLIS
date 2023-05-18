@@ -1,4 +1,4 @@
-class AddUUIDColumns < ActiveRecord::Migration[7.0]
+class AddUUIDColumns < ActiveRecord::Migration[6.1]
   def change
     enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
 
