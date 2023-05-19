@@ -33,6 +33,19 @@ module FHIRable
       dr
     end
 
+    def to_bundle(base_url)
+      bundle = FHIR::Bundle.new(type: 'collection')
+      patient_url = "#{base_url}/Patient/#{patient.uuid}"
+      bundle.entry[0] = FHIR::Bundle::Entry.new(fullUrl: patient_url, resource: FHIR.from_contents(patient.to_json))
+      results.each do |result|
+        bundle.entry << FHIR::Bundle::Entry.new(
+          fullUrl: "#{base_url}/Observation/#{result.id}",
+          resource: FHIR.from_contents(result.to_json)
+        )
+      end
+      bundle
+    end
+
     def to_json(_options = {})
       fhirable_diagnostic_report.to_json
     end

@@ -85,6 +85,8 @@ en:
       reported_at: 'Reported at: '
       sending_email: Sending Email…
       signed_report: Signed Report
+      smart_health_card: SMART® Health Card
+      smart_report: SMART® Report
       outpatient: Outpatient
   errors:
     messages:

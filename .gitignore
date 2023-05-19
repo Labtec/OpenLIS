@@ -36,6 +36,7 @@ Capfile
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/keys/health_cards.pem
 
 /public/packs
 /public/packs-test

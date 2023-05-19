@@ -39,6 +39,14 @@ module FHIRable
     end
 
     def fhirable_observation
+      # TODO: implement meta.security
+      # - N PDS
+      # - DRUG
+      # - HIV
+      # - PREGNANT
+      # - SCA SICKLE
+      # - SEX
+      # - STD
       FHIR::Observation.new(
         id: id,
         identifier: fhirable_observation_identifier,

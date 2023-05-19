@@ -10,4 +10,8 @@ class WellKnownRoutesTest < ActionDispatch::IntegrationTest
   test 'routes change-password' do
     assert_routing '/.well-known/change-password', @defaults.merge(action: 'change_password')
   end
+
+  test 'routes jwks' do
+    assert_routing '/.well-known/jwks', @defaults.merge(action: 'jwks')
+  end
 end

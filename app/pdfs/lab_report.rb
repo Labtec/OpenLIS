@@ -3,10 +3,14 @@
 require_relative 'images/logos/master_lab'
 require 'barby'
 require 'barby/barcode/data_matrix'
+require 'barby/barcode/qr_code'
 require 'barby/outputter/prawn_outputter'
 
 class LabReport < Prawn::Document
-  BARCODE_XDIM = 1.5
+  BARCODE_XDIM_DM = 1.5
+  BARCODE_SIZE_SMART = 159
+  BARCODE_SMART_MAX = 36
+  BARCODE_SMART_MULTIPLIER = 1.75
   COLUMN_0_WIDTH = 140
   COLUMN_1_WIDTH = 80
   COLUMN_2_WIDTH = 88
@@ -27,6 +31,8 @@ class LabReport < Prawn::Document
   LINE_PADDING = 2
   LOGO_HEIGHT = 50
   LOGO_WIDTH = 150
+  LOGO_SMART_WIDTH = 50
+  LOGO_SMART_HEIGHT = 12
   NORMAL_RULE_WIDTH = 1
   NOTES_INDENT = 19
   NOTES_PADDING = 7
@@ -49,11 +55,12 @@ class LabReport < Prawn::Document
   # WINDOW_HEIGHT = 36 * 2.25
   # WINDOW_WIDTH = 36 * 9
 
-  def initialize(patient, accession, results, signature, view_context)
+  def initialize(patient, accession, results, signature, smart, view_context)
     @patient = patient
     @accession = accession
     @results = results
     @signature = signature
+    @smart = smart
     @view = view_context
 
     super(
@@ -150,19 +157,8 @@ class LabReport < Prawn::Document
       bounding_box([bounds.right - FLASH_TAG_WIDTH, page_top - HALF_INCH - line_height], width: FLASH_TAG_WIDTH, height: line_height) do
         text t("results.index.#{@accession.status}"), align: :right, color: colors_red
       end
-      bounding_box([bounds.right - barcode_width, bounds.top], width: barcode_width, height: barcode_height) do
-        barcode
-      end
-      formatted_text_box(
-        [
-          { text: @accession.id.to_s, font: 'OCRB', size: 5, overflow: :shrink_to_fit }
-        ],
-        at: [bounds.right - barcode_width, bounds.top - barcode_height - LINE_PADDING],
-        width: barcode_width,
-        height: 5.5,
-        align: :center
-      )
 
+      barcode_dm
       letterhead
       move_down ENVELOPE_ADJUSTMENT_HEIGHT
       patient_demographics
@@ -315,6 +311,10 @@ class LabReport < Prawn::Document
       end
     end
 
+    if @smart
+      barcode_smart
+    end
+
     ##
     # Footer
     repeat :all do
@@ -347,18 +347,54 @@ class LabReport < Prawn::Document
 
   private
 
-  def barcode
+  def barcode_dm
     barcode = Barby::DataMatrix.new(@accession.id.to_s)
-    barcode.annotate_pdf(self, xdim: BARCODE_XDIM)
+
+    bounding_box([bounds.right - barcode_width_dm, bounds.top], width: barcode_width_dm, height: barcode_height_dm) do
+      barcode.annotate_pdf(self, xdim: BARCODE_XDIM_DM)
+
+      formatted_text_box(
+        [
+          { text: @accession.id.to_s, font: 'OCRB', size: 5, overflow: :shrink_to_fit }
+        ],
+        at: [bounds.right - barcode_width_dm, bounds.top - barcode_height_dm - LINE_PADDING],
+        width: barcode_width_dm,
+        height: 5.5,
+        align: :center
+      )
+    end
   end
 
-  def barcode_height
-    barcode_width + HEADING_PADDING
+  def barcode_smart
+    issuer = Rails.application.config.issuer
+    smart_health_card = issuer.issue_health_card(@accession.to_bundle(issuer.url),
+                                                 type: HealthCards::LabResultPayload)
+                                                 # type: LabResultHealthCard) # Custom Payload
+    return if smart_health_card.qr_codes.size != 1
+
+    barcode_data = smart_health_card.code_by_ordinal(1).data
+    barcode = Barby::QrCode.new(barcode_data)
+    shim = (BARCODE_SMART_MAX - barcode.size) * BARCODE_SMART_MULTIPLIER
+
+    bounding_box([cursor - 87, cursor], width: BARCODE_SIZE_SMART, height: BARCODE_SIZE_SMART + LOGO_SMART_HEIGHT + LINE_PADDING) do
+      indent shim do
+        bounding_box([bounds.left, bounds.top - shim], width: bounds.width - shim, height: LOGO_SMART_HEIGHT) do
+          text 'SMART<sup>®</sup> Health Card', size: 7, style: :bold, valign: :bottom, inline_format: true
+          svg File.read('app/assets/images/logo_smart.svg'), height: LOGO_SMART_HEIGHT - LINE_PADDING, vposition: :bottom, position: :right, color_mode: :cmyk
+        end
+
+        barcode.annotate_pdf(self)
+      end
+    end
   end
 
-  def barcode_width
+  def barcode_height_dm
+    barcode_width_dm + HEADING_PADDING
+  end
+
+  def barcode_width_dm
     length = @accession.id.to_s.length
-    (length + 7) * BARCODE_XDIM
+    (length + 7) * BARCODE_XDIM_DM
   end
 
   def colors_black

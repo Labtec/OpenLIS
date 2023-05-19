@@ -15,9 +15,17 @@ class DiagnosticReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @diagnostic_report.to_json }
+      format.smart_health_card do
+        issuer = Rails.application.config.issuer
+        @smart_health_card = issuer.issue_health_card(@diagnostic_report.to_bundle(issuer.url),
+                                                      type: HealthCards::LabResultPayload)
+        send_data @smart_health_card.to_json, type: :smart_health_card,
+                                              filename: "resultados_#{@diagnostic_report.id}.smart-health-card"
+      end
       format.pdf do
         signature = ActiveRecord::Type::Boolean.new.cast(params[:signature])
-        pdf = LabReport.new(@patient, @diagnostic_report, @results, signature, view_context)
+        smart = ActiveRecord::Type::Boolean.new.cast(params[:smart])
+        pdf = LabReport.new(@patient, @diagnostic_report, @results, signature, smart, view_context)
         send_data(pdf.render, filename: "resultados_#{@diagnostic_report.id}.pdf",
                               type: 'application/pdf', disposition: 'inline')
       end
@@ -88,7 +96,7 @@ class DiagnosticReportsController < ApplicationController
     @patient = @diagnostic_report.patient
     @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
 
-    pdf = LabReport.new(@patient, @diagnostic_report, @results, true, view_context)
+    pdf = LabReport.new(@patient, @diagnostic_report, @results, true, false, view_context)
 
     case params[:to]
     when 'practitioner'
