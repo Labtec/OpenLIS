@@ -50,7 +50,6 @@ module FHIRable
         subject: fhirable_reference(patient),
         issued: created_at.iso8601,
         performer: observation_performers,
-        resultsInterpreter: observation_results_interpreter,
         valueQuantity: observation_value_quantity,
         valueCodeableConcept: observation_value_codeable_concept,
         valueString: observation_value_string,
@@ -87,14 +86,9 @@ module FHIRable
     def observation_performers
       # XXX: Use PractitionerRole
       performers = []
-      performers << fhirable_reference(accession.receiver) if accession.receiver
       performers << fhirable_reference(accession.drawer) if accession.drawer
+      performers << fhirable_reference(accession.reporter) if accession.reporter
       performers.uniq
-    end
-
-    def observation_results_interpreter
-      results_interpreters = []
-      results_interpreters << fhirable_reference(accession.reporter) if accession.reporter
     end
 
     def observation_interpretations(interpretation)
