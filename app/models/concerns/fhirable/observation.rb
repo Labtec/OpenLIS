@@ -105,6 +105,21 @@ module FHIRable
       ]
     end
 
+    def observation_notes
+      return unless lab_test_remarks || derived_remarks
+
+      notes = []
+      # XXX Text must be markdown
+      notes << FHIR::Annotation.new(
+        text: lab_test_remarks
+      ) if lab_test_remarks
+      notes << FHIR::Annotation.new(
+        text: derived_remarks
+      ) if derived_remarks
+
+      notes
+    end
+
     def lookup_interpretation(flag)
       index = ApplicationController.helpers.options_for_flag.flatten.index(flag)
       ApplicationController.helpers.options_for_flag.flatten[index - 1]
