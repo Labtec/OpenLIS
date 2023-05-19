@@ -58,7 +58,7 @@ class Observation < ApplicationRecord
 
   def derived_value
     dv = accession.derived_value_for(lab_test_code)
-    return dv unless (dv.is_a?(Numeric) && dv.finite?)
+    return dv unless dv.is_a?(Numeric) && dv.finite?
 
     dv.round(lab_test_decimals.to_i)
   end
@@ -118,6 +118,7 @@ class Observation < ApplicationRecord
   end
 
   def value_range
+    return if value.nil?
     return unless lab_test.range?
 
     value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
@@ -125,6 +126,7 @@ class Observation < ApplicationRecord
   end
 
   def value_ratio
+    return if value.nil?
     return unless lab_test.ratio?
 
     value =~ /\A(\d+):(\d+)\z/
@@ -132,6 +134,7 @@ class Observation < ApplicationRecord
   end
 
   def value_fraction
+    return if value.nil?
     return unless lab_test.fraction?
 
     value =~ /\A(\d+):(\d+)\z/
