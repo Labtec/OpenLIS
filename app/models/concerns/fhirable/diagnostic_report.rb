@@ -7,7 +7,7 @@ module FHIRable
     include Reference
 
     def fhirable_diagnostic_report
-      FHIR::DiagnosticReport.new(
+      dr = FHIR::DiagnosticReport.new(
         id: id,
         # 'basedOn': fhirable_reference(service_request),
         status: status,
@@ -22,13 +22,15 @@ module FHIRable
         effectiveDateTime: drawn_at.iso8601,
         issued: reported_at&.iso8601,
         performer: fhirable_reference(drawer),
-        resultsInterpreter: fhirable_reference(reporter),
         specimen: fhirable_reference(self),
         result: fhirable_diagnostic_report_results(results),
         # 'conclusion':
         # 'conclusionCode':
         presentedForm: fhirable_diagnostic_report_presented_form
       )
+      dr.resultsInterpreter = [ fhirable_reference(reporter) ] if reporter
+
+      dr
     end
 
     def to_json(_options = {})
