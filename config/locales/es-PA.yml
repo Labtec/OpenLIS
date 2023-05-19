@@ -101,6 +101,8 @@ es-PA:
       reported_at: 'Reportado el: '
       sending_email: Enviando correo…
       signed_report: Reporte Firmado
+      smart_health_card: SMART® Health Card
+      smart_report: Reporte SMART®
       outpatient: Ambulatorio
   errors:
     messages:

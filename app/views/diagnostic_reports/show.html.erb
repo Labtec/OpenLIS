@@ -3,7 +3,14 @@
 <%= turbo_stream_from :results %>
 
 <fieldset class="<%= @diagnostic_report.reported_at.blank? %>">
-  <h1><%= t('.accession', id: @diagnostic_report.id) %></h1>
+  <h1>
+    <%= t('.accession', id: @diagnostic_report.id) %>
+    <% if @diagnostic_report.reported_at.present? %>
+      <%= link_to diagnostic_report_path @diagnostic_report, format: :smart_health_card do %>
+        <%= image_tag('logo_smart.svg', class: 'smart_icon') %>
+      <% end %>
+    <% end %>
+  </h1>
 
   <%= practitioner @diagnostic_report.doctor %>
   <% if @diagnostic_report.doctor && @diagnostic_report.doctor.email.present? && !@diagnostic_report.registered? %>
@@ -62,6 +69,7 @@
     <% if @diagnostic_report.reported_at %>
       <%= link_to t('.change_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
       <%= link_to t('.signed_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf', signature: true) %> |
+      <%= link_to t('.smart_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf', smart: true) %> |
     <% else %>
       <%= link_to t('.enter_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
     <% end %>

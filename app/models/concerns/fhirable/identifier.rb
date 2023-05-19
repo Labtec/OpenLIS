@@ -14,7 +14,6 @@ module FHIRable
       ]
     end
 
-    # TODO: Implement an identifier type ['NNPAN', 'PPN']
     def fhirable_patient_identifier
       return if identifier.blank?
 
@@ -27,7 +26,6 @@ module FHIRable
               code: fhirable_identifier_code
             ]
           },
-          system: fhirable_identifier_system,
           value: identifier
         },
         fhirable_identifier_member_number
@@ -37,11 +35,7 @@ module FHIRable
     private
 
     def fhirable_identifier_code
-      identifier_type == 1 ? 'NNPAN' : 'PPN'
-    end
-
-    def fhirable_identifier_system
-      'https://sede.tribunal-electoral.gob.pa/sede-cedula-web' if identifier_type == 1
+      identifier_type == 1 ? 'MR' : 'PPN'
     end
 
     def fhirable_identifier_member_number
@@ -54,7 +48,6 @@ module FHIRable
             code: 'MB'
           ]
         },
-        system: 'https://www.axa-assistance.com.pa',
         value: policy_number
       }
     end
