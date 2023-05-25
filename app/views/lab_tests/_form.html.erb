@@ -9,10 +9,12 @@
   <% @departments.each do |department| %>
     <div id="<%= department.id %>">
       <%= form.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |builder| %>
-        <div class="lab_test">
-          <%= builder.check_box data: { service_request_target: 'labTest' } %>
-          <label class="checkbox" for="accession_lab_test_ids_<%= builder.object.id %>"><%= sanitize(builder.text) %></label>
-        </div>
+        <% if builder.object.active? %>
+          <div class="lab_test">
+            <%= builder.check_box data: { service_request_target: 'labTest' } %>
+            <label class="checkbox" for="accession_lab_test_ids_<%= builder.object.id %>"><%= sanitize(builder.text) %></label>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>

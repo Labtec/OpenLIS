@@ -52,6 +52,11 @@
       <%= form.text_area :remarks %>
     </div>
 
+    <div class="status">
+      <%= form.label :status %>
+      <%= form.select :status, LabTest.statuses.keys %>
+    </div>
+
     <h2>Also Allow</h2>
     <div class="also_allow">
       <%= form.radio_button :also_allow, :also_numeric, id: 'lab_test_also_allow_also_numeric' %>

@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class LabTest < ApplicationRecord
+  include PublicationStatus
+
   belongs_to :department, touch: true
   belongs_to :unit, optional: true
 
+  # TODO Rename to qualified_values (FHIR 5)
   has_many :qualified_intervals, -> { order(rank: :asc) }, dependent: :destroy
   has_many :lab_test_panels, dependent: :destroy
   has_many :panels, through: :lab_test_panels

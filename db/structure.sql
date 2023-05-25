@@ -118,6 +118,18 @@ CREATE TYPE public.observation_status AS ENUM (
 
 
 --
+-- Name: publication_status; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.publication_status AS ENUM (
+    'draft',
+    'active',
+    'retired',
+    'unknown'
+);
+
+
+--
 -- Name: my_unaccent(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -424,7 +436,8 @@ CREATE TABLE public.lab_tests (
     text_length integer,
     "position" integer,
     loinc character varying,
-    remarks text
+    remarks text,
+    status public.publication_status DEFAULT 'active'::public.publication_status
 );
 
 
@@ -1323,6 +1336,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201117000001'),
 ('20201123000001'),
 ('20201123000002'),
-('20230517220001');
+('20230517220001'),
+('20230524000001');
 
 
