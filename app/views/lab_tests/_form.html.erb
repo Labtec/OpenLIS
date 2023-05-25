@@ -9,10 +9,12 @@
   <% @departments.each do |department| %>
     <div id="<%= department.id %>">
       <%= f.collection_check_boxes(:lab_test_ids, department.lab_tests, :id, :name_with_description) do |b| %>
-        <div class="lab_test">
-          <%= b.check_box %>
-          <label class="checkbox" for="accession_lab_test_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
-        </div>
+        <% if b.object.active? %>
+          <div class="lab_test">
+            <%= b.check_box %>
+            <label class="checkbox" for="accession_lab_test_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>
