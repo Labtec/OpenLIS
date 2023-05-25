@@ -618,10 +618,10 @@ CREATE TABLE public.prices (
 
 
 --
--- Name: qualified_intervals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: qualified_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qualified_intervals_id_seq
+CREATE SEQUENCE public.qualified_values_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -630,11 +630,11 @@ CREATE SEQUENCE public.qualified_intervals_id_seq
 
 
 --
--- Name: qualified_intervals; Type: TABLE; Schema: public; Owner: -
+-- Name: qualified_values; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qualified_intervals (
-    id bigint DEFAULT nextval('public.qualified_intervals_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.qualified_values (
+    id bigint DEFAULT nextval('public.qualified_values_id_seq'::regclass) NOT NULL,
     old_gender character varying(510) DEFAULT NULL::character varying,
     old_min_age integer,
     old_max_age integer,
@@ -646,7 +646,7 @@ CREATE TABLE public.qualified_intervals (
     range_high_value numeric,
     animal_type integer,
     condition character varying,
-    category public.observation_range_category,
+    range_category public.observation_range_category,
     context character varying,
     interpretation_id bigint,
     gender public.administrative_gender,
@@ -928,11 +928,11 @@ ALTER TABLE ONLY public.prices
 
 
 --
--- Name: qualified_intervals qualified_intervals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: qualified_values qualified_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qualified_intervals
-    ADD CONSTRAINT qualified_intervals_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.qualified_values
+    ADD CONSTRAINT qualified_values_pkey PRIMARY KEY (id);
 
 
 --
@@ -1212,17 +1212,17 @@ CREATE INDEX index_prices_on_priceable_id_and_priceable_type ON public.prices US
 
 
 --
--- Name: index_qualified_intervals_on_interpretation_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_qualified_values_on_interpretation_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_qualified_intervals_on_interpretation_id ON public.qualified_intervals USING btree (interpretation_id);
+CREATE INDEX index_qualified_values_on_interpretation_id ON public.qualified_values USING btree (interpretation_id);
 
 
 --
--- Name: index_qualified_intervals_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_qualified_values_on_lab_test_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_qualified_intervals_on_lab_test_id ON public.qualified_intervals USING btree (lab_test_id);
+CREATE INDEX index_qualified_values_on_lab_test_id ON public.qualified_values USING btree (lab_test_id);
 
 
 --
@@ -1290,10 +1290,10 @@ ALTER TABLE ONLY public.webauthn_credentials
 
 
 --
--- Name: qualified_intervals fk_rails_fa3ecce1d4; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: qualified_values fk_rails_fa3ecce1d4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qualified_intervals
+ALTER TABLE ONLY public.qualified_values
     ADD CONSTRAINT fk_rails_fa3ecce1d4 FOREIGN KEY (interpretation_id) REFERENCES public.lab_test_values(id);
 
 
@@ -1337,6 +1337,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201123000001'),
 ('20201123000002'),
 ('20230517220001'),
-('20230524000001');
+('20230524000001'),
+('20230525000001'),
+('20230525000002');
 
 

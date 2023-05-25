@@ -16,7 +16,7 @@ class Observation < ApplicationRecord
   has_one :unit,       through: :lab_test
 
   has_many :notes, as: :noticeable, dependent: :destroy
-  has_many :qualified_intervals, through: :lab_test
+  has_many :qualified_values, through: :lab_test
 
   delegate :code,        to: :lab_test, prefix: true
   delegate :decimals,    to: :lab_test, prefix: true
@@ -41,7 +41,7 @@ class Observation < ApplicationRecord
   auto_strip_attributes :value
 
   def reference_ranges
-    qualified_intervals.for_result(accession)
+    qualified_values.for_result(accession)
   end
 
   def absolute_interval

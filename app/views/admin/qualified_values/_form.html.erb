@@ -1,14 +1,14 @@
-<%= form_with(model: [:admin, @qualified_interval]) do |form| %>
-  <%= render 'shared/error_messages', object: @qualified_interval %>
+<%= form_with(model: [:admin, @qualified_value]) do |form| %>
+  <%= render 'shared/error_messages', object: @qualified_value %>
 
   <div class="lab-test">
     <%= form.label :lab_test_id %>
     <%= form.grouped_collection_select :lab_test_id, Department.cached_tests, :lab_tests, :name, :id, :stripped_name_with_description, include_blank: true %>
   </div>
 
-  <div class="category">
-    <%= form.label :category %>
-    <%= form.select :category, QualifiedInterval::CATEGORIES %>
+  <div class="range_category">
+    <%= form.label :range_category %>
+    <%= form.select :range_category, QualifiedValue::RANGE_CATEGORIES %>
   </div>
 
   <div class="range">
@@ -32,7 +32,7 @@
 
   <div class="gender">
     <%= form.label :gender %>
-    <%= form.select :gender, QualifiedInterval::GENDERS, include_blank: true %>
+    <%= form.select :gender, QualifiedValue::GENDERS, include_blank: true %>
   </div>
 
   <div class="age">
@@ -65,6 +65,6 @@
 
   <div class="buttonbar">
     <%= form.submit 'Submit' %> |
-    <%= link_to cancel, admin_qualified_intervals_path %>
+    <%= link_to cancel, admin_qualified_values_path %>
   </div>
 <% end %>

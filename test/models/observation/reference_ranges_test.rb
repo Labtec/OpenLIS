@@ -29,20 +29,20 @@ class ReferenceRangesTest < ActiveSupport::TestCase
     observation = Observation.create(lab_test: lab_tests(:hgb), accession: @accession)
 
     subjects = [
-      { age: 1.day,                reference_ranges: [qualified_intervals(:hgb_m1)] },
-      { age: 14.days,              reference_ranges: [qualified_intervals(:hgb_m1)] },
-      { age: 14.days + 23.hours,   reference_ranges: [qualified_intervals(:hgb_m1)] },
-      { age: 15.days,              reference_ranges: [qualified_intervals(:hgb_m2)] },
-      { age: 17.years,             reference_ranges: [qualified_intervals(:hgb_m11)] },
-      { age: 17.years + 11.months, reference_ranges: [qualified_intervals(:hgb_m11)] },
-      { age: 18.years,             reference_ranges: [qualified_intervals(:hgb_m12)] }
+      { age: 1.day,                reference_ranges: [qualified_values(:hgb_m1)] },
+      { age: 14.days,              reference_ranges: [qualified_values(:hgb_m1)] },
+      { age: 14.days + 23.hours,   reference_ranges: [qualified_values(:hgb_m1)] },
+      { age: 15.days,              reference_ranges: [qualified_values(:hgb_m2)] },
+      { age: 17.years,             reference_ranges: [qualified_values(:hgb_m11)] },
+      { age: 17.years + 11.months, reference_ranges: [qualified_values(:hgb_m11)] },
+      { age: 18.years,             reference_ranges: [qualified_values(:hgb_m12)] }
     ]
 
     subjects.each do |subject|
       @patient.update(birthdate: subject[:age].ago)
 
       assert_equal subject[:reference_ranges],
-                   observation.qualified_intervals.for_subject(@patient).for_age(subject[:age]).reference, "Subject age: #{subject[:age].iso8601}"
+                   observation.qualified_values.for_subject(@patient).for_age(subject[:age]).reference, "Subject age: #{subject[:age].iso8601}"
     end
   end
 
@@ -87,26 +87,26 @@ class ReferenceRangesTest < ActiveSupport::TestCase
   test 'multiple reference ranges per observation' do
     observation = Observation.create(lab_test: lab_tests(:fsh), accession: @accession)
     tanner_intervals = [
-      qualified_intervals(:fsh_mt1),
-      qualified_intervals(:fsh_mt2),
-      qualified_intervals(:fsh_mt3),
-      qualified_intervals(:fsh_mt4),
-      qualified_intervals(:fsh_mt5)
+      qualified_values(:fsh_mt1),
+      qualified_values(:fsh_mt2),
+      qualified_values(:fsh_mt3),
+      qualified_values(:fsh_mt4),
+      qualified_values(:fsh_mt5)
     ]
 
     subjects = [
-      { age: 11.months,            reference_ranges: [qualified_intervals(:fsh_m1)] + tanner_intervals },
-      { age: 1.year,               reference_ranges: [qualified_intervals(:fsh_m2)] + tanner_intervals },
-      { age: 18.years,             reference_ranges: [qualified_intervals(:fsh_m5)] + tanner_intervals },
-      { age: 18.years + 11.months, reference_ranges: [qualified_intervals(:fsh_m5)] + tanner_intervals },
-      { age: 19.years,             reference_ranges: [qualified_intervals(:fsh_m6)] }
+      { age: 11.months,            reference_ranges: [qualified_values(:fsh_m1)] + tanner_intervals },
+      { age: 1.year,               reference_ranges: [qualified_values(:fsh_m2)] + tanner_intervals },
+      { age: 18.years,             reference_ranges: [qualified_values(:fsh_m5)] + tanner_intervals },
+      { age: 18.years + 11.months, reference_ranges: [qualified_values(:fsh_m5)] + tanner_intervals },
+      { age: 19.years,             reference_ranges: [qualified_values(:fsh_m6)] }
     ]
 
     subjects.each do |subject|
       @patient.update!(birthdate: subject[:age].ago)
 
       assert_equal subject[:reference_ranges],
-                   observation.qualified_intervals.for_subject(@patient).for_age(subject[:age]).reference, "Subject age: #{subject[:age].iso8601}"
+                   observation.qualified_values.for_subject(@patient).for_age(subject[:age]).reference, "Subject age: #{subject[:age].iso8601}"
     end
   end
 
@@ -168,7 +168,7 @@ class ReferenceRangesTest < ActiveSupport::TestCase
 
   test 'half-bounded intervals' do
     # Reference Range:............<10
-    observation = Observation.create(lab_test: lab_tests(:qualified_interval_less_than),
+    observation = Observation.create(lab_test: lab_tests(:qualified_value_less_than),
                                      accession: @accession)
 
     interpretations = [
@@ -183,7 +183,7 @@ class ReferenceRangesTest < ActiveSupport::TestCase
     end
 
     # Reference Range:............>=10
-    observation = Observation.create(lab_test: lab_tests(:qualified_interval_greater_than),
+    observation = Observation.create(lab_test: lab_tests(:qualified_value_greater_than),
                                      accession: @accession)
 
     interpretations = [

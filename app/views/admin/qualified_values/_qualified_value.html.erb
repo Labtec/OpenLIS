@@ -1,0 +1,16 @@
+<%= content_tag :tr, id: dom_id(qualified_value), is: 'turbo-frame', class: 'admin_qualified_value' do %>
+  <td><%= qualified_value.rank %></td>
+  <td><%= qualified_value.range_category %></td>
+  <td><%= qualified_value.gender %></td>
+  <td><%= format_range(qualified_value.age) %></td>
+  <td><%= range_row(qualified_value)[2..4].join %></td>
+  <td><%= qualified_value.context %></td>
+  <td><%= qualified_value.interpretation&.value %></td>
+  <td><%= format_range(qualified_value.gestational_age) %></td>
+  <td><%= qualified_value.condition %></td>
+  <td><%= animal_species_name(qualified_value.animal_type) %></td>
+  <td><%= link_to 'Edit', edit_admin_qualified_value_path(qualified_value) %></td>
+  <td>
+    <%= link_to 'Delete', [:admin, qualified_value], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+  </td>
+<% end %>

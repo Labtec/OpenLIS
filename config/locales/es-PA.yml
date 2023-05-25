@@ -145,7 +145,7 @@ es-PA:
         lab_test_values: Valores
         lab_tests: Pruebas
         panels: Paneles
-        qualified_intervals: Rangos
+        qualified_values: Rangos
         units: Unidades
         users: Usuarios
     auth:
@@ -485,7 +485,7 @@ es-PA:
       lab_test_value: valor
       panel: panel
       patient: paciente
-      qualified_interval: rango
+      qualified_value: rango
       unit: unidad
       user: usuario
   i18n:

@@ -8,7 +8,7 @@ class FlaggableTest < ActiveSupport::TestCase
   end
 
   test 'reference low and high ranges are present' do
-    lab_test = lab_tests(:qualified_interval)
+    lab_test = lab_tests(:qualified_value)
     @observation.update(lab_test: lab_test)
 
     # Reference Range: 10-2,000
@@ -27,7 +27,7 @@ class FlaggableTest < ActiveSupport::TestCase
   end
 
   test 'reference low range is present' do
-    lab_test = lab_tests(:qualified_interval_greater_than)
+    lab_test = lab_tests(:qualified_value_greater_than)
     @observation.update(lab_test: lab_test)
 
     # Reference Range: >= 10
@@ -40,7 +40,7 @@ class FlaggableTest < ActiveSupport::TestCase
   end
 
   test 'reference high range is present' do
-    lab_test = lab_tests(:qualified_interval_less_than)
+    lab_test = lab_tests(:qualified_value_less_than)
     @observation.update(lab_test: lab_test)
 
     # Reference Range: < 10
@@ -89,7 +89,7 @@ class FlaggableTest < ActiveSupport::TestCase
 
   test 'value is a range' do
     lab_test = lab_tests(:range)
-    lab_test.update(qualified_intervals: [qualified_intervals(:qualified_interval)])
+    lab_test.update(qualified_values: [qualified_values(:qualified_value)])
     @observation.update(lab_test: lab_test)
 
     # Reference Range: 10-2,000
@@ -114,12 +114,12 @@ class FlaggableTest < ActiveSupport::TestCase
   end
 
   test 'gaps in ages' do
-    lab_test = lab_tests(:qualified_interval)
+    lab_test = lab_tests(:qualified_value)
     # 1 day to 4 weeks (< 5 weeks)
-    ri1 = QualifiedInterval.create(category: 'critical', age_low: 'P1D', age_high: 'P5W', range_low_value: 1, range_high_value: nil)
+    ri1 = QualifiedValue.create(range_category: 'critical', age_low: 'P1D', age_high: 'P5W', range_low_value: 1, range_high_value: nil)
     # 5 weeks to 2 years
-    ri2 = QualifiedInterval.create(category: 'critical', age_low: 'P5W', age_high: 'P2Y', range_low_value: 2, range_high_value: nil)
-    lab_test.update(qualified_intervals: [ri1, ri2])
+    ri2 = QualifiedValue.create(range_category: 'critical', age_low: 'P5W', age_high: 'P2Y', range_low_value: 2, range_high_value: nil)
+    lab_test.update(qualified_values: [ri1, ri2])
     patient = patients(:john)
     accession = accessions(:accession)
     accession.update(patient: patient, drawn_at: Time.current)

@@ -5,7 +5,7 @@ require 'test_helper'
 class OutOfAbsoluteRangeValidatorTest < ActiveSupport::TestCase
   test 'value is within absolute range' do
     observation = observations(:observation)
-    QualifiedInterval.create(category: 'absolute', range_low_value: 0, range_high_value: 10, lab_test: observation.lab_test)
+    QualifiedValue.create(range_category: 'absolute', range_low_value: 0, range_high_value: 10, lab_test: observation.lab_test)
 
     observation.value = 100
 

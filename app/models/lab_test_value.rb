@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO Should merge with QualifiedValue as a validCodedValueSet
 class LabTestValue < ApplicationRecord
   ABNORMAL_FLAGS = %w[A AA DET E I IE IND NS POS R RR UNE WR].freeze
   HIGH_FLAGS = %w[> H HU HH].freeze

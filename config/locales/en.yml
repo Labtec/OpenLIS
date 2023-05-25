@@ -145,7 +145,7 @@ en:
         lab_test_values: Values
         lab_tests: Lab Tests
         panels: Panels
-        qualified_intervals: Intervals
+        qualified_values: Ranges
         units: Units
         users: Users
     auth:

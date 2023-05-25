@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class QualifiedInterval < ApplicationRecord
+class QualifiedValue < ApplicationRecord
   ANIMAL_SPECIES = (0..3).to_a
-  CATEGORIES = %w[reference critical absolute].freeze
+  RANGE_CATEGORIES = %w[reference critical absolute].freeze
   GENDERS = %w[male female other unkwown].freeze
 
   belongs_to :lab_test
@@ -39,9 +39,9 @@ class QualifiedInterval < ApplicationRecord
   scope :for_result, ->(accession) { for_subject(accession.patient).for_age(accession.subject_age) }
   scope :female, -> { where(gender: [nil, 'female']) }
   scope :male, -> { where(gender: [nil, 'male']) }
-  scope :reference, -> { where(category: [nil, 'reference']) }
-  scope :critical, -> { where(category: 'critical') }
-  scope :absolute, -> { where(category: 'absolute') }
+  scope :reference, -> { where(range_category: [nil, 'reference']) }
+  scope :critical, -> { where(range_category: 'critical') }
+  scope :absolute, -> { where(range_category: 'absolute') }
   scope :normal, -> { where(context: [nil, 'normal']) }
   scope :therapeutic, -> { where(context: 'therapeutic') }
   scope :treatment, -> { where(context: 'treatment') }
@@ -56,11 +56,11 @@ class QualifiedInterval < ApplicationRecord
   validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_nil: true
   validates :gender, inclusion: { in: GENDERS }, allow_nil: true
 
-  after_create_commit -> { broadcast_prepend_later_to 'admin:qualified_intervals', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_qualified_intervals_path } }
-  after_update_commit -> { broadcast_replace_later_to 'admin:qualified_intervals' }
-  after_destroy_commit -> { broadcast_remove_to 'admin:qualified_intervals' }
+  after_create_commit -> { broadcast_prepend_later_to 'admin:qualified_values', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_qualified_values_path } }
+  after_update_commit -> { broadcast_replace_later_to 'admin:qualified_values' }
+  after_destroy_commit -> { broadcast_remove_to 'admin:qualified_values' }
 
-  auto_strip_attributes :category,
+  auto_strip_attributes :range_category,
                         :range_low_value, :range_high_value,
                         :context,
                         :gender,
@@ -81,7 +81,7 @@ class QualifiedInterval < ApplicationRecord
   end
 
   def absolute?
-    category == 'absolute'
+    range_category == 'absolute'
   end
 
   def age
@@ -91,7 +91,7 @@ class QualifiedInterval < ApplicationRecord
   end
 
   def critical?
-    category == 'critical'
+    range_category == 'critical'
   end
 
   def female?
@@ -115,11 +115,11 @@ class QualifiedInterval < ApplicationRecord
   end
 
   def reference?
-    category.nil? || category == 'reference'
+    range_category.nil? || range_category == 'reference'
   end
 
   def to_partial_path
-    'admin/qualified_intervals/qualified_interval'
+    'admin/qualified_values/qualified_value'
   end
 
   private

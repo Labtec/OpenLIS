@@ -4,7 +4,7 @@ require 'test_helper'
 
 class ObservationsHelperTest < ActionView::TestCase
   include ObservationsHelper
-  include QualifiedIntervalsHelper
+  include QualifiedValuesHelper
 
   setup do
     @observation = observations(:observation)
@@ -119,23 +119,23 @@ class ObservationsHelperTest < ActionView::TestCase
 
   test 'reference range table' do
     reference_range_table = [[nil, '', '10', '–', '2,000']]
-    assert_equal reference_range_table, ranges_table([qualified_intervals(:qualified_interval)])
+    assert_equal reference_range_table, ranges_table([qualified_values(:qualified_value)])
   end
 
   test 'reference range table with genders' do
     reference_range_table = [[nil, 'M:', '0', '–', '10'],
                              [nil, 'F:', '100', '–', '200']]
     assert_equal reference_range_table,
-                 ranges_table([qualified_intervals(:gender_male), qualified_intervals(:gender_female)], display_gender: true)
+                 ranges_table([qualified_values(:gender_male), qualified_values(:gender_female)], display_gender: true)
   end
 
   test 'reference range table with condition' do
     reference_range_table = [['Desirable:', '', '300', '–', '400']]
-    assert_equal reference_range_table, ranges_table([qualified_intervals(:desirable)])
+    assert_equal reference_range_table, ranges_table([qualified_values(:desirable)])
   end
 
   test '#range_row' do
-    range = qualified_intervals(:qualified_interval)
+    range = qualified_values(:qualified_value)
     assert_equal [nil, '', '10', '–', '2,000'], range_row(range), 'Quantity'
 
     range.update(lab_test: lab_tests(:ratio))

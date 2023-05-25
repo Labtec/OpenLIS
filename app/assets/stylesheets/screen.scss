@@ -480,7 +480,7 @@ td.range_1 {
   color: #777;
   display: inline; }
 
-table.qualified-interval {
+table.qualified-value {
   th.range, td.range {
     min-width: 100px;
   }
@@ -556,7 +556,7 @@ tr.admin_doctor:hover,
 tr.admin_insurance_provider:hover,
 tr.admin_lab_test_value:hover,
 tr.admin_panel:hover,
-tr.admin_qualified_interval:hover,
+tr.admin_qualified_value:hover,
 tr.admin_unit:hover,
 li.admin_lab_test:hover {
   background: seashell; }

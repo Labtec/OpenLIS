@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module QualifiedIntervalsHelper
+module QualifiedValuesHelper
   def range_symbol(range)
     if range.begin && range.end
       '–'

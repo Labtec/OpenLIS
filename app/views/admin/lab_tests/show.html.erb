@@ -98,10 +98,10 @@
   <% end %>
 </section>
 
-<% if @lab_test.qualified_intervals.any? %>
-<%= turbo_stream_from [:admin, :qualified_intervals] %>
-<section class="observation-definition qualified-interval">
-  <h2>Qualified Interval</h2>
+<% if @lab_test.qualified_values.any? %>
+<%= turbo_stream_from [:admin, :qualified_values] %>
+<section class="observation-definition qualified-value">
+  <h2>Qualified Values</h2>
   <table>
     <thead>
       <tr>
@@ -120,7 +120,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @lab_test.qualified_intervals.includes(:lab_test, :interpretation) %>
+      <%= render @lab_test.qualified_values.includes(:lab_test, :interpretation) %>
     </tbody>
   </table>
 </section>

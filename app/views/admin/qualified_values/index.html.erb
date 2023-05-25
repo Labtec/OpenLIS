@@ -1,12 +1,12 @@
-<% title 'Qualified Intervals' %>
+<% title 'Qualified Values' %>
 
-<%= turbo_stream_from [:admin, :qualified_intervals] %>
+<%= turbo_stream_from [:admin, :qualified_values] %>
 
-<%= turbo_frame_tag :qualified_intervals %>
+<%= turbo_frame_tag :qualified_values %>
 
 <table class="qualified-interval">
   <% @lab_tests.each do |lab_test| %>
-    <% next unless lab_test.qualified_intervals.present? %>
+    <% next unless lab_test.qualified_values.present? %>
     <tr><th colspan="12"><h3><%= name_with_description(lab_test) %></h3></th></tr>
     <tr>
       <td><b>#</b></td>
@@ -22,8 +22,8 @@
       <td></td>
       <td></td>
     </tr>
-    <%= render lab_test.qualified_intervals %>
+    <%= render lab_test.qualified_values %>
   <% end %>
 </table>
 
-<p><%= link_to 'New Qualified Interval', new_admin_qualified_interval_path %></p>
+<p><%= link_to 'New Qualified Value', new_admin_qualified_value_path %></p>

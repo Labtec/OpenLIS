@@ -1,27 +1,27 @@
-qualified_interval:
+qualified_value:
   range_low_value: 10
   range_high_value: 2_000
-  lab_test: qualified_interval
+  lab_test: qualified_value
 
 less_than:
   range_high_value: 10
-  lab_test: qualified_interval_less_than
+  lab_test: qualified_value_less_than
 
 greater_than:
   range_low_value: 10
-  lab_test: qualified_interval_greater_than
+  lab_test: qualified_value_greater_than
 
 gender_male:
   gender: male
   range_low_value: 0
   range_high_value: 10
-  lab_test: qualified_interval_male_female
+  lab_test: qualified_value_male_female
 
 gender_female:
   gender: female
   range_low_value: 100
   range_high_value: 200
-  lab_test: qualified_interval_male_female
+  lab_test: qualified_value_male_female
 
 multiple_intervals_1:
   range_high_value: 10
@@ -407,7 +407,7 @@ fsh_ft5:
   condition: Tanner V
 
 critical_low:
-  category: critical
+  range_category: critical
   lab_test: with_critical_ranges
   range_high_value: 100
   condition: Critical Low
@@ -433,7 +433,7 @@ significantly_high:
   condition: Significantly High
 
 critical_high:
-  category: critical
+  range_category: critical
   lab_test: with_critical_ranges
   range_low_value: 600
   condition: Critical High

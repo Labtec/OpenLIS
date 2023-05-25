@@ -8,7 +8,7 @@
         <%= sanitize(format_units(observation)) if display_units(observation) %>
       </td>
       <td class="ranges">
-        <%= render partial: 'observations/qualified_interval',
+        <%= render partial: 'observations/qualified_value',
           collection: observation.reference_intervals.includes(:lab_test),
           locals: { display_gender: observation.patient.unknown? } if display_units(observation) %>
       </td>

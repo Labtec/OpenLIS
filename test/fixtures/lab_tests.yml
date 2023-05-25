@@ -95,25 +95,25 @@ decimal:
   name: Decimal
   code: DECIMAL
 
-qualified_interval:
+qualified_value:
   department: chemistry
   decimals: 0
-  name: Qualified Interval
+  name: Qualified Value
   code: REFRANGE
 
-qualified_interval_less_than:
+qualified_value_less_than:
   department: chemistry
   decimals: 0
-  name: Qualified Interval Less Than
+  name: Qualified Value Less Than
   code: REFRANGELT
 
-qualified_interval_greater_than:
+qualified_value_greater_than:
   department: chemistry
   decimals: 0
-  name: Qualified Interval Greater Than
+  name: Qualified Value Greater Than
   code: REFRANGEGT
 
-qualified_interval_male_female:
+qualified_value_male_female:
   department: chemistry
   decimals: 0
   name: Reference Range
