@@ -116,7 +116,7 @@ class Observation < ApplicationRecord
   end
 
   def value_range
-    return if value.nil?
+    return if value.blank?
     return unless lab_test.range?
 
     value =~ /\A((<|>)|(\d+)(-))(\d+)\z/
@@ -124,7 +124,7 @@ class Observation < ApplicationRecord
   end
 
   def value_ratio
-    return if value.nil?
+    return if value.blank?
     return unless lab_test.ratio?
 
     value =~ /\A(\d+):(\d+)\z/
@@ -132,7 +132,7 @@ class Observation < ApplicationRecord
   end
 
   def value_fraction
-    return if value.nil?
+    return if value.blank?
     return unless lab_test.fraction?
 
     value =~ /\A(\d+):(\d+)\z/
