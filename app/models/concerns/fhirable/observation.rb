@@ -187,6 +187,8 @@ module FHIRable
     end
 
     def observation_value_quantity_value
+      return unless value_quantity.is_a?(Numeric) && value_quantity.finite?
+
       ApplicationController.helpers.number_with_precision(value_quantity, precision: lab_test_decimals)
     end
 
