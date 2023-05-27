@@ -23,6 +23,9 @@ class ObservationTest < ActiveSupport::TestCase
     crtsa = observations(:crtsa)
     egfrcr = observations(:egfrcr)
     crtsa.update(value: '0,9')
+    assert_equal 7, egfrcr.derived_value
+
+    crtsa.update(value: '0,s')
     assert_equal Float::INFINITY, egfrcr.derived_value
   end
 end

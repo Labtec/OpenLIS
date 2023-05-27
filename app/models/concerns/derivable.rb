@@ -254,7 +254,7 @@ module Derivable
   end
 
   def result_value_quantity_for(code)
-    results.joins(:lab_test).find_by('lab_tests.code': code)&.value&.to_d
+    results.joins(:lab_test).find_by('lab_tests.code': code)&.value_quantity&.to_d
   end
 
   def result_derived_value_for(code)
