@@ -20,7 +20,7 @@
     </table>
   </td>
 </tr>
-<% if observation.lab_test_remarks.present? %>
+<% if observation.lab_test_remarks.present? || observation.derived_remarks.present? %>
 <tr class="<%= same_row_class %>">
   <td class="remarks" colspan="5"><%= sanitize(observation.lab_test_remarks) %></td>
 </tr>

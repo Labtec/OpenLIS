@@ -155,6 +155,9 @@ es-PA:
   observations:
     derived_remarks:
       egfrcr: Las directrices de NKF KDOQI y KDIGO recomiendan confirmar una Tasa de Filtración Glomerular estimada (eGFR) de 45–59 mL/min/1.73m² con una Tasa Albúmina-Creatinina en orina (uACR) &lt;30 mg/g, en función de una eGFR calculada con Creatinina y Cistatina C.
+      psa_r: |
+        Cuando el PSA Total está en el rango de 4.0–10.0 ng/mL, una Tasa PSA Libre/PSA Total de ≤0.10 indica un riesgo de cáncer de próstata del 49 al 65% según la edad; y una Tasa PSA Libre/PSA Total &gt;0.25 indica un riesgo de cáncer de próstata del 9 al 16% según la edad.
+        Los resultados de las pruebas no pueden interpretarse como evidencia absoluta de la presencia o ausencia de una enfermedad maligna.
   panels:
     form:
       order_panels: Ordenar Paneles
