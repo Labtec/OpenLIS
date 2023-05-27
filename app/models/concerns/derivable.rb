@@ -272,8 +272,47 @@ module Derivable
       tpsa = result_value_quantity_for 'TPSA'
       tpsa1d = result_value_quantity_for 'TPSA1d'
       tpsa = tpsa1d if tpsa.blank?
+      psa_r = result_derived_value_for 'PSA_R'
+      age = subject_age.parts[:years]
       if tpsa.between?(4, 10)
-        return I18n.t('observations.derived_remarks.psa_r')
+        case psa_r
+        when 0..0.10
+          case age
+          when 50..59
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '≤0.10', risk: '49%')
+          when 60..69
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '≤0.10', risk: '58%')
+          when 70..Float::INFINITY
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '≤0.10', risk: '65%')
+          end
+        when 0.11..0.18
+          case age
+          when 50..59
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.11–0.18', risk: '27%')
+          when 60..69
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.11–0.18', risk: '34%')
+          when 70..Float::INFINITY
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.11–0.18', risk: '41%')
+          end
+        when 0.19..0.25
+          case age
+          when 50..59
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.19–0.25', risk: '18%')
+          when 60..69
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.19–0.25', risk: '24%')
+          when 70..Float::INFINITY
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.19–0.25', risk: '30%')
+          end
+        when 0.26..Float::INFINITY
+          case age
+          when 50..59
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '>0.25', risk: '9%')
+          when 60..69
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '>0.25', risk: '12%')
+          when 70..Float::INFINITY
+            return I18n.t('observations.derived_remarks.psa_r', psa_r: '>0.25', risk: '16%')
+          end
+        end
       end
     end
   rescue StandardError
