@@ -172,6 +172,9 @@ en:
   observations:
     derived_remarks:
       egfrcr: NKF KDOQI and KDIGO guidelines recommend confirming an estimated glomerular filtration rate (eGFR) of 45–59 mL/min/1.73m² with a urine albumin-creatinine ratio (uACR) &lt;30 mg/g based on an eGFR calculated using both creatinine and cystatin C.
+      psa_r: |
+        When Total PSA is in the range of 4.0–10.0 ng/mL, a Free PSA/Total PSA ratio of ≤0.10 indicates 49 to 65% risk of prostate cancer depending on age; and a Free PSA/Total PSA ratio of &gt;0.25 indicates a 9 to 16% risk of prostate cancer depending on age.
+        Test results cannot be interpreted as absolute evidence for the presence or absence of malignant disease.
   panels:
     form:
       order_panels: Order Panels

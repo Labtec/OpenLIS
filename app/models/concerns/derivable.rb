@@ -127,10 +127,6 @@ module Derivable
       hct = result_value_quantity_for 'HCT'
       rbc = result_value_quantity_for 'RBC'
       hct / rbc * 10
-    when 'PCT'
-      pltc = result_value_quantity_for 'PLTC'
-      mpv = result_value_quantity_for 'MPV'
-      pltc * mpv / 10_000
     when 'NORM'
       abhead = result_value_quantity_for('ABHEAD')
       abhead_v = result_value_codeable_concept_for('ABHEAD')
@@ -147,6 +143,16 @@ module Derivable
       else
         100 - (abhead + abmid + abmain + excesscyt)
       end
+    when 'PCT'
+      pltc = result_value_quantity_for 'PLTC'
+      mpv = result_value_quantity_for 'MPV'
+      pltc * mpv / 10_000
+    when 'PSA_R'
+      fpsa = result_value_quantity_for 'FPSA'
+      tpsa = result_value_quantity_for 'TPSA'
+      tpsa1d = result_value_quantity_for 'TPSA1d'
+      tpsa = tpsa1d if tpsa.blank?
+      fpsa / tpsa
     when 'TMOTILE'
       pr = result_value_quantity_for 'PR'
       np = result_value_quantity_for 'NP'
@@ -261,6 +267,13 @@ module Derivable
       egfrcr = result_derived_value_for 'eGFRcr'
       if egfrcr.between?(45, 59)
         return I18n.t('observations.derived_remarks.egfrcr')
+      end
+    when 'PSA_R'
+      tpsa = result_value_quantity_for 'TPSA'
+      tpsa1d = result_value_quantity_for 'TPSA1d'
+      tpsa = tpsa1d if tpsa.blank?
+      if tpsa.between?(4, 10)
+        return I18n.t('observations.derived_remarks.psa_r')
       end
     end
   rescue StandardError
