@@ -490,6 +490,16 @@ table.qualified-interval {
   }
 }
 
+.collapsed {
+  p {
+    margin: 0px;
+    white-space: pre;
+  }
+}
+  div.collapsed {
+    margin: 0px;
+  }
+
 .sortable_lab_test_name {
   display: inline-block;
   width: 260px; }

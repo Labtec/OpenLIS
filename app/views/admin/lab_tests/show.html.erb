@@ -34,8 +34,10 @@
 
   <% if @lab_test.remarks.present? %>
   <p>
-    <strong>Remarks:</strong><br/>
-    <%= render_markdown @lab_test.remarks %>
+    <div class="collapsed">
+      <strong>Remarks:</strong>
+      <%= render_markdown @lab_test.remarks %>
+    </div>
   </p>
   <% end %>
 </section>

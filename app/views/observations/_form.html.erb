@@ -17,12 +17,16 @@
     <% if form.object.lab_test_remarks.present? %>
     <tr>
       <td class="remarks" colspan="3">
-        <%= render_markdown(form.object.lab_test_remarks) %>
+        <div class="collapsed">
+          <%= render_markdown(form.object.lab_test_remarks) %>
+        </div>
       </td>
     </tr>
     <tr>
       <td class="remarks" colspan="3">
-        <%= render_markdown(form.object.derived_remarks) %>
+        <div class="collapsed">
+          <%= render_markdown(form.object.derived_remarks) %>
+        </div>
       </td>
     </tr>
     <% end %>

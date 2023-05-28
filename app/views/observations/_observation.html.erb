@@ -17,12 +17,16 @@
     <% if observation.lab_test_remarks.present? || observation.derived_remarks.present? %>
     <tr>
       <td class="remarks" colspan="3">
-        <%= render_markdown(observation.lab_test_remarks) %>
+        <div class="collapsed">
+          <%= render_markdown(observation.lab_test_remarks) %>
+        </div>
       </td>
     </tr>
     <tr>
       <td class="remarks" colspan="3">
-        <%= render_markdown(observation.derived_remarks) %>
+        <div class="collapsed">
+          <%= render_markdown(observation.derived_remarks) %>
+        </div>
       </td>
     </tr>
     <% end %>
