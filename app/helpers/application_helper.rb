@@ -10,6 +10,12 @@ module ApplicationHelper
     render 'error_messages', object: messages unless messages.empty?
   end
 
+  def render_markdown(text)
+    return unless text
+
+    sanitize(CommonMarker.render_html(text), tags: %w[strong em])
+  end
+
   def navigation(*links)
     items = []
     links.each do |link|

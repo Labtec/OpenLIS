@@ -22,9 +22,9 @@
 </tr>
 <% if object.lab_test_remarks.present? %>
 <tr class="<%= same_row_class %>">
-  <td class="remarks" colspan="5"><%= sanitize(object.lab_test_remarks) %></td>
+  <td class="remarks" colspan="5"><%= render_markdown(object.lab_test_remarks) %></td>
 </tr>
 <tr class="<%= same_row_class %>">
-  <td class="remarks" colspan="3"><%= sanitize(object.derived_remarks) %></td>
+  <td class="remarks" colspan="3"><%= render_markdown(object.derived_remarks) %></td>
 </tr>
 <% end %>

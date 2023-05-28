@@ -135,6 +135,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    commonmarker (0.23.9)
     concurrent-ruby (1.2.2)
     cose (1.3.0)
       cbor (~> 0.5.9)
@@ -383,6 +384,7 @@ DEPENDENCIES
   capistrano3-puma
   capybara
   coffee-rails
+  commonmarker
   dalli
   devise
   ed25519
