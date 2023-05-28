@@ -14,6 +14,7 @@ gem "barby"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "coffee-rails" # TODO
+gem "commonmarker"
 gem "dalli"
 gem "devise"
 gem "ed25519"

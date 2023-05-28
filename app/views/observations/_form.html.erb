@@ -17,12 +17,12 @@
     <% if form.object.lab_test_remarks.present? %>
     <tr>
       <td class="remarks" colspan="3">
-        <%= sanitize(form.object.lab_test_remarks) %>
+        <%= render_markdown(form.object.lab_test_remarks) %>
       </td>
     </tr>
     <tr>
       <td class="remarks" colspan="3">
-        <%= sanitize(form.object.derived_remarks) %>
+        <%= render_markdown(form.object.derived_remarks) %>
       </td>
     </tr>
     <% end %>

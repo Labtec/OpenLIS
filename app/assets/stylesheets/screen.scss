@@ -445,7 +445,8 @@ table {
     td.remarks {
       padding-top: 0px !important;
       padding-left: 15px !important;
-      font-size: 10px; }
+      font-size: 10px;
+      max-width: 80px; }
   table.odd {
     background-color: #e5e5e5; }
   table:nth-child(even).row-stripes {

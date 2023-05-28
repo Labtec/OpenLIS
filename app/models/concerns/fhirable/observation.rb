@@ -109,7 +109,7 @@ module FHIRable
       return unless lab_test_remarks || derived_remarks
 
       notes = []
-      # XXX Text must be markdown
+      # XXX Apple does not parse markdown
       notes << FHIR::Annotation.new(
         text: lab_test_remarks
       ) if lab_test_remarks

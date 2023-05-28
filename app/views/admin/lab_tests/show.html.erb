@@ -35,7 +35,7 @@
   <% if @lab_test.remarks.present? %>
   <p>
     <strong>Remarks:</strong><br/>
-    <%= sanitize @lab_test.remarks %>
+    <%= render_markdown @lab_test.remarks %>
   </p>
   <% end %>
 </section>

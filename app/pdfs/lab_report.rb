@@ -216,8 +216,8 @@ class LabReport < Prawn::Document
         cell_col4 = make_cell content: pdf_ranges_table, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, 0], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
 
         if result.lab_test_remarks.present? || result.derived_remarks.present?
-          remarks = make_cell content: result.lab_test_remarks.to_s, inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
-          derived_remarks = make_cell content: result.derived_remarks.to_s, inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
+          remarks = make_cell content: render_markdown(result.lab_test_remarks), inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
+          derived_remarks = make_cell content: render_markdown(result.derived_remarks), inline_format: true, colspan: 5, size: 7, padding: [0, PADDING, ROW_VERTICAL_PADDING, PADDING * 2]
 
           data_remarks = [[cell_col0, cell_col1, cell_col2, cell_col3, cell_col4]]
           data_remarks << [remarks]
