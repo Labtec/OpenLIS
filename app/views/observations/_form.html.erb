@@ -22,9 +22,17 @@
 </tr>
 <% if object.lab_test_remarks.present? %>
 <tr class="<%= same_row_class %>">
-  <td class="remarks" colspan="5"><%= render_markdown(object.lab_test_remarks) %></td>
+  <td class="remarks" colspan="5">
+    <div class="collapsed">
+      <%= render_markdown(object.lab_test_remarks) %>
+    </div>
+  </td>
 </tr>
 <tr class="<%= same_row_class %>">
-  <td class="remarks" colspan="3"><%= render_markdown(object.derived_remarks) %></td>
+  <td class="remarks" colspan="3">
+    <div class="collapsed">
+      <%= render_markdown(object.derived_remarks) %>
+    </div>
+  </td>
 </tr>
 <% end %>
