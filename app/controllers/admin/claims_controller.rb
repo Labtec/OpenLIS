@@ -26,6 +26,10 @@ module Admin
       @claim = @accession.build_claim(insurance_provider: @accession.insurance_provider)
     end
 
+    def edit
+      @claim = Claim.find(params[:id])
+    end
+
     def create
       @claim = Claim.new(claim_params)
       if @claim.save
@@ -34,10 +38,6 @@ module Admin
       else
         render action: 'new'
       end
-    end
-
-    def edit
-      @claim = Claim.find(params[:id])
     end
 
     def update

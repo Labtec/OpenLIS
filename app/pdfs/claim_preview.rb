@@ -326,13 +326,13 @@ class ClaimPreview < Prawn::Document
       # Output Panels Table
       if panels_table.present?
         table panels_table, column_widths: {
-          0 => rev_cd_width,
-          1 => description_width,
-          2 => hpcs_rates_width,
-          3 => serv_date_width,
-          4 => serv_units_width,
-          5 => total_charges_width
-        },
+                              0 => rev_cd_width,
+                              1 => description_width,
+                              2 => hpcs_rates_width,
+                              3 => serv_date_width,
+                              4 => serv_units_width,
+                              5 => total_charges_width
+                            },
                             cell_style: {
                               size: 8,
                               height: field_height,

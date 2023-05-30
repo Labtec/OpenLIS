@@ -14,6 +14,10 @@ module Admin
       @insurance_provider = InsuranceProvider.new
     end
 
+    def edit
+      @insurance_provider = InsuranceProvider.find(params[:id])
+    end
+
     def create
       @insurance_provider = InsuranceProvider.new(insurance_provider_params)
       if @insurance_provider.save
@@ -22,10 +26,6 @@ module Admin
       else
         render action: 'new'
       end
-    end
-
-    def edit
-      @insurance_provider = InsuranceProvider.find(params[:id])
     end
 
     def update

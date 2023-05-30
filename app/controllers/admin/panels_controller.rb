@@ -14,6 +14,10 @@ module Admin
       @panel = Panel.new
     end
 
+    def edit
+      @panel = Panel.find(params[:id])
+    end
+
     def create
       @panel = Panel.new(panel_params)
       if @panel.save
@@ -22,10 +26,6 @@ module Admin
       else
         render action: 'new'
       end
-    end
-
-    def edit
-      @panel = Panel.find(params[:id])
     end
 
     def update

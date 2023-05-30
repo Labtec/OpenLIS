@@ -18,6 +18,8 @@ class PatientsController < ApplicationController
     @patient = Patient.new
   end
 
+  def edit; end
+
   def create
     @patient = Patient.new(patient_params)
     if @patient.save
@@ -26,8 +28,6 @@ class PatientsController < ApplicationController
       render action: 'new'
     end
   end
-
-  def edit; end
 
   def update
     if @patient.update(patient_params)

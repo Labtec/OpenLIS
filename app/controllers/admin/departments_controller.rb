@@ -11,6 +11,10 @@ module Admin
       render layout: false
     end
 
+    def edit
+      @department = Department.find(params[:id])
+    end
+
     def create
       @department = Department.new(department_params)
       if @department.save
@@ -19,10 +23,6 @@ module Admin
       else
         render action: 'new'
       end
-    end
-
-    def edit
-      @department = Department.find(params[:id])
     end
 
     def update

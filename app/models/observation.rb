@@ -106,7 +106,7 @@ class Observation < ApplicationRecord
     case value.scan(/[^\d.]/).join.squish
     when '<'
       '<'
-    when '<=', '=<' ,'≤'
+    when '<=', '=<', '≤'
       '≤'
     when '>=', '=>', '≥'
       '≥'

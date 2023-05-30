@@ -41,7 +41,7 @@ module System
       click_on 'Log In'
       assert_not page.has_content?('WebAuthn is not enabled')
       assert_not page.has_content?("This browser doesn't support security keys")
-      assert page.has_content?("When you are ready to authenticate, press the button below.")
+      assert page.has_content?('When you are ready to authenticate, press the button below.')
     end
   end
 end

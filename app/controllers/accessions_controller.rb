@@ -21,6 +21,10 @@ class AccessionsController < ApplicationController
     @accession.receiver_id = current_user.id
   end
 
+  def edit
+    @patient = @accession.patient
+  end
+
   def create
     @accession = @patient.accessions.build(accession_params)
 
@@ -29,10 +33,6 @@ class AccessionsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
-    @patient = @accession.patient
   end
 
   def update

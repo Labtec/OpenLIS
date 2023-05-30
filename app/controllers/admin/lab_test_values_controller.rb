@@ -14,6 +14,10 @@ module Admin
       @lab_test_value = LabTestValue.new
     end
 
+    def edit
+      @lab_test_value = LabTestValue.find(params[:id])
+    end
+
     def create
       @lab_test_value = LabTestValue.new(lab_test_value_params)
       if @lab_test_value.save
@@ -22,10 +26,6 @@ module Admin
       else
         render action: 'new'
       end
-    end
-
-    def edit
-      @lab_test_value = LabTestValue.find(params[:id])
     end
 
     def update

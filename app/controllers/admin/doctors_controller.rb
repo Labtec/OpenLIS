@@ -14,6 +14,10 @@ module Admin
       @doctor = Doctor.new
     end
 
+    def edit
+      @doctor = Doctor.find(params[:id])
+    end
+
     def create
       @doctor = Doctor.new(doctor_params)
       if @doctor.save
@@ -22,10 +26,6 @@ module Admin
       else
         render action: 'new'
       end
-    end
-
-    def edit
-      @doctor = Doctor.find(params[:id])
     end
 
     def update

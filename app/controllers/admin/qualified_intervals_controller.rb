@@ -14,6 +14,10 @@ module Admin
       @qualified_interval = QualifiedInterval.new
     end
 
+    def edit
+      @qualified_interval = QualifiedInterval.find(params[:id])
+    end
+
     def create
       @qualified_interval = QualifiedInterval.new(qualified_interval_params)
       if @qualified_interval.save
@@ -22,10 +26,6 @@ module Admin
       else
         render action: 'new'
       end
-    end
-
-    def edit
-      @qualified_interval = QualifiedInterval.find(params[:id])
     end
 
     def update
