@@ -101,7 +101,7 @@ class Observation < ApplicationRecord
   end
 
   def value_quantity_comparator
-    return unless value.present?
+    return if value.blank?
 
     case value.scan(/[^\d.]/).join.squish
     when '<'
