@@ -201,7 +201,7 @@ module FHIRable
     end
 
     def observation_value_codeable_concept
-      return unless value_codeable_concept.present?
+      return if value_codeable_concept.blank?
 
       codes = []
       codes << FHIR::Coding.new(system: 'http://loinc.org', code: lab_test_value&.loinc) if lab_test_value&.loinc.present?

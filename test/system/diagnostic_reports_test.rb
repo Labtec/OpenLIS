@@ -12,7 +12,7 @@ module System
     def teardown
       Warden.test_reset!
       filename = "resultados_#{@service_request.id}.pdf"
-      File.delete(filename) if File.exist?(filename)
+      FileUtils.rm_f(filename)
     end
 
     test "diagnostic report's state machine" do
