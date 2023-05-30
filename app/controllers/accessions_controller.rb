@@ -37,8 +37,10 @@ class AccessionsController < ApplicationController
     if @accession.update(accession_params)
       @accession.transaction do
         @accession.lock!
-        @accession.update(reporter_id: current_user.id,
-                          reported_at: Time.current) if @accession.reported_at && !current_user.admin?
+        if @accession.reported_at && !current_user.admin?
+          @accession.update(reporter_id: current_user.id,
+                            reported_at: Time.current)
+        end
         @accession.results.map(&:evaluate!)
         @accession.evaluate!
       end

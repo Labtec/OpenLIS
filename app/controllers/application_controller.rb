@@ -80,7 +80,7 @@ class ApplicationController < ActionController::Base
       format.any { head code }
       format.html do
         set_user_language
-        render file: Rails.root.join('public', "#{code}.html"), status: code, layout: false
+        render file: Rails.public_path.join("#{code}.html"), status: code, layout: false
       end
     end
   end

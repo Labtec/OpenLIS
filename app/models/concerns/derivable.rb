@@ -180,7 +180,7 @@ module Derivable
       na * 2 + bun / 2.8 + glucose / 18
     when 'HOMAIR'
       glucose = result_value_quantity_for('GLU') || result_value_quantity_for('GLUC')
-      insulin = result_value_quantity_for('INS') || result_value_quantity_for('INSI') ||result_value_quantity_for('INSG')
+      insulin = result_value_quantity_for('INS') || result_value_quantity_for('INSI') || result_value_quantity_for('INSG')
       glucose * insulin / 405
     when 'eGFRcr'
       age = subject_age.parts[:years]
@@ -265,9 +265,7 @@ module Derivable
     case code
     when 'eGFRcr'
       egfrcr = result_derived_value_for 'eGFRcr'
-      if egfrcr.between?(45, 59)
-        return I18n.t('observations.derived_remarks.egfrcr')
-      end
+      return I18n.t('observations.derived_remarks.egfrcr') if egfrcr.between?(45, 59)
     when 'PSA_R'
       tpsa = result_value_quantity_for 'TPSA'
       tpsa1d = result_value_quantity_for 'TPSA1d'
@@ -279,38 +277,38 @@ module Derivable
         when 0..0.10
           case age
           when 50..59
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '≤0.10', risk: '49%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '≤0.10', risk: '49%')
           when 60..69
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '≤0.10', risk: '58%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '≤0.10', risk: '58%')
           when 70..Float::INFINITY
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '≤0.10', risk: '65%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '≤0.10', risk: '65%')
           end
         when 0.11..0.18
           case age
           when 50..59
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.11–0.18', risk: '27%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '0.11–0.18', risk: '27%')
           when 60..69
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.11–0.18', risk: '34%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '0.11–0.18', risk: '34%')
           when 70..Float::INFINITY
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.11–0.18', risk: '41%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '0.11–0.18', risk: '41%')
           end
         when 0.19..0.25
           case age
           when 50..59
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.19–0.25', risk: '18%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '0.19–0.25', risk: '18%')
           when 60..69
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.19–0.25', risk: '24%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '0.19–0.25', risk: '24%')
           when 70..Float::INFINITY
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '0.19–0.25', risk: '30%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '0.19–0.25', risk: '30%')
           end
         when 0.26..Float::INFINITY
           case age
           when 50..59
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '>0.25', risk: '9%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '>0.25', risk: '9%')
           when 60..69
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '>0.25', risk: '12%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '>0.25', risk: '12%')
           when 70..Float::INFINITY
-            return I18n.t('observations.derived_remarks.psa_r', psa_r: '>0.25', risk: '16%')
+            I18n.t('observations.derived_remarks.psa_r', psa_r: '>0.25', risk: '16%')
           end
         end
       end

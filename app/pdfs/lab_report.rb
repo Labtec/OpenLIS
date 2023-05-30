@@ -244,7 +244,7 @@ class LabReport < Prawn::Document
       # Notes sub-table
       notes_content = @accession.notes.find_by(department_id: department).try(:content)
 
-      if !notes_content.blank?
+      if notes_content.present?
         data_notes_padding_top = make_cell(content: '', height: NOTES_PADDING, borders: [])
         data_notes_padding_bottom = make_cell(content: '', height: PADDING, borders: [])
         data_notes_title = make_cell(content: t('results.index.notes'), inline_format: true, borders: [:left], text_color: colors_purple, font_style: :bold)

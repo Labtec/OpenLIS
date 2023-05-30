@@ -4,7 +4,7 @@
 class NotInTheFutureValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if value && value.in_time_zone > Time.current
-      record.errors.add(attribute, (options[:message] || I18n.t(:cant_be_in_the_future, scope: %i[errors messages])))
+      record.errors.add(attribute, (options[:message] || I18n.t('errors.messages.cant_be_in_the_future')))
     end
   end
 end

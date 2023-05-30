@@ -28,7 +28,7 @@ module FHIRable
         # 'conclusionCode':
         presentedForm: fhirable_diagnostic_report_presented_form
       )
-      dr.resultsInterpreter = [ fhirable_reference(reporter) ] if reporter
+      dr.resultsInterpreter = [fhirable_reference(reporter)] if reporter
 
       dr
     end

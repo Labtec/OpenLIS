@@ -65,18 +65,18 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def force_certify
-    if current_user.admin?
-      @diagnostic_report.transaction do
-        @diagnostic_report.lock!
-        @diagnostic_report.results.map(&:evaluate!)
-        @diagnostic_report.reporter_id = current_user.id
-        @diagnostic_report.reported_at = Time.current
-        @diagnostic_report.results.map(&:not_performed!)
-        @diagnostic_report.results.map(&:force_certify!)
-        @diagnostic_report.force_certify!
-        @diagnostic_report.save
-        redirect_to diagnostic_report_url(@diagnostic_report)
-      end
+    return unless current_user.admin?
+
+    @diagnostic_report.transaction do
+      @diagnostic_report.lock!
+      @diagnostic_report.results.map(&:evaluate!)
+      @diagnostic_report.reporter_id = current_user.id
+      @diagnostic_report.reported_at = Time.current
+      @diagnostic_report.results.map(&:not_performed!)
+      @diagnostic_report.results.map(&:force_certify!)
+      @diagnostic_report.force_certify!
+      @diagnostic_report.save
+      redirect_to diagnostic_report_url(@diagnostic_report)
     end
   end
 

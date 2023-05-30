@@ -110,12 +110,8 @@ module FHIRable
 
       notes = []
       # XXX Apple does not parse markdown
-      notes << FHIR::Annotation.new(
-        text: lab_test_remarks
-      ) if lab_test_remarks
-      notes << FHIR::Annotation.new(
-        text: derived_remarks
-      ) if derived_remarks
+      notes << FHIR::Annotation.new(text: lab_test_remarks) if lab_test_remarks
+      notes << FHIR::Annotation.new(text: derived_remarks) if derived_remarks
 
       notes
     end

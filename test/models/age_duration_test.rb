@@ -165,9 +165,9 @@ class AgeDurationTest < ActiveSupport::TestCase
 
     from_to_duration.each do |duration|
       assert_equal duration[2],
-        ActiveSupport::Duration.age(Date.parse(duration[0]),
-                                    Date.parse(duration[1])),
-        "#{duration[0]} -- #{duration[1]}"
+                   ActiveSupport::Duration.age(Date.parse(duration[0]),
+                                               Date.parse(duration[1])),
+                   "#{duration[0]} -- #{duration[1]}"
     end
   end
 end

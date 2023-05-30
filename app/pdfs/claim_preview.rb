@@ -172,7 +172,7 @@ class ClaimPreview < Prawn::Document
     bounding_box([left_margin, (top_margin - field_height * 3)], width: birthdate_width, height: field_height) do
       pad(form_padding) do
         indent(form_indenting) do
-          text @claim.patient.birthdate.to_formatted_s(:mmddccyy)
+          text @claim.patient.birthdate.to_fs(:mmddccyy)
         end
       end
     end
@@ -187,7 +187,7 @@ class ClaimPreview < Prawn::Document
     # Situational. Required when there is a condition code that applies to this claim.
     bounding_box([left_margin + occurrence_code_width, (top_margin - field_height * 5)], width: occurrence_date_width, height: field_height) do
       pad(form_padding) do
-        text @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy), align: :center
+        text @claim.accession.drawn_at.to_date.to_fs(:mmddyy), align: :center
       end
     end
     # FL 38 - Responsible Party Name and Address
@@ -209,7 +209,7 @@ class ClaimPreview < Prawn::Document
         '300',
         panel.name,
         panel.procedure.to_s,
-        @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
+        @claim.accession.drawn_at.to_date.to_fs(:mmddyy),
         '1',
         (if panel.prices.find_by(price_list_id: 1)
            @view.number_to_currency panel.prices.find_by(price_list_id: 1).amount, unit: '', separator: ' '
@@ -227,7 +227,7 @@ class ClaimPreview < Prawn::Document
         '300',
         lab_test.name,
         lab_test.procedure.to_s,
-        @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy),
+        @claim.accession.drawn_at.to_date.to_fs(:mmddyy),
         '1',
         (if lab_test.prices.find_by(price_list_id: 1)
            @view.number_to_currency lab_test.prices.find_by(price_list_id: 1).amount, unit: '', separator: ' '
@@ -326,13 +326,13 @@ class ClaimPreview < Prawn::Document
       # Output Panels Table
       if panels_table.present?
         table panels_table, column_widths: {
-          0 => rev_cd_width,
-          1 => description_width,
-          2 => hpcs_rates_width,
-          3 => serv_date_width,
-          4 => serv_units_width,
-          5 => total_charges_width
-        },
+                              0 => rev_cd_width,
+                              1 => description_width,
+                              2 => hpcs_rates_width,
+                              3 => serv_date_width,
+                              4 => serv_units_width,
+                              5 => total_charges_width
+                            },
                             cell_style: {
                               size: 8,
                               height: field_height,
@@ -418,7 +418,7 @@ class ClaimPreview < Prawn::Document
               bounding_box([0, field_height * (main_table_rows + 10)], width: birthdate_width, height: field_height) do
                 pad(form_padding) do
                   indent(form_indenting) do
-                    text @claim.patient.birthdate.to_formatted_s(:mmddccyy)
+                    text @claim.patient.birthdate.to_fs(:mmddccyy)
                   end
                 end
               end
@@ -433,7 +433,7 @@ class ClaimPreview < Prawn::Document
               # Situational. Required when there is a condition code that applies to this claim.
               bounding_box([occurrence_code_width, field_height * (main_table_rows + 8)], width: occurrence_date_width, height: field_height) do
                 pad(form_padding) do
-                  text @claim.accession.drawn_at.to_date.to_formatted_s(:mmddyy), align: :center
+                  text @claim.accession.drawn_at.to_date.to_fs(:mmddyy), align: :center
                 end
               end
               # FL 38 - Responsible Party Name and Address
