@@ -21,7 +21,7 @@ module FHIRable
         # 'encounter':
         effectiveDateTime: drawn_at.utc.iso8601,
         issued: reported_at&.utc&.iso8601,
-        performer: fhirable_reference(drawer),
+        performer: fhirable_diagnostic_report_performers,
         specimen: fhirable_reference(self),
         result: fhirable_diagnostic_report_results(results),
         # 'conclusion':
@@ -58,6 +58,15 @@ module FHIRable
 
     def fhirable_diagnostic_report_categories_codings(code)
       FHIR::Coding.new(system: 'http://terminology.hl7.org/CodeSystem/v2-0074', code: code)
+    end
+
+    def fhirable_diagnostic_report_performers
+      # XXX: Use PractitionerRole
+      performers = []
+      performers << fhirable_reference(drawer) if drawer
+      performers << fhirable_reference(receiver) if receiver
+      performers << fhirable_reference(reporter) if reporter
+      performers.uniq
     end
 
     def fhirable_diagnostic_report_results(results)
