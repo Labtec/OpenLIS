@@ -88,6 +88,7 @@ module FHIRable
       # XXX: Use PractitionerRole
       performers = []
       performers << fhirable_reference(accession.drawer) if accession.drawer
+      performers << fhirable_reference(accession.receiver) if accession.receiver
       performers << fhirable_reference(accession.reporter) if accession.reporter
       performers.uniq
     end
