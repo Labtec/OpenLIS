@@ -158,28 +158,20 @@ module FHIRable
       return if value_quantity.is_a? Rational
       return unless derived_value || value.present?
 
+      comparator_hash_lookup = {
+        '<' => '<',
+        '≤' => '<=',
+        '≥' => '>=',
+        '>' => '>'
+      }
+
       FHIR::Quantity.new(
         value: observation_value_quantity_value,
-        comparator: observation_value_quantity_comparator,
+        comparator: comparator_hash_lookup[value_quantity_comparator],
         unit: value_unit,
         system: 'http://unitsofmeasure.org',
         code: lab_test.customary_unit
       )
-    end
-
-    def observation_value_quantity_comparator
-      return unless value_quantity_comparator
-
-      case value_quantity_comparator
-      when '<'
-        '<'
-      when '≤'
-        '<='
-      when '≥'
-        '>='
-      when '>'
-        '>'
-      end
     end
 
     def observation_value_quantity_value
