@@ -21,11 +21,13 @@ class Observation < ApplicationRecord
   delegate :code,        to: :lab_test, prefix: true
   delegate :decimals,    to: :lab_test, prefix: true
   delegate :derivation?, to: :lab_test
+  delegate :drawn_at,    to: :accession
   delegate :fraction?,   to: :lab_test
   delegate :name,        to: :lab_test, prefix: true
   delegate :range?,      to: :lab_test
   delegate :ratio?,      to: :lab_test
   delegate :remarks,     to: :lab_test, prefix: true, allow_nil: true
+  delegate :reported_at, to: :accession
   delegate :text_length, to: :lab_test
 
   validates :value, out_of_absolute_range: true, allow_nil: true

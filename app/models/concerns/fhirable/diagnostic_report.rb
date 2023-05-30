@@ -19,8 +19,8 @@ module FHIRable
         # 'code': MANDATORY
         subject: fhirable_reference(patient),
         # 'encounter':
-        effectiveDateTime: drawn_at.iso8601,
-        issued: reported_at&.iso8601,
+        effectiveDateTime: drawn_at.utc.iso8601,
+        issued: reported_at&.utc&.iso8601,
         performer: fhirable_reference(drawer),
         specimen: fhirable_reference(self),
         result: fhirable_diagnostic_report_results(results),
