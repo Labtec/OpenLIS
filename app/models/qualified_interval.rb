@@ -8,6 +8,8 @@ class QualifiedInterval < ApplicationRecord
   belongs_to :lab_test
   belongs_to :interpretation, class_name: 'LabTestValue', optional: true
 
+  delegate :unit, to: :lab_test
+
   acts_as_list column: :rank, scope: :lab_test_id
 
   # TODO: Migrate Patient -> Person-Patient.administrative_gender
