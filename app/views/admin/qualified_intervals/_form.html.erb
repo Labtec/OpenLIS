@@ -12,7 +12,7 @@
   </div>
 
   <div class="range">
-    Range
+    Range <%= "(#{form.object.unit.expression})" unless form.object.new_record? %>
     <%= form.label :range_low_value, 'Low' %>
     <%= form.text_field :range_low_value %>
 
