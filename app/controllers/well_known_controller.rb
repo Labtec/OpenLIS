@@ -8,6 +8,7 @@ class WellKnownController < ActionController::Base
   end
 
   def jwks
+    response.set_header('access-control-allow-origin', '*')
     render json: key_set.to_jwk
   end
 
