@@ -376,9 +376,9 @@ class LabReport < Prawn::Document
     barcode = Barby::QrCode.new(barcode_data)
     shim = (BARCODE_SMART_MAX - barcode.size) * BARCODE_SMART_MULTIPLIER
 
-    bounding_box([cursor - 87, cursor], width: BARCODE_SIZE_SMART, height: BARCODE_SIZE_SMART + LOGO_SMART_HEIGHT + LINE_PADDING) do
+    bounding_box([bounds.width / 2 - BARCODE_SIZE_SMART / 2, cursor - line_height * 2 - PADDING], width: BARCODE_SIZE_SMART, height: BARCODE_SIZE_SMART + LOGO_SMART_HEIGHT + LINE_PADDING) do
       indent shim do
-        bounding_box([bounds.left, bounds.top - shim], width: bounds.width - shim, height: LOGO_SMART_HEIGHT) do
+        bounding_box([bounds.left, bounds.top - LINE_PADDING * shim], width: bounds.width - shim, height: LOGO_SMART_HEIGHT) do
           text 'SMART<sup>®</sup> Health Card', size: 7, style: :bold, valign: :bottom, inline_format: true
           svg File.read('app/assets/images/logo_smart.svg'), height: LOGO_SMART_HEIGHT - LINE_PADDING, vposition: :bottom, position: :right, color_mode: :cmyk
         end
