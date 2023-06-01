@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/jlduran/health_cards.git
-  revision: 1897dfc23f3d4f1f80f0f0daa2770e2412c8429c
+  revision: 00d59584741cfc09dd7036cb214de05019623946
   branch: development
   specs:
     health_cards (1.1.1)
@@ -336,7 +336,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     stackprof (0.2.25)
-    terser (1.1.15)
+    terser (1.1.16)
       execjs (>= 0.3.0, < 3)
     thor (1.2.2)
     tilt (2.1.0)
