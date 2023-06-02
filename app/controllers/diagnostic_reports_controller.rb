@@ -18,7 +18,7 @@ class DiagnosticReportsController < ApplicationController
       format.smart_health_card do
         issuer = Rails.application.config.issuer
         @smart_health_card = issuer.issue_health_card(@diagnostic_report.to_bundle(issuer.url),
-                                                      type: HealthCards::LabResultPayload)
+                                                      type: @diagnostic_report.payload_type)
         send_data @smart_health_card.to_json, type: :smart_health_card,
                                               filename: "resultados_#{@diagnostic_report.id}.smart-health-card"
       end
