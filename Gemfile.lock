@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/jlduran/health_cards.git
-  revision: 9b962bed617e153c7b31e94fa73b29525d5414d6
+  revision: 30ddba6658c6238d9ede463701a5fee5e0bdffda
   branch: development
   specs:
     health_cards (1.1.1)
