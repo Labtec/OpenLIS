@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/jlduran/health_cards.git
-  revision: 00d59584741cfc09dd7036cb214de05019623946
+  revision: 9b962bed617e153c7b31e94fa73b29525d5414d6
   branch: development
   specs:
     health_cards (1.1.1)
@@ -176,7 +176,7 @@ GEM
     flamegraph (0.9.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    i18n (1.13.0)
+    i18n (1.14.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
