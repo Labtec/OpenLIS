@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Observation < ApplicationRecord
+  include COVIDObservation
   include DataAbsentReason
   include Flaggable
   include ObservationStatus
@@ -19,6 +20,7 @@ class Observation < ApplicationRecord
   has_many :qualified_intervals, through: :lab_test
 
   delegate :code,        to: :lab_test, prefix: true
+  delegate :loinc,       to: :lab_test, prefix: true
   delegate :decimals,    to: :lab_test, prefix: true
   delegate :derivation?, to: :lab_test
   delegate :drawn_at,    to: :accession

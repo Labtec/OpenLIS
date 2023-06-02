@@ -77,6 +77,10 @@ class Accession < ApplicationRecord
     false
   end
 
+  def covid?
+    results.map(&:covid?).any?
+  end
+
   def insurable?
     insurance_provider && doctor.present?
   end
@@ -94,6 +98,12 @@ class Accession < ApplicationRecord
 
   def panels_list
     Panel.find(panel_ids).map(&:code)
+  end
+
+  def payload_type
+    return COVIDLabResultPayload if covid?
+
+    LabResultPayload
   end
 
   def pending_claim?

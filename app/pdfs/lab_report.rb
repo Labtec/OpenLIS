@@ -368,8 +368,7 @@ class LabReport < Prawn::Document
   def barcode_smart
     issuer = Rails.application.config.issuer
     smart_health_card = issuer.issue_health_card(@accession.to_bundle(issuer.url),
-                                                 type: HealthCards::LabResultPayload)
-                                                 # type: LabResultHealthCard) # Custom Payload
+                                                 type: @accession.payload_type)
     return if smart_health_card.qr_codes.size != 1
 
     barcode_data = smart_health_card.code_by_ordinal(1).data
