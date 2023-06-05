@@ -20,5 +20,5 @@
     <%= t('.message') %>
   </div>
 
-  <%= form.submit t('.submit'), class: 'submit', autofocus: true, data: { disable_with: false, webauthn_target: 'submitButton' } %>
+  <%= form.submit t('.submit'), class: 'submit', autofocus: true, data: { turbo_submits_with: false, webauthn_target: 'submitButton' } %>
 <% end %>

@@ -1,5 +1,4 @@
 <%= form_with(model: resource, url: session_path(resource_name),
-              data: { turbo: false },
               class: 'login-form', html: { novalidate: true }) do |f| %>
   <div class="username">
     <%= f.label :username, t('user_sessions.new.username') %>
@@ -13,5 +12,5 @@
       'aria-label': t('user_sessions.new.password'), autocomplete: 'off' %>
   </div>
 
-  <%= f.submit t('user_sessions.new.submit'), class: 'submit', data: { disable_with: t('user_sessions.new.submitting') } %>
+  <%= f.submit t('user_sessions.new.submit'), class: 'submit', data: { turbo_submits_with: t('user_sessions.new.submitting') } %>
 <% end %>
