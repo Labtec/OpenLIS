@@ -17,13 +17,13 @@ module ApplicationHelper
   def render_markdown(text)
     return unless text
 
-    sanitize(CommonMarker.render_html(text), tags: %w[em p strong])
+    sanitize(CommonMarker.render_html(text, :SMART), tags: %w[em p strong])
   end
 
   def render_markdown_pdf(text)
     return unless text
 
-    sanitize(CommonMarker.render_html(text), tags: %w[em strong])
+    sanitize(CommonMarker.render_html(text, :SMART), tags: %w[em strong])
   end
 
   def navigation(*links)
