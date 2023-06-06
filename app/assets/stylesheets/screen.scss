@@ -488,6 +488,12 @@ td.range_1 {
   color: #777;
   display: inline; }
 
+table.admin {
+  td {
+    padding: .4em .5em;
+  }
+}
+
 table.qualified-interval {
   th.range, td.range {
     min-width: 100px;
