@@ -2,9 +2,11 @@
 
 <%= content_tag :div, class: 'panels', data: { panel_ids: @panels.map(&:id) } do %>
   <%= f.collection_check_boxes(:panel_ids, @panels, :id, :name_with_description) do |b| %>
-    <%= content_tag :div, class: 'panel', id: "panel_#{b.object.id}", data: { lab_test_ids: b.object.lab_test_ids } do %>
-      <%= b.check_box %>
-      <label class="checkbox" for="accession_panel_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
+    <% if b.object.active? %>
+      <%= content_tag :div, class: 'panel', id: "panel_#{b.object.id}", data: { lab_test_ids: b.object.lab_test_ids } do %>
+        <%= b.check_box %>
+        <label class="checkbox" for="accession_panel_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

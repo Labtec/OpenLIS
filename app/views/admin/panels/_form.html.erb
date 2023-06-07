@@ -26,6 +26,11 @@
     <%= f.text_field :description %>
   </div>
 
+  <div class="status">
+    <%= f.label :status %>
+    <%= f.select :status, Panel.statuses.keys %>
+  </div>
+
   <fieldset>
     <legend>Values</legend>
       <div class="values">
