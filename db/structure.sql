@@ -521,7 +521,8 @@ CREATE TABLE public.panels (
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
     procedure integer,
-    loinc character varying
+    loinc character varying,
+    status public.publication_status DEFAULT 'active'::public.publication_status
 );
 
 
@@ -1337,6 +1338,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201123000001'),
 ('20201123000002'),
 ('20230517220001'),
-('20230524000001');
+('20230524000001'),
+('20230607000001');
 
 
