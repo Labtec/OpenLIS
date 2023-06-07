@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/jlduran/health_cards.git
-  revision: 30ddba6658c6238d9ede463701a5fee5e0bdffda
+  revision: a17baac8aca9c1790027957d017a18a8896dff66
   branch: development
   specs:
     health_cards (1.1.1)
@@ -176,7 +176,7 @@ GEM
     flamegraph (0.9.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    i18n (1.14.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -241,7 +241,7 @@ GEM
     pg_search (2.3.6)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
-    phonelib (0.8.1)
+    phonelib (0.8.2)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -339,7 +339,7 @@ GEM
     terser (1.1.16)
       execjs (>= 0.3.0, < 3)
     thor (1.2.2)
-    tilt (2.1.0)
+    tilt (2.2.0)
     timeout (0.3.2)
     tpm-key_attestation (0.12.0)
       bindata (~> 2.4)
