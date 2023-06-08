@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
 
   before_action :set_user_language
+  before_action :verify_session_ip
   before_action :authenticate_user!, except: :raise_not_found
   before_action :active_tab
   before_action :set_variant
@@ -32,6 +33,14 @@ class ApplicationController < ActionController::Base
 
   def require_admin!
     redirect_to root_path unless current_user&.admin?
+  end
+
+  def verify_session_ip
+    return if Rails.env.test?
+    return if session[:remote_ip] == request.remote_ip
+
+    reset_session
+    session[:remote_ip] = request.remote_ip
   end
 
   protected
