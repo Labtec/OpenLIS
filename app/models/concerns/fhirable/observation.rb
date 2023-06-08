@@ -211,7 +211,7 @@ module FHIRable
 
       return if codes.empty?
 
-      FHIR::CodeableConcept.new(coding: codes, text: lab_test_value.value)
+      FHIR::CodeableConcept.new(coding: codes, text: lab_test_value.stripped_value)
     end
 
     # XXX: Use a read only table
