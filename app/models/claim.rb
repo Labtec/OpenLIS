@@ -6,6 +6,9 @@ class Claim < ApplicationRecord
 
   has_one :patient, through: :accession
 
+  has_many :lab_tests, through: :accession
+  has_many :panels, through: :accession
+
   validates :external_number, :number, uniqueness: true, allow_blank: true
 
   default_scope { order(external_number: :asc) }
