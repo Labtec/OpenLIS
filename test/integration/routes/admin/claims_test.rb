@@ -27,8 +27,8 @@ class AdminClaimsRoutesTest < ActionDispatch::IntegrationTest
     assert_routing({ method: :post, path: '/admin/claims/submit_selected' },
                    @defaults.merge(action: 'submit_selected'))
 
-    assert_routing({ method: :post, path: '/admin/claims/print_selected' },
-                   @defaults.merge(action: 'print_selected'))
+    assert_routing({ method: :post, path: '/admin/claims/process_selected' },
+                   @defaults.merge(action: 'process_selected'))
 
     assert_routing({ method: :put, path: '/admin/claims/1/submit' },
                    @defaults.merge(action: 'submit', id: '1'))

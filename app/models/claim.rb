@@ -16,6 +16,27 @@ class Claim < ApplicationRecord
   scope :submitted, -> { where.not(claimed_at: nil) }
   scope :recent, -> { where('claimed_at > :grace_period', grace_period: 8.months.ago) }
 
+  def cpt_codes
+    procedures = []
+    lab_tests_list = []
+
+    # Panels Table
+    panels.with_price.map do |panel|
+      procedures << panel.procedure.to_s
+    end
+
+    # Lab Tests Table
+    lab_tests.with_price.map do |lab_test|
+      lab_tests_list.push lab_test if (lab_test.panel_ids & panel_ids).empty?
+    end
+
+    lab_tests_list.map do |lab_test|
+      procedures << lab_test.procedure.to_s
+    end
+
+    procedures
+  end
+
   def insured_name
     patient.try(:policy_number) =~ /(\d+)-(\d+)/
     if Regexp.last_match(1) && Regexp.last_match(2)
@@ -38,6 +59,27 @@ class Claim < ApplicationRecord
 
   def to_partial_path
     'admin/claims/claim'
+  end
+
+  def total_price
+    total_price = []
+    lab_tests_list = []
+
+    # Panels Table
+    panels.with_price.map do |panel|
+      total_price << panel.prices.find_by(price_list_id: 1)&.amount
+    end
+
+    # Lab Tests Table
+    lab_tests.with_price.map do |lab_test|
+      lab_tests_list.push lab_test if (lab_test.panel_ids & panel_ids).empty?
+    end
+
+    lab_tests_list.map do |lab_test|
+      total_price << lab_test.prices.find_by(price_list_id: 1)&.amount
+    end
+
+    total_price.sum
   end
 
   def valid_submission?
