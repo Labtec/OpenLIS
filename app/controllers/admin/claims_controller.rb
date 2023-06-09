@@ -79,16 +79,20 @@ module Admin
       end
     end
 
-    def print_selected
+    def process_selected
       if params[:claim_ids]
         @claims = Claim.includes(:accession, :insurance_provider, :patient).find(params[:claim_ids])
 
-        pdf = ClaimsReport.new(@claims, view_context)
-        send_data(pdf.render, filename: 'entrada_de_reclamos.pdf',
-                              type: 'application/pdf', disposition: 'inline')
+        if params['print']
+          pdf = ClaimsReport.new(@claims, view_context)
+          send_data(pdf.render, filename: 'entrada_de_reclamos.pdf',
+                                type: 'application/pdf', disposition: 'inline')
+        elsif params['invoice']
+          invoice = Invoice.new(@claims)
+          send_data(invoice.csv, filename: 'plantilla_factura.csv', type: 'text/csv')
+        end
       else
-        flash[:alert] = 'No claims selected!'
-        redirect_to admin_claims_url
+        redirect_to admin_claims_url, alert: 'No claims selected!'
       end
     end
 

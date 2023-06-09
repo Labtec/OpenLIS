@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     resources :claims, except: :new do
       collection do
         post 'submit_selected'
-        post 'print_selected'
+        post 'process_selected'
       end
       member do
         put 'submit'
