@@ -35,6 +35,8 @@ module PatientsHelper
 
   # Returns the full name of a patient.
   def full_name(patient)
+    return unless patient
+
     if patient.family_name.blank? && patient.animal_type.present?
       return [patient.given_name,
               patient.middle_name,

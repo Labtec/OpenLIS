@@ -2,6 +2,7 @@
 
 class LabTest < ApplicationRecord
   include PublicationStatus
+  include FastingStatus
 
   belongs_to :department, touch: true
   belongs_to :unit, optional: true
@@ -38,7 +39,7 @@ class LabTest < ApplicationRecord
   after_update_commit -> { broadcast_replace_later_to 'admin:lab_test', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_lab_test_path(self) }, target: :lab_test }
   after_destroy_commit -> { broadcast_replace_to 'admin:lab_test', partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.admin_lab_tests_path }, target: :lab_test }
 
-  auto_strip_attributes :name, :code, :procedure, :loinc
+  auto_strip_attributes :name, :code, :procedure, :loinc, :patient_preparation, :fasting_status_duration
 
   def self.unit_for(code)
     find_by(code: code).unit.expression

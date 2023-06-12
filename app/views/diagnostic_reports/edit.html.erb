@@ -7,7 +7,10 @@
 <fieldset class="<%= @diagnostic_report.reported_at.blank? %>">
   <h1><%= t('.accession', id: @diagnostic_report.id) %></h1>
 
-  <%= practitioner(@diagnostic_report.doctor) %><br/>
+  <% if @diagnostic_report.doctor %>
+    <%= t('.ordered_by') %>
+  <% end %>
+  <strong><%= organization_or_practitioner(@diagnostic_report.doctor)%></strong><br/>
 
   <% if @diagnostic_report.icd9.present? %>
     <%= t('.icd9') %>

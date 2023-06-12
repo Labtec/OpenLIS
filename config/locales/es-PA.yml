@@ -7,13 +7,14 @@ es-PA:
       change_results: Cambiar Resultados
       confirm_destroy: ¿Está seguro?
       delete?: ¿Borrar?
+      diagnostic_report: 'Reporte #%{id}'
       drawn_at: 'Extraído el: '
       enter_results: Ingresar Resultados
-      ordered_by: 'Ordenado por:'
+      ordered_by: 'Solicitado por:'
+      quote: 'Cotización #%{serial_number}'
       reported_at: 'Reportado el: '
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
-      outpatient: Ambulatorio
     admin_accession:
       accession: 'Solicitud #%{id}'
       by: 'por: '
@@ -21,13 +22,14 @@ es-PA:
       change_results: Cambiar Resultados
       confirm_destroy: ¿Está seguro?
       delete?: ¿Borrar?
+      diagnostic_report: 'Reporte #%{id}'
       drawn_at: 'Extraído el: '
       enter_results: Ingresar Resultados
-      ordered_by: 'Ordenado por:'
+      ordered_by: 'Solicitado por:'
+      quote: 'Cotización #%{serial_number}'
       reported_at: 'Reportado el: '
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
-      outpatient: Ambulatorio
     edit:
       title: Cambiar Solicitud
     empty:
@@ -36,7 +38,6 @@ es-PA:
     form:
       accession: 'Solicitud #%{id}'
       cancel: Cancelar
-      doctor: 'Doctor que ordena:'
       drawn_at: 'Recolectado el:'
       drawn_by: 'Recolectado por:'
       icd9: 'Códigos de Diagnóstico:'
@@ -44,6 +45,7 @@ es-PA:
       labels: Etiquetas
       or: o
       order_details: Detalles de la Solicitud
+      ordered_by: 'Solicitado por:'
       processing: Procesando...
       received_at: 'Recibido el:'
       received_by: 'Recibido por:'
@@ -67,7 +69,6 @@ es-PA:
       accession: 'Solicitud #%{id}'
       by: ' por: '
       cancel: Cancelar
-      doctor: 'Doctor: '
       drawn_at: 'Recolectado el: '
       icd9: 'Códigos de Diagnóstico:'
       or: o
@@ -75,7 +76,7 @@ es-PA:
       reported_at: 'Reportado el: '
       submit: Guardar Resultados
       title: Ingresar Resultados
-      outpatient: Ambulatorio
+      ordered_by: 'Solicitado por:'
     index:
       title: Reportes
     show:
@@ -88,7 +89,6 @@ es-PA:
       confirm_email: ¿Desea enviar los resultados a %{email}?
       confirm_emailed: ¿Desea enviar nuevamente los resultados a %{email}?
       confirm_forceful_certify: ¿Está seguro que desea cancelar resultados pendientes y reportar?
-      doctor: 'Doctor: '
       drawn_at: 'Recolectado el: '
       email_report: Enviar reporte por correo
       emailed_report: Reenviar reporte por correo
@@ -96,6 +96,7 @@ es-PA:
       force_certify: Forzar Reporte
       icd9: 'Códigos de Diagnóstico:'
       notes: 'Observaciones:'
+      ordered_by: 'Solicitado por:'
       print_report: Imprimir Reporte (PDF)
       received_at: 'Recibido el: '
       reported_at: 'Reportado el: '
@@ -108,14 +109,17 @@ es-PA:
     female_dr_prefix: Dra.
     male_dr_prefix: Dr.
     outpatient: Ambulatorio
-    unknown_dr_prefix: UNK
+    unknown_dr_prefix: Dr.
   errors:
     messages:
+      number_or_percentage: debe ser un número o un porcentaje (%)
       cant_be_in_the_future: no puede ser del futuro
       cant_be_that_old: no puede ser tan viejo
       cant_begin_with_dr: no puede comenzar con Dr(a).
       fraction: debe ser N/N
       is_out_of_absolute_range: está fuera del rango absoluto
+      must_be_between_0_and_100: debe estar entre 0 y 100%
+      must_be_less_than_or_equal_to_list_price: debe ser menor o igual al precio unitario
       range: debe ser N-N, <N o >N
       ratio: debe ser N:N
   flash:
@@ -136,6 +140,10 @@ es-PA:
     login:
       hello: '¡Hola '
       last_login_at: ' Su último inicio de sesión fue hace '
+    quote:
+      approve_error: La cotización no pudo ser aprobada.
+    quote_detail:
+      update: Detalles de la cotización actualizados exitosamente.
     users:
       cant_delete_last_security_key: No se puede eliminar la última llave de seguridad.
   lab_tests:
@@ -173,6 +181,7 @@ es-PA:
       patients: Pacientes
       requisitions: Solicitudes
       diagnostic_reports: Reportes
+      quotes: Cotizaciones
   notes:
     form:
       notes: 'Observaciones:'
@@ -291,7 +300,10 @@ es-PA:
       edit: Editar
       phone: 'Tel.:'
       year: año
+    quote:
+      to: 'Para:'
     show:
+      new_quote: Nueva Cotización
       order_tests: Ordenar Pruebas
       patient_not_found: Este registro de paciente ya no está disponible.
       title: Información del Paciente
@@ -305,6 +317,103 @@ es-PA:
     year:
       one: 1 año
       other: '%{count} años'
+  quotes:
+    create:
+      success: Cotización creada exitosamente.
+    destroy:
+      success: Cotización eliminada exitosamente.
+    edit:
+      title: Editar Cotización
+    empty:
+      new_quote: Nueva Cotización
+      no_quotes_yet: Sin historial de cotizaciones
+    form:
+      cancel: Cancelar
+      quote: 'Cotización #%{serial_number}'
+      quote_details: Detalles de la Cotización
+      or: o
+      ordered_by: 'Ordenado por:'
+      outpatient: Dejar en blanco si es ambulatorio
+      submit: Guardar
+    index:
+      new_quote: Nueva Cotización
+      title: Cotizaciones
+    new:
+      title: Nueva Cotización
+    order:
+      success: Solicitud creada exitosamente.
+    quote:
+      approved_at: 'Fecha de Aprobación: '
+      by: 'por: '
+      created_at: 'Fecha de Creación: '
+      confirm_destroy: ¿Está seguro?
+      delete?: ¿Borrar?
+      edit: Editar
+      ordered_by: 'Ordenado por: '
+      quote: 'Cotización #%{serial_number}'
+      tests_ordered: 'Pruebas ordenadas: '
+    show:
+      approve: Aprobar
+      approved_at: 'Fecha de Aprobación:'
+      approved_by: 'Aprobada por:'
+      back: Ver Solicitud
+      by: 'por: '
+      change_quote: Cambiar Cotización
+      code: Código
+      confirm_email: ¿Desea enviar la cotización a %{email}?
+      confirm_emailed: ¿Desea enviar nuevamente la cotización a %{email}?
+      created_at: 'Fecha de Creación:'
+      description: Descripción
+      discount: Descuento
+      doctor: 'Doctor: '
+      email_quote: Enviar cotización por correo
+      emailed_quote: Reenviar cotización por correo
+      grand_total: 'Gran Total:'
+      notes: 'Observaciones:'
+      number: №
+      order: Solicitar
+      ordered_by: 'Solicitado por:'
+      pdf_total_discount: 'Descuentos'
+      price: Precio Unitario
+      print_quote: Imprimir Cotización (PDF)
+      quantity: Cantidad
+      quote: 'Cotización #%{serial_number}'
+      quote_detail: Detalle
+      shipping_and_handling: 'Servicio a Domicilio:'
+      signed_quote: Cotización Firmada
+      subtotal: 'Subtotal:'
+      taxes: 'Impuestos (Exento):'
+      title: Cotización
+      total: Total
+      total_discount: 'Descuentos:'
+      validity: 'Validez:'
+    update:
+      success: Cotización actualizada exitosamente.
+  quote_details:
+    edit:
+      approved_at: 'Fecha de Aprobación:'
+      by: 'por: '
+      cancel: Cancelar
+      code: Código
+      created_at: 'Fecha de Creación:'
+      description: Descripción
+      discount: Descuento
+      doctor: 'Doctor: '
+      grand_total: 'Gran Total:'
+      notes: 'Observaciones:'
+      number: №
+      or: o
+      ordered_by: 'Solicitado por:'
+      price: Precio Unitario
+      quantity: Cantidad
+      quote: 'Cotización #%{serial_number}'
+      quote_detail: Detalle
+      shipping_and_handling: 'Servicio a Domicilio:'
+      submit: Guardar
+      subtotal: 'Subtotal:'
+      taxes: 'Impuestos (Exento):'
+      total: Total
+      total_discount: 'Descuentos:'
   results:
     abnormal: •
     critical_abnormal: •••
@@ -323,7 +432,6 @@ es-PA:
       amended: ''
       cellular: 'Móvil:'
       date: 'Fecha:'
-      doctor: 'Doctor:'
       drawn_at: 'Fecha de recolección:'
       final: ''
       flag: Señal
@@ -333,6 +441,7 @@ es-PA:
       notes: 'Observaciones:'
       of: de
       on_date: el
+      ordered_by: 'Solicitado por:'
       page: Página
       partial: Parcial
       phone: 'Teléfono:'
@@ -349,7 +458,6 @@ es-PA:
       run_by: 'Ejecutado por:'
       type: 'Especie:'
       units: Unidades
-      outpatient: Ambulatorio
       year: año
       years: años
     low: ▼
@@ -367,6 +475,13 @@ es-PA:
     significantly_low: ▼▼
     susceptible: ''
     weakly_reactive: •
+  quotes_mailer:
+    email_quote:
+      body: Hemos adjuntado la cotización solicitada.
+      opening_F: 'Estimada %{full_name}:'
+      opening_M: 'Estimado %{full_name}:'
+      opening_U: 'Estimado(a) %{full_name}:'
+      subject: "Cotización #%{quote_number}"
   results_mailer:
     email_doctor:
       body: Hemos adjuntado los resultados de los exámenes de %{full_name}.
@@ -481,6 +596,10 @@ es-PA:
         identifier_type: Tipo de identificación
         phone: Teléfono
         policy_number: Número de Póliza
+      line_items:
+        discount_value: Descuento
+        discount_unit: Descuento
+        quantity: Cantidad
       results:
         value: El valor
       user:
@@ -488,6 +607,8 @@ es-PA:
         password: La contraseña
         password_confirmation: La contraseña
         username: El nombre de usuario
+      panel:
+        fasting_status_duration_iso8601: Fasting (ISO 8601)
     models:
       accession: solicitud
       department: departamento
@@ -498,6 +619,7 @@ es-PA:
       panel: panel
       patient: paciente
       qualified_interval: rango
+      quote: cotización
       unit: unidad
       user: usuario
   i18n:

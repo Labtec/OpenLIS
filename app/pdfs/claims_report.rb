@@ -552,7 +552,7 @@ class ClaimsReport < Prawn::Document
     font_size 9
 
     fill_color colors[:black] # Otherwise takes the color of the logo
-    draw_text 'R.U.C. 299497-1-409892 D.V. 13', at: [60, cursor - 55]
+    draw_text 'RUC 299497-1-409892 DV 13', at: [60, cursor - 55]
 
     move_down 70
     text @view.l(Date.current, format: :long, locale: :'es-PA').capitalize, align: :right

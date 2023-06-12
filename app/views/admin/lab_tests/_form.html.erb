@@ -52,6 +52,16 @@
       <%= form.text_area :remarks %>
     </div>
 
+    <div class="fasting_status_duration_iso8601">
+      <%= form.label :fasting_status_duration_iso8601, 'Fasting (PT#H)' %>
+      <%= form.text_field :fasting_status_duration_iso8601 %>
+    </div>
+
+    <div class="patient_preparation">
+      <%= form.label :patient_preparation %>
+      <%= form.text_area :patient_preparation %>
+    </div>
+
     <div class="status">
       <%= form.label :status %>
       <%= form.select :status, LabTest.statuses.keys %>

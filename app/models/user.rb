@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :trackable, :validatable
 
   has_many :accessions, dependent: :nullify
+  has_many :quotes, dependent: :nullify
   has_many :webauthn_credentials, dependent: :destroy
 
   validates :username, :first_name, :last_name, :initials, presence: true

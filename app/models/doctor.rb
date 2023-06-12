@@ -4,8 +4,10 @@ class Doctor < ApplicationRecord
   GENDERS = %w[male female other unkwown].freeze
 
   has_many :accessions, dependent: :nullify
+  has_many :quotes, dependent: :nullify
 
   validates :email, email: true, allow_blank: true
+  validates :gender, inclusion: { in: GENDERS }, allow_nil: true
   validates :name,
             cant_begin_with_dr: true,
             presence: true,

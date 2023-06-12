@@ -12,7 +12,10 @@
     <% end %>
   </h1>
 
-  <%= practitioner @diagnostic_report.doctor %>
+  <% if @diagnostic_report.doctor %>
+    <%= t('.ordered_by') %>
+  <% end %>
+  <strong><%= organization_or_practitioner(@diagnostic_report.doctor)%></strong>
   <% if @diagnostic_report.doctor && @diagnostic_report.doctor.email.present? && !@diagnostic_report.registered? %>
     <%= email_report(:practitioner, @diagnostic_report, @diagnostic_report.doctor.email) %>
   <% end %>
@@ -68,8 +71,8 @@
     <%= link_to t('.change_accession'), edit_accession_path(@diagnostic_report) %> |
     <% if @diagnostic_report.reported_at %>
       <%= link_to t('.change_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
-      <%= link_to t('.signed_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf', signature: true) %> |
       <%= link_to t('.smart_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf', smart: true) %> |
+      <%= link_to t('.signed_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf', signature: true) %> |
     <% else %>
       <%= link_to t('.enter_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
     <% end %>

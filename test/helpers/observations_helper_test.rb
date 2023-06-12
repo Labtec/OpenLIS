@@ -139,6 +139,9 @@ class ObservationsHelperTest < ActionView::TestCase
     assert_equal [nil, '', '10', '–', '2,000'], range_row(range), 'Quantity'
 
     range.update(lab_test: lab_tests(:ratio))
-    assert_equal [nil, '', '1∶10', '–', '1∶2,000'], range_row(range), 'Titer'
+    assert_equal [nil, '', '1∶10', '–', '1∶2,000'], range_row(range), 'Ratio/Titer'
+
+    range.update(lab_test: lab_tests(:range))
+    assert_equal [nil, '', '10', '–', '2,000'], range_row(range), 'Range/HPF'
   end
 end

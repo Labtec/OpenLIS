@@ -19,6 +19,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym "COVID"
   inflect.acronym "FHIRable"
   inflect.acronym "LOINC"
+  inflect.acronym "PDF"
   inflect.acronym "SNOMED"
   inflect.acronym "UB04"
   inflect.acronym "UB92"

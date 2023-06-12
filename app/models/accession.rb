@@ -13,6 +13,7 @@ class Accession < ApplicationRecord
 
   has_one :claim, dependent: :destroy
   has_one :insurance_provider, through: :patient
+  has_one :quote, dependent: :nullify, foreign_key: 'service_request_id'
 
   has_many :results, class_name: 'Observation', dependent: :destroy
   has_many :lab_tests, -> { order('position ASC') }, through: :results

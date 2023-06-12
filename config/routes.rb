@@ -46,6 +46,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :quote_details, only: [:edit, :update]
+
+  resources :quotes do
+    member do
+      patch 'approve'
+      post 'order'
+      put 'email'
+    end
+  end
+
   get 'admin', controller: 'admin/users', action: :index
 
   namespace :admin do

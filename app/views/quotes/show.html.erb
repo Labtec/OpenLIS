@@ -1,0 +1,129 @@
+<% title t('.quote', serial_number: @quote.serial_number) %>
+
+<%= turbo_stream_from :quotes %>
+
+<fieldset class="<%= @quote.status %>">
+  <h1>
+    <%= t('.quote', serial_number: @quote.serial_number) %>
+    <% if @patient && @quote.approved? && !@quote.service_request.present? %>
+      <%= button_to t('.order'), order_quote_path(@quote), method: :post %>
+    <% end %>
+  </h1>
+
+  <% if @quote.doctor %>
+    <%= t('.ordered_by') %>
+  <% end %>
+  <strong><%= organization_or_practitioner(@quote.doctor)%></strong><br/>
+
+  <%= t('.created_at') %>
+  <strong><%= l(@quote.created_at, format: :short) %></strong>
+  <%= t('.by') %>
+  <strong><%= @quote.created_by.initials %></strong><br/>
+
+  <% if @quote.approved_at %>
+    <%= t('.approved_at') %>
+    <strong><%= l(@quote.approved_at, format: :short) %></strong>
+    <%= t('.by') %>
+    <strong><%= @quote.approved_by.initials %></strong>
+  <% end %>
+
+  <table>
+    <tr>
+      <th class="quote_line_item_number">
+        <%= t('.number') %>
+      </th>
+      <th class="quote_line_item_description">
+        <%= t('.description') %>
+      </th>
+      <th class="quote_line_item_code">
+        <%= t('.code') %>
+      </th>
+      <th class="quote_line_item_price">
+        <%= t('.price') %>
+      </th>
+      <th class="quote_line_item_discount">
+        <%= t('.discount') %>
+      </th>
+      <th class="quote_line_item_qty">
+        <%= t('.quantity') %>
+      </th>
+      <th class="quote_line_item_total">
+        <%= t('.total') %>
+      </th>
+    </tr>
+  </table>
+  <%= render @quote.line_items %>
+  <table class="totals">
+    <tr>
+      <td class="quote_total_title">
+        <%= t('.subtotal') %>
+      </td>
+      <td class="quote_total_amount">
+        <%= number_to_currency @quote.subtotal, locale: 'en' %>
+      </td>
+    </tr>
+    <% unless @quote.total_discount.zero? %>
+      <tr>
+        <td class="quote_total_title">
+          <%= t('.total_discount') %>
+        </td>
+        <td class="quote_total_amount">
+          <%= number_to_currency @quote.total_discount, locale: 'en' %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td class="quote_total_title">
+        <%= t('.taxes') %>
+      </td>
+      <td class="quote_total_amount">
+        <%= number_to_currency 0, locale: 'en' %>
+      </td>
+    </tr>
+    <% unless @quote.shipping_and_handling.zero? %>
+      <tr>
+        <td class="quote_total_title">
+          <%= t('.shipping_and_handling') %>
+        </td>
+        <td class="quote_total_amount">
+          <%= number_to_currency @quote.shipping_and_handling, locale: 'en' %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td class="quote_total_title quote_grand_total">
+        <%= t('.grand_total') %>
+      </td>
+      <td class="quote_total_amount quote_grand_total">
+        <%= number_to_currency @quote.grand_total, locale: 'en' %>
+      </td>
+    </tr>
+  </table>
+
+  <% if @quote.note.present? %>
+    <div class="notes">
+      <h3><%= t('.notes') %></h3>
+      <%= render_markdown(@quote.note) %>
+    </div>
+  <% end %>
+
+  <div class="buttonbar">
+    <% if @quote.draft? %>
+      <%= button_to t('.approve'), approve_quote_path(@quote), method: :patch %> |
+      <%= link_to t('.change_quote'), edit_quote_path(@quote) %> |
+      <%= link_to t('.quote_detail'), edit_quote_detail_path(@quote) %>
+    <% end %>
+    <% if @quote.approved? && !@quote.service_request %>
+      <%= link_to t('.signed_quote'), quote_path(@quote, format: 'pdf', signature: true) %> |
+      <%= link_to t('.print_quote'), quote_path(@quote, format: :pdf), data: { turbo: false } %>
+      <% if @quote.patient && @quote.patient.email.present? %>
+        | <%= email_quote(@quote, @quote.email) %>
+      <% end %>
+    <% end %>
+    <% if @quote.service_request %>
+      <%= link_to t('.back'), diagnostic_report_path(@quote.service_request) %>
+    <% elsif @quote.archived? %>
+      <%= link_to t('.back'), quotes_path %>
+    <% end %>
+  </div>
+</fieldset>

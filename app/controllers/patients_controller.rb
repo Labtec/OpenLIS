@@ -4,11 +4,12 @@ class PatientsController < ApplicationController
   before_action :set_patient, only: %i[show edit update destroy history]
 
   def index
-    @patients = Patient.search(params[:search]).page(params[:page])
+    @patients = Patient.search(params[:search]).page(page)
   end
 
   def show
-    @accessions = @patient.accessions.recently.queued.page(params[:page])
+    @accessions = @patient.accessions.recently.queued.page(page)
+    @quotes = @patient.quotes.recent
   rescue ActiveRecord::RecordNotFound
     redirect_to patients_url, alert: t('.patient_not_found')
   end
@@ -73,5 +74,9 @@ class PatientsController < ApplicationController
       :animal_type, :insurance_provider_id, :policy_number, :identifier_type,
       :address_province, :address_district, :address_corregimiento, :address_line
     )
+  end
+
+  def page
+    params[:page].to_i
   end
 end
