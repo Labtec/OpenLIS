@@ -173,6 +173,7 @@ en:
       notes: 'Notes:'
   observations:
     derived_remarks:
+      cldl1: The calculated LDL cholesterol concentration was extremely low. Beta-Quantification is recommended if more accurate measurement of LDL cholesterol is necessary.
       egfrcr: NKF KDOQI and KDIGO guidelines recommend confirming an estimated glomerular filtration rate (eGFR) of 45–59 mL/min/1.73m² with a urine albumin-creatinine ratio (uACR) &lt;30 mg/g based on an eGFR calculated using both creatinine and cystatin C.
       psa_r: |
         When Total PSA is in the range of 4.0–10.0 ng/mL, a Free PSA/Total PSA ratio of %{psa_r} indicates a %{risk} risk of prostate cancer.

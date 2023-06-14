@@ -11,7 +11,7 @@ class AccessionDerivableTest < ActiveSupport::TestCase
     end
   end
 
-  test 'derivation of LDL cholesterol' do
+  test 'derivation of LDL cholesterol (Friedewald)' do
     result_for(@accession, 'CHOL').update value: 200
     result_for(@accession, 'HDL').update value: 100
     result_for(@accession, 'TRIG').update value: 110
@@ -27,6 +27,30 @@ class AccessionDerivableTest < ActiveSupport::TestCase
     ldl.update unit: units(:units)
 
     assert_nil @accession.derived_value_for('LDL')
+  end
+
+  test 'derivation of LDL cholesterol (Sampson)' do
+    @accession = accessions(:lpsc1)
+
+    result_for(@accession, 'CHOL').update value: 125
+    result_for(@accession, 'HDL').update value: 85
+    result_for(@accession, 'TRIG').update value: 75
+    ldl = result_for(@accession, 'CLDL1')
+    ldl.update unit: units('mg/dl')
+
+    assert_equal 25, @accession.derived_value_for('CLDL1').round, 'mg/dL'
+
+    ldl.update unit: units('mmol/l')
+
+    result_for(@accession, 'CHOL').update value: 3.2
+    result_for(@accession, 'HDL').update value: 2.2
+    result_for(@accession, 'TRIG').update value: 0.85
+
+    assert_equal 0.6, @accession.derived_value_for('CLDL1').round(1), 'mmol/l'
+
+    ldl.update unit: units(:units)
+
+    assert_nil @accession.derived_value_for('CLDL1')
   end
 
   test 'derivation of LDL/HDL ratio' do

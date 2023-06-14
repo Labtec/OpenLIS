@@ -15,23 +15,37 @@ module Derivable
       crtsa = result_value_quantity_for 'CRTSA'
       bun / crtsa
     when 'CLDL1'
-      return unless LabTest.unit_for('CLDL1').casecmp('mg/dL').zero?
-
       tg = result_value_quantity_for 'TRIG'
       return if tg > 800
 
       tc = result_value_quantity_for 'CHOL'
       hdl = result_value_quantity_for 'HDL'
-      (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
+      case LabTest.unit_for('CLDL1').downcase
+      when 'mg/dl'
+        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
+        ldl < 15 ? '<15' : ldl
+      when 'mmol/l'
+        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - (tg**2 / 79.36)) - 0.244
+        ldl < 0.4 ? '<0.4' : ldl
+      else
+        raise
+      end
     when 'CLDL1HDLR'
-      return unless LabTest.unit_for('CLDL1').casecmp('mg/dL').zero?
-
       tg = result_value_quantity_for 'TRIG'
       return if tg > 800
 
       tc = result_value_quantity_for 'CHOL'
       hdl = result_value_quantity_for 'HDL'
-      ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
+      case LabTest.unit_for('CLDL1').downcase
+      when 'mg/dl'
+        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
+        ldl < 15 ? 15 : ldl
+      when 'mmol/l'
+        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - (tg**2 / 79.36)) - 0.244
+        ldl < 0.4 ? 0.4 : ldl
+      else
+        raise
+      end
       ldl / hdl
     when 'CHOLHDLR'
       chol = result_value_quantity_for 'CHOL'
@@ -282,6 +296,9 @@ module Derivable
 
   def derived_remarks_for(code)
     case code
+    when 'CLDL1'
+      ldl = result_derived_value_for 'CLDL1'
+      return I18n.t('observations.derived_remarks.cldl1') if ldl.zero?
     when 'eGFRcr'
       egfrcr = result_derived_value_for 'eGFRcr'
       return I18n.t('observations.derived_remarks.egfrcr') if egfrcr.between?(45, 59)

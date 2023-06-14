@@ -173,6 +173,7 @@ es-PA:
       notes: 'Observaciones:'
   observations:
     derived_remarks:
+      cldl1: La concentración de Colesterol LDL calculada fue extremadamente baja. Se recomienda β-cuantificación si es necesaria una medición más precisa del Colesterol LDL.
       egfrcr: Las directrices de NKF KDOQI y KDIGO recomiendan confirmar una Tasa de Filtración Glomerular estimada (eGFR) de 45–59 mL/min/1.73m² con una Tasa Albúmina-Creatinina en orina (uACR) &lt;30 mg/g, en función de una eGFR calculada con Creatinina y Cistatina C.
       psa_r: |
         Cuando el PSA Total está en el rango de 4.0–10.0 ng/mL, una Tasa PSA Libre/PSA Total de %{psa_r} indica un riesgo de cáncer de próstata de %{risk}.

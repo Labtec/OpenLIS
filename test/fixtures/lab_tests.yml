@@ -28,10 +28,24 @@ ldl:
   derivation: true
   unit: mg/dl
 
+cldl1:
+  department: chemistry
+  name: Cholesterol, LDL, Calculated, S
+  code: CLDL1
+  derivation: true
+  unit: mg/dl
+
 ldl_hdl:
   department: chemistry
   name: LDL/HDL Ratio
   code: LDLHDLR
+  derivation: true
+  decimals: 1
+
+cldl1_hdl:
+  department: chemistry
+  name: LDL/HDL Ratio
+  code: CLDL1HDLR
   derivation: true
   decimals: 1
 
