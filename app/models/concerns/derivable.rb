@@ -14,6 +14,25 @@ module Derivable
       bun = result_value_quantity_for 'BUN'
       crtsa = result_value_quantity_for 'CRTSA'
       bun / crtsa
+    when 'CLDL1'
+      return unless LabTest.unit_for('CLDL1').casecmp('mg/dL').zero?
+
+      tg = result_value_quantity_for 'TRIG'
+      return if tg > 800
+
+      tc = result_value_quantity_for 'CHOL'
+      hdl = result_value_quantity_for 'HDL'
+      (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
+    when 'CLDL1HDLR'
+      return unless LabTest.unit_for('CLDL1').casecmp('mg/dL').zero?
+
+      tg = result_value_quantity_for 'TRIG'
+      return if tg > 800
+
+      tc = result_value_quantity_for 'CHOL'
+      hdl = result_value_quantity_for 'HDL'
+      ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
+      ldl / hdl
     when 'CHOLHDLR'
       chol = result_value_quantity_for 'CHOL'
       hdl = result_value_quantity_for 'HDL'
