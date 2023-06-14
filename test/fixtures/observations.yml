@@ -22,6 +22,26 @@ observation_ldl_hdl:
   lab_test: ldl_hdl
   accession: lipid
 
+observation_chol1:
+  lab_test: chol
+  accession: lpsc1
+
+observation_hdl1:
+  lab_test: hdl
+  accession: lpsc1
+
+observation_trig1:
+  lab_test: trig
+  accession: lpsc1
+
+observation_cldl1:
+  lab_test: cldl1
+  accession: lpsc1
+
+observation_cldl1_hdl:
+  lab_test: cldl1_hdl
+  accession: lpsc1
+
 egfrcr:
   lab_test: egfrcr
   accession: egfrcr
