@@ -15,32 +15,36 @@ module Derivable
       crtsa = result_value_quantity_for 'CRTSA'
       bun / crtsa
     when 'CLDL1'
-      tg = result_value_quantity_for 'TRIG'
-      return if tg > 800
-
       tc = result_value_quantity_for 'CHOL'
       hdl = result_value_quantity_for 'HDL'
+      tg = result_value_quantity_for 'TRIG'
       case LabTest.unit_for('CLDL1').downcase
       when 'mg/dl'
+        return if tg > 800
+
         ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
         ldl < 15 ? '<15' : ldl
       when 'mmol/l'
+        return if tg > 9
+
         ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - (tg**2 / 79.36)) - 0.244
         ldl < 0.4 ? '<0.4' : ldl
       else
         raise
       end
     when 'CLDL1HDLR'
-      tg = result_value_quantity_for 'TRIG'
-      return if tg > 800
-
       tc = result_value_quantity_for 'CHOL'
       hdl = result_value_quantity_for 'HDL'
+      tg = result_value_quantity_for 'TRIG'
       case LabTest.unit_for('CLDL1').downcase
       when 'mg/dl'
+        return if tg > 800
+
         ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
         ldl < 15 ? 15 : ldl
       when 'mmol/l'
+        return if tg > 9
+
         ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - (tg**2 / 79.36)) - 0.244
         ldl < 0.4 ? 0.4 : ldl
       else
