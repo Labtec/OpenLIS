@@ -44,7 +44,7 @@ ldl_hdl:
 
 cldl1_hdl:
   department: chemistry
-  name: LDL/HDL Ratio
+  name: CLDL1/HDL Ratio
   code: CLDL1HDLR
   derivation: true
   decimals: 1
