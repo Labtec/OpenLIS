@@ -38,7 +38,7 @@ lpsc1:
   received_at: <%= 1.day.ago %>
   drawer: user
   receiver: user
-    º
+
 egfrcr:
   patient: john
   drawn_at: <%= 1.day.ago %>
