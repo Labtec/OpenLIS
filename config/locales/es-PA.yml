@@ -88,6 +88,11 @@ es-PA:
       smart_health_card: SMART® Health Card
       smart_report: Reporte SMART®
       outpatient: Ambulatorio
+  practitioners:
+    female_dr_prefix: Dr.
+    male_dr_prefix: Dr.
+    outpatient: Ambulatorio
+    unknown_dr_prefix: UNK
   errors:
     messages:
       cant_be_in_the_future: no puede ser del futuro

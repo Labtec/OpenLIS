@@ -8,5 +8,13 @@
     <%= f.label :email %><br />
     <%= f.email_field :email %>
   </p>
+  <p>
+    <%= f.label :gender %>
+    <%= f.select :gender, Doctor::GENDERS, include_blank: true %>
+  </p>
+  <p>
+    <%= f.label :organization %>
+    <%= f.check_box :organization, id: :doctor_organization %>
+  </p>
   <p><%= f.submit 'Submit' %></p>
 <% end %>

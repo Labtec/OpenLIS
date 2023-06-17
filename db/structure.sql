@@ -289,10 +289,11 @@ CREATE TABLE public.doctors (
     name character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    gender character varying(510) DEFAULT NULL::character varying,
     email character varying,
     accessions_count integer DEFAULT 0,
-    uuid uuid DEFAULT gen_random_uuid() NOT NULL
+    uuid uuid DEFAULT gen_random_uuid() NOT NULL,
+    gender public.administrative_gender,
+    organization boolean DEFAULT false
 );
 
 
@@ -1339,6 +1340,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201123000002'),
 ('20230517220001'),
 ('20230524000001'),
-('20230607000001');
+('20230607000001'),
+('20230611000001');
 
 
