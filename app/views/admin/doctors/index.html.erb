@@ -10,7 +10,7 @@
   </tr>
   <% @doctors.each do |doctor| %>
     <%= content_tag :tr, class: "empty-#{doctor.accessions_count.zero?}" do %>
-      <td><%= organization_or_practitioner(doctor) %></td>
+      <td><%= doctor.name %></td>
       <td><%= doctor.email %></td>
       <td><%= link_to 'Show', [:admin, doctor] %></td>
       <td><%= link_to 'Edit', edit_admin_doctor_path(doctor) %></td>

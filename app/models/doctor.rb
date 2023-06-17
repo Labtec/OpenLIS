@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Doctor < ApplicationRecord
-  GENDERS = %w[male female other unkwown].freeze
-
   has_many :accessions, dependent: :nullify
 
   validates :email, email: true, allow_blank: true
@@ -12,7 +10,7 @@ class Doctor < ApplicationRecord
             uniqueness: { case_sensitive: false },
             length: { minimum: 2 }
 
-  auto_strip_attributes :gender, :name
+  auto_strip_attributes :name
 
   after_commit :flush_cache
 
