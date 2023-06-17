@@ -8,6 +8,14 @@
     <%= form.label :email %><br />
     <%= form.email_field :email %>
   </p>
+  <p>
+    <%= form.label :gender %>
+    <%= form.select :gender, Doctor::GENDERS, include_blank: true %>
+  </p>
+  <p>
+    <%= form.label :organization %>
+    <%= form.check_box :organization, id: :doctor_organization %>
+  </p>
 
   <div class="buttonbar">
     <%= form.submit 'Submit' %> |

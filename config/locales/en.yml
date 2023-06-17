@@ -104,6 +104,11 @@ en:
       smart_health_card: SMART® Health Card
       smart_report: SMART® Report
       outpatient: Outpatient
+  practitioners:
+    female_dr_prefix: Dr.
+    male_dr_prefix: Dr.
+    outpatient: Outpatient
+    unknown_dr_prefix: UNK
   errors:
     messages:
       cant_be_in_the_future: cannot be in the future

@@ -1,5 +1,5 @@
 <%= content_tag :tr, id: dom_id(doctor), is: 'turbo-frame', class: "admin_doctor empty-#{doctor.accessions_count.zero?}" do %>
-  <td><%= doctor.name %></td>
+  <td><%= organization_or_practitioner(doctor) %></td>
   <td><%= doctor.email %></td>
   <td><%= link_to 'Edit', edit_admin_doctor_path(doctor) %></td>
   <td>
