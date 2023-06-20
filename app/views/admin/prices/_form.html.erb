@@ -14,7 +14,7 @@
     </div>
 
     <div class="buttonbar">
-      <%= form.submit 'Submit' %>
+      <%= form.submit 'Submit', data: { turbo: false } %>
       <%= link_to 'Cancel', admin_prices_path, data: { turbo: false } %>
     </div>
   <% end %>

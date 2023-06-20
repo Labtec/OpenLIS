@@ -31,15 +31,15 @@ module Admin
       if @price.save
         redirect_to admin_prices_url, notice: 'Price was successfully created.'
       else
-        render action: 'new'
+        render :new, status: :unprocessable_entity
       end
     end
 
     def update
       if @price.update(price_params)
-        redirect_to [:admin, @price], notice: 'Price was successfully updated.'
+        redirect_to admin_prices_url, notice: 'Price was successfully updated.'
       else
-        render action: 'edit'
+        render :edit, status: :unprocessable_entity
       end
     end
 
