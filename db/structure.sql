@@ -428,7 +428,7 @@ CREATE TABLE public.lab_tests (
     updated_at timestamp with time zone,
     department_id bigint,
     unit_id bigint,
-    procedure integer,
+    procedure character varying,
     derivation boolean,
     also_numeric boolean,
     ratio boolean,
@@ -521,7 +521,7 @@ CREATE TABLE public.panels (
     description character varying(510) DEFAULT NULL::character varying,
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
-    procedure integer,
+    procedure character varying,
     loinc character varying,
     status public.publication_status DEFAULT 'active'::public.publication_status
 );
@@ -1341,6 +1341,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230517220001'),
 ('20230524000001'),
 ('20230607000001'),
-('20230611000001');
+('20230611000001'),
+('20230611000002');
 
 
