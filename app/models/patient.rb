@@ -68,7 +68,7 @@ class Patient < ApplicationRecord
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
   auto_strip_attributes :given_name, :middle_name, :family_name, :family_name2,
-                        :partner_name, :identifier, :cellular, :phone,
+                        :partner_name, :identifier, :email, :cellular, :phone,
                         :policy_number
   auto_strip_attributes :address_province, :address_district, :address_corregimiento,
                         :address_line, virtual: true

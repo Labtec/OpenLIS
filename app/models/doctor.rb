@@ -12,7 +12,7 @@ class Doctor < ApplicationRecord
             uniqueness: { case_sensitive: false },
             length: { minimum: 2 }
 
-  auto_strip_attributes :gender, :name
+  auto_strip_attributes :gender, :name, :email
 
   after_commit :flush_cache
 
