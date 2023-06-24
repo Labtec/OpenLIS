@@ -1,0 +1,119 @@
+<% title t('.quote', serial_number: @quote.serial_number) %>
+
+<%= turbo_stream_from :quote_details %>
+
+<fieldset class="<%= @quote.status %>">
+  <h1>
+    <%= t('.quote', serial_number: @quote.serial_number) %>
+  </h1>
+
+  <% if @quote.doctor %>
+    <%= t('.ordered_by') %>
+  <% end %>
+  <strong><%= organization_or_practitioner(@quote.doctor)%></strong><br/>
+
+  <%= t('.created_at') %>
+  <strong><%= l(@quote.created_at, format: :short) %></strong>
+  <%= t('.by') %>
+  <strong><%= @quote.created_by.initials %></strong><br/>
+
+  <% if @quote.approved_at %>
+    <%= t('.approved_at') %>
+    <strong><%= l(@quote.approved_at, format: :short) %></strong>
+    <%= t('.by') %>
+    <strong><%= @quote.approved_by.initials %></strong>
+  <% end %>
+
+  <%= form_with model: @quote, url: quote_detail_path(@quote),
+    data: { controller: 'quote-detail',
+            action: 'quote-detail#calculateTotals' },
+    html: { novalidate: '', autocomplete: 'off' } do |form| %>
+    <%= render 'shared/error_messages', object: @quote %>
+
+    <table>
+      <tr>
+        <th class="quote_line_item_number">
+          <%= t('.number') %>
+        </th>
+        <th class="quote_line_item_description">
+          <%= t('.description') %>
+        </th>
+        <th class="quote_line_item_code">
+          <%= t('.code') %>
+        </th>
+        <th class="quote_line_item_price">
+          <%= t('.price') %>
+        </th>
+        <th class="quote_line_item_discount_detail">
+          <%= t('.discount') %>
+        </th>
+        <th class="quote_line_item_qty">
+          <%= t('.quantity') %>
+        </th>
+        <th class="quote_line_item_total">
+          <%= t('.total') %>
+        </th>
+      </tr>
+    </table>
+
+    <% reset_cycle("alternating_row_colors") %>
+    <%= form.fields_for :line_items do |line_item_form| %>
+      <%= render 'quote_line_items/form', form: line_item_form %>
+    <% end %>
+
+    <table class="totals">
+      <tr>
+        <td class="quote_total_title_detail">
+          <%= t('.subtotal') %>
+        </td>
+        <td class="quote_total_amount_detail" data-quote-detail-target="subtotal">
+          <%= number_to_currency @quote.subtotal, locale: 'en' %>
+        </td>
+      </tr>
+      <tr>
+        <td class="quote_total_title_detail">
+          <%= t('.total_discount') %>
+        </td>
+        <td class="quote_total_amount_detail" data-quote-detail-target="totalDiscount">
+          <%= number_to_currency @quote.total_discount, locale: 'en' %>
+        </td>
+      </tr>
+      <tr>
+        <td class="quote_total_title_detail">
+          <%= t('.taxes') %>
+        </td>
+        <td class="quote_total_amount_detail">
+          <%= number_to_currency 0, locale: 'en' %>
+        </td>
+      </tr>
+      <tr>
+        <td class="quote_total_title">
+          <%= t('.shipping_and_handling') %>
+        </td>
+        <td class="quote_total_amount">
+          <%= form.number_field :shipping_and_handling,
+            class: 'quote_line_item_discount_value_field',
+            data: { quote_detail_target: 'shippingAndHandling',
+                    action: 'quote-detail#calculateTotals'} %>
+        </td>
+      </tr>
+      <tr>
+        <td class="quote_total_title_detail quote_grand_total">
+          <%= t('.grand_total') %>
+        </td>
+        <td class="quote_total_amount_detail quote_grand_total" data-quote-detail-target="grandTotal">
+          <%= number_to_currency @quote.grand_total, locale: 'en' %>
+        </td>
+      </tr>
+    </table>
+
+    <h2><%= t('.notes') %></h2>
+    <%= form.text_area :note, rows: 3, cols: 91 %>
+
+    <div class="buttonbar">
+      <%= form.submit t('.submit') %>
+      <%= t('.or') %>
+      <%= link_to t('.cancel'), quote_path(@quote) %>
+    </div>
+  <% end %>
+</fieldset>

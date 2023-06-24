@@ -6,7 +6,14 @@
       <%= link_to change_or_enter_results(accession), edit_diagnostic_report_path(accession) %>
     </small>
   </div>
-  <%= link_to t('.accession', id: accession.id), diagnostic_report_path(accession) %>
+  <% if accession.final? || accession.amended? %>
+    <%= link_to t('.diagnostic_report', id: accession.id), diagnostic_report_path(accession) %>
+  <% else %>
+    <%= link_to t('.accession', id: accession.id), diagnostic_report_path(accession) %>
+  <% end %>
+  <% if accession.quote %>
+    | <%= link_to t('.quote', serial_number: accession.quote.serial_number), quote_path(accession.quote) %>
+  <% end %>
   <%= content_tag :tt, full_name(accession.patient) unless @patient %>
   <dt class="second">
     <% if accession.final? || accession.amended? %>
@@ -21,7 +28,7 @@
       <% end %>
     <% end %>
     <% if accession.doctor.present? %>
-      | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= accession.doctor_name %></b>
+      | <%= t('.ordered_by') %>&nbsp;<b><%= organization_or_practitioner(accession.doctor) %></b>
     <% end %>
   </dt>
 <% end %>

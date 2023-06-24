@@ -23,7 +23,7 @@ module ApplicationHelper
   def render_markdown_pdf(text)
     return unless text
 
-    sanitize(CommonMarker.render_html(text, :SMART), tags: %w[em strong])
+    sanitize(CommonMarker.render_html(text, :SMART), tags: %w[em strong]).chomp
   end
 
   def navigation(*links)

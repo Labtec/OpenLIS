@@ -12,7 +12,7 @@
     <h2><%= t('.order_details') %></h2>
 
     <div class="doctor_name">
-      <%= form.label :doctor_name, t('.doctor') %>
+      <%= form.label :doctor_name, t('.ordered_by') %>
       <%= form.text_field :doctor_name, placeholder: t('.outpatient'),
         id: 'accession_doctor_name',
         data: { doctors: Doctor.cached_doctors_list }, autocorrect: 'off' %>
@@ -74,9 +74,9 @@
       </div>
     <% end %>
 
-    <%= render 'panels/form', form: form %>
+    <%= render 'panels/form', form: form, controller_name: 'service-request', model_name: 'accession' %>
 
-    <%= render 'lab_tests/form', form: form %>
+    <%= render 'lab_tests/form', form: form, controller_name: 'service-request', model_name: 'accession' %>
 
     <div class="buttonbar">
       <%= form.submit t('.submit') %>

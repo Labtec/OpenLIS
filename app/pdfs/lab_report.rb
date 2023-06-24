@@ -503,17 +503,9 @@ class LabReport < Prawn::Document
           text t("results.index.#{@patient.identifier_type}") if @patient.identifier_type
         end
       end
-      if @accession.doctor
-        bounding_box([bounds.left, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH1, height: row_height) do
-          indent PADDING do
-            text t('results.index.doctor')
-          end
-        end
-      else
-        bounding_box([bounds.left, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH1 + DEMOGRAPHICS_WIDTH2, height: row_height) do
-          indent PADDING do
-            text t('results.index.outpatient')
-          end
+      bounding_box([bounds.left, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH1 + DEMOGRAPHICS_WIDTH2, height: row_height) do
+        indent PADDING do
+          text "#{t('results.index.ordered_by')}  #{@view.organization_or_practitioner(@accession.doctor)}", overflow: :shrink_to_fit
         end
       end
       text_box full_name(@patient), at: [DEMOGRAPHICS_STOP1, bounds.top],
@@ -525,9 +517,6 @@ class LabReport < Prawn::Document
                                     style: :bold
       bounding_box([DEMOGRAPHICS_STOP1, bounds.top - row_height], width: DEMOGRAPHICS_WIDTH2, height: row_height) do
         text @patient.identifier
-      end
-      bounding_box([DEMOGRAPHICS_STOP1, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH2, height: row_height) do
-        text @accession.doctor_name if @accession.doctor
       end
 
       ########################

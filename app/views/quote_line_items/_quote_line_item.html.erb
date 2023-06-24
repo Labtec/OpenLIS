@@ -1,0 +1,27 @@
+<table class="row-stripes">
+  <tbody>
+    <tr>
+      <td class="quote_line_item_number">
+        <%= "#{quote_line_item_counter + 1}" %>
+      </td>
+      <td class="quote_line_item_description">
+        <%= sanitize(quote_line_item_description(quote_line_item)) %>
+      </td>
+      <td class="quote_line_item_code">
+        <%= quote_line_item_code(quote_line_item) %>
+      </td>
+      <td class="quote_line_item_price">
+        <%= number_to_currency quote_line_item.list_price, locale: 'en' %>
+      </td>
+      <td class="quote_line_item_discount">
+        <%= number_to_currency quote_line_item.discount, locale: 'en' %>
+      </td>
+      <td class="quote_line_item_qty">
+        <%= quote_line_item.quantity %>
+      </td>
+      <td class="quote_line_item_total">
+        <%= number_to_currency quote_line_item.total_price, locale: 'en' %>
+      </td>
+    </tr>
+  </tbody>
+</table>

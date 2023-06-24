@@ -2,6 +2,7 @@
 
 class Panel < ApplicationRecord
   include PublicationStatus
+  include FastingStatus
 
   has_many :lab_test_panels, dependent: :destroy
   has_many :lab_tests, through: :lab_test_panels
@@ -18,7 +19,7 @@ class Panel < ApplicationRecord
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
   scope :sorted, -> { order(name: :asc) }
 
-  auto_strip_attributes :name, :code, :procedure, :loinc
+  auto_strip_attributes :name, :code, :procedure, :loinc, :patient_preparation, :fasting_status_duration
 
   after_commit :flush_cache
   after_create_commit -> { broadcast_prepend_later_to 'admin:panels', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_panels_path } }

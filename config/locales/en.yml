@@ -7,13 +7,14 @@ en:
       change_results: Change Results
       confirm_destroy: Are you sure?
       delete?: Delete?
+      diagnostic_report: 'Report #%{id}'
       drawn_at: 'Drawn at: '
       enter_results: Enter Results
       ordered_by: 'Ordered by:'
+      quote: 'Quote #%{serial_number}'
       reported_at: 'Reported at: '
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
-      outpatient: Outpatient
     admin_accession:
       accession: 'Order #%{id}'
       by: 'by: '
@@ -21,13 +22,14 @@ en:
       change_results: Change Results
       confirm_destroy: Are you sure?
       delete?: Delete?
+      diagnostic_report: 'Report #%{id}'
       drawn_at: 'Drawn at: '
       enter_results: Enter Results
       ordered_by: 'Ordered by:'
+      quote: 'Quote #%{serial_number}'
       reported_at: 'Reported at: '
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
-      outpatient: Outpatient
     edit:
       title: Change Order
     empty:
@@ -36,7 +38,6 @@ en:
     form:
       accession: 'Order #%{id}'
       cancel: Cancel
-      doctor: 'Ordering Doctor:'
       drawn_at: 'Collected at:'
       drawn_by: 'Collected by:'
       icd9: 'Diagnosis Codes:'
@@ -44,6 +45,7 @@ en:
       labels: Labels
       or: or
       order_details: Order Details
+      ordered_by: 'Ordered by:'
       processing: Processing...
       received_at: 'Received at:'
       received_by: 'Received by:'
@@ -67,7 +69,6 @@ en:
       accession: 'Accession #%{id}'
       by: ' by: '
       cancel: Cancel
-      doctor: 'Doctor: '
       drawn_at: 'Collected at: '
       icd9: 'Diagnosis Codes:'
       or: or
@@ -75,7 +76,7 @@ en:
       reported_at: 'Reported at: '
       submit: Save Results
       title: Enter Results
-      outpatient: Outpatient
+      ordered_by: 'Ordered by:'
     index:
       title: Results
     show:
@@ -88,7 +89,6 @@ en:
       confirm_email: Would you like to email the results to %{email}?
       confirm_emailed: Would you like to email the results to %{email} again?
       confirm_forceful_certify: Are you sure you want to cancel pending results an certify?
-      doctor: 'Doctor: '
       drawn_at: 'Collected at: '
       email_report: Email Report
       emailed_report: Resend Report
@@ -96,6 +96,7 @@ en:
       force_certify: Force Certify
       icd9: 'Diagnosis Codes:'
       notes: 'Notes:'
+      ordered_by: 'Ordered by:'
       print_report: Print Report (PDF)
       received_at: 'Received at: '
       reported_at: 'Reported at: '
@@ -108,14 +109,17 @@ en:
     female_dr_prefix: Dr.
     male_dr_prefix: Dr.
     outpatient: Outpatient
-    unknown_dr_prefix: UNK
+    unknown_dr_prefix: Dr.
   errors:
     messages:
+      number_or_percentage: must be a number or a percentage (%)
       cant_be_in_the_future: cannot be in the future
       cant_be_that_old: cannot be that old
       cant_begin_with_dr: must not begin with Dr(a).
       fraction: must be N/N
       is_out_of_absolute_range: is outside absolute range
+      must_be_between_0_and_100: must be between 0 and 100%
+      must_be_less_than_or_equal_to_list_price: must be less than or equal to the lisit price
       range: must be N-N, <N or >N
       ratio: must be N:N
   flash:
@@ -136,6 +140,10 @@ en:
     login:
       hello: 'Hello '
       last_login_at: ' Previous login: '
+    quote:
+      approve_error: Quote could not be approved.
+    quote_detail:
+      update: Successfully updated quote details.
     users:
       cant_delete_last_security_key: The last security key cannot be deleted.
   lab_tests:
@@ -173,6 +181,7 @@ en:
       patients: Patients
       requisitions: Orders
       diagnostic_reports: Results
+      quotes: Quotes
   notes:
     form:
       notes: 'Notes:'
@@ -292,6 +301,8 @@ en:
       phone: 'Phone:'
       year: year
     show:
+      new_quote: New Quote
+      order_tests: Order Tests
       patient_not_found: Patient record no longer available.
       title: Patient Info
     unknown: Unknown
@@ -304,6 +315,104 @@ en:
     year:
       one: 1 year
       other: '%{count} years'
+  quotes:
+    create:
+      success: Successfully created quote.
+    destroy:
+      success: Successfully deleted quote.
+    edit:
+      title: Edit Quote
+    empty:
+      new_quote: New Quote
+      no_quotes_yet: No quotes
+    form:
+      cancel: Cancel
+      quote: 'Quote #%{serial_number}'
+      quote_details: Quote Details
+      or: or
+      ordered_by: 'Ordered by:'
+      outpatient: Leave blank if outpatient
+      submit: Save
+    index:
+      new_quote: New Quote
+      title: Quotes
+    new:
+      title: New Quote
+    order:
+      success: Successfully created service request.
+    quote:
+      approved_at: 'Approved at: '
+      by: 'by: '
+      created_at: 'Created at: '
+      confirm_destroy: Are you sure?
+      delete?: Delete?
+      edit: Edit
+      ordered_by: 'Ordered by: '
+      quote: 'Quote #%{serial_number}'
+      tests_ordered: 'Tests ordered: '
+    show:
+      approve: Approve
+      approved_at: 'Approved at:'
+      approved_by: 'Approved by:'
+      back: View Order
+      by: 'by: '
+      change_quote: Change Quote
+      code: Code
+      confirm_email: Would you like to email the quote to %{email}?
+      confirm_emailed: Would you like to email the quote to %{email} again?
+      created_at: 'Created at:'
+      description: Description
+      discount: Discount
+      doctor: 'Doctor: '
+      email_quote: Email Quote
+      emailed_quote: Resend Quote
+      grand_total: 'Grand Total:'
+      notes: 'Notes:'
+      number: No.
+      order: Order
+      ordered_by: 'Ordered by:'
+      pdf_total_discount: 'Discounts'
+      price: Unit Price
+      print_quote: Print Quote (PDF)
+      quantity: Quantity
+      quote: 'Quote #%{serial_number}'
+      quote_detail: Quote Detail
+      shipping_and_handling: 'Home Visit:'
+      signed_quote: Signed Quote
+      subtotal: 'Subtotal:'
+      taxes: 'Taxes:'
+      title: Quote
+      total: Total
+      total_discount: 'Discounts:'
+      validity: 'Valid for:'
+    update:
+      success: Successfully updated quote.
+  quote_details:
+    edit:
+      approved_at: 'Approved at:'
+      by: 'by: '
+      cancel: Cancel
+      code: Code
+      created_at: 'Created at:'
+      description: Description
+      discount: Discount
+      doctor: 'Doctor: '
+      grand_total: 'Grand Total:'
+      notes: 'Notes:'
+      number: No.
+      or: or
+      ordered_by: 'Ordered by:'
+      price: Unit Price
+      print_quote: Print Quote (PDF)
+      quantity: Quantity
+      quote: 'Quote #%{serial_number}'
+      quote_detail: Quote Detail
+      shipping_and_handling: 'Home Visit:'
+      submit: Submit
+      subtotal: 'Subtotal:'
+      taxes: 'Taxes:'
+      total: Total
+      total_discount: 'Discounts:'
   results:
     abnormal: A
     critical_abnormal: AA
@@ -322,7 +431,6 @@ en:
       amended: Amended
       cellular: 'Mobile:'
       date: 'Date:'
-      doctor: 'Doctor:'
       drawn_at: 'Collected Date:'
       final: Final
       flag: Flag
@@ -332,6 +440,7 @@ en:
       notes: 'Notes:'
       of: of
       on_date: 'on'
+      ordered_by: 'Ordered by:'
       page: Page
       partial: Partial
       phone: 'Phone:'
@@ -348,7 +457,6 @@ en:
       run_by: 'Run By:'
       type: 'Species:'
       units: Units
-      outpatient: Outpatient
       year: year
       years: years
     low: L
@@ -366,6 +474,13 @@ en:
     significantly_low: LU
     susceptible: S
     weakly_reactive: WR
+  quotes_mailer:
+    email_quote:
+      body: Attached is the requested quote.
+      opening_F: Dear %{full_name},
+      opening_M: Dear %{full_name},
+      opening_U: Dear %{full_name},
+      subject: "Quote #%{quote_number}"
   results_mailer:
     email_doctor:
       body: Attached are the results for %{full_name}.
@@ -462,3 +577,5 @@ en:
     attributes:
       accession:
         icd9: Diagnosis Codes (ICD-9)
+      panel:
+        fasting_status_duration_iso8601: Fasting (ISO 8601)

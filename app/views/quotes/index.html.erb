@@ -1,0 +1,22 @@
+<% title t('.title') %>
+
+<%= turbo_stream_from :quotes %>
+
+<div class="title_tools">
+  <%= link_to t('.new_quote'), new_quote_path %>
+</div>
+
+<div class="title">
+  <span><%= t('.title')%></span>
+</div>
+
+<div class='list'>
+  <div class="log">
+    <ul>
+      <%= render 'quotes/empty' %>
+      <%= render @quotes %>
+    </ul>
+
+    <%= paginate @quotes %>
+  </div>
+</div>

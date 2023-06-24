@@ -438,7 +438,9 @@ CREATE TABLE public.lab_tests (
     "position" integer,
     loinc character varying,
     remarks text,
-    status public.publication_status DEFAULT 'active'::public.publication_status
+    status public.publication_status DEFAULT 'active'::public.publication_status,
+    fasting_status_duration interval,
+    patient_preparation text
 );
 
 
@@ -523,7 +525,9 @@ CREATE TABLE public.panels (
     updated_at timestamp with time zone,
     procedure character varying,
     loinc character varying,
-    status public.publication_status DEFAULT 'active'::public.publication_status
+    status public.publication_status DEFAULT 'active'::public.publication_status,
+    fasting_status_duration interval,
+    patient_preparation text
 );
 
 
@@ -661,6 +665,66 @@ CREATE TABLE public.qualified_intervals (
 
 
 --
+-- Name: quote_line_items; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.quote_line_items (
+    id bigint NOT NULL,
+    quote_id uuid NOT NULL,
+    item_type character varying,
+    item_id bigint,
+    discount_value numeric DEFAULT 0.0 NOT NULL,
+    discount_unit integer DEFAULT 0 NOT NULL,
+    quantity integer DEFAULT 1 NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: quote_line_items_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.quote_line_items_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: quote_line_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.quote_line_items_id_seq OWNED BY public.quote_line_items.id;
+
+
+--
+-- Name: quotes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.quotes (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    serial_number bigint NOT NULL,
+    price_list_id bigint NOT NULL,
+    created_by_id bigint NOT NULL,
+    approved_by_id bigint,
+    expires_at timestamp(6) without time zone,
+    approved_at timestamp(6) without time zone,
+    service_request_id bigint,
+    patient_id bigint,
+    emailed_patient_at timestamp(6) without time zone,
+    doctor_id bigint,
+    status integer DEFAULT 0 NOT NULL,
+    shipping_and_handling numeric DEFAULT 0.0 NOT NULL,
+    note text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -784,6 +848,13 @@ CREATE SEQUENCE public.webauthn_credentials_id_seq
 --
 
 ALTER SEQUENCE public.webauthn_credentials_id_seq OWNED BY public.webauthn_credentials.id;
+
+
+--
+-- Name: quote_line_items id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quote_line_items ALTER COLUMN id SET DEFAULT nextval('public.quote_line_items_id_seq'::regclass);
 
 
 --
@@ -935,6 +1006,22 @@ ALTER TABLE ONLY public.prices
 
 ALTER TABLE ONLY public.qualified_intervals
     ADD CONSTRAINT qualified_intervals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: quote_line_items quote_line_items_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quote_line_items
+    ADD CONSTRAINT quote_line_items_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: quotes quotes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quotes
+    ADD CONSTRAINT quotes_pkey PRIMARY KEY (id);
 
 
 --
@@ -1228,6 +1315,69 @@ CREATE INDEX index_qualified_intervals_on_lab_test_id ON public.qualified_interv
 
 
 --
+-- Name: index_quote_line_items_on_item; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quote_line_items_on_item ON public.quote_line_items USING btree (item_type, item_id);
+
+
+--
+-- Name: index_quote_line_items_on_quote_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quote_line_items_on_quote_id ON public.quote_line_items USING btree (quote_id);
+
+
+--
+-- Name: index_quotes_on_approved_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quotes_on_approved_by_id ON public.quotes USING btree (approved_by_id);
+
+
+--
+-- Name: index_quotes_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quotes_on_created_by_id ON public.quotes USING btree (created_by_id);
+
+
+--
+-- Name: index_quotes_on_doctor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quotes_on_doctor_id ON public.quotes USING btree (doctor_id);
+
+
+--
+-- Name: index_quotes_on_patient_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quotes_on_patient_id ON public.quotes USING btree (patient_id);
+
+
+--
+-- Name: index_quotes_on_price_list_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quotes_on_price_list_id ON public.quotes USING btree (price_list_id);
+
+
+--
+-- Name: index_quotes_on_serial_number; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quotes_on_serial_number ON public.quotes USING btree (serial_number);
+
+
+--
+-- Name: index_quotes_on_service_request_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quotes_on_service_request_id ON public.quotes USING btree (service_request_id);
+
+
+--
 -- Name: index_units_on_expression; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1284,11 +1434,67 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 
 
 --
+-- Name: quote_line_items fk_rails_125d880df3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quote_line_items
+    ADD CONSTRAINT fk_rails_125d880df3 FOREIGN KEY (quote_id) REFERENCES public.quotes(id);
+
+
+--
+-- Name: quotes fk_rails_4d07b0b28d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quotes
+    ADD CONSTRAINT fk_rails_4d07b0b28d FOREIGN KEY (created_by_id) REFERENCES public.users(id);
+
+
+--
+-- Name: quotes fk_rails_7bf70aac95; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quotes
+    ADD CONSTRAINT fk_rails_7bf70aac95 FOREIGN KEY (patient_id) REFERENCES public.patients(id);
+
+
+--
+-- Name: quotes fk_rails_a0b35899e1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quotes
+    ADD CONSTRAINT fk_rails_a0b35899e1 FOREIGN KEY (service_request_id) REFERENCES public.accessions(id);
+
+
+--
 -- Name: webauthn_credentials fk_rails_a4355aef77; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.webauthn_credentials
     ADD CONSTRAINT fk_rails_a4355aef77 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: quotes fk_rails_aab6d70298; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quotes
+    ADD CONSTRAINT fk_rails_aab6d70298 FOREIGN KEY (price_list_id) REFERENCES public.price_lists(id);
+
+
+--
+-- Name: quotes fk_rails_b0ecd8cc37; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quotes
+    ADD CONSTRAINT fk_rails_b0ecd8cc37 FOREIGN KEY (doctor_id) REFERENCES public.doctors(id);
+
+
+--
+-- Name: quotes fk_rails_e0eda0a328; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quotes
+    ADD CONSTRAINT fk_rails_e0eda0a328 FOREIGN KEY (approved_by_id) REFERENCES public.users(id);
 
 
 --
@@ -1342,6 +1548,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230524000001'),
 ('20230607000001'),
 ('20230611000001'),
-('20230611000002');
+('20230611000002'),
+('20230612000001'),
+('20230612000002'),
+('20230612000003');
 
 

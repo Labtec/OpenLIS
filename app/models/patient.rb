@@ -13,6 +13,7 @@ class Patient < ApplicationRecord
 
   has_many :accessions, dependent: :destroy
   has_many :notes, as: :noticeable, dependent: :destroy
+  has_many :quotes, dependent: :destroy
 
   store_accessor :address, :line, :corregimiento, :district, :province, prefix: true
 

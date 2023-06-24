@@ -1,0 +1,35 @@
+<fieldset class="<%= @quote.status %>">
+  <% if @quote.serial_number %>
+    <h1><%= t('.quote', serial_number: @quote.serial_number) %></h1>
+  <% end %>
+
+  <%= form_with(model: [@item, @quote],
+                html: { novalidate: '', autocomplete: 'off' },
+                data: { controller: 'quote' }) do |form| %>
+    <%= render 'shared/error_messages', object: @quote %>
+
+    <h2><%= t('.quote_details') %></h2>
+
+    <%= form.hidden_field :patient_id %>
+    <div class="doctor_name">
+      <%= form.label :doctor_name, t('.ordered_by') %>
+      <%= form.text_field :doctor_name, placeholder: t('.outpatient'),
+        id: 'accession_doctor_name',
+        data: { doctors: Doctor.cached_doctors_list }, autocorrect: 'off' %>
+    </div>
+
+    <%= render 'panels/form', form: form, controller_name: 'quote', model_name: 'quote' %>
+
+    <%= render 'lab_tests/form', form: form, controller_name: 'quote', model_name: 'quote' %>
+
+    <div class="buttonbar">
+      <%= form.submit t('.submit') %>
+      <%= t('.or') %>
+      <% if @quote.new_record? %>
+        <%= link_to t('.cancel'), quotes_path %>
+      <% else %>
+        <%= link_to t('.cancel'), quote_path(@quote) %>
+      <% end %>
+    </div>
+  <% end %>
+</fieldset>

@@ -1,0 +1,40 @@
+<table class="<%= row_class %>">
+  <tbody>
+    <%= content_tag :tr, id: dom_id(form.object),
+      data: { controller: 'quote-line-item',
+              action: 'quote-line-item#calculateTotal' } do %>
+      <td class="quote_line_item_number">
+        <%= "#{form.options[:child_index] + 1}" %>
+      </td>
+      <td class="quote_line_item_description">
+        <%= sanitize(quote_line_item_description(form.object)) %>
+      </td>
+      <td class="quote_line_item_code">
+        <%= quote_line_item_code(form.object) %>
+      </td>
+      <td class="quote_line_item_price" data-quote-line-item-target="price" data-quote-detail-target="linePrice">
+        <%= number_to_currency form.object.list_price, locale: 'en' %>
+      </td>
+      <td class="quote_line_item_discount_value">
+        <%= form.number_field :discount_value,
+          class: 'quote_line_item_discount_value_field',
+          data: { quote_line_item_target: 'discountValue',
+                  action: 'quote-line-item#calculateTotal quote-detail#calculateTotals' } %>
+      </td>
+      <td class="quote_line_item_discount_unit">
+        <%= form.select :discount_unit, options_for_discount_unit, {},
+          data: { quote_line_item_target: 'discountUnit',
+                  action: 'quote-line-item#calculateTotal quote-detail#calculateTotals' } %>
+      </td>
+      <td class="quote_line_item_qty">
+        <%= form.number_field :quantity, class: 'quote_line_item_qty_field',
+          data: { quote_line_item_target: 'quantity',
+                  quote_detail_target: 'lineQuantity',
+                  action: 'quote-line-item#calculateTotal quote-detail#calculateTotals' } %>
+      </td>
+      <td class="quote_line_item_total" data-quote-line-item-target="total" data-quote-detail-target="lineTotal">
+        <%= number_to_currency form.object.total_price, locale: 'en' %>
+      </td>
+    <% end %>
+  </tbody>
+</table>

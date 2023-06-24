@@ -1,15 +1,6 @@
 # frozen_string_literal: true
 
 module AccessionsHelper
-  def practitioner(doctor)
-    if doctor
-      concat t('.doctor')
-      tag.strong(doctor.name)
-    else
-      tag.strong(t('.outpatient'))
-    end
-  end
-
   def email_report(recipient, diagnostic_report, email)
     resend = case recipient
              when :practitioner

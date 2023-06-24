@@ -172,6 +172,14 @@ fieldset {
   text-indent:0;
   clear: left;
   position: relative; }
+  fieldset.approved {
+  min-width: 658px;
+  max-width: 692px;
+  border: 5px #91c991 solid; }
+  fieldset.draft  {
+  min-width: 658px;
+  max-width: 692px;
+  border: 5px #ffdcb2 solid; }
   fieldset.true {
   border: 5px lightpink solid; }
     fieldset.true .buttonbar a {
@@ -406,15 +414,61 @@ table {
   border-spacing: 0 0;
   text-align: left; }
   th {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
-    padding: 8px 8px;
-    border-bottom: 2px solid #6678b1; }
+    padding-top: 10px;
+    padding-right: 8px;
+    margin-bottom: 5px;
+    border-bottom: 1px silver solid; }
   td {
     padding: .15em .1em;
     border: none; }
     td.analyte {
     }
+    th.quote_line_item_number,
+    td.quote_line_item_number,
+    th.quote_line_item_code,
+    td.quote_line_item_code {
+      text-align: center;
+      padding-right: 0;
+      max-width: 70px;
+      min-width: 70px; }
+    th.quote_line_item_qty,
+    td.quote_line_item_qty {
+      text-align: center;
+      padding-right: 0;
+      max-width: 80px;
+      min-width: 80px; }
+    th.quote_line_item_description,
+    td.quote_line_item_description {
+      padding-right: 0;
+      max-width: 190px;
+      min-width: 190px; }
+    th.quote_line_item_discount_detail {
+      text-align: right;
+      padding-right: 0;
+      max-width: 114px;
+      min-width: 114px;
+      column-span: 2; }
+    td.quote_line_item_discount_value {
+      min-width: 70px;
+      max-width: 70px; }
+    td.quote_line_item_discount_unit {
+      min-width: 42px;
+      max-width: 42px; }
+    th.quote_line_item_discount,
+    td.quote_line_item_discount,
+    th.quote_line_item_price,
+    td.quote_line_item_price,
+    th.quote_line_item_total,
+    td.quote_line_item_total {
+      text-align: right;
+      padding-right: 0;
+      max-width: 80px;
+      min-width: 80px; }
+    th.quote_line_item_total{
+      padding-left: .1em;
+      padding-right: .1em; }
     td.table_lab_test {
       padding-right: 0;
       width: 210px; }
@@ -503,6 +557,31 @@ table.qualified-interval {
   }
 }
 
+table.totals {
+  border-top: silver double;
+  td.quote_total_title {
+    text-align: right;
+    min-width: 575px; // 70 + 70 + 80 + 190 + 80 + 80 + padding * #cols
+  }
+  td.quote_total_amount {
+    padding-right: 0;
+    text-align: right;
+    min-width: 80px;
+  }
+  td.quote_total_title_detail {
+    text-align: right;
+    min-width: 609px; // 70 + 70 + 80 + 190 + 114 + 80 + padding * #cols
+  }
+  td.quote_total_amount_detail {
+    padding-right: 0;
+    text-align: right;
+    min-width: 80px;
+  }
+  td.quote_grand_total {
+    font-weight: bold;
+  }
+}
+
 .collapsed {
   p {
     margin: 0px;
@@ -540,6 +619,9 @@ table.qualified-interval {
   h3 {
     font-size: 12px;
     color: #800080; }
+  p {
+    margin: 0;
+    white-space: pre-wrap; }
   textarea {
     box-sizing: border-box;
     width: 100%; } }
@@ -789,7 +871,7 @@ button.welcome:hover {
     padding: 0px;
     margin: -10px 0px 0px 36px; }
 
-li.contact.deceased {
+li.contact.deceased, li.contact.denied {
   min-height: 30px;
   opacity: 0.5; }
 
@@ -857,6 +939,16 @@ li.contact:hover {
       color: #0033cc;
       border-bottom: 1px #0033cc dotted;
       margin-bottom: 0px; }
+    .log ul li.contact.approved a {
+      color: darkgreen; }
+    .log ul li.contact.approved a:hover {
+      background: darkgreen;
+      color: white; }
+    .log ul li.contact.draft a {
+      color: darkorange; }
+    .log ul li.contact.draft a:hover {
+      background: darkorange;
+      color: white; }
     .log ul li.contact.registered a,
     .log ul li.contact.partial a,
     .log ul li.contact.preliminary a {
@@ -1073,6 +1165,16 @@ li.contact:hover {
   animation-delay: 3s;
   animation-duration: 2s;
   animation-fill-mode: forwards; }
+
+.quote_line_item_qty_field {
+  width: 60px;
+  text-align: right;
+}
+.quote_line_item_discount_value_field {
+  width: 60px;
+  text-align: right;
+  margin-left: 2px;
+}
 
 @keyframes fadeOut {
   0% { opacity: 1; }

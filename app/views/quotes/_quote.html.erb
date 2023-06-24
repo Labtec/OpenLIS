@@ -1,0 +1,26 @@
+<% unless quote.service_request || quote.archived? %>
+  <%= content_tag :li, id: dom_id(quote), is: 'turbo-frame',
+    class: "contact #{quote.status}" do %>
+    <div class="tools">
+      <small>
+        <%= link_to t('.edit'), edit_quote_path(quote) %> |
+        <%= button_to t('.delete?'), quote, method: :delete, class: 'tools', form: { data: { turbo_confirm: t('.confirm_destroy') } } %>
+      </small>
+    </div>
+    <%= link_to t('.quote', serial_number: quote.serial_number), quote_path(quote) %>
+    <%= content_tag :tt, full_name(quote.patient) if quote.patient && !@patient %>
+    <dt class="second">
+      <% if quote.approved? %>
+        <%= t('.approved_at') %><b><%= l(quote.approved_at, format: :short) %></b>
+        <%= t('.by') %><b><%= quote.approved_by.initials %></b>
+      <% else %>
+        <%= t('.created_at') %><b><%= l(quote.created_at, format: :short) %></b>
+        <%= t('.by') %><b><%= quote.created_by.initials %></b>
+      <% end %>
+      | <%= t('.tests_ordered') %><b><%= quote.items_list.join(', ') %></b>
+      <% if quote.doctor.present? %>
+        | <%= t('.ordered_by') %>&nbsp;<b><%= organization_or_practitioner(quote.doctor) %></b>
+      <% end %>
+    </dt>
+  <% end %>
+<% end %>
