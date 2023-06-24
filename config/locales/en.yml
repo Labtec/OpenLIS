@@ -300,6 +300,8 @@ en:
       edit: Edit
       phone: 'Phone:'
       year: year
+    quote:
+      to: 'To:'
     show:
       new_quote: New Quote
       order_tests: Order Tests
