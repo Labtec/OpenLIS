@@ -33,18 +33,10 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true
+          bundler-cache: false
 
-      - name: Webpacker compile
-        env:
-          RAILS_ENV: test
-          NODE_OPTIONS: --openssl-legacy-provider
-        run: |
-          npm install yarn
-          yarn install
-          bundle exec rails webpacker:install
-          bundle exec rake assets:precompile
-          bundle exec rails webpacker:compile
+      - name: XXX debug
+        run: bundle update debug
 
       - name: Setup database
         env:

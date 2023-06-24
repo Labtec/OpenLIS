@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resources :diagnostic_reports, only: [:index, :show, :edit, :update] do
     member do
       patch 'certify'
+      patch 'force_certify'
       put 'email'
     end
   end
@@ -49,7 +50,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :doctors
+    resources :doctors, except: [:show]
     resources :insurance_providers do
       resources :claims, only: :index
       resources :prices
@@ -60,15 +61,15 @@ Rails.application.routes.draw do
     resources :panels do
       resources :prices
     end
-    resources :lab_test_values
-    resources :qualified_intervals
+    resources :lab_test_values, except: [:show]
+    resources :qualified_intervals, except: [:show]
     resources :lab_tests do
       resources :prices
       collection do
         patch 'sort'
       end
     end
-    resources :units
+    resources :units, except: [:show]
     resources :departments
     resources :claims, except: :new do
       collection do

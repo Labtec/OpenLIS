@@ -1,115 +1,115 @@
 <fieldset class="<%= @lab_test.new_record? %>">
-<%= form_with(model: [:admin, @lab_test], local: true, html: { novalidate: '', autocomplete: 'off' }) do |f| %>
-  <%= render 'shared/error_messages', object: @lab_test %>
+  <%= form_with(model: [:admin, @lab_test], htmt: { novalidate: '', autocomplete: 'off' }) do |form| %>
+    <%= render 'shared/error_messages', object: @lab_test %>
 
-  <div class="department_id">
-    <%= f.label :department_id %>
-    <%= f.collection_select :department_id, Department.all, :id, :name %>
-  </div>
+    <div class="department_id">
+      <%= form.label :department_id %>
+      <%= form.collection_select :department_id, Department.all, :id, :name %>
+    </div>
 
-  <div class="code">
-    <%= f.label :code %>
-    <%= f.text_field :code %>
-  </div>
+    <div class="code">
+      <%= form.label :code %>
+      <%= form.text_field :code %>
+    </div>
 
-  <div class="name">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+    <div class="name">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
 
-  <div class="unit_id">
-    <%= f.label :unit_id, 'Units' %>
-    <%= f.select :unit_id, options_for_unit, include_blank: true %>
-  </div>
+    <div class="unit_id">
+      <%= form.label :unit_id, 'Units' %>
+      <%= form.select :unit_id, options_for_unit, include_blank: true %>
+    </div>
 
-  <div class="decimals">
-    <%= f.label :decimals %>
-    <%= f.text_field :decimals %>
-  </div>
+    <div class="decimals">
+      <%= form.label :decimals %>
+      <%= form.text_field :decimals %>
+    </div>
 
-  <div class="derivation">
-    <%= f.label :derivation %>
-    <%= f.check_box :derivation %>
-  </div>
+    <div class="derivation">
+      <%= form.label :derivation %>
+      <%= form.check_box :derivation %>
+    </div>
 
-  <div class="procedure">
-    <%= f.label :procedure %>
-    <%= f.text_field :procedure %>
-  </div>
+    <div class="procedure">
+      <%= form.label :procedure %>
+      <%= form.text_field :procedure %>
+    </div>
 
-  <div class="loinc">
-    <%= f.label :loinc %>
-    <%= f.text_field :loinc %>
-  </div>
+    <div class="loinc">
+      <%= form.label :loinc %>
+      <%= form.text_field :loinc %>
+    </div>
 
-  <div class="description">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
+    <div class="description">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
 
-  <div class="remarks">
-    <%= f.label :remarks %>
-    <%= f.text_area :remarks %>
-  </div>
+    <div class="remarks">
+      <%= form.label :remarks %>
+      <%= form.text_area :remarks %>
+    </div>
 
-  <div class="status">
-    <%= f.label :status %>
-    <%= f.select :status, LabTest.statuses.keys %>
-  </div>
+    <div class="status">
+      <%= form.label :status %>
+      <%= form.select :status, LabTest.statuses.keys %>
+    </div>
 
-  <h2>Also Allow</h2>
-  <div class="also_allow">
-    <%= f.radio_button :also_allow, :also_numeric, id: 'lab_test_also_allow_also_numeric' %>
-    <%= label_tag 'lab_test_also_allow_also_numeric', 'Numeric' %>
-  </div>
-  <div class="also_allow">
-    <%= f.radio_button :also_allow, :ratio, id: 'lab_test_also_allow_ratio' %>
-    <%= label_tag 'lab_test_also_allow_ratio', 'N:N' %>
-  </div>
-  <div class="also_allow">
-    <%= f.radio_button :also_allow, :range, id: 'lab_test_also_allow_range' %>
-    <%= label_tag 'lab_test_also_allow_range', 'N–N' %>
-  </div>
-  <div class="also_allow">
-    <%= f.radio_button :also_allow, :fraction, id: 'lab_test_also_allow_fraction' %>
-    <%= label_tag 'lab_test_also_allow_fraction', 'N ⁄ N' %>
-  </div>
-  <div class="also_allow">
-    <%= f.radio_button :also_allow, :none, id: 'lab_test_also_allow_none' %>
-    <%= label_tag 'lab_test_also_allow_none', 'None' %>
-  </div>
-  <div class="text_length">
-    <%= f.label :text_length, 'Text Length' %>
-    <%= f.text_field :text_length, id: 'lab_test_text_length' %>
-  </div>
+    <h2>Also Allow</h2>
+    <div class="also_allow">
+      <%= form.radio_button :also_allow, :also_numeric, id: 'lab_test_also_allow_also_numeric' %>
+      <%= label_tag 'lab_test_also_allow_also_numeric', 'Numeric' %>
+    </div>
+    <div class="also_allow">
+      <%= form.radio_button :also_allow, :ratio, id: 'lab_test_also_allow_ratio' %>
+      <%= label_tag 'lab_test_also_allow_ratio', 'N:N' %>
+    </div>
+    <div class="also_allow">
+      <%= form.radio_button :also_allow, :range, id: 'lab_test_also_allow_range' %>
+      <%= label_tag 'lab_test_also_allow_range', 'N–N' %>
+    </div>
+    <div class="also_allow">
+      <%= form.radio_button :also_allow, :fraction, id: 'lab_test_also_allow_fraction' %>
+      <%= label_tag 'lab_test_also_allow_fraction', 'N ⁄ N' %>
+    </div>
+    <div class="also_allow">
+      <%= form.radio_button :also_allow, :none, id: 'lab_test_also_allow_none' %>
+      <%= label_tag 'lab_test_also_allow_none', 'None' %>
+    </div>
+    <div class="text_length">
+      <%= form.label :text_length, 'Text Length' %>
+      <%= form.text_field :text_length, id: 'lab_test_text_length' %>
+    </div>
 
-  <h2>Qualitative Values</h2>
-  <div class="values">
-    <%= f.collection_check_boxes(:lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag) do |b| %>
-      <div class="lab_test_value">
-        <%= b.check_box %>
-        <label class="checkbox" for="lab_test_lab_test_value_ids_<%= b.object.id %>">
-          <%= sanitize(b.text) %>
-          <%= "(#{b.object.note})" if b.object.note.present? %>
-        </label>
-      </div>
+    <h2>Qualitative Values</h2>
+    <div class="values">
+      <%= form.collection_check_boxes(:lab_test_value_ids, LabTestValue.sorted, :id, :value_with_flag) do |builder| %>
+        <div class="lab_test_value">
+          <%= builder.check_box %>
+          <label class="checkbox" for="lab_test_lab_test_value_ids_<%= builder.object.id %>">
+            <%= sanitize(builder.text) %>
+            <%= "(#{builder.object.note})" if builder.object.note.present? %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+
+    <% unless @lab_test.new_record? %>
+      <h2>Prices</h2>
+      <% @lab_test.prices.includes(:price_list).each do |price| %>
+        <%= price.price_list.name %>:
+        <%= number_to_currency price.amount %>
+        <%= link_to 'Edit', edit_admin_price_path(price) %><br />
+      <% end %>
+      <p><%= link_to 'New Price', new_admin_lab_test_price_path(@lab_test) %></p>
     <% end %>
-  </div>
 
-  <% unless @lab_test.new_record? %>
-    <h2>Prices</h2>
-    <% @lab_test.prices.includes(:price_list).each do |price| %>
-      <%= price.price_list.name %>:
-      <%= number_to_currency price.amount %>
-      <%= link_to 'Edit', edit_admin_price_path(price.id) %><br />
-    <% end %>
-    <p><%= link_to 'New Price', new_admin_lab_test_price_path(@lab_test) %></p>
+    <div class="buttonbar">
+      <%= form.submit 'Submit' %>
+      <%= t('.or') %>
+      <%= link_to t('.cancel'), admin_lab_tests_path %>
+    </div>
   <% end %>
-
-  <div class="buttonbar">
-    <%= f.submit 'Submit' %>
-    <%= t('.or') %>
-    <%= link_to t('.cancel'), admin_lab_tests_path %>
-  </div>
-<% end %>
 </fieldset>

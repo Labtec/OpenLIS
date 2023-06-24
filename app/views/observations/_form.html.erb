@@ -1,38 +1,34 @@
-<% same_row_class = row_class %>
-<tr class="<%= same_row_class %>">
-  <td class="lab_test <%= flag_color object %>">
-    <%= f.label :value, sanitize(object.lab_test_name) %>
-  </td>
-  <td class="result <%= flag_color object %>">
-    <%= observation_input f, object, object.lab_test %>
-  </td>
-  <td class="symbol <%= flag_color object %>">
-    <%= flag_name object %>
-  </td>
-  <td class="units">
-    <%= sanitize(format_units(object)) %>
-  </td>
-  <td class="ranges">
-    <table>
-      <tbody>
-        <%= render object.reference_ranges.includes(:lab_test), display_gender: @patient.unknown? %>
-      </tbody>
-    </table>
-  </td>
-</tr>
-<% if object.lab_test_remarks.present? %>
-<tr class="<%= same_row_class %>">
-  <td class="remarks" colspan="5">
-    <div class="collapsed">
-      <%= render_markdown(object.lab_test_remarks) %>
-    </div>
-  </td>
-</tr>
-<tr class="<%= same_row_class %>">
-  <td class="remarks" colspan="3">
-    <div class="collapsed">
-      <%= render_markdown(object.derived_remarks) %>
-    </div>
-  </td>
-</tr>
-<% end %>
+<table class="<%= row_class %>">
+  <tbody>
+    <tr>
+      <td class="analyte">
+        <%= render partial: 'observations/form_analyte', locals: { form: form } %>
+      </td>
+      <td class="units">
+        <%= sanitize(format_units(form.object)) if display_units(form.object) %>
+      </td>
+      <td class="ranges">
+        <%= render partial: 'observations/qualified_interval',
+          collection: form.object.reference_intervals.includes(:lab_test),
+          locals: { display_gender: form.object.patient.unknown? } if display_units(form.object) %>
+      </td>
+    </tr>
+
+    <% if form.object.lab_test_remarks.present? %>
+    <tr>
+      <td class="remarks" colspan="3">
+        <div class="collapsed">
+          <%= render_markdown(form.object.lab_test_remarks) %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="remarks" colspan="3">
+        <div class="collapsed">
+          <%= render_markdown(form.object.derived_remarks) %>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

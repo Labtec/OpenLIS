@@ -3,77 +3,83 @@
     <h1><%= t('.accession', id: @accession.id) %></h1>
   <% end %>
 
-  <%= form_with(model: shallow_args(@patient, @accession), local: true, class: css_class, html: { novalidate: '', autocomplete: 'off' }) do |f| %>
+  <%= form_with(model: shallow_args(@patient, @accession), class: css_class,
+                html: { novalidate: '', autocomplete: 'off' },
+                data: { controller: 'service-request',
+                        action: 'service-request#submit' }) do |form| %>
     <%= render 'shared/error_messages', object: @accession %>
 
     <h2><%= t('.order_details') %></h2>
 
     <div class="doctor_name">
-      <%= f.label :doctor_name, t('.doctor') %>
-      <%= f.text_field :doctor_name, placeholder: t('.outpatient'),
+      <%= form.label :doctor_name, t('.doctor') %>
+      <%= form.text_field :doctor_name, placeholder: t('.outpatient'),
         id: 'accession_doctor_name',
         data: { doctors: Doctor.cached_doctors_list }, autocorrect: 'off' %>
     </div>
 
     <div class="icd9">
-      <%= f.label :icd9, t('.icd9') %>
-      <%= f.text_field :icd9, placeholder: t('.icd9_placeholder'), autocorrect: 'off' %>
+      <%= form.label :icd9, t('.icd9') %>
+      <%= form.text_field :icd9, placeholder: t('.icd9_placeholder'), autocorrect: 'off' %>
+    </div>
+
+    <div class="search_icd9">
       <%= search_icd_code %>
     </div>
 
     <div class="drawn_at">
       <% if request.variant.include? :mobile %>
-        <%= f.label :drawn_at, t('.drawn_at') %>
-        <%= f.datetime_local_field :drawn_at, max: Time.current %>
+        <%= form.label :drawn_at, t('.drawn_at') %>
+        <%= form.datetime_local_field :drawn_at, max: Time.current %>
       <% else %>
-        <%= f.label :drawn_at, t('.drawn_at') %>
-        <%= f.datetime_select :drawn_at, end_year: Time.current.year, ampm: true %>
+        <%= form.label :drawn_at, t('.drawn_at') %>
+        <%= form.datetime_select :drawn_at, end_year: Time.current.year, ampm: true %>
       <% end %>
     </div>
 
     <div class="drawer_id">
-      <%= f.label :drawer_id, t('.drawn_by') %>
-      <%= f.collection_select :drawer_id, @users, :id, :username %>
+      <%= form.label :drawer_id, t('.drawn_by') %>
+      <%= form.collection_select :drawer_id, @users, :id, :username %>
     </div>
 
     <div class="received_at">
       <% if request.variant.include? :mobile %>
-        <%= f.label :received_at, t('.received_at') %>
-        <%= f.datetime_local_field :received_at, max: Time.current %>
+        <%= form.label :received_at, t('.received_at') %>
+        <%= form.datetime_local_field :received_at, max: Time.current %>
       <% else %>
-        <%= f.label :received_at, t('.received_at') %>
-        <%= f.datetime_select :received_at, end_year: Time.current.year, ampm: true %>
+        <%= form.label :received_at, t('.received_at') %>
+        <%= form.datetime_select :received_at, end_year: Time.current.year, ampm: true %>
       <% end %>
     </div>
 
     <div class="receiver_id">
-      <%= f.label :receiver_id, t('.received_by') %>
-      <%= f.collection_select :receiver_id, @users, :id, :username %>
+      <%= form.label :receiver_id, t('.received_by') %>
+      <%= form.collection_select :receiver_id, @users, :id, :username %>
     </div>
 
     <% if @accession.reported_at? %>
       <div class="reported_at">
         <% if request.variant.include? :mobile %>
-          <%= f.label :reported_at, t('.reported_at') %>
-          <%= f.datetime_local_field :reported_at, max: Time.current %>
+          <%= form.label :reported_at, t('.reported_at') %>
+          <%= form.datetime_local_field :reported_at, max: Time.current %>
         <% else %>
-          <%= f.label :reported_at, t('.reported_at') %>
-          <%= f.datetime_select :reported_at, end_year: Time.current.year, ampm: true %>
+          <%= form.label :reported_at, t('.reported_at') %>
+          <%= form.datetime_select :reported_at, end_year: Time.current.year, ampm: true %>
         <% end %>
       </div>
 
       <div class="reporter_id">
-        <%= f.label :reporter_id, t('.reported_by') %>
-        <%= f.collection_select :reporter_id, @users, :id, :username %>
+        <%= form.label :reporter_id, t('.reported_by') %>
+        <%= form.collection_select :reporter_id, @users, :id, :username %>
       </div>
     <% end %>
 
-    <%= render 'panels/form', f: f %>
+    <%= render 'panels/form', form: form %>
 
-    <%= render 'lab_tests/form', f: f %>
+    <%= render 'lab_tests/form', form: form %>
 
     <div class="buttonbar">
-      <%= f.submit t('.submit'), data: { disable_with: t('.processing') } %>
+      <%= form.submit t('.submit') %>
       <%= t('.or') %>
       <%= link_to t('.cancel'), patient_path(@patient) %>
     </div>

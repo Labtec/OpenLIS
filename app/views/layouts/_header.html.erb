@@ -5,11 +5,11 @@
       <% if current_user.admin? %>
         <%= link_to t('.admin'), admin_path %> |
       <% end %>
-      <%= link_to t('.logout'), destroy_user_session_path, method: :delete %>
+      <%= button_to t('.logout'), destroy_user_session_path, method: :delete, class: 'welcome', data: { turbo_method: :delete } %>
     <% else %>
       <%= link_to "Login", user_session_path %> |
       <%= link_to "About", "#about" %>
     <% end %>
   </div>
-  <h3><%= link_to "MasterLab", root_path %></h3>
+  <h3><%= link_to "MasterLab", root_path, data: { turbo: false } %></h3>
 </div>

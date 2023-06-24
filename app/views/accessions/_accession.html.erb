@@ -1,15 +1,9 @@
-<li class="contact <%= accession.status %>">
+<%= content_tag :li, id: dom_id(accession), is: 'turbo-frame',
+  class: "contact #{accession.status}" do %>
   <div class="tools">
     <small>
-      <% if accession.final? %>
-        <%= link_to t('.change_results'), edit_diagnostic_report_url(accession) %> |
-      <% else %>
-        <%= link_to t('.enter_results'), edit_diagnostic_report_url(accession) %> |
-      <% end %>
-      <%= link_to t('.change_requisition'), edit_accession_path(accession) %>
-      <% if current_user.admin? %>
-        | <%= link_to t('.delete?'), accession, method: :delete, data: { confirm: t('.confirm_destroy') } %>
-      <% end %>
+      <%= link_to t('.change_requisition'), edit_accession_path(accession) %> |
+      <%= link_to change_or_enter_results(accession), edit_diagnostic_report_path(accession) %>
     </small>
   </div>
   <%= link_to t('.accession', id: accession.id), diagnostic_report_path(accession) %>
@@ -26,8 +20,8 @@
         | <%= t('.tests_pending') %><b><%= accession.pending_tests.join(', ') %></b>
       <% end %>
     <% end %>
-    <% unless accession.doctor_id.blank? %>
-      | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= Doctor.find(accession.doctor_id).name %></b>
+    <% if accession.doctor.present? %>
+      | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= accession.doctor_name %></b>
     <% end %>
   </dt>
-</li>
+<% end %>

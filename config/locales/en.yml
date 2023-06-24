@@ -14,8 +14,25 @@ en:
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
       outpatient: Outpatient
+    admin_accession:
+      accession: 'Order #%{id}'
+      by: 'by: '
+      change_requisition: Change Order
+      change_results: Change Results
+      confirm_destroy: Are you sure?
+      delete?: Delete?
+      drawn_at: 'Drawn at: '
+      enter_results: Enter Results
+      ordered_by: 'Ordered by:'
+      reported_at: 'Reported at: '
+      tests_ordered: 'Tests ordered: '
+      tests_pending: 'Tests pending: '
+      outpatient: Outpatient
     edit:
       title: Change Order
+    empty:
+      order_tests: Order Tests
+      no_requisitions_yet: No orders
     form:
       accession: 'Order #%{id}'
       cancel: Cancel
@@ -36,8 +53,6 @@ en:
       submit: Save
       outpatient: Leave blank if outpatient
     index:
-      no_requisitions_yet: No orders
-      order_tests: Order Tests
       pending_requisitions: Pending Orders
       requisition_history: Results
       title: Orders
@@ -67,6 +82,7 @@ en:
       accession: 'Accession #%{id}'
       by: ' by: '
       certify: Certify
+      certifying: Certifying…
       change_accession: Change Order
       change_results: Change Results
       confirm_email: Would you like to email the results to %{email}?
@@ -88,6 +104,11 @@ en:
       smart_health_card: SMART® Health Card
       smart_report: SMART® Report
       outpatient: Outpatient
+  practitioners:
+    female_dr_prefix: Dr.
+    male_dr_prefix: Dr.
+    outpatient: Outpatient
+    unknown_dr_prefix: UNK
   errors:
     messages:
       cant_be_in_the_future: cannot be in the future
@@ -122,6 +143,8 @@ en:
       order_tests: Order Tests
   layouts:
     admin:
+      header:
+        logout: Logout
       tabs:
         departments: Departments
         doctors: Doctors
@@ -143,7 +166,6 @@ en:
       cellular: 'Mobile:'
       email: 'Email:'
       phone: 'Phone:'
-      recent_patients: Recent Patients
       search: Search
       search_patients: Search patients
       year: year
@@ -165,6 +187,21 @@ en:
     form:
       order_panels: Order Panels
   patients:
+    admin_patient:
+      accessions: Accessions
+      address: 'Address:'
+      age: 'Age:'
+      cellular: 'Mobile:'
+      confirm_destroy: Are you sure?
+      delete: Delete
+      delete?: Delete?
+      edit: Edit
+      email: 'Email:'
+      gender: 'Sex:'
+      cedula: 'National ID:'
+      passport: 'Passport:'
+      phone: 'Phone:'
+      year: year
     canine: Dog
     card:
       address: 'Address:'
@@ -182,6 +219,9 @@ en:
       success: Successfully removed patient.
     edit:
       title: Edit Patient Info
+    empty:
+      new_patient: New Patient
+      not_found: No patients found
     equine: Horse
     feline: Cat
     female: Female
@@ -249,12 +289,9 @@ en:
       confirm_destroy: Are you sure?
       delete?: Delete?
       edit: Edit
-      not_found: No patients found
       phone: 'Phone:'
       year: year
     show:
-      no_requisitions_yet: No orders
-      order_tests: Order Tests
       patient_not_found: Patient record no longer available.
       title: Patient Info
     unknown: Unknown

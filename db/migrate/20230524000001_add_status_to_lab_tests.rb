@@ -1,4 +1,4 @@
-class AddStatusToLabTests < ActiveRecord::Migration[6.1]
+class AddStatusToLabTests < ActiveRecord::Migration[7.0]
   def up
     execute <<-SQL
       -- https://hl7.org/fhir/valueset-publication-status.html

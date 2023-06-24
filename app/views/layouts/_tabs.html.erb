@@ -2,8 +2,8 @@
   <%= navigation [:patients, t('.patients')], [:accessions, t('.requisitions')], [:diagnostic_reports, t('.diagnostic_reports')] %>
 </div>
 
-<% flash.each do |name, msg| %>
-  <%= content_tag(:div, msg, class: "flash_#{name}") %>
-<% end %>
+<div id="flash" class="flash">
+  <%= render 'layouts/flash' %>
+</div>
 
 <%= yield(:nav) %>

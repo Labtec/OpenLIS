@@ -1,27 +1,28 @@
-<%= form_with(model: [:admin, @unit], local: true) do |f| %>
+<%= form_with(model: [:admin, @unit]) do |form| %>
   <%= render 'shared/error_messages', object: @unit %>
 
   <div class="expression">
-    <%= f.label :expression %>
-    <%= f.text_field :expression %>
+    <%= form.label :expression %>
+    <%= form.text_field :expression %>
   </div>
 
   <div class="ucum">
-    <%= f.label :ucum %>
-    <%= f.text_field :ucum %>
+    <%= form.label :ucum %>
+    <%= form.text_field :ucum %>
   </div>
 
   <div class="si">
-    <%= f.label :si %>
-    <%= f.text_field :si %>
+    <%= form.label :si %>
+    <%= form.text_field :si %>
   </div>
 
   <div class="conversion-factor">
-    <%= f.label :conversion_factor %>
-    <%= f.text_field :conversion_factor %>
+    <%= form.label :conversion_factor %>
+    <%= form.text_field :conversion_factor %>
   </div>
 
   <div class="buttonbar">
-    <%= f.submit 'Submit' %>
+    <%= form.submit 'Submit' %> |
+    <%= link_to cancel, admin_units_path %>
   </div>
 <% end %>

@@ -93,8 +93,8 @@ module ObservationsHelper
     end
   end
 
-  def flag_color(observation)
-    case observation.interpretation
+  def flag_color(interpretation)
+    case interpretation
     when *LabTestValue::ABNORMAL_FLAGS
       'abnormal_value'
     when *LabTestValue::HIGH_FLAGS

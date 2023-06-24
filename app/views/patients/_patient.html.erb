@@ -1,30 +1,26 @@
-<% cache [I18n.locale, patient] do %>
-  <li class="contact <%= 'deceased' if patient.deceased? %>">
-    <%= avatar_icon(patient) %>
+<%= content_tag :li, id: dom_id(patient), is: 'turbo-frame',
+  class: "contact #{'deceased' if patient.deceased?}" do %>
+  <%= avatar_icon(patient) %>
 
-    <div class="tools">
-      <small>
-        <%= link_to t('.edit'), edit_patient_path(patient) %>
-        <% if current_user.admin? %> |
-          <%= link_to t('.delete?'), patient, method: :delete, data: { confirm: t('.confirm_destroy') } %>
-        <% end %>
-      </small>
-    </div>
+  <div class="tools">
+    <small>
+      <%= link_to t('.edit'), edit_patient_path(patient) %>
+    </small>
+  </div>
 
-    <%= link_to full_name(patient), patient_path(patient) %>
-    <tt><%= patient.identifier %></tt>
-    <dt class="second">
-      <%= display_pediatric_age(patient.pediatric_age) unless patient.deceased? %>
-      <% if patient.email.present? %>
-        | <%= mail_to patient.email %>
-      <% end %>
-      <% if patient.cellular.present? %>
-        | <%= t('.cellular') %> <b><%= link_to format_phone_number(patient.cellular),
-          whatsapp_click_to_chat_url(patient.cellular), target: :_blank %></b>
-      <% end %>
-      <% if patient.phone.present? %>
-        | <%= t('.phone') %> <b><%= format_phone_number(patient.phone) %></b>
-      <% end %>
-    </dt>
-  </li>
+  <%= link_to full_name(patient), patient_path(patient) %>
+  <tt><%= patient.identifier %></tt>
+  <dt class="second">
+    <%= display_pediatric_age(patient.pediatric_age) unless patient.deceased? %>
+    <% if patient.email.present? %>
+      | <%= mail_to patient.email %>
+    <% end %>
+    <% if patient.cellular.present? %>
+      | <%= t('.cellular') %> <b><%= link_to format_phone_number(patient.cellular),
+        whatsapp_click_to_chat_url(patient.cellular), target: :_blank %></b>
+    <% end %>
+    <% if patient.phone.present? %>
+      | <%= t('.phone') %> <b><%= format_phone_number(patient.phone) %></b>
+    <% end %>
+  </dt>
 <% end %>

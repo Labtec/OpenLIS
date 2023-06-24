@@ -1,5 +1,5 @@
 <fieldset>
-<%= form_with(model: @user, local: true, html: { novalidate: '' }) do |f| %>
+<%= form_with(model: @user, html: { novalidate: '' }) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
   <div class="username">
@@ -76,7 +76,7 @@
   <% end %>
 
   <div class="buttonbar">
-    <%= f.submit t('.submit') %>
+    <%= f.submit t('.submit'), data: { turbo: false } %>
     <%= t('.or') %>
     <%= link_to t('.cancel'), root_url %>
   </div>

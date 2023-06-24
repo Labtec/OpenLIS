@@ -1,0 +1,28 @@
+<%= content_tag :li, id: dom_id(accession), is: 'turbo-frame',
+  class: "contact #{accession.status}" do %>
+  <div class="tools">
+    <small>
+      <%= link_to t('.change_requisition'), edit_accession_path(accession) %> |
+      <%= link_to change_or_enter_results(accession), edit_diagnostic_report_path(accession) %> |
+      <%= button_to t('.delete?'), accession, method: :delete, class: 'tools', form: { data: { turbo_confirm: t('.confirm_destroy') } } %>
+    </small>
+  </div>
+  <%= link_to t('.accession', id: accession.id), diagnostic_report_path(accession) %>
+  <%= content_tag :tt, full_name(accession.patient) unless @patient %>
+  <dt class="second">
+    <% if accession.final? || accession.amended? %>
+      <%= t('.reported_at') %><b><%= l(accession.reported_at, format: :short) %></b>
+      <%= t('.by') %><b><%= accession.reporter.initials if accession.reporter %></b>
+      | <%= t('.tests_ordered') %><b><%= accession.tests_list.join(', ') %></b>
+    <% else %>
+      <%= t('.drawn_at') %><b><%= l(accession.drawn_at, format: :short) %></b>
+      <%= t('.by') %><b><%= accession.drawer.initials if accession.drawer %></b>
+      <% if accession.pending_tests.present? %>
+        | <%= t('.tests_pending') %><b><%= accession.pending_tests.join(', ') %></b>
+      <% end %>
+    <% end %>
+    <% if accession.doctor.present? %>
+      | <%= t('.ordered_by') %>&nbsp;<b>Dr.&nbsp;<%= accession.doctor_name %></b>
+    <% end %>
+  </dt>
+<% end %>

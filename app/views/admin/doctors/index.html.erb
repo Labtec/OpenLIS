@@ -1,29 +1,21 @@
 <% title 'Doctors' %>
 
-<table>
+<%= turbo_stream_from [:admin, :doctors] %>
+
+<%= turbo_frame_tag :doctors %>
+
+<table class="admin">
   <tr>
     <th>Name</th>
     <th>Email</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
-  <% @doctors.each do |doctor| %>
-    <%= content_tag :tr, class: "empty-#{doctor.accessions_count.zero?}" do %>
-      <td><%= doctor.name %></td>
-      <td><%= doctor.email %></td>
-      <td><%= link_to 'Show', [:admin, doctor] %></td>
-      <td><%= link_to 'Edit', edit_admin_doctor_path(doctor) %></td>
-      <td>
-        <%= link_to 'Destroy', [:admin, doctor], method: :delete,
-          data: { confirm: "If you erase a Doctor, all its requisitions will be gone!\nAre you sure?" } if doctor.accessions_count.zero? %>
-      </td>
-    <% end %>
-  <% end %>
+  <%= render @doctors %>
 </table>
 
 <p><small>
   <strong>Note</strong>: Highlighted items can be safely erased.
 </small></p>
 
-<p><%= link_to 'New Doctor', new_admin_doctor_path %></p>
+<%= link_to 'New Doctor', new_admin_doctor_path %>

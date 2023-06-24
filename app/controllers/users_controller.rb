@@ -7,10 +7,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = 'Successfully updated profile.'
-      redirect_to root_url
+      redirect_to root_url, notice: 'Successfully updated profile.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

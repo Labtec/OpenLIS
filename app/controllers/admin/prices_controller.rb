@@ -2,6 +2,8 @@
 
 module Admin
   class PricesController < BaseController
+    before_action :set_price, only: %i[show edit update destroy]
+
     def index
       @priceable = find_priceable || PriceList.last
       @prices = @priceable.prices
@@ -11,9 +13,7 @@ module Admin
                             type: 'application/pdf', disposition: 'inline')
     end
 
-    def show
-      @price = Price.find(params[:id])
-    end
+    def show; end
 
     def new
       @priceable = find_priceable
@@ -21,7 +21,6 @@ module Admin
     end
 
     def edit
-      @price = Price.find(params[:id])
       @priceable = @price.priceable
     end
 
@@ -30,24 +29,21 @@ module Admin
       @price = @priceable.prices.build(price_params)
 
       if @price.save
-        redirect_to(admin_prices_url, notice: 'Price was successfully created.')
+        redirect_to admin_prices_url, notice: 'Price was successfully created.'
       else
-        render action: 'new'
+        render :new, status: :unprocessable_entity
       end
     end
 
     def update
-      @price = Price.find(params[:id])
-
       if @price.update(price_params)
-        redirect_to [:admin, @price], notice: 'Price was successfully updated.'
+        redirect_to admin_prices_url, notice: 'Price was successfully updated.'
       else
-        render action: 'edit'
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
-      @price = Price.find(params[:id])
       @price.destroy
 
       redirect_to(admin_prices_url)
@@ -64,6 +60,10 @@ module Admin
     end
 
     private
+
+    def set_price
+      @price = Price.find(params[:id])
+    end
 
     def price_params
       params.require(:price).permit(:price_list_id, :amount)

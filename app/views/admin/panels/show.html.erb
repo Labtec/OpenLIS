@@ -1,25 +1,34 @@
 <% title 'Panel' %>
 
+<%= turbo_stream_from [:admin, :panel] %>
+
+<%= turbo_frame_tag :panel %>
+
 <p>
   <strong>Code:</strong>
   <%= @panel.code %>
 </p>
+
 <p>
   <strong>Name:</strong>
   <%= sanitize @panel.name %>
 </p>
+
 <p>
   <strong>CPT Code:</strong>
   <%= @panel.procedure %>
 </p>
+
 <p>
   <strong>LOINC:</strong>
   <%= loinc_hyperlink(@panel.loinc) %>
 </p>
+
 <p>
   <strong>Description:</strong>
   <%= sanitize @panel.description %>
 </p>
+
 <p>
   <strong>Lab Tests:</strong>
   <ul>
@@ -31,7 +40,6 @@
 
 <p>
   <%= link_to 'Edit', edit_admin_panel_path(@panel) %> |
-  <%= link_to 'Destroy', [:admin, @panel], method: :delete,
-    data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Delete', [:admin, @panel], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %> |
   <%= link_to 'View All', admin_panels_path %>
 </p>

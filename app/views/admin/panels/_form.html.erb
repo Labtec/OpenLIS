@@ -1,43 +1,43 @@
-<%= form_with(model: [:admin, @panel], local: true) do |f| %>
+<%= form_with(model: [:admin, @panel]) do |form| %>
   <%= render 'shared/error_messages', object: @panel %>
 
   <div class="code">
-    <%= f.label :code %>
-    <%= f.text_field :code %>
+    <%= form.label :code %>
+    <%= form.text_field :code %>
   </div>
 
   <div class="name">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
   </div>
 
   <div class="procedure">
-    <%= f.label :procedure %>
-    <%= f.text_field :procedure %>
+    <%= form.label :procedure %>
+    <%= form.text_field :procedure %>
   </div>
 
   <div class="loinc">
-    <%= f.label :loinc %>
-    <%= f.text_field :loinc %>
+    <%= form.label :loinc %>
+    <%= form.text_field :loinc %>
   </div>
 
   <div class="description">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= form.label :description %>
+    <%= form.text_field :description %>
   </div>
 
   <div class="status">
-    <%= f.label :status %>
-    <%= f.select :status, Panel.statuses.keys %>
+    <%= form.label :status %>
+    <%= form.select :status, Panel.statuses.keys %>
   </div>
 
   <fieldset>
     <legend>Values</legend>
       <div class="values">
-        <%= f.collection_check_boxes(:lab_test_ids, LabTest.sorted, :id, :name) do |b| %>
+        <%= form.collection_check_boxes(:lab_test_ids, LabTest.sorted, :id, :name) do |builder| %>
           <div class="lab_test">
-            <%= b.check_box %>
-            <label class="checkbox" for="panel_lab_test_ids_<%= b.object.id %>"><%= sanitize(b.text) %><%= " (#{b.object.description})" if b.object.description.present? %></label>
+            <%= builder.check_box %>
+            <label class="checkbox" for="panel_lab_test_ids_<%= builder.object.id %>"><%= sanitize(builder.text) %><%= " (#{builder.object.description})" if builder.object.description.present? %></label>
           </div>
         <% end %>
       </div>
@@ -46,7 +46,7 @@
   <% unless @panel.new_record? %>
   <fieldset>
     <legend>Prices</legend>
-    <% f.object.prices.each do |price| %>
+    <% form.object.prices.each do |price| %>
       <%= price.price_list.name %>:
       <%= number_to_currency price.amount %>
       <%= link_to 'Edit', edit_admin_price_path(price.id) %><br />
@@ -55,5 +55,8 @@
   </fieldset>
   <% end %>
 
-  <p><%= f.submit 'Submit' %></p>
+  <div class="buttonbar">
+    <%= form.submit 'Submit' %> |
+    <%= link_to cancel, admin_panels_path %>
+  </div>
 <% end %>

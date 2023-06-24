@@ -1,5 +1,7 @@
 <%= title t('.title') %>
 
+<%= turbo_stream_from [current_user.admin?, :patients] %>
+
 <div class="title_tools">
   <%= link_to t('.new_patient'), new_patient_path %>
 </div>
@@ -8,16 +10,15 @@
   <span><%= t('.title')%></span>
 </div>
 
-<div class="list" id="patients">
-  <% if @patients.empty? %>
-    <p class="content"><%= t('.not_found') %></p>
-  <% else %>
-    <ul>
+<div class="list">
+  <ul id="patients" is="turbo-frame">
+    <%= render 'patients/empty' %>
+    <% if current_user.admin? %>
+      <%= render partial: 'admin_patient', collection: @patients, as: :patient %>
+    <% else %>
       <%= render @patients %>
-    </ul>
+    <% end %>
+  </ul>
 
-    <div class="paginate">
-      <%= paginate @patients %>
-    </div>
-  <% end %>
+  <%= paginate @patients %>
 </div>

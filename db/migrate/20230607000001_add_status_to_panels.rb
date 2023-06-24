@@ -1,4 +1,4 @@
-class AddStatusToPanels < ActiveRecord::Migration[6.1]
+class AddStatusToPanels < ActiveRecord::Migration[7.0]
   def up
     add_column :panels, :status, :publication_status, default: 'active'
 

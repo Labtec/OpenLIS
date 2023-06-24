@@ -1,0 +1,7 @@
+<%= content_tag :tr, id: dom_id(insurance_provider), is: 'turbo-frame', class: 'admin_insurance_provider' do %>
+  <td><%= insurance_provider.name %></td>
+  <td><%= link_to 'Show', [:admin, insurance_provider] %></td>
+  <td><%= link_to 'Edit', edit_admin_insurance_provider_path(insurance_provider) %></td>
+  <td><%= link_to 'Claims', admin_insurance_provider_claims_path(insurance_provider) %></td>
+  <td><%= link_to 'Price List', admin_insurance_provider_prices_path(insurance_provider, format: 'pdf'), data: { turbo: false } %></td>
+<% end %>

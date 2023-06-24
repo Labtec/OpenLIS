@@ -18,7 +18,7 @@
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 <%= stylesheet_link_tag 'login', media: 'all' %>
-<%= javascript_pack_tag 'login', 'data-turbolinks-track': 'reload', async: true %>
+<%= javascript_importmap_tags %>
 <%= yield(:head) %>
 <link rel="mask-icon" href="pinned-masterlab.svg" color="#993399">
 <link rel="alternate icon" type="image/png" href="/icon.png">

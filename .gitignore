@@ -21,6 +21,9 @@
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
 
 /public/assets
 .byebug_history
@@ -37,10 +40,3 @@ Capfile
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/keys/health_cards.pem
-
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity

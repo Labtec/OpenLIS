@@ -1,0 +1,15 @@
+<table>
+  <tbody>
+    <%= content_tag :tr, id: dom_id(analyte), class: flag_color(analyte.interpretation) do %>
+      <td class="table_lab_test">
+        <%= sanitize(analyte.lab_test_name) %>
+      </td>
+      <td class="formatted_value <%= not_performed_class(analyte.not_performed?) %>">
+        <%= sanitize(format_value(analyte)) %>
+      </td>
+      <td class="flag">
+        <%= flag_name(analyte) %>
+      </td>
+      <% end %>
+  </tbody>
+</table>

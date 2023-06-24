@@ -2,53 +2,53 @@
 
 module Admin
   class DoctorsController < BaseController
+    before_action :set_doctor, only: %i[edit update destroy]
+
     def index
       @doctors = Doctor.all
-    end
-
-    def show
-      @doctor = Doctor.find(params[:id])
     end
 
     def new
       @doctor = Doctor.new
     end
 
-    def edit
-      @doctor = Doctor.find(params[:id])
-    end
+    def edit; end
 
     def create
       @doctor = Doctor.new(doctor_params)
+
       if @doctor.save
-        flash[:notice] = 'Successfully created doctor.'
-        redirect_to [:admin, @doctor]
+        redirect_to admin_doctors_url, notice: 'Successfully created doctor.'
       else
-        render action: 'new'
+        render :new, status: :unprocessable_entity
       end
     end
 
     def update
-      @doctor = Doctor.find(params[:id])
       if @doctor.update(doctor_params)
-        flash[:notice] = 'Successfully updated doctor.'
-        redirect_to [:admin, @doctor]
+        redirect_to admin_doctors_url, notice: 'Successfully updated doctor.'
       else
-        render action: 'edit'
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
-      @doctor = Doctor.find(params[:id])
       @doctor.destroy
-      flash[:notice] = 'Successfully deleted doctor.'
-      redirect_to admin_doctors_url
+
+      respond_to do |format|
+        format.html { redirect_to admin_doctors_url, notice: 'Successfully deleted doctor.' }
+        format.turbo_stream { flash.now[:notice] = 'Successfully deleted doctor.' }
+      end
     end
 
     private
 
+    def set_doctor
+      @doctor = Doctor.find(params[:id])
+    end
+
     def doctor_params
-      params.require(:doctor).permit(:email, :name)
+      params.require(:doctor).permit(:email, :name, :gender, :organization)
     end
   end
 end

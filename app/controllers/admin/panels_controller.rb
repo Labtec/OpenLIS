@@ -2,50 +2,52 @@
 
 module Admin
   class PanelsController < BaseController
+    before_action :set_panel, only: %i[show edit update destroy]
+
     def index
       @panels = Panel.all
     end
 
-    def show
-      @panel = Panel.find(params[:id])
-    end
+    def show; end
 
     def new
       @panel = Panel.new
     end
 
-    def edit
-      @panel = Panel.find(params[:id])
-    end
+    def edit; end
 
     def create
       @panel = Panel.new(panel_params)
+
       if @panel.save
-        flash[:notice] = 'Successfully created panel.'
-        redirect_to [:admin, @panel]
+        redirect_to admin_panels_url, notice: 'Successfully created panel.'
       else
-        render action: 'new'
+        render :new, status: :unprocessable_entity
       end
     end
 
     def update
-      @panel = Panel.find(params[:id])
       if @panel.update(panel_params)
-        flash[:notice] = 'Successfully updated panel.'
-        redirect_to [:admin, @panel]
+        redirect_to admin_panels_url, notice: 'Successfully updated panel.'
       else
-        render action: 'edit'
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
-      @panel = Panel.find(params[:id])
       @panel.destroy
-      flash[:notice] = 'Successfully destroyed panel.'
-      redirect_to admin_panels_url
+
+      respond_to do |format|
+        format.html { redirect_to admin_panels_url, notice: 'Successfully destroyed panel.' }
+        format.turbo_stream { flash.now[:notice] = 'Successfully destroyed panel.' }
+      end
     end
 
     private
+
+    def set_panel
+      @panel = Panel.find(params[:id])
+    end
 
     def panel_params
       params.require(:panel).permit(:code, :name, :description, :procedure, :loinc, :status, lab_test_ids: [])

@@ -1,5 +1,9 @@
 <% title t('.accession', id: @diagnostic_report.id) %>
 
+<% content_for :head do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
 <fieldset class="<%= @diagnostic_report.reported_at.blank? %>">
   <h1><%= t('.accession', id: @diagnostic_report.id) %></h1>
 
@@ -31,30 +35,31 @@
     <strong><%= @diagnostic_report.reporter.initials %></strong>
   <% end %>
 
-  <%= form_with model: @diagnostic_report, url: diagnostic_report_path(@diagnostic_report), local: true, html: { novalidate: '', autocomplete: 'off' } do |a| %>
+  <%= form_with model: @diagnostic_report, url: diagnostic_report_path(@diagnostic_report),
+    html: { novalidate: '', autocomplete: 'off' } do |form| %>
     <%= render 'shared/error_messages', object: @diagnostic_report %>
 
-    <% @diagnostic_report.results.includes(lab_test: [:department, :lab_test_values, :lab_test_value_option_joints]).order('lab_tests.position').group_by(&:department).each do |department, results| %>
+    <% @diagnostic_report.results.includes(:accession, :patient).group_by(&:department).each do |department, results| %>
       <h2><%= department.name %></h2>
 
-      <table class="results">
-        <% reset_cycle('alternating_row_colors') %>
-        <%= a.fields_for :results do |results_form| %>
+      <div class="results">
+        <% reset_cycle("alternating_row_colors") %>
+        <%= form.fields_for :results do |results_form| %>
           <% if results_form.object.department == department %>
-            <%= render 'observations/form', object: results_form.object, f: results_form %>
+            <%= render 'observations/form', form: results_form %>
           <% end %>
         <% end %>
-      </table>
+      </div>
 
-      <%= a.fields_for :notes do |notes_form| %>
+      <%= form.fields_for :notes do |notes_form| %>
         <% if notes_form.object.department == department %>
-          <%= render 'notes/form', f: notes_form %>
+          <%= render 'notes/form', form: notes_form %>
         <% end %>
       <% end %>
     <% end %>
 
     <div class="buttonbar">
-      <%= a.submit t('.submit') %>
+      <%= form.submit t('.submit') %>
       <%= t('.or') %>
       <%= link_to t('.cancel'), diagnostic_report_path(@diagnostic_report) %>
     </div>

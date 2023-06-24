@@ -1,11 +1,14 @@
 <h2><%= t('.order_panels') %></h2>
 
 <%= content_tag :div, class: 'panels', data: { panel_ids: @panels.map(&:id) } do %>
-  <%= f.collection_check_boxes(:panel_ids, @panels, :id, :name_with_description) do |b| %>
-    <% if b.object.active? %>
-      <%= content_tag :div, class: 'panel', id: "panel_#{b.object.id}", data: { lab_test_ids: b.object.lab_test_ids } do %>
-        <%= b.check_box %>
-        <label class="checkbox" for="accession_panel_ids_<%= b.object.id %>"><%= sanitize(b.text) %></label>
+  <%= form.collection_check_boxes(:panel_ids, @panels, :id, :name_with_description) do |builder| %>
+    <% if builder.object.active? %>
+      <%= content_tag :div, class: 'panel', id: "panel_#{builder.object.id}" do %>
+        <%= builder.check_box data: { service_request_target: 'panel',
+                                      action: 'service-request#select',
+                                      service_request_new_order_param: form.object.new_record?,
+                                      lab_test_ids: builder.object.lab_test_ids } %>
+        <label class="checkbox" for="accession_panel_ids_<%= builder.object.id %>"><%= sanitize(builder.text) %></label>
       <% end %>
     <% end %>
   <% end %>

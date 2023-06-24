@@ -1,24 +1,22 @@
 <% title t('.title') %>
 
+<%= turbo_stream_from [current_user.admin?, :accessions] %>
+
 <div class="title">
   <span><%= t('.title')%></span>
 </div>
 
-<div class='list' id="requisitions">
+<div class='list'>
   <div class="log">
-    <% if @accessions.blank? %>
-      <%= t('.no_requisitions_yet') %><br/>
-      <% if @patient %>
-        <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
-      <% end %>
-    <% else %>
-      <ul>
+    <ul>
+      <%= render 'accessions/empty', patient: nil %>
+      <% if current_user.admin? %>
+        <%= render partial: 'admin_accession', collection: @accessions, as: :accession %>
+      <% else %>
         <%= render @accessions %>
-      </ul>
+      <% end %>
+    </ul>
 
-      <div class="overdue">
-        <%= paginate @accessions %>
-      </div>
-    <% end %>
+    <%= paginate @accessions %>
   </div>
 </div>

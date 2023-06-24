@@ -1,12 +1,24 @@
-<%= form_with(model: [:admin, @doctor], local: true) do |f| %>
+<%= form_with(model: [:admin, @doctor]) do |form| %>
   <%= render 'shared/error_messages', object: @doctor %>
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
   </p>
   <p>
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
+    <%= form.label :email %><br />
+    <%= form.email_field :email %>
   </p>
-  <p><%= f.submit 'Submit' %></p>
+  <p>
+    <%= form.label :gender %>
+    <%= form.select :gender, Doctor::GENDERS, include_blank: true %>
+  </p>
+  <p>
+    <%= form.label :organization %>
+    <%= form.check_box :organization, id: :doctor_organization %>
+  </p>
+
+  <div class="buttonbar">
+    <%= form.submit 'Submit' %> |
+    <%= link_to cancel, admin_doctors_path %>
+  </div>
 <% end %>

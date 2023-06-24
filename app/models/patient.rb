@@ -3,6 +3,7 @@
 class Patient < ApplicationRecord
   include PgSearch::Model
   include FHIRable::Patient
+  include Broadcastable::Patient
 
   ANIMAL_SPECIES = (0..3).to_a
   GENDERS = %w[F M O U].freeze
@@ -41,6 +42,12 @@ class Patient < ApplicationRecord
                                        address_corregimiento.present? ||
                                        address_line.present?
                                    }, allow_blank: true
+  validates :address_district, presence: true,
+                               if: lambda {
+                                     address_province.present? &&
+                                       (address_province_changed? &&
+                                        address_province_change.last != 'Guna Yala')
+                                   }
   validates :address_corregimiento, presence: true,
                                     if: lambda {
                                           address_province.present? ||
@@ -56,19 +63,18 @@ class Patient < ApplicationRecord
 
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
-  scope :recent, -> { order(updated_at: :desc).limit(10) }
+  scope :recent, -> { order(updated_at: :desc) }
   scope :sorted, -> { order(Arel.sql('LOWER(my_unaccent(family_name))')) }
   scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
 
   auto_strip_attributes :given_name, :middle_name, :family_name, :family_name2,
-                        :partner_name, :identifier, :cellular, :phone,
+                        :partner_name, :identifier, :email, :cellular, :phone,
                         :policy_number
   auto_strip_attributes :address_province, :address_district, :address_corregimiento,
                         :address_line, virtual: true
 
   before_save :titleize_names, :nil_identifier_type_if_identifier_blank,
               :nil_address_if_address_province_blank
-  after_commit :flush_cache
 
   pg_search_scope :search_by_name, against: %i[identifier
                                                family_name family_name2
@@ -78,15 +84,9 @@ class Patient < ApplicationRecord
 
   def self.search(query)
     if query.present?
-      search_by_name(query)
+      search_by_name(query).recent
     else
-      all.sorted
-    end
-  end
-
-  def self.cached_recent
-    Rails.cache.fetch([name, 'recent_patients']) do
-      recent.to_a
+      all.recent
     end
   end
 
@@ -131,9 +131,5 @@ class Patient < ApplicationRecord
   def titleize_names
     self.given_name = given_name.mb_chars.titleize if given_name
     self.middle_name = middle_name.mb_chars.titleize if middle_name
-  end
-
-  def flush_cache
-    Rails.cache.delete([self.class.name, 'recent_patients'])
   end
 end

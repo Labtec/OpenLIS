@@ -3,17 +3,17 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 3.0.0'
+ruby '~> 3.2.0'
 
-gem 'rails', '6.1.7.3'
+gem 'rails', '7.0.4.3'
 
 gem 'aasm'
 gem 'acts_as_list'
 gem 'auto_strip_attributes'
 gem 'barby'
 gem 'bcrypt'
-gem 'bootsnap'
-gem 'coffee-rails'
+gem 'bootsnap', require: false
+gem 'coffee-rails' # TODO
 gem 'commonmarker'
 gem 'dalli'
 gem 'devise'
@@ -21,10 +21,11 @@ gem 'ed25519'
 gem 'fast_blank'
 gem 'fhir_models'
 gem 'health_cards', github: 'jlduran/health_cards', branch: 'development'
+gem 'importmap-rails'
 gem 'jbuilder'
+gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
-gem 'net-smtp'
 gem 'nokogiri'
 gem 'pdf-core', github: 'Labtec/pdf-core', branch: 'pdfa-1b'
 gem 'pg'
@@ -33,35 +34,40 @@ gem 'phonelib'
 gem 'prawn'
 gem 'prawn-svg'
 gem 'prawn-table'
-gem 'puma', '< 6'
+gem 'puma'
 gem 'rails-html-sanitizer'
 gem 'rails-i18n'
-gem 'rexml'
-gem 'sass-rails'
+gem 'sassc-rails'
 gem 'semacode', github: 'Labtec/semacode', branch: 'barcodes'
-gem 'terser'
-gem 'turbolinks'
+gem 'sprockets-rails'
+gem 'stimulus-rails'
+gem 'turbo-rails'
 gem 'webauthn'
-gem 'webpacker'
+
+gem 'irb'
+gem 'matrix'
+gem 'reline'
 
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano-yarn'
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   gem 'bcrypt_pbkdf'
   gem 'brakeman', require: false
-  # gem 'capistrano-maintenance'
   gem 'flamegraph', require: false
-  gem 'listen'
   gem 'rack-mini-profiler', require: false
   gem 'rb-kqueue'
   gem 'stackprof'
   gem 'web-console'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end

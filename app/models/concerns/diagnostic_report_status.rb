@@ -28,12 +28,22 @@ module DiagnosticReportStatus
         transitions from: [:registered, :partial, :preliminary], to: :registered, if: :no_values?
         transitions from: [:registered, :partial, :preliminary], to: :preliminary, if: :complete?
         transitions from: [:registered, :partial, :preliminary], to: :partial
-        transitions from: [:final, :amended], to: :amended
+        transitions from: [:final], to: :amended, if: :changed?
+        transitions from: [:final], to: :amended, if: :results_changed?
+        transitions from: [:final], to: :final
+        transitions from: [:amended], to: :amended
       end
 
       event :certify do
         transitions from: [:preliminary], to: :final
-        transitions from: [:partial], to: :final # XXX if ...
+        transitions from: [:final], to: :final
+        transitions from: [:amended], to: :amended
+      end
+
+      event :force_certify do
+        transitions from: [:partial, :preliminary], to: :final
+        transitions from: [:final], to: :final
+        transitions from: [:amended], to: :amended
       end
     end
   end

@@ -59,6 +59,6 @@ module WebauthnConcern
   def prompt_for_webauthn(user)
     set_attempt_session(user)
     set_user_language
-    render :webauthn
+    render :webauthn, status: :see_other
   end
 end

@@ -1,27 +1,28 @@
 <fieldset>
-<%= form_with(model: [:admin, @claim], local: true) do |f| %>
+<%= form_with(model: [:admin, @claim]) do |form| %>
   <%= render 'shared/error_messages', object: @claim %>
 
   <h2>
     <%= name_last_comma_first_mi(@claim.patient) %>
-    (<%= f.object.accession_id %>)
+    (<%= form.object.accession_id %>)
   </h2>
 
-  <%= f.hidden_field :accession_id %>
-  <%= f.hidden_field :insurance_provider_id %>
+  <%= form.hidden_field :accession_id %>
+  <%= form.hidden_field :insurance_provider_id %>
 
   <div class="external_number">
-    <%= f.label :external_number %>
-    <%= f.text_field :external_number %>
+    <%= form.label :external_number %>
+    <%= form.text_field :external_number %>
   </div>
 
   <div class="number">
-    <%= f.label :number %>
-    <%= f.text_field :number %>
+    <%= form.label :number %>
+    <%= form.text_field :number %>
   </div>
 
   <div class="buttonbar">
-    <%= f.submit 'Submit' %>
+    <%= form.submit 'Submit' %> |
+    <%= link_to cancel, admin_claims_path %>
   </div>
 <% end %>
 </fieldset>

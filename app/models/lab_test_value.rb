@@ -18,10 +18,18 @@ class LabTestValue < ApplicationRecord
 
   scope :sorted, -> { order(value: :asc) }
 
+  after_create_commit -> { broadcast_prepend_later_to 'admin:lab_test_values', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_lab_test_values_path } }
+  after_update_commit -> { broadcast_replace_later_to 'admin:lab_test_values' }
+  after_destroy_commit -> { broadcast_remove_to 'admin:lab_test_values' }
+
   auto_strip_attributes :value
 
   def raise_flag
     flag unless NORMAL_FLAGS.include?(flag)
+  end
+
+  def to_partial_path
+    'admin/lab_test_values/lab_test_value'
   end
 
   def value_with_flag

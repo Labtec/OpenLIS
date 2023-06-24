@@ -1,5 +1,9 @@
 <% title 'Lab Test' %>
 
+<%= turbo_stream_from [:admin, :lab_test] %>
+
+<%= turbo_frame_tag :lab_test %>
+
 <section class="observation-definition general">
   <p>
     <strong>Department:</strong>
@@ -97,9 +101,10 @@
 </section>
 
 <% if @lab_test.qualified_intervals.any? %>
+<%= turbo_stream_from [:admin, :qualified_intervals] %>
 <section class="observation-definition qualified-interval">
   <h2>Qualified Interval</h2>
-  <table>
+  <table class="admin">
     <thead>
       <tr>
         <th>#</th>
@@ -117,7 +122,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @lab_test.qualified_intervals.includes(:interpretation, :lab_test) %>
+      <%= render @lab_test.qualified_intervals.includes(:lab_test, :interpretation) %>
     </tbody>
   </table>
 </section>
@@ -125,6 +130,6 @@
 
 <p>
   <%= link_to 'Edit', edit_admin_lab_test_path(@lab_test) %> |
-  <%= link_to 'Destroy', [:admin, @lab_test], method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Delete', [:admin, @lab_test], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %> |
   <%= link_to 'View All', admin_lab_tests_path %>
 </p>

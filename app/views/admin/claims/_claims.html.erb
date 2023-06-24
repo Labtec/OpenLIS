@@ -1,5 +1,5 @@
-<%= form_with(url: process_selected_admin_claims_path, local: true) do %>
-  <table>
+<%= form_with(url: process_selected_admin_claims_path) do %>
+  <table class="admin">
     <tr>
       <th></th>
       <th>Patient</th>
@@ -9,7 +9,7 @@
       <th></th>
     </tr>
     <% @claims.each do |claim| %>
-    <tr>
+    <tr class="admin_claim">
       <td><%= check_box_tag 'claim_ids[]', claim.id, false, id: "claim_id_#{claim.id}" %></td>
       <td><%= label_tag "claim_id_#{claim.id}", name_last_comma_first_mi(claim.patient) %></td>
       <td><%= claim.accession_id %></td>
@@ -20,7 +20,7 @@
     <% end %>
   </table>
   <p>
-    <%= submit_tag 'Print Selected', name: :print, data: { turbolinks: false } %>
-    | <%= submit_tag 'Invoice Selected', name: :invoice, data: { turbolinks: false } %>
+    <%= submit_tag 'Print Selected', name: :print, data: { turbo: false } %>
+    | <%= submit_tag 'Invoice Selected', name: :invoice, data: { turbo: false } %>
   </p>
 <% end %>

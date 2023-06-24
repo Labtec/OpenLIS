@@ -25,6 +25,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
     within('#order_tests') { click_on 'Chemistry' }
     check 'BUN'
     click_on 'Save'
+
     assert_not page.has_content?('error'), 'Requisition not created'
     assert page.has_content?('Successfully created requisition')
     assert page.has_content? users(:user).initials
@@ -34,6 +35,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
     visit patient_path(@patient)
     within('.title_tools') { click_on 'Order Tests' }
     click_on 'Save'
+
     assert page.has_content?('error'), 'Requisition can not be empty'
   end
 
@@ -43,6 +45,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
     within('#order_tests') { click_on 'Chemistry' }
     uncheck 'BUN'
     click_on 'Save'
+
     assert_not page.has_content?('error'), 'Requisition not updated'
     assert page.has_content?('Successfully updated requisition')
   end
@@ -53,14 +56,18 @@ class AccessionsTest < ActionDispatch::IntegrationTest
     uncheck 'BUN'
     uncheck 'Cholesterol'
     click_on 'Save'
+
     assert page.has_content?('error'), 'Requisition can not be empty'
   end
 
   test 'enter test results' do
     visit edit_diagnostic_report_path(@accession)
+
     assert page.has_content?("Accession ##{@accession.id}"), 'Order number missing'
+
     fill_in 'Cholesterol', with: 180
     click_on 'Save'
+
     assert_not page.has_content?('error'), 'Results not entered'
     assert page.has_content?('Successfully updated results')
   end

@@ -1,8 +1,6 @@
 <% title t('.accession', id: @diagnostic_report.id) %>
 
-<% content_for :head do %>
-  <meta name="turbolinks-cache-control" content="no-cache">
-<% end %>
+<%= turbo_stream_from :results %>
 
 <fieldset class="<%= @diagnostic_report.reported_at.blank? %>">
   <h1>
@@ -49,10 +47,9 @@
   <% @results.each do |department, results| %>
     <h2><%= department.name %></h2>
 
-    <table class="results">
-      <% reset_cycle("alternating_row_colors") %>
+    <div class="results">
       <%= render results %>
-    </table>
+    </div>
 
     <% if @diagnostic_report.notes.find_by_department_id(department).try(:content).present? %>
       <div class="notes">
@@ -63,6 +60,11 @@
   <% end %>
 
   <div class="buttonbar">
+    <% if @diagnostic_report.preliminary? %>
+      <%= button_to t('.certify'), certify_diagnostic_report_path(@diagnostic_report), method: :patch %> |
+    <% elsif current_user.admin? && !@diagnostic_report.registered? && !@diagnostic_report.reported_at %>
+       <%= force_certify_diagnostic_report(@diagnostic_report) %> |
+    <% end %>
     <%= link_to t('.change_accession'), edit_accession_path(@diagnostic_report) %> |
     <% if @diagnostic_report.reported_at %>
       <%= link_to t('.change_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
@@ -70,16 +72,10 @@
       <%= link_to t('.smart_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf', smart: true) %> |
     <% else %>
       <%= link_to t('.enter_results'), edit_diagnostic_report_path(@diagnostic_report) %> |
-      <% if @diagnostic_report.preliminary? %>
-        <%= link_to t('.certify'), certify_diagnostic_report_path(@diagnostic_report), method: :patch %> |
-      <% end %>
-      <% if current_user.admin? && !@diagnostic_report.registered? && !@diagnostic_report.preliminary? %>
-       <%= force_certify_diagnostic_report(@diagnostic_report) %> |
-      <% end %>
-    <% end %>
-    <% if @patient.email.present? && !@diagnostic_report.registered? %>
-       <%= email_report(:patient, @diagnostic_report, @patient.email) %> |
     <% end %>
     <%= link_to t('.print_report'), diagnostic_report_path(@diagnostic_report, format: 'pdf') %>
+    <% if @patient.email.present? && !@diagnostic_report.registered? %>
+       | <%= email_report(:patient, @diagnostic_report, @patient.email) %>
+    <% end %>
   </div>
 </fieldset>

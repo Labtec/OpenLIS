@@ -14,7 +14,7 @@ module System
     end
 
     test 'create new order from panel' do
-      visit patient_url(@patient)
+      visit patient_path(@patient)
       within('.title_tools') { click_on 'Order Tests' }
       within('#order_tests') { click_on 'Chemistry' }
 
@@ -30,13 +30,14 @@ module System
 
       assert_not page.has_content?('error'), 'Requisition not created'
       assert page.has_content?('Successfully created requisition')
+
       assert page.has_content?('BUN')
       assert page.has_content?('Cholesterol')
     end
 
     test 'edit a paneled order' do
       accession = accessions(:paneled)
-      visit edit_accession_url(accession)
+      visit edit_accession_path(accession)
 
       assert page.has_checked_field?('Panel'), 'Panel is not checked'
 
@@ -53,6 +54,7 @@ module System
 
       assert_not page.has_content?('error'), 'Requisition not created'
       assert page.has_content?('Successfully updated requisition')
+
       assert page.has_content?('BUN')
       assert page.has_content?('Cholesterol')
     end

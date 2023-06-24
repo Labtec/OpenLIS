@@ -1,4 +1,4 @@
-<% title "Price" %>
+<% title 'Price' %>
 
 <p>
   <b>Amount:</b>
@@ -7,14 +7,14 @@
 
 <p>
   <b>Price list:</b>
-  <%=h @price.price_list.name %>
+  <%= @price.price_list.name %>
 </p>
 
 <p>
   <b>Panel / Lab Test:</b>
-  <%=h @price.priceable.name %>
+  <%= @price.priceable.name %>
 </p>
 
 
 <%= link_to 'Edit', edit_admin_price_path(@price) %> |
-<%= link_to 'Back', admin_prices_path %>
+<%= link_to 'Cancel', admin_prices_path, data: { turbo: false } %>

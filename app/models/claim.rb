@@ -57,6 +57,10 @@ class Claim < ApplicationRecord
     end
   end
 
+  def to_partial_path
+    'admin/claims/claim'
+  end
+
   def total_price
     total_price = []
     lab_tests_list = []

@@ -1,5 +1,5 @@
 <div class="filters">
-  <%= form_with(url: patients_path, local: true, method: 'get') do %>
+  <%= form_with(url: patients_path, data: { turbo: false }, method: 'get') do %>
     <%= search_field_tag :search, params[:search],
       size: 23,
       results: 5,
@@ -10,17 +10,5 @@
 </div>
 
 <% if @patient %>
-  <%= render partial: 'patients/card' unless @patient.new_record? %>
-<% end %>
-
-<% if @recent_patients %>
-  <div class="panel" id="recent">
-    <div class="caption"><%= t('.recent_patients') %></div>
-    <% cache @recent_patients do %>
-      <ul>
-        <%= render partial: 'shared/recent_patients',
-          collection: @recent_patients, as: :patient, cached: true %>
-      </ul>
-    <% end %>
-  </div>
+  <%= render partial: 'patients/card', locals: { patient: @patient } unless @patient.new_record? %>
 <% end %>

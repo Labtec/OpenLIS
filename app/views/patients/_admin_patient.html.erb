@@ -1,0 +1,28 @@
+<%= content_tag :li, id: dom_id(patient), is: 'turbo-frame',
+  class: "contact #{'deceased' if patient.deceased?}" do %>
+  <%= avatar_icon(patient) %>
+
+  <div class="tools">
+    <small>
+      <%= link_to t('.edit'), edit_patient_path(patient) %> |
+        <%= button_to t('.delete?'), patient, method: :delete, class: 'tools',
+        form: { data: { turbo_confirm: t('.confirm_destroy') } } %>
+    </small>
+  </div>
+
+  <%= link_to full_name(patient), patient_path(patient) %>
+  <tt><%= patient.identifier %></tt>
+  <dt class="second">
+    <%= display_pediatric_age(patient.pediatric_age) unless patient.deceased? %>
+    <% if patient.email.present? %>
+      | <%= mail_to patient.email %>
+    <% end %>
+    <% if patient.cellular.present? %>
+      | <%= t('.cellular') %> <b><%= link_to format_phone_number(patient.cellular),
+        whatsapp_click_to_chat_url(patient.cellular), target: :_blank %></b>
+    <% end %>
+    <% if patient.phone.present? %>
+      | <%= t('.phone') %> <b><%= format_phone_number(patient.phone) %></b>
+    <% end %>
+  </dt>
+<% end %>

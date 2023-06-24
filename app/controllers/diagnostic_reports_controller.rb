@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 class DiagnosticReportsController < ApplicationController
-  before_action :recent_patients
-  before_action :set_diagnostic_report, only: %i[show edit update certify email]
+  before_action :set_diagnostic_report, only: %i[show edit update certify force_certify email]
 
   def index
     @diagnostic_reports = Accession.includes(:patient, :reporter).recently.reported.page(page)
   end
 
   def show
-    @patient = @diagnostic_report.patient
-    @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
+    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department)
 
     respond_to do |format|
       format.html
@@ -36,7 +34,6 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def edit
-    @patient = @diagnostic_report.patient
     results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
     results.each do |department, _result|
       @diagnostic_report.notes.build(department_id: department.id) unless @diagnostic_report.try(:notes).find_by(department_id: department.id)
@@ -44,56 +41,54 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def update
-    @patient = @diagnostic_report.patient
-
     if @diagnostic_report.update(diagnostic_report_params)
       @diagnostic_report.transaction do
         @diagnostic_report.lock!
-        @diagnostic_report.results.map(&:evaluate!)
+        @diagnostic_report.results.map(&:evaluate!) # XXXJL
         @diagnostic_report.evaluate!
       end
 
       redirect_to diagnostic_report_url(@diagnostic_report), notice: t('flash.diagnostic_report.update')
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def certify
-    if ActiveRecord::Type::Boolean.new.cast(params[:force])
-      if current_user.admin?
-        @diagnostic_report.transaction do
-          @diagnostic_report.lock!
-          @diagnostic_report.results.map(&:evaluate!)
-          @diagnostic_report.reporter_id = current_user.id
-          @diagnostic_report.reported_at = Time.current
-          @diagnostic_report.results.map(&:not_performed!)
-          @diagnostic_report.results.map(&:certify!)
-          @diagnostic_report.certify!
-          @diagnostic_report.save
-          redirect_to diagnostic_report_url(@diagnostic_report)
-        end
-      end
-    else
-      @diagnostic_report.transaction do
-        @diagnostic_report.lock!
-        @diagnostic_report.results.map(&:evaluate!)
-        if @diagnostic_report.complete?
-          @diagnostic_report.reporter_id = current_user.id
-          @diagnostic_report.reported_at = Time.current
-          @diagnostic_report.results.map(&:certify!)
-          @diagnostic_report.certify!
-          @diagnostic_report.save
-        else
-          flash[:error] = t('flash.diagnostic_report.report_error')
-        end
+    @diagnostic_report.transaction do
+      @diagnostic_report.lock!
+      @diagnostic_report.results.map(&:evaluate!)
+      if @diagnostic_report.complete?
+        @diagnostic_report.reporter_id = current_user.id
+        @diagnostic_report.reported_at = Time.current
+        @diagnostic_report.results.map(&:certify!)
+        @diagnostic_report.certify!
+        @diagnostic_report.save
         redirect_to diagnostic_report_url(@diagnostic_report)
+      else
+        flash[:error] = t('flash.diagnostic_report.report_error')
+        redirect_to diagnostic_report_url(@diagnostic_report), status: :unprocessable_entity
       end
     end
   end
 
+  def force_certify
+    return unless current_user.admin?
+
+    @diagnostic_report.transaction do
+      @diagnostic_report.lock!
+      @diagnostic_report.results.map(&:evaluate!)
+      @diagnostic_report.reporter_id = current_user.id
+      @diagnostic_report.reported_at = Time.current
+      @diagnostic_report.results.map(&:not_performed!)
+      @diagnostic_report.results.map(&:force_certify!)
+      @diagnostic_report.force_certify!
+      @diagnostic_report.save
+      redirect_to diagnostic_report_url(@diagnostic_report)
+    end
+  end
+
   def email
-    @patient = @diagnostic_report.patient
     @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
 
     pdf = LabReport.new(@patient, @diagnostic_report, @results, true, false, view_context)
@@ -117,17 +112,12 @@ class DiagnosticReportsController < ApplicationController
     redirect_to diagnostic_report_url(@diagnostic_report), error: t('flash.diagnostic_report.email_error')
   end
 
-  protected
+  private
 
   def set_diagnostic_report
-    @diagnostic_report = Accession.includes(:patient, :drawer, :receiver).find(params[:id])
+    @diagnostic_report = Accession.includes(:patient).find(params[:id])
+    @patient = @diagnostic_report.patient
   end
-
-  def recent_patients
-    @recent_patients ||= Patient.cached_recent
-  end
-
-  private
 
   def diagnostic_report_params
     params.require(:accession).permit({ results_attributes: %i[id lab_test_value_id value] }, notes_attributes: %i[id content department_id])

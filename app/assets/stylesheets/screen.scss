@@ -34,6 +34,8 @@ label.checkbox {
 
 form {
   text-align: left; }
+  form.button_to {
+    display: inline; }
   form label {
     display: block; }
   form div {
@@ -70,7 +72,7 @@ form {
   form #patient_address_line {
     width: 528px; }
   form div.address {
-    width: 550px; }
+    width: 620px; }
   form div.gender {
     padding-top: 5px;
     width: 110px; }
@@ -139,7 +141,10 @@ form {
   form .map {
     padding-top: 3ex; }
   form div.icd9 {
-    width: 360px; }
+    width: 246px; }
+  form div.search_icd9 {
+    padding-top: 20px;
+    margin-left: 0px; }
   form #search_icd_code {
     display: inline-block;
     margin-left: 5px; }
@@ -406,50 +411,64 @@ table {
     padding: 8px 8px;
     border-bottom: 2px solid #6678b1; }
   td {
-    padding: .4em .5em;
+    padding: .15em .1em;
     border: none; }
-    td.lab_test {
-      width: 200px; }
+    td.analyte {
+    }
+    td.table_lab_test {
+      padding-right: 0;
+      width: 210px; }
     td.units {
-      vertical-align: top;
       width: 100px; }
-    td.result {
-      width: 255px;
+    td.formatted_value {
+      padding-right: 0;
       text-align: right;
-      vertical-align: top;
-      padding-right: 0; }
-      td.result input {
-        margin: 0 0 0 4px;
-        width: 71px;
-        text-align: right; }
-      td.result select {
-        width: 125px; }
+      width: 260px; }
+    td.formatted_value input[type="text"] {
+     text-align: right; }
+    td.flag {
+      padding-right: 0;
+      text-align: center;
+      width: 25px;}
+    td.result input {
+      margin: 0 0 0 4px;
+      width: 71px;
+      text-align: right; }
+    td.result select {
+      width: 125px; }
     td.symbol {
       width: 15px;
       text-align: right;
       vertical-align: top;
       padding-right: 0px; }
-    td.low_value {
+    tr.low_value {
       color: #6678b1; }
-    td.high_value {
+    tr.high_value {
       color: #a66662; }
-    td.abnormal_value {
+    tr.abnormal_value {
       color: #800080; }
     td.ranges {
-      width: 250px;
-      text-align: center; }
+      width: 250px; }
     td.remarks {
       padding-top: 0px !important;
       padding-left: 15px !important;
       font-size: 10px;
       max-width: 80px; }
-  tr.even {
+  table.odd {
+    background-color: #e5e5e5; }
+  table:nth-child(even).row-stripes {
+    background-color: #e5e5e5; }
+  tbody.even {
     border: none;
     clear: both; }
-  tr.odd {
+  tbody.odd {
     border: none;
     clear: both;
     background-color: #e5e5e5; }
+td.range_0 {
+  width: 150px; }
+td.range_4 {
+  text-align: right; }
 td.range_0,
 td.range_1,
 td.range_2,
@@ -468,6 +487,12 @@ td.range_1 {
   cursor: move;
   color: #777;
   display: inline; }
+
+table.admin {
+  td {
+    padding: .4em .5em;
+  }
+}
 
 table.qualified-interval {
   th.range, td.range {
@@ -544,16 +569,29 @@ form .notes {
   font-size: 12px;
   font-family: "Lucida Grande", Geneva, Arial, Helvetica, sans-serif; }
 
-li.lab_test,
-h3.department {
+li.lab_test {
   padding: 2px; }
 
-li.lab_test:hover {
+li.admin_lab_test {
+  padding: 2px 0px; }
+
+tr.admin_claim:hover,
+tr.admin_doctor:hover,
+tr.admin_insurance_provider:hover,
+tr.admin_lab_test_value:hover,
+tr.admin_panel:hover,
+tr.admin_qualified_interval:hover,
+tr.admin_unit:hover,
+li.admin_lab_test:hover {
   background: seashell; }
 
 h3.department {
-  border-bottom: 3px black solid;
-  margin-bottom: 5px; }
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 2px;
+  margin-top: 8px;
+  margin-bottom: 2px;
+  border-bottom: 2px solid #6678b1; }
 
 .main {
   background: white;
@@ -587,6 +625,36 @@ h3.department {
   display: none;
   float: right;
   padding: 0px 0px 0px 4px; }
+
+button.tools {
+  font-size: 10px;
+  font-family: "Lucida Grande", Geneva, Arial, Helvetica, sans-serif;
+  padding: 0px;
+  margin: 2px 4px;
+  color: crimson;
+  border: none;
+  background-color: initial;
+}
+
+button.tools:hover {
+  color: white;
+  background-color: crimson;
+}
+
+button.welcome {
+  font-size: 11px;
+  font-family: "Lucida Grande", Geneva, Arial, Helvetica, sans-serif;
+  padding: 0px;
+  margin: 2px 4px;
+  color: lightyellow;
+  border: none;
+  background-color: initial;
+}
+
+button.welcome:hover {
+  color: yellow;
+  background-color: #1e4262;
+}
 
 .second {
   padding-top: 2px;
@@ -643,6 +711,9 @@ h3.department {
   border-top: 1px gray solid;
   margin: auto;
   padding-top: 8px; }
+
+.buttonbar a:hover {
+  background: #0033cc !important; }
 
 .section input, .sidebar input, .inline input,
 .section select, .sidebar select, .inline select,
@@ -1124,3 +1195,41 @@ div.auto_complete {
 tr.empty-true {
   background-color: crimson;
 }
+tr.empty-true:hover {
+  background-color: salmon;
+}
+
+.empty {
+  display: none;
+}
+
+.empty:only-child {
+  display: revert;
+  border-bottom: none;
+}
+
+.stale-link {
+  background: #fdba74 !important;
+  border: 1px solid #9a3412 !important;
+  border-radius: 0.125rem !important;
+  color: #f97316 !important;
+  padding: 2px 4px;
+  margin-left: 45%;
+}
+
+input[type="submit"],
+button {
+  cursor: pointer;
+}
+
+button.show-when-disabled {
+  display: none; }
+
+button[disabled].show-when-disabled {
+  display: initial; }
+
+button.show-when-enabled {
+  display: initial; }
+
+button[disabled].show-when-enabled {
+  display: none; }
