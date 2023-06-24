@@ -292,6 +292,7 @@ en:
       phone: 'Phone:'
       year: year
     show:
+      order_tests: Order Tests
       patient_not_found: Patient record no longer available.
       title: Patient Info
     unknown: Unknown
