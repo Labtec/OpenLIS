@@ -1,6 +1,16 @@
 <fieldset class="<%= @quote.status %>">
   <% if @quote.serial_number %>
-    <h1><%= t('.quote', serial_number: @quote.serial_number) %></h1>
+    <h1>
+      <% if @quote.parent_quote %>
+        <% if @quote.version_number? %>
+          <%= t('.quote', serial_number: @quote.serial_number) %><%= t('.version', version_number: @quote.version_number) %>
+        <% else %>
+          <%= t('.quote', serial_number: @quote.serial_number) %><%= t('.version', version_number: @quote.last_version_number + 1) %>
+        <% end %>
+      <% else %>
+        <%= t('.quote', serial_number: @quote.serial_number) %>
+      <% end %>
+    </h1>
   <% end %>
 
   <%= form_with(model: [@item, @quote],
@@ -11,6 +21,7 @@
     <h2><%= t('.quote_details') %></h2>
 
     <%= form.hidden_field :patient_id %>
+    <%= form.hidden_field :parent_quote_id %>
     <div class="doctor_name">
       <%= form.label :doctor_name, t('.ordered_by') %>
       <%= form.text_field :doctor_name, placeholder: t('.outpatient'),

@@ -5,7 +5,7 @@ class AccessionsController < ApplicationController
   before_action :panels, only: %i[new create edit update]
   before_action :set_accession, only: %i[edit update destroy]
   before_action :set_patient, only: %i[new create]
-  before_action :set_accession_patient, only: %i[edit update]
+  before_action :set_accession_patient, only: %i[edit update destroy]
   before_action :set_users, only: %i[new create edit update]
 
   def index

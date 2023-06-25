@@ -15,6 +15,7 @@ en:
       reported_at: 'Reported at: '
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
+      version: '-%{version_number}'
     admin_accession:
       accession: 'Order #%{id}'
       by: 'by: '
@@ -30,6 +31,7 @@ en:
       reported_at: 'Reported at: '
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
+      version: '-%{version_number}'
     edit:
       title: Change Order
     empty:
@@ -339,6 +341,7 @@ en:
       ordered_by: 'Ordered by:'
       outpatient: Leave blank if outpatient
       submit: Save
+      version: '-%{version_number}'
     index:
       new_quote: New Quote
       title: Quotes
@@ -356,7 +359,9 @@ en:
       ordered_by: 'Ordered by: '
       quote: 'Quote #%{serial_number}'
       tests_ordered: 'Tests ordered: '
+      version: '-%{version_number}'
     show:
+      amend: Amend
       approve: Approve
       approved_at: 'Approved at:'
       approved_by: 'Approved by:'
@@ -391,6 +396,7 @@ en:
       total: Total
       total_discount: 'Discounts:'
       validity: 'Valid for:'
+      version: '-%{version_number}'
     update:
       success: Successfully updated quote.
   quote_details:
@@ -418,6 +424,7 @@ en:
       taxes: 'Taxes:'
       total: Total
       total_discount: 'Discounts:'
+      version: '-%{version_number}'
   results:
     abnormal: A
     critical_abnormal: AA

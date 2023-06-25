@@ -61,7 +61,7 @@ class QuotesController < ApplicationController
   def approve
     if @quote.draft?
       @quote.approved!
-      @quote.update!(approved_by: current_user)
+      @quote.update(approved_by: current_user)
       redirect_to quote_url(@quote)
     else
       flash[:error] = t('flash.quote.approve_error')
@@ -95,6 +95,7 @@ class QuotesController < ApplicationController
       receiver: current_user
     )
     if service_request.save
+      @quote.archive_other_versions
       redirect_to diagnostic_report_url(service_request), notice: t('.success')
     else
       render :show, status: :unprocessable_entity
@@ -119,7 +120,7 @@ class QuotesController < ApplicationController
   end
 
   def quote_params
-    params.require(:quote).permit(:patient_id, :doctor_name, :note, { lab_test_ids: [] }, { panel_ids: [] })
+    params.require(:quote).permit(:patient_id, :doctor_name, :note, { lab_test_ids: [] }, { panel_ids: [] }, :parent_quote_id)
   end
 
   def page

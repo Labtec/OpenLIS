@@ -1,3 +1,7 @@
 <%= turbo_stream.remove @accession %>
 
+<%= turbo_stream.update 'quotes' do %>
+  <%= render partial: "quotes/quote", collection: @patient.quotes.recent if @patient %>
+<% end %>
+
 <%= render_turbo_stream_flash_messages %>

@@ -4,7 +4,7 @@
 
 <fieldset class="<%= @quote.status %>">
   <h1>
-    <%= t('.quote', serial_number: @quote.serial_number) %>
+    <%= t('.quote', serial_number: @quote.serial_number) %><%= t('.version', version_number: @quote.version_number) if @quote.version_number %>
   </h1>
 
   <% if @quote.doctor %>
