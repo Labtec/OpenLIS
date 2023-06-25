@@ -142,6 +142,8 @@ en:
       last_login_at: ' Previous login: '
     quote:
       approve_error: Quote could not be approved.
+      email_error: Invalid email.
+      email_success: Email sent successfully.
     quote_detail:
       update: Successfully updated quote details.
     users:

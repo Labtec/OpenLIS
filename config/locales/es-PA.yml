@@ -142,6 +142,8 @@ es-PA:
       last_login_at: ' Su último inicio de sesión fue hace '
     quote:
       approve_error: La cotización no pudo ser aprobada.
+      email_error: Correo inválido.
+      email_success: Correo enviado exitosamente.
     quote_detail:
       update: Detalles de la cotización actualizados exitosamente.
     users:
