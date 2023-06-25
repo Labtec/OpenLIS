@@ -505,7 +505,11 @@ class LabReport < Prawn::Document
       end
       bounding_box([bounds.left, bounds.top - 2 * row_height], width: DEMOGRAPHICS_WIDTH1 + DEMOGRAPHICS_WIDTH2, height: row_height) do
         indent PADDING do
-          text "#{t('results.index.ordered_by')}  #{@view.organization_or_practitioner(@accession.doctor)}", overflow: :shrink_to_fit
+          if @accession.doctor
+            text "#{t('results.index.ordered_by')}  #{@view.organization_or_practitioner(@accession.doctor)}", overflow: :shrink_to_fit
+          else
+            text t('practitioners.outpatient')
+          end
         end
       end
       text_box full_name(@patient), at: [DEMOGRAPHICS_STOP1, bounds.top],
