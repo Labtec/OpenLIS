@@ -482,7 +482,7 @@ es-PA:
       body: Hemos adjuntado la cotización solicitada.
       opening_F: 'Estimada %{full_name}:'
       opening_M: 'Estimado %{full_name}:'
-      opening_O: 'Estimado(a) %{full_name}:'
+      opening_O: '%{full_name}:'
       opening_U: 'Estimado(a) %{full_name}:'
       subject: "Cotización #%{quote_number}"
   results_mailer:
@@ -499,6 +499,7 @@ es-PA:
       body_preliminary: Hemos adjuntado los resultados preliminares de sus exámenes.
       opening_F: 'Estimada %{full_name}:'
       opening_M: 'Estimado %{full_name}:'
+      opening_O: '%{full_name}:'
       opening_U: 'Estimado(a) %{full_name}:'
       subject: Resultados de exámenes
       subject_partial: Resultados parciales de exámenes
