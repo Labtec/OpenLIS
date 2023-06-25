@@ -483,7 +483,7 @@ en:
       body: Attached is the requested quote.
       opening_F: Dear %{full_name},
       opening_M: Dear %{full_name},
-      opening_O: Dear %{full_name},
+      opening_O: '%{full_name},'
       opening_U: Dear %{full_name},
       subject: "Quote #%{quote_number}"
   results_mailer:
@@ -500,6 +500,7 @@ en:
       body_preliminary: Attached are your preliminary lab results.
       opening_F: Dear %{full_name},
       opening_M: Dear %{full_name},
+      opening_O: '%{full_name},'
       opening_U: Dear %{full_name},
       subject: Lab results
       subject_partial: Partial lab results
