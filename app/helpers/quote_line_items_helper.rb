@@ -3,8 +3,8 @@
 module QuoteLineItemsHelper
   def options_for_discount_unit
     [
-      ['$', 'currency'],
-      ['%', 'percentage']
+      ['%', 'percentage'],
+      ['$', 'currency']
     ]
   end
 
