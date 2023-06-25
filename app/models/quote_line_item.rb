@@ -3,7 +3,7 @@
 class QuoteLineItem < ApplicationRecord
   RETIREE_PERCENTAGE_DISCOUNT = 20
 
-  enum :discount_unit, { currency: 0, percentage: 1 }, prefix: :discount, default: :currency
+  enum :discount_unit, { percentage: 0, currency: 1 }, prefix: :discount, default: :percentage
   include DiscountUnitEnumValidation
 
   belongs_to :quote
@@ -54,6 +54,6 @@ class QuoteLineItem < ApplicationRecord
     return unless quote.patient_retiree?
 
     self.discount_value = RETIREE_PERCENTAGE_DISCOUNT
-    self.discount_unit = 1 # discount_units[:percentage]
+    self.discount_unit = 0 # discount_units[:percentage]
   end
 end
