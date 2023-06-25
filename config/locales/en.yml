@@ -483,6 +483,7 @@ en:
       body: Attached is the requested quote.
       opening_F: Dear %{full_name},
       opening_M: Dear %{full_name},
+      opening_O: Dear %{full_name},
       opening_U: Dear %{full_name},
       subject: "Quote #%{quote_number}"
   results_mailer:
