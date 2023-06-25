@@ -73,9 +73,14 @@ class QuotesController < ApplicationController
   end
 
   def email
-    signature = ActiveRecord::Type::Boolean.new.cast(params[:signature])
-    pdf = PDFQuote.new(@quote, signature, view_context)
-    QuotesMailer.email_quote(@quote, pdf).deliver_now
+    pdf = PDFQuote.new(@quote, true, view_context)
+    if @patient.email.present?
+      QuotesMailer.email_quote(@quote, pdf).deliver_now
+      @quote.update(emailed_patient_at: Time.zone.now)
+      redirect_to quote_url(@quote), notice: t('flash.quote.email_success')
+      return
+    end
+    redirect_to quote_url(@quote), error: t('flash.quote.email_error')
   end
 
   def order
