@@ -14,9 +14,7 @@ class AccessionsController < ApplicationController
 
   def new
     @accession = @patient.accessions.build(
-      drawn_at: Time.current,
       drawer_id: current_user.id,
-      received_at: Time.current,
       receiver_id: current_user.id
     )
   end

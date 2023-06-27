@@ -55,20 +55,6 @@ class Accession < ApplicationRecord
 
   # after_destroy_commit -> { broadcast_replace_to :accession, partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.accessions_path }, target: :accession }
 
-  # XXX app/views/accession/_form.html.erb datetime_select bug
-  def drawn_at
-    return Time.current if new_record?
-
-    super
-  end
-
-  # XXX app/views/accession/_form.html.erb datetime_select bug
-  def received_at
-    return Time.current if new_record?
-
-    super
-  end
-
   def subject_age
     ActiveSupport::Duration.age(patient_birthdate, drawn_at)
   end
