@@ -281,6 +281,14 @@ module Derivable
       crtsa = result_value_quantity_for 'CRTSA'
       gender = patient.female? ? 0.742 : 1
       175 * crtsa**-1.154 * age**-0.203 * gender * 1.212
+    when 'uACR'
+      ralb1 = result_value_quantity_for 'RALB1'
+      ralb1tl = result_value_quantity_for 'RALB1TL'
+      ralb1 = ralb1tl if ralb1.blank?
+      cre2 = result_value_quantity_for 'CRE2'
+      cre2tl = result_value_quantity_for 'CRE2TL'
+      cre2 = cre2tl if cre2.blank?
+      ralb1 / cre2
     end
   rescue StandardError
     nil
