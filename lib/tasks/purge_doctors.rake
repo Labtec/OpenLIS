@@ -7,7 +7,7 @@ namespace :doctors do
     puts 'Purging doctors table'
     ActiveRecord::Base.transaction do
       Doctor.all.each do |doctor|
-        unless doctor.accessions_count?
+        unless doctor.accessions_count? || doctor.quotes_count?
           doctor.destroy!
           print '.'
         end
