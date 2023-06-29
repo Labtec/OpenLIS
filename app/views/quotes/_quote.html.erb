@@ -3,8 +3,10 @@
     class: "contact #{quote.status}" do %>
     <div class="tools">
       <small>
-        <%= link_to t('.edit'), edit_quote_path(quote) %> |
-        <%= button_to t('.delete?'), quote, method: :delete, class: 'tools', form: { data: { turbo_confirm: t('.confirm_destroy') } } %>
+        <%= link_to t('.edit'), edit_quote_path(quote) %>
+        <% if quote.draft? %>
+        | <%= button_to t('.delete?'), quote, method: :delete, class: 'tools', form: { data: { turbo_confirm: t('.confirm_destroy') } } %>
+        <% end %>
       </small>
     </div>
     <%= link_to t('.quote', serial_number: quote.serial_number), quote_path(quote) %>
