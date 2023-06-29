@@ -293,7 +293,8 @@ CREATE TABLE public.doctors (
     accessions_count integer DEFAULT 0,
     uuid uuid DEFAULT gen_random_uuid() NOT NULL,
     gender public.administrative_gender,
-    organization boolean DEFAULT false
+    organization boolean DEFAULT false,
+    quotes_count integer DEFAULT 0
 );
 
 
@@ -1551,6 +1552,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230611000002'),
 ('20230612000001'),
 ('20230612000002'),
-('20230612000003');
+('20230612000003'),
+('20230612000004');
 
 

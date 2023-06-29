@@ -21,7 +21,7 @@ class Quote < ApplicationRecord
   belongs_to :created_by, inverse_of: :quotes, class_name: 'User'
   belongs_to :price_list
   belongs_to :patient, optional: true
-  belongs_to :doctor, optional: true
+  belongs_to :doctor, counter_cache: true, optional: true
   belongs_to :service_request, optional: true, inverse_of: :quote, class_name: 'Accession'
 
   has_many :line_items, class_name: 'QuoteLineItem', dependent: :destroy
