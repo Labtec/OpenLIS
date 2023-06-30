@@ -1085,13 +1085,6 @@ CREATE INDEX index_accessions_on_receiver_id ON public.accessions USING btree (r
 
 
 --
--- Name: index_accessions_on_reported_at_and_drawn_at; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_accessions_on_reported_at_and_drawn_at ON public.accessions USING btree (reported_at, drawn_at);
-
-
---
 -- Name: index_accessions_on_reporter_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1225,13 +1218,6 @@ CREATE INDEX index_observations_on_lab_test_id ON public.observations USING btre
 
 
 --
--- Name: index_observations_on_lab_test_value_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_observations_on_lab_test_value_id ON public.observations USING btree (lab_test_value_id);
-
-
---
 -- Name: index_panels_on_code; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1278,13 +1264,6 @@ CREATE INDEX index_patients_on_policy_number ON public.patients USING btree (pol
 --
 
 CREATE INDEX index_patients_on_updated_at ON public.patients USING btree (updated_at);
-
-
---
--- Name: index_patients_search; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_patients_search ON public.patients USING gin (((((((to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((identifier)::text, ''::text))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((family_name)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((family_name2)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((partner_name)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((given_name)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((middle_name)::text, ''::text))))));
 
 
 --
@@ -1553,6 +1532,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230612000001'),
 ('20230612000002'),
 ('20230612000003'),
-('20230612000004');
+('20230612000004'),
+('20230612000005');
 
 
