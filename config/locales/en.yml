@@ -194,6 +194,8 @@ en:
       psa_r: |
         When Total PSA is in the range of 4.0–10.0 ng/mL, a Free PSA/Total PSA ratio of %{psa_r} indicates a %{risk} risk of prostate cancer.
         Test results cannot be interpreted as absolute evidence for the presence or absence of malignant disease.
+    observation:
+      gestational_ranges: Pregnancy
   panels:
     form:
       order_panels: Order Panels

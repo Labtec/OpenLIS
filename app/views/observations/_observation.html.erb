@@ -11,6 +11,16 @@
         <%= render partial: 'observations/qualified_interval',
           collection: observation.reference_intervals.includes(:lab_test),
           locals: { display_gender: observation.patient.unknown? } if display_units(observation) %>
+        <% if observation.gestational_intervals.present? %>
+          <table>
+            <tr>
+              <td class="range_0"><%= t('.gestational_ranges') %></td>
+            </tr>
+          </table>
+          <%= render partial: 'observations/qualified_interval',
+            collection: observation.gestational_intervals.includes(:lab_test),
+            locals: { display_gender: false } if display_units(observation) %>
+        <% end %>
       </td>
     </tr>
 
