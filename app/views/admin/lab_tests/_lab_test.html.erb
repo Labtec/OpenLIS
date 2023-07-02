@@ -1,5 +1,4 @@
-<%= content_tag :li, id: dom_id(lab_test), is: 'turbo-frame', class: 'admin_lab_test' do %>
-  <div class="handle">☰</div>
+<%= content_tag :li, id: dom_id(lab_test), is: 'turbo-frame', class: ['task-list-item', 'admin_lab_test'] do %>
   <span class="sortable_lab_test_name"><%= link_to name_with_description(lab_test), [:admin, lab_test] %></span>
   <span class="sortable_lab_test_code"><%= lab_test.code %></span>
   <span class="sortable_lab_test_loinc"><%= loinc_hyperlink(lab_test.loinc) if lab_test.loinc.present? %></span>

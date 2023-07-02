@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
 class Department < ApplicationRecord
-  has_many :lab_tests, -> { order('position ASC') }, dependent: :destroy
+  has_many :lab_tests, -> { order(position: :asc) }, dependent: :destroy
   has_many :accessions, through: :lab_tests
   has_many :observations, through: :lab_tests
   has_many :notes, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
+
+  acts_as_list
+
+  default_scope { order(position: :asc) }
+  scope :sorted, -> { order(name: :asc) }
 
   auto_strip_attributes :code, :loinc_class, :name
 

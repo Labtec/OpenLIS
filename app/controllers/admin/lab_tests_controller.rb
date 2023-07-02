@@ -5,7 +5,7 @@ module Admin
     before_action :set_lab_test, only: %i[show edit update destroy]
 
     def index
-      @lab_tests = LabTest.all.includes(:department, :unit).order(:position).group_by(&:department_name)
+      @departments = Department.all.includes({ lab_tests: [:unit] })
     end
 
     def show; end
@@ -44,9 +44,7 @@ module Admin
     end
 
     def sort
-      params[:lab_test].each.with_index(1) do |id, index|
-        LabTest.where(id: id).update_all(position: index)
-      end
+      move_from_to(params[:src_list].to_i, params[:src_item].to_i, params[:dst_list].to_i, params[:dst_item].to_i)
 
       head :ok
     end
@@ -59,6 +57,19 @@ module Admin
 
     def lab_test_params
       params.require(:lab_test).permit(:also_allow, :code, :name, :description, :decimals, :department_id, :unit_id, :procedure, :loinc, :derivation, :also_numeric, :ratio, :range, :fraction, :text_length, :remarks, :fasting_status_duration_iso8601, :patient_preparation, :status, lab_test_value_ids: [])
+    end
+
+    def move_from_to(src_department_position, src_lab_test_position, dst_department_position, dst_lab_test_position)
+      src_department, dst_department = Department.unscoped.where(
+        position: [src_department_position, dst_department_position]
+      )
+      @lab_test = src_department.lab_tests.find_by_position(src_lab_test_position)
+      if dst_department
+        @lab_test.update(department: dst_department)
+        @lab_test.insert_at(dst_lab_test_position)
+      else
+        @lab_test.insert_at(dst_lab_test_position)
+      end
     end
   end
 end

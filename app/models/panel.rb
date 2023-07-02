@@ -16,8 +16,11 @@ class Panel < ApplicationRecord
   validates :name, presence: true
   validates :loinc, loinc: true, length: { maximum: 10 }, allow_blank: true
 
-  scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
+  acts_as_list
+
+  default_scope { order(position: :asc) }
   scope :sorted, -> { order(name: :asc) }
+  scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
 
   auto_strip_attributes :name, :code, :procedure, :loinc, :patient_preparation, :fasting_status_duration
 
@@ -30,7 +33,7 @@ class Panel < ApplicationRecord
   after_destroy_commit -> { broadcast_replace_to 'admin:panel', partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.admin_panels_path }, target: :panel }
 
   def lab_test_code_list
-    LabTest.where(id: lab_test_ids).map(&:code).join(', ')
+    lab_tests.pluck(:code)
   end
 
   def name_with_description

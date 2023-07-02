@@ -536,11 +536,6 @@ td.range_2 {
 td.range_0,
 td.range_1 {
   padding-right: 1em; }
-.handle {
-  font-size: 12px;
-  cursor: move;
-  color: #777;
-  display: inline; }
 
 table.admin {
   td {
@@ -1196,6 +1191,10 @@ li.contact:hover {
     padding-top: 10px;
   }
   padding: 10px;
+}
+
+.highlight {
+  background: lightyellow;
 }
 
 div.auto_complete {

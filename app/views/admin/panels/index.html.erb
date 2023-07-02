@@ -4,6 +4,7 @@
 
 <%= turbo_frame_tag :panels %>
 
+<fieldset>
 <table class="admin">
   <tr>
     <th>Code</th>
@@ -17,5 +18,6 @@
   </tr>
   <%= render @panels %>
 </table>
+</fieldset>
 
 <p><%= link_to 'New Panel', new_admin_panel_path %></p>

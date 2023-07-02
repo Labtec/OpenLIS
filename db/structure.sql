@@ -264,7 +264,8 @@ CREATE TABLE public.departments (
     created_at timestamp with time zone,
     updated_at timestamp with time zone,
     code character varying,
-    loinc_class character varying
+    loinc_class character varying,
+    "position" integer
 );
 
 
@@ -528,7 +529,8 @@ CREATE TABLE public.panels (
     loinc character varying,
     status public.publication_status DEFAULT 'active'::public.publication_status,
     fasting_status_duration interval,
-    patient_preparation text
+    patient_preparation text,
+    "position" integer
 );
 
 
@@ -1533,6 +1535,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230612000002'),
 ('20230612000003'),
 ('20230612000004'),
-('20230612000005');
+('20230612000005'),
+('20230612000006');
 
 
