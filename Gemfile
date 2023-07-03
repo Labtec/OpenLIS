@@ -13,7 +13,6 @@ gem 'auto_strip_attributes'
 gem 'barby'
 gem 'bcrypt'
 gem 'bootsnap', require: false
-gem 'coffee-rails' # TODO
 gem 'commonmarker'
 gem 'dalli'
 gem 'devise'
@@ -37,7 +36,7 @@ gem 'prawn-table'
 gem 'puma'
 gem 'rails-html-sanitizer'
 gem 'rails-i18n'
-gem 'sassc-rails'
+gem 'sassc-rails' # TODO
 gem 'semacode', github: 'Labtec/semacode', branch: 'barcodes'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
