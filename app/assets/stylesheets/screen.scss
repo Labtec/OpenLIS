@@ -652,6 +652,11 @@ li.lab_test {
 li.admin_lab_test {
   padding: 2px 0px; }
 
+svg.drag-handle {
+  width: 16px;
+  height: 13px;
+}
+
 tr.admin_claim:hover,
 tr.admin_doctor:hover,
 tr.admin_insurance_provider:hover,
