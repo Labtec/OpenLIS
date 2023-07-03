@@ -1,4 +1,8 @@
-<%= content_tag :li, id: dom_id(lab_test), is: 'turbo-frame', class: ['task-list-item', 'admin_lab_test'] do %>
+<%= content_tag :li, id: dom_id(lab_test), is: 'turbo-frame', class: 'admin_lab_test', data: { id: lab_test.id } do %>
+  <span class="handle">
+    <svg class="drag-handle" aria-hidden="true">
+      <path d="M10 13a1 1 0 100-2 1 1 0 000 2zm-4 0a1 1 0 100-2 1 1 0 000 2zm1-5a1 1 0 11-2 0 1 1 0 012 0zm3 1a1 1 0 100-2 1 1 0 000 2zm1-5a1 1 0 11-2 0 1 1 0 012 0zM6 5a1 1 0 100-2 1 1 0 000 2z"/>
+  </span>
   <span class="sortable_lab_test_name"><%= link_to name_with_description(lab_test), [:admin, lab_test] %></span>
   <span class="sortable_lab_test_code"><%= lab_test.code %></span>
   <span class="sortable_lab_test_loinc"><%= loinc_hyperlink(lab_test.loinc) if lab_test.loinc.present? %></span>
