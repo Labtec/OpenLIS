@@ -2,7 +2,7 @@
 
 module Admin
   class LabTestsController < BaseController
-    before_action :set_lab_test, only: %i[show edit update destroy sort]
+    before_action :set_lab_test, only: %i[show edit update destroy]
 
     def index
       @departments = Department.all.includes({ lab_tests: [:unit] })
@@ -44,7 +44,7 @@ module Admin
     end
 
     def sort
-      insert_at_position(params[:position].to_i)
+      move_from_to(params[:src_list].to_i, params[:src_item].to_i, params[:dst_list].to_i, params[:dst_item].to_i)
 
       head :ok
     end
@@ -59,11 +59,16 @@ module Admin
       params.require(:lab_test).permit(:also_allow, :code, :name, :description, :decimals, :department_id, :unit_id, :procedure, :loinc, :derivation, :also_numeric, :ratio, :range, :fraction, :text_length, :remarks, :fasting_status_duration_iso8601, :patient_preparation, :status, lab_test_value_ids: [])
     end
 
-    def insert_at_position(position)
-      if position.zero?
-        @lab_test.move_to_top
+    def move_from_to(src_department_position, src_lab_test_position, dst_department_position, dst_lab_test_position)
+      src_department, dst_department = Department.unscoped.where(
+        position: [src_department_position, dst_department_position]
+      )
+      @lab_test = src_department.lab_tests.find_by_position(src_lab_test_position)
+      if dst_department
+        @lab_test.update(department: dst_department)
+        @lab_test.insert_at(dst_lab_test_position)
       else
-        @lab_test.insert_at(position + 1)
+        @lab_test.insert_at(dst_lab_test_position)
       end
     end
   end

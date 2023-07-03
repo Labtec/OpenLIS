@@ -5,14 +5,14 @@
 <%= turbo_frame_tag :lab_tests %>
 
 <fieldset>
-<% @departments.each do |department| %>
-  <h2 class="department"><%= department.name %></h2>
-  <%= content_tag :ul,
-    data: { controller: 'sort', sort_success_class: 'highlight',
-            sort_url_value: '/admin/lab_tests/:id/sort' } do %>
-    <%= render department.lab_tests %>
+  <task-lists sortable data-controller="sort" data-sort-target="tasks" data-action="task-lists-move@window->sort#move" data-sort-url-value="/admin/lab_tests/sort" data-sort-success-class="highlight">
+  <% @departments.each do |department| %>
+    <h2 class="department"><%= department.name %></h2>
+      <%= content_tag :ul, class: ['contains-task-list', 'lab_test'] do %>
+        <%= render department.lab_tests %>
+      <% end %>
   <% end %>
-<% end %>
+  </task-lists>
 </fieldset>
 
 <p><%= link_to 'New Lab Test', new_admin_lab_test_path %></p>
