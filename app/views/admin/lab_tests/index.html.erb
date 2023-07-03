@@ -8,7 +8,7 @@
   <task-lists sortable data-controller="sort" data-sort-target="tasks" data-action="task-lists-move@window->sort#move" data-sort-url-value="/admin/lab_tests/sort" data-sort-success-class="highlight">
   <% @departments.each do |department| %>
     <h2 class="department"><%= department.name %></h2>
-      <%= content_tag :ul, class: ['contains-task-list', 'lab_test'] do %>
+      <%= content_tag :ul, class: 'contains-task-list' do %>
         <%= render department.lab_tests %>
       <% end %>
   <% end %>

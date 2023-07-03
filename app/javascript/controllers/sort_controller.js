@@ -20,7 +20,12 @@ export default class extends Controller {
     const src_list = src[0] + 1
     const src_item = src[1] + 1
     const dst_list = dst[0] + 1
-    const dst_item = dst[1] + 1
+    let dst_item
+    if (src[1] < dst[1]) {
+      dst_item = dst[1]
+    } else {
+      dst_item = dst[1] + 1
+    }
     let data = new FormData()
     data.append("src_list", src_list)
     data.append("src_item", src_item)
