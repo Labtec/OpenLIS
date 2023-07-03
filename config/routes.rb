@@ -75,7 +75,7 @@ Rails.application.routes.draw do
     resources :qualified_intervals, except: [:show]
     resources :lab_tests do
       resources :prices
-      collection do
+      member do
         patch 'sort'
       end
     end

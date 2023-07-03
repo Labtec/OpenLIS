@@ -658,9 +658,14 @@ svg.drag-handle {
 }
 
 span.handle {
+  visibility: hidden;
   :hover {
     cursor: move;
   }
+}
+
+li.admin_lab_test:hover span.handle {
+  visibility: visible;
 }
 
 tr.admin_claim:hover,
