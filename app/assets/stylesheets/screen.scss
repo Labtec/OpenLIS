@@ -657,6 +657,12 @@ svg.drag-handle {
   height: 13px;
 }
 
+span.handle {
+  :hover {
+    cursor: move;
+  }
+}
+
 tr.admin_claim:hover,
 tr.admin_doctor:hover,
 tr.admin_insurance_provider:hover,
