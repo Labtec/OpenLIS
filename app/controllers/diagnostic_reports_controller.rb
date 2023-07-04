@@ -8,7 +8,7 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def show
-    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department)
+    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department).sort_by{ |department, _results| department.position }
 
     respond_to do |format|
       format.html
@@ -34,7 +34,7 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def edit
-    results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
+    results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).group_by(&:department)
     results.each do |department, _result|
       @diagnostic_report.notes.build(department_id: department.id) unless @diagnostic_report.try(:notes).find_by(department_id: department.id)
     end
