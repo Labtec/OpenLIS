@@ -42,7 +42,7 @@
     html: { novalidate: '', autocomplete: 'off' } do |form| %>
     <%= render 'shared/error_messages', object: @diagnostic_report %>
 
-    <% @diagnostic_report.results.includes(:accession, :patient).group_by(&:department).each do |department, results| %>
+    <% @diagnostic_report.results.includes(:accession, :patient).group_by(&:department).sort_by{ |department, _results| department.position }.each do |department, results| %>
       <h2><%= department.name %></h2>
 
       <div class="results">
