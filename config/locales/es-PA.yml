@@ -577,7 +577,7 @@ es-PA:
       unknown: ''
   date:
     formats:
-      with_month_name: "%d de %B de %Y"
+      with_month_name: "%-d de %B de %Y"
   activerecord:
     attributes:
       accession:
