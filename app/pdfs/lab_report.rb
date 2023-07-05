@@ -197,7 +197,14 @@ class LabReport < Prawn::Document
 
         ##
         # Ranges sub-table
-        pdf_ranges_table = make_table(ranges_table(ranges_for_table(result), display_gender: @patient.unknown?), cell_style: { padding: [0, 0.4], borders: [] }) do
+        all_ranges = ranges_table(ranges_for_table(result), display_gender: @patient.unknown?)
+        if result.gestational_intervals.present?
+          all_ranges << [t('observations.observation.gestational_ranges'), "", "", "", ""]
+          ranges_table(gestational_ranges_for_table(result), display_gender: @patient.unknown?).each do |gestational_range|
+            all_ranges << gestational_range
+          end
+        end
+        pdf_ranges_table = make_table(all_ranges, cell_style: { padding: [0, 0.4], borders: [] }) do
           column(0).align = :right
           column(1).align = :right
           column(2).align = :right
@@ -630,6 +637,10 @@ class LabReport < Prawn::Document
         svg Base64.strict_decode64(current_user.signature), position: :center, height: pad if current_user.signature
       end
     end
+  end
+
+  def gestational_ranges_for_table(result)
+    display_units(result) ? result.gestational_intervals : []
   end
 
   def ranges_for_table(result)

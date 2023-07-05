@@ -56,6 +56,10 @@ class Observation < ApplicationRecord
     reference_ranges.reference
   end
 
+  def gestational_intervals
+    reference_ranges.gestational
+  end
+
   def critical_intervals
     reference_ranges.critical
   end

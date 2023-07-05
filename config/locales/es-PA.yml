@@ -194,6 +194,8 @@ es-PA:
       psa_r: |
         Cuando el PSA Total está en el rango de 4.0–10.0 ng/mL, una Tasa PSA Libre/PSA Total de %{psa_r} indica un riesgo de cáncer de próstata de %{risk}.
         Los resultados de las pruebas no pueden interpretarse como evidencia absoluta de la presencia o ausencia de una enfermedad maligna.
+    observation:
+      gestational_ranges: Gestación
   panels:
     form:
       order_panels: Ordenar Paneles

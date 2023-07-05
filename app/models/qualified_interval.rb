@@ -41,7 +41,7 @@ class QualifiedInterval < ApplicationRecord
   scope :for_result, ->(accession) { for_subject(accession.patient).for_age(accession.subject_age) }
   scope :female, -> { where(gender: [nil, 'female']) }
   scope :male, -> { where(gender: [nil, 'male']) }
-  scope :reference, -> { where(category: [nil, 'reference']) }
+  scope :reference, -> { where(category: [nil, 'reference'], gestational_age_low: nil, gestational_age_high: nil) }
   scope :critical, -> { where(category: 'critical') }
   scope :absolute, -> { where(category: 'absolute') }
   scope :normal, -> { where(context: [nil, 'normal']) }
@@ -53,6 +53,7 @@ class QualifiedInterval < ApplicationRecord
   scope :luteal, -> { where(context: 'luteal') }
   scope :postmenopausal, -> { where(context: 'postmenopausal') }
   scope :endocrine, -> { pre_puberty.or(follicular).or(midcycle).or(luteal).or(postmenopausal) }
+  scope :gestational, -> { where.not(gestational_age_low: nil, gestational_age_high: nil) }
   scope :ranked, -> { order(rank: :asc) }
 
   validates :animal_type, inclusion: { in: ANIMAL_SPECIES }, allow_nil: true
@@ -98,6 +99,12 @@ class QualifiedInterval < ApplicationRecord
 
   def female?
     gender == 'female'
+  end
+
+  def gestational?
+    return true if gestational_age_low.present? || gestational_age_high.present?
+
+    false
   end
 
   def gestational_age
