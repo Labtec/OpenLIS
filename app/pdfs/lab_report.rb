@@ -55,12 +55,13 @@ class LabReport < Prawn::Document
   # WINDOW_HEIGHT = 36 * 2.25
   # WINDOW_WIDTH = 36 * 9
 
-  def initialize(patient, accession, results, signature, smart, view_context)
+  def initialize(patient, accession, results, signature, smart, loinc = false, view_context)
     @patient = patient
     @accession = accession
     @results = results
     @signature = signature
     @smart = smart
+    @loinc = loinc
     @view = view_context
 
     super(
@@ -186,10 +187,10 @@ class LabReport < Prawn::Document
         next if result.not_performed?
 
         if result.normal?
-          cell_col0 = make_cell content: result.lab_test_name, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
+          cell_col0 = make_cell content: test_name_and_loinc(result), inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
           cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
         else
-          cell_col0 = make_cell content: result.lab_test_name, background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
+          cell_col0 = make_cell content: test_name_and_loinc(result), background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
           cell_col1 = make_cell content: format_value(result).gsub(/</, '&lt; ').gsub(/&lt; i/, '<i').gsub(/&lt; s/, '<s').gsub(%r{&lt; /}, '</'), background_color: colors_highlight_gray, inline_format: true, padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
         end
         cell_col2 = make_cell content: display_format_units(result), padding: [ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING], borders: [:bottom], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
@@ -649,6 +650,17 @@ class LabReport < Prawn::Document
 
   def row_height
     font_size + 4
+  end
+
+  def test_name_and_loinc(result)
+    return result.lab_test_name unless @loinc
+
+    loinc = result.lab_test.loinc
+    if loinc.present?
+      "#{result.lab_test_name}#{Prawn::Text::NBSP}<sup><link href='https://loinc.org/#{loinc}'>[#{loinc}]</sup>"
+    else
+      result.lab_test_name
+    end
   end
 
   def title_row_height

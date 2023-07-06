@@ -23,7 +23,8 @@ class DiagnosticReportsController < ApplicationController
       format.pdf do
         signature = ActiveRecord::Type::Boolean.new.cast(params[:signature])
         smart = ActiveRecord::Type::Boolean.new.cast(params[:smart])
-        pdf = LabReport.new(@patient, @diagnostic_report, @results, signature, smart, view_context)
+        loinc = ActiveRecord::Type::Boolean.new.cast(params[:loinc])
+        pdf = LabReport.new(@patient, @diagnostic_report, @results, signature, smart, loinc, view_context)
         send_data(pdf.render, filename: "resultados_#{@diagnostic_report.id}.pdf",
                               type: 'application/pdf', disposition: 'inline')
       end
@@ -91,7 +92,7 @@ class DiagnosticReportsController < ApplicationController
   def email
     @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
 
-    pdf = LabReport.new(@patient, @diagnostic_report, @results, true, false, view_context)
+    pdf = LabReport.new(@patient, @diagnostic_report, @results, true, false, false, view_context)
 
     case params[:to]
     when 'practitioner'

@@ -288,7 +288,7 @@ module Derivable
       cre2 = result_value_quantity_for 'CRE2'
       cre2tl = result_value_quantity_for 'CRE2TL'
       cre2 = cre2tl if cre2.blank?
-      ralb1 / cre2
+      ralb1 / cre2 * 100
     end
   rescue StandardError
     nil
