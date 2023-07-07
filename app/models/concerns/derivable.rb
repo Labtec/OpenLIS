@@ -313,8 +313,8 @@ module Derivable
       return I18n.t('observations.derived_remarks.cldl1') if ldl.zero?
     when 'eGFRcr'
       egfrcr = result_derived_value_for 'eGFRcr'
-      uacr = result_derived_value_for 'uACR'
-      return I18n.t('observations.derived_remarks.egfrcr') if egfrcr.between?(45, 59) && (uacr.nil? || uacr.lt(30))
+      uacr = result_derived_value_for('uACR').to_d
+      return I18n.t('observations.derived_remarks.egfrcr') if egfrcr.between?(45, 59) && uacr < 30
     when 'PSA_R'
       tpsa = result_value_quantity_for 'TPSA'
       tpsa1d = result_value_quantity_for 'TPSA1d'
