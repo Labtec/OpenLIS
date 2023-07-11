@@ -106,7 +106,7 @@ en:
       smart_report: SMART® Report
       outpatient: Outpatient
   practitioners:
-    female_dr_prefix: Dr.
+    female_dr_prefix: Dra.
     male_dr_prefix: Dr.
     outpatient: Outpatient
     unknown_dr_prefix: Dr.
