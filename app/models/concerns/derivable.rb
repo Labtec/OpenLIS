@@ -59,6 +59,10 @@ module Derivable
       cort24 = result_value_quantity_for 'CORT24'
       uvol24h = result_value_quantity_for 'UVOL24H'
       cort24 * uvol24h / 100
+    when 'CREUT'
+      urncret = result_value_quantity_for 'URNCRET'
+      uvol24h = result_value_quantity_for 'UVOL24H'
+      urncret * uvol24h / 100
     when 'CRETCLEAR24H'
       urncret = result_value_quantity_for 'URNCRET'
       crtsa = result_value_quantity_for 'CRTSA'
