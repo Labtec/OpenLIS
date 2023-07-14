@@ -60,6 +60,7 @@ group :development do
   gem 'bcrypt_pbkdf'
   gem 'brakeman', require: false
   gem 'flamegraph', require: false
+  gem 'i18n-tasks', require: false
   gem 'rack-mini-profiler', require: false
   gem 'rb-kqueue'
   gem 'stackprof'
