@@ -409,7 +409,6 @@ en:
       or: or
       ordered_by: 'Ordered by:'
       price: Unit Price
-      print_quote: Print Quote (PDF)
       quantity: Quantity
       quote: 'Quote #%{serial_number}'
       quote_detail: Quote Detail

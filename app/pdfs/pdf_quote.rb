@@ -129,11 +129,15 @@ class PDFQuote < Prawn::Document
 
     ##
     # To
+    to = []
     bounding_box([0, to_from_position], width: bounds.width / 2 - PADDING, height: line_height * 4 + LINE_PADDING) do
-      contact_name
-      contact_email
-      contact_phone
-      requested_by
+      to << contact_name
+      to << contact_email
+      to << contact_phone
+      to << requested_by
+      to.compact.each do |to_line|
+        text to_line, inline_format: true, overflow: :shrink_to_fit
+      end
     end
 
     ##
@@ -368,27 +372,21 @@ class PDFQuote < Prawn::Document
 
   def contact_email
     if @quote&.patient&.email
-      text "#{t('patients.card.email')}  #{@quote.patient.email}"
-    else
-      text "\n"
+      "#{t('patients.card.email')}  #{@quote.patient.email}"
     end
   end
 
   def contact_name
     if @quote&.patient
-      text "#{t('patients.quote.to')}  <strong>#{@view.full_name(@quote.patient)}</strong>", inline_format: true
-    else
-      text "\n"
+      "#{t('patients.quote.to')}  <strong>#{@view.full_name(@quote.patient)}</strong>"
     end
   end
 
   def contact_phone
     if @quote&.patient&.cellular
-      text "#{t('patients.patient.cellular')}  #{@view.format_phone_number(@quote.patient.cellular)}"
+      "#{t('patients.patient.cellular')}  #{@view.format_phone_number(@quote.patient.cellular)}"
     elsif @quote&.patient&.phone
-      text "#{t('patients.patient.phone')}  #{@view.format_phone_number(@quote.patient.phone)}"
-    else
-      text "\n"
+      "#{t('patients.patient.phone')}  #{@view.format_phone_number(@quote.patient.phone)}"
     end
   end
 
@@ -419,9 +417,7 @@ class PDFQuote < Prawn::Document
 
   def requested_by
     if @quote.doctor
-      text "#{t('results.index.ordered_by')}  #{@view.organization_or_practitioner(@quote.doctor)}", overflow: :shrink_to_fit
-    else
-      text "\n"
+      "#{t('results.index.ordered_by')}  #{@view.organization_or_practitioner(@quote.doctor)}"
     end
   end
 
