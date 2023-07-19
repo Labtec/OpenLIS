@@ -25,12 +25,10 @@ class Quote < ApplicationRecord
   belongs_to :patient, optional: true
   belongs_to :doctor, counter_cache: true, optional: true
   belongs_to :service_request, optional: true, inverse_of: :quote, class_name: 'Accession'
-  belongs_to :parent_quote, optional: true, class_name: 'Quote'
 
   has_many :line_items, class_name: 'QuoteLineItem', dependent: :destroy
   has_many :lab_tests, -> { order('position ASC') }, through: :line_items, source: :item, source_type: 'LabTest'
   has_many :panels, through: :line_items, source: :item, source_type: 'Panel'
-  has_many :versions, class_name: 'Quote', foreign_key: :parent_quote_id, dependent: :destroy
 
   accepts_nested_attributes_for :line_items
 
@@ -41,8 +39,6 @@ class Quote < ApplicationRecord
   delegate :name, to: :doctor, prefix: true, allow_nil: true
 
   validates :serial_number, presence: true
-  validates :version_number, presence: true, if: -> { parent_quote_id.present? },
-                             uniqueness: { scope: [:parent_quote_id] }
 
   validate :at_least_one_panel_or_test_selected
 
@@ -50,7 +46,6 @@ class Quote < ApplicationRecord
 
   before_validation :set_price_list # TODO: Add GUI
   before_validation :add_serial_number, on: :create
-  before_validation :add_version_number, on: :create
 
   auto_strip_attributes :note
 
@@ -75,16 +70,6 @@ class Quote < ApplicationRecord
 
   def grand_total
     total_price + shipping_and_handling
-  end
-
-  def last_version?
-    return true unless parent_quote
-
-    parent_quote.versions.last == self ? true : false
-  end
-
-  def last_version_number
-    parent_quote.try(:versions).try(:last).try(:version_number).to_i
   end
 
   def panels_lab_test_ids
@@ -121,12 +106,6 @@ class Quote < ApplicationRecord
 
   def add_serial_number
     self.serial_number = parent_quote ? parent_quote.serial_number : Time.now.to_fs(:number).to_i
-  end
-
-  def add_version_number
-    return unless parent_quote
-
-    self.version_number = last_version_number + 1
   end
 
   def at_least_one_panel_or_test_selected
