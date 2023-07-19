@@ -35,4 +35,8 @@ module QuotesHelper
     button_to email_quote_link, email_quote_path(quote),
               method: :put, form: { data: { turbo_method: :put, turbo_confirm: email_quote_confirm } }
   end
+
+  def quote_and_serial_number(quote)
+    "#{t('quotes.quote.quote', serial_number: quote.serial_number)}#{t('quotes.quote.version', version_number: quote.version_number) if quote.version_number}"
+  end
 end

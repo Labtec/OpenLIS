@@ -11,11 +11,9 @@ es-PA:
       drawn_at: 'Extraído el: '
       enter_results: Ingresar Resultados
       ordered_by: 'Solicitado por:'
-      quote: 'Cotización #%{serial_number}'
       reported_at: 'Reportado el: '
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
-      version: '-%{version_number}'
     admin_accession:
       accession: 'Solicitud #%{id}'
       by: 'por: '
@@ -27,11 +25,9 @@ es-PA:
       drawn_at: 'Extraído el: '
       enter_results: Ingresar Resultados
       ordered_by: 'Solicitado por:'
-      quote: 'Cotización #%{serial_number}'
       reported_at: 'Reportado el: '
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
-      version: '-%{version_number}'
     edit:
       title: Cambiar Solicitud
     empty:
@@ -386,7 +382,6 @@ es-PA:
       price: Precio Unitario
       print_quote: Imprimir Cotización (PDF)
       quantity: Cantidad
-      quote: 'Cotización #%{serial_number}'
       quote_detail: Detalle
       shipping_and_handling: 'Servicio a Domicilio:'
       signed_quote: Cotización Firmada
@@ -396,7 +391,6 @@ es-PA:
       total: Total
       total_discount: 'Descuentos:'
       validity: 'Validez:'
-      version: '-%{version_number}'
     update:
       success: Cotización actualizada exitosamente.
   quote_details:
@@ -416,7 +410,6 @@ es-PA:
       ordered_by: 'Solicitado por:'
       price: Precio Unitario
       quantity: Cantidad
-      quote: 'Cotización #%{serial_number}'
       quote_detail: Detalle
       shipping_and_handling: 'Servicio a Domicilio:'
       submit: Guardar
@@ -424,7 +417,6 @@ es-PA:
       taxes: 'Impuestos (Exento):'
       total: Total
       total_discount: 'Descuentos:'
-      version: '-%{version_number}'
   results:
     abnormal: •
     critical_abnormal: •••

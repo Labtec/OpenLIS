@@ -1,10 +1,10 @@
-<% title t('.quote', serial_number: @quote.serial_number) %>
+<% title quote_and_serial_number(@quote) %>
 
 <%= turbo_stream_from :quote_details %>
 
 <fieldset class="<%= @quote.status %>">
   <h1>
-    <%= t('.quote', serial_number: @quote.serial_number) %><%= t('.version', version_number: @quote.version_number) if @quote.version_number %>
+    <%= quote_and_serial_number(@quote) %>
   </h1>
 
   <% if @quote.doctor %>
