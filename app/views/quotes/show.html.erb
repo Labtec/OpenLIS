@@ -4,7 +4,7 @@
 
 <fieldset class="<%= @quote.status %>">
   <h1>
-    <%= t('.quote', serial_number: @quote.serial_number) %>
+    <%= t('.quote', serial_number: @quote.serial_number) %><%= t('.version', version_number: @quote.version_number) if @quote.version_number %>
     <% if @patient && @quote.approved? && !@quote.service_request.present? %>
       <%= button_to t('.order'), order_quote_path(@quote), method: :post %>
     <% end %>
@@ -114,6 +114,7 @@
       <%= link_to t('.quote_detail'), edit_quote_detail_path(@quote) %>
     <% end %>
     <% if @quote.approved? && !@quote.service_request %>
+      <%= link_to t('.amend'), new_quote_version_path(@quote) %> |
       <%= link_to t('.signed_quote'), quote_path(@quote, format: 'pdf', signature: true) %> |
       <%= link_to t('.print_quote'), quote_path(@quote, format: :pdf), data: { turbo: false } %>
       <% if @quote.patient && @quote.patient.email.present? %>

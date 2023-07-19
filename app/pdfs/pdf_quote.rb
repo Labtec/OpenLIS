@@ -35,7 +35,7 @@ class PDFQuote < Prawn::Document
 
     super(
       info: {
-        Title: "#{t('quotes.show.title')} ##{@quote.serial_number}",
+        Title: "#{t('quotes.show.title')} ##{serial_number}",
         Author: 'MasterLab—Laboratorio Clínico Especializado',
         Creator: 'MasterLab',
         Producer: 'MasterLab',
@@ -115,7 +115,7 @@ class PDFQuote < Prawn::Document
     move_down ENVELOPE_ADJUSTMENT_HEIGHT
 
     text @view.l(@quote.approved_at.to_date, format: :with_month_name).to_s, align: :right
-    text "#{t('quotes.show.title')} #{t('quotes.show.number')} <b>#{@quote.serial_number}</b>", inline_format: true, align: :right
+    text "#{t('quotes.show.title')} #{t('quotes.show.number')} <b>#{serial_number}</b>", inline_format: true, align: :right
     text "#{t('quotes.show.validity')}  #{t('datetime.distance_in_words.x_days', count: Quote::VALIDITY_DURATION.in_days.to_i)}", align: :right
 
     move_down 25
@@ -418,6 +418,14 @@ class PDFQuote < Prawn::Document
   def requested_by
     if @quote.doctor
       "#{t('results.index.ordered_by')}  #{@view.organization_or_practitioner(@quote.doctor)}"
+    end
+  end
+
+  def serial_number
+    if @quote.version_number
+      "#{@quote.serial_number}-#{@quote.version_number}"
+    else
+      @quote.serial_number.to_s
     end
   end
 

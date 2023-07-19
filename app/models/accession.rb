@@ -26,6 +26,7 @@ class Accession < ApplicationRecord
   delegate :name, to: :doctor, prefix: true, allow_nil: true
   delegate :external_number, to: :claim, prefix: true, allow_nil: true
   delegate :number, to: :claim, prefix: true, allow_nil: true
+  delegate :unarchive_quotes, to: :quote, allow_nil: true
 
   accepts_nested_attributes_for :results, allow_destroy: true
   accepts_nested_attributes_for :accession_panels, allow_destroy: true
@@ -47,6 +48,7 @@ class Accession < ApplicationRecord
   scope :claimable, -> { where.not(doctor_id: nil) }
 
   before_save :nil_empty_notes
+  before_destroy :unarchive_quotes
   # after_create_commit -> { broadcast_prepend_later_to :accessions, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.accessions_path } }
   after_update_commit -> { broadcast_replace_later_to [true, :accessions], partial: 'accessions/admin_accession' }
   after_update_commit -> { broadcast_replace_later_to [false, :accessions] }

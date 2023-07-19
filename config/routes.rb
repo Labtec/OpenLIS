@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   resources :quote_details, only: [:edit, :update]
 
   resources :quotes do
+    resources :versions, controller: 'quote_versions', only: [:new, :create, :show]
     member do
       patch 'approve'
       post 'order'

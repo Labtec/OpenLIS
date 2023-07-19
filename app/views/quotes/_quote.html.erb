@@ -9,7 +9,7 @@
         <% end %>
       </small>
     </div>
-    <%= link_to t('.quote', serial_number: quote.serial_number), quote_path(quote) %>
+    <%= link_to "#{t('.quote', serial_number: quote.serial_number)}#{t('.version', version_number: quote.version_number) if quote.version_number}", quote_path(quote) %>
     <%= content_tag :tt, full_name(quote.patient) if quote.patient && !@patient %>
     <dt class="second">
       <% if quote.approved? %>

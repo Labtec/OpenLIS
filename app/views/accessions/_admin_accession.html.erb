@@ -13,7 +13,7 @@
     <%= link_to t('.accession', id: accession.id), diagnostic_report_path(accession) %>
   <% end %>
   <% if accession.quote %>
-    | <%= link_to t('.quote', serial_number: accession.quote.serial_number), quote_path(accession.quote) %>
+    | <%= link_to "#{t('.quote', serial_number: accession.quote.serial_number)}#{t('.version', version_number: accession.quote.version_number) if accession.quote.version_number}", quote_path(accession.quote) %>
   <% end %>
   <%= content_tag :tt, full_name(accession.patient) unless @patient %>
   <dt class="second">

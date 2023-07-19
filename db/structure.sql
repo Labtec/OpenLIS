@@ -723,7 +723,9 @@ CREATE TABLE public.quotes (
     shipping_and_handling numeric DEFAULT 0.0 NOT NULL,
     note text,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    parent_quote_id uuid,
+    version_number integer
 );
 
 
@@ -1332,6 +1334,13 @@ CREATE INDEX index_quotes_on_doctor_id ON public.quotes USING btree (doctor_id);
 
 
 --
+-- Name: index_quotes_on_parent_quote_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_quotes_on_parent_quote_id ON public.quotes USING btree (parent_quote_id);
+
+
+--
 -- Name: index_quotes_on_patient_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1472,6 +1481,14 @@ ALTER TABLE ONLY public.quotes
 
 
 --
+-- Name: quotes fk_rails_b7ab1b9172; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.quotes
+    ADD CONSTRAINT fk_rails_b7ab1b9172 FOREIGN KEY (parent_quote_id) REFERENCES public.quotes(id);
+
+
+--
 -- Name: quotes fk_rails_e0eda0a328; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1536,6 +1553,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230612000003'),
 ('20230612000004'),
 ('20230612000005'),
-('20230612000006');
+('20230612000006'),
+('20230624000001');
 
 

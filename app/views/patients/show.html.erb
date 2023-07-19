@@ -2,6 +2,7 @@
 
 <%= turbo_stream_from :patient_name %>
 <%= turbo_stream_from [current_user.admin?, :accessions] %>
+<%= turbo_stream_from :quotes %>
 
 <div class="title_tools">
   <%= link_to t('.new_quote'), new_quote_path(patient_id: @patient) %> |
@@ -12,8 +13,10 @@
 
 <div class="list">
   <div class="log">
-    <ul>
+    <ul id="quotes" is="turbo-frame">
       <%= render @quotes %>
+    </ul>
+    <ul>
       <%= render 'accessions/empty', patient: @patient %>
       <% if current_user.admin? %>
         <%= render partial: 'accessions/admin_accession', collection: @accessions, as: :accession %>

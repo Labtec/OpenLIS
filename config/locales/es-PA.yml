@@ -15,6 +15,7 @@ es-PA:
       reported_at: 'Reportado el: '
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
+      version: '-%{version_number}'
     admin_accession:
       accession: 'Solicitud #%{id}'
       by: 'por: '
@@ -30,6 +31,7 @@ es-PA:
       reported_at: 'Reportado el: '
       tests_ordered: 'Pruebas ordenadas: '
       tests_pending: 'Pruebas pendientes: '
+      version: '-%{version_number}'
     edit:
       title: Cambiar Solicitud
     empty:
@@ -339,6 +341,7 @@ es-PA:
       ordered_by: 'Ordenado por:'
       outpatient: Dejar en blanco si es ambulatorio
       submit: Guardar
+      version: '-%{version_number}'
     index:
       new_quote: Nueva Cotización
       title: Cotizaciones
@@ -356,7 +359,9 @@ es-PA:
       ordered_by: 'Ordenado por: '
       quote: 'Cotización #%{serial_number}'
       tests_ordered: 'Pruebas ordenadas: '
+      version: '-%{version_number}'
     show:
+      amend: Enmendar
       approve: Aprobar
       approved_at: 'Fecha de Aprobación:'
       approved_by: 'Aprobada por:'
@@ -391,6 +396,7 @@ es-PA:
       total: Total
       total_discount: 'Descuentos:'
       validity: 'Validez:'
+      version: '-%{version_number}'
     update:
       success: Cotización actualizada exitosamente.
   quote_details:
@@ -418,6 +424,7 @@ es-PA:
       taxes: 'Impuestos (Exento):'
       total: Total
       total_discount: 'Descuentos:'
+      version: '-%{version_number}'
   results:
     abnormal: •
     critical_abnormal: •••
