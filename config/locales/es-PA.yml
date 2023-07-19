@@ -62,6 +62,10 @@ es-PA:
     claims:
       submit:
         submit_alert: Debe tener External y Claim Number
+    lab_tests:
+      form:
+        cancel: Cancelar
+        or: o
   diagnostic_reports:
     edit:
       accession: 'Solicitud #%{id}'

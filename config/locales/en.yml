@@ -62,6 +62,10 @@ en:
     claims:
       submit:
         submit_alert: Must have External and Claim Number
+    lab_tests:
+      form:
+        cancel: Cancel
+        or: or
   diagnostic_reports:
     edit:
       accession: 'Accession #%{id}'
