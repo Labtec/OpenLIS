@@ -1,10 +1,10 @@
-<% title t('.quote', serial_number: @quote.serial_number) %>
+<% title quote_and_serial_number(@quote) %>
 
 <%= turbo_stream_from :quotes %>
 
 <fieldset class="<%= @quote.status %>">
   <h1>
-    <%= t('.quote', serial_number: @quote.serial_number) %><%= t('.version', version_number: @quote.version_number) if @quote.version_number %>
+    <%= quote_and_serial_number(@quote) %>
     <% if @patient && @quote.approved? && !@quote.service_request.present? %>
       <%= button_to t('.order'), order_quote_path(@quote), method: :post %>
     <% end %>

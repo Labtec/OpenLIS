@@ -11,11 +11,9 @@ en:
       drawn_at: 'Drawn at: '
       enter_results: Enter Results
       ordered_by: 'Ordered by:'
-      quote: 'Quote #%{serial_number}'
       reported_at: 'Reported at: '
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
-      version: '-%{version_number}'
     admin_accession:
       accession: 'Order #%{id}'
       by: 'by: '
@@ -27,11 +25,9 @@ en:
       drawn_at: 'Drawn at: '
       enter_results: Enter Results
       ordered_by: 'Ordered by:'
-      quote: 'Quote #%{serial_number}'
       reported_at: 'Reported at: '
       tests_ordered: 'Tests ordered: '
       tests_pending: 'Tests pending: '
-      version: '-%{version_number}'
     edit:
       title: Change Order
     empty:
@@ -66,6 +62,10 @@ en:
     claims:
       submit:
         submit_alert: Must have External and Claim Number
+    lab_tests:
+      form:
+        cancel: Cancel
+        or: or
   diagnostic_reports:
     edit:
       accession: 'Accession #%{id}'
@@ -386,7 +386,6 @@ en:
       price: Unit Price
       print_quote: Print Quote (PDF)
       quantity: Quantity
-      quote: 'Quote #%{serial_number}'
       quote_detail: Quote Detail
       shipping_and_handling: 'Home Visit:'
       signed_quote: Signed Quote
@@ -396,7 +395,6 @@ en:
       total: Total
       total_discount: 'Discounts:'
       validity: 'Valid for:'
-      version: '-%{version_number}'
     update:
       success: Successfully updated quote.
   quote_details:
@@ -416,7 +414,6 @@ en:
       ordered_by: 'Ordered by:'
       price: Unit Price
       quantity: Quantity
-      quote: 'Quote #%{serial_number}'
       quote_detail: Quote Detail
       shipping_and_handling: 'Home Visit:'
       submit: Submit
@@ -424,7 +421,6 @@ en:
       taxes: 'Taxes:'
       total: Total
       total_discount: 'Discounts:'
-      version: '-%{version_number}'
   results:
     abnormal: A
     critical_abnormal: AA
