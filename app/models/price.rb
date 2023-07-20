@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
+# Consider caching this model
 class Price < ApplicationRecord
-  # Consider caching this model
-
   belongs_to :price_list
   belongs_to :priceable, polymorphic: true
 
@@ -11,4 +10,14 @@ class Price < ApplicationRecord
   validates :priceable_type, presence: true
 
   scope :from_price_list, ->(price_list) { where(price_list: price_list) }
+
+  delegate :status, to: :priceable
+
+  def self.active
+    active_prices = []
+    all.each do |price|
+      active_prices << price if price.status == 'active'
+    end
+    active_prices
+  end
 end

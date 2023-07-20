@@ -6,7 +6,7 @@ module Admin
 
     def index
       @priceable = find_priceable || PriceList.last
-      @prices = @priceable.prices
+      @prices = @priceable.prices.active
 
       pdf = LabPriceList.new(@priceable, @prices, view_context)
       send_data(pdf.render, filename: 'lista_de_precios.pdf',
