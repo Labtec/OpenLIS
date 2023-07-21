@@ -43,6 +43,9 @@ class Quote < ApplicationRecord
   validate :at_least_one_panel_or_test_selected
 
   scope :recent, -> { order(created_at: :desc) }
+  scope :unarchived, -> { where.not(status: 'archived') }
+  scope :unrequested, -> { where(service_request_id: nil) }
+  scope :active, -> { unrequested.and(unarchived) }
 
   before_validation :set_price_list # TODO: Add GUI
   before_validation :add_serial_number, on: :create

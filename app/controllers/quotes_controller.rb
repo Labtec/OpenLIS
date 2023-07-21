@@ -4,7 +4,7 @@ class QuotesController < ApplicationController
   before_action :set_quote, only: %i[show edit update destroy approve email order]
 
   def index
-    @quotes = Quote.recent.page(page)
+    @quotes = Quote.recent.active.page(page)
   end
 
   def show
