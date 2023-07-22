@@ -9,7 +9,7 @@ class PatientsController < ApplicationController
 
   def show
     @accessions = @patient.accessions.recently.queued.page(page)
-    @quotes = @patient.quotes.recent
+    @quotes = @patient.quotes.recent.active
   rescue ActiveRecord::RecordNotFound
     redirect_to patients_url, alert: t('.patient_not_found')
   end

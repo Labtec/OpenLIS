@@ -29,6 +29,7 @@ class LabTest < ApplicationRecord
 
   acts_as_list scope: :department
 
+  scope :active, -> { where(status: 'active') }
   scope :sorted, -> { order(name: :asc) }
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
 
