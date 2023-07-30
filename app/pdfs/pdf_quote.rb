@@ -323,12 +323,17 @@ class PDFQuote < Prawn::Document
   private
 
   def add_mark(item, endnotes_array)
-    return "#{FOOTNOTE_SYMBOLS[0]}" if item.fasting_status_duration.present?
+    return if item.patient_preparation.blank? && item.fasting_status_duration.blank?
 
-    return if item.patient_preparation.blank?
+    marks = []
+    marks << "#{FOOTNOTE_SYMBOLS[0]}" if item.fasting_status_duration.present?
 
-    endnotes_array << @view.render_markdown_pdf(item.patient_preparation)
-    "<sup>#{endnotes_array.size}</sup>"
+    if item.patient_preparation
+      endnotes_array << @view.render_markdown_pdf(item.patient_preparation)
+      marks << "<sup>#{endnotes_array.size}</sup>"
+    end
+
+    marks.join('<sup>, </sup>')
   end
 
   def letterhead
