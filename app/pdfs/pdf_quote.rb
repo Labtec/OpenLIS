@@ -252,7 +252,7 @@ class PDFQuote < Prawn::Document
     # Footnotes
     # Fasting
     if @quote.line_items.map(&:fasting_status_duration).any?
-      text "#{FOOTNOTE_SYMBOLS[0]}Se recomienda un ayuno de #{max_fasting_duration}, a menos que lo indique la solicitud.", inline_format: true
+      text "#{FOOTNOTE_SYMBOLS[0]}Se recomienda un ayuno de 12 horas, a menos que lo indique la solicitud.", inline_format: true
     else
       text "No se requiere ayuno.", inline_format: true
     end
@@ -414,13 +414,6 @@ class PDFQuote < Prawn::Document
       move_up 3
       svg File.read('app/assets/images/axa_bw.svg')
     end
-  end
-
-  def max_fasting_duration
-    max_hours = @quote.lab_tests.pluck(:fasting_status_duration).compact.max
-    return unless max_hours
-
-    pluralize(max_hours.parts[:hours], 'hora')
   end
 
   def page_break?(next_box)
