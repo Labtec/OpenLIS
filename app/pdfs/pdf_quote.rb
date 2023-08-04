@@ -417,10 +417,9 @@ class PDFQuote < Prawn::Document
   end
 
   def max_fasting_duration
-    max_hours = @quote.lab_tests.pluck(:fasting_status_duration).compact.max
-    return unless max_hours
+    max_hours = @quote.lab_tests.pluck(:fasting_status_duration).compact.max.parts[:hours]
 
-    pluralize(max_hours.parts[:hours], 'hora')
+    pluralize(max_hours, 'hora')
   end
 
   def page_break?(next_box)
