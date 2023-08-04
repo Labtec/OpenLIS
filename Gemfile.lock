@@ -95,7 +95,7 @@ GEM
       tzinfo (~> 2.0)
     acts_as_list (1.1.0)
       activerecord (>= 4.2)
-    addressable (2.8.4)
+    addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     airbrussh (1.4.1)
       sshkit (>= 1.6.1, != 1.7.0)
@@ -150,7 +150,7 @@ GEM
       xpath (~> 3.2)
     cbor (0.5.9.6)
     chunky_png (1.4.0)
-    commonmarker (0.23.9)
+    commonmarker (0.23.10)
     concurrent-ruby (1.2.2)
     cose (1.3.0)
       cbor (~> 0.5.9)
@@ -284,7 +284,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
-    rack-mini-profiler (3.1.0)
+    rack-mini-profiler (3.1.1)
       rack (>= 1.2.0)
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -302,7 +302,7 @@ GEM
       activesupport (= 7.0.6)
       bundler (>= 1.15.0)
       railties (= 7.0.6)
-    rails-dom-testing (2.1.1)
+    rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
@@ -345,7 +345,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.10.0)
+    selenium-webdriver (4.11.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -397,17 +397,13 @@ GEM
       openssl (>= 2.2)
       safety_net_attestation (~> 0.4.0)
       tpm-key_attestation (~> 0.12.0)
-    webdrivers (5.2.0)
-      nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (~> 4.0)
     websocket (1.2.9)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.10)
+    zeitwerk (2.6.11)
 
 PLATFORMS
   ruby
@@ -468,7 +464,6 @@ DEPENDENCIES
   uri (>= 0.12.2)
   web-console
   webauthn
-  webdrivers
 
 RUBY VERSION
    ruby 3.2.0p0
