@@ -94,7 +94,7 @@ class Quote < ApplicationRecord
   end
 
   def items_list
-    line_items.map(&:item).pluck(:code)
+    line_items.map(&:item).compact.pluck(:code)
   end
 
   def total_discount
