@@ -4,7 +4,4 @@
   <td><%= unit.si %></td>
   <td><%= unit.conversion_factor %></td>
   <td><%= link_to 'Edit', edit_admin_unit_path(unit) %></td>
-  <td>
-    <%= link_to 'Delete', [:admin, unit], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-  </td>
 <% end %>

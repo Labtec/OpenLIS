@@ -6,7 +6,4 @@
   <td><%= panel.description %></td>
   <td><%= panel.lab_test_code_list.join(', ') %></td>
   <td><%= link_to 'Edit', edit_admin_panel_path(panel) %></td>
-  <td>
-    <%= link_to 'Delete', [:admin, panel], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-  </td>
 <% end %>
