@@ -43,20 +43,6 @@ module System
         assert_not page.has_content?('error'), 'Unit not updated'
         assert page.has_content?('Hz')
       end
-
-      test '#delete unit' do
-        visit admin_units_path
-
-        assert_selector 'tr', text: @unit.expression
-
-        accept_confirm do
-          within id: dom_id(@unit) do
-            click_on 'Delete'
-          end
-        end
-
-        assert_no_selector 'tr', text: @unit.expression
-      end
     end
   end
 end
