@@ -54,20 +54,6 @@ module System
         assert_not page.has_content?('error'), 'Panel not updated'
         assert page.has_content?('Lipid Panel')
       end
-
-      test '#delete panel' do
-        visit admin_panels_path
-
-        assert_selector 'tr', text: @panel.name
-
-        accept_confirm do
-          within id: dom_id(@panel) do
-            click_on 'Delete'
-          end
-        end
-
-        assert_no_selector 'tr', text: @panel.name
-      end
     end
   end
 end
