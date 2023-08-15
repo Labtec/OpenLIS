@@ -16,7 +16,7 @@ class LabPriceList < Prawn::Document
         Producer: 'MasterLab',
         Creator: 'MasterLab',
         CreationDate: Time.current,
-        Keywords: 'precio lista prueba laboratorio'
+        Keywords: 'precio lista prueba laboratorio chargemaster'
       },
       inline: true,
       # Letter (8.5 x 11 in) is 612 x 792
