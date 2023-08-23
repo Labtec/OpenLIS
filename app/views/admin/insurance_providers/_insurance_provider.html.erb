@@ -3,5 +3,5 @@
   <td><%= link_to 'Show', [:admin, insurance_provider] %></td>
   <td><%= link_to 'Edit', edit_admin_insurance_provider_path(insurance_provider) %></td>
   <td><%= link_to 'Claims', admin_insurance_provider_claims_path(insurance_provider) %></td>
-  <td><%= link_to 'Price List', admin_insurance_provider_prices_path(insurance_provider, format: 'pdf'), data: { turbo: false } %></td>
+  <td><%= link_to 'Chargemaster', admin_insurance_provider_prices_path(insurance_provider, format: 'pdf'), data: { turbo: false } %></td>
 <% end %>
