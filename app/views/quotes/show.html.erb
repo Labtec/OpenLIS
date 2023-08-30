@@ -6,7 +6,7 @@
   <h1>
     <%= quote_and_serial_number(@quote) %>
     <% if @patient && @quote.approved? && !@quote.service_request.present? %>
-      <%= button_to t('.order'), order_quote_path(@quote), method: :post %>
+      <%= button_to t('.order'), order_quote_path(@quote), method: :post, form: { data: { turbo_confirm: t('.confirm_order') } } %>
     <% end %>
   </h1>
 

@@ -371,6 +371,7 @@ es-PA:
       code: Código
       confirm_email: ¿Desea enviar la cotización a %{email}?
       confirm_emailed: ¿Desea enviar nuevamente la cotización a %{email}?
+      confirm_order: ¿Desea generar una solicitud a partir de esta cotización?
       created_at: 'Fecha de Creación:'
       description: Descripción
       discount: Descuento

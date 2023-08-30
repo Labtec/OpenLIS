@@ -371,6 +371,7 @@ en:
       code: Code
       confirm_email: Would you like to email the quote to %{email}?
       confirm_emailed: Would you like to email the quote to %{email} again?
+      confirm_order: Would you like to order this quote?
       created_at: 'Created at:'
       description: Description
       discount: Discount
