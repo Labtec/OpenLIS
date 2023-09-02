@@ -254,9 +254,9 @@ class ClaimPreview < Prawn::Document
       end
     end
     bounding_box([left_margin + rev_cd_width + description_width + hpcs_rates_width + serv_date_width + serv_units_width, (top_margin - field_height * 35)], width: totals_width, height: field_height) do
-      @claim_total_price << @total_price.sum
+      @claim_total_price << @total_price.compact.sum
       pad(form_padding - 1) do
-        text "<b><i>#{@view.number_to_currency @total_price.sum, unit: '', separator: ' '}</i></b>", align: :right, inline_format: true, size: 9
+        text "<b><i>#{@view.number_to_currency @total_price.compact.sum, unit: '', separator: ' '}</i></b>", align: :right, inline_format: true, size: 9
       end
     end
     # FL 50A, B, and C - Payer Identification
@@ -270,7 +270,7 @@ class ClaimPreview < Prawn::Document
     # FL 55A, B, and C - Estimated Amount Due From Patient
     bounding_box([left_margin + prior_payments_width, (top_margin - field_height * 37)], width: due_from_patient_width, height: field_height) do
       pad(form_padding) do
-        text (@view.number_to_currency @total_price.sum, unit: '', separator: ' ').to_s, align: :right
+        text (@view.number_to_currency @total_price.compact.sum, unit: '', separator: ' ').to_s, align: :right
       end
     end
     # FLs 58A, B, and C - Insured's Name
@@ -459,7 +459,7 @@ class ClaimPreview < Prawn::Document
               end
               bounding_box([rev_cd_width + description_width + hpcs_rates_width + serv_date_width + serv_units_width, field_height], width: totals_width, height: field_height) do
                 pad(form_padding - 1) do
-                  text "<b><i>#{@view.number_to_currency @total_price.sum, unit: '', separator: ' '}</i></b>", align: :right, inline_format: true, size: 9
+                  text "<b><i>#{@view.number_to_currency @total_price.compact.sum, unit: '', separator: ' '}</i></b>", align: :right, inline_format: true, size: 9
                 end
               end
               # FL 50A, B, and C - Payer Identification
@@ -473,7 +473,7 @@ class ClaimPreview < Prawn::Document
               # FL 55A, B, and C - Estimated Amount Due From Patient
               bounding_box([prior_payments_width, -field_height], width: due_from_patient_width, height: field_height) do
                 pad(form_padding) do
-                  text (@view.number_to_currency @total_price.sum, unit: '', separator: ' ').to_s, align: :right
+                  text (@view.number_to_currency @total_price.compact.sum, unit: '', separator: ' ').to_s, align: :right
                 end
               end
               # FLs 58A, B, and C - Insured's Name
