@@ -240,6 +240,8 @@ class ClaimsReport < Prawn::Document
       # Lab Tests Table
       @lab_tests = []
       claim.accession.lab_tests.with_price.map do |lab_test|
+        next if lab_test.prices.find_by(price_list_id: 1)&.amount.nil?
+
         @lab_tests.push lab_test if (lab_test.panel_ids & claim.accession.panel_ids).empty?
       end
       lab_tests_table = @lab_tests.map do |lab_test|
