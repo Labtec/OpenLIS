@@ -215,8 +215,9 @@ GEM
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
-    importmap-rails (1.2.1)
+    importmap-rails (1.2.3)
       actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.6.0)
     irb (1.8.3)
@@ -256,11 +257,11 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.1003)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.4)
+    mini_portile2 (2.8.5)
     minitest (5.20.0)
     msgpack (1.7.2)
     mutex_m (0.1.2)
-    net-imap (0.4.1)
+    net-imap (0.4.2)
       date
       net-protocol
     net-pop (0.1.2)
