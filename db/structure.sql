@@ -1271,6 +1271,13 @@ CREATE INDEX index_patients_on_updated_at ON public.patients USING btree (update
 
 
 --
+-- Name: index_patients_search; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_patients_search ON public.patients USING gin (((((((to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((identifier)::text, ''::text))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((family_name)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((family_name2)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((partner_name)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((given_name)::text, ''::text)))) || to_tsvector('simple'::regconfig, public.my_unaccent(COALESCE((middle_name)::text, ''::text))))));
+
+
+--
 -- Name: index_prices_on_price_list_id; Type: INDEX; Schema: public; Owner: -
 --
 
