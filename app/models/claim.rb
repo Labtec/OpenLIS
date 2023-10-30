@@ -79,7 +79,7 @@ class Claim < ApplicationRecord
       total_price << lab_test.prices.find_by(price_list_id: 1)&.amount
     end
 
-    total_price.sum
+    total_price.compact.sum
   end
 
   def valid_submission?
