@@ -74,6 +74,7 @@ class ClaimsReport < Prawn::Document
     name_width = 210
     birthdate_width = 65
     gender_width = 22
+    admission_date_width = 43
     occurrence_code_width = 22
     occurrence_date_width = 50
     insurance_provider_width = 303
@@ -202,6 +203,13 @@ class ClaimsReport < Prawn::Document
       bounding_box([left_margin + birthdate_width, (top_margin - field_height * 3)], width: gender_width, height: field_height) do
         pad(form_padding) do
           text claim.patient.gender, align: :center
+        end
+      end
+      # FL 12 - Admission Date
+      # Required. The provider enters the month, day, and year (MMDDCCYY) of the admission date.
+      bounding_box([left_margin + birthdate_width + gender_width, (top_margin - field_height * 3)], width: admission_date_width, height: field_height) do
+        pad(form_padding) do
+          text claim.accession.drawn_at.to_date.to_fs(:mmddyy), align: :center
         end
       end
       # FLs 31, 32, 33 and 34 - Occurrence Codes and Dates
