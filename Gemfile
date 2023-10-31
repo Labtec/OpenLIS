@@ -44,10 +44,6 @@ gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'webauthn'
 
-gem 'irb'
-gem 'matrix'
-gem 'reline'
-
 group :development, :test do
   gem 'capistrano3-puma'
   gem 'capistrano-bundler'

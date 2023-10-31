@@ -135,7 +135,7 @@ GEM
     bigdecimal (3.1.4)
     bindata (2.4.15)
     bindex (0.8.1)
-    bootsnap (1.16.0)
+    bootsnap (1.17.0)
       msgpack (~> 1.2)
     brakeman (6.0.1)
     builder (3.2.4)
@@ -261,7 +261,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     mutex_m (0.1.2)
-    net-imap (0.4.2)
+    net-imap (0.4.3)
       date
       net-protocol
     net-pop (0.1.2)
@@ -347,7 +347,7 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.0.6)
+    rake (13.1.0)
     rb-kqueue (0.2.8)
       ffi (>= 0.5.0)
     rdoc (6.5.0)
@@ -465,12 +465,10 @@ DEPENDENCIES
   health_cards!
   i18n-tasks
   importmap-rails
-  irb
   jbuilder
   jquery-rails
   jquery-ui-rails!
   kaminari
-  matrix
   nokogiri
   pdf-core!
   pg
@@ -485,7 +483,6 @@ DEPENDENCIES
   rails-html-sanitizer
   rails-i18n
   rb-kqueue
-  reline
   sassc-rails
   selenium-webdriver
   semacode!
