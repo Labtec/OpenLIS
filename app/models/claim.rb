@@ -29,7 +29,7 @@ class Claim < ApplicationRecord
     lab_tests.with_price.map do |lab_test|
       next if lab_test.prices.find_by(price_list_id: 1)&.amount.nil?
 
-      lab_tests_list.push lab_test if (lab_test.panel_ids & panel_ids).empty?
+      lab_tests_list.push lab_test if (lab_test.panel_ids && panel_ids).empty?
     end
 
     lab_tests_list.map do |lab_test|
