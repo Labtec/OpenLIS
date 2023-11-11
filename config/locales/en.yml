@@ -551,9 +551,9 @@ en:
   auth:
     sessions:
       webauthn:
-        title: Security key
-        message: When you are ready to authenticate, press the button below.
-        submit: Use security key
+        title: Passkey or security key
+        message: When you are ready, authenticate using the button below.
+        submit: Use passkey or security key
   settings:
     webauthn_credentials:
       create:
