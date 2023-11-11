@@ -551,9 +551,9 @@ es-PA:
   auth:
     sessions:
       webauthn:
-        title: Llave de Seguridad
-        message: Cuando esté listo para autenticarse, presione el botón de abajo.
-        submit: Usar llave de seguridad
+        title: Passkey o llave de seguridad
+        message: Cuando esté listo, autentíquese usando el botón de abajo.
+        submit: Usar passkey o llave de seguridad
   settings:
     webauthn_credentials:
       create:
