@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Labtec/pdf-core.git
-  revision: 007ac86231ef94ce5ff304dcf6121c171004e410
+  revision: 4d8a0067cec4250b18823f119b1c2fed3c6d19bf
   branch: pdfa-1b
   specs:
     pdf-core (0.9.0)
@@ -111,7 +111,7 @@ GEM
     auto_strip_attributes (2.6.0)
       activerecord (>= 4.0)
     awrence (1.2.1)
-    barby (0.6.8)
+    barby (0.6.9)
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.20)
@@ -127,7 +127,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
-    brakeman (6.0.1)
+    brakeman (6.1.0)
     builder (3.2.4)
     capistrano (3.18.0)
       airbrussh (>= 1.0.0)
@@ -208,7 +208,7 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.6.0)
-    irb (1.9.1)
+    irb (1.10.1)
       rdoc
       reline (>= 0.3.8)
     jbuilder (2.11.5)
@@ -244,7 +244,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.5.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2023.1003)
+    mime-types-data (3.2023.1205)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
     minitest (5.20.0)
@@ -293,7 +293,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (2.2.8)
-    rack-mini-profiler (3.1.1)
+    rack-mini-profiler (3.3.0)
       rack (>= 1.2.0)
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -332,9 +332,9 @@ GEM
     rake (13.1.0)
     rb-kqueue (0.2.8)
       ffi (>= 0.5.0)
-    rdoc (6.6.0)
+    rdoc (6.6.1)
       psych (>= 4.0.0)
-    regexp_parser (2.8.2)
+    regexp_parser (2.8.3)
     reline (0.4.1)
       io-console (~> 0.5)
     responders (3.1.1)
@@ -356,7 +356,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.15.0)
+    selenium-webdriver (4.16.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
