@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Labtec/pdf-core.git
-  revision: 4d8a0067cec4250b18823f119b1c2fed3c6d19bf
+  revision: 1002739234a6d0617baee2839a2ef7661a584b6c
   branch: pdfa-1b
   specs:
     pdf-core (0.9.0)
@@ -111,7 +111,7 @@ GEM
       tzinfo (~> 2.0)
     acts_as_list (1.1.0)
       activerecord (>= 4.2)
-    addressable (2.8.5)
+    addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     airbrussh (1.5.0)
       sshkit (>= 1.6.1, != 1.7.0)
