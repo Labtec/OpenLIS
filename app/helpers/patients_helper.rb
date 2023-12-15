@@ -43,11 +43,18 @@ module PatientsHelper
               "(#{animal_species_name(patient.animal_type)})"].join(' ').squish
     end
 
-    [patient.given_name,
-     patient.middle_name,
-     patient.family_name,
-     patient.family_name2,
-     patient.partner_name].join(' ').squish
+    if patient.family_name2.present? && patient.partner_name.present?
+      [patient.given_name,
+       patient.middle_name,
+       patient.family_name,
+       patient.partner_name].join(' ').squish
+    else
+      [patient.given_name,
+       patient.middle_name,
+       patient.family_name,
+       patient.family_name2,
+       patient.partner_name].join(' ').squish
+    end
   end
 
   def name_last_comma_first_mi(patient)

@@ -13,6 +13,11 @@ class PatientsNameHelperTest < ActionView::TestCase
     assert_equal 'John Fitzgerald Doe Rockefeller', full_name(@patient)
   end
 
+  test 'display full legal name' do
+    @patient.update(partner_name: 'Morgan')
+    assert_equal 'John Fitzgerald Doe Morgan', full_name(@patient)
+  end
+
   test 'display name as last name comma first name without middle initial' do
     @patient.update(middle_name: '')
     assert_equal 'Doe, John', name_last_comma_first_mi(@patient)
