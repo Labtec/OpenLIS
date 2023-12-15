@@ -168,9 +168,9 @@ GEM
     dalli (3.2.6)
     date (3.3.4)
     date_time_precision (0.8.1)
-    debug (1.8.0)
-      irb (>= 1.5.0)
-      reline (>= 0.3.1)
+    debug (1.9.0)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
     devise (4.9.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -207,7 +207,7 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
-    io-console (0.6.0)
+    io-console (0.7.0)
     irb (1.10.1)
       rdoc
       reline (>= 0.3.8)
@@ -249,7 +249,7 @@ GEM
     mini_portile2 (2.8.5)
     minitest (5.20.0)
     msgpack (1.7.2)
-    net-imap (0.4.7)
+    net-imap (0.4.8)
       date
       net-protocol
     net-pop (0.1.2)
@@ -481,4 +481,4 @@ RUBY VERSION
    ruby 3.2.0p0
 
 BUNDLED WITH
-   2.4.22
+   2.5.0
