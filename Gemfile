@@ -14,7 +14,7 @@ gem 'auto_strip_attributes'
 gem 'barby'
 gem 'bcrypt'
 gem 'bootsnap', require: false
-gem 'commonmarker'
+gem 'commonmarker', '0.23.10'
 gem 'dalli'
 gem 'devise'
 gem 'ed25519'
