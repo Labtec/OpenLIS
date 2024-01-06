@@ -263,17 +263,6 @@ class PDFQuote < Prawn::Document
 
     move_down 15
 
-    page_break?(insurance_providers_box_height)
-
-    ##
-    # Insurance Providers
-    bounding_box([bounds.left, cursor], width: bounds.width, height: insurance_providers_box_height) do
-      text 'Compañías aseguradoras afiliadas:'
-      logo_axa_bw
-    end
-
-    move_down 10
-
     page_break?(payment_info_box_height)
 
     ##
