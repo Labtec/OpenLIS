@@ -595,7 +595,8 @@ CREATE TABLE public.price_lists (
     id bigint DEFAULT nextval('public.price_lists_id_seq'::regclass) NOT NULL,
     name character varying(510) NOT NULL,
     created_at timestamp with time zone,
-    updated_at timestamp with time zone
+    updated_at timestamp with time zone,
+    status integer DEFAULT 0 NOT NULL
 );
 
 
@@ -1518,6 +1519,7 @@ ALTER TABLE ONLY public.qualified_intervals
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240112000000'),
 ('20230624000001'),
 ('20230612000006'),
 ('20230612000005'),

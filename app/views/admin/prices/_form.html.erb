@@ -5,7 +5,7 @@
 
     <div class="price_list_id">
       <%= form.label :price_list_id %>
-      <%= form.collection_select :price_list_id, PriceList.all, :id, :name, include_blank: true %>
+      <%= form.collection_select :price_list_id, PriceList.active, :id, :name, include_blank: true %>
     </div>
 
     <div class="amount">

@@ -109,9 +109,11 @@
     <% unless @lab_test.new_record? %>
       <h2>Prices</h2>
       <% @lab_test.prices.includes(:price_list).each do |price| %>
-        <%= price.price_list.name %>:
-        <%= number_to_currency price.amount %>
-        <%= link_to 'Edit', edit_admin_price_path(price) %><br />
+        <% if price.price_list.active? %>
+          <%= price.price_list.name %>:
+          <%= number_to_currency price.amount %>
+          <%= link_to 'Edit', edit_admin_price_path(price) %><br />
+        <% end %>
       <% end %>
       <p><%= link_to 'New Price', new_admin_lab_test_price_path(@lab_test) %></p>
     <% end %>

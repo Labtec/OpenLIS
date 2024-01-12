@@ -2,7 +2,7 @@
   <legend>Prices</legend>
   <% form.fields_for :prices do |price| %>
   <div class="price_list">
-    <%= price.collection_select :price_list_id, PriceList.all, :id, :name %>
+    <%= price.collection_select :price_list_id, PriceList.active, :id, :name %>
     <%= price.text_field :amount %>
   </div>
   <% end %>

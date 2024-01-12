@@ -6,7 +6,7 @@
   </p>
   <p>
     <%= form.label :price_list_id %><br />
-    <%= form.collection_select :price_list_id, PriceList.all, :id, :name, { include_blank: true } %>
+    <%= form.collection_select :price_list_id, PriceList.active, :id, :name, { include_blank: true } %>
   </p>
 
   <div class="buttonbar">
