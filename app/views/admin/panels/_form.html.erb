@@ -57,9 +57,11 @@
   <fieldset>
     <legend>Prices</legend>
     <% form.object.prices.each do |price| %>
-      <%= price.price_list.name %>:
-      <%= number_to_currency price.amount %>
-      <%= link_to 'Edit', edit_admin_price_path(price.id) %><br />
+      <% if price.price_list.active? %>
+        <%= price.price_list.name %>:
+        <%= number_to_currency price.amount %>
+        <%= link_to 'Edit', edit_admin_price_path(price.id) %><br />
+      <% end %>
     <% end %>
     <p><%= link_to 'New Price', new_admin_panel_price_path(@panel) %></p>
   </fieldset>

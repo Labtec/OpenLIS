@@ -8,4 +8,9 @@ class PriceList < ApplicationRecord
   validates :name, uniqueness: true
 
   scope :grouped, -> { group(:name) }
+
+  enum :status, {
+    active: 0,
+    archived: 1
+  }, default: :active
 end

@@ -1,4 +1,4 @@
 <div class="price">
-  <%= form.collection_select :price_list_id, PriceList.all, :id, :name, include_blank: true %>
+  <%= form.collection_select :price_list_id, PriceList.active, :id, :name, include_blank: true %>
   <%= form.text_field :amount %>
 </div>

@@ -595,7 +595,8 @@ CREATE TABLE public.price_lists (
     id bigint DEFAULT nextval('public.price_lists_id_seq'::regclass) NOT NULL,
     name character varying(510) NOT NULL,
     created_at timestamp with time zone,
-    updated_at timestamp with time zone
+    updated_at timestamp with time zone,
+    status integer DEFAULT 0 NOT NULL
 );
 
 
@@ -1561,6 +1562,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230612000004'),
 ('20230612000005'),
 ('20230612000006'),
-('20230624000001');
+('20230624000001'),
+('20240112000000');
 
 
