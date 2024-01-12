@@ -27,6 +27,8 @@ class QuoteVersionsController < ApplicationController
     @quote.doctor_id = previous_quote.doctor_id
     @quote.panel_ids = previous_quote.panel_ids
     @quote.lab_test_ids = previous_quote.lab_test_ids
+    @quote.note = previous_quote.note
+    @quote.shipping_and_handling = previous_quote.shipping_and_handling
 
     @patient = previous_quote.patient
   end

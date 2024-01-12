@@ -20,8 +20,10 @@
 
     <h2><%= t('.quote_details') %></h2>
 
+    <%= form.hidden_field :note %>
     <%= form.hidden_field :patient_id %>
     <%= form.hidden_field :parent_quote_id %>
+    <%= form.hidden_field :shipping_and_handling %>
     <div class="doctor_name">
       <%= form.label :doctor_name, t('.ordered_by') %>
       <%= form.text_field :doctor_name, placeholder: t('.outpatient'),
