@@ -120,7 +120,7 @@ class QuotesController < ApplicationController
   end
 
   def quote_params
-    params.require(:quote).permit(:patient_id, :doctor_name, :note, { lab_test_ids: [] }, { panel_ids: [] }, :parent_quote_id)
+    params.require(:quote).permit(:patient_id, :doctor_name, :note, { lab_test_ids: [] }, { panel_ids: [] }, :parent_quote_id, :shipping_and_handling)
   end
 
   def page
