@@ -73,7 +73,6 @@ class Quote < ApplicationRecord
   end
 
   def grand_total
-    shipping_and_handling.to_d ||= 0
     total_price + shipping_and_handling.to_d
   end
 
