@@ -39,7 +39,7 @@ class Quote < ApplicationRecord
   delegate :name, to: :doctor, prefix: true, allow_nil: true
 
   validates :serial_number, presence: true
-  validates :shipping_and_handling, numericality: { greater_than_or_equal_to: 0, only_numeric: true }
+  validates :shipping_and_handling, numericality: { greater_than_or_equal_to: 0 }
 
   validate :at_least_one_panel_or_test_selected
 
