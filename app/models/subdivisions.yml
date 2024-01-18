@@ -959,7 +959,7 @@ provinces:
           - Puerto Obaldía
           - Tubualá
   pa_nb:
-    name: Ngöbe-Buglé
+    name: Ngäbe-Buglé
     capital: Llano Tugrí
     indigenous_region: true
     districts:
