@@ -1,0 +1,645 @@
+Corregimiento,Name
+1-1-1,Bocas del Toro (Cabecera)
+1-1-2,Bastimentos
+1-1-3,Cauchero
+1-1-4,Punta Laurel
+1-1-5,Tierra Oscura
+1-2-1,Changuinola (Cabecera)
+1-2-3,Guabito
+1-2-4,Teribe
+1-2-5,Valle del Risco
+1-2-6,El Empalme
+1-2-7,Las Tablas
+1-3-1,Chiriquí Grande (Cabecera)
+1-3-2,Miramar
+1-3-3,Punta Peña
+1-3-4,Punta Robalo
+1-3-5,Rambala
+1-3-6,Bajo del Cedro
+1-4-1,Almirante (Cabecera)
+1-4-2,Barriada Guaymi
+1-4-3,Barrio Francés
+1-4-4,Nance de Risco
+1-4-5,Valle de Aguas Arriba
+1-4-6,Valle de Risco
+2-1-1,Aguadulce (Cabecera)
+2-1-2,El Cristo
+2-1-3,El Roble
+2-1-4,Pocrí
+2-1-5,Barrios Unidos
+2-2-1,Antón (Cabecera)
+2-2-2,Cabuya
+2-2-3,El Chirú
+2-2-4,El Retiro
+2-2-5,El Valle
+2-2-6,Juan Díaz
+2-2-7,Río Hato
+2-2-8,San Juan de Dios
+2-2-9,Santa Rita
+2-2-10,Caballero
+2-3-1,La Pintada (Cabecera)
+2-3-2,El Harino
+2-3-3,El Potrero
+2-3-4,Llano Grande
+2-3-5,Piedras Gordas
+2-3-6,Las Lomas
+2-4-1,Nata (Cabecera)
+2-4-2,Capellanía
+2-4-3,El Caño
+2-4-4,Guzmán
+2-4-5,Las Huacas
+2-4-6,Toza
+2-5-1,Ola (Cabecera)
+2-5-2,El Cope
+2-5-3,El Palmar
+2-5-4,El Picacho
+2-5-5,La Pava
+2-6-1,Penonomé (Cabecera)
+2-6-2,Cañaveral
+2-6-3,Coclé
+2-6-4,Chiguirí Arriba
+2-6-5,El Coco
+2-6-6,Pajonal
+2-6-7,Río Grande
+2-6-8,Río Indio
+2-6-9,Toabre
+2-6-10,Tulu
+3-1-1,Barrio Norte
+3-1-2,Barrio Sur
+3-1-3,Buena Vista
+3-1-4,Cativa
+3-1-5,Ciricito
+3-1-6,Cristobal
+3-1-7,Escobal
+3-1-8,Limón
+3-1-9,Nueva Providencia
+3-1-10,Puerto Pilón
+3-1-11,Sabanitas
+3-1-12,Salamanca
+3-1-13,San Juan
+3-1-14,Santa Rosa
+3-1-15,Cristóbal Este
+3-2-1,Nuevo Chagres (Cabecera)
+3-2-2,Achiote
+3-2-3,El Guabo
+3-2-4,La Encantada
+3-2-5,Palmas Bellas
+3-2-6,Piña
+3-2-7,Salud
+3-3-1,Miguel de La Borda (Cabecera)
+3-3-2,Coclé del Norte
+3-3-3,El Guásimo
+3-3-4,Gobea
+3-3-5,Río Indio
+3-3-6,San José del General
+3-4-1,Portobelo (Cabecera)
+3-4-2,Cacique
+3-4-3,Garrote
+3-4-4,Isla Grande
+3-4-5,María Chiquita
+3-5-1,Palenque (Cabecera)
+3-5-2,Cuango
+3-5-3,Miramar
+3-5-4,Nombre de Dios
+3-5-5,Palmira
+3-5-6,Playa Chiquita
+3-5-7,Santa Isabel
+3-5-8,Viento Frío
+4-1-1,Alanje (Cabecera)
+4-1-2,Divalá
+4-1-3,El Tejar
+4-1-4,Guarumal
+4-1-5,Palo Grande
+4-1-6,Querévalo
+4-1-7,Santo Tomás
+4-1-8,Canta Gallo
+4-1-9,Nuevo México
+4-2-1,Puerto Armuelles (Cabecera)
+4-2-2,Limones
+4-2-3,Progreso
+4-2-4,Baco
+4-2-5,Rodolfo Aguilar Delgado
+4-3-1,Boquerón (Cabecera)
+4-3-2,Bagala
+4-3-3,Cordillera
+4-3-4,Guabal
+4-3-5,Guayabal
+4-3-6,Paraíso
+4-3-7,Pedregal
+4-3-8,Tijeras
+4-4-1,Bajo Boquete (Cabecera)
+4-4-2,Caldera
+4-4-3,Palmira
+4-4-4,Alto Boquete
+4-4-5,Jaramillo
+4-4-6,Los Naranjos
+4-5-1,La Concepción (Cabecera)
+4-5-2,Aserrío de Gariché
+4-5-3,Bugaba
+4-5-4,Cerro Punta
+4-5-5,Gómez
+4-5-6,La Estrella
+4-5-7,San Andrés
+4-5-8,Santa Marta
+4-5-9,Santa Rosa
+4-5-10,Santo Domingo
+4-5-11,Sortova
+4-5-12,Volcán
+4-5-13,El Bongo
+4-6-1,David (Cabecera)
+4-6-2,Bijagual
+4-6-3,Cochea
+4-6-4,Chiriquí
+4-6-5,Guaca
+4-6-6,Las Lomas Pedregal
+4-6-7,San Carlos
+4-6-8,San Pablo Nuevo
+4-6-9,San Pablo Viejo
+4-7-1,Dolega (Cabecera)
+4-7-2,Dos Ríos
+4-7-3,Los Anastacios
+4-7-4,Potrerillos
+4-7-5,Potrerillos Abajo
+4-7-6,Rovira
+4-7-7,Tinajas
+4-7-8,Los Algarrobos
+4-8-1,Gualaca (Cabecera)
+4-8-2,Hornito
+4-8-3,Los Ángeles
+4-8-4,Paja de Sombrero
+4-8-5,Rincón
+4-9-1,Remedios (Cabecera)
+4-9-2,El Nancito
+4-9-3,El Porvenir
+4-9-4,El Puerto
+4-9-5,Santa Lucía
+4-10-1,Río Sereno (Cabecera)
+4-10-2,Breñón
+4-10-3,Cañas Gordas
+4-10-4,Monte Lirio
+4-10-5,Plaza de Caisán
+4-10-6,Santa Cruz Dominical
+4-10-7,Santa Clara
+4-11-1,Las Lajas (Cabecera)
+4-11-2,Juay
+4-11-3,Lajas Adentro
+4-11-4,San Félix
+4-12-1,Santa Cruz Horconcitos (Cabecera)
+4-12-2,Boca Chica
+4-12-3,Boca del Monte
+4-12-4,San Juan
+4-12-5,San Lorenzo
+4-13-1,Tolé (Cabecera)
+4-13-2,Bella Vista
+4-13-3,Cerro Viejo
+4-13-4,El Cristo
+4-13-5,Justo Fidel Palacios
+4-13-6,Lajas de Tolé
+4-13-7,Potrero de Caña
+4-13-8,Quebrada de Piedra
+4-13-9,Veladero
+5-1-1,La Palma (Cabecera)
+5-1-2,Camoganti
+5-1-3,Chepigana
+5-1-4,Garachine
+5-1-5,Jaque
+5-1-6,Puerto Piña
+5-1-7,Río Congo
+5-1-8,Río Iglesias
+5-1-9,Sambu
+5-1-10,Seteganti
+5-1-11,Taimati
+5-1-12,Tucuti
+5-1-13,Agua Fría
+5-1-14,Cucunati
+5-1-15,Río Congo Arriba
+5-1-16,Santa Fe
+5-2-1,El Real de Santa María (Cabecera)
+5-2-2,Boca de Cupe
+5-2-3,Paya
+5-2-4,Pinogana
+5-2-5,Pucuro
+5-2-6,Yape
+5-2-7,Yaviza
+5-2-8,Meteti
+5-2-9,Comarca Kuna de Wargandi
+6-1-1,Chitre (Cabecera)
+6-1-2,La Arena
+6-1-3,Monagrillo
+6-1-4,Llano Bonito
+6-1-5,San Juan Bautista
+6-2-1,Las Minas (Cabecera)
+6-2-2,Chepo
+6-2-3,Chumical
+6-2-4,El Toro
+6-2-5,Leones
+6-2-6,Quebrada del Rosario
+6-2-7,Quebrada El Ciprián
+6-3-1,Los Pozos (Cabecera)
+6-3-2,Capurí
+6-3-3,El Calabacito
+6-3-4,El Cedro
+6-3-5,La Arena
+6-3-6,La Pitalosa
+6-3-7,Los Cerritos
+6-3-8,Los Cerros de Paja
+6-3-9,Las Llanas
+6-4-1,Ocú (Cabecera)
+6-4-2,Cerro Largo
+6-4-3,Los Llanos
+6-4-4,Llano Grande
+6-4-5,Peñas Chatas
+6-4-6,El Tijera
+6-4-7,Menchaca
+6-5-1,Parita (Cabecera)
+6-5-2,Cabuya
+6-5-3,Los Castillos
+6-5-4,Llano de La Cruz
+6-5-5,París
+6-5-6,Portobelillo
+6-5-7,Potuga
+6-6-1,Pese (Cabecera)
+6-6-2,Las Cabras
+6-6-3,El Pájaro
+6-6-4,El Barrero
+6-6-5,El Pedregoso
+6-6-6,El Ciruelo
+6-6-7,Sabana grande
+6-6-8,Rincón Hondo
+6-7-1,Santa María (Cabecera)
+6-7-2,Chupampa
+6-7-3,El Rincón
+6-7-4,El Limón
+6-7-5,Los Canelos
+7-1-1,Guararé (Cabecera)
+7-1-2,El Espinal
+7-1-3,El Macano
+7-1-4,Guararé Arriba
+7-1-5,La Enea
+7-1-6,La Pasera
+7-1-7,Las Trancas
+7-1-8,Llano Abajo
+7-1-9,El Hato
+7-1-10,Perales
+7-2-1,Las Tablas (Cabecera)
+7-2-2,Bajo Corral
+7-2-3,Bayano
+7-2-4,El Carate
+7-2-5,El Cocal
+7-2-6,El Manantial
+7-2-7,El Muñoz
+7-2-8,El Pedregoso
+7-2-9,La Laja
+7-2-10,La Miel
+7-2-11,La Palma
+7-2-12,La Tiza
+7-2-13,Las Palmitas
+7-2-14,Las Tablas Abajo
+7-2-15,Nuario
+7-2-16,Palmira
+7-2-17,Peña Blanca
+7-2-18,Río Hondo
+7-2-19,San José
+7-2-20,San Miguel
+7-2-21,Santo Domingo
+7-2-22,Sesteadero
+7-2-23,Valle Rico
+7-2-24,Valleriquito
+7-3-1,La Villa de Los Santos (Cabecera)
+7-3-2,El Guásimo
+7-3-3,La Colorada
+7-3-4,La Espigadilla
+7-3-5,Las Cruces
+7-3-6,Las Guabas
+7-3-7,Los Ángeles
+7-3-8,Los Olivos
+7-3-9,Llano Largo
+7-3-10,Sabana Grande
+7-3-11,Santa Ana
+7-3-12,Tres Quebradas
+7-3-13,Agua Buena
+7-3-14,Villa Lourdes
+7-4-1,Macaracas (Cabecera)
+7-4-2,Bahía Honda
+7-4-3,Bajos de Guera
+7-4-4,Corozal
+7-4-5,Chupa
+7-4-6,El Cedro
+7-4-7,Espino Amarillo
+7-4-8,La Mesa
+7-4-9,Las Palmas
+7-4-10,Llano de Piedra
+7-4-11,Mogollón
+7-5-1,Pedasí (Cabecera)
+7-5-2,Los Asientos
+7-5-3,Mariabé
+7-5-4,Purio
+7-5-5,Oria Arriba
+7-6-1,Pocri
+7-6-2,El Cañafístulo
+7-6-3,Lajamina
+7-6-4,Paraíso
+7-6-5,Paritilla
+7-7-1,Tonosí (Cabecera)
+7-7-2,Altos de Guera
+7-7-3,Cañas
+7-7-4,El Bebedero
+7-7-5,El Cacao
+7-7-6,El Cortezo
+7-7-7,Flores
+7-7-8,Guánico
+7-7-9,La Tronosa
+7-7-10,Cambutal
+7-7-11,Isla de Cañas
+8-2-1,San Miguel (Cabecera)
+8-2-2,La Ensenada
+8-2-3,La Esmeralda
+8-2-4,La Guinea
+8-2-5,Pedro González
+8-2-6,Saboga
+8-5-1,Chepo (Cabecera)
+8-5-2,Cañita
+8-5-3,Chepillo
+8-5-4,El Llano
+8-5-5,Las Margaritas
+8-5-6,Santa Cruz de Chinina
+8-5-7,Comarca Kuna de Madungandí
+8-5-8,Tortí
+8-6-1,Chimán (Cabecera)
+8-6-2,Brujas
+8-6-3,Gonzalo Vásquez
+8-6-4,Pasiga
+8-6-5,Unión Santeña
+8-8-1,San Felipe
+8-8-2,El Chorrillo
+8-8-3,Santa Ana
+8-8-4,La Exposición o Calidonia
+8-8-5,Curundú
+8-8-6,Betania
+8-8-7,Bella Vista
+8-8-8,Pueblo Nuevo
+8-8-9,San Francisco
+8-8-10,Parque Lefevre
+8-8-11,Río Abajo
+8-8-12,Juan Díaz
+8-8-13,Pedregal
+8-8-14,Ancón
+8-8-15,Chilibre
+8-8-16,Las Cumbres
+8-8-17,Pacora
+8-8-18,San Martín
+8-8-19,Tocumen
+8-8-20,Las Mañanitas
+8-8-21,24 de Diciembre
+8-8-22,Ernesto Córdoba Campos
+8-8-23,Alcalde Díaz
+8-8-24,Caimitillo
+8-8-25,Don Bosco
+8-8-26,Las Garzas
+8-10-1,Amelia Denis de Icaza
+8-10-2,Belisario Porras
+8-10-3,José Domingo Espinar
+8-10-4,Mateo Iturralde
+8-10-5,Victoriano Lorenzo
+8-10-6,Arnulfo Arias
+8-10-7,Belisario Frías
+8-10-8,Omar Torrijos
+8-10-9,Rufina Alfaro
+8-11-1,Taboga (Cabecera)
+8-11-2,Otoque Oriente
+8-11-3,Otoque Occidente
+9-1-1,Atalaya (Cabecera)
+9-1-2,El Barrito
+9-1-3,La Montañuela
+9-1-4,La Carrillo
+9-1-5,San Antonio
+9-2-1,Calobre (Cabecera)
+9-2-2,Barnizal
+9-2-3,Chitra
+9-2-4,El Cocla
+9-2-5,El Potrero
+9-2-6,La Laguna
+9-2-7,La Raya de Calobre
+9-2-8,La Tetilla
+9-2-9,La Yeguada
+9-2-10,Las Guias
+9-2-11,Monjaras
+9-2-12,San José
+9-3-1,Cañazas (Cabecera)
+9-3-2,Cerro Plata
+9-3-3,El Picador
+9-3-4,Los Valles
+9-3-5,San José
+9-3-6,San Marcelo
+9-3-7,El Aromillo
+9-3-8,Las Cruces
+9-4-1,La Mesa (Cabecera)
+9-4-2,Bisvalles
+9-4-3,Boro
+9-4-4,Llano Grande
+9-4-5,San Bartolo
+9-4-6,Los Milagros
+9-5-1,Las Palmas (Cabecera)
+9-5-2,Cerro de Casa
+9-5-3,Corozal
+9-5-4,El María
+9-5-5,El Prado
+9-5-6,El Rincón
+9-5-7,Lola
+9-5-8,Pixvae
+9-5-9,Puerto Vidal
+9-5-10,San Martín de Porres
+9-5-11,Vigui
+9-5-12,Zapotillo
+9-5-13,Altamira
+9-6-1,Montijo (Cabecera)
+9-6-2,Arenas
+9-6-3,Gobernadora
+9-6-4,La Garceana
+9-6-5,Leones
+9-6-6,Cébaco
+9-6-7,Costa Hermosa
+9-6-8,Unión del Norte
+9-6-9,Tebario
+9-6-10,El Pilón
+9-7-1,Río de Jesús (Cabecera)
+9-7-2,Las Huacas
+9-7-3,Los Castillos
+9-7-4,Utira
+9-7-5,Catorce de Noviembre
+9-8-1,San Francisco (Cabecera)
+9-8-2,Corral Falso
+9-8-3,Los Hatillos
+9-8-4,Remance
+9-8-5,San Juan
+9-8-6,San José
+9-9-1,Santa Fe (Cabecera)
+9-9-2,Calovebora
+9-9-3,El Alto
+9-9-4,El Cuay
+9-9-5,El Pantano
+9-9-6,Gatú o Gatucito
+9-9-7,Río Luis
+9-10-1,Santiago (Cabecera)
+9-10-2,La Colorada
+9-10-3,La Peña
+9-10-4,La Raya de Santa María
+9-10-5,Ponuga
+9-10-6,San Pedro del Espino
+9-10-7,Canto del Llano
+9-10-8,Los Algarrobos
+9-10-9,Carlos Santana Ávila
+9-10-10,Edwin Fábrega
+9-10-11,San Martín de Porres
+9-10-12,Urraca
+9-11-1,Soná (Cabecera)
+9-11-2,Bahía Honda
+9-11-3,Calidonia
+9-11-4,Cative
+9-11-5,El Marañón
+9-11-6,Guarumal
+9-11-7,La Soledad
+9-11-8,Quebrada de Oro
+9-11-9,Río Grande
+9-11-10,Rodeo Viejo
+9-12-1,Llano de Catival o Mariato (Cabecera)
+9-12-2,Arenas
+9-12-3,El Cacao
+9-12-4,Quebro
+9-12-5,Tebario
+10-1-1,Nargana (Cabecera)
+10-1-2,Ailigandi
+10-1-3,Puerto Obaldía
+10-1-4,Tubuala
+11-1-1,Cirilo Guainora (Cabecera)
+11-1-2,Lajas Blancas
+11-1-3,Manuel Ortega
+11-2-1,Río Sabalo
+11-2-2,Jingurudo
+12-1-1,Soloy (Cabecera)
+12-1-2,Boca de Balsa
+12-1-3,Camarón Arriba
+12-1-4,Cerro Banco
+12-1-5,Cerro de Patena
+12-1-6,Emplanada de Chorcha
+12-1-7,Namnoni
+12-1-8,Niba
+12-2-1,Hato Pilón (Cabecera)
+12-2-2,Cascabel
+12-2-3,Hato Corotu
+12-2-4,Hato Culantro
+12-2-5,Hato Jobo
+12-2-6,Hato Juli
+12-2-7,Quebrada de Loro
+12-2-8,Salto Dupi
+12-3-1,Chichica (Cabecera)
+12-3-2,Alto Caballero
+12-3-3,Bakama
+12-3-4,Cerro Caña
+12-3-5,Cerro Puerco
+12-3-6,Krua
+12-3-7,Maraca
+12-3-8,Nibra
+12-3-9,Peña Blanca
+12-3-10,Roka
+12-3-11,Sitio Prado
+12-3-12,Umani
+12-4-1,Cerro Iglesias (Cabecera)
+12-4-2,Hato Chami
+12-4-3,Jadeberi
+12-4-4,Lajero
+12-4-5,Susama
+12-5-1,Buenos Aires (Cabecera)
+12-5-2,Agua de Salud
+12-5-3,Alto de Jesús
+12-5-4,Cerro Pelado
+12-5-5,El Bale
+12-5-6,El Paredón
+12-5-7,El Piro
+12-5-8,Guayabito
+12-5-9,Guibale
+12-6-1,Bisira (Cabecera)
+12-6-2,Buri
+12-6-3,Guariviara
+12-6-4,Guoroni
+12-6-5,Kankintu
+12-6-6,Mununi
+12-6-7,Piedra Roja
+12-6-8,Tuwai
+12-6-9,Man Creek
+12-7-1,Kusapin (Cabecera)
+12-7-2,Bahía Azul
+12-7-3,Calovébora o Santa Catalina
+12-7-4,Loma Yuca
+12-7-5,Río Chiriquí
+12-7-6,Tobobe
+12-7-7,Valle Bonito
+12-8-1,Samboa
+12-8-2,Buri
+12-8-3,Guariviara
+12-8-4,Man Creek
+12-8-5,Tuwai
+12-9-1,Santa Catalina o Calovébora (Bledeshia) (Cabecera)
+12-9-2,Alto Bilingüe (Gdogueshia)
+12-9-3,Loma Yuka (Ljuicho)
+12-9-4,San Pedrito
+12-9-5,Valle Bonito (Dogata)
+13-1-1,Arraiján (Cabecera)
+13-1-2,Burunga
+13-1-3,Cerro Silvestre
+13-1-4,Juan Demóstenes Arosemena
+13-1-5,Nuevo Emperador
+13-1-6,Santa Clara
+13-1-7,Veracruz
+13-1-8,Vista Alegre
+13-2-1,Capira (Cabecera)
+13-2-2,Caimito
+13-2-3,Campana
+13-2-4,Cermeño
+13-2-5,Ciri de Los Sotos
+13-2-6,Ciri Grande
+13-2-7,El Cacao
+13-2-8,La Trinidad
+13-2-9,Las Ollas Arriba
+13-2-10,Lídice
+13-2-11,Villa Carmen
+13-2-12,Villa Rosario
+13-2-13,Santa Rosa
+13-3-1,Chame (Cabecera)
+13-3-2,Bejuco
+13-3-3,Buenos Aires
+13-3-4,Cabuya
+13-3-5,Chica
+13-3-6,El Líbano
+13-3-7,Las Lajas
+13-3-8,Nueva Gorgona
+13-3-9,Punta Chame
+13-3-10,Sajalices
+13-3-11,Sora
+13-4-1,Barrio Balboa
+13-4-2,Barrio Colón
+13-4-3,Amador
+13-4-4,Arosemena
+13-4-5,El Arado
+13-4-6,El Coco
+13-4-7,Feuillet
+13-4-8,Guadalupe
+13-4-9,Herrera
+13-4-10,Hurtado
+13-4-11,Iturralde
+13-4-12,La Represa
+13-4-13,Los Díaz
+13-4-14,Mendoza
+13-4-15,Obaldía
+13-4-16,Playa Leona
+13-4-17,Puerto Caimito
+13-4-18,Santa Rita
+13-5-1,San Carlos (Cabecera)
+13-5-2,El Espino
+13-5-3,El Higo
+13-5-4,Guayabito
+13-5-5,La Ermita
+13-5-6,La Laguna
+13-5-7,Las Uvas
+13-5-8,Los Llanitos
+13-5-9,San José
