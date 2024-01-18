@@ -55,14 +55,15 @@ id,name
 9-4,La Meza
 9-5,Las Palmas
 9-6,Montijo
-9-7,Rio de Jesús
+9-7,Río de Jesús
 9-8,San Francisco
 9-9,Santa Fe
 9-10,Santiago
-9-11,Sona
+9-11,Soná
 9-12,Mariato
-10-1,Comarca Kuna Yala 11-1 Cemaco
-11-2,Sambu
+10-1,Comarca Kuna Yala
+11-1,Cémaco
+11-2,Sambú
 12-1,Besiko
 12-2,Mirono
 12-3,Muna
@@ -72,7 +73,7 @@ id,name
 12-7,Kusapin
 12-8,Jirondai
 12-9,Santa Catalina o Calovébora (Bledeshia)
-13-1,Arraijan
+13-1,Arraiján
 13-2,Capira
 13-3,Chame
 13-4,La Chorrera
