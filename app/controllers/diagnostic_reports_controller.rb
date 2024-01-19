@@ -2,14 +2,13 @@
 
 class DiagnosticReportsController < ApplicationController
   before_action :set_diagnostic_report, only: %i[show edit update certify force_certify email]
+  before_action :set_results, only: %i[show edit email]
 
   def index
     @diagnostic_reports = Accession.includes(:patient, :reporter).recently.reported.page(page)
   end
 
   def show
-    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department).sort_by{ |department, _results| department.position }
-
     respond_to do |format|
       format.html
       format.json { render json: @diagnostic_report.to_json }
@@ -35,8 +34,7 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def edit
-    results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).group_by(&:department)
-    results.each do |department, _result|
+    @results.each do |department, _result|
       @diagnostic_report.notes.build(department_id: department.id) unless @diagnostic_report.try(:notes).find_by(department_id: department.id)
     end
   end
@@ -90,8 +88,6 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def email
-    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department).sort_by{ |department, _results| department.position }
-
     pdf = LabReport.new(@patient, @diagnostic_report, @results, true, false, false, view_context)
 
     case params[:to]
@@ -118,6 +114,10 @@ class DiagnosticReportsController < ApplicationController
   def set_diagnostic_report
     @diagnostic_report = Accession.includes(:patient).find(params[:id])
     @patient = @diagnostic_report.patient
+  end
+
+  def set_results
+    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department).sort_by{ |department, _results| department.position }
   end
 
   def diagnostic_report_params
