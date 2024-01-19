@@ -90,7 +90,7 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def email
-    @results = @diagnostic_report.results.includes(:department, :lab_test_value, :lab_test, :unit).ordered.group_by(&:department)
+    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department).sort_by{ |department, _results| department.position }
 
     pdf = LabReport.new(@patient, @diagnostic_report, @results, true, false, false, view_context)
 
