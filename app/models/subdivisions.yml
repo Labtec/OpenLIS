@@ -1084,7 +1084,7 @@ provinces:
           - San Pedrito
           - Santa Catalina o Calovébora
           - Valle Bonito
-  pa_xx: # XXX: ISO Code not yet available
+  pa_nt:
     name: Naso Tjër Di
     capital: Sieyic
     indigenous_region: true
