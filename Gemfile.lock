@@ -159,8 +159,7 @@ GEM
       xpath (~> 3.2)
     cbor (0.5.9.8)
     chunky_png (1.4.0)
-    commonmarker (1.0.4)
-      rb_sys (~> 0.9)
+    commonmarker (0.23.10)
     concurrent-ruby (1.2.3)
     cose (1.3.0)
       cbor (~> 0.5.9)
@@ -340,7 +339,6 @@ GEM
     rake (13.1.0)
     rb-kqueue (0.2.8)
       ffi (>= 0.5.0)
-    rb_sys (0.9.86)
     rdoc (6.6.2)
       psych (>= 4.0.0)
     regexp_parser (2.9.0)
@@ -445,7 +443,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-puma
   capybara
-  commonmarker
+  commonmarker (= 0.23.10)
   dalli
   debug
   devise
