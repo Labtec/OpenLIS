@@ -21,7 +21,7 @@ pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.9
 # - when reloaded fast enough, more handle elements get appended
 # - computation bug when moving the first element
 # pin "@github/task-lists-element", to: "@github--task-lists-element.js" # @2.0.5
-pin "sortablejs" # @1.15.0
+pin "sortablejs" # @1.15.2
 
 # XXXJL TODO
 # Notes:
