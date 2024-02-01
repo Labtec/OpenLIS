@@ -65,8 +65,6 @@
   <div class="buttonbar">
     <% if @diagnostic_report.preliminary? %>
       <%= button_to t('.certify'), certify_diagnostic_report_path(@diagnostic_report), method: :patch %> |
-    <% elsif current_user.admin? && !@diagnostic_report.registered? && !@diagnostic_report.reported_at %>
-       <%= force_certify_diagnostic_report(@diagnostic_report) %> |
     <% end %>
     <%= link_to t('.change_accession'), edit_accession_path(@diagnostic_report) %> |
     <% if @diagnostic_report.reported_at %>
