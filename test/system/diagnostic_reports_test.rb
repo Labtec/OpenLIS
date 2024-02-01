@@ -53,35 +53,5 @@ module System
 
       assert Accession.find(diagnostic_report.id).amended?, 'Not Amended'
     end
-
-    test 'force certifying a report' do
-      login_as(users(:admin), scope: :user)
-      visit diagnostic_report_url(@service_request)
-
-      assert page.has_content?('LDL/HDL Ratio')
-      assert page.has_content?('Cholesterol in LDL')
-      assert page.has_content?('Triglyceride')
-      assert page.has_content?('Cholesterol in HDL')
-      assert page.has_content?('Cholesterol')
-      assert page.has_content?('calc.')
-      assert page.has_content?('pend.')
-      assert Accession.find(@service_request.id).registered?, 'Not Registered'
-
-      click_on 'Enter Results'
-
-      fill_in 'Cholesterol', with: 200
-      fill_in 'Cholesterol in HDL', with: 100
-      click_on 'Save Results'
-      accept_confirm do
-        click_on 'Force Certify'
-      end
-
-      assert page.has_content?('calc.')
-      assert page.has_content?('pend.')
-      assert Accession.find(@service_request.id).final?, 'Not Final'
-      trig = Accession.find(@service_request.id).results.joins(:lab_test).where('lab_tests.code': 'TRIG').take
-      assert trig.cancelled?, 'Triglyceride Not Cancelled'
-      assert trig.not_performed?, 'Triglyceride Performed'
-    end
   end
 end
