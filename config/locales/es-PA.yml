@@ -391,7 +391,7 @@ es-PA:
       shipping_and_handling: 'Servicio a Domicilio:'
       signed_quote: Cotización Firmada
       subtotal: 'Subtotal:'
-      taxes: 'Impuestos (Exento):'
+      taxes: 'ITBMS (Exento):'
       title: Cotización
       total: Total
       total_discount: 'Descuentos:'
@@ -419,7 +419,7 @@ es-PA:
       shipping_and_handling: 'Servicio a Domicilio:'
       submit: Guardar
       subtotal: 'Subtotal:'
-      taxes: 'Impuestos (Exento):'
+      taxes: 'ITBMS (Exento):'
       total: Total
       total_discount: 'Descuentos:'
   results:
