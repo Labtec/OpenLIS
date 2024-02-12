@@ -395,7 +395,7 @@ GEM
       openssl (> 2.0)
       openssl-signature_algorithm (~> 1.0)
     ttfunk (1.7.0)
-    turbo-rails (2.0.1)
+    turbo-rails (2.0.2)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
