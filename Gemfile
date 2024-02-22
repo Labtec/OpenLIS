@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '~> 3.3.0'
 gem 'uri', '>= 0.12.2'
 
-gem 'rails', '7.0.8'
+gem 'rails', '7.0.8.1'
 
 gem 'aasm'
 gem 'acts_as_list'
