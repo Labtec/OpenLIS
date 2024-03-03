@@ -48,9 +48,10 @@ jobs:
           RAILS_ENV: test
         run: bin/rails test:all
 
-      - name: Upload screenshots
-        if: always()
+      - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
+        if: failure()
         with:
-          name: capybara
-          path: ./tmp/capybara/
+          name: screenshots
+          path: $GITHUB_WORKSPACE/tmp/screenshots
+          if-no-files-found: ignore
