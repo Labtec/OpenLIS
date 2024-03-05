@@ -124,6 +124,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
+    bigdecimal (3.1.6)
     bindata (2.5.0)
     bindex (0.8.1)
     bootsnap (1.18.3)
@@ -394,7 +395,8 @@ GEM
       bindata (~> 2.4)
       openssl (> 2.0)
       openssl-signature_algorithm (~> 1.0)
-    ttfunk (1.7.0)
+    ttfunk (1.8.0)
+      bigdecimal (~> 3.1)
     turbo-rails (2.0.4)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
