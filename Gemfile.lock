@@ -124,7 +124,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
-    bigdecimal (3.1.6)
+    bigdecimal (3.1.7)
     bindata (2.5.0)
     bindex (0.8.1)
     bootsnap (1.18.3)
@@ -132,7 +132,7 @@ GEM
     brakeman (6.1.2)
       racc
     builder (3.2.4)
-    capistrano (3.18.0)
+    capistrano (3.18.1)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -251,7 +251,7 @@ GEM
     mime-types-data (3.2024.0305)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    minitest (5.22.2)
+    minitest (5.22.3)
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.10)
@@ -327,7 +327,7 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails-i18n (7.0.8)
+    rails-i18n (7.0.9)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
     railties (7.0.8.1)
