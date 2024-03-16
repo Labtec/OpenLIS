@@ -166,3 +166,47 @@ egfrcr:
   code: eGFRcr
   derivation: true
   remarks: Reported eGFR is based on the CKD-EPI 2021 equation that does not use a race coefficient.
+
+cre_u:
+  department: chemistry
+  decimals: 0
+  name: Urine Creatinine
+  unit: mg/dl
+  code: CRE_U
+
+uvol24h:
+  department: chemistry
+  decimals: 0
+  name: Urine Volume 24h
+  unit: ml
+  code: UVOL24H
+
+height:
+  department: chemistry
+  decimals: 0
+  name: Height
+  unit: cm
+  code: HEIGHT
+
+weight:
+  department: chemistry
+  decimals: 1
+  name: Weight
+  unit: kg
+  code: WEIGHT
+
+crcl:
+  department: chemistry
+  decimals: 1
+  name: Creatinine Clearance
+  unit: ml/min
+  code: CRCL
+  derivation: true
+
+crcl1:
+  department: chemistry
+  decimals: 0
+  name: Creatinine Clearance
+  unit: ml/min/1_73m2
+  code: CRCL1
+  derivation: true

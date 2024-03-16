@@ -60,14 +60,22 @@ module Derivable
       uvol24h = result_value_quantity_for 'UVOL24H'
       cort24 * uvol24h / 100
     when 'CREUT'
-      urncret = result_value_quantity_for 'URNCRET'
+      cre_u = result_value_quantity_for 'CRE_U'
       uvol24h = result_value_quantity_for 'UVOL24H'
-      urncret * uvol24h / 100
-    when 'CRETCLEAR24H'
-      urncret = result_value_quantity_for 'URNCRET'
+      cre_u * uvol24h / 100
+    when 'CRCL'
+      cre_u = result_value_quantity_for 'CRE_U'
       crtsa = result_value_quantity_for 'CRTSA'
       uvol24h = result_value_quantity_for 'UVOL24H'
-      uvol24h * urncret / crtsa / 1440
+      cre_u * uvol24h / 1440 / crtsa
+    when 'CRCL1'
+      cre_u = result_value_quantity_for 'CRE_U'
+      crtsa = result_value_quantity_for 'CRTSA'
+      uvol24h = result_value_quantity_for 'UVOL24H'
+      weight = result_value_quantity_for 'WEIGHT'
+      height = result_value_quantity_for 'HEIGHT'
+      bsa = 0.007184 * weight ** 0.425 * height ** 0.725
+      cre_u * uvol24h / 1440 / crtsa * 1.73 / bsa
     when 'LDLHDLR'
       chol = result_value_quantity_for 'CHOL'
       hdl = result_value_quantity_for 'HDL'

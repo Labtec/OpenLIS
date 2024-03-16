@@ -49,3 +49,27 @@ egfrcr:
 crtsa:
   lab_test: crtsa
   accession: egfrcr
+
+cre_u:
+  lab_test: cre_u
+  accession: egfrcr
+
+uvol24h:
+  lab_test: uvol24h
+  accession: egfrcr
+
+height:
+  lab_test: height
+  accession: egfrcr
+
+weight:
+  lab_test: weight
+  accession: egfrcr
+
+crcl:
+  lab_test: crcl
+  accession: egfrcr
+
+crcl1:
+  lab_test: crcl1
+  accession: egfrcr
