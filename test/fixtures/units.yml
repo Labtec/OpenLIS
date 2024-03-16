@@ -21,6 +21,22 @@ mg/dl:
 mmol/l:
   expression: mmol/L
 
+ml:
+  expression: mL
+  ucum: mL
+
+ml/min:
+  expression: mL/min
+  ucum: mL/min
+
 ml/min/1_73m2:
   expression: mL/min/1.73m²
   ucum: mL/min/{1.73_m2}
+
+cm:
+  expression: cm
+  ucum: cm
+
+kg:
+  expression: kg
+  ucum: kg
