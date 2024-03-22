@@ -147,10 +147,9 @@ GEM
     capistrano-rbenv (2.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
-    capistrano3-puma (5.2.0)
-      capistrano (~> 3.7)
-      capistrano-bundler
-      puma (>= 4.0, < 6.0)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     capybara (3.40.0)
       addressable
       matrix
@@ -274,7 +273,7 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     net-ssh (7.2.1)
-    nio4r (2.7.0)
+    nio4r (2.7.1)
     nokogiri (1.16.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -304,10 +303,10 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
-    puma (5.6.8)
+    puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
-    rack (3.0.9.1)
+    rack (3.0.10)
     rack-mini-profiler (3.3.1)
       rack (>= 1.2.0)
     rack-session (2.0.0)
@@ -354,7 +353,7 @@ GEM
     rb-kqueue (0.2.8)
       ffi (>= 0.5.0)
     rb_sys (0.9.90)
-    rdoc (6.6.2)
+    rdoc (6.6.3.1)
       psych (>= 4.0.0)
     regexp_parser (2.9.0)
     reline (0.4.3)
@@ -483,7 +482,7 @@ DEPENDENCIES
   prawn
   prawn-svg
   prawn-table
-  puma (>= 5.0)
+  puma (>= 6.0)
   rack-mini-profiler
   rails (= 7.1.3.2)
   rails-html-sanitizer

@@ -33,7 +33,7 @@ gem 'phonelib'
 gem 'prawn'
 gem 'prawn-svg'
 gem 'prawn-table'
-gem 'puma', '>= 5.0'
+gem 'puma', '>= 6.0'
 gem 'rails-html-sanitizer'
 gem 'rails-i18n'
 gem 'sassc-rails' # TODO
