@@ -1,3 +1,4 @@
+---
 es-PA:
   accessions:
     accession:
@@ -5,8 +6,8 @@ es-PA:
       by: 'por: '
       change_requisition: Cambiar Solicitud
       change_results: Cambiar Resultados
-      confirm_destroy: ¿Está seguro?
-      delete?: ¿Borrar?
+      confirm_destroy: "¿Está seguro?"
+      delete?: "¿Borrar?"
       diagnostic_report: 'Reporte #%{id}'
       drawn_at: 'Extraído el: '
       enter_results: Ingresar Resultados
@@ -19,8 +20,8 @@ es-PA:
       by: 'por: '
       change_requisition: Cambiar Solicitud
       change_results: Cambiar Resultados
-      confirm_destroy: ¿Está seguro?
-      delete?: ¿Borrar?
+      confirm_destroy: "¿Está seguro?"
+      delete?: "¿Borrar?"
       diagnostic_report: 'Reporte #%{id}'
       drawn_at: 'Extraído el: '
       enter_results: Ingresar Resultados
@@ -31,8 +32,8 @@ es-PA:
     edit:
       title: Cambiar Solicitud
     empty:
-      order_tests: Ordenar Pruebas
       no_requisitions_yet: Sin historial de solicitudes
+      order_tests: Ordenar Pruebas
     form:
       accession: 'Solicitud #%{id}'
       cancel: Cancelar
@@ -44,6 +45,7 @@ es-PA:
       or: o
       order_details: Detalles de la Solicitud
       ordered_by: 'Solicitado por:'
+      outpatient: Dejar en blanco si es ambulatorio
       processing: Procesando...
       received_at: 'Recibido el:'
       received_by: 'Recibido por:'
@@ -51,13 +53,60 @@ es-PA:
       reported_by: 'Reportado por:'
       search_icd_code: Buscar código CIE
       submit: Guardar
-      outpatient: Dejar en blanco si es ambulatorio
     index:
       pending_requisitions: Solicitudes Pendientes
       requisition_history: Historial de Resultados
       title: Solicitudes
     new:
       title: Nueva Solicitud
+  activerecord:
+    attributes:
+      accession:
+        drawn_at: Fecha de recolección
+        icd9: Códigos de Diagnóstico (ICD-9)
+        received_at: Fecha de recepción
+        reported_at: Fecha de reporte
+      line_items:
+        discount_unit: Descuento
+        discount_value: Descuento
+        quantity: Cantidad
+      panel:
+        fasting_status_duration_iso8601: Fasting (ISO 8601)
+      patient:
+        address_corregimiento: Corregimiento
+        address_district: Distrito
+        address_line: Dirección
+        address_province: Provincia
+        birthdate: Fecha de Nacimiento
+        cellular: Móvil
+        email: Correo Electrónico
+        family_name: Primer apellido
+        gender: Sexo
+        given_name: Primer nombre
+        identifier: Identificación
+        identifier_type: Tipo de identificación
+        phone: Teléfono
+        policy_number: Número de Póliza
+      results:
+        value: El valor
+      user:
+        initials: Las iniciales
+        password: La contraseña
+        password_confirmation: La contraseña
+        username: El nombre de usuario
+    models:
+      accession: solicitud
+      department: departamento
+      doctor: doctor
+      insurance_provider: aseguradora
+      lab_test: prueba
+      lab_test_value: valor
+      panel: panel
+      patient: paciente
+      qualified_interval: rango
+      quote: cotización
+      unit: unidad
+      user: usuario
   admin:
     claims:
       submit:
@@ -66,31 +115,40 @@ es-PA:
       form:
         cancel: Cancelar
         or: o
+  auth:
+    sessions:
+      webauthn:
+        message: Cuando esté listo, autentíquese usando el botón de abajo.
+        submit: Usar passkey o llave de seguridad
+        title: Passkey o llave de seguridad
+  date:
+    formats:
+      with_month_name: "%-d de %B de %Y"
   diagnostic_reports:
     edit:
       accession: 'Solicitud #%{id}'
-      by: ' por: '
+      by: " por: "
       cancel: Cancelar
       drawn_at: 'Recolectado el: '
       icd9: 'Códigos de Diagnóstico:'
       or: o
+      ordered_by: 'Solicitado por:'
       received_at: 'Recibido el: '
       reported_at: 'Reportado el: '
       submit: Guardar Resultados
       title: Ingresar Resultados
-      ordered_by: 'Solicitado por:'
     index:
       title: Reportes
     show:
       accession: 'Solicitud #%{id}'
-      by: ' por: '
+      by: " por: "
       certify: Certificar
       certifying: Certificando…
       change_accession: Cambiar Solicitud
       change_results: Cambiar Resultados
-      confirm_email: ¿Desea enviar los resultados a %{email}?
-      confirm_emailed: ¿Desea enviar nuevamente los resultados a %{email}?
-      confirm_forceful_certify: ¿Está seguro que desea cancelar resultados pendientes y reportar?
+      confirm_email: "¿Desea enviar los resultados a %{email}?"
+      confirm_emailed: "¿Desea enviar nuevamente los resultados a %{email}?"
+      confirm_forceful_certify: "¿Está seguro que desea cancelar resultados pendientes y reportar?"
       drawn_at: 'Recolectado el: '
       email_report: Enviar reporte por correo
       emailed_report: Reenviar reporte por correo
@@ -99,6 +157,7 @@ es-PA:
       icd9: 'Códigos de Diagnóstico:'
       notes: 'Observaciones:'
       ordered_by: 'Solicitado por:'
+      outpatient: Ambulatorio
       print_report: Imprimir Reporte (PDF)
       received_at: 'Recibido el: '
       reported_at: 'Reportado el: '
@@ -106,15 +165,8 @@ es-PA:
       signed_report: Reporte Firmado
       smart_health_card: SMART® Health Card
       smart_report: Reporte SMART®
-      outpatient: Ambulatorio
-  practitioners:
-    female_dr_prefix: Dra.
-    male_dr_prefix: Dr.
-    outpatient: Ambulatorio
-    unknown_dr_prefix: Dr.
   errors:
     messages:
-      number_or_percentage: debe ser un número o un porcentaje (%)
       cant_be_in_the_future: no puede ser del futuro
       cant_be_that_old: no puede ser tan viejo
       cant_begin_with_dr: no puede comenzar con Dr(a).
@@ -122,6 +174,7 @@ es-PA:
       is_out_of_absolute_range: está fuera del rango absoluto
       must_be_between_0_and_100: debe estar entre 0 y 100%
       must_be_less_than_or_equal_to_list_price: debe ser menor o igual al precio unitario
+      number_or_percentage: debe ser un número o un porcentaje (%)
       range: debe ser N-N, <N o >N
       ratio: debe ser N:N
   flash:
@@ -135,13 +188,13 @@ es-PA:
     accessions:
       at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
     diagnostic_report:
-      report_error: Todavía existen resultados pendientes.
       email_error: Correo inválido.
       email_success: Correo enviado exitosamente.
+      report_error: Todavía existen resultados pendientes.
       update: Resultados actualizados exitosamente.
     login:
-      hello: '¡Hola '
-      last_login_at: ' Su último inicio de sesión fue hace '
+      hello: "¡Hola "
+      last_login_at: " Su último inicio de sesión fue hace "
     quote:
       approve_error: La cotización no pudo ser aprobada.
       email_error: Correo inválido.
@@ -150,6 +203,16 @@ es-PA:
       update: Detalles de la cotización actualizados exitosamente.
     users:
       cant_delete_last_security_key: No se puede eliminar la última llave de seguridad.
+  i18n:
+    transliterate:
+      rule:
+        Ñ: Ñ
+        ñ: ñ
+  interval:
+    gender:
+      female: 'F:'
+      male: 'M:'
+      unknown: ''
   lab_tests:
     form:
       order_tests: Ordenar Pruebas
@@ -182,10 +245,10 @@ es-PA:
       search_patients: Buscar pacientes
       year: año
     tabs:
-      patients: Pacientes
-      requisitions: Solicitudes
       diagnostic_reports: Reportes
+      patients: Pacientes
       quotes: Cotizaciones
+      requisitions: Solicitudes
   notes:
     form:
       notes: 'Observaciones:'
@@ -206,14 +269,14 @@ es-PA:
       accessions: Solicitudes
       address: 'Dirección:'
       age: 'Edad:'
+      cedula: 'Cédula:'
       cellular: 'Móvil:'
-      confirm_destroy: ¿Está seguro?
+      confirm_destroy: "¿Está seguro?"
       delete: Borrar
-      delete?: ¿Borrar?
+      delete?: "¿Borrar?"
       edit: Editar
       email: 'Correo Electrónico:'
       gender: 'Sexo:'
-      cedula: 'Cédula:'
       passport: 'Pasaporte:'
       phone: 'Tel.:'
       year: año
@@ -229,7 +292,7 @@ es-PA:
       success: Paciente creado exitosamente.
     day:
       one: 1 día
-      other: '%{count} días'
+      other: "%{count} días"
     destroy:
       success: Paciente borrado exitosamente.
     edit:
@@ -249,7 +312,7 @@ es-PA:
       cellular: 'Móvil:'
       corregimiento: 'Corregimiento:'
       day: 'Día:'
-      deceased: '¿Fallecido(a)?'
+      deceased: "¿Fallecido(a)?"
       district: 'Distrito:'
       email: 'Correo electrónico:'
       family_name: 'Primer apellido:'
@@ -280,7 +343,7 @@ es-PA:
     male: Masculino
     month:
       one: 1 mes
-      other: '%{count} meses'
+      other: "%{count} meses"
     new:
       title: Nuevo Paciente
     other: Otro
@@ -288,21 +351,21 @@ es-PA:
       accessions: Solicitudes
       address: 'Dirección:'
       age: 'Edad:'
+      cedula: 'Cédula:'
       cellular: 'Móvil:'
-      confirm_destroy: ¿Está seguro?
+      confirm_destroy: "¿Está seguro?"
       delete: Borrar
-      delete?: ¿Borrar?
+      delete?: "¿Borrar?"
       edit: Editar
       email: 'Correo Electrónico:'
       gender: 'Sexo:'
-      cedula: 'Cédula:'
       passport: 'Pasaporte:'
       phone: 'Tel.:'
       year: año
     patients:
       cellular: 'Móvil:'
-      confirm_destroy: ¿Está seguro?
-      delete?: ¿Borrar?
+      confirm_destroy: "¿Está seguro?"
+      delete?: "¿Borrar?"
       edit: Editar
       phone: 'Tel.:'
       year: año
@@ -319,10 +382,39 @@ es-PA:
       success: Paciente actualizado exitosamente.
     week:
       one: 1 semana
-      other: '%{count} semanas'
+      other: "%{count} semanas"
     year:
       one: 1 año
-      other: '%{count} años'
+      other: "%{count} años"
+  practitioners:
+    female_dr_prefix: Dra.
+    male_dr_prefix: Dr.
+    outpatient: Ambulatorio
+    unknown_dr_prefix: Dr.
+  quote_details:
+    edit:
+      approved_at: 'Fecha de Aprobación:'
+      by: 'por: '
+      cancel: Cancelar
+      code: Código
+      created_at: 'Fecha de Creación:'
+      description: Descripción
+      discount: Descuento
+      doctor: 'Doctor: '
+      grand_total: 'Gran Total:'
+      notes: 'Observaciones:'
+      number: "№"
+      or: o
+      ordered_by: 'Solicitado por:'
+      price: Precio Unitario
+      quantity: Cantidad
+      quote_detail: Detalle
+      shipping_and_handling: 'Servicio a Domicilio:'
+      submit: Guardar
+      subtotal: 'Subtotal:'
+      taxes: 'ITBMS (Exento):'
+      total: Total
+      total_discount: 'Descuentos:'
   quotes:
     create:
       success: Cotización creada exitosamente.
@@ -335,13 +427,13 @@ es-PA:
       no_quotes_yet: Sin historial de cotizaciones
     form:
       cancel: Cancelar
-      quote: 'Cotización #%{serial_number}'
-      quote_details: Detalles de la Cotización
       or: o
       ordered_by: 'Ordenado por:'
       outpatient: Dejar en blanco si es ambulatorio
+      quote: 'Cotización #%{serial_number}'
+      quote_details: Detalles de la Cotización
       submit: Guardar
-      version: '-%{version_number}'
+      version: "-%{version_number}"
     index:
       new_quote: Nueva Cotización
       title: Cotizaciones
@@ -352,14 +444,14 @@ es-PA:
     quote:
       approved_at: 'Fecha de Aprobación: '
       by: 'por: '
+      confirm_destroy: "¿Está seguro?"
       created_at: 'Fecha de Creación: '
-      confirm_destroy: ¿Está seguro?
-      delete?: ¿Borrar?
+      delete?: "¿Borrar?"
       edit: Editar
       ordered_by: 'Ordenado por: '
       quote: 'Cotización #%{serial_number}'
       tests_ordered: 'Pruebas ordenadas: '
-      version: '-%{version_number}'
+      version: "-%{version_number}"
     show:
       amend: Enmendar
       approve: Aprobar
@@ -369,9 +461,9 @@ es-PA:
       by: 'por: '
       change_quote: Cambiar Cotización
       code: Código
-      confirm_email: ¿Desea enviar la cotización a %{email}?
-      confirm_emailed: ¿Desea enviar nuevamente la cotización a %{email}?
-      confirm_order: ¿Desea generar una solicitud a partir de esta cotización?
+      confirm_email: "¿Desea enviar la cotización a %{email}?"
+      confirm_emailed: "¿Desea enviar nuevamente la cotización a %{email}?"
+      confirm_order: "¿Desea generar una solicitud a partir de esta cotización?"
       created_at: 'Fecha de Creación:'
       description: Descripción
       discount: Descuento
@@ -380,10 +472,10 @@ es-PA:
       emailed_quote: Reenviar cotización por correo
       grand_total: 'Gran Total:'
       notes: 'Observaciones:'
-      number: №
+      number: "№"
       order: Solicitar
       ordered_by: 'Solicitado por:'
-      pdf_total_discount: 'Descuentos'
+      pdf_total_discount: Descuentos
       price: Precio Unitario
       print_quote: Imprimir Cotización (PDF)
       quantity: Cantidad
@@ -398,43 +490,26 @@ es-PA:
       validity: 'Validez:'
     update:
       success: Cotización actualizada exitosamente.
-  quote_details:
-    edit:
-      approved_at: 'Fecha de Aprobación:'
-      by: 'por: '
-      cancel: Cancelar
-      code: Código
-      created_at: 'Fecha de Creación:'
-      description: Descripción
-      discount: Descuento
-      doctor: 'Doctor: '
-      grand_total: 'Gran Total:'
-      notes: 'Observaciones:'
-      number: №
-      or: o
-      ordered_by: 'Solicitado por:'
-      price: Precio Unitario
-      quantity: Cantidad
-      quote_detail: Detalle
-      shipping_and_handling: 'Servicio a Domicilio:'
-      submit: Guardar
-      subtotal: 'Subtotal:'
-      taxes: 'ITBMS (Exento):'
-      total: Total
-      total_discount: 'Descuentos:'
+  quotes_mailer:
+    email_quote:
+      body: Hemos adjuntado la cotización solicitada.
+      opening_F: 'Estimada %{full_name}:'
+      opening_M: 'Estimado %{full_name}:'
+      opening_O: "%{full_name}:"
+      opening_U: 'Estimado(a) %{full_name}:'
+      subject: 'Cotización #%{quote_number}'
   results:
-    abnormal: •
-    critical_abnormal: •••
-    critical_high: ▲▲▲
-    critical_low: ▼▼▼
-    detected: •
-    equivocal: •
-    high: ▲
-    indeterminate: •
-    intermediate: •
+    abnormal: "•"
+    critical_abnormal: "•••"
+    critical_high: "▲▲▲"
+    critical_low: "▼▼▼"
+    detected: "•"
+    equivocal: "•"
+    high: "▲"
+    indeterminate: "•"
     index:
-      1: 'Cédula:'
-      2: 'Pasaporte:'
+      '1': 'Cédula:'
+      '2': 'Pasaporte:'
       accession: 'Solicitud:'
       age: 'Edad:'
       amended: ''
@@ -468,29 +543,22 @@ es-PA:
       units: Unidades
       year: año
       years: años
-    low: ▼
+    intermediate: "•"
+    low: "▼"
     negative: ''
-    normal: ''
     non_reactive: ''
-    non_susceptible: •
+    non_susceptible: "•"
+    normal: ''
     not_detected: ''
-    off_scale_high: ▲
-    off_scale_low: ▼
-    positive: •
-    reactive: •
-    resistant: •
-    significantly_high: ▲▲
-    significantly_low: ▼▼
+    off_scale_high: "▲"
+    off_scale_low: "▼"
+    positive: "•"
+    reactive: "•"
+    resistant: "•"
+    significantly_high: "▲▲"
+    significantly_low: "▼▼"
     susceptible: ''
-    weakly_reactive: •
-  quotes_mailer:
-    email_quote:
-      body: Hemos adjuntado la cotización solicitada.
-      opening_F: 'Estimada %{full_name}:'
-      opening_M: 'Estimado %{full_name}:'
-      opening_O: '%{full_name}:'
-      opening_U: 'Estimado(a) %{full_name}:'
-      subject: "Cotización #%{quote_number}"
+    weakly_reactive: "•"
   results_mailer:
     email_doctor:
       body: Hemos adjuntado los resultados de los exámenes de %{full_name}.
@@ -505,15 +573,29 @@ es-PA:
       body_preliminary: Hemos adjuntado los resultados preliminares de sus exámenes.
       opening_F: 'Estimada %{full_name}:'
       opening_M: 'Estimado %{full_name}:'
-      opening_O: '%{full_name}:'
+      opening_O: "%{full_name}:"
       opening_U: 'Estimado(a) %{full_name}:'
       subject: Resultados de exámenes
       subject_partial: Resultados parciales de exámenes
       subject_preliminary: Resultados preliminares de exámenes
+  settings:
+    webauthn_credentials:
+      create:
+        error: Hubo un problema al registrar su llave de seguridad. Por favor intente de nuevo.
+        success: Su llave de seguridad ha sido registrada exitosamente.
+      destroy:
+        error: Hubo un problema al eliminar su llave de seguridad. Por favor intente de nuevo.
+        success: Su llave de seguridad ha sido eliminada exitosamente.
+      new:
+        cancel: Cancelar
+        nickname: 'Sobrenombre:'
+        or: o
+        submit: Guardar Llave
+        title: Nueva Llave de Seguridad
   time:
     formats:
-      long: '%-d/%m/%Y %l:%M %p'
-      short: '%-d %b %Y %l:%M %p'
+      long: "%-d/%m/%Y %l:%M %p"
+      short: "%-d %b %Y %l:%M %p"
   user_sessions:
     new:
       password: Contraseña
@@ -546,94 +628,13 @@ es-PA:
       first: Primero
       last: Último
       next: Siguiente »
-      previous: « Anterior
-      truncate: …
-  auth:
-    sessions:
-      webauthn:
-        title: Passkey o llave de seguridad
-        message: Cuando esté listo, autentíquese usando el botón de abajo.
-        submit: Usar passkey o llave de seguridad
-  settings:
-    webauthn_credentials:
-      create:
-        error: Hubo un problema al registrar su llave de seguridad. Por favor intente de nuevo.
-        success: Su llave de seguridad ha sido registrada exitosamente.
-      destroy:
-        error: Hubo un problema al eliminar su llave de seguridad. Por favor intente de nuevo.
-        success: Su llave de seguridad ha sido eliminada exitosamente.
-      new:
-        cancel: Cancelar
-        nickname: 'Sobrenombre:'
-        or: o
-        submit: Guardar Llave
-        title: Nueva Llave de Seguridad
+      previous: "« Anterior"
+      truncate: "…"
   webauthn_credentials:
     invalid_credential: Llave de seguridad inválida
     not_enabled: WebAuthn no está habilitado
     not_supported: Este navegador no soporta el uso de llaves de seguridad
     webauthn_credential:
-      confirm_destroy: ¿Está seguro(a) que desea eliminar esta llave de seguridad?
+      confirm_destroy: "¿Está seguro(a) que desea eliminar esta llave de seguridad?"
       delete: Eliminar
       registered_on: registrada el %{date}
-  interval:
-    gender:
-      female: 'F:'
-      male: 'M:'
-      unknown: ''
-  date:
-    formats:
-      with_month_name: "%-d de %B de %Y"
-  activerecord:
-    attributes:
-      accession:
-        drawn_at: Fecha de recolección
-        icd9: Códigos de Diagnóstico (ICD-9)
-        received_at: Fecha de recepción
-        reported_at: Fecha de reporte
-      patient:
-        address_corregimiento: Corregimiento
-        address_district: Distrito
-        address_line: Dirección
-        address_province: Provincia
-        birthdate: Fecha de Nacimiento
-        cellular: Móvil
-        email: Correo Electrónico
-        family_name: Primer apellido
-        gender: Sexo
-        given_name: Primer nombre
-        identifier: Identificación
-        identifier_type: Tipo de identificación
-        phone: Teléfono
-        policy_number: Número de Póliza
-      line_items:
-        discount_value: Descuento
-        discount_unit: Descuento
-        quantity: Cantidad
-      results:
-        value: El valor
-      user:
-        initials: Las iniciales
-        password: La contraseña
-        password_confirmation: La contraseña
-        username: El nombre de usuario
-      panel:
-        fasting_status_duration_iso8601: Fasting (ISO 8601)
-    models:
-      accession: solicitud
-      department: departamento
-      doctor: doctor
-      insurance_provider: aseguradora
-      lab_test: prueba
-      lab_test_value: valor
-      panel: panel
-      patient: paciente
-      qualified_interval: rango
-      quote: cotización
-      unit: unidad
-      user: usuario
-  i18n:
-    transliterate:
-      rule:
-        ñ: ñ
-        Ñ: Ñ

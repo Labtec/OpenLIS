@@ -1,3 +1,4 @@
+---
 en:
   accessions:
     accession:
@@ -31,8 +32,8 @@ en:
     edit:
       title: Change Order
     empty:
-      order_tests: Order Tests
       no_requisitions_yet: No orders
+      order_tests: Order Tests
     form:
       accession: 'Order #%{id}'
       cancel: Cancel
@@ -44,6 +45,7 @@ en:
       or: or
       order_details: Order Details
       ordered_by: 'Ordered by:'
+      outpatient: Leave blank if outpatient
       processing: Processing...
       received_at: 'Received at:'
       received_by: 'Received by:'
@@ -51,13 +53,18 @@ en:
       reported_by: 'Reported by:'
       search_icd_code: Search ICD Code
       submit: Save
-      outpatient: Leave blank if outpatient
     index:
       pending_requisitions: Pending Orders
       requisition_history: Results
       title: Orders
     new:
       title: New Order
+  activerecord:
+    attributes:
+      accession:
+        icd9: Diagnosis Codes (ICD-9)
+      panel:
+        fasting_status_duration_iso8601: Fasting (ISO 8601)
   admin:
     claims:
       submit:
@@ -66,24 +73,33 @@ en:
       form:
         cancel: Cancel
         or: or
+  auth:
+    sessions:
+      webauthn:
+        message: When you are ready, authenticate using the button below.
+        submit: Use passkey or security key
+        title: Passkey or security key
+  date:
+    formats:
+      with_month_name: "%b %d, %Y"
   diagnostic_reports:
     edit:
       accession: 'Accession #%{id}'
-      by: ' by: '
+      by: " by: "
       cancel: Cancel
       drawn_at: 'Collected at: '
       icd9: 'Diagnosis Codes:'
       or: or
+      ordered_by: 'Ordered by:'
       received_at: 'Received at: '
       reported_at: 'Reported at: '
       submit: Save Results
       title: Enter Results
-      ordered_by: 'Ordered by:'
     index:
       title: Results
     show:
       accession: 'Accession #%{id}'
-      by: ' by: '
+      by: " by: "
       certify: Certify
       certifying: Certifying…
       change_accession: Change Order
@@ -99,6 +115,7 @@ en:
       icd9: 'Diagnosis Codes:'
       notes: 'Notes:'
       ordered_by: 'Ordered by:'
+      outpatient: Outpatient
       print_report: Print Report (PDF)
       received_at: 'Received at: '
       reported_at: 'Reported at: '
@@ -106,15 +123,8 @@ en:
       signed_report: Signed Report
       smart_health_card: SMART® Health Card
       smart_report: SMART® Report
-      outpatient: Outpatient
-  practitioners:
-    female_dr_prefix: Dra.
-    male_dr_prefix: Dr.
-    outpatient: Outpatient
-    unknown_dr_prefix: Dr.
   errors:
     messages:
-      number_or_percentage: must be a number or a percentage (%)
       cant_be_in_the_future: cannot be in the future
       cant_be_that_old: cannot be that old
       cant_begin_with_dr: must not begin with Dr(a).
@@ -122,6 +132,7 @@ en:
       is_out_of_absolute_range: is outside absolute range
       must_be_between_0_and_100: must be between 0 and 100%
       must_be_less_than_or_equal_to_list_price: must be less than or equal to the lisit price
+      number_or_percentage: must be a number or a percentage (%)
       range: must be N-N, <N or >N
       ratio: must be N:N
   flash:
@@ -135,13 +146,13 @@ en:
     accessions:
       at_least_one_panel_or_test_selected: Must have at least one panel or test selected.
     diagnostic_report:
-      report_error: There are still pending results.
       email_error: Invalid email.
       email_success: Email sent successfully.
+      report_error: There are still pending results.
       update: Successfully updated results.
     login:
       hello: 'Hello '
-      last_login_at: ' Previous login: '
+      last_login_at: " Previous login: "
     quote:
       approve_error: Quote could not be approved.
       email_error: Invalid email.
@@ -150,6 +161,11 @@ en:
       update: Successfully updated quote details.
     users:
       cant_delete_last_security_key: The last security key cannot be deleted.
+  interval:
+    gender:
+      female: 'F:'
+      male: 'M:'
+      unknown: ''
   lab_tests:
     form:
       order_tests: Order Tests
@@ -182,10 +198,10 @@ en:
       search_patients: Search patients
       year: year
     tabs:
-      patients: Patients
-      requisitions: Orders
       diagnostic_reports: Results
+      patients: Patients
       quotes: Quotes
+      requisitions: Orders
   notes:
     form:
       notes: 'Notes:'
@@ -206,6 +222,7 @@ en:
       accessions: Accessions
       address: 'Address:'
       age: 'Age:'
+      cedula: 'National ID:'
       cellular: 'Mobile:'
       confirm_destroy: Are you sure?
       delete: Delete
@@ -213,7 +230,6 @@ en:
       edit: Edit
       email: 'Email:'
       gender: 'Sex:'
-      cedula: 'National ID:'
       passport: 'Passport:'
       phone: 'Phone:'
       year: year
@@ -229,7 +245,7 @@ en:
       success: Successfully created patient.
     day:
       one: 1 day
-      other: '%{count} days'
+      other: "%{count} days"
     destroy:
       success: Successfully removed patient.
     edit:
@@ -249,22 +265,22 @@ en:
       cellular: 'Mobile:'
       corregimiento: 'Corregimiento:'
       day: 'Day:'
-      deceased: 'Deceased?'
+      deceased: Deceased?
       district: 'District:'
       email: 'Email:'
       family_name: 'Last name:'
-      family_name2: "Mother's maiden name:"
+      family_name2: 'Mother''s maiden name:'
       gender: 'Sex:'
       given_name: 'Given name:'
       insurance_provider: 'Insurance provider:'
-      insured: "Insured's Name:"
+      insured: 'Insured''s Name:'
       insured_placeholder: Leave blank if primary
       line: 'Line:'
       map: Map
       middle_name: 'Middle name:'
       month: 'Month:'
       or: or
-      partner_name: "Partner's name:"
+      partner_name: 'Partner''s name:'
       passport: 'Passport:'
       phone: 'Phone:'
       policy_number: 'Policy number:'
@@ -280,7 +296,7 @@ en:
     male: Male
     month:
       one: 1 month
-      other: '%{count} months'
+      other: "%{count} months"
     new:
       title: New Patient
     other: Other
@@ -288,6 +304,7 @@ en:
       accessions: Accessions
       address: 'Address:'
       age: 'Age:'
+      cedula: 'National ID:'
       cellular: 'Mobile:'
       confirm_destroy: Are you sure?
       delete: Delete
@@ -295,7 +312,6 @@ en:
       edit: Edit
       email: 'Email:'
       gender: 'Sex:'
-      cedula: 'National ID:'
       passport: 'Passport:'
       phone: 'Phone:'
       year: year
@@ -319,85 +335,15 @@ en:
       success: Successfully updated patient.
     week:
       one: 1 week
-      other: '%{count} weeks'
+      other: "%{count} weeks"
     year:
       one: 1 year
-      other: '%{count} years'
-  quotes:
-    create:
-      success: Successfully created quote.
-    destroy:
-      success: Successfully deleted quote.
-    edit:
-      title: Edit Quote
-    empty:
-      new_quote: New Quote
-      no_quotes_yet: No quotes
-    form:
-      cancel: Cancel
-      quote: 'Quote #%{serial_number}'
-      quote_details: Quote Details
-      or: or
-      ordered_by: 'Ordered by:'
-      outpatient: Leave blank if outpatient
-      submit: Save
-      version: '-%{version_number}'
-    index:
-      new_quote: New Quote
-      title: Quotes
-    new:
-      title: New Quote
-    order:
-      success: Successfully created service request.
-    quote:
-      approved_at: 'Approved at: '
-      by: 'by: '
-      created_at: 'Created at: '
-      confirm_destroy: Are you sure?
-      delete?: Delete?
-      edit: Edit
-      ordered_by: 'Ordered by: '
-      quote: 'Quote #%{serial_number}'
-      tests_ordered: 'Tests ordered: '
-      version: '-%{version_number}'
-    show:
-      amend: Amend
-      approve: Approve
-      approved_at: 'Approved at:'
-      approved_by: 'Approved by:'
-      back: View Order
-      by: 'by: '
-      change_quote: Change Quote
-      code: Code
-      confirm_email: Would you like to email the quote to %{email}?
-      confirm_emailed: Would you like to email the quote to %{email} again?
-      confirm_order: Would you like to order this quote?
-      created_at: 'Created at:'
-      description: Description
-      discount: Discount
-      doctor: 'Doctor: '
-      email_quote: Email Quote
-      emailed_quote: Resend Quote
-      grand_total: 'Grand Total:'
-      notes: 'Notes:'
-      number: No.
-      order: Order
-      ordered_by: 'Ordered by:'
-      pdf_total_discount: 'Discounts'
-      price: Unit Price
-      print_quote: Print Quote (PDF)
-      quantity: Quantity
-      quote_detail: Quote Detail
-      shipping_and_handling: 'Home Visit:'
-      signed_quote: Signed Quote
-      subtotal: 'Subtotal:'
-      taxes: 'Taxes:'
-      title: Quote
-      total: Total
-      total_discount: 'Discounts:'
-      validity: 'Valid for:'
-    update:
-      success: Successfully updated quote.
+      other: "%{count} years"
+  practitioners:
+    female_dr_prefix: Dra.
+    male_dr_prefix: Dr.
+    outpatient: Outpatient
+    unknown_dr_prefix: Dr.
   quote_details:
     edit:
       approved_at: 'Approved at:'
@@ -422,6 +368,89 @@ en:
       taxes: 'Taxes:'
       total: Total
       total_discount: 'Discounts:'
+  quotes:
+    create:
+      success: Successfully created quote.
+    destroy:
+      success: Successfully deleted quote.
+    edit:
+      title: Edit Quote
+    empty:
+      new_quote: New Quote
+      no_quotes_yet: No quotes
+    form:
+      cancel: Cancel
+      or: or
+      ordered_by: 'Ordered by:'
+      outpatient: Leave blank if outpatient
+      quote: 'Quote #%{serial_number}'
+      quote_details: Quote Details
+      submit: Save
+      version: "-%{version_number}"
+    index:
+      new_quote: New Quote
+      title: Quotes
+    new:
+      title: New Quote
+    order:
+      success: Successfully created service request.
+    quote:
+      approved_at: 'Approved at: '
+      by: 'by: '
+      confirm_destroy: Are you sure?
+      created_at: 'Created at: '
+      delete?: Delete?
+      edit: Edit
+      ordered_by: 'Ordered by: '
+      quote: 'Quote #%{serial_number}'
+      tests_ordered: 'Tests ordered: '
+      version: "-%{version_number}"
+    show:
+      amend: Amend
+      approve: Approve
+      approved_at: 'Approved at:'
+      approved_by: 'Approved by:'
+      back: View Order
+      by: 'by: '
+      change_quote: Change Quote
+      code: Code
+      confirm_email: Would you like to email the quote to %{email}?
+      confirm_emailed: Would you like to email the quote to %{email} again?
+      confirm_order: Would you like to order this quote?
+      created_at: 'Created at:'
+      description: Description
+      discount: Discount
+      doctor: 'Doctor: '
+      email_quote: Email Quote
+      emailed_quote: Resend Quote
+      grand_total: 'Grand Total:'
+      notes: 'Notes:'
+      number: No.
+      order: Order
+      ordered_by: 'Ordered by:'
+      pdf_total_discount: Discounts
+      price: Unit Price
+      print_quote: Print Quote (PDF)
+      quantity: Quantity
+      quote_detail: Quote Detail
+      shipping_and_handling: 'Home Visit:'
+      signed_quote: Signed Quote
+      subtotal: 'Subtotal:'
+      taxes: 'Taxes:'
+      title: Quote
+      total: Total
+      total_discount: 'Discounts:'
+      validity: 'Valid for:'
+    update:
+      success: Successfully updated quote.
+  quotes_mailer:
+    email_quote:
+      body: Attached is the requested quote.
+      opening_F: Dear %{full_name},
+      opening_M: Dear %{full_name},
+      opening_O: "%{full_name},"
+      opening_U: Dear %{full_name},
+      subject: 'Quote #%{quote_number}'
   results:
     abnormal: A
     critical_abnormal: AA
@@ -431,10 +460,9 @@ en:
     equivocal: E
     high: H
     indeterminate: IND
-    intermediate: I
     index:
-      1: 'ID:'
-      2: 'Passport:'
+      '1': 'ID:'
+      '2': 'Passport:'
       accession: 'Accession:'
       age: 'Age:'
       amended: Amended
@@ -468,14 +496,15 @@ en:
       units: Units
       year: year
       years: years
+    intermediate: I
     low: L
     negative: NEG
-    normal: ''
     non_reactive: NR
     non_susceptible: NS
+    normal: ''
     not_detected: ND
-    off_scale_high: '>'
-    off_scale_low: '<'
+    off_scale_high: ">"
+    off_scale_low: "<"
     positive: POS
     reactive: RR
     resistant: R
@@ -483,14 +512,6 @@ en:
     significantly_low: LU
     susceptible: S
     weakly_reactive: WR
-  quotes_mailer:
-    email_quote:
-      body: Attached is the requested quote.
-      opening_F: Dear %{full_name},
-      opening_M: Dear %{full_name},
-      opening_O: '%{full_name},'
-      opening_U: Dear %{full_name},
-      subject: "Quote #%{quote_number}"
   results_mailer:
     email_doctor:
       body: Attached are the results for %{full_name}.
@@ -505,15 +526,29 @@ en:
       body_preliminary: Attached are your preliminary lab results.
       opening_F: Dear %{full_name},
       opening_M: Dear %{full_name},
-      opening_O: '%{full_name},'
+      opening_O: "%{full_name},"
       opening_U: Dear %{full_name},
       subject: Lab results
       subject_partial: Partial lab results
       subject_preliminary: Preliminary lab results
+  settings:
+    webauthn_credentials:
+      create:
+        error: There was a problem adding your security key. Please try again.
+        success: Your security key was successfully added.
+      destroy:
+        error: There was a problem deleting you security key. Please try again.
+        success: Your security key was successfully deleted.
+      new:
+        cancel: Cancel
+        nickname: 'Nickname:'
+        or: or
+        submit: Save Key
+        title: New Security Key
   time:
     formats:
-      long: '%d %B %Y %H:%M'
-      short: '%d-%b-%Y %H:%M'
+      long: "%d %B %Y %H:%M"
+      short: "%d-%b-%Y %H:%M"
   user_sessions:
     new:
       password: Password
@@ -546,47 +581,13 @@ en:
       first: First
       last: Last
       next: Next »
-      previous: « Previous
-      truncate: …
-  auth:
-    sessions:
-      webauthn:
-        title: Passkey or security key
-        message: When you are ready, authenticate using the button below.
-        submit: Use passkey or security key
-  settings:
-    webauthn_credentials:
-      create:
-        error: There was a problem adding your security key. Please try again.
-        success: Your security key was successfully added.
-      destroy:
-        error: There was a problem deleting you security key. Please try again.
-        success: Your security key was successfully deleted.
-      new:
-        cancel: Cancel
-        nickname: 'Nickname:'
-        or: or
-        submit: Save Key
-        title: New Security Key
+      previous: "« Previous"
+      truncate: "…"
   webauthn_credentials:
     invalid_credential: Invalid security key
     not_enabled: WebAuthn is not enabled
-    not_supported: "This browser doesn't support security keys"
+    not_supported: This browser doesn't support security keys
     webauthn_credential:
       confirm_destroy: Are you sure you want to delete this security key?
       delete: Delete
       registered_on: registered on %{date}
-  interval:
-    gender:
-      female: 'F:'
-      male: 'M:'
-      unknown: ''
-  date:
-    formats:
-      with_month_name: "%b %d, %Y"
-  activerecord:
-    attributes:
-      accession:
-        icd9: Diagnosis Codes (ICD-9)
-      panel:
-        fasting_status_duration_iso8601: Fasting (ISO 8601)
