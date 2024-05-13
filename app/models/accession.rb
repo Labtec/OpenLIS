@@ -32,7 +32,7 @@ class Accession < ApplicationRecord
   accepts_nested_attributes_for :accession_panels, allow_destroy: true
   accepts_nested_attributes_for :notes, allow_destroy: true
 
-  validates :icd9, presence: true, if: :insurable?
+  #validates :icd9, presence: true, if: :insurable?
   validates :drawn_at, :received_at, presence: true
   validates :drawn_at, :received_at, :reported_at, not_in_the_future: true
   validate :at_least_one_panel_or_test_selected
