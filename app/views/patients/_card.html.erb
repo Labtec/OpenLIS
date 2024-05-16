@@ -7,7 +7,11 @@
 
     <h4><%= link_to full_name(patient), patient_path(patient), data: { turbo_frame: '_top' } %></h4>
     <div>
-      <%= patient.identifier %><br />
+      <%= patient.identifier %>
+      <% if patient.identifier_type == 1 %>
+        DV: <%= Cedula::dv(patient.identifier) %>
+      <% end %>
+      <br />
       <% unless patient.deceased? %>
       <%= t('.age') %> <%= display_pediatric_age(patient.pediatric_age) %>
       <% end %>
