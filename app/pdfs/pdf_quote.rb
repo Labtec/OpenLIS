@@ -130,8 +130,9 @@ class PDFQuote < Prawn::Document
     ##
     # To
     to = []
-    bounding_box([0, to_from_position], width: bounds.width / 2 - PADDING, height: line_height * 4 + LINE_PADDING) do
+    bounding_box([0, to_from_position], width: bounds.width / 2 - PADDING, height: line_height * 5 + LINE_PADDING) do
       to << contact_name
+      to << identification
       to << contact_email
       to << contact_phone
       to << requested_by
@@ -142,13 +143,13 @@ class PDFQuote < Prawn::Document
 
     ##
     # From
-    bounding_box([bounds.width / 2 + PADDING, to_from_position], width: bounds.width / 2 - PADDING, height: line_height * 4 + LINE_PADDING) do
+    bounding_box([bounds.width / 2 + PADDING, to_from_position], width: bounds.width / 2 - PADDING, height: line_height * 5 + LINE_PADDING) do
       text "\n" * 3
       signature_image
       text "#{t('quotes.show.approved_by')}  #{@view.approved_by_name(@quote.approved_by)}"
     end
 
-    move_down 25
+    move_down 15
 
     ##
     # Quote Table
@@ -384,8 +385,22 @@ class PDFQuote < Prawn::Document
     end
   end
 
+  def digito_verificador
+    "DV #{Cedula::dv(@quote.patient.identifier)}" if Cedula::dv(@quote&.patient&.identifier)
+  end
+
   def header_height
     ENVELOPE_ADJUSTMENT_HEIGHT
+  end
+
+  def identification
+    if @quote&.patient&.identifier
+      if @quote&.patient&.identifier_type == 1
+        "#{t('patients.patient.cedula')}  #{@quote.patient.identifier} #{digito_verificador}"
+      else
+        "#{t('patients.patient.passport')}  #{@quote.patient.identifier}"
+      end
+    end
   end
 
   def line_height
