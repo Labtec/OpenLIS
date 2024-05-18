@@ -386,7 +386,8 @@ class PDFQuote < Prawn::Document
   end
 
   def digito_verificador
-    "DV #{Cedula::dv(@quote.patient.identifier)}" if Cedula::dv(@quote&.patient&.identifier)
+    dv = Cedula.new(@quote&.patient&.identifier).dv
+    "DV #{dv}" if dv
   end
 
   def header_height

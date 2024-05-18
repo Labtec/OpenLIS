@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 class Cedula
-  def self.dv(ruc)
-    split_ruc = ruc.split('-')
+  def initialize(ruc)
+    @ruc = ruc
+  end
+
+  def dv
+    return unless @ruc
+
+    split_ruc = @ruc.split('-')
 
     return if (split_ruc.size == 4 && !['NT', 'AV', 'PI'].include?(split_ruc[1])) || split_ruc.size < 3 || split_ruc.size > 5
 
@@ -20,25 +26,20 @@ class Cedula
     "#{dv1}#{dv2}"
   end
 
-  def self.calculate_dv(padded_ruc)
-    j = 2
-    nsuma = 0
+  private
 
-    padded_ruc.reverse.split('').each do |k|
-      nsuma += j * k.to_i
-      j += 1
-    end
+  def calculate_dv(padded_ruc)
+    # modulo 11 (kind of)
+    weighted_sum = padded_ruc.split('').map(&:to_i).
+          zip(Array(2..padded_ruc.size + 1).reverse).map{ |x, y| x * y }.inject(:+) % 11
 
-    r = nsuma % 11
-
-    return 11 - r if r > 1
+    return 11 - weighted_sum if weighted_sum > 1
 
     0
   end
 
   # TODO EE, SB
-  def self.normalize_ruc(split_ruc)
-    # Normalize split_ruc when NT
+  def normalize_ruc(split_ruc)
     if split_ruc.size == 4 && split_ruc[1] == 'NT'
       ["#{split_ruc[0]}43", split_ruc[2], split_ruc[3]] # When Numero Tributario, replace with 43
     elsif split_ruc.size == 4 && split_ruc[1] == 'AV'
@@ -47,7 +48,7 @@ class Cedula
       ["#{split_ruc[0]}79", split_ruc[2], split_ruc[3]] # When Panameno Indigena, replace with 79
     else
       split_ruc[0] = case split_ruc[0]
-                     when 'E', 'N'  # Extranjero, Naturalizado
+                     when 'E', 'N' # Extranjero, Naturalizado
                        '50'
                      when 'PE' # Panameno Extranjero
                        '75'
