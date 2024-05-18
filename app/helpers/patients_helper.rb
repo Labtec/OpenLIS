@@ -33,6 +33,14 @@ module PatientsHelper
     end
   end
 
+  def patient_identifier(patient)
+    if patient.identifier_type == 1
+      dv = Cedula.new(patient.identifier).dv
+      return "#{patient.identifier} DV #{dv}" if dv.present?
+    end
+    patient.identifier
+  end
+
   # Returns the full name of a patient.
   def full_name(patient)
     return unless patient
