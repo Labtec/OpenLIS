@@ -17,7 +17,9 @@ module Settings
           id: current_user.webauthn_id,
           display_name: helpers.current_user_name
         },
-        exclude: current_user.webauthn_credentials.pluck(:external_id)
+        exclude: current_user.webauthn_credentials.pluck(:external_id),
+        authenticator_selection: { user_verification: 'discouraged' }
+
       )
 
       session[:webauthn_challenge] = options_for_create.challenge
