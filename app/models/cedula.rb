@@ -12,9 +12,7 @@ class Cedula
 
     return if (split_ruc.size == 4 && !['NT', 'AV', 'PI'].include?(split_ruc[1])) ||
       split_ruc.size < 3 ||
-      split_ruc.size > 5 ||
-      split_ruc[1].size > 3 ||
-      split_ruc[2].size > 5
+      split_ruc.size > 5
 
     normalized_ruc = normalize_ruc(split_ruc)
 
