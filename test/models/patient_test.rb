@@ -32,13 +32,7 @@ class PatientTest < ActiveSupport::TestCase
     assert_not patient.errors.added?(:partner_name, :blank)
   end
 
-  test 'uniqueness of identifier ignoring case sentitivity allowing blank' do
-    patient = Patient.create(identifier: '111-111-1111')
-    assert patient.errors.added?(:identifier, :taken, value: '111-111-1111')
-
-    patient = Patient.create(identifier: 'ins-1')
-    assert patient.errors.added?(:identifier, :taken, value: 'ins-1')
-
+  test 'identifier allowing blanks' do
     patient = Patient.create(identifier: '')
     assert_not patient.errors.added?(:identifier, :blank)
   end

@@ -30,6 +30,7 @@ class Patient < ApplicationRecord
   validates :birthdate, not_in_the_future: true
   validates :birthdate, not_too_old: true
   validates :identifier, uniqueness: { case_sensitive: false },
+                         cedula: true, if: -> { identifier_type == 1 },
                          allow_blank: true
   validates :identifier_type, presence: true, if: -> { identifier.present? }
   validates :identifier_type, inclusion: { in: IDENTIFIER_TYPES },
@@ -73,6 +74,8 @@ class Patient < ApplicationRecord
                         :policy_number
   auto_strip_attributes :address_province, :address_district, :address_corregimiento,
                         :address_line, virtual: true
+
+  normalizes :identifier, with: -> identifier { identifier.strip.upcase }
 
   before_save :titleize_names, :nil_identifier_type_if_identifier_blank,
               :nil_address_if_address_province_blank
