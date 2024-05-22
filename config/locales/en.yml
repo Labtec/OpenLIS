@@ -106,7 +106,7 @@ en:
       change_results: Change Results
       confirm_email: Would you like to email the results to %{email}?
       confirm_emailed: Would you like to email the results to %{email} again?
-      confirm_forceful_certify: Are you sure you want to cancel pending results an
+      confirm_forceful_certify: Are you sure you want to cancel pending results and
         certify?
       drawn_at: 'Collected at: '
       email_report: Email Report
