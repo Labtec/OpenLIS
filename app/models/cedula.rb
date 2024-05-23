@@ -10,9 +10,9 @@ class Cedula
 
     split_ruc = @ruc.split('-')
 
-    return if (split_ruc.size == 4 && !['NT', 'AV', 'PI'].include?(split_ruc[1])) ||
-      split_ruc.size < 3 ||
-      split_ruc.size > 5
+    return if (split_ruc.size == 4 && !%w[NT AV PI].include?(split_ruc[1])) ||
+              split_ruc.size < 3 ||
+              split_ruc.size > 5
 
     normalized_ruc = normalize_ruc(split_ruc)
 
@@ -32,23 +32,28 @@ class Cedula
 
   def calculate_dv(padded_ruc)
     # modulo 11 check digit
-    weighted_sum = padded_ruc.split('').map(&:to_i).
-          zip(Array(2..padded_ruc.size + 1).reverse).map{ |x, y| x * y }.inject(:+)
+    weighted_sum = padded_ruc.split('').map(&:to_i)
+                             .zip(Array(2..padded_ruc.size + 1).reverse).map { |x, y| x * y }
+                             .inject(:+)
 
-    mod_11 = weighted_sum % 11
-    return 11 - mod_11 if mod_11 > 1
+    mod11 = weighted_sum % 11
+    return 11 - mod11 if mod11 > 1
 
     0
   end
 
-  # TODO EE, SB?
+  # TODO: EE, SB?
   def normalize_ruc(split_ruc)
-    if split_ruc.size == 4 && split_ruc[1] == 'NT'
-      ["#{split_ruc[0]}43", split_ruc[2], split_ruc[3]] # When Numero Tributario, replace with 43
-    elsif split_ruc.size == 4 && split_ruc[1] == 'AV'
-      ["#{split_ruc[0]}15", split_ruc[2], split_ruc[3]] # When Antes de la Vigencia, replace with 15
-    elsif split_ruc.size == 4 && split_ruc[1] == 'PI'
-      ["#{split_ruc[0]}79", split_ruc[2], split_ruc[3]] # When Panameno Indigena, replace with 79
+    if split_ruc.size == 4
+      split_ruc[0] = case split_ruc[1]
+                     when 'NT' # Numero Tributario
+                       "#{split_ruc[0]}43"
+                     when 'AV' # Antes de la Vigencia
+                       "#{split_ruc[0]}15"
+                     when 'PI' # Panameno Indigena
+                       "#{split_ruc[0]}79"
+                     end
+      [split_ruc[0], split_ruc[2], split_ruc[3]]
     else
       split_ruc[0] = case split_ruc[0]
                      when 'E', 'N' # Extranjero, Naturalizado
