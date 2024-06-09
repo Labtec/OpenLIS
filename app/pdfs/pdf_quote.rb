@@ -143,8 +143,9 @@ class PDFQuote < Prawn::Document
 
     ##
     # From
-    bounding_box([bounds.width / 2 + PADDING, to_from_position], width: bounds.width / 2 - PADDING, height: line_height * 6 + LINE_PADDING) do
-      text "\n" * 4
+    to_size = to.compact.size
+    bounding_box([bounds.width / 2 + PADDING, to_from_position], width: bounds.width / 2 - PADDING, height: line_height * (to_size + 1) + LINE_PADDING) do
+      text "\n" * (to_size - 1)
       signature_image
       text "#{t('quotes.show.approved_by')}  #{@view.approved_by_name(@quote.approved_by)}"
     end
