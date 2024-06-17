@@ -263,8 +263,11 @@ class PDFQuote < Prawn::Document
       text "<sup>#{FOOTNOTE_SYMBOLS[1]}</sup>Todos los panameños o extranjeros residentes en el territorio nacional con cincuenta y cinco años (55) o más si son mujeres con sesenta años (60) o más si son hombres, y los pensionados por invalidez de menor edad, gozarán de un descuento de 20%.", inline_format: true
     end
 
-    move_down 15
+    ##
+    # Office Hours
+    text 'Horario de atención: lunes a viernes de 7:30 AM a 7:30 PM y sábados de 8:00 AM a 12:00 PM.'
 
+    move_down 15
     page_break?(payment_info_box_height)
 
     ##
