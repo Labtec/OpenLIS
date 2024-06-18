@@ -265,7 +265,7 @@ class PDFQuote < Prawn::Document
 
     ##
     # Office Hours
-    text 'Horario de atención: lunes a viernes de 7:30 AM a 7:30 PM y sábados de 8:00 AM a 12:00 PM.'
+    text 'Horario de atención: lunes a viernes de 7:30 a. m. a 7:30 p. m. y sábados de 8:00 a. m. a 12:00 m.'
 
     move_down 15
     page_break?(payment_info_box_height)
