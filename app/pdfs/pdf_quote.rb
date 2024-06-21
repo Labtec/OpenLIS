@@ -260,7 +260,7 @@ class PDFQuote < Prawn::Document
     end
     # Legal
     if @quote.patient_retiree?
-      text "<sup>#{FOOTNOTE_SYMBOLS[1]}</sup>Todos los panameños o extranjeros residentes en el territorio nacional con cincuenta y cinco años (55) o más si son mujeres con sesenta años (60) o más si son hombres, y los pensionados por invalidez de menor edad, gozarán de un descuento de 20%.", inline_format: true
+      text "<sup>#{FOOTNOTE_SYMBOLS[1]}</sup>Los panameños o extranjeros residentes en el territorio nacional que tengan cincuenta y cinco (55) años o más, si son mujeres; o sesenta (60) años o más, si son varones; y todos los jubilados y pensionados por cualquier género, gozarán de un descuento del 20%.", inline_format: true
     end
 
     ##
