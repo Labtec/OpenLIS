@@ -56,8 +56,10 @@ class Cedula
       [split_ruc[0], split_ruc[2], split_ruc[3]]
     else
       split_ruc[0] = case split_ruc[0]
-                     when 'E', 'N' # Extranjero, Naturalizado
+                     when 'E' # Extranjero
                        '50'
+                     when 'N' # Naturalizado
+                       '40'
                      when 'PE' # Panameno Extranjero
                        '75'
                      else
