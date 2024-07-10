@@ -32,14 +32,11 @@ class Cedula
 
   def calculate_dv(padded_ruc)
     # modulo 11 check digit
-    weighted_sum = padded_ruc.split('').map(&:to_i)
-                             .zip(Array(2..padded_ruc.size + 1).reverse).map { |x, y| x * y }
-                             .inject(:+)
+    weight = padded_ruc.split('').map(&:to_i)
+                       .zip(Array(2..padded_ruc.size + 1).reverse)
+                       .map { |x, y| x * y }
 
-    mod11 = weighted_sum % 11
-    return 11 - mod11 if mod11 > 1
-
-    0
+    (11 - weight.sum % 11) % 10
   end
 
   # TODO: EE, SB?
