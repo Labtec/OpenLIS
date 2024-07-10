@@ -36,7 +36,10 @@ class Cedula
                        .zip(Array(2..padded_ruc.size + 1).reverse)
                        .map { |x, y| x * y }
 
-    (11 - weight.sum % 11) % 10
+    mod11 = weight.sum % 11
+    return 11 - mod11 if mod11 > 1
+
+    0
   end
 
   # TODO: EE, SB?
