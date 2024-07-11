@@ -104,9 +104,7 @@ class Accession < ApplicationRecord
   end
 
   def payload_type
-    return COVIDLabResultPayload if covid?
-
-    LabResultPayload
+    HealthCardPayload
   end
 
   def pending_claim?
