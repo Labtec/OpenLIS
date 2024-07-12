@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/jlduran/health_cards.git
-  revision: 3a3198fa86b2c3af65871d72c1343a5f1eb784ff
+  revision: a6e4a37cb2d99f1a447532454b5b57487b56a3f9
   branch: development
   specs:
     health_cards (1.1.1)
@@ -301,7 +301,7 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.0)
-    rack (3.1.6)
+    rack (3.1.7)
     rack-mini-profiler (3.3.1)
       rack (>= 1.2.0)
     rack-session (2.0.0)
