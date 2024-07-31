@@ -13,7 +13,7 @@ module ActiveSupport
 
     Warden.test_mode!
 
-    parallelize(workers: :number_of_processors, with: :threads)
+    parallelize(workers: :number_of_processors)
 
     fixtures :all
 
