@@ -11,6 +11,8 @@ module ActiveSupport
     include Capybara::DSL
     include Warden::Test::Helpers
 
+    self.use_transactional_tests = false
+
     Warden.test_mode!
 
     parallelize(workers: :number_of_processors)
