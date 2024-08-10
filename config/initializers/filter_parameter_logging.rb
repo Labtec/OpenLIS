@@ -9,7 +9,6 @@ Rails.application.config.filter_parameters += [
   :birthdate,
   :cellular,
   :deceased,
-  :email,
   :family_name,
   :family_name2,
   :gender,
@@ -22,5 +21,5 @@ Rails.application.config.filter_parameters += [
   :phone,
   :policy_number,
   :search,
-  :passw, :secret, :token, :_key, :crypt, :salt, :certificate, :otp, :ssn
+  :passw, :email, :secret, :token, :_key, :crypt, :salt, :certificate, :otp, :ssn
 ]
