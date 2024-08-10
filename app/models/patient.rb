@@ -47,7 +47,7 @@ class Patient < ApplicationRecord
                                if: lambda {
                                      address_province.present? &&
                                        (address_province_changed? &&
-                                        address_province_change.last != 'Guna Yala')
+                                        address_province_change.last != "Guna Yala")
                                    }
   validates :address_corregimiento, presence: true,
                                     if: lambda {
@@ -65,8 +65,8 @@ class Patient < ApplicationRecord
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
   scope :recent, -> { order(updated_at: :desc) }
-  scope :sorted, -> { order(Arel.sql('LOWER(my_unaccent(family_name))')) }
-  scope :ordered, ->(order) { order(order.flatten.first || 'created_at DESC') }
+  scope :sorted, -> { order(Arel.sql("LOWER(my_unaccent(family_name))")) }
+  scope :ordered, ->(order) { order(order.flatten.first || "created_at DESC") }
 
   auto_strip_attributes :given_name, :middle_name, :family_name, :family_name2,
                         :partner_name, :identifier, :email, :cellular, :phone,
@@ -104,19 +104,19 @@ class Patient < ApplicationRecord
   end
 
   def female?
-    gender == 'F'
+    gender == "F"
   end
 
   def male?
-    gender == 'M'
+    gender == "M"
   end
 
   def other?
-    gender == 'O'
+    gender == "O"
   end
 
   def unknown?
-    gender == 'U'
+    gender == "U"
   end
 
   private

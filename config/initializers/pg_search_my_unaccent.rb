@@ -1,1 +1,1 @@
-PgSearch.unaccent_function = 'my_unaccent'
+PgSearch.unaccent_function = "my_unaccent"

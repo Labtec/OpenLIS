@@ -37,10 +37,10 @@ class Observation < ApplicationRecord
   validates :value, fraction: true, allow_blank: true, if: :fraction?
   validates :value, ratio: true,    allow_blank: true, if: :ratio?
 
-  scope :ordered, -> { order('lab_tests.position') }
-  default_scope -> { joins(:lab_test).order('lab_tests.position ASC') }
+  scope :ordered, -> { order("lab_tests.position") }
+  default_scope -> { joins(:lab_test).order("lab_tests.position ASC") }
 
-  after_update_commit -> { broadcast_replace_later_to :results, partial: 'observations/analyte', locals: { analyte: self } }
+  after_update_commit -> { broadcast_replace_later_to :results, partial: "observations/analyte", locals: { analyte: self } }
 
   auto_strip_attributes :value
 
@@ -106,7 +106,7 @@ class Observation < ApplicationRecord
       value =~ /\A(\d+):(\d+)\z/
       Rational(Regexp.last_match(2).to_i, Regexp.last_match(1).to_i)
     else
-      value.gsub(/[^\d.]/, '').to_d.round(lab_test_decimals.to_i)
+      value.gsub(/[^\d.]/, "").to_d.round(lab_test_decimals.to_i)
     end
   end
 
@@ -114,14 +114,14 @@ class Observation < ApplicationRecord
     return if value.blank?
 
     case value.scan(/[^\d.]/).join.squish
-    when '<'
-      '<'
-    when '<=', '=<', '≤'
-      '≤'
-    when '>=', '=>', '≥'
-      '≥'
-    when '>'
-      '>'
+    when "<"
+      "<"
+    when "<=", "=<", "≤"
+      "≤"
+    when ">=", "=>", "≥"
+      "≥"
+    when ">"
+      ">"
     end
   end
 

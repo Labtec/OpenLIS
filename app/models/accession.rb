@@ -7,16 +7,16 @@ class Accession < ApplicationRecord
 
   belongs_to :patient, touch: true
   belongs_to :doctor, counter_cache: true, optional: true
-  belongs_to :receiver, inverse_of: :accessions, class_name: 'User'
-  belongs_to :drawer, inverse_of: :accessions, class_name: 'User'
-  belongs_to :reporter, optional: true, inverse_of: :accessions, class_name: 'User'
+  belongs_to :receiver, inverse_of: :accessions, class_name: "User"
+  belongs_to :drawer, inverse_of: :accessions, class_name: "User"
+  belongs_to :reporter, optional: true, inverse_of: :accessions, class_name: "User"
 
   has_one :claim, dependent: :destroy
   has_one :insurance_provider, through: :patient
-  has_one :quote, dependent: :nullify, foreign_key: 'service_request_id'
+  has_one :quote, dependent: :nullify, foreign_key: "service_request_id"
 
-  has_many :results, class_name: 'Observation', dependent: :destroy
-  has_many :lab_tests, -> { order('position ASC') }, through: :results
+  has_many :results, class_name: "Observation", dependent: :destroy
+  has_many :lab_tests, -> { order("position ASC") }, through: :results
   has_many :accession_panels, dependent: :destroy
   has_many :panels, through: :accession_panels
   has_many :departments, through: :lab_tests
@@ -32,7 +32,7 @@ class Accession < ApplicationRecord
   accepts_nested_attributes_for :accession_panels, allow_destroy: true
   accepts_nested_attributes_for :notes, allow_destroy: true
 
-  #validates :icd9, presence: true, if: :insurable?
+  # validates :icd9, presence: true, if: :insurable?
   validates :drawn_at, :received_at, presence: true
   validates :drawn_at, :received_at, :reported_at, not_in_the_future: true
   validate :at_least_one_panel_or_test_selected
@@ -42,18 +42,18 @@ class Accession < ApplicationRecord
   scope :ordered, -> { order(id: :asc) }
   scope :pending, -> { where(reported_at: nil) }
   scope :reported, -> { where.not(reported_at: nil) }
-  scope :with_insurance_provider, -> { joins(:patient).where.not('patients.insurance_provider_id' => nil).ordered }
-  scope :within_claim_period, -> { where('drawn_at > :claim_period', claim_period: 8.months.ago) }
+  scope :with_insurance_provider, -> { joins(:patient).where.not("patients.insurance_provider_id" => nil).ordered }
+  scope :within_claim_period, -> { where("drawn_at > :claim_period", claim_period: 8.months.ago) }
   scope :unclaimed, -> { eager_load(:claim).where(claims: { claimed_at: nil }).ordered }
   scope :claimable, -> { where.not(doctor_id: nil) }
 
   before_save :nil_empty_notes
   before_destroy :unarchive_quotes
   # after_create_commit -> { broadcast_prepend_later_to :accessions, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.accessions_path } }
-  after_update_commit -> { broadcast_replace_later_to [true, :accessions], partial: 'accessions/admin_accession' }
-  after_update_commit -> { broadcast_replace_later_to [false, :accessions] }
-  after_destroy_commit -> { broadcast_remove_to [true, :accessions] }
-  after_destroy_commit -> { broadcast_remove_to [false, :accessions] }
+  after_update_commit -> { broadcast_replace_later_to [ true, :accessions ], partial: "accessions/admin_accession" }
+  after_update_commit -> { broadcast_replace_later_to [ false, :accessions ] }
+  after_destroy_commit -> { broadcast_remove_to [ true, :accessions ] }
+  after_destroy_commit -> { broadcast_remove_to [ false, :accessions ] }
 
   # after_destroy_commit -> { broadcast_replace_to :accession, partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.accessions_path }, target: :accession }
 
@@ -133,7 +133,7 @@ class Accession < ApplicationRecord
 
   def at_least_one_panel_or_test_selected
     if panel_ids.blank? && lab_test_ids.blank?
-      errors.add(:base, I18n.t('flash.accessions.at_least_one_panel_or_test_selected'))
+      errors.add(:base, I18n.t("flash.accessions.at_least_one_panel_or_test_selected"))
     end
   end
 end

@@ -2,7 +2,7 @@
 
 module PractitionersHelper
   def organization_or_practitioner(doctor)
-    return I18n.t('practitioners.outpatient') unless doctor
+    return I18n.t("practitioners.outpatient") unless doctor
 
     if doctor.organization
       doctor.name
@@ -16,12 +16,12 @@ module PractitionersHelper
     return if doctor.organization
 
     case doctor.gender
-    when 'male'
-      I18n.t('practitioners.male_dr_prefix')
-    when 'female'
-      I18n.t('practitioners.female_dr_prefix')
+    when "male"
+      I18n.t("practitioners.male_dr_prefix")
+    when "female"
+      I18n.t("practitioners.female_dr_prefix")
     else
-      I18n.t('practitioners.unknown_dr_prefix')
+      I18n.t("practitioners.unknown_dr_prefix")
     end
   end
 end

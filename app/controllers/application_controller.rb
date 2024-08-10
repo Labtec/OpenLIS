@@ -21,9 +21,9 @@ class ApplicationController < ActionController::Base
   def set_user_language
     I18n.locale = if current_user
                     current_user.language
-                  else
+    else
                     extract_locale_from_accept_language_header
-                  end
+    end
   rescue StandardError
     I18n.default_locale
   end
@@ -57,11 +57,11 @@ class ApplicationController < ActionController::Base
   end
 
   def extract_locale_from_accept_language_header
-    language = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
-    if language == 'es'
-      'es-PA'
+    language = request.env["HTTP_ACCEPT_LANGUAGE"].scan(/^[a-z]{2}/).first
+    if language == "es"
+      "es-PA"
     else
-      'en'
+      "en"
     end
   rescue StandardError
     I18n.default_locale

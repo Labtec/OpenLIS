@@ -5,7 +5,7 @@ module Admin
     before_action :set_department, only: %i[edit update destroy]
 
     def index
-      @departments = Department.order('id asc').includes(:lab_tests)
+      @departments = Department.order("id asc").includes(:lab_tests)
     end
 
     def new
@@ -19,7 +19,7 @@ module Admin
       @department = Department.new(department_params)
 
       if @department.save
-        redirect_to admin_departments_url, notice: 'Department created successfully.'
+        redirect_to admin_departments_url, notice: "Department created successfully."
       else
         render :new, status: :unprocessable_entity
       end
@@ -27,7 +27,7 @@ module Admin
 
     def update
       if @department.update(department_params)
-        redirect_to admin_departments_url, notice: 'Department updated successfully.'
+        redirect_to admin_departments_url, notice: "Department updated successfully."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -37,8 +37,8 @@ module Admin
       @department.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_departments_url, notice: 'Department deleted.' }
-        format.turbo_stream { flash.now[:notice] = 'Department deleted.' }
+        format.html { redirect_to admin_departments_url, notice: "Department deleted." }
+        format.turbo_stream { flash.now[:notice] = "Department deleted." }
       end
     end
 

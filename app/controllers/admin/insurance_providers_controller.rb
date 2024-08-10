@@ -20,7 +20,7 @@ module Admin
       @insurance_provider = InsuranceProvider.new(insurance_provider_params)
 
       if @insurance_provider.save
-        redirect_to admin_insurance_providers_url, notice: 'Successfully created insurance provider.'
+        redirect_to admin_insurance_providers_url, notice: "Successfully created insurance provider."
       else
         render :new, status: :unprocessable_entity
       end
@@ -28,7 +28,7 @@ module Admin
 
     def update
       if @insurance_provider.update(insurance_provider_params)
-        redirect_to admin_insurance_providers_url, notice: 'Successfully updated insurance provider.'
+        redirect_to admin_insurance_providers_url, notice: "Successfully updated insurance provider."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -38,8 +38,8 @@ module Admin
       @insurance_provider.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_insurance_providers_url, notice: 'Successfully destroyed insurance provider.' }
-        format.turbo_stream { flash.now[:notice] = 'Successfully destroyed insurance provider.' }
+        format.html { redirect_to admin_insurance_providers_url, notice: "Successfully destroyed insurance provider." }
+        format.turbo_stream { flash.now[:notice] = "Successfully destroyed insurance provider." }
       end
     end
 

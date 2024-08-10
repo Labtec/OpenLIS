@@ -8,14 +8,14 @@ module FHIRable
       return unless animal_type
 
       {
-        url: 'http://hl7.org/fhir/StructureDefinition/patient-animal',
+        url: "http://hl7.org/fhir/StructureDefinition/patient-animal",
         extension: [
           {
-            url: 'species',
+            url: "species",
             valueCodeableConcept: {
               coding: [
                 {
-                  system: 'http://snomed.info/sct',
+                  system: "http://snomed.info/sct",
                   code: code_for_species,
                   display: display_for_species
                 }
@@ -31,22 +31,22 @@ module FHIRable
     def code_for_species
       case animal_type
       when 1
-        '448771007'
+        "448771007"
       when 2
-        '448169003'
+        "448169003"
       when 3
-        '35354009'
+        "35354009"
       end
     end
 
     def display_for_species
       case animal_type
       when 1
-        'Domestic dog'
+        "Domestic dog"
       when 2
-        'Domestic cat'
+        "Domestic cat"
       when 3
-        'Horse'
+        "Horse"
       end
     end
   end

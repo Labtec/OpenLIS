@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class AccessionsTest < ActionDispatch::IntegrationTest
   def setup
@@ -11,7 +11,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
       received_at: Time.current,
       drawer: users(:user),
       receiver: users(:user),
-      lab_test_ids: [lab_tests(:bun).id, lab_tests(:chol).id]
+      lab_test_ids: [ lab_tests(:bun).id, lab_tests(:chol).id ]
     )
   end
 
@@ -19,56 +19,56 @@ class AccessionsTest < ActionDispatch::IntegrationTest
     Warden.test_reset!
   end
 
-  test 'create a new order' do
+  test "create a new order" do
     visit patient_path(@patient)
-    within('.title_tools') { click_on 'Order Tests' }
-    within('#order_tests') { click_on 'Chemistry' }
-    check 'BUN'
-    click_on 'Save'
+    within(".title_tools") { click_on "Order Tests" }
+    within("#order_tests") { click_on "Chemistry" }
+    check "BUN"
+    click_on "Save"
 
-    assert_not page.has_content?('error'), 'Requisition not created'
-    assert page.has_content?('Successfully created requisition')
+    assert_not page.has_content?("error"), "Requisition not created"
+    assert page.has_content?("Successfully created requisition")
     assert page.has_content? users(:user).initials
   end
 
-  test 'an empty requisition' do
+  test "an empty requisition" do
     visit patient_path(@patient)
-    within('.title_tools') { click_on 'Order Tests' }
-    click_on 'Save'
+    within(".title_tools") { click_on "Order Tests" }
+    click_on "Save"
 
-    assert page.has_content?('error'), 'Requisition can not be empty'
+    assert page.has_content?("error"), "Requisition can not be empty"
   end
 
-  test 'change a requisition' do
+  test "change a requisition" do
     visit edit_accession_path(@accession)
-    assert page.has_content?("Order ##{@accession.id}"), 'Order number missing'
-    within('#order_tests') { click_on 'Chemistry' }
-    uncheck 'BUN'
-    click_on 'Save'
+    assert page.has_content?("Order ##{@accession.id}"), "Order number missing"
+    within("#order_tests") { click_on "Chemistry" }
+    uncheck "BUN"
+    click_on "Save"
 
-    assert_not page.has_content?('error'), 'Requisition not updated'
-    assert page.has_content?('Successfully updated requisition')
+    assert_not page.has_content?("error"), "Requisition not updated"
+    assert page.has_content?("Successfully updated requisition")
   end
 
-  test 'clear a requisition' do
+  test "clear a requisition" do
     visit edit_accession_path(@accession)
-    within('#order_tests') { click_on 'Chemistry' }
-    uncheck 'BUN'
-    uncheck 'Cholesterol'
-    click_on 'Save'
+    within("#order_tests") { click_on "Chemistry" }
+    uncheck "BUN"
+    uncheck "Cholesterol"
+    click_on "Save"
 
-    assert page.has_content?('error'), 'Requisition can not be empty'
+    assert page.has_content?("error"), "Requisition can not be empty"
   end
 
-  test 'enter test results' do
+  test "enter test results" do
     visit edit_diagnostic_report_path(@accession)
 
-    assert page.has_content?("Accession ##{@accession.id}"), 'Order number missing'
+    assert page.has_content?("Accession ##{@accession.id}"), "Order number missing"
 
-    fill_in 'Cholesterol', with: 180
-    click_on 'Save'
+    fill_in "Cholesterol", with: 180
+    click_on "Save"
 
-    assert_not page.has_content?('error'), 'Results not entered'
-    assert page.has_content?('Successfully updated results')
+    assert_not page.has_content?("error"), "Results not entered"
+    assert page.has_content?("Successfully updated results")
   end
 end

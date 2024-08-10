@@ -5,7 +5,7 @@ module Admin
     before_action :set_qualified_interval, only: %i[edit update destroy]
 
     def index
-      @lab_tests = LabTest.includes({ qualified_intervals: [:interpretation] }).order(:position)
+      @lab_tests = LabTest.includes({ qualified_intervals: [ :interpretation ] }).order(:position)
     end
 
     def new
@@ -18,7 +18,7 @@ module Admin
       @qualified_interval = QualifiedInterval.new(qualified_interval_params)
 
       if @qualified_interval.save
-        redirect_to admin_qualified_intervals_url, notice: 'Successfully created qualified interval.'
+        redirect_to admin_qualified_intervals_url, notice: "Successfully created qualified interval."
       else
         render :new, status: :unprocessable_entity
       end
@@ -26,7 +26,7 @@ module Admin
 
     def update
       if @qualified_interval.update(qualified_interval_params)
-        redirect_to admin_qualified_intervals_url, notice: 'Successfully updated qualified interval.'
+        redirect_to admin_qualified_intervals_url, notice: "Successfully updated qualified interval."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -36,8 +36,8 @@ module Admin
       @qualified_interval.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_qualified_intervals_url, notice: 'Successfully removed qualified interval.' }
-        format.turbo_stream { flash.now[:notice] = 'Successfully removed qualified interval.' }
+        format.html { redirect_to admin_qualified_intervals_url, notice: "Successfully removed qualified interval." }
+        format.turbo_stream { flash.now[:notice] = "Successfully removed qualified interval." }
       end
     end
 

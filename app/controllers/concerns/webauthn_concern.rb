@@ -4,7 +4,7 @@ module WebauthnConcern
   extend ActiveSupport::Concern
 
   included do
-    prepend_before_action :authenticate_with_webauthn, if: :webauthn_enabled?, only: [:create]
+    prepend_before_action :authenticate_with_webauthn, if: :webauthn_enabled?, only: [ :create ]
   end
 
   def webauthn_enabled?
@@ -46,13 +46,13 @@ module WebauthnConcern
       clear_attempt_from_session
       sign_in(user)
       set_user_language
-      flash[:notice] = t('flash.login.hello') +
+      flash[:notice] = t("flash.login.hello") +
                        "#{current_user.first_name}!" +
-                       t('flash.login.last_login_at') +
+                       t("flash.login.last_login_at") +
                        view_context.time_ago_in_words(current_user.last_sign_in_at)
       render json: { redirect_path: after_sign_in_path_for(user) }, status: :ok
     else
-      render json: { error: t('webauthn_credentials.invalid_credential') }, status: :unprocessable_entity
+      render json: { error: t("webauthn_credentials.invalid_credential") }, status: :unprocessable_entity
     end
   end
 

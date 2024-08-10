@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'csv'
+require "csv"
 
 module FHIRable
   module Observation
@@ -13,11 +13,11 @@ module FHIRable
     included do
       def self.new_from_fhir(contents)
         bundle = FHIR.from_contents(contents)
-        observation = ''
+        observation = ""
 
         if bundle.try(:entry)
           bundle.entry.each do |e|
-            next if e.resource.resourceType != 'Observation'
+            next if e.resource.resourceType != "Observation"
 
             observation = e.resource
             break
@@ -52,9 +52,9 @@ module FHIRable
         identifier: fhirable_observation_identifier,
         basedOn: FHIR::Reference.new(reference: "ServiceRequest/#{accession.id}"),
         status: status,
-        category: FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'laboratory')]),
+        category: FHIR::CodeableConcept.new(coding: [ FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/observation-category", code: "laboratory") ]),
         # 'code': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc, display: display_loinc(lab_test&.loinc))]),
-        code: FHIR::CodeableConcept.new(text: lab_test.stripped_name, coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc)]),
+        code: FHIR::CodeableConcept.new(text: lab_test.stripped_name, coding: [ FHIR::Coding.new(system: "http://loinc.org", code: lab_test&.loinc) ]),
         subject: fhirable_reference(patient),
         effectiveDateTime: drawn_at.utc.iso8601,
         issued: reported_at&.utc&.iso8601,
@@ -89,7 +89,7 @@ module FHIRable
     def observation_data_absent_reason
       return unless data_absent_reason
 
-      FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://terminology.hl7.org/CodeSystem/data-absent-reason', code: data_absent_reason)])
+      FHIR::CodeableConcept.new(coding: [ FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/data-absent-reason", code: data_absent_reason) ])
     end
 
     def observation_performers
@@ -107,7 +107,7 @@ module FHIRable
       [
         FHIR::CodeableConcept.new(
           coding: FHIR::Coding.new(
-            system: 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation',
+            system: "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
             code: interpretation,
             display: lookup_interpretation(interpretation)
           )
@@ -151,7 +151,7 @@ module FHIRable
 
       FHIR::CodeableConcept.new(
         coding: FHIR::Coding.new(
-          system: 'http://terminology.hl7.org/CodeSystem/referencerange-meaning',
+          system: "http://terminology.hl7.org/CodeSystem/referencerange-meaning",
           code: type,
           display: lookup_type(type)
         )
@@ -169,17 +169,17 @@ module FHIRable
       return unless derived_value || value.present?
 
       comparator_hash_lookup = {
-        '<' => '<',
-        '≤' => '<=',
-        '≥' => '>=',
-        '>' => '>'
+        "<" => "<",
+        "≤" => "<=",
+        "≥" => ">=",
+        ">" => ">"
       }
 
       FHIR::Quantity.new(
         value: observation_value_quantity_value,
         comparator: comparator_hash_lookup[value_quantity_comparator],
         unit: value_unit,
-        system: 'http://unitsofmeasure.org',
+        system: "http://unitsofmeasure.org",
         code: lab_test.customary_unit
       )
     end
@@ -206,8 +206,8 @@ module FHIRable
       return if value_codeable_concept.blank?
 
       codes = []
-      codes << FHIR::Coding.new(system: 'http://loinc.org', code: lab_test_value&.loinc) if lab_test_value&.loinc.present?
-      codes << FHIR::Coding.new(system: 'http://snomed.info/sct', code: lab_test_value&.snomed) if lab_test_value&.snomed.present?
+      codes << FHIR::Coding.new(system: "http://loinc.org", code: lab_test_value&.loinc) if lab_test_value&.loinc.present?
+      codes << FHIR::Coding.new(system: "http://snomed.info/sct", code: lab_test_value&.snomed) if lab_test_value&.snomed.present?
 
       return if codes.empty?
 
@@ -216,9 +216,9 @@ module FHIRable
 
     # XXX: Use a read only table
     def display_loinc(code)
-      loinc ||= CSV.read('db/LoincTableCore.csv', headers: true)
-      lookup = loinc.find { |row| row['LOINC_NUM'] == code }
-      lookup['LONG_COMMON_NAME']
+      loinc ||= CSV.read("db/LoincTableCore.csv", headers: true)
+      lookup = loinc.find { |row| row["LOINC_NUM"] == code }
+      lookup["LONG_COMMON_NAME"]
     end
 
     # TODO: implement each missing method
