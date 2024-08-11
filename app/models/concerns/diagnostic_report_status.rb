@@ -7,7 +7,8 @@ module DiagnosticReportStatus
     include AASM
 
     # http://hl7.org/fhir/valueset-diagnostic-report-status.html
-    enum status: {
+    attribute :status, :string
+    enum :status, {
       registered:       "registered",
       partial:          "partial",
       preliminary:      "preliminary",

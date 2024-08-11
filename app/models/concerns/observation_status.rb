@@ -7,7 +7,8 @@ module ObservationStatus
     include AASM
 
     # http://hl7.org/fhir/valueset-observation-status.html
-    enum status: {
+    attribute :status, :string
+    enum :status, {
       registered:       "registered",
       preliminary:      "preliminary",
       final:            "final",
