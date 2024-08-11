@@ -36,7 +36,7 @@ gem "phonelib"
 gem "prawn"
 gem "prawn-svg"
 gem "prawn-table"
-gem "puma", ">= 6.0"
+gem "puma", ">= 5.0"
 gem "rails-html-sanitizer"
 gem "rails-i18n"
 gem "sassc-rails" # TODO
@@ -47,20 +47,20 @@ gem "turbo-rails"
 gem "webauthn"
 
 group :development, :test do
+  gem "brakeman", require: false
   gem "capistrano3-puma"
   gem "capistrano-bundler"
   gem "capistrano-rails"
   gem "capistrano-rbenv"
-  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
   gem "bcrypt_pbkdf"
-  gem "brakeman", require: false
   gem "flamegraph", require: false
   gem "i18n-tasks", require: false
   gem "rack-mini-profiler", require: false
-  gem "rb-kqueue"
   gem "stackprof"
   gem "web-console"
 end
