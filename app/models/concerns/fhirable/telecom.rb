@@ -18,8 +18,8 @@ module FHIRable
       return if cellular.blank?
 
       {
-        use: 'mobile',
-        system: 'phone',
+        use: "mobile",
+        system: "phone",
         value: Phonelib.parse(cellular).e164
       }
     end
@@ -28,8 +28,8 @@ module FHIRable
       return if email.blank?
 
       {
-        use: 'home',
-        system: 'email',
+        use: "home",
+        system: "email",
         value: email
       }
     end
@@ -38,8 +38,8 @@ module FHIRable
       return if phone.blank?
 
       {
-        use: 'home',
-        system: 'phone',
+        use: "home",
+        system: "phone",
         value: Phonelib.parse(phone).e164
       }
     end

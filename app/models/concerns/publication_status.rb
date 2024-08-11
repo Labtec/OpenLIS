@@ -5,7 +5,8 @@ module PublicationStatus
 
   included do
     # http://hl7.org/fhir/valueset-publication-status.html
-    enum status: %w[
+    attribute :status, :string
+    enum :status, %w[
       draft
       active
       retired

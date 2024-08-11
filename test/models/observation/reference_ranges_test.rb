@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class ReferenceRangesTest < ActiveSupport::TestCase
   setup do
     @accession = accessions(:accession)
-    @accession.update(lab_tests: [lab_tests(:hgb)])
+    @accession.update(lab_tests: [ lab_tests(:hgb) ])
     @patient = @accession.patient
   end
 
@@ -25,17 +25,17 @@ class ReferenceRangesTest < ActiveSupport::TestCase
   # (hgb_m10) 11Y-14Y:....12.4-15.7 g/dL
   # (hgb_m11) 15Y-17Y:....12.4-15.7 g/dL
   # (hgb_m12) >=18Y:......13.2-16.6 g/dL
-  test 'single reference range per observation' do
+  test "single reference range per observation" do
     observation = Observation.create(lab_test: lab_tests(:hgb), accession: @accession)
 
     subjects = [
-      { age: 1.day,                reference_ranges: [qualified_intervals(:hgb_m1)] },
-      { age: 14.days,              reference_ranges: [qualified_intervals(:hgb_m1)] },
-      { age: 14.days + 23.hours,   reference_ranges: [qualified_intervals(:hgb_m1)] },
-      { age: 15.days,              reference_ranges: [qualified_intervals(:hgb_m2)] },
-      { age: 17.years,             reference_ranges: [qualified_intervals(:hgb_m11)] },
-      { age: 17.years + 11.months, reference_ranges: [qualified_intervals(:hgb_m11)] },
-      { age: 18.years,             reference_ranges: [qualified_intervals(:hgb_m12)] }
+      { age: 1.day,                reference_ranges: [ qualified_intervals(:hgb_m1) ] },
+      { age: 14.days,              reference_ranges: [ qualified_intervals(:hgb_m1) ] },
+      { age: 14.days + 23.hours,   reference_ranges: [ qualified_intervals(:hgb_m1) ] },
+      { age: 15.days,              reference_ranges: [ qualified_intervals(:hgb_m2) ] },
+      { age: 17.years,             reference_ranges: [ qualified_intervals(:hgb_m11) ] },
+      { age: 17.years + 11.months, reference_ranges: [ qualified_intervals(:hgb_m11) ] },
+      { age: 18.years,             reference_ranges: [ qualified_intervals(:hgb_m12) ] }
     ]
 
     subjects.each do |subject|
@@ -51,15 +51,15 @@ class ReferenceRangesTest < ActiveSupport::TestCase
   # Reference Ranges
   # Males:
   # (hgb_m12) >=18Y:......13.2-16.6 g/dL
-  test 'single reference range interpretation' do
+  test "single reference range interpretation" do
     @patient.update(birthdate: 25.years.ago)
     observation = Observation.create(lab_test: lab_tests(:hgb), accession: @accession)
 
     interpretations = [
-      { value: 13.1, flag: 'L' },
-      { value: 13.2, flag: 'N' },
-      { value: 16.6, flag: 'N' },
-      { value: 16.7, flag: 'H' }
+      { value: 13.1, flag: "L" },
+      { value: 13.2, flag: "N" },
+      { value: 16.6, flag: "N" },
+      { value: 16.7, flag: "H" }
     ]
 
     interpretations.each do |interpretation|
@@ -84,7 +84,7 @@ class ReferenceRangesTest < ActiveSupport::TestCase
   # (fsh_mt3) Tanner II:...0.4-6.2 IU/L
   # (fsh_mt4) Tanner IV:...0.6-5.1 IU/L
   # (fsh_mt5) Tanner V:....0.8-7.2 IU/L
-  test 'multiple reference ranges per observation' do
+  test "multiple reference ranges per observation" do
     observation = Observation.create(lab_test: lab_tests(:fsh), accession: @accession)
     tanner_intervals = [
       qualified_intervals(:fsh_mt1),
@@ -95,11 +95,11 @@ class ReferenceRangesTest < ActiveSupport::TestCase
     ]
 
     subjects = [
-      { age: 11.months,            reference_ranges: [qualified_intervals(:fsh_m1)] + tanner_intervals },
-      { age: 1.year,               reference_ranges: [qualified_intervals(:fsh_m2)] + tanner_intervals },
-      { age: 18.years,             reference_ranges: [qualified_intervals(:fsh_m5)] + tanner_intervals },
-      { age: 18.years + 11.months, reference_ranges: [qualified_intervals(:fsh_m5)] + tanner_intervals },
-      { age: 19.years,             reference_ranges: [qualified_intervals(:fsh_m6)] }
+      { age: 11.months,            reference_ranges: [ qualified_intervals(:fsh_m1) ] + tanner_intervals },
+      { age: 1.year,               reference_ranges: [ qualified_intervals(:fsh_m2) ] + tanner_intervals },
+      { age: 18.years,             reference_ranges: [ qualified_intervals(:fsh_m5) ] + tanner_intervals },
+      { age: 18.years + 11.months, reference_ranges: [ qualified_intervals(:fsh_m5) ] + tanner_intervals },
+      { age: 19.years,             reference_ranges: [ qualified_intervals(:fsh_m6) ] }
     ]
 
     subjects.each do |subject|
@@ -120,15 +120,15 @@ class ReferenceRangesTest < ActiveSupport::TestCase
   # (fsh_mt3) Tanner II:...0.4-6.2 IU/L
   # (fsh_mt4) Tanner IV:...0.6-5.1 IU/L
   # (fsh_mt5) Tanner V:....0.8-7.2 IU/L
-  test 'interpretation of multiple reference ranges' do
+  test "interpretation of multiple reference ranges" do
     @patient.update(birthdate: 13.years.ago)
     observation = Observation.create(lab_test: lab_tests(:fsh), accession: @accession)
 
     interpretations = [
-      { value: 3.8, flag: 'N' },
-      { value: 0.5, flag: 'N' },
-      { value: 7.0, flag: 'N' },
-      { value: 7.3, flag: 'H' }
+      { value: 3.8, flag: "N" },
+      { value: 0.5, flag: "N" },
+      { value: 7.0, flag: "N" },
+      { value: 7.3, flag: "H" }
     ]
 
     interpretations.each do |interpretation|
@@ -148,15 +148,15 @@ class ReferenceRangesTest < ActiveSupport::TestCase
   # (fsh_fp) Post-Menopause:.....16.0-157.0 IU/L
   # Endocrine ranges should be taken into consideration when interpreting the result.
   # postmenopause interval was defined as >= 19Y.
-  test 'interpretation of multiple endocrine reference ranges' do
-    @patient.update(gender: 'F', birthdate: 45.years.ago)
+  test "interpretation of multiple endocrine reference ranges" do
+    @patient.update(gender: "F", birthdate: 45.years.ago)
     observation = Observation.create(lab_test: lab_tests(:fsh), accession: @accession)
 
     interpretations = [
-      { value: 1.3,   flag: 'L' },
-      { value: 1.4,   flag: 'N' },
-      { value: 157.0, flag: 'N' },
-      { value: 157.1, flag: 'H' }
+      { value: 1.3,   flag: "L" },
+      { value: 1.4,   flag: "N" },
+      { value: 157.0, flag: "N" },
+      { value: 157.1, flag: "H" }
     ]
 
     interpretations.each do |interpretation|
@@ -166,14 +166,14 @@ class ReferenceRangesTest < ActiveSupport::TestCase
     end
   end
 
-  test 'half-bounded intervals' do
+  test "half-bounded intervals" do
     # Reference Range:............<10
     observation = Observation.create(lab_test: lab_tests(:qualified_interval_less_than),
                                      accession: @accession)
 
     interpretations = [
-      { value: 9, flag: 'N' },
-      { value: 10, flag: 'H' }
+      { value: 9, flag: "N" },
+      { value: 10, flag: "H" }
     ]
 
     interpretations.each do |interpretation|
@@ -187,8 +187,8 @@ class ReferenceRangesTest < ActiveSupport::TestCase
                                      accession: @accession)
 
     interpretations = [
-      { value: 9,  flag: 'L' },
-      { value: 10, flag: 'N' }
+      { value: 9,  flag: "L" },
+      { value: 10, flag: "N" }
     ]
 
     interpretations.each do |interpretation|

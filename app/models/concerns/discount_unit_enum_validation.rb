@@ -7,7 +7,7 @@ module DiscountUnitEnumValidation
     def discount_unit=(value)
       super
     rescue ArgumentError
-      @attributes.write_cast_value('discount_unit', value)
+      @attributes.write_cast_value("discount_unit", value)
     end
   end
 end

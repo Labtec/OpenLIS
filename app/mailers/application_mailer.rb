@@ -7,6 +7,6 @@ class ApplicationMailer < ActionMailer::Base
   helper :application
   helper :patients
 
-  default from: 'Laboratorio MasterLab <masterlab@labtecsa.com>'
-  layout 'mailer'
+  default from: "Laboratorio MasterLab <masterlab@labtecsa.com>"
+  layout "mailer"
 end

@@ -11,7 +11,7 @@ class PatientsController < ApplicationController
     @accessions = @patient.accessions.recently.queued.page(page)
     @quotes = @patient.quotes.recent.active
   rescue ActiveRecord::RecordNotFound
-    redirect_to patients_url, alert: t('.patient_not_found')
+    redirect_to patients_url, alert: t(".patient_not_found")
   end
 
   def new
@@ -24,7 +24,7 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
 
     if @patient.save
-      redirect_to patient_url(@patient), notice: t('.success')
+      redirect_to patient_url(@patient), notice: t(".success")
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class PatientsController < ApplicationController
 
   def update
     if @patient.update(patient_params)
-      redirect_to patient_url(@patient), notice: t('.success')
+      redirect_to patient_url(@patient), notice: t(".success")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,16 +42,16 @@ class PatientsController < ApplicationController
     @patient.destroy
 
     respond_to do |format|
-      format.html { redirect_to patients_url, notice: t('.success') }
-      format.turbo_stream { flash.now[:notice] = t('.success') }
+      format.html { redirect_to patients_url, notice: t(".success") }
+      format.turbo_stream { flash.now[:notice] = t(".success") }
     end
   end
 
   def history
     @bundle = FHIR::Bundle.new
-    meta = FHIR::Meta.new('lastUpdated' => @patient.updated_at.iso8601)
+    meta = FHIR::Meta.new("lastUpdated" => @patient.updated_at.iso8601)
     @bundle.id = @patient.uuid
-    @bundle.type = 'history'
+    @bundle.type = "history"
     @bundle.meta = meta
     @bundle.entry = FHIR.from_contents(@patient.to_json)
 

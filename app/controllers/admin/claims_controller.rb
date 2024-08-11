@@ -18,7 +18,7 @@ module Admin
     def show
       pdf = ClaimPreview.new(@claim, view_context)
       send_data(pdf.render, filename: "claim_#{@claim.try(:external_number)}.pdf",
-                            type: 'application/pdf', disposition: 'inline')
+                            type: "application/pdf", disposition: "inline")
     end
 
     def new
@@ -33,7 +33,7 @@ module Admin
 
       if @claim.save
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
-                    notice: 'Successfully created claim.'
+                    notice: "Successfully created claim."
       else
         render :new, status: :unprocessable_entity
       end
@@ -42,7 +42,7 @@ module Admin
     def update
       if @claim.update(claim_params)
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
-                    notice: 'Successfully updated claim.'
+                    notice: "Successfully updated claim."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -52,9 +52,9 @@ module Admin
       if @claim.valid_submission?
         @claim.update(claimed_at: Time.current)
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
-                    notice: 'Successfully submitted claim.'
+                    notice: "Successfully submitted claim."
       else
-        render :index, alert: t('.submit_alert'), status: :unprocessable_entity
+        render :index, alert: t(".submit_alert"), status: :unprocessable_entity
       end
     end
 
@@ -64,14 +64,14 @@ module Admin
         @claims.each do |claim|
           if claim.valid_submission?
             claim.update!(claimed_at: Time.current)
-            flash[:notice] = 'Claims successfully submitted.'
+            flash[:notice] = "Claims successfully submitted."
           else
-            flash[:alert] = 'Some claims were not submitted.'
+            flash[:alert] = "Some claims were not submitted."
           end
         end
         redirect_to admin_claims_url
       else
-        redirect_to admin_claims_url, alert: 'No claims selected!'
+        redirect_to admin_claims_url, alert: "No claims selected!"
       end
     end
 
@@ -79,16 +79,16 @@ module Admin
       if params[:claim_ids]
         @claims = Claim.includes(:accession, :insurance_provider, :patient).find(params[:claim_ids])
 
-        if params['print']
+        if params["print"]
           pdf = ClaimsReport.new(@claims, view_context)
-          send_data(pdf.render, filename: 'entrada_de_reclamos.pdf',
-                                type: 'application/pdf', disposition: 'inline')
-        elsif params['invoice']
+          send_data(pdf.render, filename: "entrada_de_reclamos.pdf",
+                                type: "application/pdf", disposition: "inline")
+        elsif params["invoice"]
           invoice = Invoice.new(@claims)
-          send_data(invoice.csv, filename: 'plantilla_factura.csv', type: 'text/csv')
+          send_data(invoice.csv, filename: "plantilla_factura.csv", type: "text/csv")
         end
       else
-        redirect_to admin_claims_url, alert: 'No claims selected!'
+        redirect_to admin_claims_url, alert: "No claims selected!"
       end
     end
 

@@ -25,7 +25,7 @@ class DiagnosticReportsController < ApplicationController
         loinc = ActiveRecord::Type::Boolean.new.cast(params[:loinc])
         pdf = LabReport.new(@patient, @diagnostic_report, @results, signature, smart, loinc, view_context)
         send_data(pdf.render, filename: "resultados_#{@diagnostic_report.id}.pdf",
-                              type: 'application/pdf', disposition: 'inline')
+                              type: "application/pdf", disposition: "inline")
       end
       format.xml { render xml: @diagnostic_report.to_xml }
     end
@@ -47,7 +47,7 @@ class DiagnosticReportsController < ApplicationController
         @diagnostic_report.evaluate!
       end
 
-      redirect_to diagnostic_report_url(@diagnostic_report), notice: t('flash.diagnostic_report.update')
+      redirect_to diagnostic_report_url(@diagnostic_report), notice: t("flash.diagnostic_report.update")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -65,7 +65,7 @@ class DiagnosticReportsController < ApplicationController
         @diagnostic_report.save
         redirect_to diagnostic_report_url(@diagnostic_report)
       else
-        flash[:error] = t('flash.diagnostic_report.report_error')
+        flash[:error] = t("flash.diagnostic_report.report_error")
         redirect_to diagnostic_report_url(@diagnostic_report), status: :unprocessable_entity
       end
     end
@@ -91,22 +91,22 @@ class DiagnosticReportsController < ApplicationController
     pdf = LabReport.new(@patient, @diagnostic_report, @results, true, false, false, view_context)
 
     case params[:to]
-    when 'practitioner'
+    when "practitioner"
       if @diagnostic_report.doctor.email.present?
         ResultsMailer.email_doctor(@diagnostic_report, pdf).deliver_now
         @diagnostic_report.update(emailed_doctor_at: Time.zone.now)
-        redirect_to diagnostic_report_url(@diagnostic_report), notice: t('flash.diagnostic_report.email_success')
+        redirect_to diagnostic_report_url(@diagnostic_report), notice: t("flash.diagnostic_report.email_success")
         return
       end
-    when 'patient'
+    when "patient"
       if @patient.email.present?
         ResultsMailer.email_patient(@diagnostic_report, pdf).deliver_now
         @diagnostic_report.update(emailed_patient_at: Time.zone.now)
-        redirect_to diagnostic_report_url(@diagnostic_report), notice: t('flash.diagnostic_report.email_success')
+        redirect_to diagnostic_report_url(@diagnostic_report), notice: t("flash.diagnostic_report.email_success")
         return
       end
     end
-    redirect_to diagnostic_report_url(@diagnostic_report), error: t('flash.diagnostic_report.email_error')
+    redirect_to diagnostic_report_url(@diagnostic_report), error: t("flash.diagnostic_report.email_error")
   end
 
   private
@@ -117,7 +117,7 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def set_results
-    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department).sort_by{ |department, _results| department.position }
+    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [ :unit ] }, :unit).group_by(&:department).sort_by { |department, _results| department.position }
   end
 
   def diagnostic_report_params

@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class WellKnownRoutesTest < ActionDispatch::IntegrationTest
   setup do
-    @defaults = { controller: 'well_known' }
+    @defaults = { controller: "well_known" }
   end
 
-  test 'routes change-password' do
-    assert_routing '/.well-known/change-password', @defaults.merge(action: 'change_password')
+  test "routes change-password" do
+    assert_routing "/.well-known/change-password", @defaults.merge(action: "change_password")
   end
 
-  test 'routes jwks' do
-    assert_routing '/.well-known/jwks', @defaults.merge(action: 'jwks')
+  test "routes jwks" do
+    assert_routing "/.well-known/jwks", @defaults.merge(action: "jwks")
   end
 end

@@ -4,7 +4,7 @@ class QuotesMailer < ApplicationMailer
   def email_quote(quote, pdf)
     @quote = quote
     attachments["#{serial_number}.pdf"] = pdf.render if pdf
-    mail(to: @quote.email, subject: t('.subject', quote_number: serial_number))
+    mail(to: @quote.email, subject: t(".subject", quote_number: serial_number))
   end
 
   private

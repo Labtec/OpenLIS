@@ -29,16 +29,16 @@ class LabTest < ApplicationRecord
 
   acts_as_list scope: :department
 
-  scope :active, -> { where(status: 'active') }
+  scope :active, -> { where(status: "active") }
   scope :sorted, -> { order(name: :asc) }
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
 
-  after_create_commit -> { broadcast_prepend_later_to 'admin:lab_tests', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_lab_tests_path } }
-  after_update_commit -> { broadcast_replace_later_to 'admin:lab_tests' }
-  after_destroy_commit -> { broadcast_remove_to 'admin:lab_tests' }
+  after_create_commit -> { broadcast_prepend_later_to "admin:lab_tests", partial: "layouts/refresh", locals: { path: Rails.application.routes.url_helpers.admin_lab_tests_path } }
+  after_update_commit -> { broadcast_replace_later_to "admin:lab_tests" }
+  after_destroy_commit -> { broadcast_remove_to "admin:lab_tests" }
 
-  after_update_commit -> { broadcast_replace_later_to 'admin:lab_test', partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.admin_lab_test_path(self) }, target: :lab_test }
-  after_destroy_commit -> { broadcast_replace_to 'admin:lab_test', partial: 'layouts/invalid', locals: { path: Rails.application.routes.url_helpers.admin_lab_tests_path }, target: :lab_test }
+  after_update_commit -> { broadcast_replace_later_to "admin:lab_test", partial: "layouts/refresh", locals: { path: Rails.application.routes.url_helpers.admin_lab_test_path(self) }, target: :lab_test }
+  after_destroy_commit -> { broadcast_replace_to "admin:lab_test", partial: "layouts/invalid", locals: { path: Rails.application.routes.url_helpers.admin_lab_tests_path }, target: :lab_test }
 
   auto_strip_attributes :name, :code, :procedure, :loinc, :patient_preparation, :fasting_status_duration
 
@@ -54,22 +54,22 @@ class LabTest < ApplicationRecord
 
   def also_allow=(also_allow)
     case also_allow
-    when 'also_numeric'
+    when "also_numeric"
       self.also_numeric = true
       self.ratio        = false
       self.range        = false
       self.fraction     = false
-    when 'ratio'
+    when "ratio"
       self.also_numeric = false
       self.ratio        = true
       self.range        = false
       self.fraction     = false
-    when 'range'
+    when "range"
       self.also_numeric = false
       self.ratio        = false
       self.range        = true
       self.fraction     = false
-    when 'fraction'
+    when "fraction"
       self.also_numeric = false
       self.ratio        = false
       self.range        = false
@@ -111,15 +111,15 @@ class LabTest < ApplicationRecord
   # TODO: The database should store both names,
   # the plain name and the formatted name
   def stripped_name
-    name.gsub(%r{</?i>}, '')
+    name.gsub(%r{</?i>}, "")
   end
 
   def stripped_name_with_description
-    name_with_description.gsub(%r{</?i>}, '')
+    name_with_description.gsub(%r{</?i>}, "")
   end
 
   def to_partial_path
-    'admin/lab_tests/lab_test'
+    "admin/lab_tests/lab_test"
   end
 
   def value_default?

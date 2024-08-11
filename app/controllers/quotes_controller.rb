@@ -14,7 +14,7 @@ class QuotesController < ApplicationController
         signature = ActiveRecord::Type::Boolean.new.cast(params[:signature])
         pdf = PDFQuote.new(@quote, signature, view_context)
         send_data(pdf.render, filename: "#{@quote.serial_number}.pdf",
-                              type: 'application/pdf', disposition: 'inline')
+                              type: "application/pdf", disposition: "inline")
       end
     end
   end
@@ -35,7 +35,7 @@ class QuotesController < ApplicationController
     @quote.created_by = current_user
 
     if @quote.save
-      redirect_to quote_url(@quote), notice: t('.success')
+      redirect_to quote_url(@quote), notice: t(".success")
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,7 +43,7 @@ class QuotesController < ApplicationController
 
   def update
     if @quote.update(quote_params) && @quote.draft?
-      redirect_to quote_url(@quote), notice: t('.success')
+      redirect_to quote_url(@quote), notice: t(".success")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,8 +53,8 @@ class QuotesController < ApplicationController
     @quote.destroy
 
     respond_to do |format|
-      format.html { redirect_to quotes_url, notice: t('.success') }
-      format.turbo_stream { flash.now[:notice] = t('.success') }
+      format.html { redirect_to quotes_url, notice: t(".success") }
+      format.turbo_stream { flash.now[:notice] = t(".success") }
     end
   end
 
@@ -64,11 +64,11 @@ class QuotesController < ApplicationController
       @quote.update(approved_by: current_user)
       redirect_to quote_url(@quote)
     else
-      flash[:error] = t('flash.quote.approve_error')
+      flash[:error] = t("flash.quote.approve_error")
       redirect_to quote_url(@quote), status: :unprocessable_entity
     end
   rescue
-    flash[:error] = t('flash.quote.approve_error')
+    flash[:error] = t("flash.quote.approve_error")
     redirect_to quote_url(@quote), status: :unprocessable_entity
   end
 
@@ -77,10 +77,10 @@ class QuotesController < ApplicationController
     if @patient.email.present?
       QuotesMailer.email_quote(@quote, pdf).deliver_now
       @quote.update(emailed_patient_at: Time.zone.now)
-      redirect_to quote_url(@quote), notice: t('flash.quote.email_success')
+      redirect_to quote_url(@quote), notice: t("flash.quote.email_success")
       return
     end
-    redirect_to quote_url(@quote), error: t('flash.quote.email_error')
+    redirect_to quote_url(@quote), error: t("flash.quote.email_error")
   end
 
   def order
@@ -96,7 +96,7 @@ class QuotesController < ApplicationController
     )
     if service_request.save
       @quote.archive_other_versions
-      redirect_to diagnostic_report_url(service_request), notice: t('.success')
+      redirect_to diagnostic_report_url(service_request), notice: t(".success")
     else
       render :show, status: :unprocessable_entity
     end

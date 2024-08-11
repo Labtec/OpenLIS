@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'application_system_test_case'
+require "application_system_test_case"
 
 module System
   module Admin
@@ -14,45 +14,45 @@ module System
         Warden.test_reset!
       end
 
-      test '#index panels' do
+      test "#index panels" do
         visit admin_panels_path
 
         assert page.has_content?(@panel.name)
       end
 
-      test '#create panel' do
+      test "#create panel" do
         visit admin_panels_path
-        click_on 'New Panel'
-        fill_in 'Code', with: 'LIPID'
-        fill_in 'Name', with: 'Lipid Panel'
-        check 'Cholesterol'
-        check 'Cholesterol in HDL'
-        check 'Cholesterol in LDL'
-        check 'LDL/HDL Ratio'
-        check 'Triglyceride'
-        click_on 'Submit'
+        click_on "New Panel"
+        fill_in "Code", with: "LIPID"
+        fill_in "Name", with: "Lipid Panel"
+        check "Cholesterol"
+        check "Cholesterol in HDL"
+        check "Cholesterol in LDL"
+        check "LDL/HDL Ratio"
+        check "Triglyceride"
+        click_on "Submit"
 
-        assert_not page.has_content?('error'), 'Panel not created'
-        assert page.has_content?('Lipid Panel')
+        assert_not page.has_content?("error"), "Panel not created"
+        assert page.has_content?("Lipid Panel")
       end
 
-      test '#update panel' do
+      test "#update panel" do
         visit admin_panels_path
         within id: dom_id(@panel) do
-          click_on 'Edit'
+          click_on "Edit"
         end
-        fill_in 'Code', with: 'LIPID'
-        fill_in 'Name', with: 'Lipid Panel'
-        uncheck 'BUN'
-        check 'Cholesterol'
-        check 'Cholesterol in HDL'
-        check 'Cholesterol in LDL'
-        check 'LDL/HDL Ratio'
-        check 'Triglyceride'
-        click_on 'Submit'
+        fill_in "Code", with: "LIPID"
+        fill_in "Name", with: "Lipid Panel"
+        uncheck "BUN"
+        check "Cholesterol"
+        check "Cholesterol in HDL"
+        check "Cholesterol in LDL"
+        check "LDL/HDL Ratio"
+        check "Triglyceride"
+        click_on "Submit"
 
-        assert_not page.has_content?('error'), 'Panel not updated'
-        assert page.has_content?('Lipid Panel')
+        assert_not page.has_content?("error"), "Panel not updated"
+        assert page.has_content?("Lipid Panel")
       end
     end
   end

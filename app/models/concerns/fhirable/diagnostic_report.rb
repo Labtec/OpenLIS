@@ -28,13 +28,13 @@ module FHIRable
         # 'conclusionCode':
         presentedForm: fhirable_diagnostic_report_presented_form
       )
-      dr.resultsInterpreter = [fhirable_reference(reporter)] if reporter
+      dr.resultsInterpreter = [ fhirable_reference(reporter) ] if reporter
 
       dr
     end
 
     def to_bundle(base_url)
-      bundle = FHIR::Bundle.new(type: 'collection')
+      bundle = FHIR::Bundle.new(type: "collection")
       patient_url = "#{base_url}/Patient/#{patient.uuid}"
       bundle.entry[0] = FHIR::Bundle::Entry.new(fullUrl: patient_url, resource: FHIR.from_contents(patient.to_json))
       results.each do |result|
@@ -62,7 +62,7 @@ module FHIRable
         next if department.code.blank?
 
         categories << FHIR::CodeableConcept.new(
-          coding: [fhirable_diagnostic_report_categories_codings(department.code)],
+          coding: [ fhirable_diagnostic_report_categories_codings(department.code) ],
           text: department.name
         )
       end
@@ -70,7 +70,7 @@ module FHIRable
     end
 
     def fhirable_diagnostic_report_categories_codings(code)
-      FHIR::Coding.new(system: 'http://terminology.hl7.org/CodeSystem/v2-0074', code: code)
+      FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/v2-0074", code: code)
     end
 
     def fhirable_diagnostic_report_performers

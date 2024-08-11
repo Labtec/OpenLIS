@@ -11,25 +11,25 @@ module FHIRable
     include Telecom
 
     ADMINISTRATIVE_GENDERS = {
-      'M' => 'male',
-      'F' => 'female',
-      'O' => 'other',
-      'U' => 'unknown'
+      "M" => "male",
+      "F" => "female",
+      "O" => "other",
+      "U" => "unknown"
     }.freeze
 
     ANIMAL_SPECIES = {
-      1 => 'canislf'
+      1 => "canislf"
     }.freeze
 
     included do
       def self.new_from_fhir(contents)
         bundle = FHIR.from_contents(contents)
-        patient = ''
-        animal_species = ''
+        patient = ""
+        animal_species = ""
 
         if bundle.try(:entry)
           bundle.entry.each do |e|
-            next if e.resource.resourceType != 'Patient'
+            next if e.resource.resourceType != "Patient"
 
             patient = e.resource
             break
@@ -39,7 +39,7 @@ module FHIRable
         end
 
         patient.extension.each do |e|
-          next unless e.url == 'http://hl7.org/fhir/StructureDefinition/patient-animal'
+          next unless e.url == "http://hl7.org/fhir/StructureDefinition/patient-animal"
 
           animal_species = ANIMAL_SPECIES.key(e.species.coding.first.code)
           break

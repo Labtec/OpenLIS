@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class ResultsTest < ActionDispatch::IntegrationTest
   def setup
@@ -11,7 +11,7 @@ class ResultsTest < ActionDispatch::IntegrationTest
       received_at: Time.current,
       drawer: users(:user),
       receiver: users(:user),
-      lab_test_ids: [lab_tests(:range).id]
+      lab_test_ids: [ lab_tests(:range).id ]
     )
   end
 
@@ -19,19 +19,19 @@ class ResultsTest < ActionDispatch::IntegrationTest
     Warden.test_reset!
   end
 
-  test 'wrong result format' do
+  test "wrong result format" do
     visit edit_diagnostic_report_path(@accession)
 
-    fill_in 'Range', with: '1:2'
-    click_on 'Save'
-    assert page.has_content?('error'), 'Wrong format not validated'
+    fill_in "Range", with: "1:2"
+    click_on "Save"
+    assert page.has_content?("error"), "Wrong format not validated"
   end
 
-  test 'valid result format' do
+  test "valid result format" do
     visit edit_diagnostic_report_path(@accession)
 
-    fill_in 'Range', with: '1-2'
-    click_on 'Save'
-    assert page.has_content?('Successfully updated results')
+    fill_in "Range", with: "1-2"
+    click_on "Save"
+    assert page.has_content?("Successfully updated results")
   end
 end

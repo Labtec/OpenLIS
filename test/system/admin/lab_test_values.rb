@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'application_system_test_case'
+require "application_system_test_case"
 
 module System
   module Admin
@@ -14,46 +14,46 @@ module System
         Warden.test_reset!
       end
 
-      test '#index lab_test_values' do
+      test "#index lab_test_values" do
         visit admin_lab_test_values_path
 
         assert page.has_content?(@lab_test_value.value)
       end
 
-      test '#create lab_test_value' do
+      test "#create lab_test_value" do
         visit admin_lab_test_values_path
-        click_on 'New Lab Test Value'
-        fill_in 'Value', with: 'Negative'
-        click_on 'Submit'
+        click_on "New Lab Test Value"
+        fill_in "Value", with: "Negative"
+        click_on "Submit"
 
-        assert_not page.has_content?('error'), 'Lab Test Value not created'
-        assert page.has_content?('Negative')
+        assert_not page.has_content?("error"), "Lab Test Value not created"
+        assert page.has_content?("Negative")
       end
 
-      test '#update lab_test_value' do
+      test "#update lab_test_value" do
         visit admin_lab_test_values_path
         within id: dom_id(@lab_test_value) do
-          click_on 'Edit'
+          click_on "Edit"
         end
-        fill_in 'Value', with: 'Negative'
-        click_on 'Submit'
+        fill_in "Value", with: "Negative"
+        click_on "Submit"
 
-        assert_not page.has_content?('error'), 'Lab Test Value not updated'
-        assert page.has_content?('Negative')
+        assert_not page.has_content?("error"), "Lab Test Value not updated"
+        assert page.has_content?("Negative")
       end
 
-      test '#delete lab_test_value' do
+      test "#delete lab_test_value" do
         visit admin_lab_test_values_path
 
-        assert_selector 'tr', text: @lab_test_value.value
+        assert_selector "tr", text: @lab_test_value.value
 
         accept_confirm do
           within id: dom_id(@lab_test_value) do
-            click_on 'Delete'
+            click_on "Delete"
           end
         end
 
-        assert_no_selector 'tr', text: @lab_test_value.value
+        assert_no_selector "tr", text: @lab_test_value.value
       end
     end
   end

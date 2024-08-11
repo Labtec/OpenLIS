@@ -4,7 +4,7 @@ module Flaggable
   extend ActiveSupport::Concern
 
   def interpretations
-    return [lab_test_value.raise_flag] if lab_test_value.present?
+    return [ lab_test_value.raise_flag ] if lab_test_value.present?
     return unless value_present?
 
     intervals = reference_ranges.includes(:interpretation)
@@ -18,19 +18,19 @@ module Flaggable
         if interval.interpretation
           flags << interval.interpretation.flag if interval.range.cover?(num)
         elsif interval.range_low_value && (interval.range_low_value..).cover?(num)
-          flags << 'HH'
+          flags << "HH"
         elsif interval.range_high_value && (...interval.range_high_value).cover?(num)
-          flags << 'LL'
+          flags << "LL"
         end
       else
         if interval.interpretation
           flags << interval.interpretation.flag if interval.range.cover?(num)
         elsif interval.range.cover?(num)
-          flags << 'N'
+          flags << "N"
         elsif interval.range_high_value && (interval.range_high_value..).cover?(num)
-          flags << 'H'
+          flags << "H"
         elsif interval.range_low_value && (...interval.range_low_value).cover?(num)
-          flags << 'L'
+          flags << "L"
         end
       end
     end
@@ -44,16 +44,16 @@ module Flaggable
     return unless flags
 
     # normal
-    return 'N' if flags.any?('N')
+    return "N" if flags.any?("N")
 
     # critical
-    return 'AA' if flags.any?('AA')
-    return 'LL' if flags.any?('LL')
-    return 'HH' if flags.any?('HH')
+    return "AA" if flags.any?("AA")
+    return "LL" if flags.any?("LL")
+    return "HH" if flags.any?("HH")
 
     # significant
-    return 'LU' if flags.any?('LU')
-    return 'HU' if flags.any?('HU')
+    return "LU" if flags.any?("LU")
+    return "HU" if flags.any?("HU")
 
     # interpretation
     flags.uniq[0]

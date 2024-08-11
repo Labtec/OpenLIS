@@ -5,7 +5,7 @@ class Quote < ApplicationRecord
 
   VALIDITY_DURATION = 30.days
 
-  self.implicit_order_column = 'created_at'
+  self.implicit_order_column = "created_at"
 
   enum :status, {
     draft: 0,
@@ -19,16 +19,16 @@ class Quote < ApplicationRecord
     archived: 8
   }, default: :draft
 
-  belongs_to :approved_by, optional: true, inverse_of: :quotes, class_name: 'User'
-  belongs_to :created_by, inverse_of: :quotes, class_name: 'User'
+  belongs_to :approved_by, optional: true, inverse_of: :quotes, class_name: "User"
+  belongs_to :created_by, inverse_of: :quotes, class_name: "User"
   belongs_to :price_list
   belongs_to :patient, optional: true
   belongs_to :doctor, counter_cache: true, optional: true
-  belongs_to :service_request, optional: true, inverse_of: :quote, class_name: 'Accession'
+  belongs_to :service_request, optional: true, inverse_of: :quote, class_name: "Accession"
 
-  has_many :line_items, class_name: 'QuoteLineItem', dependent: :destroy
-  has_many :lab_tests, -> { order('position ASC') }, through: :line_items, source: :item, source_type: 'LabTest'
-  has_many :panels, through: :line_items, source: :item, source_type: 'Panel'
+  has_many :line_items, class_name: "QuoteLineItem", dependent: :destroy
+  has_many :lab_tests, -> { order("position ASC") }, through: :line_items, source: :item, source_type: "LabTest"
+  has_many :panels, through: :line_items, source: :item, source_type: "Panel"
 
   accepts_nested_attributes_for :line_items
 
@@ -44,7 +44,7 @@ class Quote < ApplicationRecord
   validate :at_least_one_panel_or_test_selected
 
   scope :recent, -> { order(created_at: :desc) }
-  scope :unarchived, -> { where.not(status: 'archived') }
+  scope :unarchived, -> { where.not(status: "archived") }
   scope :unrequested, -> { where(service_request_id: nil) }
   scope :active, -> { unrequested.and(unarchived) }
 
@@ -84,8 +84,8 @@ class Quote < ApplicationRecord
   def patient_retiree?
     return false unless patient_identifier_type == 1 # cedula
 
-    return true if patient_gender == 'F' && patient_age >= 55.years
-    return true if patient_gender == 'M' && patient_age >= 60.years
+    return true if patient_gender == "F" && patient_age >= 55.years
+    return true if patient_gender == "M" && patient_age >= 60.years
 
     false
   end
@@ -115,7 +115,7 @@ class Quote < ApplicationRecord
   def at_least_one_panel_or_test_selected
     return unless panel_ids.blank? && lab_test_ids.blank?
 
-    errors.add(:base, I18n.t('flash.accessions.at_least_one_panel_or_test_selected'))
+    errors.add(:base, I18n.t("flash.accessions.at_least_one_panel_or_test_selected"))
   end
 
   def set_price_list

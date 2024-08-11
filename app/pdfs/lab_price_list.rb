@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'images/logos/master_lab'
+require_relative "images/logos/master_lab"
 
 class LabPriceList < Prawn::Document
   def initialize(priceable, prices, view_context)
@@ -10,13 +10,13 @@ class LabPriceList < Prawn::Document
 
     super(
       info: {
-        Title: 'Lista de Precios',
-        Author: 'MasterLab—Laboratorio Clínico Especializado',
-        Subject: '',
-        Producer: 'MasterLab',
-        Creator: 'MasterLab',
+        Title: "Lista de Precios",
+        Author: "MasterLab—Laboratorio Clínico Especializado",
+        Subject: "",
+        Producer: "MasterLab",
+        Creator: "MasterLab",
         CreationDate: Time.current,
-        Keywords: 'precio lista prueba laboratorio chargemaster'
+        Keywords: "precio lista prueba laboratorio chargemaster"
       },
       inline: true,
       # Letter (8.5 x 11 in) is 612 x 792
@@ -32,35 +32,35 @@ class LabPriceList < Prawn::Document
     ##
     # Corporate colors
     colors = {
-      black: [0, 0, 0, 100],
-      white: [0, 0, 0, 0],
-      gray: [0, 0, 0, 10],
-      highlight_gray: [0, 0, 0, 15],
-      logo_gray: [0, 0, 0, 75],
-      high_value: [0, 100, 100, 0],
-      low_value: [100, 100, 0, 0],
-      abnormal_value: [0, 100, 0, 50]
+      black: [ 0, 0, 0, 100 ],
+      white: [ 0, 0, 0, 0 ],
+      gray: [ 0, 0, 0, 10 ],
+      highlight_gray: [ 0, 0, 0, 15 ],
+      logo_gray: [ 0, 0, 0, 75 ],
+      high_value: [ 0, 100, 100, 0 ],
+      low_value: [ 100, 100, 0, 0 ],
+      abnormal_value: [ 0, 100, 0, 50 ]
     }
 
     ##
     # Document fonts
-    file = File.expand_path('fonts/MyriadPro', __dir__)
-    font_families['MyriadPro'] = {
+    file = File.expand_path("fonts/MyriadPro", __dir__)
+    font_families["MyriadPro"] = {
       normal: { file: "#{file}-Regular.ttf" },
       italic: { file: "#{file}-SemiCnIt.ttf" },
       bold: { file: "#{file}-Semibold.ttf" },
       bold_italic: { file: "#{file}-BoldSemiCnIt.ttf" }
     }
 
-    file = File.expand_path('fonts/HelveticaWorld', __dir__)
-    font_families['HelveticaWorld'] = {
+    file = File.expand_path("fonts/HelveticaWorld", __dir__)
+    font_families["HelveticaWorld"] = {
       normal: { file: "#{file}-Regular.ttf" },
       italic: { file: "#{file}-Italic.ttf" },
       bold: { file: "#{file}-Bold.ttf" },
       bold_italic: { file: "#{file}-BoldItalic.ttf" }
     }
 
-    font 'HelveticaWorld', size: 8
+    font "HelveticaWorld", size: 8
 
     fill_color colors[:black]
     stroke_color colors[:black]
@@ -124,28 +124,28 @@ class LabPriceList < Prawn::Document
     repeat :all do
       ##
       # Letterhead
-      bounding_box([bounds.left, page_top - top_margin], width: bounds.width, height: header_height) do
+      bounding_box([ bounds.left, page_top - top_margin ], width: bounds.width, height: header_height) do
         ##
         # Corporate logo
         translate(bounds.left, bounds.top - logo_height) do
           logo_master_lab
         end
 
-        bounding_box([bounds.left + logo_width, bounds.top], width: bounds.width - logo_width, height: logo_height) do
+        bounding_box([ bounds.left + logo_width, bounds.top ], width: bounds.width - logo_width, height: logo_height) do
           pad_top heading_padding do
             indent heading_indent do
-              font('MyriadPro') do
-                text 'MasterLab—Laboratorio Clínico Especializado', size: 11, style: :bold
-                text 'Villa Lucre • Consultorios Médicos San Judas Tadeo • Local 107', size: 9, color: colors[:logo_gray]
-                text 'Tel.: 222-9200 ext. 1107 • Fax: 277-7832 • Móvil: 6869-5210', size: 9, color: colors[:logo_gray]
-                text 'Email: masterlab@labtecsa.com • Director: Lcdo. Erick Chu, TM, MSc', size: 9, color: colors[:logo_gray]
+              font("MyriadPro") do
+                text "MasterLab—Laboratorio Clínico Especializado", size: 11, style: :bold
+                text "Villa Lucre • Consultorios Médicos San Judas Tadeo • Local 107", size: 9, color: colors[:logo_gray]
+                text "Tel.: 222-9200 ext. 1107 • Fax: 277-7832 • Móvil: 6869-5210", size: 9, color: colors[:logo_gray]
+                text "Email: masterlab@labtecsa.com • Director: Lcdo. Erick Chu, TM, MSc", size: 9, color: colors[:logo_gray]
               end
             end
           end
         end
 
         move_down 25
-        text 'Lista de Precios', align: :center, size: 10, style: :bold
+        text "Lista de Precios", align: :center, size: 10, style: :bold
         text @priceable.name, align: :center, size: 10, style: :bold if @priceable
 
         move_down 5
@@ -154,9 +154,9 @@ class LabPriceList < Prawn::Document
       end
     end
 
-    column_box [0, cursor], width: bounds.width, columns: 2 do
+    column_box [ 0, cursor ], width: bounds.width, columns: 2 do
       # Prices Table
-      prices_table = [['Prueba', 'CPT', 'Precio (B/.)']]
+      prices_table = [ [ "Prueba", "CPT", "Precio (B/.)" ] ]
       prices_table_content = []
       @prices.map do |price|
         next if prices_table_content.flatten.include?(price.priceable.name)
@@ -173,7 +173,7 @@ class LabPriceList < Prawn::Document
             header: true,
             # :position => :center, # This breaks the column layout
             column_widths: { 0 => name_width, 1 => procedure_width, 2 => price_width },
-            row_colors: [colors[:white], colors[:gray]],
+            row_colors: [ colors[:white], colors[:gray] ],
             cell_style: { inline_format: true } do |t|
         t.cells.borders = []
         t.cells.height = row_height
@@ -190,7 +190,7 @@ class LabPriceList < Prawn::Document
           page.row(0).font_style = :bold
           page.row(-1).border_bottom_color = colors[:black]
           page.row(-1).border_bottom_width = 1
-          page.row(-1).borders = [:bottom]
+          page.row(-1).borders = [ :bottom ]
         end
       end
     end
