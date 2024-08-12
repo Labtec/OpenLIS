@@ -94,6 +94,8 @@ es-PA:
         password: La contraseña
         password_confirmation: La contraseña
         username: El nombre de usuario
+      quote:
+        shipping_and_handling: Servicio a Domicilio
     models:
       accession: solicitud
       department: departamento
