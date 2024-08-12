@@ -132,10 +132,9 @@ GEM
     capistrano-rbenv (2.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
-    capistrano3-puma (5.2.0)
-      capistrano (~> 3.7)
-      capistrano-bundler
-      puma (>= 4.0, < 6.0)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     capybara (3.40.0)
       addressable
       matrix
@@ -290,7 +289,7 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
-    puma (5.6.8)
+    puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.9)
@@ -468,7 +467,7 @@ DEPENDENCIES
   prawn
   prawn-svg
   prawn-table
-  puma
+  puma (>= 6.0)
   rack-mini-profiler
   rails (= 7.0.8.4)
   rails-html-sanitizer
