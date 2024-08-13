@@ -3,6 +3,7 @@
 module Auth
   class SessionsController < Devise::SessionsController
     layout "auth"
+    allow_browser versions: :modern
 
     include WebauthnConcern
 
