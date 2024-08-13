@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  allow_browser versions: :modern
+  # allow_browser versions: :modern
   protect_from_forgery with: :exception
 
   rescue_from ActionController::RoutingError, with: :not_found
