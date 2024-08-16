@@ -250,7 +250,7 @@ GEM
     mime-types-data (3.2024.0806)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
-    minitest (5.25.0)
+    minitest (5.24.1)
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.14)
@@ -503,6 +503,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
+  minitest (< 5.25.0)
   mutex_m
   nokogiri
   pdf-core!
