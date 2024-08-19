@@ -7,7 +7,7 @@ class QuoteDetailsController < ApplicationController
   def update
     @quote = Quote.find(params[:id])
     if @quote.update(quote_params) && @quote.draft?
-      redirect_to quote_url(@quote), notice: t('flash.quote_detail.update')
+      redirect_to quote_url(@quote), notice: t("flash.quote_detail.update")
     else
       render :edit, status: :unprocessable_entity
     end

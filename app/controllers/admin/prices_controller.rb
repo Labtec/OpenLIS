@@ -9,8 +9,8 @@ module Admin
       @prices = @priceable.prices.active
 
       pdf = LabPriceList.new(@priceable, @prices, view_context)
-      send_data(pdf.render, filename: 'lista_de_precios.pdf',
-                            type: 'application/pdf', disposition: 'inline')
+      send_data(pdf.render, filename: "lista_de_precios.pdf",
+                            type: "application/pdf", disposition: "inline")
     end
 
     def show; end
@@ -29,7 +29,7 @@ module Admin
       @price = @priceable.prices.build(price_params)
 
       if @price.save
-        redirect_to polymorphic_url([:admin, @price.priceable]), notice: 'Price was successfully created.'
+        redirect_to polymorphic_url([ :admin, @price.priceable ]), notice: "Price was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
@@ -37,7 +37,7 @@ module Admin
 
     def update
       if @price.update(price_params)
-        redirect_to polymorphic_url([:admin, @price.priceable]), notice: 'Price was successfully updated.'
+        redirect_to polymorphic_url([ :admin, @price.priceable ]), notice: "Price was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end

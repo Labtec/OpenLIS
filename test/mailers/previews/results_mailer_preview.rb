@@ -16,7 +16,7 @@ class ResultsMailerPreview < ActionMailer::Preview
 
   def email_doctor_partial
     accession = Accession.first
-    accession.status = 'partial'
+    accession.status = "partial"
     accession.reported_at = nil
     pdf = nil
     ResultsMailer.email_doctor(accession, pdf)
@@ -24,7 +24,7 @@ class ResultsMailerPreview < ActionMailer::Preview
 
   def email_doctor_preliminary
     accession = Accession.first
-    accession.status = 'preliminary'
+    accession.status = "preliminary"
     accession.reported_at = nil
     pdf = nil
     ResultsMailer.email_doctor(accession, pdf)

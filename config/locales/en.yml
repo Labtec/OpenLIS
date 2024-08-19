@@ -106,7 +106,8 @@ en:
       change_results: Change Results
       confirm_email: Would you like to email the results to %{email}?
       confirm_emailed: Would you like to email the results to %{email} again?
-      confirm_forceful_certify: Are you sure you want to cancel pending results and certify?
+      confirm_forceful_certify: Are you sure you want to cancel pending results and
+        certify?
       drawn_at: 'Collected at: '
       email_report: Email Report
       emailed_report: Resend Report
@@ -131,7 +132,8 @@ en:
       fraction: must be N/N
       is_out_of_absolute_range: is outside absolute range
       must_be_between_0_and_100: must be between 0 and 100%
-      must_be_less_than_or_equal_to_list_price: must be less than or equal to the lisit price
+      must_be_less_than_or_equal_to_list_price: must be less than or equal to the
+        lisit price
       number_or_percentage: must be a number or a percentage (%)
       range: must be N-N, <N or >N
       ratio: must be N:N
@@ -207,8 +209,12 @@ en:
       notes: 'Notes:'
   observations:
     derived_remarks:
-      cldl1: The calculated LDL cholesterol concentration was extremely low. Beta-Quantification is recommended if more accurate measurement of LDL cholesterol is necessary.
-      egfrcr: NKF KDOQI and KDIGO guidelines recommend confirming an estimated glomerular filtration rate (eGFR) of 45–59 mL/min/1.73m² with a urine albumin-creatinine ratio (uACR) &lt;30 mg/g based on an eGFR calculated using both creatinine and cystatin C.
+      cldl1: The calculated LDL cholesterol concentration was extremely low. Beta-Quantification
+        is recommended if more accurate measurement of LDL cholesterol is necessary.
+      egfrcr: NKF KDOQI and KDIGO guidelines recommend confirming an estimated glomerular
+        filtration rate (eGFR) of 45–59 mL/min/1.73m² with a urine albumin-creatinine
+        ratio (uACR) &lt;30 mg/g based on an eGFR calculated using both creatinine
+        and cystatin C.
       psa_r: |
         When Total PSA is in the range of 4.0–10.0 ng/mL, a Free PSA/Total PSA ratio of %{psa_r} indicates a %{risk} risk of prostate cancer.
         Test results cannot be interpreted as absolute evidence for the presence or absence of malignant disease.

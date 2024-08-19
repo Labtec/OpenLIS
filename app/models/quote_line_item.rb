@@ -9,11 +9,11 @@ class QuoteLineItem < ApplicationRecord
   belongs_to :quote
   belongs_to :item, polymorphic: true
 
-  validates :discount_value, numericality: { greater_than_or_equal_to: 0, only_numeric: true }
+  validates :discount_value, numericality: { greater_than_or_equal_to: 0 }
   validates :discount_value, discount: true
-  validates :quantity, numericality: { greater_than_or_equal_to: 1, only_integer: true, only_numeric: true }
+  validates :quantity, numericality: { greater_than_or_equal_to: 1, only_integer: true }
 
-  default_scope -> { order('quote_line_items.id ASC') }
+  default_scope -> { order("quote_line_items.id ASC") }
 
   delegate :fasting_status_duration, to: :item, allow_nil: true
   delegate :name, to: :item

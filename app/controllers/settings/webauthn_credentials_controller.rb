@@ -18,7 +18,7 @@ module Settings
           display_name: helpers.current_user_name
         },
         exclude: current_user.webauthn_credentials.pluck(:external_id),
-        authenticator_selection: { user_verification: 'discouraged' }
+        authenticator_selection: { user_verification: "discouraged" }
 
       )
 
@@ -39,14 +39,14 @@ module Settings
         )
 
         if user_credential.save
-          flash[:notice] = t('.success')
+          flash[:notice] = t(".success")
           status = :ok
         else
-          flash[:alert] = t('.error')
+          flash[:alert] = t(".error")
           status = :internal_server_error
         end
       else
-        flash[:alert] = t('.error')
+        flash[:alert] = t(".error")
         status = :unauthorized
       end
 
@@ -58,21 +58,21 @@ module Settings
       respond_to do |format|
         if @credential
           if current_user.last_security_key?
-            format.html { flash[:alert] = t('flash.users.cant_delete_last_security_key') }
-            format.turbo_stream { flash.now[:alert] = t('flash.users.cant_delete_last_security_key') }
+            format.html { flash[:alert] = t("flash.users.cant_delete_last_security_key") }
+            format.turbo_stream { flash.now[:alert] = t("flash.users.cant_delete_last_security_key") }
           else
             @credential.destroy
             if @credential.destroyed?
-              format.html { flash[:notice] = t('.success') }
-              format.turbo_stream { flash.now[:notice] = t('.success') }
+              format.html { flash[:notice] = t(".success") }
+              format.turbo_stream { flash.now[:notice] = t(".success") }
             else
-              format.html { flash[:alert] = t('.error') }
-              format.turbo_stream { flash.now[:alert] = t('.error') }
+              format.html { flash[:alert] = t(".error") }
+              format.turbo_stream { flash.now[:alert] = t(".error") }
             end
           end
         else
-          format.html { flash[:alert] = t('.error') }
-          format.turbo_stream { flash.now[:alert] = t('.error') }
+          format.html { flash[:alert] = t(".error") }
+          format.turbo_stream { flash.now[:alert] = t(".error") }
         end
         format.html { redirect_to profile_url }
       end
@@ -83,7 +83,7 @@ module Settings
     def require_webauthn_enabled
       return if current_user.webauthn_enabled?
 
-      flash[:alert] = t('.not_enabled')
+      flash[:alert] = t(".not_enabled")
       redirect_to profile_url
     end
   end

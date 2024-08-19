@@ -2,6 +2,8 @@
 <html>
   <head>
     <title><%= yield(:title) || 'Untitled' %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +12,7 @@
     <%= javascript_include_tag 'oldapplication', 'data-turbo-track': 'reload' %>
     <%= javascript_include_tag 'old/navtabs', 'data-turbolinks-track': 'reload' %>
     <%= yield(:head) %>
+    <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="pinned-masterlab.svg" color="#993399">
     <link rel="alternate icon" type="image/png" href="/icon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">

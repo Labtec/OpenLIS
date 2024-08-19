@@ -20,7 +20,7 @@ module Admin
       @panel = Panel.new(panel_params)
 
       if @panel.save
-        redirect_to admin_panels_url, notice: 'Successfully created panel.'
+        redirect_to admin_panels_url, notice: "Successfully created panel."
       else
         render :new, status: :unprocessable_entity
       end
@@ -28,7 +28,7 @@ module Admin
 
     def update
       if @panel.update(panel_params)
-        redirect_to admin_panels_url, notice: 'Successfully updated panel.'
+        redirect_to admin_panels_url, notice: "Successfully updated panel."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -38,8 +38,8 @@ module Admin
       @panel.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_panels_url, notice: 'Successfully destroyed panel.' }
-        format.turbo_stream { flash.now[:notice] = 'Successfully destroyed panel.' }
+        format.html { redirect_to admin_panels_url, notice: "Successfully destroyed panel." }
+        format.turbo_stream { flash.now[:notice] = "Successfully destroyed panel." }
       end
     end
 

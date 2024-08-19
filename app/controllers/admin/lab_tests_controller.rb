@@ -5,7 +5,7 @@ module Admin
     before_action :set_lab_test, only: %i[show edit update destroy sort]
 
     def index
-      @departments = Department.all.includes({ lab_tests: [:unit] })
+      @departments = Department.all.includes({ lab_tests: [ :unit ] })
     end
 
     def show; end
@@ -20,7 +20,7 @@ module Admin
       @lab_test = LabTest.new(lab_test_params)
 
       if @lab_test.save
-        redirect_to admin_lab_tests_url, notice: 'Successfully created lab test.'
+        redirect_to admin_lab_tests_url, notice: "Successfully created lab test."
       else
         render :new, status: :unprocessable_entity
       end
@@ -28,7 +28,7 @@ module Admin
 
     def update
       if @lab_test.update(lab_test_params)
-        redirect_to admin_lab_tests_url, notice: 'Successfully updated lab test.'
+        redirect_to admin_lab_tests_url, notice: "Successfully updated lab test."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -38,8 +38,8 @@ module Admin
       @lab_test.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_lab_tests_url, notice: 'Successfully destroyed lab test.' }
-        format.turbo_stream { flash.now[:notice] = 'Successfully destroyed lab test.' }
+        format.html { redirect_to admin_lab_tests_url, notice: "Successfully destroyed lab test." }
+        format.turbo_stream { flash.now[:notice] = "Successfully destroyed lab test." }
       end
     end
 

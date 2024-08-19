@@ -18,7 +18,7 @@ module Admin
       @doctor = Doctor.new(doctor_params)
 
       if @doctor.save
-        redirect_to admin_doctors_url, notice: 'Successfully created doctor.'
+        redirect_to admin_doctors_url, notice: "Successfully created doctor."
       else
         render :new, status: :unprocessable_entity
       end
@@ -26,7 +26,7 @@ module Admin
 
     def update
       if @doctor.update(doctor_params)
-        redirect_to admin_doctors_url, notice: 'Successfully updated doctor.'
+        redirect_to admin_doctors_url, notice: "Successfully updated doctor."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -36,8 +36,8 @@ module Admin
       @doctor.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_doctors_url, notice: 'Successfully deleted doctor.' }
-        format.turbo_stream { flash.now[:notice] = 'Successfully deleted doctor.' }
+        format.html { redirect_to admin_doctors_url, notice: "Successfully deleted doctor." }
+        format.turbo_stream { flash.now[:notice] = "Successfully deleted doctor." }
       end
     end
 

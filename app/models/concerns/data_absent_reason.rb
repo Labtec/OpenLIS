@@ -24,11 +24,11 @@ module DataAbsentReason
     # }
 
     def not_performed?
-      data_absent_reason == 'not-performed'
+      data_absent_reason == "not-performed"
     end
 
     def not_performed!
-      update_columns(data_absent_reason: 'not-performed') unless value_present?
+      update_columns(data_absent_reason: "not-performed") unless value_present?
     end
 
     def performed?

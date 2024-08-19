@@ -26,10 +26,10 @@ module FastingStatus
 
     def validate_iso8601_duration
       if @fasting_status_duration_iso8601.present? && ActiveSupport::Duration.parse(@fasting_status_duration_iso8601).nil?
-        errors.add(:fasting_status_duration_iso8601, I18n.t('errors.messages.invalid'))
+        errors.add(:fasting_status_duration_iso8601, I18n.t("errors.messages.invalid"))
       end
     rescue ActiveSupport::Duration::ISO8601Parser::ParsingError
-      errors.add(:fasting_status_duration_iso8601, I18n.t('errors.messages.invalid'))
+      errors.add(:fasting_status_duration_iso8601, I18n.t("errors.messages.invalid"))
     end
   end
 end

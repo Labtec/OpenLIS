@@ -7,7 +7,7 @@ module FHIRable
     def fhirable_observation_identifier
       [
         {
-          use: 'official',
+          use: "official",
           system: to_gid,
           value: id
         }
@@ -19,10 +19,10 @@ module FHIRable
 
       [
         {
-          use: 'official',
+          use: "official",
           type: {
             coding: [
-              system: 'http://terminology.hl7.org/CodeSystem/v2-0203',
+              system: "http://terminology.hl7.org/CodeSystem/v2-0203",
               code: fhirable_identifier_code
             ]
           },
@@ -35,7 +35,7 @@ module FHIRable
     private
 
     def fhirable_identifier_code
-      identifier_type == 1 ? 'MR' : 'PPN'
+      identifier_type == 1 ? "MR" : "PPN"
     end
 
     def fhirable_identifier_member_number
@@ -44,8 +44,8 @@ module FHIRable
       {
         type: {
           coding: [
-            system: 'http://terminology.hl7.org/CodeSystem/v2-0203',
-            code: 'MB'
+            system: "http://terminology.hl7.org/CodeSystem/v2-0203",
+            code: "MB"
           ]
         },
         value: policy_number

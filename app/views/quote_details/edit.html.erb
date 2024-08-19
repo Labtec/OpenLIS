@@ -91,7 +91,7 @@
           <%= t('.shipping_and_handling') %>
         </td>
         <td class="quote_total_amount">
-          <%= form.number_field :shipping_and_handling,
+          <%= form.number_field :shipping_and_handling, step: 0.01,
             class: 'quote_line_item_discount_value_field',
             data: { quote_detail_target: 'shippingAndHandling',
                     action: 'quote-detail#calculateTotals'} %>

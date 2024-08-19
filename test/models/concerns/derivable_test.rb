@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class DerivableTest < ActiveSupport::TestCase
-  test 'verify appropriate calculation of eGFRcr' do
+  test "verify appropriate calculation of eGFRcr" do
     accession = accessions(:egfrcr)
     accession.update!(drawn_at: Time.zone.now)
     patient = accession.patient
     creatinine = observations(:crtsa)
-    egfrcr = accession.results.where(lab_test_id: LabTest.where(code: 'eGFRcr')).take
+    egfrcr = accession.results.where(lab_test_id: LabTest.where(code: "eGFRcr")).take
 
     # AGE            Sex            Serum Creatinine    eGFRcr
     # (years)                       mg/dL               (CKD-EPI 2021)
@@ -30,42 +30,42 @@ class DerivableTest < ActiveSupport::TestCase
     # (analytical measurement range)                    [not tested]
 
     creatinine.update(value: 1.00)
-    patient.update(birthdate: 17.years.ago, gender: 'M')
+    patient.update(birthdate: 17.years.ago, gender: "M")
     assert_nil egfrcr.derived_value
 
     creatinine.update(value: 1.00)
-    patient.update(birthdate: 17.years.ago, gender: 'F')
+    patient.update(birthdate: 17.years.ago, gender: "F")
     assert_nil egfrcr.derived_value
 
-    patient.update(birthdate: 18.years.ago, gender: 'M')
+    patient.update(birthdate: 18.years.ago, gender: "M")
     creatinine.update(value: 0.90)
     assert_equal 127, egfrcr.derived_value
 
-    patient.update(birthdate: 18.years.ago, gender: 'M')
+    patient.update(birthdate: 18.years.ago, gender: "M")
     creatinine.update(value: 0.91)
     assert_equal 125, egfrcr.derived_value
 
-    patient.update(birthdate: 18.years.ago, gender: 'F')
+    patient.update(birthdate: 18.years.ago, gender: "F")
     creatinine.update(value: 0.70)
     assert_equal 128, egfrcr.derived_value
 
-    patient.update(birthdate: 18.years.ago, gender: 'F')
+    patient.update(birthdate: 18.years.ago, gender: "F")
     creatinine.update(value: 0.71)
     assert_equal 126, egfrcr.derived_value
 
-    patient.update(birthdate: 90.years.ago, gender: 'M')
+    patient.update(birthdate: 90.years.ago, gender: "M")
     creatinine.update(value: 0.50)
     assert_equal 97, egfrcr.derived_value
 
-    patient.update(birthdate: 90.years.ago, gender: 'M')
+    patient.update(birthdate: 90.years.ago, gender: "M")
     creatinine.update(value: 1.50)
     assert_equal 44, egfrcr.derived_value
 
-    patient.update(birthdate: 90.years.ago, gender: 'F')
+    patient.update(birthdate: 90.years.ago, gender: "F")
     creatinine.update(value: 0.50)
     assert_equal 89, egfrcr.derived_value
 
-    patient.update(birthdate: 90.years.ago, gender: 'F')
+    patient.update(birthdate: 90.years.ago, gender: "F")
     creatinine.update(value: 1.50)
     assert_equal 33, egfrcr.derived_value
 
@@ -75,7 +75,7 @@ class DerivableTest < ActiveSupport::TestCase
     patient.update(birthdate: 90.years.ago, gender: nil)
     assert_nil egfrcr.derived_value
 
-    patient.update(gender: 'F')
+    patient.update(gender: "F")
     creatinine.update(value: nil)
     assert_nil egfrcr.derived_value
 
@@ -91,7 +91,7 @@ class DerivableTest < ActiveSupport::TestCase
     assert_not_nil egfrcr.derived_remarks
   end
 
-  test 'verify appropriate calculation of creatinine clearance' do
+  test "verify appropriate calculation of creatinine clearance" do
     # Example:
     # Urine Creatinine (Cu) = 120 mg/dL
     # Serum Creatinine (Cs) = 1.20 mg/dL
@@ -103,7 +103,7 @@ class DerivableTest < ActiveSupport::TestCase
     accession = accessions(:egfrcr)
     accession.update!(drawn_at: Time.zone.now)
     patient = accession.patient
-    patient.update(birthdate: 66.years.ago, gender: 'M')
+    patient.update(birthdate: 66.years.ago, gender: "M")
     serum_creatinine = observations(:crtsa)
     serum_creatinine.update(value: 1.20)
     urine_creatinine = observations(:cre_u)
@@ -115,8 +115,8 @@ class DerivableTest < ActiveSupport::TestCase
     weight = observations(:weight)
     weight.update(value: 90)
 
-    crcl = accession.results.where(lab_test_id: LabTest.where(code: 'CRCL')).take
-    crcl1 = accession.results.where(lab_test_id: LabTest.where(code: 'CRCL1')).take
+    crcl = accession.results.where(lab_test_id: LabTest.where(code: "CRCL")).take
+    crcl1 = accession.results.where(lab_test_id: LabTest.where(code: "CRCL1")).take
 
     assert_equal 104.2, crcl.derived_value
     assert_equal 86, crcl1.derived_value

@@ -14,7 +14,7 @@ class Claim < ApplicationRecord
   default_scope { order(external_number: :asc) }
 
   scope :submitted, -> { where.not(claimed_at: nil) }
-  scope :recent, -> { where('claimed_at > :grace_period', grace_period: 8.months.ago) }
+  scope :recent, -> { where("claimed_at > :grace_period", grace_period: 8.months.ago) }
 
   def cpt_codes
     procedures = []
@@ -55,12 +55,12 @@ class Claim < ApplicationRecord
       insured_policy_number = "#{Regexp.last_match(1)}-00"
       Patient.find_by(policy_number: insured_policy_number).try(:policy_number) || patient.policy_number
     else
-      patient.policy_number || 'pend.'
+      patient.policy_number || "pend."
     end
   end
 
   def to_partial_path
-    'admin/claims/claim'
+    "admin/claims/claim"
   end
 
   def total_price

@@ -2,7 +2,8 @@
 
 module Auth
   class SessionsController < Devise::SessionsController
-    layout 'auth'
+    layout "auth"
+    # allow_browser versions: :modern
 
     include WebauthnConcern
 
@@ -18,9 +19,9 @@ module Auth
 
     def create
       super
-      flash[:notice] = t('flash.login.hello') +
+      flash[:notice] = t("flash.login.hello") +
                        "#{current_user.first_name}!" +
-                       t('flash.login.last_login_at') +
+                       t("flash.login.last_login_at") +
                        view_context.time_ago_in_words(current_user.last_sign_in_at)
     end
 
@@ -30,14 +31,14 @@ module Auth
       if user&.webauthn_enabled?
         options_for_get = WebAuthn::Credential.options_for_get(
           allow: user.webauthn_credentials.pluck(:external_id),
-          user_verification: 'discouraged'
+          user_verification: "discouraged"
         )
 
         session[:webauthn_challenge] = options_for_get.challenge
 
         render json: options_for_get, status: :ok
       else
-        render json: { error: t('webauthn_credentials.not_enabled') }, status: :unauthorized
+        render json: { error: t("webauthn_credentials.not_enabled") }, status: :unauthorized
       end
     end
 
@@ -59,7 +60,7 @@ module Auth
 
     def restart_session
       clear_attempt_from_session
-      redirect_to user_session_path, alert: I18n.t('devise.failure.timeout')
+      redirect_to user_session_path, alert: I18n.t("devise.failure.timeout")
     end
 
     def set_attempt_session(user)

@@ -16,7 +16,7 @@
         <%= number_to_currency form.object.list_price, locale: 'en' %>
       </td>
       <td class="quote_line_item_discount_value">
-        <%= form.number_field :discount_value,
+        <%= form.number_field :discount_value, step: 0.01,
           class: 'quote_line_item_discount_value_field',
           data: { quote_line_item_target: 'discountValue',
                   action: 'quote-line-item#calculateTotal quote-detail#calculateTotals' } %>

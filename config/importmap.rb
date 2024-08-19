@@ -25,11 +25,11 @@ pin "sortablejs" # @1.15.2
 
 # XXXJL TODO
 # Notes:
-#pin "@github/markdown-toolbar-element"
+# pin "@github/markdown-toolbar-element"
 # Doctors:
-#pin "@github/combobox-nav"
-#@github/remote-input-element
+# pin "@github/combobox-nav"
+# @github/remote-input-element
 # Navbar:
-#pin "@github/tab-container-element"
+# pin "@github/tab-container-element"
 # Localized DateTime
-#pin "@github/time-elements"
+# pin "@github/time-elements"

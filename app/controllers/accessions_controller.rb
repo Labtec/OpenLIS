@@ -25,7 +25,7 @@ class AccessionsController < ApplicationController
     @accession = @patient.accessions.build(accession_params)
 
     if @accession.save
-      redirect_to diagnostic_report_url(@accession), notice: t('flash.accession.create')
+      redirect_to diagnostic_report_url(@accession), notice: t("flash.accession.create")
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,7 +43,7 @@ class AccessionsController < ApplicationController
         @accession.evaluate!
       end
 
-      redirect_to diagnostic_report_url(@accession), notice: t('flash.accession.update')
+      redirect_to diagnostic_report_url(@accession), notice: t("flash.accession.update")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,8 +53,8 @@ class AccessionsController < ApplicationController
     @accession.destroy
 
     respond_to do |format|
-      format.html { redirect_to root_url, notice: t('flash.accession.destroy') }
-      format.turbo_stream { flash.now[:notice] = t('flash.accession.destroy') }
+      format.html { redirect_to root_url, notice: t("flash.accession.destroy") }
+      format.turbo_stream { flash.now[:notice] = t("flash.accession.destroy") }
     end
   end
 

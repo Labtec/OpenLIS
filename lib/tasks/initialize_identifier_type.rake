@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace :patients do
-  desc 'Initialize the identifier type'
+  desc "Initialize the identifier type"
   task initialize_identifier_type: :environment do
     patients = Patient.where.not(identifier: nil?)
     puts "Updating #{patients.count} patients"
@@ -9,11 +9,11 @@ namespace :patients do
     ActiveRecord::Base.transaction do
       patients.each do |patient|
         patient.update!(identifier_type: identifier_type(patient.identifier))
-        print '.'
+        print "."
       end
     end
 
-    puts ' Done!'
+    puts " Done!"
   end
 
   private

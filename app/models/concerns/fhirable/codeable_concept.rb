@@ -16,8 +16,8 @@ module FHIRable
     def fhirable_codeable_concept_codings(code)
       codings = []
 
-      codings << FHIR::Coding.new(system: 'http://loinc.org', code: code.loinc, display: loinc_lookup(code.loinc)) if code.loinc.present?
-      codings << FHIR::Coding.new(system: 'http://snomed.info/sct', code: code.snomed, display: snomed_lookup(code.snomed)) if code.snomed.present?
+      codings << FHIR::Coding.new(system: "http://loinc.org", code: code.loinc, display: loinc_lookup(code.loinc)) if code.loinc.present?
+      codings << FHIR::Coding.new(system: "http://snomed.info/sct", code: code.snomed, display: snomed_lookup(code.snomed)) if code.snomed.present?
 
       codings
     end

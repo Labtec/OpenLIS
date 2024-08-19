@@ -11,7 +11,7 @@ module FHIRable
         value: ApplicationController.helpers.number_with_precision(value, precision: decimal_precision),
         comparator: comparator,
         unit: unit&.expression,
-        system: 'http://unitsofmeasure.org',
+        system: "http://unitsofmeasure.org",
         code: unit&.ucum
       )
     end

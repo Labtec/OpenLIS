@@ -2,7 +2,7 @@
 
 # https://wiki.openmrs.org/display/docs/Check+Digit+Algorithm
 class Luhn
-  VALID_CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_'
+  VALID_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_"
 
   def self.checkdigit(id_without_checkdigit)
     id_without_checkdigit = id_without_checkdigit.strip.upcase

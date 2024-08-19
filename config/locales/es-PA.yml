@@ -94,6 +94,8 @@ es-PA:
         password: La contraseña
         password_confirmation: La contraseña
         username: El nombre de usuario
+      quote:
+        shipping_and_handling: Servicio a Domicilio
     models:
       accession: solicitud
       department: departamento
@@ -148,7 +150,8 @@ es-PA:
       change_results: Cambiar Resultados
       confirm_email: "¿Desea enviar los resultados a %{email}?"
       confirm_emailed: "¿Desea enviar nuevamente los resultados a %{email}?"
-      confirm_forceful_certify: "¿Está seguro que desea cancelar resultados pendientes y reportar?"
+      confirm_forceful_certify: "¿Está seguro que desea cancelar resultados pendientes
+        y reportar?"
       drawn_at: 'Recolectado el: '
       email_report: Enviar reporte por correo
       emailed_report: Reenviar reporte por correo
@@ -180,13 +183,15 @@ es-PA:
   flash:
     accession:
       accession_not_found: Este registro de solicitud ya no está disponible.
-      at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
+      at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba
+        seleccionada.
       create: Solicitud creada exitosamente.
       destroy: Solicitud eliminada exitosamente.
       report: Solicitud reportada.
       update: Solicitud actualizada exitosamente.
     accessions:
-      at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba seleccionada.
+      at_least_one_panel_or_test_selected: Debe tener al menos un panel o una prueba
+        seleccionada.
     diagnostic_report:
       email_error: Correo inválido.
       email_success: Correo enviado exitosamente.
@@ -254,8 +259,13 @@ es-PA:
       notes: 'Observaciones:'
   observations:
     derived_remarks:
-      cldl1: La concentración de Colesterol LDL calculada fue extremadamente baja. Se recomienda β-cuantificación si es necesaria una medición más precisa del Colesterol LDL.
-      egfrcr: Las directrices de NKF KDOQI y KDIGO recomiendan confirmar una Tasa de Filtración Glomerular estimada (eGFR) de 45–59 mL/min/1.73m² con una Tasa Albúmina-Creatinina en orina (uACR) &lt;30 mg/g, en función de una eGFR calculada con Creatinina y Cistatina C.
+      cldl1: La concentración de Colesterol LDL calculada fue extremadamente baja.
+        Se recomienda β-cuantificación si es necesaria una medición más precisa del
+        Colesterol LDL.
+      egfrcr: Las directrices de NKF KDOQI y KDIGO recomiendan confirmar una Tasa
+        de Filtración Glomerular estimada (eGFR) de 45–59 mL/min/1.73m² con una Tasa
+        Albúmina-Creatinina en orina (uACR) &lt;30 mg/g, en función de una eGFR calculada
+        con Creatinina y Cistatina C.
       psa_r: |
         Cuando el PSA Total está en el rango de 4.0–10.0 ng/mL, una Tasa PSA Libre/PSA Total de %{psa_r} indica un riesgo de cáncer de próstata de %{risk}.
         Los resultados de las pruebas no pueden interpretarse como evidencia absoluta de la presencia o ausencia de una enfermedad maligna.
@@ -563,7 +573,8 @@ es-PA:
     email_doctor:
       body: Hemos adjuntado los resultados de los exámenes de %{full_name}.
       body_partial: Hemos adjuntado los resultados parciales de los exámenes de %{full_name}.
-      body_preliminary: Hemos adjuntado los resultados preliminares de los exámenes de %{full_name}.
+      body_preliminary: Hemos adjuntado los resultados preliminares de los exámenes
+        de %{full_name}.
       subject: Resultados de %{full_name}
       subject_partial: Resultados parciales de %{full_name}
       subject_preliminary: Resultados preliminares de %{full_name}
@@ -581,10 +592,12 @@ es-PA:
   settings:
     webauthn_credentials:
       create:
-        error: Hubo un problema al registrar su llave de seguridad. Por favor intente de nuevo.
+        error: Hubo un problema al registrar su llave de seguridad. Por favor intente
+          de nuevo.
         success: Su llave de seguridad ha sido registrada exitosamente.
       destroy:
-        error: Hubo un problema al eliminar su llave de seguridad. Por favor intente de nuevo.
+        error: Hubo un problema al eliminar su llave de seguridad. Por favor intente
+          de nuevo.
         success: Su llave de seguridad ha sido eliminada exitosamente.
       new:
         cancel: Cancelar

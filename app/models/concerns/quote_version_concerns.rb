@@ -2,12 +2,12 @@ module QuoteVersionConcerns
   extend ActiveSupport::Concern
 
   included do
-    belongs_to :parent_quote, optional: true, class_name: 'Quote'
+    belongs_to :parent_quote, optional: true, class_name: "Quote"
 
-    has_many :versions, class_name: 'Quote', foreign_key: :parent_quote_id, dependent: :destroy
+    has_many :versions, class_name: "Quote", foreign_key: :parent_quote_id, dependent: :destroy
 
     validates :version_number, presence: true, if: -> { parent_quote_id.present? },
-                               uniqueness: { scope: [:parent_quote_id] }
+                               uniqueness: { scope: [ :parent_quote_id ] }
 
     before_validation :add_version_number, on: :create
 
