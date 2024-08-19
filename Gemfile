@@ -53,7 +53,7 @@ group :development, :test do
   gem "capistrano-rails"
   gem "capistrano-rbenv"
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-  gem "minitest", "< 5.25.0"
+  gem "minitest", "< 5.26.0"
   gem "rubocop-rails-omakase", require: false
 end
 
