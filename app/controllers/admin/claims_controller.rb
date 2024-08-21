@@ -35,7 +35,7 @@ module Admin
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
                     notice: "Successfully created claim."
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -44,7 +44,7 @@ module Admin
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
                     notice: "Successfully updated claim."
       else
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 
@@ -54,7 +54,7 @@ module Admin
         redirect_to admin_insurance_provider_claims_url(@claim.insurance_provider),
                     notice: "Successfully submitted claim."
       else
-        render :index, alert: t(".submit_alert"), status: :unprocessable_entity
+        render :index, alert: t(".submit_alert"), status: :unprocessable_content
       end
     end
 

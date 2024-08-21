@@ -37,7 +37,7 @@ class QuotesController < ApplicationController
     if @quote.save
       redirect_to quote_url(@quote), notice: t(".success")
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -45,7 +45,7 @@ class QuotesController < ApplicationController
     if @quote.update(quote_params) && @quote.draft?
       redirect_to quote_url(@quote), notice: t(".success")
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -65,11 +65,11 @@ class QuotesController < ApplicationController
       redirect_to quote_url(@quote)
     else
       flash[:error] = t("flash.quote.approve_error")
-      redirect_to quote_url(@quote), status: :unprocessable_entity
+      redirect_to quote_url(@quote), status: :unprocessable_content
     end
   rescue
     flash[:error] = t("flash.quote.approve_error")
-    redirect_to quote_url(@quote), status: :unprocessable_entity
+    redirect_to quote_url(@quote), status: :unprocessable_content
   end
 
   def email
@@ -98,7 +98,7 @@ class QuotesController < ApplicationController
       @quote.archive_other_versions
       redirect_to diagnostic_report_url(service_request), notice: t(".success")
     else
-      render :show, status: :unprocessable_entity
+      render :show, status: :unprocessable_content
     end
   end
 

@@ -9,7 +9,7 @@ class QuoteDetailsController < ApplicationController
     if @quote.update(quote_params) && @quote.draft?
       redirect_to quote_url(@quote), notice: t("flash.quote_detail.update")
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

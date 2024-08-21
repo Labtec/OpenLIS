@@ -22,7 +22,7 @@ module Admin
       if @insurance_provider.save
         redirect_to admin_insurance_providers_url, notice: "Successfully created insurance provider."
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -30,7 +30,7 @@ module Admin
       if @insurance_provider.update(insurance_provider_params)
         redirect_to admin_insurance_providers_url, notice: "Successfully updated insurance provider."
       else
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 

@@ -52,7 +52,7 @@ module WebauthnConcern
                        view_context.time_ago_in_words(current_user.last_sign_in_at)
       render json: { redirect_path: after_sign_in_path_for(user) }, status: :ok
     else
-      render json: { error: t("webauthn_credentials.invalid_credential") }, status: :unprocessable_entity
+      render json: { error: t("webauthn_credentials.invalid_credential") }, status: :unprocessable_content
     end
   end
 

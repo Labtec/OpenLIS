@@ -20,7 +20,7 @@ module Admin
       if @unit.save
         redirect_to admin_units_url, notice: "Unit was successfully created."
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -28,7 +28,7 @@ module Admin
       if @unit.update(unit_params)
         redirect_to admin_units_url, notice: "Unit was successfully updated."
       else
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 

@@ -21,7 +21,7 @@ module Admin
       if @department.save
         redirect_to admin_departments_url, notice: "Department created successfully."
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -29,7 +29,7 @@ module Admin
       if @department.update(department_params)
         redirect_to admin_departments_url, notice: "Department updated successfully."
       else
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 

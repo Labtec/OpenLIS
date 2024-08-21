@@ -27,7 +27,7 @@ class AccessionsController < ApplicationController
     if @accession.save
       redirect_to diagnostic_report_url(@accession), notice: t("flash.accession.create")
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -45,7 +45,7 @@ class AccessionsController < ApplicationController
 
       redirect_to diagnostic_report_url(@accession), notice: t("flash.accession.update")
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
