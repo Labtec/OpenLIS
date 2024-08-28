@@ -187,7 +187,7 @@ GEM
     flamegraph (0.9.5)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    highline (3.1.0)
+    highline (3.1.1)
       reline
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
@@ -253,7 +253,7 @@ GEM
     minitest (5.25.1)
     msgpack (1.7.2)
     mutex_m (0.2.0)
-    net-imap (0.4.14)
+    net-imap (0.4.15)
       date
       net-protocol
     net-pop (0.1.2)
@@ -402,7 +402,7 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.3.1)
-    selenium-webdriver (4.23.0)
+    selenium-webdriver (4.24.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
