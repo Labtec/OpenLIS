@@ -20,7 +20,7 @@ module Admin
       if @qualified_interval.save
         redirect_to admin_qualified_intervals_url, notice: "Successfully created qualified interval."
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -28,7 +28,7 @@ module Admin
       if @qualified_interval.update(qualified_interval_params)
         redirect_to admin_qualified_intervals_url, notice: "Successfully updated qualified interval."
       else
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 

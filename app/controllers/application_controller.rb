@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_content
 
   before_action :set_user_language
   before_action :verify_session_ip
@@ -81,7 +81,7 @@ class ApplicationController < ActionController::Base
     respond_with_error(404)
   end
 
-  def unprocessable_entity
+  def unprocessable_content
     respond_with_error(422)
   end
 

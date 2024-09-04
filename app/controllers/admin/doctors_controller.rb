@@ -20,7 +20,7 @@ module Admin
       if @doctor.save
         redirect_to admin_doctors_url, notice: "Successfully created doctor."
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -28,7 +28,7 @@ module Admin
       if @doctor.update(doctor_params)
         redirect_to admin_doctors_url, notice: "Successfully updated doctor."
       else
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 

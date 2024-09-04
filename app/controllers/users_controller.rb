@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to root_url, notice: "Successfully updated profile."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

@@ -49,7 +49,7 @@ class DiagnosticReportsController < ApplicationController
 
       redirect_to diagnostic_report_url(@diagnostic_report), notice: t("flash.diagnostic_report.update")
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -66,7 +66,7 @@ class DiagnosticReportsController < ApplicationController
         redirect_to diagnostic_report_url(@diagnostic_report)
       else
         flash[:error] = t("flash.diagnostic_report.report_error")
-        redirect_to diagnostic_report_url(@diagnostic_report), status: :unprocessable_entity
+        redirect_to diagnostic_report_url(@diagnostic_report), status: :unprocessable_content
       end
     end
   end

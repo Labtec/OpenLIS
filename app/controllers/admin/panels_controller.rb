@@ -22,7 +22,7 @@ module Admin
       if @panel.save
         redirect_to admin_panels_url, notice: "Successfully created panel."
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -30,7 +30,7 @@ module Admin
       if @panel.update(panel_params)
         redirect_to admin_panels_url, notice: "Successfully updated panel."
       else
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 

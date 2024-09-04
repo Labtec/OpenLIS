@@ -22,7 +22,7 @@ module Admin
       if @lab_test.save
         redirect_to admin_lab_tests_url, notice: "Successfully created lab test."
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -30,7 +30,7 @@ module Admin
       if @lab_test.update(lab_test_params)
         redirect_to admin_lab_tests_url, notice: "Successfully updated lab test."
       else
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 

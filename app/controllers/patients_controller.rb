@@ -26,7 +26,7 @@ class PatientsController < ApplicationController
     if @patient.save
       redirect_to patient_url(@patient), notice: t(".success")
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -34,7 +34,7 @@ class PatientsController < ApplicationController
     if @patient.update(patient_params)
       redirect_to patient_url(@patient), notice: t(".success")
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
