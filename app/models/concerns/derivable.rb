@@ -152,6 +152,10 @@ module Derivable
       pr = result_value_quantity_for "PR"
       np = result_value_quantity_for "NP"
       100 - (pr + np)
+    when "KLRS"
+      lflcs = result_value_quantity_for "LFLCS"
+      kflcs = result_value_quantity_for "KFLCS"
+      kflcs / lflcs
     when "LDL"
       chol = result_value_quantity_for "CHOL"
       hdl = result_value_quantity_for "HDL"
