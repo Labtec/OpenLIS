@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddPatientPreparationToSpecimenDefinition < ActiveRecord::Migration[7.0]
   def change
     add_column :lab_tests, :fasting_status_duration, :interval

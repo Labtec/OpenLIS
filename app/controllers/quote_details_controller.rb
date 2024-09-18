@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuoteDetailsController < ApplicationController
   def edit
     @quote = Quote.find(params[:id])

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuotesController < ApplicationController
   before_action :set_departments, only: %i[new create edit update]
   before_action :set_panels, only: %i[new create edit update]
