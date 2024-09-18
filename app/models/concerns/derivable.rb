@@ -41,12 +41,12 @@ module Derivable
         return if tg > 800
 
         ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - ((tg**2) / 16_100)) - 9.44
-        ldl < 15 ? 15 : ldl
+        [ldl, 15].max
       when "mmol/l"
         return if tg > 9.03
 
         ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - ((tg**2) / 79.36)) - 0.244
-        ldl < 0.4 ? 0.4 : ldl
+        [ldl, 0.4].max
       else
         raise
       end
