@@ -139,18 +139,6 @@ CREATE FUNCTION public.my_unaccent(text) RETURNS text
     AS $_$ SELECT public.unaccent('public.unaccent', $1) $_$;
 
 
---
--- Name: accession_panels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.accession_panels_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -160,19 +148,20 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.accession_panels (
-    id bigint DEFAULT nextval('public.accession_panels_id_seq'::regclass) NOT NULL,
+    id bigint NOT NULL,
     accession_id bigint,
     panel_id bigint,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
 --
--- Name: accessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: accession_panels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.accessions_id_seq
+CREATE SEQUENCE public.accession_panels_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -181,26 +170,53 @@ CREATE SEQUENCE public.accessions_id_seq
 
 
 --
+-- Name: accession_panels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.accession_panels_id_seq OWNED BY public.accession_panels.id;
+
+
+--
 -- Name: accessions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.accessions (
-    id bigint DEFAULT nextval('public.accessions_id_seq'::regclass) NOT NULL,
+    id bigint NOT NULL,
     patient_id bigint,
-    drawn_at timestamp with time zone,
+    drawn_at timestamp without time zone,
     drawer_id bigint,
-    received_at timestamp with time zone,
+    received_at timestamp without time zone,
     receiver_id bigint,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    reported_at timestamp with time zone,
+    reported_at timestamp without time zone,
     reporter_id bigint,
     doctor_id bigint,
-    icd9 character varying(510) DEFAULT NULL::character varying,
+    icd9 character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     emailed_doctor_at timestamp without time zone,
     emailed_patient_at timestamp without time zone,
     status public.diagnostic_report_status
 );
+
+
+--
+-- Name: accessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.accessions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: accessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.accessions_id_seq OWNED BY public.accessions.id;
 
 
 --
@@ -210,6 +226,22 @@ CREATE TABLE public.accessions (
 CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: claims; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.claims (
+    id bigint NOT NULL,
+    accession_id bigint,
+    number character varying,
+    external_number character varying,
+    claimed_at timestamp without time zone,
+    insurance_provider_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -220,6 +252,7 @@ CREATE TABLE public.ar_internal_metadata (
 --
 
 CREATE SEQUENCE public.claims_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -228,18 +261,24 @@ CREATE SEQUENCE public.claims_id_seq
 
 
 --
--- Name: claims; Type: TABLE; Schema: public; Owner: -
+-- Name: claims_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-CREATE TABLE public.claims (
-    id bigint DEFAULT nextval('public.claims_id_seq'::regclass) NOT NULL,
-    accession_id bigint,
-    number character varying(510) DEFAULT NULL::character varying,
-    external_number character varying(510) DEFAULT NULL::character varying,
-    claimed_at timestamp with time zone,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    insurance_provider_id bigint
+ALTER SEQUENCE public.claims_id_seq OWNED BY public.claims.id;
+
+
+--
+-- Name: departments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.departments (
+    id bigint NOT NULL,
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    code character varying,
+    loinc_class character varying,
+    "position" integer
 );
 
 
@@ -248,6 +287,7 @@ CREATE TABLE public.claims (
 --
 
 CREATE SEQUENCE public.departments_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -256,30 +296,10 @@ CREATE SEQUENCE public.departments_id_seq
 
 
 --
--- Name: departments; Type: TABLE; Schema: public; Owner: -
+-- Name: departments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-CREATE TABLE public.departments (
-    id bigint DEFAULT nextval('public.departments_id_seq'::regclass) NOT NULL,
-    name character varying(510) DEFAULT NULL::character varying,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    code character varying,
-    loinc_class character varying,
-    "position" integer
-);
-
-
---
--- Name: doctors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.doctors_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+ALTER SEQUENCE public.departments_id_seq OWNED BY public.departments.id;
 
 
 --
@@ -287,10 +307,10 @@ CREATE SEQUENCE public.doctors_id_seq
 --
 
 CREATE TABLE public.doctors (
-    id bigint DEFAULT nextval('public.doctors_id_seq'::regclass) NOT NULL,
-    name character varying(510) DEFAULT NULL::character varying,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
+    id bigint NOT NULL,
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     email character varying,
     accessions_count integer DEFAULT 0,
     uuid uuid DEFAULT gen_random_uuid() NOT NULL,
@@ -301,10 +321,11 @@ CREATE TABLE public.doctors (
 
 
 --
--- Name: insurance_providers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: doctors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.insurance_providers_id_seq
+CREATE SEQUENCE public.doctors_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -313,16 +334,56 @@ CREATE SEQUENCE public.insurance_providers_id_seq
 
 
 --
+-- Name: doctors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.doctors_id_seq OWNED BY public.doctors.id;
+
+
+--
 -- Name: insurance_providers; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.insurance_providers (
-    id bigint DEFAULT nextval('public.insurance_providers_id_seq'::regclass) NOT NULL,
-    name character varying(510) DEFAULT NULL::character varying,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
+    id bigint NOT NULL,
+    name character varying,
     price_list_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     uuid uuid DEFAULT gen_random_uuid() NOT NULL
+);
+
+
+--
+-- Name: insurance_providers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.insurance_providers_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: insurance_providers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.insurance_providers_id_seq OWNED BY public.insurance_providers.id;
+
+
+--
+-- Name: lab_test_panels; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.lab_test_panels (
+    id bigint NOT NULL,
+    lab_test_id bigint,
+    panel_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -331,6 +392,7 @@ CREATE TABLE public.insurance_providers (
 --
 
 CREATE SEQUENCE public.lab_test_panels_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -339,15 +401,22 @@ CREATE SEQUENCE public.lab_test_panels_id_seq
 
 
 --
--- Name: lab_test_panels; Type: TABLE; Schema: public; Owner: -
+-- Name: lab_test_panels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-CREATE TABLE public.lab_test_panels (
-    id bigint DEFAULT nextval('public.lab_test_panels_id_seq'::regclass) NOT NULL,
+ALTER SEQUENCE public.lab_test_panels_id_seq OWNED BY public.lab_test_panels.id;
+
+
+--
+-- Name: lab_test_value_option_joints; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.lab_test_value_option_joints (
+    id bigint NOT NULL,
+    lab_test_value_id bigint,
     lab_test_id bigint,
-    panel_id bigint,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -356,6 +425,7 @@ CREATE TABLE public.lab_test_panels (
 --
 
 CREATE SEQUENCE public.lab_test_value_option_joints_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -364,15 +434,26 @@ CREATE SEQUENCE public.lab_test_value_option_joints_id_seq
 
 
 --
--- Name: lab_test_value_option_joints; Type: TABLE; Schema: public; Owner: -
+-- Name: lab_test_value_option_joints_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-CREATE TABLE public.lab_test_value_option_joints (
-    id bigint DEFAULT nextval('public.lab_test_value_option_joints_id_seq'::regclass) NOT NULL,
-    lab_test_value_id bigint,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    lab_test_id bigint
+ALTER SEQUENCE public.lab_test_value_option_joints_id_seq OWNED BY public.lab_test_value_option_joints.id;
+
+
+--
+-- Name: lab_test_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.lab_test_values (
+    id bigint NOT NULL,
+    value character varying,
+    flag character varying,
+    note text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    "numeric" boolean,
+    snomed character varying,
+    loinc character varying
 );
 
 
@@ -381,6 +462,7 @@ CREATE TABLE public.lab_test_value_option_joints (
 --
 
 CREATE SEQUENCE public.lab_test_values_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -389,32 +471,10 @@ CREATE SEQUENCE public.lab_test_values_id_seq
 
 
 --
--- Name: lab_test_values; Type: TABLE; Schema: public; Owner: -
+-- Name: lab_test_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-CREATE TABLE public.lab_test_values (
-    id bigint DEFAULT nextval('public.lab_test_values_id_seq'::regclass) NOT NULL,
-    value character varying(510) DEFAULT NULL::character varying,
-    flag character varying(510) DEFAULT NULL::character varying,
-    note text,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    "numeric" boolean,
-    snomed character varying,
-    loinc character varying
-);
-
-
---
--- Name: lab_tests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.lab_tests_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+ALTER SEQUENCE public.lab_test_values_id_seq OWNED BY public.lab_test_values.id;
 
 
 --
@@ -422,13 +482,11 @@ CREATE SEQUENCE public.lab_tests_id_seq
 --
 
 CREATE TABLE public.lab_tests (
-    id bigint DEFAULT nextval('public.lab_tests_id_seq'::regclass) NOT NULL,
-    code character varying(510) DEFAULT NULL::character varying,
-    name character varying(510) DEFAULT NULL::character varying,
+    id bigint NOT NULL,
+    code character varying,
+    name character varying,
     description text,
     decimals integer,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
     department_id bigint,
     unit_id bigint,
     procedure character varying,
@@ -439,6 +497,8 @@ CREATE TABLE public.lab_tests (
     fraction boolean,
     text_length integer,
     "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     loinc character varying,
     remarks text,
     status public.publication_status DEFAULT 'active'::public.publication_status,
@@ -448,10 +508,11 @@ CREATE TABLE public.lab_tests (
 
 
 --
--- Name: notes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: lab_tests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.notes_id_seq
+CREATE SEQUENCE public.lab_tests_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -460,17 +521,61 @@ CREATE SEQUENCE public.notes_id_seq
 
 
 --
+-- Name: lab_tests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.lab_tests_id_seq OWNED BY public.lab_tests.id;
+
+
+--
 -- Name: notes; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.notes (
-    id bigint DEFAULT nextval('public.notes_id_seq'::regclass) NOT NULL,
+    id bigint NOT NULL,
     content text,
     department_id bigint,
     noticeable_id bigint,
-    noticeable_type character varying(510) DEFAULT NULL::character varying,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone
+    noticeable_type character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: notes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.notes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.notes_id_seq OWNED BY public.notes.id;
+
+
+--
+-- Name: observations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observations (
+    id bigint NOT NULL,
+    value character varying,
+    lab_test_id bigint,
+    accession_id bigint,
+    lab_test_value_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    status public.observation_status,
+    data_absent_reason public.data_absent_reason
 );
 
 
@@ -479,6 +584,7 @@ CREATE TABLE public.notes (
 --
 
 CREATE SEQUENCE public.observations_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -487,32 +593,10 @@ CREATE SEQUENCE public.observations_id_seq
 
 
 --
--- Name: observations; Type: TABLE; Schema: public; Owner: -
+-- Name: observations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-CREATE TABLE public.observations (
-    id bigint DEFAULT nextval('public.observations_id_seq'::regclass) NOT NULL,
-    value character varying(510) DEFAULT NULL::character varying,
-    lab_test_id bigint,
-    accession_id bigint,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    lab_test_value_id bigint,
-    status public.observation_status,
-    data_absent_reason public.data_absent_reason
-);
-
-
---
--- Name: panels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.panels_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+ALTER SEQUENCE public.observations_id_seq OWNED BY public.observations.id;
 
 
 --
@@ -520,13 +604,13 @@ CREATE SEQUENCE public.panels_id_seq
 --
 
 CREATE TABLE public.panels (
-    id bigint DEFAULT nextval('public.panels_id_seq'::regclass) NOT NULL,
-    code character varying(510) DEFAULT NULL::character varying,
-    name character varying(510) DEFAULT NULL::character varying,
-    description character varying(510) DEFAULT NULL::character varying,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
+    id bigint NOT NULL,
+    code character varying,
+    name character varying,
+    description character varying,
     procedure character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     loinc character varying,
     status public.publication_status DEFAULT 'active'::public.publication_status,
     fasting_status_duration interval,
@@ -536,10 +620,11 @@ CREATE TABLE public.panels (
 
 
 --
--- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: panels_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.patients_id_seq
+CREATE SEQUENCE public.panels_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -548,25 +633,32 @@ CREATE SEQUENCE public.patients_id_seq
 
 
 --
+-- Name: panels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.panels_id_seq OWNED BY public.panels.id;
+
+
+--
 -- Name: patients; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.patients (
-    id bigint DEFAULT nextval('public.patients_id_seq'::regclass) NOT NULL,
-    given_name character varying(510) DEFAULT NULL::character varying,
-    middle_name character varying(510) DEFAULT NULL::character varying,
-    family_name character varying(510) DEFAULT NULL::character varying,
-    family_name2 character varying(510) DEFAULT NULL::character varying,
-    gender character varying(510) DEFAULT NULL::character varying,
+    id bigint NOT NULL,
+    given_name character varying,
+    middle_name character varying,
+    family_name character varying,
+    family_name2 character varying,
+    gender character varying,
     birthdate date,
-    identifier character varying(510) DEFAULT NULL::character varying,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
+    identifier character varying,
     insurance_provider_id bigint,
-    phone character varying(64) DEFAULT NULL::character varying,
-    email character varying(128) DEFAULT NULL::character varying,
+    phone character varying(32),
+    email character varying(64),
     animal_type integer,
-    policy_number character varying(510) DEFAULT NULL::character varying,
+    policy_number character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     partner_name character varying,
     cellular character varying(32),
     address jsonb DEFAULT '{}'::jsonb,
@@ -577,10 +669,11 @@ CREATE TABLE public.patients (
 
 
 --
--- Name: price_lists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.price_lists_id_seq
+CREATE SEQUENCE public.patients_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -589,15 +682,57 @@ CREATE SEQUENCE public.price_lists_id_seq
 
 
 --
+-- Name: patients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.patients_id_seq OWNED BY public.patients.id;
+
+
+--
 -- Name: price_lists; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.price_lists (
-    id bigint DEFAULT nextval('public.price_lists_id_seq'::regclass) NOT NULL,
-    name character varying(510) NOT NULL,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     status integer DEFAULT 0 NOT NULL
+);
+
+
+--
+-- Name: price_lists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.price_lists_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: price_lists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.price_lists_id_seq OWNED BY public.price_lists.id;
+
+
+--
+-- Name: prices; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.prices (
+    id bigint NOT NULL,
+    amount numeric(8,2),
+    price_list_id bigint NOT NULL,
+    priceable_id bigint NOT NULL,
+    priceable_type character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -606,6 +741,7 @@ CREATE TABLE public.price_lists (
 --
 
 CREATE SEQUENCE public.prices_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -614,30 +750,10 @@ CREATE SEQUENCE public.prices_id_seq
 
 
 --
--- Name: prices; Type: TABLE; Schema: public; Owner: -
+-- Name: prices_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-CREATE TABLE public.prices (
-    id bigint DEFAULT nextval('public.prices_id_seq'::regclass) NOT NULL,
-    amount numeric(8,2) DEFAULT NULL::numeric,
-    price_list_id bigint NOT NULL,
-    priceable_id bigint NOT NULL,
-    priceable_type character varying(510) NOT NULL,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone
-);
-
-
---
--- Name: qualified_intervals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.qualified_intervals_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+ALTER SEQUENCE public.prices_id_seq OWNED BY public.prices.id;
 
 
 --
@@ -645,18 +761,18 @@ CREATE SEQUENCE public.qualified_intervals_id_seq
 --
 
 CREATE TABLE public.qualified_intervals (
-    id bigint DEFAULT nextval('public.qualified_intervals_id_seq'::regclass) NOT NULL,
-    old_gender character varying(510) DEFAULT NULL::character varying,
-    old_min_age integer,
-    old_max_age integer,
-    old_age_unit character varying(510) DEFAULT NULL::character varying,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    lab_test_id bigint,
+    id bigint NOT NULL,
     range_low_value numeric,
     range_high_value numeric,
+    old_gender character varying,
+    old_min_age integer,
+    old_max_age integer,
+    old_age_unit character varying,
+    lab_test_id bigint,
     animal_type integer,
     condition character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     category public.observation_range_category,
     context character varying,
     interpretation_id bigint,
@@ -667,6 +783,26 @@ CREATE TABLE public.qualified_intervals (
     gestational_age_high character varying,
     rank integer
 );
+
+
+--
+-- Name: qualified_intervals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.qualified_intervals_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: qualified_intervals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.qualified_intervals_id_seq OWNED BY public.qualified_intervals.id;
 
 
 --
@@ -736,7 +872,22 @@ CREATE TABLE public.quotes (
 --
 
 CREATE TABLE public.schema_migrations (
-    version character varying(510) NOT NULL
+    version character varying NOT NULL
+);
+
+
+--
+-- Name: units; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.units (
+    id bigint NOT NULL,
+    expression character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    ucum character varying,
+    si character varying,
+    conversion_factor numeric
 );
 
 
@@ -745,6 +896,7 @@ CREATE TABLE public.schema_migrations (
 --
 
 CREATE SEQUENCE public.units_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -753,17 +905,52 @@ CREATE SEQUENCE public.units_id_seq
 
 
 --
--- Name: units; Type: TABLE; Schema: public; Owner: -
+-- Name: units_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-CREATE TABLE public.units (
-    id bigint DEFAULT nextval('public.units_id_seq'::regclass) NOT NULL,
-    expression character varying,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    ucum character varying,
-    si character varying,
-    conversion_factor numeric
+ALTER SEQUENCE public.units_id_seq OWNED BY public.units.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    username character varying,
+    email character varying,
+    encrypted_password character varying NOT NULL,
+    initials character varying,
+    language character varying,
+    last_request_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_ip character varying,
+    current_sign_in_ip character varying,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    first_name character varying(32),
+    last_name character varying(32),
+    prefix character varying(16),
+    suffix character varying(16),
+    admin boolean DEFAULT false NOT NULL,
+    register character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    confirmation_token character varying(255),
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    unconfirmed_email character varying,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_token character varying(255),
+    remember_created_at timestamp without time zone,
+    unlock_token character varying(255),
+    locked_at timestamp without time zone,
+    failed_attempts integer DEFAULT 0,
+    signature text,
+    descender boolean,
+    webauthn_id character varying,
+    uuid uuid DEFAULT gen_random_uuid() NOT NULL
 );
 
 
@@ -772,6 +959,7 @@ CREATE TABLE public.units (
 --
 
 CREATE SEQUENCE public.users_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -780,46 +968,10 @@ CREATE SEQUENCE public.users_id_seq
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-CREATE TABLE public.users (
-    id bigint DEFAULT nextval('public.users_id_seq'::regclass) NOT NULL,
-    username character varying(510) DEFAULT NULL::character varying,
-    email character varying(510) DEFAULT NULL::character varying,
-    encrypted_password character varying(510) NOT NULL,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
-    initials character varying(510) DEFAULT NULL::character varying,
-    language character varying(510) DEFAULT NULL::character varying,
-    last_request_at timestamp with time zone,
-    last_sign_in_at timestamp with time zone,
-    current_sign_in_at timestamp with time zone,
-    last_sign_in_ip character varying(510) DEFAULT NULL::character varying,
-    current_sign_in_ip character varying(510) DEFAULT NULL::character varying,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    first_name character varying(64) DEFAULT NULL::character varying,
-    last_name character varying(64) DEFAULT NULL::character varying,
-    prefix character varying(32) DEFAULT NULL::character varying,
-    suffix character varying(32) DEFAULT NULL::character varying,
-    admin boolean DEFAULT false NOT NULL,
-    register character varying(510) DEFAULT NULL::character varying,
-    confirmation_token character varying(510) DEFAULT NULL::character varying,
-    confirmed_at timestamp with time zone,
-    confirmation_sent_at timestamp with time zone,
-    unconfirmed_email character varying(510) DEFAULT NULL::character varying,
-    reset_password_token character varying(510) DEFAULT NULL::character varying,
-    reset_password_sent_at timestamp with time zone,
-    remember_token character varying(510) DEFAULT NULL::character varying,
-    remember_created_at timestamp with time zone,
-    unlock_token character varying(510) DEFAULT NULL::character varying,
-    locked_at timestamp with time zone,
-    failed_attempts integer DEFAULT 0,
-    signature text,
-    descender boolean,
-    webauthn_id character varying,
-    uuid uuid DEFAULT gen_random_uuid() NOT NULL
-);
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
@@ -858,10 +1010,143 @@ ALTER SEQUENCE public.webauthn_credentials_id_seq OWNED BY public.webauthn_crede
 
 
 --
+-- Name: accession_panels id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.accession_panels ALTER COLUMN id SET DEFAULT nextval('public.accession_panels_id_seq'::regclass);
+
+
+--
+-- Name: accessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.accessions ALTER COLUMN id SET DEFAULT nextval('public.accessions_id_seq'::regclass);
+
+
+--
+-- Name: claims id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.claims ALTER COLUMN id SET DEFAULT nextval('public.claims_id_seq'::regclass);
+
+
+--
+-- Name: departments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.departments ALTER COLUMN id SET DEFAULT nextval('public.departments_id_seq'::regclass);
+
+
+--
+-- Name: doctors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.doctors ALTER COLUMN id SET DEFAULT nextval('public.doctors_id_seq'::regclass);
+
+
+--
+-- Name: insurance_providers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.insurance_providers ALTER COLUMN id SET DEFAULT nextval('public.insurance_providers_id_seq'::regclass);
+
+
+--
+-- Name: lab_test_panels id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lab_test_panels ALTER COLUMN id SET DEFAULT nextval('public.lab_test_panels_id_seq'::regclass);
+
+
+--
+-- Name: lab_test_value_option_joints id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lab_test_value_option_joints ALTER COLUMN id SET DEFAULT nextval('public.lab_test_value_option_joints_id_seq'::regclass);
+
+
+--
+-- Name: lab_test_values id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lab_test_values ALTER COLUMN id SET DEFAULT nextval('public.lab_test_values_id_seq'::regclass);
+
+
+--
+-- Name: lab_tests id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lab_tests ALTER COLUMN id SET DEFAULT nextval('public.lab_tests_id_seq'::regclass);
+
+
+--
+-- Name: notes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notes ALTER COLUMN id SET DEFAULT nextval('public.notes_id_seq'::regclass);
+
+
+--
+-- Name: observations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observations ALTER COLUMN id SET DEFAULT nextval('public.observations_id_seq'::regclass);
+
+
+--
+-- Name: panels id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.panels ALTER COLUMN id SET DEFAULT nextval('public.panels_id_seq'::regclass);
+
+
+--
+-- Name: patients id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.patients ALTER COLUMN id SET DEFAULT nextval('public.patients_id_seq'::regclass);
+
+
+--
+-- Name: price_lists id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.price_lists ALTER COLUMN id SET DEFAULT nextval('public.price_lists_id_seq'::regclass);
+
+
+--
+-- Name: prices id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.prices ALTER COLUMN id SET DEFAULT nextval('public.prices_id_seq'::regclass);
+
+
+--
+-- Name: qualified_intervals id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qualified_intervals ALTER COLUMN id SET DEFAULT nextval('public.qualified_intervals_id_seq'::regclass);
+
+
+--
 -- Name: quote_line_items id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.quote_line_items ALTER COLUMN id SET DEFAULT nextval('public.quote_line_items_id_seq'::regclass);
+
+
+--
+-- Name: units id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.units ALTER COLUMN id SET DEFAULT nextval('public.units_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
@@ -1032,6 +1317,14 @@ ALTER TABLE ONLY public.quotes
 
 
 --
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
 -- Name: units units_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1126,6 +1419,13 @@ CREATE UNIQUE INDEX index_departments_on_name ON public.departments USING btree 
 
 
 --
+-- Name: index_departments_on_position; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_departments_on_position ON public.departments USING btree ("position");
+
+
+--
 -- Name: index_doctors_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1164,7 +1464,7 @@ CREATE INDEX index_lab_test_value_option_joints_on_lab_test_value_id ON public.l
 -- Name: index_lab_tests_on_code; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_lab_tests_on_code ON public.lab_tests USING btree (code);
+CREATE UNIQUE INDEX index_lab_tests_on_code ON public.lab_tests USING btree (code);
 
 
 --
@@ -1235,6 +1535,13 @@ CREATE INDEX index_panels_on_code ON public.panels USING btree (code);
 --
 
 CREATE INDEX index_panels_on_loinc ON public.panels USING btree (loinc);
+
+
+--
+-- Name: index_panels_on_position; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_panels_on_position ON public.panels USING btree ("position");
 
 
 --
@@ -1424,13 +1731,6 @@ CREATE UNIQUE INDEX index_webauthn_credentials_on_external_id ON public.webauthn
 --
 
 CREATE INDEX index_webauthn_credentials_on_user_id ON public.webauthn_credentials USING btree (user_id);
-
-
---
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
 
 
 --
