@@ -83,11 +83,9 @@ module FHIRable
     end
 
     def fhirable_diagnostic_report_results(results)
-      report_results = []
-      results.each do |result|
-        report_results << FHIR.from_contents(result.to_json)
+      results.map do |result|
+        FHIR.from_contents(result.to_json)
       end
-      report_results
     end
 
     def fhirable_diagnostic_report_presented_form
