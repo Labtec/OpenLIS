@@ -29,7 +29,7 @@ module QuoteVersionConcerns
     def last_version?
       return true unless parent_quote
 
-      parent_quote.versions.last == self ? true : false
+      parent_quote.versions.last == self
     end
 
     def last_version_number
