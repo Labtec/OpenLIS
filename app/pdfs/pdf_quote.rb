@@ -369,15 +369,15 @@ class PDFQuote < Prawn::Document
   end
 
   def contact_email
-    if @quote&.patient&.email
-      "#{t('patients.card.email')}  #{@quote.patient.email}"
-    end
+    return unless @quote&.patient&.email
+
+    "#{t('patients.card.email')}  #{@quote.patient.email}"
   end
 
   def contact_name
-    if @quote&.patient
-      "#{t('patients.quote.to')}  <strong>#{@view.full_name(@quote.patient)}</strong>"
-    end
+    return unless @quote&.patient
+
+    "#{t('patients.quote.to')}  <strong>#{@view.full_name(@quote.patient)}</strong>"
   end
 
   def contact_phone
@@ -398,12 +398,12 @@ class PDFQuote < Prawn::Document
   end
 
   def identification
-    if @quote&.patient&.identifier
-      if @quote&.patient&.identifier_type == 1
-        "#{t('patients.patient.cedula')}  #{@quote.patient.identifier} #{digito_verificador}"
-      else
-        "#{t('patients.patient.passport')}  #{@quote.patient.identifier}"
-      end
+    return unless @quote&.patient&.identifier
+
+    if @quote&.patient&.identifier_type == 1
+      "#{t('patients.patient.cedula')}  #{@quote.patient.identifier} #{digito_verificador}"
+    else
+      "#{t('patients.patient.passport')}  #{@quote.patient.identifier}"
     end
   end
 
@@ -436,9 +436,9 @@ class PDFQuote < Prawn::Document
   end
 
   def requested_by
-    if @quote.doctor
-      "#{t('results.index.ordered_by')}  #{@view.organization_or_practitioner(@quote.doctor)}"
-    end
+    return unless @quote.doctor
+
+    "#{t('results.index.ordered_by')}  #{@view.organization_or_practitioner(@quote.doctor)}"
   end
 
   def serial_number
