@@ -87,7 +87,7 @@ class PDFQuote < Prawn::Document
     page_bottom = bounds.bottom - bottom_margin
     form_padding = 4
     table_padding = 2
-    footer_height = (line_height * 1) + PADDING
+    footer_height = line_height + PADDING
     line_number_width = 30
     description_width = 195
     code_width = 50
