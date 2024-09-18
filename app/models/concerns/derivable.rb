@@ -74,7 +74,7 @@ module Derivable
       uvol24h = result_value_quantity_for "UVOL24H"
       weight = result_value_quantity_for "WEIGHT"
       height = result_value_quantity_for "HEIGHT"
-      bsa = 0.007184 * weight ** 0.425 * height ** 0.725
+      bsa = 0.007184 * weight**0.425 * height**0.725
       cre_u * uvol24h / 1440 / crtsa * 1.73 / bsa
     when "LDLHDLR"
       chol = result_value_quantity_for "CHOL"
