@@ -4,7 +4,7 @@ module DiscountUnitEnumValidation
   extend ActiveSupport::Concern
 
   included do
-    validates_inclusion_of :discount_unit, in: discount_units.keys
+    validates :discount_unit, inclusion: { in: discount_units.keys }
 
     def discount_unit=(value)
       super
