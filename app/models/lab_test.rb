@@ -43,7 +43,7 @@ class LabTest < ApplicationRecord
   auto_strip_attributes :name, :code, :procedure, :loinc, :patient_preparation, :fasting_status_duration
 
   def self.unit_for(code)
-    find_by(code: code).unit.expression
+    find_by(code:).unit.expression
   end
 
   def allow_quantity?

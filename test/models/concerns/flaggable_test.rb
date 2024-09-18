@@ -9,7 +9,7 @@ class FlaggableTest < ActiveSupport::TestCase
 
   test "reference low and high ranges are present" do
     lab_test = lab_tests(:qualified_interval)
-    @observation.update(lab_test: lab_test)
+    @observation.update(lab_test:)
 
     # Reference Range: 10-2,000
     # value = 9 => interpretation: L
@@ -28,7 +28,7 @@ class FlaggableTest < ActiveSupport::TestCase
 
   test "reference low range is present" do
     lab_test = lab_tests(:qualified_interval_greater_than)
-    @observation.update(lab_test: lab_test)
+    @observation.update(lab_test:)
 
     # Reference Range: >= 10
     # value = 9 => interpretation: L
@@ -41,7 +41,7 @@ class FlaggableTest < ActiveSupport::TestCase
 
   test "reference high range is present" do
     lab_test = lab_tests(:qualified_interval_less_than)
-    @observation.update(lab_test: lab_test)
+    @observation.update(lab_test:)
 
     # Reference Range: < 10
     # value = 9 => interpretation: N
@@ -54,7 +54,7 @@ class FlaggableTest < ActiveSupport::TestCase
 
   test "critical ranges" do
     lab_test = lab_tests(:with_critical_ranges)
-    @observation.update(lab_test: lab_test)
+    @observation.update(lab_test:)
 
     # Critical Low: <100
     # Significantly Low: 100-200
@@ -90,7 +90,7 @@ class FlaggableTest < ActiveSupport::TestCase
   test "value is a range" do
     lab_test = lab_tests(:range)
     lab_test.update(qualified_intervals: [qualified_intervals(:qualified_interval)])
-    @observation.update(lab_test: lab_test)
+    @observation.update(lab_test:)
 
     # Reference Range: 10-2,000
     # value = 100-200 => interpretation: N
@@ -106,7 +106,7 @@ class FlaggableTest < ActiveSupport::TestCase
 
   test "value is a code (qualitative)" do
     lab_test = lab_tests(:qualitative)
-    @observation.update(lab_test: lab_test)
+    @observation.update(lab_test:)
 
     # value = Positive => interpretation: A
     @observation.update(lab_test_value: lab_test_values(:positive))
@@ -122,8 +122,8 @@ class FlaggableTest < ActiveSupport::TestCase
     lab_test.update(qualified_intervals: [ri1, ri2])
     patient = patients(:john)
     accession = accessions(:accession)
-    accession.update(patient: patient, drawn_at: Time.current)
-    @observation.update(accession: accession, lab_test: lab_test)
+    accession.update(patient:, drawn_at: Time.current)
+    @observation.update(accession:, lab_test:)
 
     patient.update(birthdate: 4.weeks.ago)
     assert_equal 1.., @observation.critical_intervals.take.range

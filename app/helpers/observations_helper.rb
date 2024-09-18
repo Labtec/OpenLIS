@@ -111,7 +111,7 @@ module ObservationsHelper
 
     table = []
     intervals.each do |interval|
-      table << range_row(interval, display_gender: display_gender)
+      table << range_row(interval, display_gender:)
     end
     table
   end
