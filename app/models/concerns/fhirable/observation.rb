@@ -52,9 +52,9 @@ module FHIRable
         identifier: fhirable_observation_identifier,
         basedOn: FHIR::Reference.new(reference: "ServiceRequest/#{accession.id}"),
         status: status,
-        category: FHIR::CodeableConcept.new(coding: [ FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/observation-category", code: "laboratory") ]),
+        category: FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/observation-category", code: "laboratory")]),
         # 'code': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc, display: display_loinc(lab_test&.loinc))]),
-        code: FHIR::CodeableConcept.new(text: lab_test.stripped_name, coding: [ FHIR::Coding.new(system: "http://loinc.org", code: lab_test&.loinc) ]),
+        code: FHIR::CodeableConcept.new(text: lab_test.stripped_name, coding: [FHIR::Coding.new(system: "http://loinc.org", code: lab_test&.loinc)]),
         subject: fhirable_reference(patient),
         effectiveDateTime: drawn_at.utc.iso8601,
         issued: reported_at&.utc&.iso8601,
@@ -89,7 +89,7 @@ module FHIRable
     def observation_data_absent_reason
       return unless data_absent_reason
 
-      FHIR::CodeableConcept.new(coding: [ FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/data-absent-reason", code: data_absent_reason) ])
+      FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/data-absent-reason", code: data_absent_reason)])
     end
 
     def observation_performers

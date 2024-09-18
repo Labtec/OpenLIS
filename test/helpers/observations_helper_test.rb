@@ -113,35 +113,35 @@ class ObservationsHelperTest < ActionView::TestCase
   end
 
   test "empty ranges table" do
-    empty_table = [ [ nil, nil, nil, nil, nil ] ]
+    empty_table = [[nil, nil, nil, nil, nil]]
     assert_equal empty_table, ranges_table([])
   end
 
   test "reference range table" do
-    reference_range_table = [ [ nil, "", "10", "–", "2,000" ] ]
-    assert_equal reference_range_table, ranges_table([ qualified_intervals(:qualified_interval) ])
+    reference_range_table = [[nil, "", "10", "–", "2,000"]]
+    assert_equal reference_range_table, ranges_table([qualified_intervals(:qualified_interval)])
   end
 
   test "reference range table with genders" do
-    reference_range_table = [ [ nil, "M:", "0", "–", "10" ],
-                              [ nil, "F:", "100", "–", "200" ] ]
+    reference_range_table = [[nil, "M:", "0", "–", "10"],
+                             [nil, "F:", "100", "–", "200"]]
     assert_equal reference_range_table,
-                 ranges_table([ qualified_intervals(:gender_male), qualified_intervals(:gender_female) ], display_gender: true)
+                 ranges_table([qualified_intervals(:gender_male), qualified_intervals(:gender_female)], display_gender: true)
   end
 
   test "reference range table with condition" do
-    reference_range_table = [ [ "Desirable:", "", "300", "–", "400" ] ]
-    assert_equal reference_range_table, ranges_table([ qualified_intervals(:desirable) ])
+    reference_range_table = [["Desirable:", "", "300", "–", "400"]]
+    assert_equal reference_range_table, ranges_table([qualified_intervals(:desirable)])
   end
 
   test "#range_row" do
     range = qualified_intervals(:qualified_interval)
-    assert_equal [ nil, "", "10", "–", "2,000" ], range_row(range), "Quantity"
+    assert_equal [nil, "", "10", "–", "2,000"], range_row(range), "Quantity"
 
     range.update(lab_test: lab_tests(:ratio))
-    assert_equal [ nil, "", "1∶10", "–", "1∶2,000" ], range_row(range), "Ratio/Titer"
+    assert_equal [nil, "", "1∶10", "–", "1∶2,000"], range_row(range), "Ratio/Titer"
 
     range.update(lab_test: lab_tests(:range))
-    assert_equal [ nil, "", "10", "–", "2,000" ], range_row(range), "Range/HPF"
+    assert_equal [nil, "", "10", "–", "2,000"], range_row(range), "Range/HPF"
   end
 end

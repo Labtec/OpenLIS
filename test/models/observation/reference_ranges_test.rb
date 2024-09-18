@@ -5,7 +5,7 @@ require "test_helper"
 class ReferenceRangesTest < ActiveSupport::TestCase
   setup do
     @accession = accessions(:accession)
-    @accession.update(lab_tests: [ lab_tests(:hgb) ])
+    @accession.update(lab_tests: [lab_tests(:hgb)])
     @patient = @accession.patient
   end
 
@@ -29,13 +29,13 @@ class ReferenceRangesTest < ActiveSupport::TestCase
     observation = Observation.create(lab_test: lab_tests(:hgb), accession: @accession)
 
     subjects = [
-      { age: 1.day,                reference_ranges: [ qualified_intervals(:hgb_m1) ] },
-      { age: 14.days,              reference_ranges: [ qualified_intervals(:hgb_m1) ] },
-      { age: 14.days + 23.hours,   reference_ranges: [ qualified_intervals(:hgb_m1) ] },
-      { age: 15.days,              reference_ranges: [ qualified_intervals(:hgb_m2) ] },
-      { age: 17.years,             reference_ranges: [ qualified_intervals(:hgb_m11) ] },
-      { age: 17.years + 11.months, reference_ranges: [ qualified_intervals(:hgb_m11) ] },
-      { age: 18.years,             reference_ranges: [ qualified_intervals(:hgb_m12) ] }
+      { age: 1.day,                reference_ranges: [qualified_intervals(:hgb_m1)] },
+      { age: 14.days,              reference_ranges: [qualified_intervals(:hgb_m1)] },
+      { age: 14.days + 23.hours,   reference_ranges: [qualified_intervals(:hgb_m1)] },
+      { age: 15.days,              reference_ranges: [qualified_intervals(:hgb_m2)] },
+      { age: 17.years,             reference_ranges: [qualified_intervals(:hgb_m11)] },
+      { age: 17.years + 11.months, reference_ranges: [qualified_intervals(:hgb_m11)] },
+      { age: 18.years,             reference_ranges: [qualified_intervals(:hgb_m12)] }
     ]
 
     subjects.each do |subject|
@@ -95,11 +95,11 @@ class ReferenceRangesTest < ActiveSupport::TestCase
     ]
 
     subjects = [
-      { age: 11.months,            reference_ranges: [ qualified_intervals(:fsh_m1) ] + tanner_intervals },
-      { age: 1.year,               reference_ranges: [ qualified_intervals(:fsh_m2) ] + tanner_intervals },
-      { age: 18.years,             reference_ranges: [ qualified_intervals(:fsh_m5) ] + tanner_intervals },
-      { age: 18.years + 11.months, reference_ranges: [ qualified_intervals(:fsh_m5) ] + tanner_intervals },
-      { age: 19.years,             reference_ranges: [ qualified_intervals(:fsh_m6) ] }
+      { age: 11.months,            reference_ranges: [qualified_intervals(:fsh_m1)] + tanner_intervals },
+      { age: 1.year,               reference_ranges: [qualified_intervals(:fsh_m2)] + tanner_intervals },
+      { age: 18.years,             reference_ranges: [qualified_intervals(:fsh_m5)] + tanner_intervals },
+      { age: 18.years + 11.months, reference_ranges: [qualified_intervals(:fsh_m5)] + tanner_intervals },
+      { age: 19.years,             reference_ranges: [qualified_intervals(:fsh_m6)] }
     ]
 
     subjects.each do |subject|

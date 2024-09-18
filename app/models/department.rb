@@ -24,7 +24,7 @@ class Department < ApplicationRecord
   after_destroy_commit -> { broadcast_replace_to "admin:department", partial: "layouts/invalid", locals: { path: Rails.application.routes.url_helpers.admin_departments_path }, target: :department }
 
   def self.cached_tests
-    Rails.cache.fetch([ name, "cached_tests" ]) do
+    Rails.cache.fetch([name, "cached_tests"]) do
       order("id asc").includes(:lab_tests).to_a
     end
   end
@@ -36,6 +36,6 @@ class Department < ApplicationRecord
   private
 
   def flush_cache
-    Rails.cache.delete([ self.class.name, "cached_tests" ])
+    Rails.cache.delete([self.class.name, "cached_tests"])
   end
 end

@@ -3,7 +3,7 @@
 # Add new mime types for use in respond_to blocks:
 # Mime::Type.register "text/richtext", :rtf
 
-Mime::Type.register_alias "application/smart-health-card", :smart_health_card, [ "smart-health-card" ]
+Mime::Type.register_alias "application/smart-health-card", :smart_health_card, ["smart-health-card"]
 
 Mime::Type.register "application/json", :json, %w[
   text/x-json

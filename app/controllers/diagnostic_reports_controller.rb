@@ -117,7 +117,7 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def set_results
-    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [ :unit ] }, :unit).group_by(&:department).sort_by { |department, _results| department.position }
+    @results = @diagnostic_report.results.includes(:patient, :accession, :department, :lab_test_value, { lab_test: [:unit] }, :unit).group_by(&:department).sort_by { |department, _results| department.position }
   end
 
   def diagnostic_report_params

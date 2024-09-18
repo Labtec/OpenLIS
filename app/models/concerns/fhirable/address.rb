@@ -26,7 +26,7 @@ module FHIRable
     private
 
     def address_text
-      [ address_line, address_corregimiento, address_district, address_province, "Panamá" ].join(", ")
+      [address_line, address_corregimiento, address_district, address_province, "Panamá"].join(", ")
     end
   end
 end

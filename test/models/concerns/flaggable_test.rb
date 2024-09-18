@@ -89,7 +89,7 @@ class FlaggableTest < ActiveSupport::TestCase
 
   test "value is a range" do
     lab_test = lab_tests(:range)
-    lab_test.update(qualified_intervals: [ qualified_intervals(:qualified_interval) ])
+    lab_test.update(qualified_intervals: [qualified_intervals(:qualified_interval)])
     @observation.update(lab_test: lab_test)
 
     # Reference Range: 10-2,000
@@ -119,7 +119,7 @@ class FlaggableTest < ActiveSupport::TestCase
     ri1 = QualifiedInterval.create(category: "critical", age_low: "P1D", age_high: "P5W", range_low_value: 1, range_high_value: nil)
     # 5 weeks to 2 years
     ri2 = QualifiedInterval.create(category: "critical", age_low: "P5W", age_high: "P2Y", range_low_value: 2, range_high_value: nil)
-    lab_test.update(qualified_intervals: [ ri1, ri2 ])
+    lab_test.update(qualified_intervals: [ri1, ri2])
     patient = patients(:john)
     accession = accessions(:accession)
     accession.update(patient: patient, drawn_at: Time.current)

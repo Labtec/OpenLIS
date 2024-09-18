@@ -34,25 +34,25 @@ module QualifiedIntervalsHelper
 
   def options_for_context
     [
-      [ "Type",
-        [
-          [ "Normal Range", "normal" ],
-          [ "Recommended Range", "recommended" ],
-          [ "Treatment Range", "treatment" ],
-          [ "Therapeutic Desired Level", "therapeutic" ],
-          [ "Pre Therapeutic Desired Level", "pre" ],
-          [ "Post Therapeutic Desired Level", "post" ]
-        ]
-      ],
-      [ "Endocrine",
-        [
-          [ "Pre-Puberty", "pre-puberty" ],
-          [ "Follicular Stage", "follicular" ],
-          [ "MidCycle", "midcycle" ],
-          [ "Luteal", "luteal" ],
-          [ "Post-Menopause", "postmenopausal" ]
-        ]
-      ]
+      ["Type",
+       [
+         ["Normal Range", "normal"],
+         ["Recommended Range", "recommended"],
+         ["Treatment Range", "treatment"],
+         ["Therapeutic Desired Level", "therapeutic"],
+         ["Pre Therapeutic Desired Level", "pre"],
+         ["Post Therapeutic Desired Level", "post"]
+       ]
+],
+      ["Endocrine",
+       [
+         ["Pre-Puberty", "pre-puberty"],
+         ["Follicular Stage", "follicular"],
+         ["MidCycle", "midcycle"],
+         ["Luteal", "luteal"],
+         ["Post-Menopause", "postmenopausal"]
+       ]
+]
     ]
   end
 end

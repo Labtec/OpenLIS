@@ -7,7 +7,7 @@ module QuoteVersionConcerns
     has_many :versions, class_name: "Quote", foreign_key: :parent_quote_id, dependent: :destroy
 
     validates :version_number, presence: true, if: -> { parent_quote_id.present? },
-                               uniqueness: { scope: [ :parent_quote_id ] }
+                               uniqueness: { scope: [:parent_quote_id] }
 
     before_validation :add_version_number, on: :create
 

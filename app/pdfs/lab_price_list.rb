@@ -32,14 +32,14 @@ class LabPriceList < Prawn::Document
     ##
     # Corporate colors
     colors = {
-      black: [ 0, 0, 0, 100 ],
-      white: [ 0, 0, 0, 0 ],
-      gray: [ 0, 0, 0, 10 ],
-      highlight_gray: [ 0, 0, 0, 15 ],
-      logo_gray: [ 0, 0, 0, 75 ],
-      high_value: [ 0, 100, 100, 0 ],
-      low_value: [ 100, 100, 0, 0 ],
-      abnormal_value: [ 0, 100, 0, 50 ]
+      black: [0, 0, 0, 100],
+      white: [0, 0, 0, 0],
+      gray: [0, 0, 0, 10],
+      highlight_gray: [0, 0, 0, 15],
+      logo_gray: [0, 0, 0, 75],
+      high_value: [0, 100, 100, 0],
+      low_value: [100, 100, 0, 0],
+      abnormal_value: [0, 100, 0, 50]
     }
 
     ##
@@ -124,14 +124,14 @@ class LabPriceList < Prawn::Document
     repeat :all do
       ##
       # Letterhead
-      bounding_box([ bounds.left, page_top - top_margin ], width: bounds.width, height: header_height) do
+      bounding_box([bounds.left, page_top - top_margin], width: bounds.width, height: header_height) do
         ##
         # Corporate logo
         translate(bounds.left, bounds.top - logo_height) do
           logo_master_lab
         end
 
-        bounding_box([ bounds.left + logo_width, bounds.top ], width: bounds.width - logo_width, height: logo_height) do
+        bounding_box([bounds.left + logo_width, bounds.top], width: bounds.width - logo_width, height: logo_height) do
           pad_top heading_padding do
             indent heading_indent do
               font("MyriadPro") do
@@ -154,9 +154,9 @@ class LabPriceList < Prawn::Document
       end
     end
 
-    column_box [ 0, cursor ], width: bounds.width, columns: 2 do
+    column_box [0, cursor], width: bounds.width, columns: 2 do
       # Prices Table
-      prices_table = [ [ "Prueba", "CPT", "Precio (B/.)" ] ]
+      prices_table = [["Prueba", "CPT", "Precio (B/.)"]]
       prices_table_content = []
       @prices.map do |price|
         next if prices_table_content.flatten.include?(price.priceable.name)
@@ -173,7 +173,7 @@ class LabPriceList < Prawn::Document
             header: true,
             # :position => :center, # This breaks the column layout
             column_widths: { 0 => name_width, 1 => procedure_width, 2 => price_width },
-            row_colors: [ colors[:white], colors[:gray] ],
+            row_colors: [colors[:white], colors[:gray]],
             cell_style: { inline_format: true } do |t|
         t.cells.borders = []
         t.cells.height = row_height
@@ -190,7 +190,7 @@ class LabPriceList < Prawn::Document
           page.row(0).font_style = :bold
           page.row(-1).border_bottom_color = colors[:black]
           page.row(-1).border_bottom_width = 1
-          page.row(-1).borders = [ :bottom ]
+          page.row(-1).borders = [:bottom]
         end
       end
     end

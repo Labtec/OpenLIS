@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def shallow_args(parent, child)
-    child.try(:new_record?) ? [ parent, child ] : child
+    child.try(:new_record?) ? [parent, child] : child
   end
 
   def render_turbo_stream_flash_messages
