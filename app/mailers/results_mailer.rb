@@ -4,11 +4,11 @@ class ResultsMailer < ApplicationMailer
   def email_doctor(accession, pdf)
     @accession = accession
     subject = case @accession.status
-    when "preliminary"
+              when "preliminary"
                 ".subject_preliminary"
-    when "partial"
+              when "partial"
                 ".subject_partial"
-    else
+              else
                 ".subject"
     end
     attachments["resultados_#{@accession.id}.pdf"] = pdf.render if pdf
@@ -19,11 +19,11 @@ class ResultsMailer < ApplicationMailer
   def email_patient(accession, pdf)
     @accession = accession
     subject = case @accession.status
-    when "preliminary"
+              when "preliminary"
                 ".subject_preliminary"
-    when "partial"
+              when "partial"
                 ".subject_partial"
-    else
+              else
                 ".subject"
     end
     attachments["resultados_#{@accession.id}.pdf"] = pdf.render if pdf
