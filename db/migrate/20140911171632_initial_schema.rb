@@ -177,7 +177,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
     end
 
     create_table :prices do |t|
-      t.decimal  :amount,         precision: 8, scale: 2
+      t.decimal  :amount, precision: 8, scale: 2
       t.integer  :price_list_id,                                null: false
       t.integer  :priceable_id,                                 null: false
       t.string   :priceable_type,                               null: false
@@ -238,12 +238,12 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.datetime :current_login_at
       t.string   :last_login_ip
       t.string   :current_login_ip
-      t.integer  :login_count,                     default: 0,     null: false
+      t.integer  :login_count, default: 0, null: false
       t.string   :first_name,        limit: 32
       t.string   :last_name,         limit: 32
       t.string   :prefix,            limit: 16
       t.string   :suffix,            limit: 16
-      t.boolean  :admin,                           default: false, null: false
+      t.boolean  :admin, default: false, null: false
       t.string   :register
 
       t.timestamps
