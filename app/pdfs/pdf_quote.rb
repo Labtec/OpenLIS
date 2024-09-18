@@ -95,7 +95,6 @@ class PDFQuote < Prawn::Document
     discount_width = 60
     quantity_width = 40
     page_number_height = font_size - 0.25
-    insurance_providers_box_height = (line_height + LINE_PADDING) * 3
     payment_info_box_height = (line_height + LINE_PADDING) * 4
     total_price_width = bounds.width - (line_number_width + description_width + code_width + subtotal_width + discount_width + quantity_width)
     quote_endnotes = []
