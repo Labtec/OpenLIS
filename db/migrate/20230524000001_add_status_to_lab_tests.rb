@@ -5,7 +5,7 @@ class AddStatusToLabTests < ActiveRecord::Migration[7.0]
       CREATE TYPE publication_status AS ENUM ('draft', 'active', 'retired', 'unknown');
     SQL
 
-    add_column :lab_tests, :status, :publication_status, default: 'active'
+    add_column :lab_tests, :status, :publication_status, default: "active"
 
     execute <<-SQL
       UPDATE lab_tests SET status = 'active';

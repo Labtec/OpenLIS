@@ -1,6 +1,6 @@
 class AddStatusToPanels < ActiveRecord::Migration[7.0]
   def up
-    add_column :panels, :status, :publication_status, default: 'active'
+    add_column :panels, :status, :publication_status, default: "active"
 
     execute <<-SQL
       UPDATE panels SET status = 'active';

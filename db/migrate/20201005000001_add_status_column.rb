@@ -38,23 +38,23 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
   private
 
   def populate_status_column
-    puts 'Updating observations'
+    puts "Updating observations"
 
     ActiveRecord::Base.transaction do
       cancelled_observations.find_each do |observation|
         observation.not_performed!
-        observation.update_columns(status: 'cancelled')
-        print '.'
+        observation.update_columns(status: "cancelled")
+        print "."
       end
 
       final_observations.find_each do |observation|
-        observation.update_columns(status: 'final')
-        print '.'
+        observation.update_columns(status: "final")
+        print "."
       end
 
       preliminary_observations.find_each do |observation|
-        observation.update_columns(status: 'preliminary')
-        print '.'
+        observation.update_columns(status: "preliminary")
+        print "."
       end
 
       derived_observations
@@ -63,27 +63,27 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     final_accessions = Accession.where.not(reported_at: nil)
     partial_accessions = Accession.includes(:results).where(reported_at: nil)
 
-    puts 'Updating diagnostic reports'
+    puts "Updating diagnostic reports"
 
     ActiveRecord::Base.transaction do
-      puts 'Updating final diagnostic reports'
+      puts "Updating final diagnostic reports"
       final_accessions.find_each do |accession|
-        accession.update_columns(status: 'final')
-        print '.'
+        accession.update_columns(status: "final")
+        print "."
       end
 
-      puts 'Updating partial/preliminary diagnostic reports'
+      puts "Updating partial/preliminary diagnostic reports"
       partial_accessions.find_each do |accession|
-        if accession.results.map(&:status).any? 'registered'
-          accession.update_columns(status: 'partial')
+        if accession.results.map(&:status).any? "registered"
+          accession.update_columns(status: "partial")
         else
-          accession.update_columns(status: 'preliminary')
+          accession.update_columns(status: "preliminary")
         end
-        print '.'
+        print "."
       end
     end
 
-    puts ' Done!'
+    puts " Done!"
   end
 
   def derived_observations
@@ -92,15 +92,15 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     observations.find_each do |observation|
       if observation.derived_value
         if observation.accession.reported_at
-          observation.update_columns(status: 'final')
+          observation.update_columns(status: "final")
         else
-          observation.update_columns(status: 'preliminary')
+          observation.update_columns(status: "preliminary")
         end
       elsif observation.accession.reported_at
         observation.not_performed!
-        observation.update_columns(status: 'cancelled')
+        observation.update_columns(status: "cancelled")
       end
-      print '.'
+      print "."
     end
   end
 
