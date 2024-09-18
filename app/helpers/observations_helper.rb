@@ -128,14 +128,14 @@ module ObservationsHelper
                      "1∶#{number_with_precision(interval.range_high_value, precision: 0, delimiter: ',')}"
                    else
                      "1∶#{number_with_precision(interval.range_low_value, precision: 0, delimiter: ',')}"
-      end
+                   end
     else
       left_side = number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ",") if interval.range_low_value && interval.range_high_value
       right_side = if interval.range_high_value
                      number_with_precision(interval.range_high_value, precision: interval.lab_test.decimals.to_i, delimiter: ",")
                    else
                      number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ",")
-      end
+                   end
     end
     [ condition, gender, left_side, symbol, right_side ]
   end

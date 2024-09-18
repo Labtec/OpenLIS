@@ -7,7 +7,7 @@ module AccessionsHelper
                diagnostic_report.emailed_doctor_at?
              when :patient
                diagnostic_report.emailed_patient_at?
-    end
+             end
     email_report_link = resend ? t(".emailed_report") : t(".email_report")
     email_report_confirm = resend ? t(".confirm_emailed", email: email) : t(".confirm_email", email: email)
     button_to email_report_link, email_diagnostic_report_path(diagnostic_report, to: recipient),

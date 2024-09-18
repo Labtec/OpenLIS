@@ -41,7 +41,7 @@ module AddressesHelper
                      else
                        [ Address::SUBDIVISIONS["provinces"]["pa_#{id}"]["name"],
                          d["corregimientos"] ]
-        end
+                     end
       end
     end
 
