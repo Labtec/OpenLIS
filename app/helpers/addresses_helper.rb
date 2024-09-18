@@ -38,7 +38,7 @@ module AddressesHelper
         # districts, only corregimientos
         districts << if d["name"]
                        [ d["name"], d["corregimientos"] ]
-        else
+                     else
                        [ Address::SUBDIVISIONS["provinces"]["pa_#{id}"]["name"],
                          d["corregimientos"] ]
         end

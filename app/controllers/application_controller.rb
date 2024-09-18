@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   def set_user_language
     I18n.locale = if current_user
                     current_user.language
-    else
+                  else
                     extract_locale_from_accept_language_header
     end
   rescue StandardError
