@@ -35,10 +35,10 @@ class ChangeIndexTypes < ActiveRecord::Migration[5.0]
       DROP FUNCTION IF EXISTS my_unaccent(varchar) CASCADE;
     SQL
 
-    add_index :patients, [:family_name], name: 'index_patients_on_family_name'
-    add_index :patients, [:family_name2], name: 'index_patients_on_family_name2'
-    add_index :patients, [:given_name], name: 'index_patients_on_given_name'
-    add_index :patients, [:identifier], name: 'index_patients_on_identifier'
-    add_index :patients, [:middle_name], name: 'index_patients_on_middle_name'
+    add_index :patients, [:family_name], name: "index_patients_on_family_name"
+    add_index :patients, [:family_name2], name: "index_patients_on_family_name2"
+    add_index :patients, [:given_name], name: "index_patients_on_given_name"
+    add_index :patients, [:identifier], name: "index_patients_on_identifier"
+    add_index :patients, [:middle_name], name: "index_patients_on_middle_name"
   end
 end
