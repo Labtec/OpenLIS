@@ -67,7 +67,7 @@ class QuotesController < ApplicationController
       flash[:error] = t("flash.quote.approve_error")
       redirect_to quote_url(@quote), status: :unprocessable_content
     end
-  rescue
+  rescue StandardError
     flash[:error] = t("flash.quote.approve_error")
     redirect_to quote_url(@quote), status: :unprocessable_content
   end
