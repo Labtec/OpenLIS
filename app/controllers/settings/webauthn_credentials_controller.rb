@@ -38,14 +38,14 @@ module Settings
         )
 
         if user_credential.save
-          flash[:notice] = t(".success")
+          flash.now[:notice] = t(".success")
           status = :ok
         else
-          flash[:alert] = t(".error")
+          flash.now[:alert] = t(".error")
           status = :internal_server_error
         end
       else
-        flash[:alert] = t(".error")
+        flash.now[:alert] = t(".error")
         status = :unauthorized
       end
 
@@ -62,10 +62,10 @@ module Settings
           else
             @credential.destroy
             if @credential.destroyed?
-              format.html { flash[:notice] = t(".success") }
+              format.html { flash.now[:notice] = t(".success") }
               format.turbo_stream { flash.now[:notice] = t(".success") }
             else
-              format.html { flash[:alert] = t(".error") }
+              format.html { flash.now[:alert] = t(".error") }
               format.turbo_stream { flash.now[:alert] = t(".error") }
             end
           end
