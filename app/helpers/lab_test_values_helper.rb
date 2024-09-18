@@ -58,7 +58,7 @@ module LabTestValuesHelper
   end
 
   def loinc_answer_hyperlink(loinc_answer)
-    return unless loinc_answer.present?
+    return if loinc_answer.blank?
 
     link_to loinc_answer, "https://loinc.org/#{loinc_answer}", target: :_blank, rel: :noopener
   end
