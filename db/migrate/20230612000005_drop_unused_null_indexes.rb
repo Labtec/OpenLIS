@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropUnusedNullIndexes < ActiveRecord::Migration[7.0]
   def change
     remove_index :observations, name: :index_observations_on_lab_test_value_id, column: :lab_test_value_id

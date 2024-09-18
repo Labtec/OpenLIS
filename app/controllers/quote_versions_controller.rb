@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuoteVersionsController < ApplicationController
   before_action :set_departments
   before_action :set_panels
