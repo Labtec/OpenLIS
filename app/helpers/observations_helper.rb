@@ -109,11 +109,9 @@ module ObservationsHelper
   def ranges_table(intervals, display_gender: false)
     return [[nil, nil, nil, nil, nil]] if intervals.empty?
 
-    table = []
-    intervals.each do |interval|
-      table << range_row(interval, display_gender:)
+    intervals.map do |interval|
+      range_row(interval, display_gender:)
     end
-    table
   end
 
   def range_row(interval, display_gender: false)
