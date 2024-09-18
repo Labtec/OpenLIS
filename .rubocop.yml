@@ -11,3 +11,9 @@ AllCops:
   Exclude:
     - 'app/pdfs/forms/**/*'
     - 'app/pdfs/images/**/*'
+
+Layout/ElseAlignment:
+  Enabled: false
+
+Layout/EndAlignment:
+  Enabled: false
