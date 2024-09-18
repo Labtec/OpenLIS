@@ -28,7 +28,7 @@ module FHIRable
         # 'conclusionCode':
         presentedForm: fhirable_diagnostic_report_presented_form
       )
-      dr.resultsInterpreter = [fhirable_reference(reporter)] if reporter
+      dr.resultsInterpreter = [ fhirable_reference(reporter) ] if reporter
 
       dr
     end
@@ -62,7 +62,7 @@ module FHIRable
         next if department.code.blank?
 
         categories << FHIR::CodeableConcept.new(
-          coding: [fhirable_diagnostic_report_categories_codings(department.code)],
+          coding: [ fhirable_diagnostic_report_categories_codings(department.code) ],
           text: department.name
         )
       end

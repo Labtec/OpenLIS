@@ -10,7 +10,7 @@ class EmailValidatorTest < ActiveSupport::TestCase
     assert p.invalid?, "Email should be invalid"
     assert p.errors[:email].any?,
            "A patient with an invalid email should contain an error"
-    assert_equal ["is invalid"], p.errors["email"],
+    assert_equal [ "is invalid" ], p.errors["email"],
                  "An invalid email error message is expected"
 
     p.email = "jnunez@example.com"

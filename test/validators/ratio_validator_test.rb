@@ -11,7 +11,7 @@ class RatioValidatorTest < ActiveSupport::TestCase
     assert r.invalid?, "Value should be invalid (ratio)"
     assert r.errors[:value].any?,
            "An observation with an invalid ratio value should contain an error"
-    assert_equal ["must be N:N"], r.errors["value"],
+    assert_equal [ "must be N:N" ], r.errors["value"],
                  "An invalid observation error message is expected"
 
     r.value = "1:2"

@@ -46,7 +46,7 @@ class Panel < ApplicationRecord
   end
 
   def self.cached_panels
-    Rails.cache.fetch([name, "cached_panels"]) do
+    Rails.cache.fetch([ name, "cached_panels" ]) do
       sorted.to_a
     end
   end
@@ -54,6 +54,6 @@ class Panel < ApplicationRecord
   private
 
   def flush_cache
-    Rails.cache.delete([self.class.name, "cached_panels"])
+    Rails.cache.delete([ self.class.name, "cached_panels" ])
   end
 end

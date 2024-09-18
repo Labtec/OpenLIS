@@ -41,12 +41,12 @@ module Derivable
         return if tg > 800
 
         ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - ((tg**2) / 16_100)) - 9.44
-        [ldl, 15].max
+        [ ldl, 15 ].max
       when "mmol/l"
         return if tg > 9.03
 
         ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - ((tg**2) / 79.36)) - 0.244
-        [ldl, 0.4].max
+        [ ldl, 0.4 ].max
       else
         raise
       end
@@ -250,7 +250,7 @@ module Derivable
         gender = 1
       end
       crtsa_k = crtsa / k
-      142 * ([crtsa_k, 1].min**a) * ([crtsa_k, 1].max**-1.2) * (0.9938**age) * gender
+      142 * ([ crtsa_k, 1 ].min**a) * ([ crtsa_k, 1 ].max**-1.2) * (0.9938**age) * gender
     when "EGNB"
       age = subject_age.parts[:years]
       return if age < 18
@@ -266,7 +266,7 @@ module Derivable
         gender = 1
       end
       crtsa_k = crtsa / k
-      141 * ([crtsa_k, 1].min**a) * ([crtsa_k, 1].max**-1.209) * (0.9929**age) * gender
+      141 * ([ crtsa_k, 1 ].min**a) * ([ crtsa_k, 1 ].max**-1.209) * (0.9929**age) * gender
     when "EGFRMDRD"
       age = subject_age.parts[:years]
       return if age < 18
@@ -289,7 +289,7 @@ module Derivable
         b_gender = 1.159
       end
       crtsa_k = crtsa / k
-      141 * ([crtsa_k, 1].min**a) * ([crtsa_k, 1].max**-1.209) * (0.9929**age) * b_gender
+      141 * ([ crtsa_k, 1 ].min**a) * ([ crtsa_k, 1 ].max**-1.209) * (0.9929**age) * b_gender
     when "EGFRMDRDBL"
       age = subject_age.parts[:years]
       return if age < 18

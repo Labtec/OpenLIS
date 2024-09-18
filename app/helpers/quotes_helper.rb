@@ -2,11 +2,11 @@
 
 module QuotesHelper
   def approved_by_name(approved_by)
-    full_name = [approved_by.prefix, approved_by.first_name, approved_by.last_name].join(" ").squish
+    full_name = [ approved_by.prefix, approved_by.first_name, approved_by.last_name ].join(" ").squish
     if approved_by.suffix.blank?
       full_name
     else
-      [full_name, approved_by.suffix].join(", ").squish
+      [ full_name, approved_by.suffix ].join(", ").squish
     end
   end
 

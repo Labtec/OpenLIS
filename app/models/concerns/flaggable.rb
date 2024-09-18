@@ -4,7 +4,7 @@ module Flaggable
   extend ActiveSupport::Concern
 
   def interpretations
-    return [lab_test_value.raise_flag] if lab_test_value.present?
+    return [ lab_test_value.raise_flag ] if lab_test_value.present?
     return unless value_present?
 
     intervals = reference_ranges.includes(:interpretation)
