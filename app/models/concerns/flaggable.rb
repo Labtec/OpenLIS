@@ -8,7 +8,7 @@ module Flaggable
     return unless value_present?
 
     intervals = reference_ranges.includes(:interpretation)
-    return unless intervals.present?
+    return if intervals.blank?
 
     num = value_quantity
     flags = []
