@@ -9,14 +9,14 @@ module ObservationStatus
     # http://hl7.org/fhir/valueset-observation-status.html
     attribute :status, :string
     enum :status, {
-      registered:       "registered",
-      preliminary:      "preliminary",
-      final:            "final",
-      amended:          "amended",
-      corrected:        "corrected",
-      cancelled:        "cancelled",
+      registered: "registered",
+      preliminary: "preliminary",
+      final: "final",
+      amended: "amended",
+      corrected: "corrected",
+      cancelled: "cancelled",
       entered_in_error: "entered-in-error",
-      unknown:          "unknown"
+      unknown: "unknown"
     }
 
     aasm column: :status, enum: true do
