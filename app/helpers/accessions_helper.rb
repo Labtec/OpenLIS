@@ -3,9 +3,9 @@
 module AccessionsHelper
   def email_report(recipient, diagnostic_report, email)
     resend = case recipient
-    when :practitioner
+             when :practitioner
                diagnostic_report.emailed_doctor_at?
-    when :patient
+             when :patient
                diagnostic_report.emailed_patient_at?
     end
     email_report_link = resend ? t(".emailed_report") : t(".email_report")

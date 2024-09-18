@@ -81,11 +81,11 @@ module Derivable
       hdl = result_value_quantity_for "HDL"
       trig = result_value_quantity_for "TRIG"
       ldl = case LabTest.unit_for("LDL").downcase
-      when "mg/dl"
+            when "mg/dl"
               chol - (hdl + trig / 5)
-      when "mmol/l"
+            when "mmol/l"
               chol - (hdl + trig / 2.2)
-      else
+            else
               raise
       end
       ldl / hdl

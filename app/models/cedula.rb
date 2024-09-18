@@ -46,23 +46,23 @@ class Cedula
   def normalize_ruc(split_ruc)
     if split_ruc.size == 4
       split_ruc[0] = case split_ruc[1]
-      when "NT" # Numero Tributario
+                     when "NT" # Numero Tributario
                        "#{split_ruc[0]}43"
-      when "AV" # Antes de la Vigencia
+                     when "AV" # Antes de la Vigencia
                        "#{split_ruc[0]}15"
-      when "PI" # Panameno Indigena
+                     when "PI" # Panameno Indigena
                        "#{split_ruc[0]}79"
       end
       [ split_ruc[0], split_ruc[2], split_ruc[3] ]
     else
       split_ruc[0] = case split_ruc[0]
-      when "E" # Extranjero
+                     when "E" # Extranjero
                        "50"
-      when "N" # Naturalizado
+                     when "N" # Naturalizado
                        "40"
-      when "PE" # Panameno Extranjero
+                     when "PE" # Panameno Extranjero
                        "75"
-      else
+                     else
                        "#{split_ruc[0]}00"
       end
       split_ruc
