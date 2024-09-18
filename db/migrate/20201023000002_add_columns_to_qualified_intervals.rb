@@ -1,7 +1,7 @@
 class AddColumnsToQualifiedIntervals < ActiveRecord::Migration[6.0]
   def up
     execute <<-SQL
-      ALTER DATABASE \"#{connection.current_database}\" SET intervalstyle = 'iso_8601';
+      ALTER DATABASE "#{connection.current_database}" SET intervalstyle = 'iso_8601';
 
       --- http://hl7.org/fhir/administrative-gender
       CREATE TYPE administrative_gender AS ENUM ('male', 'female', 'other', 'unknown');
@@ -86,7 +86,7 @@ class AddColumnsToQualifiedIntervals < ActiveRecord::Migration[6.0]
     execute <<-SQL
       DROP TYPE administrative_gender;
       DROP TYPE observation_range_category;
-      ALTER DATABASE \"#{connection.current_database}\" SET intervalstyle = 'postgres';
+      ALTER DATABASE "#{connection.current_database}" SET intervalstyle = 'postgres';
     SQL
   end
 
