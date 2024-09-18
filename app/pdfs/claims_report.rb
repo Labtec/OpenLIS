@@ -565,7 +565,7 @@ class ClaimsReport < Prawn::Document
     draw_text "RUC 299497-1-409892 DV 13", at: [ 60, cursor - 55 ]
 
     move_down 70
-    text @view.l(Date.current, format: :long, locale: :'es-PA').capitalize, align: :right
+    text @view.l(Date.current, format: :long, locale: :"es-PA").capitalize, align: :right
 
     move_down 50
 
@@ -581,13 +581,13 @@ class ClaimsReport < Prawn::Document
         index + 1,
         name_last_comma_first_mi(claim.patient),
         claim.patient.policy_number,
-        @view.l(claim.accession.drawn_at.to_date, format: :default, locale: :'es-PA'),
+        @view.l(claim.accession.drawn_at.to_date, format: :default, locale: :"es-PA"),
         claim.external_number,
         claim.number,
         @view.number_with_precision(@claim_total_price[index], precision: 2)
       ] ]
     end
-    claims_table += [ [ "", "", "", "", "", "<b>Gran Total:</b>", "<b>#{@view.number_to_currency(@claim_total_price.compact.sum, locale: :'es-PA')}</b>" ] ]
+    claims_table += [ [ "", "", "", "", "", "<b>Gran Total:</b>", "<b>#{@view.number_to_currency(@claim_total_price.compact.sum, locale: :"es-PA")}</b>" ] ]
 
     table claims_table,
           header: true,
