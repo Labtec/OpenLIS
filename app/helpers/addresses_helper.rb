@@ -40,7 +40,7 @@ module AddressesHelper
                        [ d["name"], d["corregimientos"] ]
         else
                        [ Address::SUBDIVISIONS["provinces"]["pa_#{id}"]["name"],
-                        d["corregimientos"] ]
+                         d["corregimientos"] ]
         end
       end
     end

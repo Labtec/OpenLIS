@@ -47,21 +47,21 @@ module PatientsHelper
 
     if patient.family_name.blank? && patient.animal_type.present?
       return [ patient.given_name,
-              patient.middle_name,
-              "(#{animal_species_name(patient.animal_type)})" ].join(" ").squish
+               patient.middle_name,
+               "(#{animal_species_name(patient.animal_type)})" ].join(" ").squish
     end
 
     if patient.family_name2.present? && patient.partner_name.present?
       [ patient.given_name,
-       patient.middle_name,
-       patient.family_name,
-       patient.partner_name ].join(" ").squish
+        patient.middle_name,
+        patient.family_name,
+        patient.partner_name ].join(" ").squish
     else
       [ patient.given_name,
-       patient.middle_name,
-       patient.family_name,
-       patient.family_name2,
-       patient.partner_name ].join(" ").squish
+        patient.middle_name,
+        patient.family_name,
+        patient.family_name2,
+        patient.partner_name ].join(" ").squish
     end
   end
 
@@ -81,9 +81,9 @@ module PatientsHelper
     return if patient.family_name.blank? || patient.animal_type.present?
 
     full_name = [ patient.given_name,
-                 patient.middle_name,
-                 patient.family_name,
-                 patient.family_name2 ].join(" ").squish
+                  patient.middle_name,
+                  patient.family_name,
+                  patient.family_name2 ].join(" ").squish
 
     ActiveSupport::Inflector.transliterate(full_name).upcase
   end
