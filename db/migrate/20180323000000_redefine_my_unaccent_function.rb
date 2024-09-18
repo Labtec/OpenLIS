@@ -2,7 +2,7 @@
 
 class RedefineMyUnaccentFunction < ActiveRecord::Migration[5.1]
   def up
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP INDEX IF EXISTS index_patients_on_lower_family_name;
       DROP INDEX IF EXISTS index_patients_search;
       DROP FUNCTION IF EXISTS my_unaccent(varchar) CASCADE;
@@ -30,7 +30,7 @@ class RedefineMyUnaccentFunction < ActiveRecord::Migration[5.1]
   end
 
   def down
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP INDEX IF EXISTS index_patients_on_lower_family_name;
       DROP INDEX IF EXISTS index_patients_search;
       DROP FUNCTION IF EXISTS my_unaccent(text) CASCADE;

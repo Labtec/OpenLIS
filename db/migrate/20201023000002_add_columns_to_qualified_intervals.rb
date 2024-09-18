@@ -44,7 +44,7 @@ class AddColumnsToQualifiedIntervals < ActiveRecord::Migration[6.0]
     rename_column :qualified_intervals, :description, :condition
     add_column :qualified_intervals, :rank, :integer
 
-    execute <<-SQL
+    execute <<-SQL.squish
       UPDATE qualified_intervals SET category = 'reference';
 
       UPDATE qualified_intervals
@@ -85,7 +85,7 @@ class AddColumnsToQualifiedIntervals < ActiveRecord::Migration[6.0]
     rename_column :qualified_intervals, :condition, :description
     remove_column :qualified_intervals, :rank
 
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP TYPE administrative_gender;
       DROP TYPE observation_range_category;
       ALTER DATABASE "#{connection.current_database}" SET intervalstyle = 'postgres';

@@ -17,7 +17,7 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     add_column :observations, :status, :observation_status
     add_column :observations, :data_absent_reason, :data_absent_reason
 
-    execute <<-SQL
+    execute <<-SQL.squish
       UPDATE observations SET status = 'registered';
       UPDATE accessions SET status = 'registered';
     SQL
@@ -30,7 +30,7 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     remove_column :observations, :status
     remove_column :observations, :data_absent_reason
 
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP TYPE data_absent_reason;
       DROP TYPE diagnostic_report_status;
       DROP TYPE observation_status;

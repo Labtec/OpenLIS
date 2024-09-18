@@ -2,7 +2,7 @@
 
 class UpdateIndexPatientsSearch < ActiveRecord::Migration[5.1]
   def up
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP INDEX IF EXISTS index_patients_search;
 
       CREATE INDEX index_patients_search
@@ -19,7 +19,7 @@ class UpdateIndexPatientsSearch < ActiveRecord::Migration[5.1]
   end
 
   def down
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP INDEX IF EXISTS index_patients_search;
 
       CREATE INDEX index_patients_search
