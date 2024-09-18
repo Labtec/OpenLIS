@@ -40,23 +40,23 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
   private
 
   def populate_status_column
-    puts "Updating observations"
+    Rails.logger.debug "Updating observations"
 
     ActiveRecord::Base.transaction do
       cancelled_observations.find_each do |observation|
         observation.not_performed!
         observation.update_columns(status: "cancelled")
-        print "."
+        Rails.logger.debug "."
       end
 
       final_observations.find_each do |observation|
         observation.update_columns(status: "final")
-        print "."
+        Rails.logger.debug "."
       end
 
       preliminary_observations.find_each do |observation|
         observation.update_columns(status: "preliminary")
-        print "."
+        Rails.logger.debug "."
       end
 
       derived_observations
@@ -65,27 +65,27 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     final_accessions = Accession.where.not(reported_at: nil)
     partial_accessions = Accession.includes(:results).where(reported_at: nil)
 
-    puts "Updating diagnostic reports"
+    Rails.logger.debug "Updating diagnostic reports"
 
     ActiveRecord::Base.transaction do
-      puts "Updating final diagnostic reports"
+      Rails.logger.debug "Updating final diagnostic reports"
       final_accessions.find_each do |accession|
         accession.update_columns(status: "final")
-        print "."
+        Rails.logger.debug "."
       end
 
-      puts "Updating partial/preliminary diagnostic reports"
+      Rails.logger.debug "Updating partial/preliminary diagnostic reports"
       partial_accessions.find_each do |accession|
         if accession.results.map(&:status).any? "registered"
           accession.update_columns(status: "partial")
         else
           accession.update_columns(status: "preliminary")
         end
-        print "."
+        Rails.logger.debug "."
       end
     end
 
-    puts " Done!"
+    Rails.logger.debug " Done!"
   end
 
   def derived_observations
@@ -102,7 +102,7 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
         observation.not_performed!
         observation.update_columns(status: "cancelled")
       end
-      print "."
+      Rails.logger.debug "."
     end
   end
 

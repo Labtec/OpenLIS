@@ -64,7 +64,7 @@ class AddColumnsToQualifiedIntervals < ActiveRecord::Migration[6.0]
     map_old_gender_to_gender
     map_old_age_values_to_age_values
     map_conditions
-    puts "Done!"
+    Rails.logger.debug "Done!"
   end
 
   def down
@@ -95,7 +95,7 @@ class AddColumnsToQualifiedIntervals < ActiveRecord::Migration[6.0]
   private
 
   def map_old_gender_to_gender
-    puts "Mapping old gender codes"
+    Rails.logger.debug "Mapping old gender codes"
 
     ActiveRecord::Base.transaction do
       QualifiedInterval.find_each do |qi|
@@ -105,29 +105,29 @@ class AddColumnsToQualifiedIntervals < ActiveRecord::Migration[6.0]
         when "F"
           qi.update(gender: "female")
         end
-        print "."
+        Rails.logger.debug "."
       end
     end
 
-    puts ""
+    Rails.logger.debug ""
   end
 
   def map_old_age_values_to_age_values
-    puts "Mapping old age values"
+    Rails.logger.debug "Mapping old age values"
 
     ActiveRecord::Base.transaction do
       QualifiedInterval.find_each do |qi|
         qi.update(age_low: "P#{qi.old_min_age}#{qi.old_age_unit}") unless qi.old_min_age.nil? || qi.old_min_age.zero?
         qi.update(age_high: "P#{qi.old_max_age}#{qi.old_age_unit}") unless qi.old_max_age.nil? || qi.old_max_age.zero?
-        print "."
+        Rails.logger.debug "."
       end
     end
 
-    puts ""
+    Rails.logger.debug ""
   end
 
   def map_conditions
-    puts "Mapping conditions"
+    Rails.logger.debug "Mapping conditions"
 
     ActiveRecord::Base.transaction do
       QualifiedInterval.find_each do |qi|
@@ -167,10 +167,10 @@ class AddColumnsToQualifiedIntervals < ActiveRecord::Migration[6.0]
         when "Crítico"
           qi.update(category: "critical")
         end
-        print "."
+        Rails.logger.debug "."
       end
     end
 
-    puts ""
+    Rails.logger.debug ""
   end
 end
