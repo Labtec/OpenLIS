@@ -159,11 +159,11 @@ class AddColumnsToQualifiedIntervals < ActiveRecord::Migration[6.0]
         when "2–3 meses"
           qi.update(gestational_age_low: 2.months.iso8601, gestational_age_high: 3.months.iso8601)
         when "Positivo"
-          qi.update(interpretation: LabTestValue.find_by_loinc("LA6576-8"))
+          qi.update(interpretation: LabTestValue.find_by(loinc: "LA6576-8"))
         when "Negativo"
-          qi.update(interpretation: LabTestValue.find_by_loinc("LA6577-6"))
+          qi.update(interpretation: LabTestValue.find_by(loinc: "LA6577-6"))
         when "Zona gris"
-          qi.update(interpretation: LabTestValue.find_by_loinc("LA11885-3"))
+          qi.update(interpretation: LabTestValue.find_by(loinc: "LA11885-3"))
         when "Crítico"
           qi.update(category: "critical")
         end
