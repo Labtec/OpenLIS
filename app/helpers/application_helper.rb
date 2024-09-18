@@ -31,7 +31,7 @@ module ApplicationHelper
     links.each do |link|
       items << if controller.controller_name.to_sym == link[0] || "admin_#{controller.controller_name}".to_sym == link[0]
                  tag.li(link_to((link[1]).to_s, link[0]), class: "active")
-      else
+               else
                  tag.li(link_to((link[1]).to_s, link[0]))
       end
     end
