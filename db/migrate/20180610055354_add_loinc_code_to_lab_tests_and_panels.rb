@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddLOINCCodeToLabTestsAndPanels < ActiveRecord::Migration[5.2]
   def change
     add_column :lab_tests, :loinc, :string

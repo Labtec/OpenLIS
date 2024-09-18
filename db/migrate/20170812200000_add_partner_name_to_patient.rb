@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddPartnerNameToPatient < ActiveRecord::Migration[5.1]
   def change
     add_column :patients, :partner_name, :string

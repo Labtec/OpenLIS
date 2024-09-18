@@ -4,55 +4,55 @@ module LabTestValuesHelper
   def options_for_flag
     [
       [ "Exceptions",
-       [
-         [ "Off scale low", "<" ],
-         [ "Off scale high", ">" ],
-         [ "Insufficient evidence", "IE" ]
-       ]
+        [
+          [ "Off scale low", "<" ],
+          [ "Off scale high", ">" ],
+          [ "Insufficient evidence", "IE" ]
+        ]
       ],
       [ "Normality",
-       [
-         [ "Abnormal", "A" ],
-         [ "High", "H" ],
-         [ "Low", "L" ],
-         [ "Normal", "N" ],
-         [ "Significantly high", "HU" ],
-         [ "Significantly low", "LU" ],
-         [ "Critical abnormal", "AA" ],
-         [ "Critical high", "HH" ],
-         [ "Critical low", "LL" ]
-       ]
+        [
+          [ "Abnormal", "A" ],
+          [ "High", "H" ],
+          [ "Low", "L" ],
+          [ "Normal", "N" ],
+          [ "Significantly high", "HU" ],
+          [ "Significantly low", "LU" ],
+          [ "Critical abnormal", "AA" ],
+          [ "Critical high", "HH" ],
+          [ "Critical low", "LL" ]
+        ]
       ],
       [ "Susceptibility",
-       [
-         [ "Intermediate", "I" ],
-         [ "Non-susceptible", "NS" ],
-         [ "Resistant", "R" ],
-         [ "Susceptible", "S" ]
-       ]
+        [
+          [ "Intermediate", "I" ],
+          [ "Non-susceptible", "NS" ],
+          [ "Resistant", "R" ],
+          [ "Susceptible", "S" ]
+        ]
       ],
       [ "Detection",
-       [
-         [ "Indeterminate", "IND" ],
-         [ "Equivocal", "E" ],
-         [ "Negative", "NEG" ],
-         [ "Not detected", "ND" ],
-         [ "Positive", "POS" ],
-         [ "Detected", "DET" ]
-       ]
+        [
+          [ "Indeterminate", "IND" ],
+          [ "Equivocal", "E" ],
+          [ "Negative", "NEG" ],
+          [ "Not detected", "ND" ],
+          [ "Positive", "POS" ],
+          [ "Detected", "DET" ]
+        ]
       ],
       [ "Expectation",
-       [
-         [ "Expected", "EXP" ],
-         [ "Unexpected", "UNE" ]
-       ]
+        [
+          [ "Expected", "EXP" ],
+          [ "Unexpected", "UNE" ]
+        ]
       ],
       [ "Reactivity",
-       [
-         [ "Non-reactive", "NR" ],
-         [ "Reactive", "RR" ],
-         [ "Weakly reactive", "WR" ]
-       ]
+        [
+          [ "Non-reactive", "NR" ],
+          [ "Reactive", "RR" ],
+          [ "Weakly reactive", "WR" ]
+        ]
       ]
     ]
   end

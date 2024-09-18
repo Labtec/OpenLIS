@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.configure do
   config.hc_key_path = ENV.fetch("HEALTH_CARDS_KEY_PATH", "config/keys/health_cards.pem")
   FileUtils.mkdir_p(File.dirname(config.hc_key_path))

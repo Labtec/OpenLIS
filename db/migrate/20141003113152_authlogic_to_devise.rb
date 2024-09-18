@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AuthlogicToDevise < ActiveRecord::Migration[5.0]
   def up
     add_column :users, :confirmation_token, :string, limit: 255
