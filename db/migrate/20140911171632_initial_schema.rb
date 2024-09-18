@@ -7,7 +7,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :accession_panels, [ :accession_id, :panel_id ], name: 'index_accession_panels_on_accession_id_and_panel_id'
+    add_index :accession_panels, [:accession_id, :panel_id], name: 'index_accession_panels_on_accession_id_and_panel_id'
 
     # create_join_table :accessions, :panels do |t|
     #   t.index :accession_id
@@ -30,11 +30,11 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :accessions, [ :doctor_id ], name: 'index_accessions_on_doctor_id'
-    add_index :accessions, [ :drawer_id ], name: 'index_accessions_on_drawer_id'
-    add_index :accessions, [ :patient_id ], name: 'index_accessions_on_patient_id'
-    add_index :accessions, [ :receiver_id ], name: 'index_accessions_on_receiver_id'
-    add_index :accessions, [ :reporter_id ], name: 'index_accessions_on_reporter_id'
+    add_index :accessions, [:doctor_id], name: 'index_accessions_on_doctor_id'
+    add_index :accessions, [:drawer_id], name: 'index_accessions_on_drawer_id'
+    add_index :accessions, [:patient_id], name: 'index_accessions_on_patient_id'
+    add_index :accessions, [:receiver_id], name: 'index_accessions_on_receiver_id'
+    add_index :accessions, [:reporter_id], name: 'index_accessions_on_reporter_id'
 
     create_table :claims do |t|
       t.integer  :accession_id
@@ -46,8 +46,8 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :claims, [ :accession_id ], name: 'index_claims_on_accession_id', unique: true
-    add_index :claims, [ :insurance_provider_id ], name: 'index_claims_on_insurance_provider_id'
+    add_index :claims, [:accession_id], name: 'index_claims_on_accession_id', unique: true
+    add_index :claims, [:insurance_provider_id], name: 'index_claims_on_insurance_provider_id'
 
     create_table :departments do |t|
       t.string   :name
@@ -55,7 +55,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :departments, [ :name ], name: 'index_departments_on_name', unique: true
+    add_index :departments, [:name], name: 'index_departments_on_name', unique: true
 
     create_table :doctors do |t|
       t.string   :name
@@ -64,7 +64,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :doctors, [ :name ], name: 'index_doctors_on_name'
+    add_index :doctors, [:name], name: 'index_doctors_on_name'
 
     create_table :insurance_providers do |t|
       t.string   :name
@@ -73,7 +73,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :insurance_providers, [ :price_list_id ], name: 'index_insurance_providers_on_price_list_id'
+    add_index :insurance_providers, [:price_list_id], name: 'index_insurance_providers_on_price_list_id'
 
     create_table :lab_test_panels do |t|
       t.integer  :lab_test_id
@@ -82,7 +82,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :lab_test_panels, [ :lab_test_id, :panel_id ], name: 'index_lab_test_panels_on_lab_test_id_and_panel_id'
+    add_index :lab_test_panels, [:lab_test_id, :panel_id], name: 'index_lab_test_panels_on_lab_test_id_and_panel_id'
 
     create_table :lab_test_value_option_joints do |t|
       t.integer  :lab_test_value_id
@@ -118,10 +118,10 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :lab_tests, [ :code ], name: 'index_lab_tests_on_code', unique: true
-    add_index :lab_tests, [ :department_id ], name: 'index_lab_tests_on_department_id'
-    add_index :lab_tests, [ :position ], name: 'index_lab_tests_on_position'
-    add_index :lab_tests, [ :unit_id ], name: 'index_lab_tests_on_unit_id'
+    add_index :lab_tests, [:code], name: 'index_lab_tests_on_code', unique: true
+    add_index :lab_tests, [:department_id], name: 'index_lab_tests_on_department_id'
+    add_index :lab_tests, [:position], name: 'index_lab_tests_on_position'
+    add_index :lab_tests, [:unit_id], name: 'index_lab_tests_on_unit_id'
 
     create_table :notes do |t|
       t.text     :content
@@ -132,7 +132,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :notes, [ :noticeable_id, :noticeable_type ], name: 'index_notes_on_noticeable_id_and_noticeable_type'
+    add_index :notes, [:noticeable_id, :noticeable_type], name: 'index_notes_on_noticeable_id_and_noticeable_type'
 
     create_table :panels do |t|
       t.string   :code
@@ -143,7 +143,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :panels, [ :code ], name: 'index_panels_on_code'
+    add_index :panels, [:code], name: 'index_panels_on_code'
 
     create_table :patients do |t|
       t.string   :given_name
@@ -163,12 +163,12 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :patients, [ :family_name ], name: 'index_patients_on_family_name'
-    add_index :patients, [ :family_name2 ], name: 'index_patients_on_family_name2'
-    add_index :patients, [ :given_name ], name: 'index_patients_on_given_name'
-    add_index :patients, [ :identifier ], name: 'index_patients_on_identifier'
-    add_index :patients, [ :insurance_provider_id ], name: 'index_patients_on_insurance_provider_id'
-    add_index :patients, [ :middle_name ], name: 'index_patients_on_middle_name'
+    add_index :patients, [:family_name], name: 'index_patients_on_family_name'
+    add_index :patients, [:family_name2], name: 'index_patients_on_family_name2'
+    add_index :patients, [:given_name], name: 'index_patients_on_given_name'
+    add_index :patients, [:identifier], name: 'index_patients_on_identifier'
+    add_index :patients, [:insurance_provider_id], name: 'index_patients_on_insurance_provider_id'
+    add_index :patients, [:middle_name], name: 'index_patients_on_middle_name'
 
     create_table :price_lists do |t|
       t.string   :name,       null: false
@@ -185,8 +185,8 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :prices, [ :price_list_id ], name: 'index_prices_on_price_list_id'
-    add_index :prices, [ :priceable_id, :priceable_type ], name: 'index_prices_on_priceable_id_and_priceable_type'
+    add_index :prices, [:price_list_id], name: 'index_prices_on_price_list_id'
+    add_index :prices, [:priceable_id, :priceable_type], name: 'index_prices_on_priceable_id_and_priceable_type'
 
     create_table :reference_ranges do |t|
       t.decimal  :min,         precision: 10, scale: 5
@@ -202,7 +202,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :reference_ranges, [ :lab_test_id ], name: 'index_reference_ranges_on_lab_test_id'
+    add_index :reference_ranges, [:lab_test_id], name: 'index_reference_ranges_on_lab_test_id'
 
     create_table :results do |t|
       t.string   :value
@@ -213,9 +213,9 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :results, [ :accession_id ], name: 'index_results_on_accession_id'
-    add_index :results, [ :lab_test_id ], name: 'index_results_on_lab_test_id'
-    add_index :results, [ :lab_test_value_id ], name: 'index_results_on_lab_test_value_id'
+    add_index :results, [:accession_id], name: 'index_results_on_accession_id'
+    add_index :results, [:lab_test_id], name: 'index_results_on_lab_test_id'
+    add_index :results, [:lab_test_value_id], name: 'index_results_on_lab_test_value_id'
 
     create_table :units do |t|
       t.string   :name
@@ -223,7 +223,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :units, [ :name ], name: 'index_units_on_name'
+    add_index :units, [:name], name: 'index_units_on_name'
 
     create_table :users do |t|
       t.string   :username
@@ -249,6 +249,6 @@ class InitialSchema < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :users, [ :username ], name: 'index_users_on_username', unique: true
+    add_index :users, [:username], name: 'index_users_on_username', unique: true
   end
 end

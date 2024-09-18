@@ -46,31 +46,31 @@ module PatientsHelper
     return unless patient
 
     if patient.family_name.blank? && patient.animal_type.present?
-      return [ patient.given_name,
-               patient.middle_name,
-               "(#{animal_species_name(patient.animal_type)})" ].join(" ").squish
+      return [patient.given_name,
+              patient.middle_name,
+              "(#{animal_species_name(patient.animal_type)})"].join(" ").squish
     end
 
     if patient.family_name2.present? && patient.partner_name.present?
-      [ patient.given_name,
-        patient.middle_name,
-        patient.family_name,
-        patient.partner_name ].join(" ").squish
+      [patient.given_name,
+       patient.middle_name,
+       patient.family_name,
+       patient.partner_name].join(" ").squish
     else
-      [ patient.given_name,
-        patient.middle_name,
-        patient.family_name,
-        patient.family_name2,
-        patient.partner_name ].join(" ").squish
+      [patient.given_name,
+       patient.middle_name,
+       patient.family_name,
+       patient.family_name2,
+       patient.partner_name].join(" ").squish
     end
   end
 
   def name_last_comma_first_mi(patient)
     family_name = (patient.partner_name || patient.family_name)
     family_name[0] = family_name[0].mb_chars.upcase
-    last_comma_first = [ family_name, patient.given_name ].join(", ")
+    last_comma_first = [family_name, patient.given_name].join(", ")
     mi = "#{patient.middle_name[0, 1]}." if patient.middle_name.present?
-    ActiveSupport::Inflector.transliterate([ last_comma_first, mi ].join(" ").squish)
+    ActiveSupport::Inflector.transliterate([last_comma_first, mi].join(" ").squish)
   end
 
   # XXX: Unused helper.
@@ -80,36 +80,36 @@ module PatientsHelper
   def es_official_name(patient)
     return if patient.family_name.blank? || patient.animal_type.present?
 
-    full_name = [ patient.given_name,
-                  patient.middle_name,
-                  patient.family_name,
-                  patient.family_name2 ].join(" ").squish
+    full_name = [patient.given_name,
+                 patient.middle_name,
+                 patient.family_name,
+                 patient.family_name2].join(" ").squish
 
     ActiveSupport::Inflector.transliterate(full_name).upcase
   end
 
   def options_for_gender
     [
-      [ t("patients.female"),  "F" ],
-      [ t("patients.male"),    "M" ],
-      [ t("patients.other"),   "O" ],
-      [ t("patients.unknown"), "U" ]
+      [t("patients.female"),  "F"],
+      [t("patients.male"),    "M"],
+      [t("patients.other"),   "O"],
+      [t("patients.unknown"), "U"]
     ]
   end
 
   def options_for_animal_species
     [
-      [ t("patients.canine"), 1 ],
-      [ t("patients.feline"), 2 ],
-      [ t("patients.equine"), 3 ],
-      [ t("patients.other"),  0 ]
+      [t("patients.canine"), 1],
+      [t("patients.feline"), 2],
+      [t("patients.equine"), 3],
+      [t("patients.other"),  0]
     ]
   end
 
   def options_for_identifier_type
     [
-      [ t("patients.form.cedula"), 1 ],
-      [ t("patients.form.passport"), 2 ]
+      [t("patients.form.cedula"), 1],
+      [t("patients.form.passport"), 2]
     ]
   end
 
@@ -124,7 +124,7 @@ module PatientsHelper
     weeks = t("patients.week", count: pediatric_age[:weeks]) if pediatric_age[:weeks]
     days = t("patients.day", count: pediatric_age[:days]) if pediatric_age[:days]
 
-    [ years, months, weeks, days ].compact.join(" ")
+    [years, months, weeks, days].compact.join(" ")
   end
 
   # Returns the gender of a patient spelled out

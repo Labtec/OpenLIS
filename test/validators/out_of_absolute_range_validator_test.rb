@@ -12,7 +12,7 @@ class OutOfAbsoluteRangeValidatorTest < ActiveSupport::TestCase
     assert observation.invalid?, "Value should be invalid"
     assert observation.errors[:value].any?,
            "An observation with a value outside the absolute range should contain an error"
-    assert_equal [ "is outside absolute range" ], observation.errors["value"],
+    assert_equal ["is outside absolute range"], observation.errors["value"],
                  "An invalid error message is expected"
 
     observation.value = 5

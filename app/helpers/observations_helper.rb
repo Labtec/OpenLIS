@@ -14,10 +14,10 @@ module ObservationsHelper
     if observation.lab_test.derivation?
       number_with_precision(observation.derived_value, precision: observation.lab_test_decimals, delimiter: ",") || "calc."
     elsif observation.value_codeable_concept.present? && observation.value.present?
-      [ observation.value_codeable_concept,
-        " [",
-        number_with_precision(observation.value, precision: observation.lab_test_decimals, delimiter: ","),
-        "]" ].join
+      [observation.value_codeable_concept,
+       " [",
+       number_with_precision(observation.value, precision: observation.lab_test_decimals, delimiter: ","),
+       "]"].join
     elsif observation.value_codeable_concept.present?
       observation.value_codeable_concept
     elsif observation.value.blank?
@@ -107,7 +107,7 @@ module ObservationsHelper
   end
 
   def ranges_table(intervals, display_gender: false)
-    return [ [ nil, nil, nil, nil, nil ] ] if intervals.empty?
+    return [[nil, nil, nil, nil, nil]] if intervals.empty?
 
     table = []
     intervals.each do |interval|
@@ -117,7 +117,7 @@ module ObservationsHelper
   end
 
   def range_row(interval, display_gender: false)
-    return [ nil, nil, nil, nil, nil ] unless interval
+    return [nil, nil, nil, nil, nil] unless interval
 
     gender = display_gender && interval.gender ? t(interval.gender, scope: "interval.gender") : ""
     condition = "#{interval.condition}:" if interval.condition.present?
@@ -137,7 +137,7 @@ module ObservationsHelper
                      number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ",")
                    end
     end
-    [ condition, gender, left_side, symbol, right_side ]
+    [condition, gender, left_side, symbol, right_side]
   end
 
   def registration_number(inline: false)

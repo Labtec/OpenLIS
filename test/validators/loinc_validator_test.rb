@@ -10,7 +10,7 @@ class LOINCValidatorTest < ActiveSupport::TestCase
     assert t.invalid?, "LOINC should be invalid"
     assert t.errors[:loinc].any?,
            "A test/panel with an invalid LOINC should contain an error"
-    assert_equal [ "is invalid" ], t.errors["loinc"],
+    assert_equal ["is invalid"], t.errors["loinc"],
                  "An invalid LOINC error message is expected"
 
     t.loinc = "123-0"

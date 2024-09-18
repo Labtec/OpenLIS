@@ -37,15 +37,15 @@ Rails.application.routes.draw do
   end
 
   resources :patients, shallow: true do
-    resources :accessions, only: [ :new, :create ]
+    resources :accessions, only: [:new, :create]
     member do
       get "history"
     end
   end
 
-  resources :accessions, except: [ :new, :create, :show ]
+  resources :accessions, except: [:new, :create, :show]
 
-  resources :diagnostic_reports, only: [ :index, :show, :edit, :update ] do
+  resources :diagnostic_reports, only: [:index, :show, :edit, :update] do
     member do
       patch "certify"
       patch "force_certify"
@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :quote_details, only: [ :edit, :update ]
+  resources :quote_details, only: [:edit, :update]
 
   resources :quotes do
     resources :versions, controller: "quote_versions", only: :new
@@ -68,7 +68,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :doctors, except: [ :show ]
+    resources :doctors, except: [:show]
     resources :insurance_providers do
       resources :claims, only: :index
       resources :prices
@@ -79,15 +79,15 @@ Rails.application.routes.draw do
     resources :panels do
       resources :prices
     end
-    resources :lab_test_values, except: [ :show ]
-    resources :qualified_intervals, except: [ :show ]
+    resources :lab_test_values, except: [:show]
+    resources :qualified_intervals, except: [:show]
     resources :lab_tests do
       resources :prices
       member do
         patch "sort"
       end
     end
-    resources :units, except: [ :show ]
+    resources :units, except: [:show]
     resources :departments
     resources :claims, except: :new do
       collection do

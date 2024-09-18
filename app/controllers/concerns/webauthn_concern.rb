@@ -4,7 +4,7 @@ module WebauthnConcern
   extend ActiveSupport::Concern
 
   included do
-    prepend_before_action :authenticate_with_webauthn, if: :webauthn_enabled?, only: [ :create ]
+    prepend_before_action :authenticate_with_webauthn, if: :webauthn_enabled?, only: [:create]
   end
 
   def webauthn_enabled?

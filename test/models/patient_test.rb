@@ -60,12 +60,12 @@ class PatientTest < ActiveSupport::TestCase
 
   test "inclusion of animal type in ANIMAL_SPECIES allowing blank" do
     assert_equal Patient.validators_on(:animal_type).map(&:options),
-                 [ { allow_blank: true, in: ANIMAL_SPECIES } ]
+                 [{ allow_blank: true, in: ANIMAL_SPECIES }]
   end
 
   test "inclusion of gender in GENDERS" do
     assert_equal Patient.validators_on(:gender).map(&:options),
-                 [ { in: GENDERS } ]
+                 [{ in: GENDERS }]
   end
 
   test "birthdate is not in the future" do
