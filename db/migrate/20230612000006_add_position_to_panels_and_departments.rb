@@ -7,7 +7,7 @@ class AddPositionToPanelsAndDepartments < ActiveRecord::Migration[7.0]
     add_column :panels, :position, :integer, unique: true
     add_index :panels, :position
 
-    Department.all.each.with_index(1) do |department, index|
+    Department.find_each.with_index(1) do |department, index|
       department.update_column :position, index
     end
 
