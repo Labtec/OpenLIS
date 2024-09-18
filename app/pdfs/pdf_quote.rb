@@ -243,10 +243,8 @@ class PDFQuote < Prawn::Document
 
     ##
     # Endnotes
-    if quote_endnotes
-      quote_endnotes.each_with_index do |endnote, index|
-        text "#{index + 1}.  #{endnote}", inline_format: true
-      end
+    quote_endnotes&.each_with_index do |endnote, index|
+      text "#{index + 1}.  #{endnote}", inline_format: true
     end
 
     ##
