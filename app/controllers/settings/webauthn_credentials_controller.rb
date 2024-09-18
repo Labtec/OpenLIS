@@ -49,7 +49,7 @@ module Settings
         status = :unauthorized
       end
 
-      render json: { redirect_path: profile_path }, status: status
+      render json: { redirect_path: profile_path }, status:
     end
 
     def destroy

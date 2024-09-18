@@ -6,8 +6,8 @@ module FHIRable
     include FHIRable::Quantity
 
     def fhirable_range(range, decimal_precision: 0, unit: nil)
-      FHIR::Range.new(low: fhirable_quantity(range.begin, decimal_precision: decimal_precision, unit: unit),
-                      high: fhirable_quantity(range.end, decimal_precision: decimal_precision, unit: unit))
+      FHIR::Range.new(low: fhirable_quantity(range.begin, decimal_precision:, unit:),
+                      high: fhirable_quantity(range.end, decimal_precision:, unit:))
     end
   end
 end

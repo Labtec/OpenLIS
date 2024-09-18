@@ -33,7 +33,7 @@ class QualifiedIntervalTest < ActiveSupport::TestCase
 
   test "flag of a rounded lab test" do
     lab_test = lab_tests(:qualified_interval_greater_than)
-    @observation.update(lab_test: lab_test)
+    @observation.update(lab_test:)
 
     @observation.update(value: 9.4)
     assert_equal "L", @observation.interpretation
@@ -61,7 +61,7 @@ class QualifiedIntervalTest < ActiveSupport::TestCase
   test "high flag of a value-range observation_definition with max interval" do
     lab_test = lab_tests(:range)
     lab_test.update(qualified_intervals: [qualified_intervals(:less_than)])
-    @observation.update(lab_test: lab_test, value: "8-9")
+    @observation.update(lab_test:, value: "8-9")
 
     assert_equal "N", @observation.interpretation, "highest value is less than 10"
 

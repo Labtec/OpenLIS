@@ -70,7 +70,7 @@ class Accession < ApplicationRecord
     if name.blank?
       self.doctor_id = nil
     else
-      self.doctor = Doctor.where(name: name).first_or_create
+      self.doctor = Doctor.where(name:).first_or_create
     end
   end
 

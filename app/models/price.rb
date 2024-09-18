@@ -9,7 +9,7 @@ class Price < ApplicationRecord
   validates :priceable_id, uniqueness: { scope: %i[price_list_id priceable_type] }
   validates :priceable_type, presence: true
 
-  scope :from_price_list, ->(price_list) { where(price_list: price_list) }
+  scope :from_price_list, ->(price_list) { where(price_list:) }
 
   delegate :status, to: :priceable
 
