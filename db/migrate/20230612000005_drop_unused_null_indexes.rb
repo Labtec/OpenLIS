@@ -11,7 +11,7 @@ class DropUnusedNullIndexes < ActiveRecord::Migration[7.0]
   end
 
   def up
-    execute <<-SQL
+    execute <<-SQL.squish
       CREATE INDEX index_patients_search
         ON patients
         USING GIN((

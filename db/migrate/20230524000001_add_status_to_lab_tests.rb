@@ -9,7 +9,7 @@ class AddStatusToLabTests < ActiveRecord::Migration[7.0]
 
     add_column :lab_tests, :status, :publication_status, default: "active"
 
-    execute <<-SQL
+    execute <<-SQL.squish
       UPDATE lab_tests SET status = 'active';
     SQL
   end
@@ -17,7 +17,7 @@ class AddStatusToLabTests < ActiveRecord::Migration[7.0]
   def down
     remove_column :lab_tests, :status
 
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP TYPE publication_status;
     SQL
   end
