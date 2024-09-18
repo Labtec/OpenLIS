@@ -96,11 +96,9 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
         else
           observation.update_columns(status: 'preliminary')
         end
-      else
-        if observation.accession.reported_at
-          observation.not_performed!
-          observation.update_columns(status: 'cancelled')
-        end
+      elsif observation.accession.reported_at
+        observation.not_performed!
+        observation.update_columns(status: 'cancelled')
       end
       print '.'
     end
