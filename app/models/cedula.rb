@@ -10,7 +10,7 @@ class Cedula
 
     split_ruc = @ruc.split("-")
 
-    return if (split_ruc.size == 4 && !%w[NT AV PI].include?(split_ruc[1])) ||
+    return if (split_ruc.size == 4 && %w[NT AV PI].exclude?(split_ruc[1])) ||
               split_ruc.size < 3 ||
               split_ruc.size > 5
 
