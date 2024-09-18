@@ -48,6 +48,6 @@ class WebauthnCredentialTest < ActiveSupport::TestCase
     assert @webauthn_credential.errors.added?(:sign_count, :greater_than_or_equal_to, value: -1, count: 0)
 
     @webauthn_credential.update(sign_count: 2**32)
-    assert @webauthn_credential.errors.added?(:sign_count, :less_than_or_equal_to, value: 2**32, count: 2**32 - 1)
+    assert @webauthn_credential.errors.added?(:sign_count, :less_than_or_equal_to, value: 2**32, count: (2**32) - 1)
   end
 end

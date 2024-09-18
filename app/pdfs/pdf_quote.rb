@@ -87,7 +87,7 @@ class PDFQuote < Prawn::Document
     page_bottom = bounds.bottom - bottom_margin
     form_padding = 4
     table_padding = 2
-    footer_height = line_height * 1 + PADDING
+    footer_height = (line_height * 1) + PADDING
     line_number_width = 30
     description_width = 195
     code_width = 50
@@ -130,7 +130,7 @@ class PDFQuote < Prawn::Document
     ##
     # To
     to = []
-    bounding_box([0, to_from_position], width: bounds.width / 2 - PADDING, height: line_height * 5 + LINE_PADDING) do
+    bounding_box([0, to_from_position], width: (bounds.width / 2) - PADDING, height: (line_height * 5) + LINE_PADDING) do
       to << contact_name
       to << identification
       to << contact_email
@@ -144,7 +144,7 @@ class PDFQuote < Prawn::Document
     ##
     # From
     to_size = to.compact.size
-    bounding_box([bounds.width / 2 + PADDING, to_from_position], width: bounds.width / 2 - PADDING, height: line_height * (to_size + 1) + LINE_PADDING) do
+    bounding_box([(bounds.width / 2) + PADDING, to_from_position], width: (bounds.width / 2) - PADDING, height: (line_height * (to_size + 1)) + LINE_PADDING) do
       text "\n" * [(to_size - 1), 0].max
       signature_image
       text "#{t('quotes.show.approved_by')}  #{@view.approved_by_name(@quote.approved_by)}"
@@ -282,7 +282,7 @@ class PDFQuote < Prawn::Document
         text "RUC 299497-1-409892 DV 13"
       end
     end
-    bounding_box([bounds.left + bounds.width / 2, payment_position], width: bounds.width / 4, height: payment_info_box_height) do
+    bounding_box([bounds.left + (bounds.width / 2), payment_position], width: bounds.width / 4, height: payment_info_box_height) do
       text "Para transferencias ACH:"
       indent PADDING do
         text "Banco General"
@@ -290,7 +290,7 @@ class PDFQuote < Prawn::Document
         text "03-21-01-009835-2"
       end
     end
-    bounding_box([bounds.left + bounds.width * 3 / 4, payment_position], width: bounds.width / 4, height: payment_info_box_height) do
+    bounding_box([bounds.left + (bounds.width * 3 / 4), payment_position], width: bounds.width / 4, height: payment_info_box_height) do
       text "Para pagar con Yappi:"
       indent PADDING do
         bounding_box([bounds.left, cursor], width: 42, height: 35) do

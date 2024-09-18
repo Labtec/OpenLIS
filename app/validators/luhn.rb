@@ -10,8 +10,8 @@ class Luhn
       raise ArgumentError, "invalid character (#{ch})" unless VALID_CHARS.include?(ch)
 
       digit = ch.ord - 48
-      i.even? ? 2 * digit - digit / 5 * 9 : digit
+      i.even? ? (2 * digit) - (digit / 5 * 9) : digit
     end
-    (10 - weight.sum % 10) % 10
+    (10 - (weight.sum % 10)) % 10
   end
 end
