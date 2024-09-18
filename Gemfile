@@ -52,7 +52,7 @@ group :development, :test do
   gem "capistrano-bundler"
   gem "capistrano-rails"
   gem "capistrano-rbenv"
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "rubocop-rails-omakase", require: false
 end
 
