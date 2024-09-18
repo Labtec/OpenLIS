@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
                     current_user.language
                   else
                     extract_locale_from_accept_language_header
-    end
+                  end
   rescue StandardError
     I18n.default_locale
   end

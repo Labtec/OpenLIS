@@ -33,7 +33,7 @@ module ApplicationHelper
                  tag.li(link_to((link[1]).to_s, link[0]), class: "active")
                else
                  tag.li(link_to((link[1]).to_s, link[0]))
-      end
+               end
     end
     if controller.controller_name.to_s == "claims"
       items.delete_at(2)

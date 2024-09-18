@@ -87,7 +87,7 @@ module Derivable
               chol - (hdl + trig / 2.2)
             else
               raise
-      end
+            end
       ldl / hdl
     when "TRIGHDLR"
       hdl = result_value_quantity_for "HDL"

@@ -10,7 +10,7 @@ class ResultsMailer < ApplicationMailer
                 ".subject_partial"
               else
                 ".subject"
-    end
+              end
     attachments["resultados_#{@accession.id}.pdf"] = pdf.render if pdf
     mail(to: @accession.doctor.email,
          subject: t(subject, full_name: full_name(@accession.patient)))
@@ -25,7 +25,7 @@ class ResultsMailer < ApplicationMailer
                 ".subject_partial"
               else
                 ".subject"
-    end
+              end
     attachments["resultados_#{@accession.id}.pdf"] = pdf.render if pdf
     mail(to: @accession.patient.email,
          subject: t(subject))

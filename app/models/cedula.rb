@@ -52,7 +52,7 @@ class Cedula
                        "#{split_ruc[0]}15"
                      when "PI" # Panameno Indigena
                        "#{split_ruc[0]}79"
-      end
+                     end
       [ split_ruc[0], split_ruc[2], split_ruc[3] ]
     else
       split_ruc[0] = case split_ruc[0]
@@ -64,7 +64,7 @@ class Cedula
                        "75"
                      else
                        "#{split_ruc[0]}00"
-      end
+                     end
       split_ruc
     end
   end
