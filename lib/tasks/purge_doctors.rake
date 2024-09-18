@@ -6,7 +6,7 @@ namespace :doctors do
   task purge: :environment do
     puts "Purging doctors table"
     ActiveRecord::Base.transaction do
-      Doctor.all.each do |doctor|
+      Doctor.find_each do |doctor|
         unless doctor.accessions_count? || doctor.quotes_count?
           doctor.destroy!
           print "."

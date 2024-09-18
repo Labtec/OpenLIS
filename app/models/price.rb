@@ -15,7 +15,7 @@ class Price < ApplicationRecord
 
   def self.active
     active_prices = []
-    all.each do |price|
+    find_each do |price|
       active_prices << price if price.status == "active"
     end
     active_prices
