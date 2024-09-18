@@ -58,9 +58,9 @@ module LabTestValuesHelper
   end
 
   def loinc_answer_hyperlink(loinc_answer)
-    if loinc_answer.present?
-      link_to loinc_answer, "https://loinc.org/#{loinc_answer}", target: :_blank, rel: :noopener
-    end
+    return unless loinc_answer.present?
+
+    link_to loinc_answer, "https://loinc.org/#{loinc_answer}", target: :_blank, rel: :noopener
   end
 
   def snomed_hyperlink(snomed)
