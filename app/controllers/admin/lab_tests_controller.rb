@@ -5,7 +5,7 @@ module Admin
     before_action :set_lab_test, only: %i[show edit update destroy sort]
 
     def index
-      @departments = Department.all.includes({ lab_tests: [:unit] })
+      @departments = Department.includes({ lab_tests: [:unit] })
     end
 
     def show; end
