@@ -115,17 +115,17 @@ class AgeDurationTest < ActiveSupport::TestCase
     travel_to Time.new(2000, 1, 1, 12, 0, 0, 0)
     ages = [
       # [age, output],
-      [27.days.ago, 27.days],
-      [28.days.ago, 4.weeks],
-      [29.days.ago, 4.weeks + 1.day],
-      [(11.months + 30.days).ago, 52.weeks],
-      [1.year.ago, 12.months],
-      [(1.year + 1.day).ago, 12.months + 1.day],
-      [(1.year + 8.days).ago, 12.months + 8.days],
-      [(1.year + 1.month + 9.days).ago, 13.months + 10.days],
-      [(4.years + 1.month + 9.days).ago, 4.years + 1.month],
-      [(17.years + 11.months).ago, 17.years + 11.months],
-      [(19.years + 39.days).ago, 19.years]
+      [ 27.days.ago, 27.days ],
+      [ 28.days.ago, 4.weeks ],
+      [ 29.days.ago, 4.weeks + 1.day ],
+      [ (11.months + 30.days).ago, 52.weeks ],
+      [ 1.year.ago, 12.months ],
+      [ (1.year + 1.day).ago, 12.months + 1.day ],
+      [ (1.year + 8.days).ago, 12.months + 8.days ],
+      [ (1.year + 1.month + 9.days).ago, 13.months + 10.days ],
+      [ (4.years + 1.month + 9.days).ago, 4.years + 1.month ],
+      [ (17.years + 11.months).ago, 17.years + 11.months ],
+      [ (19.years + 39.days).ago, 19.years ]
     ]
 
     ages.each do |age|
@@ -137,30 +137,30 @@ class AgeDurationTest < ActiveSupport::TestCase
   test "age duration" do
     from_to_duration = [
       # [from, to, duration],
-      ["2000-01-01", "2010-12-15", 10.years + 11.months + 14.days],
-      ["2000-01-01", "2010-06-15", 10.years + 5.months + 14.days],
-      ["2000-04-14", "2010-06-15", 10.years + 2.months + 1.day],
-      ["2000-04-15", "2010-06-15", 10.years + 2.months],
-      ["2000-04-16", "2010-06-15", 10.years + 1.month + 30.days],
-      ["2000-05-14", "2010-06-15", 10.years + 1.month + 1.day],
-      ["2000-05-15", "2010-06-15", 10.years + 1.month],
-      ["2000-05-16", "2010-06-15", 10.years + 30.days],
-      ["2000-06-14", "2010-06-15", 10.years + 1.day],
-      ["2000-06-15", "2010-06-15", 10.years],
-      ["2000-06-16", "2010-06-15", 9.years + 11.months + 30.days],
-      ["2000-07-14", "2010-06-15", 9.years + 11.months + 1.day],
-      ["2000-07-15", "2010-06-15", 9.years + 11.months],
-      ["2000-07-16", "2010-06-15", 9.years + 10.months + 30.days],
-      ["2000-08-14", "2010-06-15", 9.years + 10.months + 1.day],
-      ["2000-08-15", "2010-06-15", 9.years + 10.months],
-      ["2000-08-16", "2010-06-15", 9.years + 9.months + 30.days],
-      ["2000-12-31", "2010-06-15", 9.years + 5.months + 15.days],
-      ["1996-02-29", "2011-02-27", 14.years + 11.months + 29.days],
-      ["1996-02-29", "2011-02-28", 14.years + 11.months + 30.days],
-      ["1996-02-29", "2011-03-01", 15.years + 1.day],
-      ["1996-02-29", "2012-02-28", 15.years + 11.months + 30.days],
-      ["1996-02-29", "2012-02-29", 16.years],
-      ["1996-02-29", "2012-03-01", 16.years + 1.day]
+      [ "2000-01-01", "2010-12-15", 10.years + 11.months + 14.days ],
+      [ "2000-01-01", "2010-06-15", 10.years + 5.months + 14.days ],
+      [ "2000-04-14", "2010-06-15", 10.years + 2.months + 1.day ],
+      [ "2000-04-15", "2010-06-15", 10.years + 2.months ],
+      [ "2000-04-16", "2010-06-15", 10.years + 1.month + 30.days ],
+      [ "2000-05-14", "2010-06-15", 10.years + 1.month + 1.day ],
+      [ "2000-05-15", "2010-06-15", 10.years + 1.month ],
+      [ "2000-05-16", "2010-06-15", 10.years + 30.days ],
+      [ "2000-06-14", "2010-06-15", 10.years + 1.day ],
+      [ "2000-06-15", "2010-06-15", 10.years ],
+      [ "2000-06-16", "2010-06-15", 9.years + 11.months + 30.days ],
+      [ "2000-07-14", "2010-06-15", 9.years + 11.months + 1.day ],
+      [ "2000-07-15", "2010-06-15", 9.years + 11.months ],
+      [ "2000-07-16", "2010-06-15", 9.years + 10.months + 30.days ],
+      [ "2000-08-14", "2010-06-15", 9.years + 10.months + 1.day ],
+      [ "2000-08-15", "2010-06-15", 9.years + 10.months ],
+      [ "2000-08-16", "2010-06-15", 9.years + 9.months + 30.days ],
+      [ "2000-12-31", "2010-06-15", 9.years + 5.months + 15.days ],
+      [ "1996-02-29", "2011-02-27", 14.years + 11.months + 29.days ],
+      [ "1996-02-29", "2011-02-28", 14.years + 11.months + 30.days ],
+      [ "1996-02-29", "2011-03-01", 15.years + 1.day ],
+      [ "1996-02-29", "2012-02-28", 15.years + 11.months + 30.days ],
+      [ "1996-02-29", "2012-02-29", 16.years ],
+      [ "1996-02-29", "2012-03-01", 16.years + 1.day ]
     ]
 
     from_to_duration.each do |duration|

@@ -17,9 +17,9 @@ class QualifiedInterval < ApplicationRecord
   scope :for_gender, (lambda do |gender|
     case gender
     when "F"
-      where(gender: ["female", nil])
+      where(gender: [ "female", nil ])
     when "M"
-      where(gender: ["male", nil])
+      where(gender: [ "male", nil ])
     end
   end)
   scope :for_species, ->(type) { where(animal_type: type) }
@@ -39,12 +39,12 @@ class QualifiedInterval < ApplicationRecord
   end)
   scope :for_subject, ->(patient) { for_species(patient.animal_type).for_gender(patient.gender) }
   scope :for_result, ->(accession) { for_subject(accession.patient).for_age(accession.subject_age) }
-  scope :female, -> { where(gender: [nil, "female"]) }
-  scope :male, -> { where(gender: [nil, "male"]) }
-  scope :reference, -> { where(category: [nil, "reference"], gestational_age_low: nil, gestational_age_high: nil) }
+  scope :female, -> { where(gender: [ nil, "female" ]) }
+  scope :male, -> { where(gender: [ nil, "male" ]) }
+  scope :reference, -> { where(category: [ nil, "reference" ], gestational_age_low: nil, gestational_age_high: nil) }
   scope :critical, -> { where(category: "critical") }
   scope :absolute, -> { where(category: "absolute") }
-  scope :normal, -> { where(context: [nil, "normal"]) }
+  scope :normal, -> { where(context: [ nil, "normal" ]) }
   scope :therapeutic, -> { where(context: "therapeutic") }
   scope :treatment, -> { where(context: "treatment") }
   scope :pre_puberty, -> { where(context: "pre-puberty") }
@@ -72,7 +72,7 @@ class QualifiedInterval < ApplicationRecord
                         :condition
 
   def self.arel_age_high
-    Arel::Nodes::NamedFunction.new("CAST", [Arel.sql('"age_high" AS INTERVAL')])
+    Arel::Nodes::NamedFunction.new("CAST", [ Arel.sql('"age_high" AS INTERVAL') ])
   end
 
   def self.arel_age_interval(age)
@@ -80,7 +80,7 @@ class QualifiedInterval < ApplicationRecord
   end
 
   def self.arel_age_low
-    Arel::Nodes::NamedFunction.new("CAST", [Arel.sql('"age_low" AS INTERVAL')])
+    Arel::Nodes::NamedFunction.new("CAST", [ Arel.sql('"age_low" AS INTERVAL') ])
   end
 
   def absolute?

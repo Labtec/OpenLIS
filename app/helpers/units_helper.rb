@@ -5,7 +5,7 @@ module UnitsHelper
     options = []
 
     Unit.find_each do |u|
-      options << [unit_expression_for_display(u), u.id]
+      options << [ unit_expression_for_display(u), u.id ]
     end
 
     options

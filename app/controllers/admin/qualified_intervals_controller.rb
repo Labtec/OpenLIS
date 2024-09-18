@@ -5,7 +5,7 @@ module Admin
     before_action :set_qualified_interval, only: %i[edit update destroy]
 
     def index
-      @lab_tests = LabTest.includes({ qualified_intervals: [:interpretation] }).order(:position)
+      @lab_tests = LabTest.includes({ qualified_intervals: [ :interpretation ] }).order(:position)
     end
 
     def new

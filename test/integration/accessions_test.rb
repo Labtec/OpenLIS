@@ -11,7 +11,7 @@ class AccessionsTest < ActionDispatch::IntegrationTest
       received_at: Time.current,
       drawer: users(:user),
       receiver: users(:user),
-      lab_test_ids: [lab_tests(:bun).id, lab_tests(:chol).id]
+      lab_test_ids: [ lab_tests(:bun).id, lab_tests(:chol).id ]
     )
   end
 

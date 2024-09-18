@@ -11,7 +11,7 @@ class ResultsTest < ActionDispatch::IntegrationTest
       received_at: Time.current,
       drawer: users(:user),
       receiver: users(:user),
-      lab_test_ids: [lab_tests(:range).id]
+      lab_test_ids: [ lab_tests(:range).id ]
     )
   end
 
