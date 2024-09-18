@@ -250,7 +250,7 @@ class ClaimsReport < Prawn::Document
       claim.accession.lab_tests.with_price.map do |lab_test|
         next if lab_test.prices.find_by(price_list_id: 1)&.amount.nil?
 
-        @lab_tests.push lab_test if (lab_test.panel_ids & claim.accession.panel_ids).empty?
+        @lab_tests.push lab_test unless lab_test.panel_ids.intersect?(claim.accession.panel_ids)
       end
       lab_tests_table = @lab_tests.map do |lab_test|
         @total_price << lab_test.prices.find_by(price_list_id: 1)&.amount
