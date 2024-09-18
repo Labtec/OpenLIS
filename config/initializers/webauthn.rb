@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
 WebAuthn.configure do |config|
-  config.origin = ENV.fetch("WEBAUTHN_ORIGIN", nil)
+  config.origin = ENV.fetch("WEBAUTHN_ORIGIN", "http://localhost:3000")
   config.rp_name = "OpenLIS"
 end

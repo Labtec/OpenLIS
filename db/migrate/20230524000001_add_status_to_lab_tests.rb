@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddStatusToLabTests < ActiveRecord::Migration[7.0]
   def up
     execute <<-SQL

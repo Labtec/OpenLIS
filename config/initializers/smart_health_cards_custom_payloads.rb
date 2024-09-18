@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class HealthCardPayload < HealthCards::Payload
   allow type: FHIR::Patient, attributes: %w[name gender birthDate]
   allow type: FHIR::Observation,

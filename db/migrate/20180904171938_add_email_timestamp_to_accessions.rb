@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddEmailTimestampToAccessions < ActiveRecord::Migration[5.2]
   def change
     add_column :accessions, :emailed_doctor_at, :datetime

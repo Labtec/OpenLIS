@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RedefineMyUnaccentFunction < ActiveRecord::Migration[5.1]
   def up
     execute <<-SQL.squish

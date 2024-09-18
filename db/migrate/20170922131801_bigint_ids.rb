@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class BigintIds < ActiveRecord::Migration[5.1]
   def up
     change_column :accession_panels, :id, :bigint
