@@ -32,7 +32,7 @@ class Cedula
 
   def calculate_dv(padded_ruc)
     # modulo 11 check digit
-    weight = padded_ruc.split("").map(&:to_i)
+    weight = padded_ruc.chars.map(&:to_i)
                        .zip(Array(2..padded_ruc.size + 1).reverse)
                        .map { |x, y| x * y }
 
