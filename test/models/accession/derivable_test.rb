@@ -7,7 +7,7 @@ class AccessionDerivableTest < ActiveSupport::TestCase
     @accession = accessions(:lipid)
 
     def result_for(accession, code)
-      accession.results.joins(:lab_test).where("lab_tests.code": code).take
+      accession.results.joins(:lab_test).find_by("lab_tests.code": code)
     end
   end
 
@@ -72,13 +72,13 @@ class AccessionDerivableTest < ActiveSupport::TestCase
   end
 
   test "#value_present? for derived values" do
-    ldl = @accession.results.joins(:lab_test).where("lab_tests.code": "LDL").take
+    ldl = @accession.results.joins(:lab_test).find_by("lab_tests.code": "LDL")
     assert_not ldl.value_present?
 
     result_for(@accession, "CHOL").update value: 200
     result_for(@accession, "HDL").update value: 100
     result_for(@accession, "TRIG").update value: 110
-    ldl = @accession.results.joins(:lab_test).where("lab_tests.code": "LDL").take
+    ldl = @accession.results.joins(:lab_test).find_by("lab_tests.code": "LDL")
     assert ldl.value_present?
   end
 end
