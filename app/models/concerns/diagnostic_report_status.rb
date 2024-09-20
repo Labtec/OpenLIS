@@ -9,16 +9,16 @@ module DiagnosticReportStatus
     # http://hl7.org/fhir/valueset-diagnostic-report-status.html
     attribute :status, :string
     enum :status, {
-      registered:       "registered",
-      partial:          "partial",
-      preliminary:      "preliminary",
-      final:            "final",
-      amended:          "amended",
-      corrected:        "corrected",
-      appended:         "appended",
-      cancelled:        "cancelled",
+      registered: "registered",
+      partial: "partial",
+      preliminary: "preliminary",
+      final: "final",
+      amended: "amended",
+      corrected: "corrected",
+      appended: "appended",
+      cancelled: "cancelled",
       entered_in_error: "entered-in-error",
-      unknown:          "unknown"
+      unknown: "unknown"
     }
 
     aasm column: :status, enum: true do

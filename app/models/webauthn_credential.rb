@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WebauthnCredential < ApplicationRecord
-  MAX_COUNTER = 2**32 - 1
+  MAX_COUNTER = (2**32) - 1
 
   belongs_to :user
 

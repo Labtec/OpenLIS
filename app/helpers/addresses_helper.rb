@@ -6,13 +6,9 @@ module AddressesHelper
   end
 
   def options_for_province
-    provinces = []
-
-    (Address::PROVINCES + Address::COMARCAS).each do |id|
-      provinces << Address::SUBDIVISIONS["provinces"]["pa_#{id}"]["name"]
+    (Address::PROVINCES + Address::COMARCAS).map do |id|
+      Address::SUBDIVISIONS["provinces"]["pa_#{id}"]["name"]
     end
-
-    provinces
   end
 
   def options_for_district
@@ -38,10 +34,10 @@ module AddressesHelper
         # districts, only corregimientos
         districts << if d["name"]
                        [ d["name"], d["corregimientos"] ]
-        else
+                     else
                        [ Address::SUBDIVISIONS["provinces"]["pa_#{id}"]["name"],
                         d["corregimientos"] ]
-        end
+                     end
       end
     end
 

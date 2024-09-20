@@ -19,7 +19,6 @@ module Settings
         },
         exclude: current_user.webauthn_credentials.pluck(:external_id),
         authenticator_selection: { user_verification: "discouraged" }
-
       )
 
       session[:webauthn_challenge] = options_for_create.challenge
@@ -39,18 +38,18 @@ module Settings
         )
 
         if user_credential.save
-          flash[:notice] = t(".success")
+          flash.now[:notice] = t(".success")
           status = :ok
         else
-          flash[:alert] = t(".error")
+          flash.now[:alert] = t(".error")
           status = :internal_server_error
         end
       else
-        flash[:alert] = t(".error")
+        flash.now[:alert] = t(".error")
         status = :unauthorized
       end
 
-      render json: { redirect_path: profile_path }, status: status
+      render json: { redirect_path: profile_path }, status:
     end
 
     def destroy
@@ -63,10 +62,10 @@ module Settings
           else
             @credential.destroy
             if @credential.destroyed?
-              format.html { flash[:notice] = t(".success") }
+              format.html { flash.now[:notice] = t(".success") }
               format.turbo_stream { flash.now[:notice] = t(".success") }
             else
-              format.html { flash[:alert] = t(".error") }
+              format.html { flash.now[:alert] = t(".error") }
               format.turbo_stream { flash.now[:alert] = t(".error") }
             end
           end

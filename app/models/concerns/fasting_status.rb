@@ -15,11 +15,9 @@ module FastingStatus
     end
 
     def save_fasting_status_duration_iso8601
-      if @fasting_status_duration_iso8601.present?
-        self.fasting_status_duration = ActiveSupport::Duration.parse(@fasting_status_duration_iso8601)
-      else
-        self.fasting_status_duration = nil
-      end
+      self.fasting_status_duration = if @fasting_status_duration_iso8601.present?
+                                       ActiveSupport::Duration.parse(@fasting_status_duration_iso8601)
+                                     end
     end
 
     private

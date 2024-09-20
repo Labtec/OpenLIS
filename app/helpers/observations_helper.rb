@@ -109,11 +109,9 @@ module ObservationsHelper
   def ranges_table(intervals, display_gender: false)
     return [ [ nil, nil, nil, nil, nil ] ] if intervals.empty?
 
-    table = []
-    intervals.each do |interval|
-      table << range_row(interval, display_gender: display_gender)
+    intervals.map do |interval|
+      range_row(interval, display_gender:)
     end
-    table
   end
 
   def range_row(interval, display_gender: false)
@@ -126,16 +124,16 @@ module ObservationsHelper
       left_side = "1∶#{number_with_precision(interval.range_low_value, precision: 0, delimiter: ',')}" if interval.range_low_value && interval.range_high_value
       right_side = if interval.range_high_value
                      "1∶#{number_with_precision(interval.range_high_value, precision: 0, delimiter: ',')}"
-      else
+                   else
                      "1∶#{number_with_precision(interval.range_low_value, precision: 0, delimiter: ',')}"
-      end
+                   end
     else
       left_side = number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ",") if interval.range_low_value && interval.range_high_value
       right_side = if interval.range_high_value
                      number_with_precision(interval.range_high_value, precision: interval.lab_test.decimals.to_i, delimiter: ",")
-      else
+                   else
                      number_with_precision(interval.range_low_value, precision: interval.lab_test.decimals.to_i, delimiter: ",")
-      end
+                   end
     end
     [ condition, gender, left_side, symbol, right_side ]
   end

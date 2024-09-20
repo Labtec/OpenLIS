@@ -48,10 +48,10 @@ module FHIRable
       # - SEX
       # - STD
       FHIR::Observation.new(
-        id: id,
+        id:,
         identifier: fhirable_observation_identifier,
         basedOn: FHIR::Reference.new(reference: "ServiceRequest/#{accession.id}"),
-        status: status,
+        status:,
         category: FHIR::CodeableConcept.new(coding: [ FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/observation-category", code: "laboratory") ]),
         # 'code': FHIR::CodeableConcept.new(coding: [FHIR::Coding.new(system: 'http://loinc.org', code: lab_test&.loinc, display: display_loinc(lab_test&.loinc))]),
         code: FHIR::CodeableConcept.new(text: lab_test.stripped_name, coding: [ FHIR::Coding.new(system: "http://loinc.org", code: lab_test&.loinc) ]),
@@ -193,13 +193,13 @@ module FHIRable
     def observation_value_range
       return unless value_range
 
-      fhirable_range(value_range, unit: unit)
+      fhirable_range(value_range, unit:)
     end
 
     def observation_value_ratio
       return unless value_ratio
 
-      fhirable_ratio(value_ratio, unit: unit)
+      fhirable_ratio(value_ratio, unit:)
     end
 
     def observation_value_codeable_concept

@@ -4,7 +4,7 @@ module UnitsHelper
   def options_for_unit
     options = []
 
-    Unit.all.each do |u|
+    Unit.find_each do |u|
       options << [ unit_expression_for_display(u), u.id ]
     end
 

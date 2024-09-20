@@ -14,7 +14,7 @@ class AgeDurationTest < ActiveSupport::TestCase
 
   test "built from weeks" do
     birth_date = 6.weeks.ago
-    today = Date.today
+    today = Time.zone.today
 
     age = ActiveSupport::Duration.age(birth_date, today)
     assert_equal 6.weeks, age.in_weeks.round.weeks

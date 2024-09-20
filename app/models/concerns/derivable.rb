@@ -22,12 +22,12 @@ module Derivable
       when "mg/dl"
         return if tg > 800
 
-        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
+        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - ((tg**2) / 16_100)) - 9.44
         ldl < 15 ? "<15" : ldl
       when "mmol/l"
         return if tg > 9.03
 
-        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - (tg**2 / 79.36)) - 0.244
+        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - ((tg**2) / 79.36)) - 0.244
         ldl < 0.4 ? "<0.4" : ldl
       else
         raise
@@ -40,13 +40,13 @@ module Derivable
       when "mg/dl"
         return if tg > 800
 
-        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - (tg**2 / 16_100)) - 9.44
-        ldl < 15 ? 15 : ldl
+        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 8.56) + ((tg * (tc - hdl)) / 2140) - ((tg**2) / 16_100)) - 9.44
+        [ ldl, 15 ].max
       when "mmol/l"
         return if tg > 9.03
 
-        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - (tg**2 / 79.36)) - 0.244
-        ldl < 0.4 ? 0.4 : ldl
+        ldl = (tc / 0.948) - (hdl / 0.971) - ((tg / 3.74) + ((tg * (tc - hdl)) / 24.16) - ((tg**2) / 79.36)) - 0.244
+        [ ldl, 0.4 ].max
       else
         raise
       end
@@ -74,20 +74,20 @@ module Derivable
       uvol24h = result_value_quantity_for "UVOL24H"
       weight = result_value_quantity_for "WEIGHT"
       height = result_value_quantity_for "HEIGHT"
-      bsa = 0.007184 * weight ** 0.425 * height ** 0.725
+      bsa = 0.007184 * (weight**0.425) * (height**0.725)
       cre_u * uvol24h / 1440 / crtsa * 1.73 / bsa
     when "LDLHDLR"
       chol = result_value_quantity_for "CHOL"
       hdl = result_value_quantity_for "HDL"
       trig = result_value_quantity_for "TRIG"
       ldl = case LabTest.unit_for("LDL").downcase
-      when "mg/dl"
-              chol - (hdl + trig / 5)
-      when "mmol/l"
-              chol - (hdl + trig / 2.2)
-      else
+            when "mg/dl"
+              chol - (hdl + (trig / 5))
+            when "mmol/l"
+              chol - (hdl + (trig / 2.2))
+            else
               raise
-      end
+            end
       ldl / hdl
     when "TRIGHDLR"
       hdl = result_value_quantity_for "HDL"
@@ -162,9 +162,9 @@ module Derivable
       trig = result_value_quantity_for "TRIG"
       case LabTest.unit_for("LDL").downcase
       when "mg/dl"
-        chol - (hdl + trig / 5)
+        chol - (hdl + (trig / 5))
       when "mmol/l"
-        chol - (hdl + trig / 2.2)
+        chol - (hdl + (trig / 2.2))
       else
         raise
       end
@@ -230,7 +230,7 @@ module Derivable
       na = result_value_quantity_for "Na"
       bun = result_value_quantity_for "BUN"
       glucose = result_value_quantity_for("GLU") || result_value_quantity_for("GLUC")
-      na * 2 + bun / 2.8 + glucose / 18
+      (na * 2) + (bun / 2.8) + (glucose / 18)
     when "HOMAIR"
       glucose = result_value_quantity_for("GLU") || result_value_quantity_for("GLUC")
       insulin = result_value_quantity_for("INS") || result_value_quantity_for("INSI") || result_value_quantity_for("INSG")
@@ -250,7 +250,7 @@ module Derivable
         gender = 1
       end
       crtsa_k = crtsa / k
-      142 * [ crtsa_k, 1 ].min**a * [ crtsa_k, 1 ].max**-1.2 * 0.9938**age * gender
+      142 * ([ crtsa_k, 1 ].min**a) * ([ crtsa_k, 1 ].max**-1.2) * (0.9938**age) * gender
     when "EGNB"
       age = subject_age.parts[:years]
       return if age < 18
@@ -266,14 +266,14 @@ module Derivable
         gender = 1
       end
       crtsa_k = crtsa / k
-      141 * [ crtsa_k, 1 ].min**a * [ crtsa_k, 1 ].max**-1.209 * 0.9929**age * gender
+      141 * ([ crtsa_k, 1 ].min**a) * ([ crtsa_k, 1 ].max**-1.209) * (0.9929**age) * gender
     when "EGFRMDRD"
       age = subject_age.parts[:years]
       return if age < 18
 
       crtsa = result_value_quantity_for "CRTSA"
       gender = patient.female? ? 0.742 : 1
-      175 * crtsa**-1.154 * age**-0.203 * gender
+      175 * (crtsa**-1.154) * (age**-0.203) * gender
     when "EGBL"
       age = subject_age.parts[:years]
       return if age < 18
@@ -289,14 +289,14 @@ module Derivable
         b_gender = 1.159
       end
       crtsa_k = crtsa / k
-      141 * [ crtsa_k, 1 ].min**a * [ crtsa_k, 1 ].max**-1.209 * 0.9929**age * b_gender
+      141 * ([ crtsa_k, 1 ].min**a) * ([ crtsa_k, 1 ].max**-1.209) * (0.9929**age) * b_gender
     when "EGFRMDRDBL"
       age = subject_age.parts[:years]
       return if age < 18
 
       crtsa = result_value_quantity_for "CRTSA"
       gender = patient.female? ? 0.742 : 1
-      175 * crtsa**-1.154 * age**-0.203 * gender * 1.212
+      175 * (crtsa**-1.154) * (age**-0.203) * gender * 1.212
     when "uACR"
       ralb1 = result_value_quantity_for "RALB1"
       ralb1tl = result_value_quantity_for "RALB1TL"
@@ -311,15 +311,15 @@ module Derivable
   end
 
   def result_value_codeable_concept_for(code)
-    results.joins(:lab_test).find_by('lab_tests.code': code)&.value_codeable_concept
+    results.joins(:lab_test).find_by("lab_tests.code": code)&.value_codeable_concept
   end
 
   def result_value_quantity_for(code)
-    results.joins(:lab_test).find_by('lab_tests.code': code)&.value_quantity&.to_d
+    results.joins(:lab_test).find_by("lab_tests.code": code)&.value_quantity&.to_d
   end
 
   def result_derived_value_for(code)
-    results.joins(:lab_test).find_by('lab_tests.code': code)&.derived_value&.to_d
+    results.joins(:lab_test).find_by("lab_tests.code": code)&.derived_value&.to_d
   end
 
   def derived_remarks_for(code)

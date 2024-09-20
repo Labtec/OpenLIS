@@ -8,7 +8,7 @@ class DerivableTest < ActiveSupport::TestCase
     accession.update!(drawn_at: Time.zone.now)
     patient = accession.patient
     creatinine = observations(:crtsa)
-    egfrcr = accession.results.where(lab_test_id: LabTest.where(code: "eGFRcr")).take
+    egfrcr = accession.results.find_by(lab_test_id: LabTest.where(code: "eGFRcr"))
 
     # AGE            Sex            Serum Creatinine    eGFRcr
     # (years)                       mg/dL               (CKD-EPI 2021)
@@ -115,8 +115,8 @@ class DerivableTest < ActiveSupport::TestCase
     weight = observations(:weight)
     weight.update(value: 90)
 
-    crcl = accession.results.where(lab_test_id: LabTest.where(code: "CRCL")).take
-    crcl1 = accession.results.where(lab_test_id: LabTest.where(code: "CRCL1")).take
+    crcl = accession.results.find_by(lab_test_id: LabTest.where(code: "CRCL"))
+    crcl1 = accession.results.find_by(lab_test_id: LabTest.where(code: "CRCL1"))
 
     assert_equal 104.2, crcl.derived_value
     assert_equal 86, crcl1.derived_value

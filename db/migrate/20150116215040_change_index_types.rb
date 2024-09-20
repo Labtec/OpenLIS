@@ -1,6 +1,6 @@
 class ChangeIndexTypes < ActiveRecord::Migration[5.0]
   def up
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP INDEX IF EXISTS index_patients_on_family_name;
       DROP INDEX IF EXISTS index_patients_on_family_name2;
       DROP INDEX IF EXISTS index_patients_on_given_name;
@@ -29,16 +29,16 @@ class ChangeIndexTypes < ActiveRecord::Migration[5.0]
   end
 
   def down
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP INDEX IF EXISTS index_patients_on_lower_family_name;
       DROP INDEX IF EXISTS index_patients_search;
       DROP FUNCTION IF EXISTS my_unaccent(varchar) CASCADE;
     SQL
 
-    add_index :patients, [ :family_name ], name: 'index_patients_on_family_name'
-    add_index :patients, [ :family_name2 ], name: 'index_patients_on_family_name2'
-    add_index :patients, [ :given_name ], name: 'index_patients_on_given_name'
-    add_index :patients, [ :identifier ], name: 'index_patients_on_identifier'
-    add_index :patients, [ :middle_name ], name: 'index_patients_on_middle_name'
+    add_index :patients, [ :family_name ], name: "index_patients_on_family_name"
+    add_index :patients, [ :family_name2 ], name: "index_patients_on_family_name2"
+    add_index :patients, [ :given_name ], name: "index_patients_on_given_name"
+    add_index :patients, [ :identifier ], name: "index_patients_on_identifier"
+    add_index :patients, [ :middle_name ], name: "index_patients_on_middle_name"
   end
 end

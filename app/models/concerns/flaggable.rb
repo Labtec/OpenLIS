@@ -8,7 +8,7 @@ module Flaggable
     return unless value_present?
 
     intervals = reference_ranges.includes(:interpretation)
-    return unless intervals.present?
+    return if intervals.blank?
 
     num = value_quantity
     flags = []
@@ -22,16 +22,14 @@ module Flaggable
         elsif interval.range_high_value && (...interval.range_high_value).cover?(num)
           flags << "LL"
         end
-      else
-        if interval.interpretation
-          flags << interval.interpretation.flag if interval.range.cover?(num)
-        elsif interval.range.cover?(num)
-          flags << "N"
-        elsif interval.range_high_value && (interval.range_high_value..).cover?(num)
-          flags << "H"
-        elsif interval.range_low_value && (...interval.range_low_value).cover?(num)
-          flags << "L"
-        end
+      elsif interval.interpretation
+        flags << interval.interpretation.flag if interval.range.cover?(num)
+      elsif interval.range.cover?(num)
+        flags << "N"
+      elsif interval.range_high_value && (interval.range_high_value..).cover?(num)
+        flags << "H"
+      elsif interval.range_low_value && (...interval.range_low_value).cover?(num)
+        flags << "L"
       end
     end
 

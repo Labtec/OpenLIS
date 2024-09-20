@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuotesController < ApplicationController
   before_action :set_departments, only: %i[new create edit update]
   before_action :set_panels, only: %i[new create edit update]
@@ -67,7 +69,7 @@ class QuotesController < ApplicationController
       flash[:error] = t("flash.quote.approve_error")
       redirect_to quote_url(@quote), status: :unprocessable_content
     end
-  rescue
+  rescue StandardError
     flash[:error] = t("flash.quote.approve_error")
     redirect_to quote_url(@quote), status: :unprocessable_content
   end

@@ -15,7 +15,7 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     add_column :observations, :status, :observation_status
     add_column :observations, :data_absent_reason, :data_absent_reason
 
-    execute <<-SQL
+    execute <<-SQL.squish
       UPDATE observations SET status = 'registered';
       UPDATE accessions SET status = 'registered';
     SQL
@@ -28,7 +28,7 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     remove_column :observations, :status
     remove_column :observations, :data_absent_reason
 
-    execute <<-SQL
+    execute <<-SQL.squish
       DROP TYPE data_absent_reason;
       DROP TYPE diagnostic_report_status;
       DROP TYPE observation_status;
@@ -38,23 +38,23 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
   private
 
   def populate_status_column
-    puts 'Updating observations'
+    Rails.logger.debug "Updating observations"
 
     ActiveRecord::Base.transaction do
       cancelled_observations.find_each do |observation|
         observation.not_performed!
-        observation.update_columns(status: 'cancelled')
-        print '.'
+        observation.update_columns(status: "cancelled")
+        Rails.logger.debug "."
       end
 
       final_observations.find_each do |observation|
-        observation.update_columns(status: 'final')
-        print '.'
+        observation.update_columns(status: "final")
+        Rails.logger.debug "."
       end
 
       preliminary_observations.find_each do |observation|
-        observation.update_columns(status: 'preliminary')
-        print '.'
+        observation.update_columns(status: "preliminary")
+        Rails.logger.debug "."
       end
 
       derived_observations
@@ -63,27 +63,27 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     final_accessions = Accession.where.not(reported_at: nil)
     partial_accessions = Accession.includes(:results).where(reported_at: nil)
 
-    puts 'Updating diagnostic reports'
+    Rails.logger.debug "Updating diagnostic reports"
 
     ActiveRecord::Base.transaction do
-      puts 'Updating final diagnostic reports'
+      Rails.logger.debug "Updating final diagnostic reports"
       final_accessions.find_each do |accession|
-        accession.update_columns(status: 'final')
-        print '.'
+        accession.update_columns(status: "final")
+        Rails.logger.debug "."
       end
 
-      puts 'Updating partial/preliminary diagnostic reports'
+      Rails.logger.debug "Updating partial/preliminary diagnostic reports"
       partial_accessions.find_each do |accession|
-        if accession.results.map(&:status).any? 'registered'
-          accession.update_columns(status: 'partial')
+        if accession.results.map(&:status).any? "registered"
+          accession.update_columns(status: "partial")
         else
-          accession.update_columns(status: 'preliminary')
+          accession.update_columns(status: "preliminary")
         end
-        print '.'
+        Rails.logger.debug "."
       end
     end
 
-    puts ' Done!'
+    Rails.logger.debug " Done!"
   end
 
   def derived_observations
@@ -92,17 +92,15 @@ class AddStatusColumn < ActiveRecord::Migration[6.0]
     observations.find_each do |observation|
       if observation.derived_value
         if observation.accession.reported_at
-          observation.update_columns(status: 'final')
+          observation.update_columns(status: "final")
         else
-          observation.update_columns(status: 'preliminary')
+          observation.update_columns(status: "preliminary")
         end
-      else
-        if observation.accession.reported_at
-          observation.not_performed!
-          observation.update_columns(status: 'cancelled')
-        end
+      elsif observation.accession.reported_at
+        observation.not_performed!
+        observation.update_columns(status: "cancelled")
       end
-      print '.'
+      Rails.logger.debug "."
     end
   end
 

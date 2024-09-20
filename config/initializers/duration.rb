@@ -62,11 +62,11 @@ module ActiveSupport
           days.days
         elsif age.parts[:years].nil? # age < 1.year
           weeks = days / 7
-          days = days % 7
+          days %= 7
 
           weeks.weeks + days.days
         elsif age.parts[:years] == 1 # age < 2.years
-          months = age.parts[:years].to_i * 12 + age.parts[:months].to_i
+          months = (age.parts[:years].to_i * 12) + age.parts[:months].to_i
           days = age.parts[:days].to_i
 
           months.months + days.days

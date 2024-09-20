@@ -70,7 +70,7 @@ class Accession < ApplicationRecord
     if name.blank?
       self.doctor_id = nil
     else
-      self.doctor = Doctor.where(name: name).first_or_create
+      self.doctor = Doctor.where(name:).first_or_create
     end
   end
 
@@ -132,8 +132,8 @@ class Accession < ApplicationRecord
   end
 
   def at_least_one_panel_or_test_selected
-    if panel_ids.blank? && lab_test_ids.blank?
-      errors.add(:base, I18n.t("flash.accessions.at_least_one_panel_or_test_selected"))
-    end
+    return unless panel_ids.blank? && lab_test_ids.blank?
+
+    errors.add(:base, I18n.t("flash.accessions.at_least_one_panel_or_test_selected"))
   end
 end

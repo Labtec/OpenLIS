@@ -31,7 +31,7 @@ module QuotesHelper
   def email_quote(quote, email)
     resend = quote.emailed_patient_at?
     email_quote_link = resend ? t(".emailed_quote") : t(".email_quote")
-    email_quote_confirm = resend ? t(".confirm_emailed", email: email) : t(".confirm_email", email: email)
+    email_quote_confirm = resend ? t(".confirm_emailed", email:) : t(".confirm_email", email:)
     button_to email_quote_link, email_quote_path(quote),
               method: :put, form: { data: { turbo_method: :put, turbo_confirm: email_quote_confirm } }
   end

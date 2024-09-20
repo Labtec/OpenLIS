@@ -135,10 +135,10 @@ class LabReport < Prawn::Document
     column_3_width = column_range_symbol_width
     column_4_width = column_right_range_width
     page_number_height = font_size - 0.25
-    footer_height = line_height * 3 + PADDING
+    footer_height = (line_height * 3) + PADDING
     signature_spacing = line_height * 3
     signature_line = 180
-    signature_block_height = signature_spacing + line_height * 3 + PADDING
+    signature_block_height = signature_spacing + (line_height * 3) + PADDING
     page.margins[:top] = top_margin + LOGO_HEIGHT + header_height
 
     ##
@@ -188,10 +188,10 @@ class LabReport < Prawn::Document
 
         if result.normal?
           cell_col0 = make_cell content: test_name_and_loinc(result), inline_format: true, padding: [ ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING ], borders: [ :bottom ], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
-          cell_col1 = make_cell content: format_value(result).gsub(/</, "&lt; ").gsub(/&lt; i/, "<i").gsub(/&lt; s/, "<s").gsub(%r{&lt; /}, "</"), inline_format: true, padding: [ ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING ], borders: [ :bottom ], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
+          cell_col1 = make_cell content: format_value(result).gsub("<", "&lt; ").gsub("&lt; i", "<i").gsub("&lt; s", "<s").gsub(%r{&lt; /}, "</"), inline_format: true, padding: [ ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING ], borders: [ :bottom ], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
         else
           cell_col0 = make_cell content: test_name_and_loinc(result), background_color: colors_highlight_gray, inline_format: true, padding: [ ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING ], borders: [ :bottom ], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
-          cell_col1 = make_cell content: format_value(result).gsub(/</, "&lt; ").gsub(/&lt; i/, "<i").gsub(/&lt; s/, "<s").gsub(%r{&lt; /}, "</"), background_color: colors_highlight_gray, inline_format: true, padding: [ ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING ], borders: [ :bottom ], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
+          cell_col1 = make_cell content: format_value(result).gsub("<", "&lt; ").gsub("&lt; i", "<i").gsub("&lt; s", "<s").gsub(%r{&lt; /}, "</"), background_color: colors_highlight_gray, inline_format: true, padding: [ ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING ], borders: [ :bottom ], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
         end
         cell_col2 = make_cell content: display_format_units(result), padding: [ ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING ], borders: [ :bottom ], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
         cell_col3 = make_cell content: flag_name(result), font_style: :bold, text_color: flag_color[flag_color(result.interpretation).to_sym], padding: [ ROW_VERTICAL_PADDING, PADDING, ROW_VERTICAL_PADDING, PADDING ], borders: [ :bottom ], border_bottom_color: colors_light_gray, border_bottom_width: LIGHT_RULE_WIDTH
@@ -291,7 +291,7 @@ class LabReport < Prawn::Document
             text t("results.index.reviewed_by"), align: :right
           end
         end
-        bounding_box([ bounds.width / 2 + LINE_PADDING, cursor ], width: signature_line, height: 2 * line_height + PADDING) do
+        bounding_box([ (bounds.width / 2) + LINE_PADDING, cursor ], width: signature_line, height: (2 * line_height) + PADDING) do
           line_width(LIGHT_RULE_WIDTH)
           stroke_horizontal_rule
           line_width(NORMAL_RULE_WIDTH)
@@ -303,7 +303,7 @@ class LabReport < Prawn::Document
         end
       end
     elsif @accession.reported_at
-      bounding_box([ bounds.left + SIGNATURE_BLOCK_SHIM, page_bottom + FOOTER_MARGIN_BOTTOM + footer_height * 2 / 3 + LIGHT_RULE_WIDTH ], width: COLUMN_0_WIDTH, height: line_height) do
+      bounding_box([ bounds.left + SIGNATURE_BLOCK_SHIM, page_bottom + FOOTER_MARGIN_BOTTOM + (footer_height * 2 / 3) + LIGHT_RULE_WIDTH ], width: COLUMN_0_WIDTH, height: line_height) do
         pad_top LINE_PADDING do
           text t("results.index.reviewed_by"), align: :right
         end
@@ -383,9 +383,9 @@ class LabReport < Prawn::Document
     barcode = Barby::QrCode.new(barcode_data)
     shim = (BARCODE_SMART_MAX - barcode.size) * BARCODE_SMART_MULTIPLIER
 
-    bounding_box([ bounds.width / 2 - BARCODE_SIZE_SMART / 2, cursor - line_height * 2 - PADDING ], width: BARCODE_SIZE_SMART, height: BARCODE_SIZE_SMART + LOGO_SMART_HEIGHT + LINE_PADDING) do
+    bounding_box([ (bounds.width / 2) - (BARCODE_SIZE_SMART / 2), cursor - (line_height * 2) - PADDING ], width: BARCODE_SIZE_SMART, height: BARCODE_SIZE_SMART + LOGO_SMART_HEIGHT + LINE_PADDING) do
       indent shim do
-        bounding_box([ bounds.left, bounds.top - LINE_PADDING * shim ], width: bounds.width - shim, height: LOGO_SMART_HEIGHT) do
+        bounding_box([ bounds.left, bounds.top - (LINE_PADDING * shim) ], width: bounds.width - shim, height: LOGO_SMART_HEIGHT) do
           text "SMART<sup>®</sup> Health Card", size: 7, style: :bold, valign: :bottom, inline_format: true
           svg File.read("app/assets/images/logo_smart.svg"), height: LOGO_SMART_HEIGHT - LINE_PADDING, vposition: :bottom, position: :right, color_mode: :cmyk
         end
@@ -511,7 +511,7 @@ class LabReport < Prawn::Document
           text t("results.index.#{@patient.identifier_type}") if @patient.identifier_type
         end
       end
-      bounding_box([ bounds.left, bounds.top - 2 * row_height ], width: DEMOGRAPHICS_WIDTH1 + DEMOGRAPHICS_WIDTH2, height: row_height) do
+      bounding_box([ bounds.left, bounds.top - (2 * row_height) ], width: DEMOGRAPHICS_WIDTH1 + DEMOGRAPHICS_WIDTH2, height: row_height) do
         indent PADDING do
           if @accession.doctor
             text "#{t('results.index.ordered_by')}  #{@view.organization_or_practitioner(@accession.doctor)}", overflow: :shrink_to_fit
@@ -541,7 +541,7 @@ class LabReport < Prawn::Document
       bounding_box([ DEMOGRAPHICS_STOP2, bounds.top - row_height ], width: demographics_width3, height: row_height) do
         text t("results.index.age")
       end
-      bounding_box([ DEMOGRAPHICS_STOP2, bounds.top - 2 * row_height ], width: demographics_width3, height: row_height) do
+      bounding_box([ DEMOGRAPHICS_STOP2, bounds.top - (2 * row_height) ], width: demographics_width3, height: row_height) do
         text t("results.index.gender")
       end
       if @patient.animal_type
@@ -552,7 +552,7 @@ class LabReport < Prawn::Document
       bounding_box([ demographics_stop3, bounds.top - row_height ], width: DEMOGRAPHICS_WIDTH4, height: row_height) do
         text display_pediatric_age(@accession.subject_pediatric_age)
       end
-      bounding_box([ demographics_stop3, bounds.top - 2 * row_height ], width: DEMOGRAPHICS_WIDTH4, height: row_height) do
+      bounding_box([ demographics_stop3, bounds.top - (2 * row_height) ], width: DEMOGRAPHICS_WIDTH4, height: row_height) do
         text gender(@patient.gender)
       end
 
@@ -564,7 +564,7 @@ class LabReport < Prawn::Document
       bounding_box([ demographics_stop4, bounds.top - row_height ], width: DEMOGRAPHICS_WIDTH5, height: row_height) do
         text t("results.index.drawn_at")
       end
-      bounding_box([ demographics_stop4, bounds.top - 2 * row_height ], width: DEMOGRAPHICS_WIDTH5, height: row_height) do
+      bounding_box([ demographics_stop4, bounds.top - (2 * row_height) ], width: DEMOGRAPHICS_WIDTH5, height: row_height) do
         text t("results.index.received_at")
       end
       bounding_box([ demographics_stop5, bounds.top ], width: DEMOGRAPHICS_WIDTH6, height: row_height) do
@@ -573,7 +573,7 @@ class LabReport < Prawn::Document
       bounding_box([ demographics_stop5, bounds.top - row_height ], width: DEMOGRAPHICS_WIDTH6, height: row_height) do
         text l(@accession.drawn_at, format: :long)
       end
-      bounding_box([ demographics_stop5, bounds.top - 2 * row_height ], width: DEMOGRAPHICS_WIDTH6, height: row_height) do
+      bounding_box([ demographics_stop5, bounds.top - (2 * row_height) ], width: DEMOGRAPHICS_WIDTH6, height: row_height) do
         text l(@accession.received_at, format: :long)
       end
     end

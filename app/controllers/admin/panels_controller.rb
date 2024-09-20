@@ -5,7 +5,7 @@ module Admin
     before_action :set_panel, only: %i[show edit update destroy]
 
     def index
-      @panels = Panel.all.includes(:lab_tests)
+      @panels = Panel.includes(:lab_tests)
     end
 
     def show; end

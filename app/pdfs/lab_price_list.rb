@@ -109,7 +109,7 @@ class LabPriceList < Prawn::Document
     # window_height = 36 * 2.25
     # window_width = 36 * 9
     envelope_adjustment_height = 34
-    header_height = logo_height + envelope_adjustment_height + patient_demographics_height + title_row_height + padding * 2.5
+    header_height = logo_height + envelope_adjustment_height + patient_demographics_height + title_row_height + (padding * 2.5)
     # signature_block_height = signature_spacing + line_height * 2 + padding
     page.margins[:top] = header_height + top_margin
 

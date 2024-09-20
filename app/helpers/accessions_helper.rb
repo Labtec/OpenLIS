@@ -3,13 +3,13 @@
 module AccessionsHelper
   def email_report(recipient, diagnostic_report, email)
     resend = case recipient
-    when :practitioner
+             when :practitioner
                diagnostic_report.emailed_doctor_at?
-    when :patient
+             when :patient
                diagnostic_report.emailed_patient_at?
-    end
+             end
     email_report_link = resend ? t(".emailed_report") : t(".email_report")
-    email_report_confirm = resend ? t(".confirm_emailed", email: email) : t(".confirm_email", email: email)
+    email_report_confirm = resend ? t(".confirm_emailed", email:) : t(".confirm_email", email:)
     button_to email_report_link, email_diagnostic_report_path(diagnostic_report, to: recipient),
               method: :put, form: { data: { turbo_method: :put, turbo_confirm: email_report_confirm } }
   end

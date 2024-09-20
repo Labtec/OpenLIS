@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module QuoteVersionConcerns
   extend ActiveSupport::Concern
 
@@ -29,7 +31,7 @@ module QuoteVersionConcerns
     def last_version?
       return true unless parent_quote
 
-      parent_quote.versions.last == self ? true : false
+      parent_quote.versions.last == self
     end
 
     def last_version_number
@@ -40,14 +42,10 @@ module QuoteVersionConcerns
       if versions.empty?
         return unless parent_quote
 
-        parent_quote.versions.each do |quote_version|
-          quote_version.approved!
-        end
+        parent_quote.versions.each(&:approved!)
         parent_quote.approved!
       else
-        versions.each do |quote_version|
-          quote_version.approved!
-        end
+        versions.each(&:approved!)
       end
     end
 

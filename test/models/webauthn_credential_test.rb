@@ -29,14 +29,14 @@ class WebauthnCredentialTest < ActiveSupport::TestCase
 
   test "uniqueness of external_id" do
     external_id = @webauthn_credential.external_id
-    webauthn_credential = WebauthnCredential.create(external_id: external_id)
+    webauthn_credential = WebauthnCredential.create(external_id:)
     assert webauthn_credential.errors.added?(:external_id, :taken, value: external_id)
   end
 
   test "uniqueness of nickname within user" do
     nickname = @webauthn_credential.nickname
     user = @webauthn_credential.user
-    webauthn_credential = WebauthnCredential.create(user: user, nickname: nickname)
+    webauthn_credential = WebauthnCredential.create(user:, nickname:)
     assert webauthn_credential.errors.added?(:nickname, :taken, value: nickname)
   end
 
@@ -48,6 +48,6 @@ class WebauthnCredentialTest < ActiveSupport::TestCase
     assert @webauthn_credential.errors.added?(:sign_count, :greater_than_or_equal_to, value: -1, count: 0)
 
     @webauthn_credential.update(sign_count: 2**32)
-    assert @webauthn_credential.errors.added?(:sign_count, :less_than_or_equal_to, value: 2**32, count: 2**32 - 1)
+    assert @webauthn_credential.errors.added?(:sign_count, :less_than_or_equal_to, value: 2**32, count: (2**32) - 1)
   end
 end

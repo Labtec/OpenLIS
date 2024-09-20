@@ -8,9 +8,9 @@ module FHIRable
 
     def fhirable_diagnostic_report
       dr = FHIR::DiagnosticReport.new(
-        id: id,
+        id:,
         # 'basedOn': fhirable_reference(service_request),
-        status: status,
+        status:,
         category: fhirable_diagnostic_report_categories,
         # XXX code is mandatory
         # This should be the LOINC code for the panel/observation.
@@ -70,7 +70,7 @@ module FHIRable
     end
 
     def fhirable_diagnostic_report_categories_codings(code)
-      FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/v2-0074", code: code)
+      FHIR::Coding.new(system: "http://terminology.hl7.org/CodeSystem/v2-0074", code:)
     end
 
     def fhirable_diagnostic_report_performers
@@ -83,11 +83,9 @@ module FHIRable
     end
 
     def fhirable_diagnostic_report_results(results)
-      report_results = []
-      results.each do |result|
-        report_results << FHIR.from_contents(result.to_json)
+      results.map do |result|
+        FHIR.from_contents(result.to_json)
       end
-      report_results
     end
 
     def fhirable_diagnostic_report_presented_form

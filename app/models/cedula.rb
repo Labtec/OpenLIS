@@ -10,7 +10,7 @@ class Cedula
 
     split_ruc = @ruc.split("-")
 
-    return if (split_ruc.size == 4 && !%w[NT AV PI].include?(split_ruc[1])) ||
+    return if (split_ruc.size == 4 && %w[NT AV PI].exclude?(split_ruc[1])) ||
               split_ruc.size < 3 ||
               split_ruc.size > 5
 
@@ -32,7 +32,7 @@ class Cedula
 
   def calculate_dv(padded_ruc)
     # modulo 11 check digit
-    weight = padded_ruc.split("").map(&:to_i)
+    weight = padded_ruc.chars.map(&:to_i)
                        .zip(Array(2..padded_ruc.size + 1).reverse)
                        .map { |x, y| x * y }
 
@@ -46,25 +46,25 @@ class Cedula
   def normalize_ruc(split_ruc)
     if split_ruc.size == 4
       split_ruc[0] = case split_ruc[1]
-      when "NT" # Numero Tributario
+                     when "NT" # Numero Tributario
                        "#{split_ruc[0]}43"
-      when "AV" # Antes de la Vigencia
+                     when "AV" # Antes de la Vigencia
                        "#{split_ruc[0]}15"
-      when "PI" # Panameno Indigena
+                     when "PI" # Panameno Indigena
                        "#{split_ruc[0]}79"
-      end
+                     end
       [ split_ruc[0], split_ruc[2], split_ruc[3] ]
     else
       split_ruc[0] = case split_ruc[0]
-      when "E" # Extranjero
+                     when "E" # Extranjero
                        "50"
-      when "N" # Naturalizado
+                     when "N" # Naturalizado
                        "40"
-      when "PE" # Panameno Extranjero
+                     when "PE" # Panameno Extranjero
                        "75"
-      else
+                     else
                        "#{split_ruc[0]}00"
-      end
+                     end
       split_ruc
     end
   end
