@@ -7,6 +7,8 @@ ruby "~> 3.3.0"
 
 gem "rails", "7.2.1"
 
+gem "ostruct"
+
 gem "aasm"
 gem "acts_as_list"
 gem "auto_strip_attributes"

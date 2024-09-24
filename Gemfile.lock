@@ -503,6 +503,7 @@ DEPENDENCIES
   kaminari
   mutex_m
   nokogiri
+  ostruct
   pdf-core!
   pg
   pg_search
