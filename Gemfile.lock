@@ -201,7 +201,7 @@ GEM
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
-    importmap-rails (2.0.1)
+    importmap-rails (2.0.2)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
@@ -219,7 +219,7 @@ GEM
     jquery-ui-rails (7.0.0)
       railties (>= 3.2.16)
     json (2.7.2)
-    jwt (2.9.1)
+    jwt (2.9.3)
       base64
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -252,7 +252,7 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
     minitest (5.25.1)
-    msgpack (1.7.2)
+    msgpack (1.7.3)
     mutex_m (0.2.0)
     net-imap (0.4.16)
       date
@@ -267,7 +267,7 @@ GEM
       net-ssh (>= 5.0.0, < 8.0.0)
     net-smtp (0.5.0)
       net-protocol
-    net-ssh (7.2.3)
+    net-ssh (7.3.0)
     nio4r (2.7.3)
     nokogiri (1.16.7)
       mini_portile2 (~> 2.8.2)
