@@ -493,7 +493,7 @@ DEPENDENCIES
   drb
   ed25519
   fast_blank
-  fhir_models
+  fhir_models (~> 4.3)
   flamegraph
   health_cards!
   i18n-tasks
