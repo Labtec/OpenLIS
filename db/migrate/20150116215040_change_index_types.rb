@@ -9,7 +9,7 @@ class ChangeIndexTypes < ActiveRecord::Migration[5.0]
 
       CREATE OR REPLACE FUNCTION my_unaccent(varchar)
         RETURNS varchar
-        AS $$ select unaccent('unaccent', $1::text); $$
+        AS $$ SELECT public.unaccent('public.unaccent', $1::text); $$
         LANGUAGE 'sql'
         IMMUTABLE;
 
