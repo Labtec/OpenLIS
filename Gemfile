@@ -41,6 +41,7 @@ gem "prawn-table"
 gem "puma", ">= 5.0"
 gem "rails-html-sanitizer"
 gem "rails-i18n"
+gem "redis"
 gem "sassc-rails" # TODO
 gem "semacode", github: "Labtec/semacode", branch: "barcodes"
 gem "sprockets-rails"
