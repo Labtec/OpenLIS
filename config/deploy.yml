@@ -1,0 +1,81 @@
+service: open-lis
+
+image: labtec/open-lis
+
+servers:
+  web:
+    - 192.0.2.1
+
+proxy:
+  ssl: true
+  host: openlis.example.com
+  app_port: 3000 # XXX Cange to 80 or remove once migrated to thruster
+
+registry:
+  server: ghcr.io
+  username: labtec
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch:
+    - arm64
+
+env:
+  clear:
+    DB_HOST: open-lis-db
+    POSTGRES_USER: open_lis
+  secret:
+    - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
+
+ssh:
+  user: ec2-user
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole"
+
+# volumes:
+#   - "open_lis_storage:/app/storage"
+
+asset_path: /app/public/assets
+
+accessories:
+  db:
+    image: postgres:17.0
+    host: 192.0.2.2
+    port: 5432 # XXX docker-only
+    env:
+      clear:
+        DB_HOST: open-lis-db
+        POSTGRES_DB: open_lis_production
+        POSTGRES_USER: open_lis
+      secret:
+        - POSTGRES_PASSWORD
+    files:
+      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+    directories:
+      - /db/postgres/data17:/var/lib/postgresql/data
+
+  backups:
+    image: labtec/backups:17
+    host: 192.0.2.2
+    env:
+      clear:
+        SCHEDULE: "@daily"
+        BACKUP_KEEP_DAYS: 7
+        BACKUP_KEEP_WEEKS: 5
+        BACKUP_KEEP_MONTHS: 2
+        DB_HOST: open-lis-db
+        POSTGRES_DB: open_lis_production
+        POSTGRES_USER: open_lis
+        S3_BUCKET: open-lis
+        S3_PREFIX: backups
+      secret:
+        - POSTGRES_PASSWORD
+        - S3_REGION
+        - S3_ACCESS_KEY_ID
+        - S3_SECRET_ACCESS_KEY
