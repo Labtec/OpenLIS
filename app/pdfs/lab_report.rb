@@ -396,12 +396,12 @@ class LabReport < Prawn::Document
   end
 
   def barcode_height_dm
-    barcode_width_dm + HEADING_PADDING
+    barcode_width_dm + HEADING_PADDING + 1
   end
 
   def barcode_width_dm
     length = @accession.id.to_s.length
-    (length + 7) * BARCODE_XDIM_DM
+    (length + PADDING) * BARCODE_XDIM_DM
   end
 
   def colors_black
