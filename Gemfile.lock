@@ -110,7 +110,7 @@ GEM
     auto_strip_attributes (2.6.0)
       activerecord (>= 4.0)
     awrence (1.2.1)
-    barby (0.6.9)
+    barby (0.7.0)
     base64 (0.2.0)
     bcp47 (0.3.3)
       i18n
