@@ -6,14 +6,6 @@ GIT
     pdf-core (0.10.0)
 
 GIT
-  remote: https://github.com/Labtec/semacode.git
-  revision: d4431b70655935214ac83e3eb7647d2953282442
-  branch: barcodes
-  specs:
-    semacode (0.7.6)
-      rake (>= 0.7.0)
-
-GIT
   remote: https://github.com/jlduran/health_cards.git
   revision: a6e4a37cb2d99f1a447532454b5b57487b56a3f9
   branch: development
@@ -110,7 +102,7 @@ GEM
     auto_strip_attributes (2.6.0)
       activerecord (>= 4.0)
     awrence (1.2.1)
-    barby (0.6.9)
+    barby (0.7.0)
     base64 (0.2.0)
     bcp47 (0.3.3)
       i18n
@@ -174,6 +166,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dmtx (0.2.0)
+      builder
+      chunky_png
     drb (2.2.1)
     ed25519 (1.3.0)
     erubi (1.13.0)
@@ -490,6 +485,7 @@ DEPENDENCIES
   dalli
   debug
   devise
+  dmtx
   drb
   ed25519
   fast_blank
@@ -520,7 +516,6 @@ DEPENDENCIES
   rubocop-rails-omakase
   sassc-rails
   selenium-webdriver
-  semacode!
   sprockets-rails
   stackprof
   stimulus-rails
