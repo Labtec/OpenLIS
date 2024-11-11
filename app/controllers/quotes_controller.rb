@@ -124,7 +124,7 @@ class QuotesController < ApplicationController
   end
 
   def quote_params
-    params.permit(quote: [
+    params.expect(quote: [
       :patient_id,
       :doctor_name,
       :note,
@@ -132,7 +132,7 @@ class QuotesController < ApplicationController
       :shipping_and_handling,
       { lab_test_ids: [] },
       panel_ids: []
-    ]).require(:quote)
+    ])
   end
 
   def page
