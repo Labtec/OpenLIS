@@ -48,7 +48,7 @@ module Admin
     end
 
     def qualified_interval_params
-      params.permit(qualified_interval: [
+      params.expect(qualified_interval: [
         :category,
         :range_low_value,
         :range_high_value,
@@ -62,7 +62,7 @@ module Admin
         :animal_type,
         :interpretation_id,
         :lab_test_id
-      ]).require(:qualified_interval)
+      ])
     end
   end
 end

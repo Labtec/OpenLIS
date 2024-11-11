@@ -49,11 +49,11 @@ module Admin
     end
 
     def department_params
-      params.permit(department: [
+      params.expect(department: [
         :code,
         :loinc_class,
         :name
-      ]).require(:department)
+      ])
     end
   end
 end
