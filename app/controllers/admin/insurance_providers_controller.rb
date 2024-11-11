@@ -50,10 +50,10 @@ module Admin
     end
 
     def insurance_provider_params
-      params.permit(insurance_provider: [
+      params.expect(insurance_provider: [
         :name,
         :price_list_id
-      ]).require(:insurance_provider)
+      ])
     end
   end
 end

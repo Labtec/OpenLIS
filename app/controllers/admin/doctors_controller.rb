@@ -48,12 +48,12 @@ module Admin
     end
 
     def doctor_params
-      params.permit(doctor: [
+      params.expect(doctor: [
         :email,
         :name,
         :gender,
         :organization
-      ]).require(:doctor)
+      ])
     end
   end
 end

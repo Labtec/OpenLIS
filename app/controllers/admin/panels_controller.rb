@@ -50,7 +50,7 @@ module Admin
     end
 
     def panel_params
-      params.permit(panel: [
+      params.expect(panel: [
         :code,
         :name,
         :description,
@@ -61,7 +61,7 @@ module Admin
         :patient_preparation,
         :status,
         lab_test_ids: []
-      ]).require(:panel)
+      ])
     end
   end
 end
