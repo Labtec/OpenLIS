@@ -249,7 +249,7 @@ GEM
     mini_portile2 (2.8.8)
     minitest (5.25.1)
     msgpack (1.7.5)
-    mutex_m (0.2.0)
+    mutex_m (0.3.0)
     net-imap (0.5.1)
       date
       net-protocol
@@ -281,7 +281,7 @@ GEM
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
-    phonelib (0.9.3)
+    phonelib (0.10.1)
     prawn (2.5.0)
       matrix (~> 0.4)
       pdf-core (~> 0.10.0)
@@ -342,8 +342,8 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
-    rb_sys (0.9.102)
-    rdoc (6.7.0)
+    rb_sys (0.9.103)
+    rdoc (6.8.1)
       psych (>= 4.0.0)
     regexp_parser (2.9.2)
     reline (0.5.11)
