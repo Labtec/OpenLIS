@@ -152,6 +152,11 @@ module Derivable
       pr = result_value_quantity_for "PR"
       np = result_value_quantity_for "NP"
       100 - (pr + np)
+    when "IM2"
+      rprog = result_value_quantity_for "RPROG"
+      sprog = result_value_quantity_for "SPROG"
+      np = result_value_quantity_for "NP"
+      100 - (rprog + sprog + np)
     when "KLRS"
       lflcs = result_value_quantity_for "LFLCS"
       kflcs = result_value_quantity_for "KFLCS"
@@ -210,6 +215,15 @@ module Derivable
       pr = result_value_quantity_for "PR"
       np = result_value_quantity_for "NP"
       pr + np
+    when "TMOTILE2"
+      rprog = result_value_quantity_for "RPROG"
+      sprog = result_value_quantity_for "SPROG"
+      np = result_value_quantity_for "NP"
+      rprog + sprog + np
+    when "TPROG"
+      rprog = result_value_quantity_for "RPROG"
+      sprog = result_value_quantity_for "SPROG"
+      rprog + sprog
     when "TPU12H"
       uprot12h = result_value_quantity_for "UPROT12H"
       uvol12h = result_value_quantity_for "UVOL12H"
