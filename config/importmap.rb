@@ -13,7 +13,7 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 # WebAuthn
 pin "@github/webauthn-json", to: "@github--webauthn-json.js" # @2.1.1
 pin_all_from "app/javascript/webauthn", under: "webauthn"
-pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.9
+pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.11
 
 # Lab Tests:
 # XXX task-lists-element is better suited for this project,
@@ -21,7 +21,7 @@ pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.9
 # - when reloaded fast enough, more handle elements get appended
 # - computation bug when moving the first element
 # pin "@github/task-lists-element", to: "@github--task-lists-element.js" # @2.0.5
-pin "sortablejs" # @1.15.2
+pin "sortablejs" # @1.15.6
 
 # XXXJL TODO
 # Notes:
