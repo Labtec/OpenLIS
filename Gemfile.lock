@@ -216,7 +216,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (7.0.0)
       railties (>= 3.2.16)
-    json (2.9.1)
+    json (2.10.1)
     jwt (2.10.1)
       base64
     kaminari (1.2.2)
@@ -283,7 +283,7 @@ GEM
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
-    phonelib (0.10.3)
+    phonelib (0.10.4)
     pp (0.6.2)
       prettyprint
     prawn (2.5.0)
