@@ -36,11 +36,12 @@ module Admin
     end
 
     def update
-      if @price.update(price_params)
-        redirect_to polymorphic_url([ :admin, @price.priceable ]), notice: "Price was successfully updated."
-      else
-        render :edit, status: :unprocessable_content
-      end
+      redirect_to admin_lab_tests_url, alert: "Please create a new price list."
+      # if @price.update(price_params)
+      #   redirect_to polymorphic_url([ :admin, @price.priceable ]), notice: "Price was successfully updated."
+      # else
+      #   render :edit, status: :unprocessable_content
+      # end
     end
 
     def destroy
