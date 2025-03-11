@@ -153,7 +153,7 @@ GEM
       cbor (~> 0.5.9)
       openssl-signature_algorithm (~> 1.0)
     crass (1.0.6)
-    css_parser (1.21.0)
+    css_parser (1.21.1)
       addressable
     csv (3.3.2)
     dalli (3.2.8)
@@ -539,4 +539,4 @@ RUBY VERSION
    ruby 3.4.1p0
 
 BUNDLED WITH
-   2.6.4
+   2.6.5
