@@ -10,10 +10,7 @@ class QuotesMailer < ApplicationMailer
   private
 
   def serial_number
-    if @quote.version_number
-      "#{@quote.serial_number}-#{@quote.version_number}"
-    else
-      @quote.serial_number.to_s
-    end
+    "#{@quote.serial_number}#{t('quotes.quote.version',
+      version_number: @quote.version_number) if @quote.version_number}"
   end
 end
