@@ -15,7 +15,9 @@ class QuotesController < ApplicationController
       format.pdf do
         signature = ActiveRecord::Type::Boolean.new.cast(params[:signature])
         pdf = PDFQuote.new(@quote, signature, view_context)
-        send_data(pdf.render, filename: "#{@quote.serial_number}.pdf",
+        serial_number = "#{@quote.serial_number}#{t('quotes.quote.version',
+          version_number: @quote.version_number) if @quote.version_number}"
+        send_data(pdf.render, filename: "#{serial_number}.pdf",
                               type: "application/pdf", disposition: "inline")
       end
     end
