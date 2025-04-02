@@ -9,7 +9,7 @@ servers:
 proxy:
   ssl: true
   host: openlis.example.com
-  app_port: 3000 # XXX Cange to 80 or remove once migrated to thruster
+  app_port: 3000 # XXX Change to 80 or remove once migrated to thruster
 
 registry:
   server: ghcr.io
