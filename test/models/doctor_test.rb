@@ -28,8 +28,18 @@ class DoctorTest < ActiveSupport::TestCase
     assert_equal "Alice", doctor.name
   end
 
+  test "name contains weird extra spaces" do
+    doctor = Doctor.create(name: "\u200B Alice \u200B")
+    assert_equal "Alice", doctor.name
+  end
+
   test "no extra spaces between names" do
     doctor = Doctor.create(name: "Alice  Feelgood")
+    assert_equal "Alice Feelgood", doctor.name
+  end
+
+  test "no extra weird spaces between names" do
+    doctor = Doctor.create(name: "Alice\u180E Feelgood")
     assert_equal "Alice Feelgood", doctor.name
   end
 
