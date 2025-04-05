@@ -128,7 +128,7 @@ module FHIRable
 
     def lookup_interpretation(flag)
       index = ApplicationController.helpers.options_for_flag.flatten.index(flag)
-      ApplicationController.helpers.options_for_flag.flatten[index - 1]
+      ApplicationController.helpers.options_for_flag.flatten[index - 1] if index
     end
 
     def observation_reference_ranges
