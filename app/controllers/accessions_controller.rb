@@ -87,7 +87,20 @@ class AccessionsController < ApplicationController
   end
 
   def accession_params
-    params.require(:accession).permit(:drawn_at, :drawer_id, :received_at, :receiver_id, :doctor_name, :icd9, { lab_test_ids: [] }, :reporter_id, :reported_at, { results_attributes: %i[id lab_test_id lab_test_value_id value] }, { panel_ids: [] }, notes_attributes: %i[id content department_id])
+    params.permit(accession: [
+      :drawn_at,
+      :drawer_id,
+      :received_at,
+      :receiver_id,
+      :doctor_name,
+      :icd9,
+      :reporter_id,
+      :reported_at,
+      { results_attributes: %i[id lab_test_id lab_test_value_id value] },
+      { notes_attributes: %i[id content department_id] },
+      { lab_test_ids: [] },
+      panel_ids: []
+    ]).require(:accession)
   end
 
   def page

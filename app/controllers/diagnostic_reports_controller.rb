@@ -121,7 +121,10 @@ class DiagnosticReportsController < ApplicationController
   end
 
   def diagnostic_report_params
-    params.require(:accession).permit({ results_attributes: %i[id lab_test_value_id value] }, notes_attributes: %i[id content department_id])
+    params.permit(accession: [
+      { results_attributes: %i[id lab_test_value_id value] },
+      notes_attributes: %i[id content department_id]
+    ]).require(:accession)
   end
 
   def page

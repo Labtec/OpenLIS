@@ -48,7 +48,21 @@ module Admin
     end
 
     def qualified_interval_params
-      params.require(:qualified_interval).permit(:category, :range_low_value, :range_high_value, :context, :gender, :age_low, :age_high, :gestational_age_low, :gestational_age_high, :condition, :animal_type, :interpretation_id, :lab_test_id)
+      params.permit(qualified_interval: [
+        :category,
+        :range_low_value,
+        :range_high_value,
+        :context,
+        :gender,
+        :age_low,
+        :age_high,
+        :gestational_age_low,
+        :gestational_age_high,
+        :condition,
+        :animal_type,
+        :interpretation_id,
+        :lab_test_id
+      ]).require(:qualified_interval)
     end
   end
 end

@@ -50,7 +50,17 @@ module Admin
     end
 
     def panel_params
-      params.require(:panel).permit(:code, :name, :description, :procedure, :loinc, :fasting_status_duration_iso8601, :patient_preparation, :status, lab_test_ids: [])
+      params.permit(panel: [
+        :code,
+        :name,
+        :description,
+        :procedure,
+        :loinc,
+        :fasting_status_duration_iso8601,
+        :patient_preparation,
+        :status,
+        lab_test_ids: []
+      ]).require(:panel)
     end
   end
 end

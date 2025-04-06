@@ -18,6 +18,10 @@ class QuoteDetailsController < ApplicationController
   private
 
   def quote_params
-    params.require(:quote).permit({ line_items_attributes: %i[id quantity discount_value discount_unit] }, :note, :shipping_and_handling)
+    params.permit(quote: [
+      { line_items_attributes: %i[id quantity discount_value discount_unit] },
+      :note,
+      :shipping_and_handling
+    ]).require(:quote)
   end
 end
