@@ -56,7 +56,7 @@ module Admin
     end
 
     def lab_test_params
-      params.permit(lab_test: [
+      params.expect(lab_test: [
         :also_allow,
         :code,
         :name,
@@ -77,7 +77,7 @@ module Admin
         :patient_preparation,
         :status,
         lab_test_value_ids: []
-      ]).require(:lab_test)
+      ])
     end
 
     def insert_at_position(position)

@@ -48,14 +48,14 @@ module Admin
     end
 
     def lab_test_value_params
-      params.permit([
+      params.expect([
         :value,
         :flag,
         :loinc,
         :numeric,
         :note,
         :snomed
-      ]).require(:lab_test_value)
+      ])
     end
   end
 end

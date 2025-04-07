@@ -48,12 +48,12 @@ module Admin
     end
 
     def unit_params
-      params.permit(unit: [
+      params.expect(unit: [
         :conversion_factor,
         :expression,
         :si,
         :ucum
-      ]).require(:unit)
+      ])
     end
   end
 end
