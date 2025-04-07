@@ -99,7 +99,13 @@ module Admin
     end
 
     def claim_params
-      params.require(:claim).permit(:accession_id, :number, :external_number, :claimed_at, :insurance_provider_id)
+      params.permit(claim: [
+        :accession_id,
+        :number,
+        :external_number,
+        :claimed_at,
+        :insurance_provider_id
+      ]).require(:claim)
     end
   end
 end

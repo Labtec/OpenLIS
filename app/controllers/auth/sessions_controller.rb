@@ -53,7 +53,11 @@ module Auth
     end
 
     def user_params
-      params.require(:user).permit(:username, :password, credential: {})
+      params.require(:user).permit(
+        :username,
+        :password,
+        credential: {}
+      )
     end
 
     private

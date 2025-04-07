@@ -68,12 +68,28 @@ class PatientsController < ApplicationController
   end
 
   def patient_params
-    params.require(:patient).permit(
-      :given_name, :middle_name, :family_name, :family_name2, :partner_name,
-      :gender, :birthdate, :identifier, :email, :cellular, :phone, :deceased,
-      :animal_type, :insurance_provider_id, :policy_number, :identifier_type,
-      :address_province, :address_district, :address_corregimiento, :address_line
-    )
+    params.permit(patient: [
+      :given_name,
+      :middle_name,
+      :family_name,
+      :family_name2,
+      :partner_name,
+      :gender,
+      :birthdate,
+      :identifier,
+      :email,
+      :cellular,
+      :phone,
+      :deceased,
+      :animal_type,
+      :insurance_provider_id,
+      :policy_number,
+      :identifier_type,
+      :address_province,
+      :address_district,
+      :address_corregimiento,
+      :address_line
+    ]).require(:patient)
   end
 
   def page
