@@ -9,7 +9,7 @@ class AccessionsController < ApplicationController
   before_action :set_users, only: %i[new create edit update]
 
   def index
-    @accessions = Accession.includes(:patient, :drawer).queued.pending.page(page)
+    @accessions = Accession.includes(:patient, :drawer).queued.within_last_month.pending.page(page)
   end
 
   def new
