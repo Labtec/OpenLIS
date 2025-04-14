@@ -43,6 +43,7 @@ class Accession < ApplicationRecord
   scope :pending, -> { where(reported_at: nil) }
   scope :reported, -> { where.not(reported_at: nil) }
   scope :with_insurance_provider, -> { joins(:patient).where.not("patients.insurance_provider_id" => nil).ordered }
+  scope :within_last_month, -> { where("drawn_at > :last_month", last_month: 1.month.ago) }
   scope :within_claim_period, -> { where("drawn_at > :claim_period", claim_period: 8.months.ago) }
   scope :unclaimed, -> { eager_load(:claim).where(claims: { claimed_at: nil }).ordered }
   scope :claimable, -> { where.not(doctor_id: nil) }
