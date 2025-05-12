@@ -102,6 +102,12 @@ Rails.application.routes.draw do
     resources :prices
   end
 
+  namespace :fhir, format: :json do
+    get "Patient/:id", to: "patients#show", as: "patient"
+    get "DiagnosticReport/:id", to: "diagnostic_reports#show", as: "diagnostic_report"
+    get "Practitioner/:id", to: "doctors#show", as: "doctor"
+  end
+
   match "*unmatched_route",
         via: :all,
         to: "application#raise_not_found",
