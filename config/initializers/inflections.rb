@@ -17,6 +17,7 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym "OpenLIS"
   inflect.acronym "COVID"
+  inflect.acronym "FHIR"
   inflect.acronym "FHIRable"
   inflect.acronym "LOINC"
   inflect.acronym "PDF"

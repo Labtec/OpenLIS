@@ -16,6 +16,8 @@ module FHIRable
       case reference
       when *Accession
         "Specimen/#{reference.id}"
+      when *Doctor
+        "Practitioner/#{reference.uuid}"
       when *Patient
         "Patient/#{reference.uuid}"
       when *User

@@ -22,6 +22,7 @@ module FHIRable
         effectiveDateTime: drawn_at.utc.iso8601,
         issued: reported_at&.utc&.iso8601,
         performer: fhirable_diagnostic_report_performers,
+        'resultsInterpreter': fhirable_diagnostic_report_results_interpreters,
         specimen: fhirable_reference(self),
         result: fhirable_diagnostic_report_results(results),
         # 'conclusion':
@@ -80,6 +81,11 @@ module FHIRable
       performers << fhirable_reference(receiver) if receiver
       performers << fhirable_reference(reporter) if reporter
       performers.uniq
+    end
+
+    def fhirable_diagnostic_report_results_interpreters
+      interpreters = []
+      interpreters << fhirable_reference(doctor) if doctor
     end
 
     def fhirable_diagnostic_report_results(results)
