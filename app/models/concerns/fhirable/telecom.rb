@@ -12,6 +12,12 @@ module FHIRable
       ].compact
     end
 
+    def fhirable_practitioner_telecom
+      [
+        fhirable_practitioner_telecom_email
+      ]
+    end
+
     private
 
     def fhirable_telecom_cellular
@@ -29,6 +35,16 @@ module FHIRable
 
       {
         use: "home",
+        system: "email",
+        value: email
+      }
+    end
+
+    def fhirable_practitioner_telecom_email
+      return if email.blank?
+
+      {
+        use: "work",
         system: "email",
         value: email
       }
