@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Doctor < ApplicationRecord
+  include FHIRable::Practitioner
+
   GENDERS = %w[male female other unkwown].freeze
 
   has_many :accessions, dependent: :nullify

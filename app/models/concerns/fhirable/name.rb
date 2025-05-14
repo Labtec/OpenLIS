@@ -16,5 +16,27 @@ module FHIRable
         }
       ]
     end
+
+    def fhirable_practitioner_name
+      [
+        {
+          use: "usual",
+          text: name,
+          prefix: practitioner_prefix
+        }
+      ]
+    end
+
+    private
+
+    def practitioner_prefix
+      return if organization?
+
+      if gender == "female"
+        "Dra."
+      else
+        "Dr."
+      end
+    end
   end
 end

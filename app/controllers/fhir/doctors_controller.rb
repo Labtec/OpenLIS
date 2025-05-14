@@ -4,7 +4,6 @@ module FHIR
   class DoctorsController < BaseController
     before_action :set_doctor, only: %i[show]
 
-    # XXX not yet FHIR-compliant
     def show
       render json: @doctor
     end
