@@ -48,7 +48,7 @@ class Accession < ApplicationRecord
   scope :unclaimed, -> { eager_load(:claim).where(claims: { claimed_at: nil }).ordered }
   scope :claimable, -> { where.not(doctor_id: nil) }
 
-  before_save :nil_empty_notes
+  before_save :nil_empty_notes, :remove_duplicate_notes
   before_destroy :unarchive_quotes
   # after_create_commit -> { broadcast_prepend_later_to :accessions, partial: 'layouts/refresh', locals: { path: Rails.application.routes.url_helpers.accessions_path } }
   after_update_commit -> { broadcast_replace_later_to [ true, :accessions ], partial: "accessions/admin_accession" }
@@ -129,6 +129,18 @@ class Accession < ApplicationRecord
   def nil_empty_notes
     notes.each do |note|
       note.destroy! if note.content.blank?
+    end
+  end
+
+  def remove_duplicate_notes
+    return if notes.count < 2
+
+    notes.each_with_index do |note, index|
+      if notes[index + 1] &&
+         note.content == notes[index + 1].content &&
+         note.department_id == notes[index + 1].department_id
+        notes[index + 1].destroy!
+      end
     end
   end
 
