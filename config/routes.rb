@@ -108,6 +108,10 @@ Rails.application.routes.draw do
     get "Practitioner/:id", to: "doctors#show", as: "doctor"
   end
 
+  namespace :lab_connect, format: :json do
+    resources :diagnostic_reports, only: [ :update ]
+  end
+
   match "*unmatched_route",
         via: :all,
         to: "application#raise_not_found",
