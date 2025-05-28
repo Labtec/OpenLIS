@@ -288,7 +288,7 @@ class PDFQuote < Prawn::Document
       end
     end
     bounding_box([ bounds.left + (bounds.width * 3 / 4), payment_position ], width: bounds.width / 4, height: payment_info_box_height) do
-      text "Para pagar con Yappi:"
+      text "Para pagar con Yappy:"
       indent PADDING do
         bounding_box([ bounds.left, cursor ], width: 42, height: 35) do
           text "@masterlab"
