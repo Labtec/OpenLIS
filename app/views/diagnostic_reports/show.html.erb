@@ -10,7 +10,7 @@
         <%= image_tag('logo_smart.svg', class: 'smart_icon') %>
       <% end %>
     <% else %>
-      <%= button_tag(type: 'button', onclick: "printJS('#{label_path(@diagnostic_report, format: :pdf)}')") do %>
+      <%= link_to label_path @diagnostic_report, format: :pdf do %>
         <%= image_tag('label_icon.svg', class: 'label_icon') %>
       <% end %>
     <% end %>

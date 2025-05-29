@@ -33,4 +33,3 @@ pin "sortablejs" # @1.15.6
 # pin "@github/tab-container-element"
 # Localized DateTime
 # pin "@github/time-elements"
-pin "print-js" # @1.6.0
