@@ -2,29 +2,27 @@
 
 require "barby"
 require "barby/barcode/code_128"
-require "barby/barcode/data_matrix"
 require "barby/outputter/prawn_outputter"
 
 class Label < Prawn::Document
   BARCODE_WIDTH_MULTIPLIER = 16
-  BARCODE_DM_WIDTH_MULTIPLIER = 6
-  BARCODE_DM_SCALE_FACTOR = 2
   LABEL_WIDTH = 144 # 2 in
   LABEL_HEIGHT = 72 # 1 in
   LABEL_SIZE = [ LABEL_WIDTH, LABEL_HEIGHT ]
   LINE_PADDING = 2
   TEXT_SIZE_SMALL = 5
+  TEXT_HEIGHT_SMALL = 3.5
   TEXT_SIZE = 6
-  TEXT_SIZE_BIG = 8
-  LINE_HEIGHT_SMALL = 5
+  TEXT_SIZE_LARGE = 7
   LINE_HEIGHT = 8
-  LINE_HEIGHT_BIG = 10
   NORMAL_RULE_WIDTH = 1
   PADDING = 5
-  PATIENT_DEMOGRAPHICS_HEIGHT = 24
+  PATIENT_DEMOGRAPHICS_HEIGHT = 16
+  QUIET_ZONE = 10
 
-  BARCODE_HEIGHT = 5 * TEXT_SIZE
-  QUIET_ZONE = PADDING * 2
+  BARCODE_HEIGHT = 4 * TEXT_SIZE
+  XXX_SERVICE_REQUEST_STAT = false
+  XXX_SERVICE_REQUEST_STAT ? PADDING_LEFT = PADDING + LINE_HEIGHT + LINE_PADDING : PADDING_LEFT = PADDING
 
   def initialize(patient, specimen, view_context)
     @patient = patient
@@ -33,7 +31,7 @@ class Label < Prawn::Document
 
     super(
       info: {
-        Title: "#{specimen.id}",
+        Title: specimen.id.to_s,
         Author: "MasterLab",
         Creator: "MasterLab",
         Producer: "MasterLab",
@@ -45,7 +43,7 @@ class Label < Prawn::Document
       top_margin: PADDING,
       right_margin: PADDING,
       bottom_margin: PADDING,
-      left_margin: QUIET_ZONE,
+      left_margin: PADDING_LEFT,
       compress: true,
       optimize_objects: true,
       enable_pdfa_1b: true,
@@ -68,99 +66,75 @@ class Label < Prawn::Document
     font "HelveticaWorld", size: TEXT_SIZE
 
     ##
-    # Variables
-    page.margins[:top]
-    bottom_margin = page.margins[:bottom]
-    bounds.top
-    page_bottom = bounds.bottom - bottom_margin
-
-    ##
     # Label
-    first_row
+    priority
     patient_demographics
     barcode(@specimen.id.to_s)
-    performer
+    collection_info
     order_list
   end
 
   private
 
-  def accession_id
-    bounding_box([ bounds.left + bounds.width / 4, bounds.top ], width: bounds.width / 4, height: LINE_HEIGHT) do
-      text @specimen.id.to_s, align: :center, size: TEXT_SIZE_SMALL
-    end
-  end
-
   def barcode(accession_id)
     barcode = Barby::Code128.new(accession_id)
-    barcode_dm = Barby::DataMatrix.new(accession_id)
-    barcode_width = BARCODE_WIDTH_MULTIPLIER * accession_id.size # XXX
-    barcode_dm_width = BARCODE_DM_WIDTH_MULTIPLIER * accession_id.size # XXX
+    barcode_width = barcode.encoding.size
 
-    bounding_box([ bounds.left, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT ], width: barcode_width, height: BARCODE_HEIGHT) do
+    bounding_box([ bounds.left - PADDING * 2 + barcode_width / 2, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT ], width: barcode_width, height: BARCODE_HEIGHT + LINE_HEIGHT) do
       barcode.annotate_pdf(self, x: bounds.left, y: bounds.top - BARCODE_HEIGHT, height: BARCODE_HEIGHT)
+      formatted_text_box(
+        [
+          { text: @specimen.id.to_s, font: "OCRB", size: TEXT_SIZE_SMALL, overflow: :shrink_to_fit }
+        ],
+        at: [ bounds.left, bounds.top - BARCODE_HEIGHT - LINE_PADDING ],
+        width: bounds.width,
+        height: LINE_HEIGHT,
+        align: :center
+      )
     end
-    bounding_box([ bounds.left + barcode_width + QUIET_ZONE, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT ], width: barcode_dm_width, height: BARCODE_HEIGHT) do
-      barcode_dm.annotate_pdf(self, x: bounds.left, y: bounds.top - BARCODE_HEIGHT, height: BARCODE_HEIGHT, xdim: BARCODE_DM_SCALE_FACTOR)
-    end
-  end
-
-  def collected_at
-    collected_at_width = 20
-
-    bounding_box([ bounds.right - bounds.width / 2, bounds.top ], width: bounds.width / 2, height: LINE_HEIGHT) do
-      text l(@specimen.drawn_at, format: :label), align: :right, size: TEXT_SIZE_SMALL
-    end
-  end
-
-  def first_row
-    priority
-    accession_id
-    collected_at
   end
 
   def order_list
-    text_box @specimen.tests_list.join(", "), at: [ bounds.left, cursor ], width: bounds.width, height: TEXT_SIZE, overflow: :shrink_to_fit # XXX
+    text_box @specimen.tests_list.join(", "), at: [ bounds.left, cursor ], width: bounds.width, height: LINE_HEIGHT, overflow: :shrink_to_fit # XXX
   end
 
   def patient_demographics
-    bounding_box([ bounds.left, cursor ], width: bounds.width, height: PATIENT_DEMOGRAPHICS_HEIGHT) do
-      bounding_box([ bounds.left, bounds.top ], width: bounds.width, height: TEXT_SIZE_BIG) do
-        text name_last_comma_first_mi(@patient).upcase, style: :bold, size: TEXT_SIZE_BIG
+    bounding_box([ bounds.left, bounds.top ], width: bounds.width, height: PATIENT_DEMOGRAPHICS_HEIGHT) do
+      bounding_box([ bounds.left, bounds.top ], width: bounds.width, height: TEXT_SIZE) do
+        text name_last_comma_first_mi(@patient)
       end
-      bounding_box([ bounds.left, bounds.top - TEXT_SIZE_BIG ], width: bounds.width / 2, height: TEXT_SIZE) do
+      bounding_box([ bounds.left, bounds.top - LINE_HEIGHT ], width: bounds.width / 2, height: LINE_HEIGHT) do
         text @patient.identifier
       end
-      bounding_box([ bounds.right - bounds.width / 2, bounds.top - TEXT_SIZE_BIG ], width: bounds.width / 2, height: TEXT_SIZE) do
-        text "#{t('labels.dob')} #{l(@patient.birthdate, format: :label)}", align: :right
-      end
-      bounding_box([ bounds.right - bounds.width / 2, bounds.top - TEXT_SIZE_BIG - TEXT_SIZE ], width: bounds.width / 2, height: TEXT_SIZE) do
-        text "#{display_pediatric_age_label(@patient.pediatric_age)} #{@patient.gender}", align: :right
+      bounding_box([ bounds.right - bounds.width / 2 - 10, bounds.top - LINE_HEIGHT ], width: bounds.width / 2 + 10, height: LINE_HEIGHT) do
+        text "#{l(@patient.birthdate, format: :label).upcase}   #{display_pediatric_age_label(@patient.pediatric_age)} #{@patient.gender}", align: :right
       end
     end
   end
 
-  def performer
-    bounding_box([ bounds.right - bounds.width / 2, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT - 4.5 * TEXT_SIZE ], width: bounds.width / 2, height: TEXT_SIZE) do
-      text @specimen.drawer.initials, align: :right, size: TEXT_SIZE_SMALL
+  def collection_info
+    bounding_box([ bounds.left, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT - BARCODE_HEIGHT - LINE_HEIGHT ], width: bounds.width, height: LINE_HEIGHT) do
+      text "Col: #{l(@specimen.drawn_at, format: :label).upcase}", size: TEXT_SIZE_SMALL
+    end
+    bounding_box([ bounds.left, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT - BARCODE_HEIGHT - LINE_HEIGHT ], width: bounds.width, height: LINE_HEIGHT) do
+      text "by: #{@specimen.drawer.initials}", size: TEXT_SIZE_SMALL, align: :right
     end
   end
 
   def priority
-    bounding_box([ bounds.left, bounds.top ], width: TEXT_SIZE * 3, height: LINE_HEIGHT) do
-      # case @service_request.priority
-      # when "routine"
-      text t("labels.routine"), style: :bold
-      # when "urgent"
-      #   text "URG", style: :bold
-      # when "asap"
-      #   text "ASAP", style: :bold
-      # when "stat"
-      #   fill_and_stroke_rectangle [ bounds.left, bounds.top ], TEXT_SIZE * 3, TEXT_SIZE
-      #   pad_top 0.75 do
-      #     text "STAT", style: :bold, align: :center, color: [0, 0, 0, 0]
-      #   end
-      # end
+    if XXX_SERVICE_REQUEST_STAT
+      fill_and_stroke_rectangle [ 0 - LINE_HEIGHT - PADDING - LINE_PADDING, LABEL_HEIGHT - PADDING ], LINE_HEIGHT + LINE_PADDING, LABEL_HEIGHT
+      bounding_box([ 0 - PADDING, 0 - PADDING + LINE_HEIGHT + LINE_PADDING ], width: LABEL_HEIGHT, height: LINE_HEIGHT + LINE_PADDING) do
+        rotate(90, origin: [ 0, 0 ]) do
+          formatted_text_box(
+            [ { text: "STAT", styles: [ :bold ], color: [ 0, 0, 0, 0 ], size: TEXT_SIZE_LARGE } ],
+            at: [ 0, 0 + LINE_HEIGHT - LINE_PADDING / 2 ],
+            width: LABEL_HEIGHT,
+            height: LINE_HEIGHT,
+            align: :center
+          )
+        end
+      end
     end
   end
 

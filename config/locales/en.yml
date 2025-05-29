@@ -81,7 +81,7 @@ en:
         title: Passkey or security key
   date:
     formats:
-      label: "%m/%d/%Y"
+      label: "%d-%b-%Y"
       with_month_name: "%b %d, %Y"
   diagnostic_reports:
     edit:
@@ -560,7 +560,7 @@ en:
     formats:
       long: "%d %B %Y %H:%M"
       short: "%d-%b-%Y %H:%M"
-      label: "%m/%d/%Y %H:%M"
+      label: "%d-%b-%Y %H:%M"
   user_sessions:
     new:
       password: Password
