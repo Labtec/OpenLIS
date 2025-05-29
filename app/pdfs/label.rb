@@ -147,19 +147,19 @@ class Label < Prawn::Document
 
   def priority
     bounding_box([ bounds.left, bounds.top ], width: TEXT_SIZE * 3, height: LINE_HEIGHT) do
-      # fill_and_stroke_rectangle [ bounds.left, bounds.top ], TEXT_SIZE * 3, TEXT_SIZE if @service_request.stat?
-      pad_top 0.75 do
-        # case @service_request.priority
-        # when "routine"
-        text "ROUT", style: :bold, align: :center
-        # when "urgent"
-        #   text "URGNT", style: :bold, align: :center
-        # when "asap"
-        #   text "ASAP", style: :bold, align: :center
-        # when "stat"
-        #   text "STAT", style: :bold, align: :center, color: [0, 0, 0, 0]
-        # end
-      end
+      # case @service_request.priority
+      # when "routine"
+        text "ROUT", style: :bold
+      # when "urgent"
+      #   text "URGNT", style: :bold
+      # when "asap"
+      #   text "ASAP", style: :bold
+      # when "stat"
+      #   fill_and_stroke_rectangle [ bounds.left, bounds.top ], TEXT_SIZE * 3, TEXT_SIZE
+      #   pad_top 0.75 do
+      #     text "STAT", style: :bold, align: :center, color: [0, 0, 0, 0]
+      #   end
+      # end
     end
   end
 
