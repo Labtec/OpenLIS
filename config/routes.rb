@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   end
 
   resources :accessions, except: [ :new, :create, :show ]
+  resources :labels, only: [ :show ], format: :pdf
 
   resources :diagnostic_reports, only: [ :index, :show, :edit, :update ] do
     member do

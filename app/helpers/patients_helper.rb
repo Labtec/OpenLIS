@@ -127,6 +127,19 @@ module PatientsHelper
     [ years, months, weeks, days ].compact.join(" ")
   end
 
+  # Returns an age string to be used in labels.
+  def display_pediatric_age_label(age)
+    return t("patients.unknown_age") unless age
+
+    pediatric_age = age.parts
+
+    years = pediatric_age[:years] if pediatric_age[:years]
+    months = "#{pediatric_age[:months]}m" if pediatric_age[:months]
+    weeks = "#{pediatric_age[:weeks]}w" if pediatric_age[:weeks]
+    days = "#{pediatric_age[:days]}d" if pediatric_age[:days]
+
+    [ years, months, weeks, days ].compact.join(" ")
+  end
   # Returns the gender of a patient spelled out
   def gender(gender)
     case gender
