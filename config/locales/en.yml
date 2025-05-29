@@ -172,6 +172,10 @@ en:
   lab_tests:
     form:
       order_tests: Order Tests
+  labels:
+    dob: 'DOB:'
+    routine: 'ROUT'
+    stat: 'STAT'
   layouts:
     admin:
       header:

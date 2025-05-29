@@ -222,6 +222,10 @@ es-PA:
   lab_tests:
     form:
       order_tests: Ordenar Pruebas
+  labels:
+    dob: 'NAC:'
+    routine: 'RUT'
+    stat: 'STAT'
   layouts:
     admin:
       header:
