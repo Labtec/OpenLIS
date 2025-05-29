@@ -151,7 +151,7 @@ class Label < Prawn::Document
       # when "routine"
       text "ROUT", style: :bold
       # when "urgent"
-      #   text "URGNT", style: :bold
+      #   text "URG", style: :bold
       # when "asap"
       #   text "ASAP", style: :bold
       # when "stat"
