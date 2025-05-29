@@ -2,10 +2,12 @@
 
 require "barby"
 require "barby/barcode/code_128"
+require "barby/barcode/data_matrix"
 require "barby/outputter/prawn_outputter"
 
 class Label < Prawn::Document
   BARCODE_WIDTH_MULTIPLIER = 16
+  BARCODE_DM_WIDTH_MULTIPLIER = 6
   LABEL_WIDTH = 144 # 2 in
   LABEL_HEIGHT = 72 # 1 in
   LABEL_SIZE = [ LABEL_WIDTH, LABEL_HEIGHT ]
@@ -21,7 +23,7 @@ class Label < Prawn::Document
   PATIENT_DEMOGRAPHICS_HEIGHT = 24
 
   BARCODE_HEIGHT = 5 * TEXT_SIZE
-  PADDING_LEFT = PADDING * 2
+  QUIET_ZONE = PADDING * 2
 
   def initialize(patient, specimen, view_context)
     @patient = patient
@@ -42,7 +44,7 @@ class Label < Prawn::Document
       top_margin: PADDING,
       right_margin: PADDING,
       bottom_margin: PADDING,
-      left_margin: PADDING_LEFT,
+      left_margin: QUIET_ZONE,
       compress: true,
       optimize_objects: true,
       enable_pdfa_1b: true,
@@ -90,10 +92,15 @@ class Label < Prawn::Document
 
   def barcode(accession_id)
     barcode = Barby::Code128.new(accession_id)
+    barcode_dm = Barby::DataMatrix.new(accession_id)
     barcode_width = BARCODE_WIDTH_MULTIPLIER * accession_id.size # XXX
+    barcode_dm_width = BARCODE_DM_WIDTH_MULTIPLIER * accession_id.size # XXX
 
     bounding_box([ bounds.left, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT ], width: barcode_width, height: BARCODE_HEIGHT) do
       barcode.annotate_pdf(self, x: bounds.left, y: bounds.top - BARCODE_HEIGHT, height: BARCODE_HEIGHT)
+    end
+    bounding_box([ bounds.left + barcode_width + QUIET_ZONE, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT ], width: barcode_dm_width, height: BARCODE_HEIGHT) do
+      barcode_dm.annotate_pdf(self, x: bounds.left, y: bounds.top - BARCODE_HEIGHT, height: BARCODE_HEIGHT)
     end
   end
 
@@ -124,7 +131,7 @@ class Label < Prawn::Document
         text @patient.identifier
       end
       bounding_box([ bounds.right - bounds.width / 2, bounds.top - TEXT_SIZE_BIG ], width: bounds.width / 2, height: TEXT_SIZE) do
-        text "NAC: #{l(@patient.birthdate, format: :label)}", align: :right
+        text "DOB: #{l(@patient.birthdate, format: :label)}", align: :right
       end
       bounding_box([ bounds.right - bounds.width / 2, bounds.top - TEXT_SIZE_BIG - TEXT_SIZE ], width: bounds.width / 2, height: TEXT_SIZE) do
         text "#{display_pediatric_age_label(@patient.pediatric_age)} #{@patient.gender}", align: :right
