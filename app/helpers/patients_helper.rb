@@ -133,7 +133,7 @@ module PatientsHelper
 
     pediatric_age = age.parts
 
-    years = pediatric_age[:years] if pediatric_age[:years]
+    years = "#{pediatric_age[:years]}y" if pediatric_age[:years]
     months = "#{pediatric_age[:months]}m" if pediatric_age[:months]
     weeks = "#{pediatric_age[:weeks]}w" if pediatric_age[:weeks]
     days = "#{pediatric_age[:days]}d" if pediatric_age[:days]
