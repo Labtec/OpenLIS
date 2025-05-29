@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# XXX AUTO12-A compliance
+
 require "barby"
 require "barby/barcode/code_128"
 require "barby/barcode/data_matrix"
@@ -14,6 +16,7 @@ class Label < Prawn::Document
   LABEL_SIZE = [ LABEL_WIDTH, LABEL_HEIGHT ]
   LINE_PADDING = 2
   TEXT_SIZE_SMALL = 5
+  TEXT_HEIGHT_SMALL = 3.5
   TEXT_SIZE = 6
   TEXT_SIZE_BIG = 8
   LINE_HEIGHT_SMALL = 5
@@ -22,9 +25,9 @@ class Label < Prawn::Document
   NORMAL_RULE_WIDTH = 1
   PADDING = 5
   PATIENT_DEMOGRAPHICS_HEIGHT = 24
+  QUIET_ZONE = 10
 
   BARCODE_HEIGHT = 5 * TEXT_SIZE
-  QUIET_ZONE = PADDING * 2
 
   def initialize(patient, specimen, view_context)
     @patient = patient
@@ -86,9 +89,15 @@ class Label < Prawn::Document
   private
 
   def accession_id
-    bounding_box([ bounds.left + bounds.width / 4, bounds.top ], width: bounds.width / 4, height: LINE_HEIGHT) do
-      text @specimen.id.to_s, align: :center, size: TEXT_SIZE_SMALL
-    end
+    formatted_text_box(
+      [
+        { text: @specimen.id.to_s, font: "OCRB", size: TEXT_SIZE_SMALL, overflow: :shrink_to_fit }
+      ],
+      at: [ bounds.left + bounds.width / 4, bounds.top ],
+      width: bounds.width / 4,
+      height: LINE_HEIGHT,
+      align: :center
+    )
   end
 
   def barcode(accession_id)
@@ -141,7 +150,7 @@ class Label < Prawn::Document
   end
 
   def performer
-    bounding_box([ bounds.right - bounds.width / 2, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT - 4.5 * TEXT_SIZE ], width: bounds.width / 2, height: TEXT_SIZE) do
+    bounding_box([ bounds.right - bounds.width / 2, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT - BARCODE_HEIGHT + TEXT_HEIGHT_SMALL ], width: bounds.width / 2, height: TEXT_SIZE_SMALL) do
       text @specimen.drawer.initials, align: :right, size: TEXT_SIZE_SMALL
     end
   end
