@@ -8,6 +8,7 @@ require "barby/outputter/prawn_outputter"
 class Label < Prawn::Document
   BARCODE_WIDTH_MULTIPLIER = 16
   BARCODE_DM_WIDTH_MULTIPLIER = 6
+  BARCODE_DM_SCALE_FACTOR = 2
   LABEL_WIDTH = 144 # 2 in
   LABEL_HEIGHT = 72 # 1 in
   LABEL_SIZE = [ LABEL_WIDTH, LABEL_HEIGHT ]
@@ -100,7 +101,7 @@ class Label < Prawn::Document
       barcode.annotate_pdf(self, x: bounds.left, y: bounds.top - BARCODE_HEIGHT, height: BARCODE_HEIGHT)
     end
     bounding_box([ bounds.left + barcode_width + QUIET_ZONE, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT ], width: barcode_dm_width, height: BARCODE_HEIGHT) do
-      barcode_dm.annotate_pdf(self, x: bounds.left, y: bounds.top - BARCODE_HEIGHT, height: BARCODE_HEIGHT)
+      barcode_dm.annotate_pdf(self, x: bounds.left, y: bounds.top - BARCODE_HEIGHT, height: BARCODE_HEIGHT, xdim: BARCODE_DM_SCALE_FACTOR)
     end
   end
 
@@ -119,7 +120,7 @@ class Label < Prawn::Document
   end
 
   def order_list
-    text_box @specimen.tests_list.join(", "), at: [ bounds.left, cursor - PADDING ], width: bounds.width, height: TEXT_SIZE, overflow: :shrink_to_fit # XXX
+    text_box @specimen.tests_list.join(", "), at: [ bounds.left, cursor ], width: bounds.width, height: TEXT_SIZE, overflow: :shrink_to_fit # XXX
   end
 
   def patient_demographics
@@ -131,7 +132,7 @@ class Label < Prawn::Document
         text @patient.identifier
       end
       bounding_box([ bounds.right - bounds.width / 2, bounds.top - TEXT_SIZE_BIG ], width: bounds.width / 2, height: TEXT_SIZE) do
-        text "DOB: #{l(@patient.birthdate, format: :label)}", align: :right
+        text "#{t('labels.dob')} #{l(@patient.birthdate, format: :label)}", align: :right
       end
       bounding_box([ bounds.right - bounds.width / 2, bounds.top - TEXT_SIZE_BIG - TEXT_SIZE ], width: bounds.width / 2, height: TEXT_SIZE) do
         text "#{display_pediatric_age_label(@patient.pediatric_age)} #{@patient.gender}", align: :right
@@ -140,7 +141,7 @@ class Label < Prawn::Document
   end
 
   def performer
-    bounding_box([ bounds.right - bounds.width / 2, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT - 4 * TEXT_SIZE ], width: bounds.width / 2, height: TEXT_SIZE) do
+    bounding_box([ bounds.right - bounds.width / 2, bounds.top - PATIENT_DEMOGRAPHICS_HEIGHT - 4.5 * TEXT_SIZE ], width: bounds.width / 2, height: TEXT_SIZE) do
       text @specimen.drawer.initials, align: :right, size: TEXT_SIZE_SMALL
     end
   end
@@ -149,7 +150,7 @@ class Label < Prawn::Document
     bounding_box([ bounds.left, bounds.top ], width: TEXT_SIZE * 3, height: LINE_HEIGHT) do
       # case @service_request.priority
       # when "routine"
-      text "ROUT", style: :bold
+      text t('labels.routine'), style: :bold
       # when "urgent"
       #   text "URG", style: :bold
       # when "asap"
