@@ -236,11 +236,15 @@ a {
 .fhir_icon {
   background-color: oldlace; }
 
-.smart_icon {
+.smart_icon .label_icon {
   background-color: whitesmoke; }
 
 img.smart_icon {
   height: 17px;
+}
+
+img.label_icon {
+  height: 16px;
 }
 
 #order_tests {

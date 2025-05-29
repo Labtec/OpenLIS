@@ -9,6 +9,10 @@
       <%= link_to diagnostic_report_path @diagnostic_report, format: :smart_health_card do %>
         <%= image_tag('logo_smart.svg', class: 'smart_icon') %>
       <% end %>
+    <% else %>
+      <%= link_to label_path @diagnostic_report, format: :pdf do %>
+        <%= image_tag('label_icon.svg', class: 'label_icon') %>
+      <% end %>
     <% end %>
   </h1>
 

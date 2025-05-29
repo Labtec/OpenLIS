@@ -125,6 +125,7 @@ es-PA:
         title: Passkey o llave de seguridad
   date:
     formats:
+      label: "%d/%m/%Y"
       with_month_name: "%-d de %B de %Y"
   diagnostic_reports:
     edit:
@@ -609,6 +610,7 @@ es-PA:
     formats:
       long: "%-d/%m/%Y %l:%M %p"
       short: "%-d %b %Y %l:%M %p"
+      label: "%d/%m/%Y %l:%M %p"
   user_sessions:
     new:
       password: Contraseña
