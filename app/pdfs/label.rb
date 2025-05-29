@@ -150,7 +150,7 @@ class Label < Prawn::Document
     bounding_box([ bounds.left, bounds.top ], width: TEXT_SIZE * 3, height: LINE_HEIGHT) do
       # case @service_request.priority
       # when "routine"
-      text t('labels.routine'), style: :bold
+      text t("labels.routine"), style: :bold
       # when "urgent"
       #   text "URG", style: :bold
       # when "asap"
