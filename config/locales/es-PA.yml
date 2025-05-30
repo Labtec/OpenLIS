@@ -223,9 +223,9 @@ es-PA:
     form:
       order_tests: Ordenar Pruebas
   labels:
-    dob: 'NAC:'
-    routine: 'RUT'
-    stat: 'STAT'
+    drawn_at: 'Rec: '
+    drawn_by: 'por: '
+    stat: STAT
   layouts:
     admin:
       header:

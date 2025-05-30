@@ -73,6 +73,19 @@ module PatientsHelper
     ActiveSupport::Inflector.transliterate([ last_comma_first, mi ].join(" ").squish)
   end
 
+  # Truncates long names used in labels
+  def name_last_comma_first_mi_label(patient)
+    family_name = patient.partner_name || patient.family_name
+    family_name[0] = family_name[0].mb_chars.upcase
+    family_name = truncate(family_name, length: 13, omission: "+")
+
+    first_name = truncate(patient.given_name, length: 9, omission: "+")
+
+    last_comma_first = [ family_name, first_name ].join(", ")
+    mi = patient.middle_name[0, 1] if patient.middle_name.present?
+    [ last_comma_first, mi ].join(" ").squish
+  end
+
   # XXX: Unused helper.
   # Returns the official full name of a patient without accents.
   # Historically, names were registered using typewriters, and in capital
@@ -133,13 +146,19 @@ module PatientsHelper
 
     pediatric_age = age.parts
 
-    years = "#{pediatric_age[:years]}y" if pediatric_age[:years]
-    months = "#{pediatric_age[:months]}m" if pediatric_age[:months]
-    weeks = "#{pediatric_age[:weeks]}w" if pediatric_age[:weeks]
-    days = "#{pediatric_age[:days]}d" if pediatric_age[:days]
+    years = t("patients.year", count: pediatric_age[:years]).split if pediatric_age[:years]
+    months = t("patients.month", count: pediatric_age[:months]).split if pediatric_age[:months]
+    weeks = t("patients.week", count: pediatric_age[:weeks]).split if pediatric_age[:weeks]
+    days = t("patients.day", count: pediatric_age[:days]).split if pediatric_age[:days]
 
-    [ years, months, weeks, days ].compact.join(" ")
+    years = [ years[0], years[1][0] ].join if pediatric_age[:years]
+    months = [ months[0], months[1][0] ].join if pediatric_age[:months]
+    weeks = [ weeks[0], weeks[1][0] ].join if pediatric_age[:weeks]
+    days = [ days[0], days[1][0] ].join if pediatric_age[:days]
+
+    [ years, months, weeks, days ].compact.join
   end
+
   # Returns the gender of a patient spelled out
   def gender(gender)
     case gender

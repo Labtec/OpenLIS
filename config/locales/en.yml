@@ -173,9 +173,9 @@ en:
     form:
       order_tests: Order Tests
   labels:
-    dob: 'DOB:'
-    routine: 'ROUT'
-    stat: 'STAT'
+    drawn_at: 'Col: '
+    drawn_by: 'by'
+    stat: STAT
   layouts:
     admin:
       header:
