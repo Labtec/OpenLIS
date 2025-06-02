@@ -77,7 +77,7 @@ class Label < Prawn::Document
   def barcode(service_request_id)
     padded_service_request_id = "%06i" % service_request_id
     accession_prefix = "199" # XXX
-    accession_prefix_hyphenated = "HM1-99" # XXX
+    accession_prefix_hyphenated = "HM1-99" # XXX https://www.hl7.org/fhir/valueset-diagnostic-service-sections.html
     accession_id = "#{accession_prefix}#{padded_service_request_id}"
     barcode = Barby::Code128.new(accession_id)
     barcode_width = barcode.encoding.size
