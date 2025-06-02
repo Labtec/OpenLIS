@@ -14,4 +14,10 @@ module LabTestsHelper
 
     link_to loinc, "https://s.details.loinc.org/LOINC/#{loinc}.html?sections=Comprehensive", target: :_blank, rel: :noopener
   end
+
+  def show_procedure(procedure, quantity)
+    return "#{procedure}×#{quantity}" if quantity.present? && quantity > 1
+
+    procedure
+  end
 end

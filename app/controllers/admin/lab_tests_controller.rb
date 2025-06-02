@@ -65,6 +65,7 @@ module Admin
         :department_id,
         :unit_id,
         :procedure,
+        :procedure_quantity,
         :loinc,
         :derivation,
         :also_numeric,

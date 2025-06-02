@@ -55,6 +55,7 @@ module Admin
         :name,
         :description,
         :procedure,
+        :procedure_quantity,
         :loinc,
         :fasting_status_duration_iso8601,
         :patient_preparation,

@@ -1,7 +1,7 @@
 <%= content_tag :tr, id: dom_id(panel), is: 'turbo-frame', class: 'admin_panel' do %>
   <td><%= panel.code %></td>
   <td><%= link_to(sanitize(panel.name), [:admin, panel]) %></td>
-  <td><%= panel.procedure %></td>
+  <td><%= show_procedure(panel.procedure, panel.procedure_quantity) %></td>
   <td><%= loinc_hyperlink(panel.loinc) %></td>
   <td><%= panel.description %></td>
   <td><%= panel.lab_test_code_list.join(', ') %></td>

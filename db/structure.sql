@@ -443,7 +443,8 @@ CREATE TABLE public.lab_tests (
     remarks text,
     status public.publication_status DEFAULT 'active'::public.publication_status,
     fasting_status_duration interval,
-    patient_preparation text
+    patient_preparation text,
+    procedure_quantity integer
 );
 
 
@@ -531,7 +532,8 @@ CREATE TABLE public.panels (
     status public.publication_status DEFAULT 'active'::public.publication_status,
     fasting_status_duration interval,
     patient_preparation text,
-    "position" integer
+    "position" integer,
+    procedure_quantity integer
 );
 
 
@@ -1520,6 +1522,7 @@ ALTER TABLE ONLY public.qualified_intervals
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250602000001'),
 ('20240112000000'),
 ('20230624000001'),
 ('20230612000006'),

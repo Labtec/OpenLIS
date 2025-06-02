@@ -18,6 +18,7 @@ class QuoteLineItem < ApplicationRecord
   delegate :fasting_status_duration, to: :item, allow_nil: true
   delegate :name, to: :item
   delegate :procedure, to: :item, allow_nil: true
+  delegate :procedure_quantity, to: :item, allow_nil: true
   delegate :patient_preparation, to: :item, allow_nil: true
   delegate :price_list, to: :quote
 
