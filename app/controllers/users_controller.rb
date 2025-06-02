@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(user: [
+    params.expect(user: [
       :username,
       :email,
       :password,
@@ -32,6 +32,6 @@ class UsersController < ApplicationController
       :prefix,
       :suffix,
       :register
-    ]).require(:user)
+    ])
   end
 end

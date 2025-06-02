@@ -67,10 +67,10 @@ module Admin
     end
 
     def price_params
-      params.permit(price: [
+      params.expect(price: [
         :price_list_id,
         :amount
-      ]).require(:price)
+      ])
     end
   end
 end

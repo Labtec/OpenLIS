@@ -68,7 +68,7 @@ class PatientsController < ApplicationController
   end
 
   def patient_params
-    params.permit(patient: [
+    params.expect(patient: [
       :given_name,
       :middle_name,
       :family_name,
@@ -89,7 +89,7 @@ class PatientsController < ApplicationController
       :address_district,
       :address_corregimiento,
       :address_line
-    ]).require(:patient)
+    ])
   end
 
   def page
