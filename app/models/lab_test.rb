@@ -26,6 +26,9 @@ class LabTest < ApplicationRecord
             uniqueness: true
   validates :name, presence: true
   validates :loinc, loinc: true, length: { maximum: 10 }, allow_blank: true
+  validates :procedure_quantity, absence: true,
+                                 unless: -> { procedure.present? }
+  validates :procedure_quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1 }, allow_blank: true
 
   acts_as_list scope: :department
 
@@ -40,7 +43,7 @@ class LabTest < ApplicationRecord
   after_update_commit -> { broadcast_replace_later_to "admin:lab_test", partial: "layouts/refresh", locals: { path: Rails.application.routes.url_helpers.admin_lab_test_path(self) }, target: :lab_test }
   after_destroy_commit -> { broadcast_replace_to "admin:lab_test", partial: "layouts/invalid", locals: { path: Rails.application.routes.url_helpers.admin_lab_tests_path }, target: :lab_test }
 
-  auto_strip_attributes :name, :code, :procedure, :loinc, :patient_preparation, :fasting_status_duration
+  auto_strip_attributes :name, :code, :procedure, :procedure_quantity, :loinc, :patient_preparation, :fasting_status_duration
 
   def self.unit_for(code)
     find_by(code:).unit.expression

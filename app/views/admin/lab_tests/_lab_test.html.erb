@@ -6,7 +6,7 @@
   <span class="sortable_lab_test_name"><%= link_to name_with_description(lab_test), [:admin, lab_test] %></span>
   <span class="sortable_lab_test_code"><%= lab_test.code %></span>
   <span class="sortable_lab_test_loinc"><%= loinc_hyperlink(lab_test.loinc) if lab_test.loinc.present? %></span>
-  <span class="sortable_lab_test_procedure"><%= lab_test.procedure if lab_test.procedure.present? %></span>
+  <span class="sortable_lab_test_procedure"><%= show_procedure(lab_test.procedure, lab_test.procedure_quantity) if lab_test.procedure.present? %></span>
   <span class="sortable_lab_test_numerical">
     <%= '0.' + '0' * lab_test.decimals if lab_test.decimals %>
     <%= unit_expression_for_display(lab_test.unit) %>

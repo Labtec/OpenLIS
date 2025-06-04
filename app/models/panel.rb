@@ -15,6 +15,9 @@ class Panel < ApplicationRecord
   validates :code, presence: true, uniqueness: true
   validates :name, presence: true
   validates :loinc, loinc: true, length: { maximum: 10 }, allow_blank: true
+  validates :procedure_quantity, absence: true,
+                                 unless: -> { procedure.present? }
+  validates :procedure_quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1 }, allow_blank: true
 
   acts_as_list
 
@@ -23,7 +26,7 @@ class Panel < ApplicationRecord
   scope :sorted, -> { order(name: :asc) }
   scope :with_price, -> { includes(:prices).where.not(prices: { amount: nil }) }
 
-  auto_strip_attributes :name, :code, :procedure, :loinc, :patient_preparation, :fasting_status_duration
+  auto_strip_attributes :name, :code, :procedure, :procedure_quantity, :loinc, :patient_preparation, :fasting_status_duration
 
   after_commit :flush_cache
   after_create_commit -> { broadcast_prepend_later_to "admin:panels", partial: "layouts/refresh", locals: { path: Rails.application.routes.url_helpers.admin_panels_path } }
