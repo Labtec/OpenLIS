@@ -48,6 +48,14 @@ class Panel < ApplicationRecord
     "admin/panels/panel"
   end
 
+  def associated_procedures
+    ap = []
+    lab_tests.each do |lab_test|
+      ap << lab_test.procedure if lab_test.procedure
+    end
+    ap.inject(Hash.new(0)) { |procedure, units| procedure[units] += 1; procedure }
+  end
+
   def self.cached_panels
     Rails.cache.fetch([ name, "cached_panels" ]) do
       sorted.to_a

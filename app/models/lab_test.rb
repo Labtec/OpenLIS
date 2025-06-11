@@ -99,6 +99,10 @@ class LabTest < ApplicationRecord
     end
   end
 
+  def associated_procedures
+    nil
+  end
+
   def customary_unit
     unit&.ucum
   end

@@ -19,6 +19,7 @@ class QuoteLineItem < ApplicationRecord
   delegate :name, to: :item
   delegate :procedure, to: :item, allow_nil: true
   delegate :procedure_quantity, to: :item, allow_nil: true
+  delegate :associated_procedures, to: :item, allow_nil: true
   delegate :patient_preparation, to: :item, allow_nil: true
   delegate :price_list, to: :quote
 
