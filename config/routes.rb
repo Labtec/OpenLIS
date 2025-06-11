@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   get ".well-known/change-password", to: "well_known#change_password"
   get ".well-known/jwks", to: "well_known#jwks", as: :well_known_jwks, format: :json
+  get ".well-known/passkey-endpoints", to: "well_known#passkey_endpoints", as: :well_known_passkey_endpoints, format: :json
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
