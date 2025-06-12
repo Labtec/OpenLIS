@@ -286,7 +286,7 @@ es-PA:
       age: 'Edad:'
       cedula: 'Cédula:'
       cellular: 'Móvil:'
-      confirm_destroy: "¿Está seguro?"
+      confirm_destroy: ¿Está seguro que desea eliminar a %{name}?
       delete: Borrar
       delete?: "¿Borrar?"
       edit: Editar

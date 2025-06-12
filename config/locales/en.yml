@@ -235,7 +235,7 @@ en:
       age: 'Age:'
       cedula: 'National ID:'
       cellular: 'Mobile:'
-      confirm_destroy: Are you sure?
+      confirm_destroy: Are you sure you want to remove %{name}?
       delete: Delete
       delete?: Delete?
       edit: Edit
