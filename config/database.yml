@@ -15,10 +15,10 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    host: <%= ENV["DB_HOST"] %>
     database: open_lis_production
     username: open_lis
     password: <%= ENV["POSTGRES_PASSWORD"] %>
-    host: <%= ENV["DB_HOST"] %>
   cache:
     <<: *primary_production
     database: open_lis_production_cache
