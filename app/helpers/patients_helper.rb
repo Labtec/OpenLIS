@@ -75,7 +75,7 @@ module PatientsHelper
 
   # Truncates long names used in labels
   def name_last_comma_first_mi_label(patient)
-    family_name = patient.partner_name || patient.family_name
+    family_name = patient.family_name || patient.partner_name
     family_name[0] = family_name[0].mb_chars.upcase
     family_name = truncate(family_name, length: 13, omission: "+")
 
