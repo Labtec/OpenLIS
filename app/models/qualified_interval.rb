@@ -3,7 +3,7 @@
 class QualifiedInterval < ApplicationRecord
   ANIMAL_SPECIES = (0..3).to_a
   CATEGORIES = %w[reference critical absolute].freeze
-  GENDERS = %w[male female other unkwown].freeze
+  GENDERS = %w[male female other unknown].freeze
 
   belongs_to :lab_test
   belongs_to :interpretation, class_name: "LabTestValue", optional: true

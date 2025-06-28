@@ -23,7 +23,7 @@ module DiagnosticReportStatus
 
     aasm column: :status, enum: true do
       state :registered, initial: true
-      state :partial, :preliminary, :final, :amended, :corrected, :apended, :cancelled
+      state :partial, :preliminary, :final, :amended, :corrected, :appended, :cancelled
 
       event :evaluate do
         transitions from: [ :registered, :partial, :preliminary ], to: :registered, if: :no_values?
