@@ -55,6 +55,11 @@ class PatientsNameHelperTest < ActionView::TestCase
     assert_equal "De La Fontai+, John F", name_last_comma_first_mi_label(@patient)
   end
 
+  test "label display family name when partner name is also present" do
+    @patient.update(partner_name: "Fontainebleau")
+    assert_equal "Doe, John F", name_last_comma_first_mi_label(@patient)
+  end
+
   test "#animal_species_name" do
     animal_species = { other: 0, canine: 1, feline: 2, equine: 3 }
     animal_species.each do |k, v|

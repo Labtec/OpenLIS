@@ -39,7 +39,7 @@ class PatientSearchTest < ActiveSupport::TestCase
     assert_not_includes search, @bob
   end
 
-  test "search for patients with multiple argumets" do
+  test "search for patients with multiple arguments" do
     alicia = patients(:alicia)
 
     search = Patient.search "alice alicia"

@@ -1,7 +1,8 @@
 default: &default
   adapter: postgresql
-  encoding: utf-8
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
 
 development:
   <<: *default
@@ -12,8 +13,21 @@ test:
   database: open_lis_test
 
 production:
-  <<: *default
-  host: <%= ENV["DB_HOST"] %>
-  database: open_lis_production
-  username: open_lis
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  primary: &primary_production
+    <<: *default
+    host: <%= ENV["DB_HOST"] %>
+    database: open_lis_production
+    username: open_lis
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+  cache:
+    <<: *primary_production
+    database: open_lis_production_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: open_lis_production_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: open_lis_production_cable
+    migrations_paths: db/cable_migrate

@@ -3,7 +3,7 @@
 class Doctor < ApplicationRecord
   include FHIRable::Practitioner
 
-  GENDERS = %w[male female other unkwown].freeze
+  GENDERS = %w[male female other unknown].freeze
 
   has_many :accessions, dependent: :nullify
   has_many :quotes, dependent: :nullify

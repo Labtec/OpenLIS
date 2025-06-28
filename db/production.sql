@@ -1,1 +1,4 @@
 CREATE DATABASE open_lis_production;
+CREATE DATABASE open_lis_production_cable;
+CREATE DATABASE open_lis_production_cache;
+CREATE DATABASE open_lis_production_queue;

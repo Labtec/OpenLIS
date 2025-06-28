@@ -58,7 +58,7 @@ export default class extends Controller {
       this.corregimientoTarget.add(document.createElement("option"), this.corregimientoTarget[0])
       this.corregimientoTarget.value = ""
       this.lineTarget.value = ""
-      // Restore all selecttion boxes
+      // Restore all selection boxes
       this.districtTarget.innerHTML = allDistricts.innerHTML
       this.corregimientoTarget.innerHTML = allCorregimientos.innerHTML
       // Disable all selection boxes

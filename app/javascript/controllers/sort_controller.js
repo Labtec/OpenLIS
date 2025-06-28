@@ -3,7 +3,7 @@ import Sortable from "sortablejs"
 import { patch } from "@rails/request.js"
 
 // To use this Stimulus controller, create a member route named "sort"
-// and wire it to the appropiate Rails controller.
+// and wire it to the appropriate Rails controller.
 // In the views, the main container is bound to the Stimulus controller,
 // a URL value is attached with the path to the sort action, using ":id"
 // as a placeholder for the sorted element.
