@@ -25,10 +25,18 @@ module LabConnect
     end
 
     def diagnostic_report_params
-      params.permit(diagnostic_report: [
-        { results_attributes: %i[id lab_test_value_id value] },
-        notes_attributes: %i[id content department_id]
-      ]).require(:diagnostic_report)
+      params.expect(diagnostic_report: [
+        { results_attributes: [ [
+          :id,
+          :lab_test_value_id,
+          :value
+        ] ] },
+        notes_attributes: [ [
+          :id,
+          :content,
+          :department_id
+        ] ]
+      ])
     end
   end
 end
