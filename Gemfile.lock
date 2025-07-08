@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Labtec/pdf-core.git
-  revision: a8704eb1247fc3f2852380f5b3f5515b04c7110f
+  revision: 60cb92d993f1c0e47800ef9e317d1251e65a0b0d
   branch: pdfa-1b
   specs:
     pdf-core (0.10.0)
@@ -379,7 +379,7 @@ GEM
     rake-compiler-dock (1.9.1)
     rb_sys (0.9.116)
       rake-compiler-dock (= 1.9.1)
-    rdoc (6.14.1)
+    rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
@@ -479,7 +479,7 @@ GEM
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.3.2)
     thruster (0.1.14)
-    tilt (2.6.0)
+    tilt (2.6.1)
     timeout (0.4.3)
     tpm-key_attestation (0.14.1)
       bindata (~> 2.4)
