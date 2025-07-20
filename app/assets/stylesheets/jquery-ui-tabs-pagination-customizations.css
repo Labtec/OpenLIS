@@ -1,0 +1,40 @@
+.ui-tabs-paging-disabled {
+  visibility: hidden;
+}
+.ui-state-default.ui-corner-top.ui-tabs-paging-next {
+  background-color: whitesmoke;
+  border: none;
+  height: auto;
+  padding: 6px 0px;
+  padding-bottom: 2px;
+  padding-left: 1px;
+}
+li.ui-state-default.ui-tabs-paging-prev {
+  border: none;
+  height: auto;
+  padding-top: 6px;
+  padding-bottom: 3px;
+}
+li.ui-state-default.ui-tabs-paging-prev a {
+  background-color: #e6e6e6;
+  border: none;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 3px 12px;
+  padding-top: 7px;
+  vertical-align: middle;
+}
+.ui-corner-top .next-tab {
+  background-color: #e6e6e6;
+  padding: 7px 12px;
+  padding-bottom: 3px;
+  vertical-align: middle;
+}
+.ui-tabs-paging-prev:hover, .ui-corner-top.next-tab:hover {
+  background-color: #d3d3d3;
+  border: none;
+  color: #222222;
+}
+#departments a:hover:not(.next-tab), #order_tests a:hover:not(.next-tab) {
+  background: none;
+}
