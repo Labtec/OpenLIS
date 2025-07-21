@@ -1,0 +1,9 @@
+/* Misc visuals
+ ----------------------------------*/
+/* Overlays */
+.ui-tabs .ui-tabs-nav .ui-tabs-active .ui-tabs-anchor, .ui-tabs .ui-tabs-nav .ui-state-disabled .ui-tabs-anchor, .ui-tabs .ui-tabs-nav .ui-tabs-loading .ui-tabs-anchor {
+  padding-bottom: 0;
+}
+.ui-tabs-nav :focus {
+  outline: none;
+}

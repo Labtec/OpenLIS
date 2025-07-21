@@ -5,10 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload', integrity: true %>
     <%= javascript_importmap_tags %>
-    <%= javascript_include_tag 'oldapplication', 'data-turbo-track': 'reload' %>
-    <%= javascript_include_tag 'old/navtabs', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'oldapplication', 'data-turbo-track': 'reload', integrity: true %>
+    <%= javascript_include_tag 'old/navtabs', 'data-turbolinks-track': 'reload', integrity: true %>
     <%= yield(:head) %>
     <link rel="mask-icon" href="pinned-masterlab.svg" color="#993399">
     <link rel="alternate icon" type="image/png" href="/icon.png">

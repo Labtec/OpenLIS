@@ -1,5 +1,5 @@
 /* Layout helpers
-----------------------------------*/
+ ----------------------------------*/
 .ui-helper-hidden {
   display: none;
 }
@@ -23,8 +23,7 @@
   font-size: 100%;
   list-style: none;
 }
-.ui-helper-clearfix:before,
-.ui-helper-clearfix:after {
+.ui-helper-clearfix:before, .ui-helper-clearfix:after {
   content: "";
   display: table;
   border-collapse: collapse;
@@ -39,150 +38,88 @@
   left: 0;
   position: absolute;
   opacity: 0;
-  filter:Alpha(Opacity=0); /* support: IE8 */
+  filter: Alpha(Opacity=0);
+  /* support: IE8 */
 }
-
 .ui-front {
   z-index: 100;
 }
-
 /* Component containers
-----------------------------------*/
+ ----------------------------------*/
 .ui-widget.ui-widget-content {
   border: none;
   background: none;
 }
-
 .ui-widget-header {
   border: none;
   border-bottom: 1px solid silver;
   background: none;
 }
-
 /* Interaction states
-----------------------------------*/
-.ui-state-default,
-.ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default,
-.ui-button,
-
-/* We use html here because we need a greater specificity to make sure disabled
-works properly when clicked or hovered */
-html .ui-button.ui-state-disabled:hover,
-html .ui-button.ui-state-disabled:active {
+ ----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  /* We use html here because we need a greater specificity to make sure disabled
+   works properly when clicked or hovered */
   border: 1px solid #e6e6e6;
   background: #e6e6e6;
 }
-
-.ui-state-hover,
-.ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover,
-.ui-state-focus,
-.ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus,
-.ui-button:hover,
-.ui-button:focus {
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
   border: 1px solid #dadada;
   background: #dadada;
 }
-
-.ui-state-hover a,
-.ui-state-hover a:hover,
-.ui-state-hover a:link,
-.ui-state-hover a:visited,
-.ui-state-focus a,
-.ui-state-focus a:hover,
-.ui-state-focus a:link,
-.ui-state-focus a:visited,
-a.ui-button:hover,
-a.ui-button:focus {
+.ui-state-hover a, .ui-state-hover a:hover, .ui-state-hover a:link, .ui-state-hover a:visited, .ui-state-focus a, .ui-state-focus a:hover, .ui-state-focus a:link, .ui-state-focus a:visited, a.ui-button:hover, a.ui-button:focus {
   background: none;
 }
-
-
-.ui-state-active,
-.ui-widget-content .ui-state-active,
-.ui-widget-header .ui-state-active,
-a.ui-button:active,
-.ui-button:active,
-.ui-button.ui-state-active:hover {
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
   border: 1px solid silver;
   background: whitesmoke;
   font-weight: bold;
   color: #212121;
 }
-
-.ui-state-active a,
-.ui-state-active a:link,
-.ui-state-active a:visited {
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
   color: #212121;
 }
-
-.ui-corner-all,
-.ui-corner-top,
-.ui-corner-left,
-.ui-corner-tl {
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
   border-top-left-radius: 3px;
 }
-
-.ui-corner-all,
-.ui-corner-top,
-.ui-corner-right,
-.ui-corner-tr {
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
   border-top-right-radius: 3px;
 }
-
-.ui-corner-all,
-.ui-corner-bottom,
-.ui-corner-left,
-.ui-corner-bl {
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
   border-bottom-left-radius: 0px;
 }
-
-.ui-corner-all,
-.ui-corner-bottom,
-.ui-corner-right,
-.ui-corner-br {
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
   border-bottom-right-radius: 0px;
 }
-
 /* UI Tabs */
 .ui-tabs-nav :focus {
   outline: none;
 }
-
 .ui-tabs-nav {
   height: 26px;
 }
-
 .ui-tabs .ui-tabs-nav li {
   height: 24px;
 }
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-active {
-  padding-bottom: none;
+.ui-tabs .ui-tabs-nav .ui-tabs-active {
+  padding-bottom: 0;
 }
-
 /* UI Autocomplete */
 .ui-widget.ui-autocomplete {
   max-height: 100px;
   overflow-y: auto;
   overflow-x: hidden;
 }
-
 ul.ui-widget.ui-widget-content {
   border: 1px silver solid;
 }
-
 ul.ui-autocomplete {
   border: 1px silver solid;
   background: white;
 }
-
 li.ui-menu-item {
   background: white;
 }
-
 li.ui-menu-item a {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
