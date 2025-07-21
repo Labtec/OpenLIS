@@ -13,5 +13,6 @@ class CedulaTest < ActiveSupport::TestCase
     assert_equal "60", Cedula.new("PE-1-19").dv
     assert_equal "05", Cedula.new("8-PI-1-80").dv
     assert_equal "60", Cedula.new("8-AV-1-80").dv
+    assert_equal "02", Cedula.new("8-SB-1234-1234").dv
   end
 end

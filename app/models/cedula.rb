@@ -10,7 +10,7 @@ class Cedula
 
     split_ruc = @ruc.split("-")
 
-    return if (split_ruc.size == 4 && %w[NT AV PI].exclude?(split_ruc[1])) ||
+    return if (split_ruc.size == 4 && %w[NT AV PI SB].exclude?(split_ruc[1])) ||
               split_ruc.size < 3 ||
               split_ruc.size > 5
 
@@ -52,6 +52,8 @@ class Cedula
                        "#{split_ruc[0]}15"
                      when "PI" # Panameno Indigena
                        "#{split_ruc[0]}79"
+                     when "SB" # TODO: SB = 81 ?
+                       "#{split_ruc[0]}81"
                      end
       [ split_ruc[0], split_ruc[2], split_ruc[3] ]
     else
