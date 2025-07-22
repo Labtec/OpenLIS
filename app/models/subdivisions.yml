@@ -6,57 +6,29 @@ provinces:
     capital: Bocas del Toro
     districts:
       -
-        name: Almirante
-        cabecera: Almirante
-        corregimientos:
-          - Almirante
-          - Bajo Culubre
-          - Barriada Guaymí
-          - Barrio Francés
-          - Cauchero
-          - Ceiba
-          - Miraflores
-          - Nance de Riscó
-          - Valle de Aguas Arriba
-          - Valle de Riscó
-      -
         name: Bocas del Toro
         cabecera: Bocas del Toro
         corregimientos:
-          - Bastimentos
-          - Boca del Drago
           - Bocas del Toro
+          - Bastimentos
+          - Cauchero
           - Punta Laurel
-          - San Cristóbal
           - Tierra Oscura
       -
         name: Changuinola
         cabecera: Changuinola
         corregimientos:
-          - Barranco Adentro
-          - Barriada 4 de Abril
           - Changuinola
-          - Cochigro
-          - El Empalme
-          - El Silencio
-          - El Teribe
-          - Finca 4
-          - Finca 6
-          - Finca 12
-          - Finca 30
-          - Finca 51
-          - Finca 60
-          - Finca 66
+          - Almirante
           - Guabito
-          - La Gloria
-          - La Mesa
-          - Las Delicias
+          - Teribe
+          - Valle del Risco
+          - El Empalme
           - Las Tablas
       -
         name: Chiriquí Grande
         cabecera: Chiriquí Grande
         corregimientos:
-          - Bajo Cedro
           - Chiriquí Grande
           - Miramar
           - Puente Peña
@@ -71,19 +43,15 @@ provinces:
         cabecera: Aguadulce
         corregimientos:
           - Aguadulce
-          - Barrios Unidos
           - El Cristo
-          - El Hato de San Juan de Dios
           - El Roble
           - Pocrí
-          - Pueblos Unidos
-          - Virgen del Carmen
+          - Barrios Unidos
       -
         name: Antón
         cabecera: Antón
         corregimientos:
           - Antón
-          - Caballero
           - Cabuya
           - El Chirú
           - El Retiro
@@ -92,47 +60,46 @@ provinces:
           - Río Hato
           - San Juan de Dios
           - Santa Rita
+          - Caballero
       -
         name: La Pintada
         cabecera: La Pintada
         corregimientos:
+          - La Pintada
           - El Harino
           - El Potrero
-          - La Pintada
-          - Las Lomas
           - Llano Grande
-          - Llano Norte
           - Piedras Gordas
+          - Las Lomas
       -
         name: Natá
-        cabecera: Natá de los Caballeros
+        cabecera: Natá
         corregimientos:
+          - Natá
           - Capellanía
           - El Caño
           - Guzmán
           - Las Huacas
-          - Natá de los Caballeros
           - Toza
-          - Villareal
       -
         name: Olá
         cabecera: Olá
         corregimientos:
+          - Olá
           - El Copé
           - El Palmar
           - El Picacho
           - La Pava
-          - Olá
       -
         name: Penonomé
         cabecera: Penonomé
         corregimientos:
+          - Penonomé
           - Cañaveral
-          - Chiguirí Arriba
           - Coclé
+          - Chiguirí Arriba
           - El Coco
           - Pajonal
-          - Penonomé
           - Río Grande
           - Río Indio
           - Toabré
@@ -141,17 +108,6 @@ provinces:
     name: Colón
     capital: Colón
     districts:
-      -
-        name: Chagres
-        cabecera: Nuevo Chagres
-        corregimientos:
-          - Achiote
-          - El Guabo
-          - La Encantada
-          - Nuevo Chagres
-          - Palmas Bellas
-          - Piña
-          - Salud
       -
         name: Colón
         cabecera: Colón
@@ -162,7 +118,6 @@ provinces:
           - Cativá
           - Ciricito
           - Cristóbal
-          - Cristóbal Este
           - Escobal
           - Limón
           - Nueva Providencia
@@ -172,39 +127,43 @@ provinces:
           - San Juan
           - Santa Rosa
       -
+        name: Chagres
+        cabecera: Nuevo Chagres
+        corregimientos:
+          - Nuevo Chagres
+          - Achiote
+          - El Guabo
+          - La Encantada
+          - Palmas Bellas
+          - Piña
+          - Salud
+      -
         name: Donoso
         cabecera: Miguel de La Borda
         corregimientos:
+          - Miguel de La Borda
           - Coclé del Norte
           - El Guásimo
           - Gobea
-          - Miguel de La Borda
           - Río Indio
-      -
-        name: Omar Torrijos Herrera
-        cabecera: Coclesito
-        especial: true
-        corregimientos:
-          - Nueva Esperanza
           - San José del General
-          - San Juan de Turbe
       -
         name: Portobelo
         cabecera: Portobelo
         corregimientos:
+          - Portobelo
           - Cacique
           - Garrote
           - Isla Grande
           - María Chiquita
-          - Portobelo
       -
         name: Santa Isabel
         cabecera: Palenque
         corregimientos:
+          - Palenque
           - Cuango
           - Miramar
           - Nombre de Dios
-          - Palenque
           - Palmira
           - Playa Chiquita
           - Santa Isabel
@@ -218,22 +177,22 @@ provinces:
         cabecera: Alanje
         corregimientos:
           - Alanje
-          - Canta Gallo
           - Divalá
           - El Tejar
           - Guarumal
-          - Nuevo México
           - Palo Grande
           - Querévalo
           - Santo Tomás
+          - Canta Gallo
+          - Nuevo México
       -
         name: Barú
         cabecera: Puerto Armuelles
         corregimientos:
-          - Baco
+          - Puerto Armuelles
           - Limones
           - Progreso
-          - Puerto Armuelles
+          - Baco
           - Rodolfo Aguilar Delgado
       -
         name: Boquerón
@@ -251,39 +210,37 @@ provinces:
         name: Boquete
         cabecera: Bajo Boquete
         corregimientos:
-          - Alto Boquete
           - Bajo Boquete
           - Caldera
+          - Palmira
+          - Alto Boquete
           - Jaramillo
           - Los Naranjos
-          - Palmira
       -
         name: Bugaba
         cabecera: La Concepción
         corregimientos:
+          - La Concepción
           - Aserrío de Gariché
           - Bugaba
-          - El Bongo
+          - Cerro Punta
           - Gómez
-          - La Concepción
           - La Estrella
           - San Andrés
-          - San Isidro
           - Santa Marta
           - Santa Rosa
           - Santo Domingo
-          - Solano
           - Sortová
+          - Volcán
+          - El Bongo
       -
         name: David
         cabecera: David
         corregimientos:
-          - Bijagual
-          - Chiriquí
-          - Cochea
           - David
-          - David Este
-          - David Sur
+          - Bijagual
+          - Cochea
+          - Chiriquí
           - Guacá
           - Las Lomas
           - Pedregal
@@ -296,12 +253,12 @@ provinces:
         corregimientos:
           - Dolega
           - Dos Ríos
-          - Los Algarrobos
           - Los Anastacios
           - Potrerillos
           - Potrerillos Abajo
           - Rovira
           - Tinajas
+          - Los Algarrobos
       -
         name: Gualaca
         cabecera: Gualaca
@@ -315,54 +272,46 @@ provinces:
         name: Remedios
         cabecera: Remedios
         corregimientos:
+          - Remedios
           - El Nancito
           - El Porvenir
           - El Puerto
-          - Remedios
           - Santa Lucía
       -
         name: Renacimiento
         cabecera: Río Sereno
         corregimientos:
+          - Río Sereno
           - Breñón
           - Cañas Gordas
-          - Dominical
           - Monte Lirio
-          - Plaza de Caisán
-          - Río Sereno
-          - Santa Clara
+          - Plaza Caisán
           - Santa Cruz
+          - Dominical
+          - Santa Clara
       -
         name: San Félix
         cabecera: Las Lajas
         corregimientos:
+          - Las Lajas
           - Juay
           - Lajas Adentro
-          - Las Lajas
           - San Félix
           - Santa Cruz
       -
         name: San Lorenzo
         cabecera: Horconcitos
         corregimientos:
+          - Horconcitos
           - Boca Chica
           - Boca del Monte
-          - Horconcitos
           - San Juan
           - San Lorenzo
-      -
-        name: Tierras Altas
-        cabecera: Volcán
-        corregimientos:
-          - Cerro Punta
-          - Cuesta de Piedra
-          - Nueva California
-          - Paso Ancho
-          - Volcán
       -
         name: Tolé
         cabecera: Tolé
         corregimientos:
+          - Tolé
           - Bella Vista
           - Cerro Viejo
           - El Cristo
@@ -370,7 +319,6 @@ provinces:
           - Lajas de Tolé
           - Potrero de Caña
           - Quebrada de Piedra
-          - Tolé
           - Veladero
   pa_5:
     name: Darién
@@ -380,40 +328,35 @@ provinces:
         name: Chepigana
         cabecera: La Palma
         corregimientos:
+          - La Palma
           - Camogantí
           - Chepigana
           - Garachiné
           - Jaqué
-          - La Palma
           - Puerto Piña
+          - Río Congo
+          - Río Iglesias
           - Sambú
           - Setegantí
           - Taimatí
           - Tucutí
+          - Agua Fría
+          - Cucunatí
+          - Río Congo Arriba
+          - Santa Fe
       -
         name: Pinogana
         cabecera: El Real de Santa María
         corregimientos:
-          - Boca de Cupe
           - El Real de Santa María
-          - Metetí
+          - Boca de Cupe
           - Paya
           - Pinogana
           - Púcuro
-          - Wargandí
           - Yape
           - Yaviza
-      -
-        name: Santa Fe
-        cabecera: Santa Fe
-        corregimientos:
-          - Agua Fría
-          - Cucunatí
-          - Río Congo
-          - Río Congo Arriba
-          - Río Iglesias
-          - Santa Fe
-          - Zapallal
+          - Metetí
+          - Comarca Kuna de Wargandí
   pa_6:
     name: Herrera
     capital: Chitré
@@ -424,77 +367,76 @@ provinces:
         corregimientos:
           - Chitré
           - La Arena
+          - Monagrillo
           - Llano Bonito
           - San Juan Bautista
-          - San Miguel de Monagrillo
       -
         name: Las Minas
         cabecera: Las Minas
         corregimientos:
+          - Las Minas
           - Chepo
           - Chumical
           - El Toro
-          - Las Minas
           - Leones
-          - Quebrada El Ciprián
           - Quebrada del Rosario
+          - Quebrada El Ciprián
       -
         name: Los Pozos
         cabecera: Los Pozos
         corregimientos:
+          - Los Pozos
+          - Capurí
           - El Calabacito
-          - El Capurí
           - El Cedro
           - La Arena
-          - La Pitaloza
-          - Las Llanas
+          - La Pitalosa
           - Los Cerritos
           - Los Cerros de Paja
-          - Los Pozos
+          - Las Llanas
       -
         name: Ocú
         cabecera: Ocú
         corregimientos:
-          - Cerro Largo
-          - El Tijera
-          - Entradero del Castillo
-          - Llano Grande
-          - Los Llanos
-          - Menchaca
           - Ocú
+          - Cerro Largo
+          - Los Llanos
+          - Llano Grande
           - Peñas Chatas
+          - El Tijera
+          - Menchaca
       -
         name: Parita
         cabecera: Parita
         corregimientos:
-          - Cabuya
-          - Llano de la Cruz
-          - Los Castillos
           - Parita
+          - Cabuya
+          - Los Castillos
+          - Llano de La Cruz
           - París
           - Portobelillo
-          - Portuga
+          - Potuga
       -
         name: Pesé
         cabecera: Pesé
         corregimientos:
-          - El Barrero
-          - El Ciruelo
-          - El Pedregoso
-          - Las Cabras
-          - Los Pájaros
           - Pesé
-          - Rincón Hondo
+          - Las Cabras
+          - El Pájaro
+          - El Barrero
+          - El Pedregoso
+          - El Ciruelo
           - Sabanagrande
+          - Rincón Hondo
       -
         name: Santa María
         cabecera: Santa María
         corregimientos:
-          - Chupampa
-          - El Limón
-          - El Rincón
-          - Los Canelos
           - Santa María
+          - Chupampa
+          - El Rincón
+          - El Limón
+          - Los Canelos
   pa_7:
     name: Los Santos
     capital: Las Tablas
@@ -503,20 +445,21 @@ provinces:
         name: Guararé
         cabecera: Guararé
         corregimientos:
-          - El Espinal
-          - El Hato
-          - El Macano
           - Guararé
+          - El Espinal
+          - El Macano
           - Guararé Arriba
           - La Enea
           - La Pasera
           - Las Trancas
           - Llano Abajo
+          - El Hato
           - Perales
       -
         name: Las Tablas
         cabecera: Las Tablas
         corregimientos:
+          - Las Tablas
           - Bajo Corral
           - Bayano
           - El Carate
@@ -524,13 +467,11 @@ provinces:
           - El Manantial
           - El Muñoz
           - El Pedregoso
-          - El Sesteadero
           - La Laja
           - La Miel
           - La Palma
           - La Tiza
           - Las Palmitas
-          - Las Tablas
           - Las Tablas Abajo
           - Nuario
           - Palmira
@@ -539,71 +480,75 @@ provinces:
           - San José
           - San Miguel
           - Santo Domingo
+          - Sesteadero
           - Valle Rico
           - Vallerriquito
       -
         name: Los Santos
         cabecera: La Villa de Los Santos
         corregimientos:
-          - Agua Buena
-          - El Ejido
+          - La Villa de Los Santos
           - El Guásimo
           - La Colorada
           - La Espigadilla
-          - La Villa de Los Santos
           - Las Cruces
           - Las Guabas
-          - Llano Largo
-          - Los Olivos
           - Los Ángeles
+          - Los Olivos
+          - Llano Largo
           - Sabanagrande
           - Santa Ana
           - Tres Quebradas
+          - Agua Buena
           - Villa Lourdes
       -
         name: Macaracas
         cabecera: Macaracas
         corregimientos:
+          - Macaracas
           - Bahía Honda
           - Bajos de Güera
-          - Chupá
           - Corozal
+          - Chupá
           - El Cedro
           - Espino Amarillo
           - La Mesa
           - Las Palmas
-          - Llano de Piedras
-          - Macaracas
+          - Llano de Piedra
           - Mogollón
+      -
+        name: Pedasí
+        cabecera: Pedasí
+        corregimientos:
+          - Pedasí
+          - Los Asientos
+          - Mariabé
+          - Purio
+          - Oria Arriba
       -
         name: Pocrí
         cabecera: Pocrí
         corregimientos:
+          - Pocrí
           - El Cañafístulo
           - Lajamina
-          - Los Asientos
-          - Mariabé
-          - Oria Arriba
           - Paraíso
           - Paritilla
-          - Pedasí
-          - Pocrí
-          - Purio
       -
         name: Tonosí
         cabecera: Tonosí
         corregimientos:
+          - Tonosí
           - Altos de Güera
-          - Cambutal
           - Cañas
           - El Bebedero
           - El Cacao
           - El Cortezo
           - Flores
           - Guánico
-          - Isla de Cañas
           - La Tronosa
-          - Tonosí
+          - Cambutal
+          - Isla de Cañas
   pa_8:
     name: Panamá
     capital: Panamá
@@ -612,30 +557,30 @@ provinces:
         name: Balboa
         cabecera: San Miguel
         corregimientos:
+          - San Miguel
           - La Ensenada
           - La Esmeralda
           - La Guinea
           - Pedro González
           - Saboga
-          - San Miguel
       -
         name: Chepo
         cabecera: Chepo
         corregimientos:
+          - Chepo
           - Cañita
           - Chepillo
-          - Chepo
           - El Llano
           - Las Margaritas
-          - Madungandí
           - Santa Cruz de Chinina
+          - Comarca Kuna de Madungandí
           - Tortí
       -
         name: Chimán
         cabecera: Chimán
         corregimientos:
-          - Brujas
           - Chimán
+          - Brujas
           - Gonzalo Vásquez
           - Pásiga
           - Unión Santeña
@@ -643,52 +588,52 @@ provinces:
         name: Panamá
         cabecera: Panamá
         corregimientos:
-          - 24 de Diciembre
-          - Alcalde Díaz
-          - Ancón
-          - Bella Vista
-          - Betania
-          - Caimitillo
-          - Calidonia
-          - Chilibre
-          - Curundú
-          - Don Bosco
-          - El Chorrillo
-          - Ernesto Córdoba Campos
-          - Juan Díaz
-          - Las Cumbres
-          - Las Garzas
-          - Las Mañanitas
-          - Pacora
-          - Parque Lefevre
-          - Pedregal
-          - Pueblo Nuevo
-          - Río Abajo
           - San Felipe
-          - San Francisco
-          - San Martín
+          - El Chorrillo
           - Santa Ana
+          - La Exposición o Calidonia
+          - Curundú
+          - Betania
+          - Bella Vista
+          - Pueblo Nuevo
+          - San Francisco
+          - Parque Lefevre
+          - Río Abajo
+          - Juan Díaz
+          - Pedregal
+          - Ancón
+          - Chilibre
+          - Las Cumbres
+          - Pacora
+          - San Martín
           - Tocumen
+          - Las Mañanitas
+          - 24 de Diciembre
+          - Ernesto Córdoba Campos
+          - Alcalde Díaz
+          - Caimitillo
+          - Don Bosco
+          - Las Garzas
       -
         name: San Miguelito
         cabecera: San Miguelito
         corregimientos:
           - Amelia Denis De Icaza
-          - Arnulfo Arias
-          - Belisario Frías
           - Belisario Porras
           - José Domingo Espinar
           - Mateo Iturralde
+          - Victoriano Lorenzo
+          - Arnulfo Arias
+          - Belisario Frías
           - Omar Torrijos
           - Rufina Alfaro
-          - Victoriano Lorenzo
       -
         name: Taboga
         cabecera: Taboga
         corregimientos:
-          - Otoque Occidente
-          - Otoque Oriente
           - Taboga
+          - Otoque Oriente
+          - Otoque Occidente
   pa_9:
     name: Veraguas
     capital: Santiago
@@ -699,15 +644,15 @@ provinces:
         corregimientos:
           - Atalaya
           - El Barrito
-          - La Carrillo
           - La Montañuela
+          - La Carrillo
           - San Antonio
       -
         name: Calobre
         cabecera: Calobre
         corregimientos:
-          - Barnizal
           - Calobre
+          - Barnizal
           - Chitra
           - El Cocla
           - El Potrero
@@ -723,129 +668,120 @@ provinces:
         cabecera: Cañazas
         corregimientos:
           - Cañazas
-          - Cerro de Plata
-          - El Aromillo
+          - Cerro Plata
           - El Picador
-          - Las Cruces
           - Los Valles
           - San José
           - San Marcelo
+          - El Aromillo
       -
         name: La Mesa
         cabecera: La Mesa
         corregimientos:
+          - La Mesa
           - Bisvalles
           - Boró
-          - El Higo
-          - La Mesa
           - Llano Grande
-          - Los Milagros
           - San Bartolo
+          - Los Milagros
       -
         name: Las Palmas
         cabecera: Las Palmas
         corregimientos:
+          - Las Palmas
           - Cerro de Casa
           - Corozal
           - El María
           - El Prado
           - El Rincón
-          - Las Palmas
           - Lolá
-          - Manuel E. Amador Terrero
           - Pixvae
           - Puerto Vidal
           - San Martín de Porres
           - Viguí
           - Zapotillo
       -
-        name: Mariato
-        cabecera: Mariato
-        corregimientos:
-          - Arenas
-          - El Cacao
-          - Mariato
-          - Quebro
-          - Tebario
-      -
         name: Montijo
         cabecera: Montijo
         corregimientos:
-          - Costa Hermosa
-          - Cébaco
+          - Montijo
+          - Arenas
           - Gobernadora
           - La Garceana
           - Leones
-          - Montijo
-          - Pilón
+          - Cébaco
+          - Costa Hermosa
           - Unión del Norte
+          - Tebario
+          - El Pilón
       -
         name: Río de Jesús
         cabecera: Río de Jesús
         corregimientos:
-          - Catorce de Noviembre
+          - Río de Jesús
           - Las Huacas
           - Los Castillos
-          - Río de Jesús
           - Utira
+          - Catorce de Noviembre
       -
         name: San Francisco
         cabecera: San Francisco
         corregimientos:
+          - San Francisco
           - Corral Falso
           - Los Hatillos
           - Remance
-          - San Francisco
-          - San José
           - San Juan
+          - San José
       -
         name: Santa Fe
         cabecera: Santa Fe
         corregimientos:
+          - Santa Fe
           - Calovébora
           - El Alto
           - El Cuay
           - El Pantano
-          - Gatuncito
-          - Rubén Cantú
+          - Gatú o Gatucito
           - Río Luis
-          - Santa Fe
       -
         name: Santiago
         cabecera: Santiago
         corregimientos:
-          - Canto del Llano
-          - Carlos Santana Ávila
-          - Edwin Fábrega
+          - Santiago
           - La Colorada
           - La Peña
           - La Raya de Santa María
-          - Los Algarrobos
-          - Nuevo Santiago
           - Ponuga
-          - Rodrigo Luque
-          - San Martín de Porres
           - San Pedro del Espino
-          - Santiago
-          - Santiago Este
-          - Santiago Sur
+          - Canto del Llano
+          - Los Algarrobos
+          - Carlos Santana Ávila
+          - Edwin Fábrega
+          - San Martín de Porres
           - Urracá
       -
         name: Soná
         cabecera: Soná
         corregimientos:
+          - Soná
           - Bahía Honda
           - Calidonia
           - Cativé
           - El Marañón
           - Guarumal
-          - Hicaco
           - La Soledad
-          - La Trinchera
           - Quebrada de Oro
           - Rodeo Viejo
-          - Río Grande
-          - Soná
+      -
+        name: Mariato
+        cabecera: Llano de Catival o Mariato
+        corregimientos:
+          - Llano de Catival o Mariato
+          - Arenas
+          - El Cacao
+          - Quebro
+          - Tebario
   pa_10:
     name: Panamá Oeste
     capital: La Chorrera
@@ -866,27 +802,27 @@ provinces:
         name: Capira
         cabecera: Capira
         corregimientos:
+          - Capira
           - Caimito
           - Campana
-          - Capira
           - Cermeño
-          - Cirí Grande
           - Cirí de Los Sotos
+          - Cirí Grande
           - El Cacao
           - La Trinidad
           - Las Ollas Arriba
           - Lídice
-          - Santa Rosa
           - Villa Carmen
           - Villa Rosario
+          - Santa Rosa
       -
         name: Chame
         cabecera: Chame
         corregimientos:
+          - Chame
           - Bejuco
           - Buenos Aires
           - Cabuya
-          - Chame
           - Chicá
           - El Líbano
           - Las Lajas
@@ -898,10 +834,10 @@ provinces:
         name: La Chorrera
         cabecera: La Chorrera
         corregimientos:
-          - Amador
-          - Arosemena
           - Barrio Balboa
           - Barrio Colón
+          - Amador
+          - Arosemena
           - El Arado
           - El Coco
           - Feuillet
@@ -920,6 +856,7 @@ provinces:
         name: San Carlos
         cabecera: San Carlos
         corregimientos:
+          - San Carlos
           - El Espino
           - El Higo
           - Guayabito
@@ -927,7 +864,6 @@ provinces:
           - La Laguna
           - Las Uvas
           - Los Llanitos
-          - San Carlos
           - San José
   pa_em:
     name: Emberá
@@ -945,17 +881,19 @@ provinces:
         name: Sambú
         cabecera: Puerto Indio
         corregimientos:
-          - Jingurundó
           - Río Sabalo
+          - Jingurundó
   pa_ky:
     name: Guna Yala
     capital: Gaigirgordub
     indigenous_region: true
     districts:
       -
+        name: Guna Yala
+        cabecera: Narganá
         corregimientos:
-          - Ailigandí
           - Narganá
+          - Ailigandí
           - Puerto Obaldía
           - Tubualá
   pa_nb:
@@ -968,52 +906,44 @@ provinces:
         cabecera: Soloy
         region: Nedrini
         corregimientos:
+          - Soloy
           - Boca de Balsa
           - Camarón Arriba
           - Cerro Banco
-          - Cerro Patena
+          - Cerro de Patena
           - Emplanada de Chorcha
-          - Niba
           - Nämnoní
-          - Soloy
+          - Niba
       -
-        name: Jirondai
-        cabecera: Samboa
-        region: Ñö Kribo
+        name: Mironó
+        cabecera: Hato Pilón
+        region: Nedrini
         corregimientos:
-          - Beri
-          - Burí
-          - Daira
-          - Guariviara
-          - Man Creek
-          - Samboa
-          - Tuwai
+          - Hato Pilón
+          - Cascabel
+          - Hato Corotú
+          - Hato Culantro
+          - Hato Jobo
+          - Hato Julí
+          - Quebrada de Loro
+          - Salto Dupí
       -
-        name: Kankintú
-        cabecera: Bisira
-        region: Ñö Kribo
+        name: Müna
+        cabecera: Chichica
+        region: Kädriri
         corregimientos:
-          - Bisira
-          - Calante
-          - Canoa
-          - Guoroní
-          - Kankintú
-          - Mününí
-          - Piedra Roja
-          - Tolote
-          - Trinchera Comarcal
-      -
-        name: Kusapín
-        cabecera: Kusapín
-        region: Ñö Kribo
-        corregimientos:
-          - Bahía Azul
-          - Bucori
-          - Cañaveral
-          - Kusapín
-          - Río Chiriquí
-          - Tobobé
-          - Vegay
+          - Chichica
+          - Alto Caballero
+          - Bakama
+          - Cerro Caña
+          - Cerro Puerco
+          - Krüa
+          - Maraca
+          - Nibra
+          - Peña Blanca
+          - Roka
+          - Sitio Prado
+          - Umaní
       -
         name: Nole Düima
         cabecera: Cerro Iglesias
@@ -1029,60 +959,40 @@ provinces:
         cabecera: Buenos Aires
         region: Kädriri
         corregimientos:
+          - Buenos Aires
           - Agua de Salud
           - Alto de Jesús
-          - Buenos Aires
           - Cerro Pelado
           - El Bale
           - El Paredón
-          - El Peñón
           - El Piro
-          - El Piro №2
           - Guayabito
           - Güibale
       -
-        name: Mironó
-        cabecera: Hato Pilón
-        region: Nedrini
-        corregimientos:
-          - Cascabel
-          - Hato Corotú
-          - Hato Culantro
-          - Hato Jobo
-          - Hato Julí
-          - Hato Pilón
-          - Quebrada de Loro
-          - Salto Dupí
-      -
-        name: Müna
-        cabecera: Chichica
-        region: Kädriri
-        corregimientos:
-          - Alto Caballero
-          - Bakama
-          - Cerro Caña
-          - Cerro Puerco
-          - Chichica
-          - Dikeri
-          - Diko
-          - Kikari
-          - Krüa
-          - Maraca
-          - Mreeni
-          - Nibra
-          - Peña Blanca
-          - Roka
-          - Sitio Prado
-          - Umaní
-      -
-        name: Santa Catalina o Calovébora
-        cabecera: Santa Catalina o Calovébora
+        name: Kankintú
+        cabecera: Bisira
         region: Ñö Kribo
         corregimientos:
-          - Alto Bilingüe
+          - Bisira
+          - Burí
+          - Guariviara
+          - Guoroní
+          - Kankintú
+          - Mününí
+          - Piedra Roja
+          - Tuwai
+          - Man Creek
+      -
+        name: Kusapín
+        cabecera: Kusapín
+        region: Ñö Kribo
+        corregimientos:
+          - Kusapín
+          - Bahía Azul
+          - Calovébora o Santa Catalina
           - Loma Yuca
-          - San Pedrito
-          - Santa Catalina o Calovébora
+          - Río Chiriquí
+          - Tobobé
           - Valle Bonito
   pa_nt:
     name: Naso Tjër Di
