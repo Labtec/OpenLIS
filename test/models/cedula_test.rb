@@ -4,6 +4,7 @@ require "test_helper"
 
 class CedulaTest < ActiveSupport::TestCase
   test "digito verificador" do
+    assert_equal "16", Cedula.new("8-1-1").dv
     assert_equal "47", Cedula.new("8-NT-1-1").dv
     assert_equal "50", Cedula.new("8-1223-601").dv
     assert_equal "91", Cedula.new("8-274-125").dv
