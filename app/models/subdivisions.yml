@@ -994,6 +994,25 @@ provinces:
           - Río Chiriquí
           - Tobobé
           - Valle Bonito
+      -
+        name: Jirondai
+        region: Ñö Kribo
+        corregimientos:
+          - Samboa
+          - Burí
+          - Guariviara
+          - Man Creek
+          - Tuwai
+      -
+        name: Santa Catalina o Calovébora (Bledeshia)
+        cabecera: Santa Catalina o Calovébora (Bledeshia)
+        region: Ñö Kribo
+        corregimientos:
+          - Santa Catalina o Calovébora (Bledeshia)
+          - Alto Bilingüe (Gdogueshia)
+          - Loma Yuca (Ijuicho)
+          - San Pedrito
+          - Valle Bonito (Dogata)
   pa_nt:
     name: Naso Tjër Di
     capital: Sieyic
