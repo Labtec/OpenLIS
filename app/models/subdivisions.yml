@@ -231,7 +231,6 @@ provinces:
           - Santa Rosa
           - Santo Domingo
           - Sortová
-          - Volcán
           - El Bongo
       -
         name: David
@@ -320,6 +319,15 @@ provinces:
           - Potrero de Caña
           - Quebrada de Piedra
           - Veladero
+      -
+        name: Tierras Altas
+        cabecera: Volcán
+        corregimientos:
+          - Cerro Punta
+          - Cuesta de Piedra
+          - Nueva California
+          - Paso Ancho
+          - Volcán
   pa_5:
     name: Darién
     capital: La Palma
@@ -334,16 +342,10 @@ provinces:
           - Garachiné
           - Jaqué
           - Puerto Piña
-          - Río Congo
-          - Río Iglesias
           - Sambú
           - Setegantí
           - Taimatí
           - Tucutí
-          - Agua Fría
-          - Cucunatí
-          - Río Congo Arriba
-          - Santa Fe
       -
         name: Pinogana
         cabecera: El Real de Santa María
@@ -357,6 +359,17 @@ provinces:
           - Yaviza
           - Metetí
           - Comarca Kuna de Wargandí
+      -
+        name: Santa Fe
+        cabecera: Santa Fe
+        corregimientos:
+          - Agua Fría
+          - Cucunatí
+          - Río Congo
+          - Río Congo Arriba
+          - Río Iglesias
+          - Santa Fe
+          - Zapallal
   pa_6:
     name: Herrera
     capital: Chitré
