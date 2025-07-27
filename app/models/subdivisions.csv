@@ -137,7 +137,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 4-5-9,4,Chiriquí,5,Bugaba,9,Santa Rosa,0
 4-5-10,4,Chiriquí,5,Bugaba,10,Santo Domingo,0
 4-5-11,4,Chiriquí,5,Bugaba,11,Sortova,0
-4-5-12,4,Chiriquí,5,Bugaba,12,Volcán,0
+4-5-12,4,Chiriquí,5,Bugaba,12,Inactivo,0
 4-5-13,4,Chiriquí,5,Bugaba,13,El Bongo,0
 4-6-1,4,Chiriquí,6,David,1,David,1
 4-6-2,4,Chiriquí,6,David,2,Bijagual,0
@@ -194,22 +194,27 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 4-13-7,4,Chiriquí,13,Tolé,7,Potrero de Caña,0
 4-13-8,4,Chiriquí,13,Tolé,8,Quebrada de Piedra,0
 4-13-9,4,Chiriquí,13,Tolé,9,Veladero,0
+4-15-1,4,Chiriquí,15,Tierras Altas,1,Cerro Punta,0
+4-15-2,4,Chiriquí,15,Tierras Altas,2,Cuesta de Piedra,0
+4-15-3,4,Chiriquí,15,Tierras Altas,3,Nueva California,0
+4-15-4,4,Chiriquí,15,Tierras Altas,4,Paso Ancho,0
+4-15-5,4,Chiriquí,15,Tierras Altas,5,Volcán,1
 5-1-1,5,Darién,1,Chepigana,1,La Palma,1
 5-1-2,5,Darién,1,Chepigana,2,Camogantí,0
 5-1-3,5,Darién,1,Chepigana,3,Chepigana,0
 5-1-4,5,Darién,1,Chepigana,4,Garachine,0
 5-1-5,5,Darién,1,Chepigana,5,Jaqué,0
 5-1-6,5,Darién,1,Chepigana,6,Puerto Piña,0
-5-1-7,5,Darién,1,Chepigana,7,Río Congo,0
-5-1-8,5,Darién,1,Chepigana,8,Río Iglesias,0
+5-1-7,5,Darién,1,Chepigana,7,Inactivo,0
+5-1-8,5,Darién,1,Chepigana,8,Inactivo,0
 5-1-9,5,Darién,1,Chepigana,9,Sambú,0
 5-1-10,5,Darién,1,Chepigana,10,Setegantí,0
 5-1-11,5,Darién,1,Chepigana,11,Taimatí,0
 5-1-12,5,Darién,1,Chepigana,12,Tucutí,0
-5-1-13,5,Darién,1,Chepigana,13,Agua Fría,0
-5-1-14,5,Darién,1,Chepigana,14,Cucunatí,0
-5-1-15,5,Darién,1,Chepigana,15,Río Congo Arriba,0
-5-1-16,5,Darién,1,Chepigana,16,Santa Fe,0
+5-1-13,5,Darién,1,Chepigana,13,Inactivo,0
+5-1-14,5,Darién,1,Chepigana,14,Inactivo,0
+5-1-15,5,Darién,1,Chepigana,15,Inactivo,0
+5-1-16,5,Darién,1,Chepigana,16,Inactivo,0
 5-2-1,5,Darién,2,Pinogana,1,El Real de Santa María,1
 5-2-2,5,Darién,2,Pinogana,2,Boca de Cupe,0
 5-2-3,5,Darién,2,Pinogana,3,Paya,0
@@ -219,6 +224,13 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 5-2-7,5,Darién,2,Pinogana,7,Yaviza,0
 5-2-8,5,Darién,2,Pinogana,8,Metetí,0
 5-2-9,5,Darién,2,Pinogana,9,Comarca Kuna de Wargandí,0
+5-3-1,5,Darién,3,Santa Fe,1,Agua Fría,0
+5-3-2,5,Darién,3,Santa Fe,2,Cucunatí,0
+5-3-3,5,Darién,3,Santa Fe,3,Río Congo,0
+5-3-4,5,Darién,3,Santa Fe,4,Río Congo Arriba,0
+5-3-5,5,Darién,3,Santa Fe,5,Río Iglesias,0
+5-3-6,5,Darién,3,Santa Fe,6,Santa Fe,0
+5-3-7,5,Darién,3,Santa Fe,7,Zapallal,0
 6-1-1,6,Herrera,1,Chitré,1,Chitré,1
 6-1-2,6,Herrera,1,Chitré,2,La Arena,0
 6-1-3,6,Herrera,1,Chitré,3,Monagrillo,0
