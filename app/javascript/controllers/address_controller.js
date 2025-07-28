@@ -45,6 +45,13 @@ export default class extends Controller {
     }
   }
 
+  // Before submitting the form, enable disabled fields (in the case of Guna Yala).
+  submit() {
+    if (this.provinceTarget.value === "Guna Yala") {
+      this.districtTarget.disabled = false
+    }
+  }
+
   // Triggered when a province is selected
   select_province() {
     let allDistricts = this.allDistricts

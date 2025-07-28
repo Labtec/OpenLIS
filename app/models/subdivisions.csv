@@ -8,7 +8,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 1-2-2,1,Bocas del Toro,2,Changuinola,2,Inactivo,0
 1-2-3,1,Bocas del Toro,2,Changuinola,3,Guabito,0
 1-2-4,1,Bocas del Toro,2,Changuinola,4,Teribe,0
-1-2-5,1,Bocas del Toro,2,Changuinola,5,Valle del Risco,0
+1-2-5,1,Bocas del Toro,2,Changuinola,5,Inactivo,0
 1-2-6,1,Bocas del Toro,2,Changuinola,6,El Empalme,0
 1-2-7,1,Bocas del Toro,2,Changuinola,7,Las Tablas,0
 1-3-1,1,Bocas del Toro,3,Chiriquí Grande,1,Chiriquí Grande,1
@@ -16,13 +16,13 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 1-3-3,1,Bocas del Toro,3,Chiriquí Grande,3,Punta Peña,0
 1-3-4,1,Bocas del Toro,3,Chiriquí Grande,4,Punta Robalo,0
 1-3-5,1,Bocas del Toro,3,Chiriquí Grande,5,Rambala,0
-1-3-6,1,Bocas del Toro,3,Chiriquí Grande,5,Bajo del Cedro,0
+1-3-6,1,Bocas del Toro,3,Chiriquí Grande,6,Bajo del Cedro,0
 1-4-1,1,Bocas del Toro,4,Almirante,1,Almirante,0
 1-4-2,1,Bocas del Toro,4,Almirante,2,Barriada Guaymí,0
-1-4-3,1,Bocas del Toro,4,Almirante,2,Barrio Francés,0
-1-4-4,1,Bocas del Toro,4,Almirante,2,Nance de Riscó,0
-1-4-5,1,Bocas del Toro,4,Almirante,2,Valle de Aguas Arriba,0
-1-4-6,1,Bocas del Toro,4,Almirante,2,Valle de Riscó,0
+1-4-3,1,Bocas del Toro,4,Almirante,3,Barrio Francés,0
+1-4-4,1,Bocas del Toro,4,Almirante,4,Nance de Riscó,0
+1-4-5,1,Bocas del Toro,4,Almirante,5,Valle de Aguas Arriba,0
+1-4-6,1,Bocas del Toro,4,Almirante,6,Valle de Riscó,0
 2-1-1,2,Coclé,1,Aguadulce,1,Aguadulce,1
 2-1-2,2,Coclé,1,Aguadulce,2,El Cristo,0
 2-1-3,2,Coclé,1,Aguadulce,3,El Roble,0
