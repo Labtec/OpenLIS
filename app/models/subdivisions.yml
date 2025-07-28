@@ -19,7 +19,6 @@ provinces:
         cabecera: Changuinola
         corregimientos:
           - Changuinola
-          - Almirante
           - Guabito
           - Teribe
           - Valle del Risco
@@ -34,6 +33,17 @@ provinces:
           - Puente Peña
           - Punta Robalo
           - Rambala
+          - Bajo del Cedro
+      -
+        name: Almirante
+        cabecera: Almirante
+        corregimientos:
+          - Almirante
+          - Barriada Guaymí
+          - Barrio Francés
+          - Nance de Riscó
+          - Valle de Aguas Arriba
+          - Valle de Riscó
   pa_2:
     name: Coclé
     capital: Penonomé
@@ -126,6 +136,7 @@ provinces:
           - Salamanca
           - San Juan
           - Santa Rosa
+          - Cristóbal Este
       -
         name: Chagres
         cabecera: Nuevo Chagres
@@ -687,6 +698,7 @@ provinces:
           - San José
           - San Marcelo
           - El Aromillo
+          - Las Cruces
       -
         name: La Mesa
         cabecera: La Mesa
@@ -713,6 +725,7 @@ provinces:
           - San Martín de Porres
           - Viguí
           - Zapotillo
+          - Altamira
       -
         name: Montijo
         cabecera: Montijo
