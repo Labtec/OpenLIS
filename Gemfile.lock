@@ -224,7 +224,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (8.0.0)
       railties (>= 3.2.16)
-    json (2.13.1)
+    json (2.13.2)
     jwt (2.10.2)
       base64
     kamal (2.7.0)
@@ -591,4 +591,4 @@ RUBY VERSION
    ruby 3.4.4p34
 
 BUNDLED WITH
-   2.7.0
+   2.7.1
