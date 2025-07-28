@@ -5,7 +5,7 @@ DEFAULTS: &DEFAULTS
 alice: &alice
   given_name: Alice
   identifier: '111-111-1111'
-  identifier_type: 1
+  identifier_type: 2
   gender: F
   <<: *DEFAULTS
 
@@ -16,7 +16,7 @@ alicia:
 bob:
   given_name: Bob
   identifier: '222-222-2222'
-  identifier_type: 1
+  identifier_type: 2
   gender: M
   <<: *DEFAULTS
 
@@ -25,21 +25,21 @@ john:
   middle_name: Fitzgerald
   family_name2: Rockefeller
   identifier: '333-333-3333'
-  identifier_type: 1
+  identifier_type: 2
   gender: M
   <<: *DEFAULTS
 
 angel:
   given_name: Ángel
   identifier: '444-444-4444'
-  identifier_type: 1
+  identifier_type: 2
   gender: M
   <<: *DEFAULTS
 
 insured:
   given_name: Insured
   identifier: 'INS-1'
-  identifier_type: 1
+  identifier_type: 2
   gender: U
   insurance_provider: axa
   policy_number: '1-111'

@@ -5,7 +5,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 1-1-4,1,Bocas del Toro,1,Bocas del Toro,4,Punta Laurel,0
 1-1-5,1,Bocas del Toro,1,Bocas del Toro,5,Tierra Oscura,0
 1-2-1,1,Bocas del Toro,2,Changuinola,1,Changuinola,1
-1-2-2,1,Bocas del Toro,2,Changuinola,2,Almirante,0
+1-2-2,1,Bocas del Toro,2,Changuinola,2,Inactivo,0
 1-2-3,1,Bocas del Toro,2,Changuinola,3,Guabito,0
 1-2-4,1,Bocas del Toro,2,Changuinola,4,Teribe,0
 1-2-5,1,Bocas del Toro,2,Changuinola,5,Valle del Risco,0
@@ -16,6 +16,13 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 1-3-3,1,Bocas del Toro,3,Chiriquí Grande,3,Punta Peña,0
 1-3-4,1,Bocas del Toro,3,Chiriquí Grande,4,Punta Robalo,0
 1-3-5,1,Bocas del Toro,3,Chiriquí Grande,5,Rambala,0
+1-3-6,1,Bocas del Toro,3,Chiriquí Grande,5,Bajo del Cedro,0
+1-4-1,1,Bocas del Toro,4,Almirante,1,Almirante,0
+1-4-2,1,Bocas del Toro,4,Almirante,2,Barriada Guaymí,0
+1-4-3,1,Bocas del Toro,4,Almirante,2,Barrio Francés,0
+1-4-4,1,Bocas del Toro,4,Almirante,2,Nance de Riscó,0
+1-4-5,1,Bocas del Toro,4,Almirante,2,Valle de Aguas Arriba,0
+1-4-6,1,Bocas del Toro,4,Almirante,2,Valle de Riscó,0
 2-1-1,2,Coclé,1,Aguadulce,1,Aguadulce,1
 2-1-2,2,Coclé,1,Aguadulce,2,El Cristo,0
 2-1-3,2,Coclé,1,Aguadulce,3,El Roble,0
@@ -72,6 +79,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 3-1-12,3,Colón,1,Colón,12,Salamanca,0
 3-1-13,3,Colón,1,Colón,13,San Juan,0
 3-1-14,3,Colón,1,Colón,14,Santa Rosa,0
+3-1-15,3,Colón,1,Colón,15,Cristóbal Este,0
 3-2-1,3,Colón,2,Chagres,1,Nuevo Chagres,1
 3-2-2,3,Colón,2,Chagres,2,Achiote,0
 3-2-3,3,Colón,2,Chagres,3,El Guabo,0
@@ -440,6 +448,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 9-3-5,9,Veraguas,3,Cañazas,5,San José,0
 9-3-6,9,Veraguas,3,Cañazas,6,San Marcelo,0
 9-3-7,9,Veraguas,3,Cañazas,7,El Aromillo,0
+9-3-8,9,Veraguas,3,Cañazas,8,Las Cruces,0
 9-4-1,9,Veraguas,4,La Mesa,1,La Mesa,1
 9-4-2,9,Veraguas,4,La Mesa,2,Bisvalles,0
 9-4-3,9,Veraguas,4,La Mesa,3,Boró,0
@@ -458,6 +467,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 9-5-10,9,Veraguas,5,Las Palmas,10,San Martín de Porres,0
 9-5-11,9,Veraguas,5,Las Palmas,11,Viguí,0
 9-5-12,9,Veraguas,5,Las Palmas,12,Zapotillo,0
+9-5-13,9,Veraguas,5,Las Palmas,13,Altamira,0
 9-6-1,9,Veraguas,6,Montijo,1,Montijo,1
 9-6-2,9,Veraguas,6,Montijo,2,Arenas,0
 9-6-3,9,Veraguas,6,Montijo,3,Gobernadora,0
