@@ -31,6 +31,9 @@ class Patient < ApplicationRecord
   validates :birthdate, not_too_old: true
   validates :identifier, uniqueness: { case_sensitive: false },
                          allow_blank: true
+  # TODO: Waiting for SVI access
+  #       Will likely need to add a third identifier_type "other"
+  # validates :identifier, cedula: true, if: -> { identifier.present? && identifier_type == 1 }
   validates :identifier_type, presence: true, if: -> { identifier.present? }
   validates :identifier_type, inclusion: { in: IDENTIFIER_TYPES },
                               allow_blank: true
