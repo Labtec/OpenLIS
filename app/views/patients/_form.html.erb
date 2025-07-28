@@ -1,4 +1,6 @@
-<%= form_with(model: @patient, html: { novalidate: '', autocomplete: 'off' }) do |form| %>
+<%= form_with(model: @patient,
+              html: { novalidate: '', autocomplete: 'off' },
+              data: { controller: 'address', action: 'address#submit' }) do |form| %>
   <%= render 'shared/error_messages', object: @patient %>
 
   <div class="given_name">
@@ -73,7 +75,7 @@
 
   <h2><%= t('.additional_information') %></h2>
 
-  <div class="address" data-controller="address">
+  <div class="address">
     <%= form.label :address, t('.address') %>
     <div class="province">
       <%= form.label :address_province, t('.province') %>
