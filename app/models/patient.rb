@@ -65,6 +65,8 @@ class Patient < ApplicationRecord
   # validates :address_corregimiento, corregimiento: true
   # TODO: line -> street + neighborhood + number
 
+  normalizes :identifier, with: ->(identifier) { identifier.gsub(/\s+/, "") }
+
   accepts_nested_attributes_for :accessions, allow_destroy: true
 
   scope :recent, -> { order(updated_at: :desc) }

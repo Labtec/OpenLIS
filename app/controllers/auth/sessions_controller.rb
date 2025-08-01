@@ -7,6 +7,8 @@ module Auth
 
     include WebauthnConcern
 
+    rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_user_session_path, alert: t("auth.sessions.try_again") }
+
     def new
       respond_to do |format|
         format.html do

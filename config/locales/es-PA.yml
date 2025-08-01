@@ -119,6 +119,7 @@ es-PA:
         or: o
   auth:
     sessions:
+      try_again: Intente nuevamente más tarde.
       webauthn:
         message: Cuando esté listo, autentíquese usando el botón de abajo.
         submit: Usar passkey o llave de seguridad

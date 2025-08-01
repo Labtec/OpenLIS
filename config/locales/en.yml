@@ -75,6 +75,7 @@ en:
         or: or
   auth:
     sessions:
+      try_again: Try again later.
       webauthn:
         message: When you are ready, authenticate using the button below.
         submit: Use passkey or security key
