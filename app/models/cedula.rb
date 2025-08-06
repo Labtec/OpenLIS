@@ -18,7 +18,7 @@ class Cedula
 
     normalized_ruc = normalize_ruc(split_ruc)
 
-    # XXX: Persona Natural, replace N with 5
+    # XXX: Persona Natural, replace N with 5.  Persona Jurídica, 0
     padded_ruc = ("5" +
        normalized_ruc[0].rjust(4, "0") +
        normalized_ruc[1].rjust(3, "0") +
