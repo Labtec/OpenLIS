@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Cedula
-  REGEXP = /\A(([2-9]|1[0-3]?)(?:AV|PI|-(NT))?|E|N|PE)-(\d{1,4})-(\d{1,6})\z/
+  REGEXP = /\A((?:1[0-3]?|[2-9])(?:AV|PI|-(NT))?|E|N|PE)-(\d{1,4})-(\d{1,6})\z/
 
   def initialize(ruc)
     @ruc = ruc
@@ -18,7 +18,7 @@ class Cedula
 
     normalized_ruc = normalize_ruc(split_ruc)
 
-    # XXX: Persona Natural, replace N with 5
+    # XXX: Persona Natural, replace N with 5.  Persona Jurídica, 0
     padded_ruc = ("5" +
        normalized_ruc[0].rjust(4, "0") +
        normalized_ruc[1].rjust(3, "0") +
