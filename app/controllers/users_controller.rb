@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to root_url, notice: "Successfully updated profile."
+      redirect_to root_url, notice: t("flash.user.update")
     else
       render :edit, status: :unprocessable_content
     end

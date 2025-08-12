@@ -60,7 +60,7 @@ module Admin
         :fasting_status_duration_iso8601,
         :patient_preparation,
         :status,
-        lab_test_ids: []
+        { lab_test_ids: [] }
       ])
     end
   end

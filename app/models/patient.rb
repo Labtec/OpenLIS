@@ -49,8 +49,8 @@ class Patient < ApplicationRecord
   validates :address_district, presence: true,
                                if: lambda {
                                      address_province.present? &&
-                                       (address_province_changed? &&
-                                        address_province_change.last != "Guna Yala")
+                                       address_province_changed? &&
+                                       address_province_change.last != "Guna Yala"
                                    }
   validates :address_corregimiento, presence: true,
                                     if: lambda {

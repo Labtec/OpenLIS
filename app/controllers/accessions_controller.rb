@@ -108,7 +108,7 @@ class AccessionsController < ApplicationController
         :department_id
       ] ] },
       { lab_test_ids: [] },
-      panel_ids: []
+      { panel_ids: [] }
     ])
   end
 

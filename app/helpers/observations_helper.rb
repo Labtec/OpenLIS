@@ -15,9 +15,9 @@ module ObservationsHelper
       number_with_precision(observation.derived_value, precision: observation.lab_test_decimals, delimiter: ",") || "calc."
     elsif observation.value_codeable_concept.present? && observation.value.present?
       [ observation.value_codeable_concept,
-       " [",
-       number_with_precision(observation.value, precision: observation.lab_test_decimals, delimiter: ","),
-       "]" ].join
+        " [",
+        number_with_precision(observation.value, precision: observation.lab_test_decimals, delimiter: ","),
+        "]" ].join
     elsif observation.value_codeable_concept.present?
       observation.value_codeable_concept
     elsif observation.value.blank?
@@ -141,7 +141,7 @@ module ObservationsHelper
   def registration_number(inline: false)
     return "" if current_user.register.blank?
 
-    "#{inline ? ' / ' : ''}#{t('results.index.register')} #{current_user.register}"
+    "#{' / ' if inline}#{t('results.index.register')} #{current_user.register}"
   end
 
   def observation_input(builder, observation, lab_test)

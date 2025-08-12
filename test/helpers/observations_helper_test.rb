@@ -124,7 +124,7 @@ class ObservationsHelperTest < ActionView::TestCase
 
   test "reference range table with genders" do
     reference_range_table = [ [ nil, "M:", "0", "–", "10" ],
-                             [ nil, "F:", "100", "–", "200" ] ]
+                              [ nil, "F:", "100", "–", "200" ] ]
     assert_equal reference_range_table,
                  ranges_table([ qualified_intervals(:gender_male), qualified_intervals(:gender_female) ], display_gender: true)
   end

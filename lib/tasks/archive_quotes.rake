@@ -5,7 +5,7 @@ namespace :quotes do
 
   task archive: :environment do
     puts "Archiving expired quotes"
-    Quote.where(expires_at: ...Time.current).find_in_batches do |expired_quotes|
+    Quote.where(expires_at: ...(Time.current)).find_in_batches do |expired_quotes|
       expired_quotes.each do |expired_quote|
         expired_quote.archived!
         print "."

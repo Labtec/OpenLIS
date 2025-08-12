@@ -11,6 +11,6 @@ class QuotesMailer < ApplicationMailer
 
   def serial_number
     "#{@quote.serial_number}#{t('quotes.quote.version',
-      version_number: @quote.version_number) if @quote.version_number}"
+                                version_number: @quote.version_number) if @quote.version_number}"
   end
 end

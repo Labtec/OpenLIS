@@ -163,6 +163,8 @@ en:
       email_success: Email sent successfully.
     quote_detail:
       update: Successfully updated quote details.
+    user:
+      update: Successfully updated profile.
     users:
       cant_delete_last_security_key: The last security key cannot be deleted.
   interval:

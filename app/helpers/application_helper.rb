@@ -30,9 +30,9 @@ module ApplicationHelper
     items = []
     links.each do |link|
       items << if controller.controller_name.to_sym == link[0] || link[0] == :"admin_#{controller.controller_name}"
-                 tag.li(link_to((link[1]).to_s, link[0]), class: "active")
+                 tag.li(link_to(link[1].to_s, link[0]), class: "active")
                else
-                 tag.li(link_to((link[1]).to_s, link[0]))
+                 tag.li(link_to(link[1].to_s, link[0]))
                end
     end
     if controller.controller_name.to_s == "claims"

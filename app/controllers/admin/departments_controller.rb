@@ -5,7 +5,7 @@ module Admin
     before_action :set_department, only: %i[edit update destroy]
 
     def index
-      @departments = Department.order("id asc").includes(:lab_tests)
+      @departments = Department.order(:id).includes(:lab_tests)
     end
 
     def new

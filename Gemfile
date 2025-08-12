@@ -43,9 +43,9 @@ gem "puma", ">= 6.0"
 gem "rails-html-sanitizer"
 gem "rails-i18n"
 gem "sassc-rails" # TODO
+gem "solid_cable"
 gem "solid_cache"
 gem "solid_queue"
-gem "solid_cable"
 gem "stimulus-rails"
 gem "thruster", require: false
 gem "turbo-rails"

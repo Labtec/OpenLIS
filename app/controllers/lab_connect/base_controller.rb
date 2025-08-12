@@ -10,7 +10,7 @@ module LabConnect
     private
 
     def authenticate
-      authenticate_or_request_with_http_token do |token, options|
+      authenticate_or_request_with_http_token do |token, _options|
         ActiveSupport::SecurityUtils.secure_compare(token, Rails.application.credentials.dig(:lab_connect, :pat))
       end
     end

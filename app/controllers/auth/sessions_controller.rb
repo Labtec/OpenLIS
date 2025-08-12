@@ -58,7 +58,7 @@ module Auth
       params.expect(user: [
         :username,
         :password,
-        credential: {}
+        { credential: {} }
       ])
     end
 

@@ -16,7 +16,7 @@ class Accession < ApplicationRecord
   has_one :quote, dependent: :nullify, foreign_key: "service_request_id"
 
   has_many :results, class_name: "Observation", dependent: :destroy
-  has_many :lab_tests, -> { order("position ASC") }, through: :results
+  has_many :lab_tests, -> { order(:position) }, through: :results
   has_many :accession_panels, dependent: :destroy
   has_many :panels, through: :accession_panels
   has_many :departments, through: :lab_tests
@@ -136,11 +136,11 @@ class Accession < ApplicationRecord
     return if notes.count < 2
 
     notes.each_with_index do |note, index|
-      if notes[index + 1] &&
-         note.content == notes[index + 1].content &&
-         note.department_id == notes[index + 1].department_id
-        notes[index + 1].destroy!
-      end
+      next unless notes[index + 1] &&
+                  note.content == notes[index + 1].content &&
+                  note.department_id == notes[index + 1].department_id
+
+      notes[index + 1].destroy!
     end
   end
 

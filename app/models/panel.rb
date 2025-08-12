@@ -53,7 +53,7 @@ class Panel < ApplicationRecord
     lab_tests.each do |lab_test|
       ap << lab_test.procedure if lab_test.procedure
     end
-    ap.inject(Hash.new(0)) { |procedure, units| procedure[units] += 1; procedure }
+    ap.each_with_object(Hash.new(0)) { |units, procedure| procedure[units] += 1 }
   end
 
   def self.cached_panels
