@@ -208,6 +208,8 @@ es-PA:
       email_success: Correo enviado exitosamente.
     quote_detail:
       update: Detalles de la cotización actualizados exitosamente.
+    user:
+      update: Perfil actualizado exitosamente.
     users:
       cant_delete_last_security_key: No se puede eliminar la última llave de seguridad.
   i18n:

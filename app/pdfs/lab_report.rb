@@ -319,9 +319,7 @@ class LabReport < Prawn::Document
       end
     end
 
-    if @smart
-      barcode_smart
-    end
+    barcode_smart if @smart
 
     ##
     # Footer

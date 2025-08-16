@@ -16,11 +16,11 @@ class Label < Prawn::Document
   TEXT_SIZE_SMALL = 6
   TEXT_SIZE_TINY = 5
 
-  LABEL_SIZE = [ LABEL_WIDTH, LABEL_HEIGHT ]
-  PATIENT_DEMOGRAPHICS_HEIGHT = 2 * TEXT_SIZE + LINE_PADDING
+  LABEL_SIZE = [ LABEL_WIDTH, LABEL_HEIGHT ].freeze
+  PATIENT_DEMOGRAPHICS_HEIGHT = (2 * TEXT_SIZE) + LINE_PADDING
   STAT_HEIGHT = LINE_HEIGHT + LINE_PADDING
   XXX_SERVICE_REQUEST_STAT = false
-  XXX_SERVICE_REQUEST_STAT ? PADDING_LEFT = PADDING + STAT_HEIGHT : PADDING_LEFT = PADDING
+  PADDING_LEFT = XXX_SERVICE_REQUEST_STAT ? PADDING + STAT_HEIGHT : PADDING
 
   def initialize(patient, specimen, view_context)
     @patient = patient
@@ -133,18 +133,18 @@ class Label < Prawn::Document
   end
 
   def priority
-    if XXX_SERVICE_REQUEST_STAT
-      fill_and_stroke_rectangle [ 0 - STAT_HEIGHT - PADDING, LABEL_HEIGHT - PADDING ], STAT_HEIGHT, LABEL_HEIGHT
-      bounding_box([ 0 - PADDING, 0 - PADDING + STAT_HEIGHT ], width: LABEL_HEIGHT, height: STAT_HEIGHT) do
-        rotate(90, origin: [ 0, 0 ]) do
-          formatted_text_box(
-            [ { text: t("labels.stat"), styles: [ :bold ], color: [ 0, 0, 0, 0 ], size: TEXT_SIZE_SMALL } ],
-            at: [ 0, 0 + LINE_HEIGHT - LINE_PADDING - 0.5 ],
-            width: LABEL_HEIGHT,
-            height: LINE_HEIGHT,
-            align: :center
-          )
-        end
+    return unless XXX_SERVICE_REQUEST_STAT
+
+    fill_and_stroke_rectangle [ 0 - STAT_HEIGHT - PADDING, LABEL_HEIGHT - PADDING ], STAT_HEIGHT, LABEL_HEIGHT
+    bounding_box([ 0 - PADDING, 0 - PADDING + STAT_HEIGHT ], width: LABEL_HEIGHT, height: STAT_HEIGHT) do
+      rotate(90, origin: [ 0, 0 ]) do
+        formatted_text_box(
+          [ { text: t("labels.stat"), styles: [ :bold ], color: [ 0, 0, 0, 0 ], size: TEXT_SIZE_SMALL } ],
+          at: [ 0, 0 + LINE_HEIGHT - LINE_PADDING - 0.5 ],
+          width: LABEL_HEIGHT,
+          height: LINE_HEIGHT,
+          align: :center
+        )
       end
     end
   end

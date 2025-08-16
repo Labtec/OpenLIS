@@ -56,7 +56,7 @@ class Cedula
   #      11 - 10 = 1
   def calculate_dv(padded_ruc)
     weight = padded_ruc.chars.map(&:to_i)
-                       .zip(Array(2..padded_ruc.size + 1).reverse)
+                       .zip(Array(2..(padded_ruc.size + 1)).reverse)
                        .map { |x, y| x * y }
     mod11 = weight.sum % 11
     mod11.zero? || mod11 == 1 ? 0 : 11 - mod11

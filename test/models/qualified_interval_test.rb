@@ -87,53 +87,53 @@ class QualifiedIntervalTest < ActiveSupport::TestCase
   test "#age" do
     # 1 - 2 years
     @qualified_interval.update(age_low: "P1Y", age_high: "P2Y")
-    assert_equal 1.year..2.years, @qualified_interval.age
+    assert_equal (1.year)..(2.years), @qualified_interval.age
 
     # 1 - 2 months
     @qualified_interval.update(age_low: "P1M", age_high: "P2M")
-    assert_equal 1.month..2.months, @qualified_interval.age
+    assert_equal (1.month)..(2.months), @qualified_interval.age
 
     # 1 - 2 weeks
     @qualified_interval.update(age_low: "P1W", age_high: "P2W")
-    assert_equal 1.week..2.weeks, @qualified_interval.age
+    assert_equal (1.week)..(2.weeks), @qualified_interval.age
 
     # 1 - 2 days
     @qualified_interval.update(age_low: "P1D", age_high: "P2D")
-    assert_equal 1.day..2.days, @qualified_interval.age
+    assert_equal (1.day)..(2.days), @qualified_interval.age
 
     # > 1 day
     @qualified_interval.update(age_low: "P1D", age_high: nil)
-    assert_equal 1.day.., @qualified_interval.age
+    assert_equal (1.day).., @qualified_interval.age
 
     # <= 2 days
     @qualified_interval.update(age_low: nil, age_high: "P2D")
-    assert_equal (...2.days), @qualified_interval.age
+    assert_equal (...(2.days)), @qualified_interval.age
   end
 
   test "#gestational_age" do
     # 1 - 2 years
     @qualified_interval.update(gestational_age_low: "P1Y", gestational_age_high: "P2Y")
-    assert_equal 1.year..2.years, @qualified_interval.gestational_age
+    assert_equal (1.year)..(2.years), @qualified_interval.gestational_age
 
     # 1 - 2 months
     @qualified_interval.update(gestational_age_low: "P1M", gestational_age_high: "P2M")
-    assert_equal 1.month..2.months, @qualified_interval.gestational_age
+    assert_equal (1.month)..(2.months), @qualified_interval.gestational_age
 
     # 1 - 2 weeks
     @qualified_interval.update(gestational_age_low: "P1W", gestational_age_high: "P2W")
-    assert_equal 1.week..2.weeks, @qualified_interval.gestational_age
+    assert_equal (1.week)..(2.weeks), @qualified_interval.gestational_age
 
     # 1 - 2 days
     @qualified_interval.update(gestational_age_low: "P1D", gestational_age_high: "P2D")
-    assert_equal 1.day..2.days, @qualified_interval.gestational_age
+    assert_equal (1.day)..(2.days), @qualified_interval.gestational_age
 
     # > 1 day
     @qualified_interval.update(gestational_age_low: "P1D", gestational_age_high: nil)
-    assert_equal 1.day.., @qualified_interval.gestational_age
+    assert_equal (1.day).., @qualified_interval.gestational_age
 
     # <= 2 days
     @qualified_interval.update(gestational_age_low: nil, gestational_age_high: "P2D")
-    assert_equal (...2.days), @qualified_interval.gestational_age
+    assert_equal (...(2.days)), @qualified_interval.gestational_age
   end
 
   test "flag of a rounded derivation" do

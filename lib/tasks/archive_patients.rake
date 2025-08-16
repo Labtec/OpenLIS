@@ -6,7 +6,7 @@ namespace :patients do
   task archive: :environment do
     puts "Archiving patients table"
     ActiveRecord::Base.transaction do
-      Patient.where("birthdate < ?", Time.now - 120.years).find_in_batches do |patients|
+      Patient.where(birthdate: ...(Time.now - 120.years)).find_in_batches do |patients|
         patients.each do |patient|
           patient.update_columns(deceased: true)
           print "."

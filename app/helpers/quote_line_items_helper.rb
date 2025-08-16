@@ -14,17 +14,12 @@ module QuoteLineItemsHelper
 
     return line_item.procedure if line_item.procedure.present?
 
-    if line_item.associated_procedures
-      aps = []
-      line_item.associated_procedures.to_a.each do |procedure, procedure_quantity|
-        if procedure_quantity > 1
-          aps << "#{procedure}×#{procedure_quantity}"
-        else
-          aps << procedure
-        end
-      end
-      aps.join("\n")
+    return unless line_item.associated_procedures
+
+    aps = line_item.associated_procedures.to_a.map do |procedure, procedure_quantity|
+      procedure_quantity > 1 ? "#{procedure}×#{procedure_quantity}" : procedure
     end
+    aps.join("\n")
   end
 
   def quote_line_item_description(line_item)

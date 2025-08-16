@@ -317,7 +317,7 @@ class PDFQuote < Prawn::Document
     return if item.patient_preparation.blank? && item.fasting_status_duration.blank?
 
     marks = []
-    marks << (FOOTNOTE_SYMBOLS[0]).to_s if item.fasting_status_duration.present?
+    marks << FOOTNOTE_SYMBOLS[0].to_s if item.fasting_status_duration.present?
 
     if item.patient_preparation
       endnotes_array << @view.render_markdown_pdf(item.patient_preparation)

@@ -27,7 +27,7 @@ class Quote < ApplicationRecord
   belongs_to :service_request, optional: true, inverse_of: :quote, class_name: "Accession"
 
   has_many :line_items, class_name: "QuoteLineItem", dependent: :destroy
-  has_many :lab_tests, -> { order("position ASC") }, through: :line_items, source: :item, source_type: "LabTest"
+  has_many :lab_tests, -> { order(:position) }, through: :line_items, source: :item, source_type: "LabTest"
   has_many :panels, through: :line_items, source: :item, source_type: "Panel"
 
   accepts_nested_attributes_for :line_items
