@@ -3,6 +3,7 @@
 class QuotesController < ApplicationController
   before_action :set_departments, only: %i[new create edit update]
   before_action :set_panels, only: %i[new create edit update]
+  before_action :set_patient, only: :new
   before_action :set_quote, only: %i[show edit update destroy approve email order]
 
   def index
@@ -24,12 +25,7 @@ class QuotesController < ApplicationController
   end
 
   def new
-    if params[:patient_id]
-      @patient = Patient.find(params[:patient_id])
-      @quote = @patient.quotes.build
-    else
-      @quote = Quote.new
-    end
+    @quote = @patient ? @patient.quotes.build : Quote.new
   end
 
   def edit; end
@@ -110,6 +106,10 @@ class QuotesController < ApplicationController
 
   def set_departments
     @departments ||= Department.cached_tests
+  end
+
+  def set_patient
+    @patient = params[:patient_id] ? Patient.find(params[:patient_id]) : nil
   end
 
   def set_panels
