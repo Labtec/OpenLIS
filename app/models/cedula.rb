@@ -51,7 +51,7 @@ class Cedula
   #      175
   # 5. Divide this sum by the modulus 11:
   #      175 % 11 = 10
-  # 6. Substract the remainder from 11.  If the remainder was 1, or if there was
+  # 6. Subtract the remainder from 11.  If the remainder was 1, or if there was
   #    no remainder, return zero as the check digit:
   #      11 - 10 = 1
   def calculate_dv(padded_ruc)
