@@ -8,7 +8,7 @@ module UnitsHelper
       options << [ unit_expression_for_display(u), u.id ]
     end
 
-    options
+    options.sort
   end
 
   def unit_expression_for_display(unit)
