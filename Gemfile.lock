@@ -119,6 +119,9 @@ GEM
     brakeman (7.1.0)
       racc
     builder (3.3.0)
+    bundler-audit (0.9.2)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     capistrano (3.19.2)
       airbrussh (>= 1.0.0)
       i18n
@@ -538,6 +541,7 @@ DEPENDENCIES
   bcrypt_pbkdf
   bootsnap
   brakeman
+  bundler-audit
   capistrano-bundler
   capistrano-rails
   capistrano-rbenv
