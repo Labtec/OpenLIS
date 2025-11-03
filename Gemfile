@@ -54,6 +54,7 @@ gem "webauthn"
 
 group :development, :test do
   gem "brakeman", require: false
+  gem "bundler-audit", require: false
   gem "capistrano3-puma"
   gem "capistrano-bundler"
   gem "capistrano-rails"

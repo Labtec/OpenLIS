@@ -426,7 +426,7 @@ class PDFQuote < Prawn::Document
     max_hours = @quote.line_items.map(&:item).pluck(:fasting_status_duration).compact.max
     return unless max_hours
 
-    pluralize(max_hours.parts[:hours], "hora")
+    pluralize(max_hours.parts[:hours], "hora", plural: "horas")
   end
 
   def page_break?(next_box)
