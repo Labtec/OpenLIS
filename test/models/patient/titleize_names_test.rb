@@ -17,6 +17,11 @@ class PatientTitleizeNamesTest < ActiveSupport::TestCase
 
     @patient.save!
     assert_equal "Ángel", @patient.given_name
+
+    @patient.given_name = "áNGEL"
+
+    @patient.save!
+    assert_equal "Ángel", @patient.given_name
   end
 
   test "given name contains extra spaces" do
@@ -28,6 +33,11 @@ class PatientTitleizeNamesTest < ActiveSupport::TestCase
 
   test "middle name contains international character" do
     @patient.middle_name = "ángel"
+
+    @patient.save!
+    assert_equal "Ángel", @patient.middle_name
+
+    @patient.middle_name = "áNGEL"
 
     @patient.save!
     assert_equal "Ángel", @patient.middle_name
