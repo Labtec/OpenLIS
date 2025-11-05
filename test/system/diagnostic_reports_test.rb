@@ -38,12 +38,12 @@ module System
 
       assert_not page.has_content?("calc.")
       assert_not page.has_content?("pend.")
-      assert Accession.find(diagnostic_report.id).preliminary?, 'Not Preliminary'
+      assert Accession.find(diagnostic_report.id).preliminary?, "Not Preliminary"
 
       click_on "Certify"
       visit diagnostic_report_url(diagnostic_report)
 
-      assert Accession.find(diagnostic_report.id).final?, 'Not Final'
+      assert Accession.find(diagnostic_report.id).final?, "Not Final"
 
       click_on "Change Results"
 
@@ -51,7 +51,7 @@ module System
       click_on "Save Results"
       visit diagnostic_report_url(diagnostic_report)
 
-      assert Accession.find(diagnostic_report.id).amended?, 'Not Amended'
+      assert Accession.find(diagnostic_report.id).amended?, "Not Amended"
     end
   end
 end
