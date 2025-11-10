@@ -67,7 +67,7 @@ module PatientsHelper
 
   def name_last_comma_first_mi(patient)
     family_name = patient.partner_name || patient.family_name
-    family_name[0] = family_name[0].mb_chars.upcase
+    family_name[0] = family_name[0].upcase
     last_comma_first = [ family_name, patient.given_name ].join(", ")
     mi = "#{patient.middle_name[0, 1]}." if patient.middle_name.present?
     ActiveSupport::Inflector.transliterate([ last_comma_first, mi ].join(" ").squish)
@@ -76,7 +76,7 @@ module PatientsHelper
   # Truncates long names used in labels
   def name_last_comma_first_mi_label(patient)
     family_name = patient.family_name || patient.partner_name
-    family_name[0] = family_name[0].mb_chars.upcase
+    family_name[0] = family_name[0].upcase
     family_name = truncate(family_name, length: 13, omission: "+")
 
     first_name = truncate(patient.given_name, length: 9, omission: "+")

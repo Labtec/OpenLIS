@@ -135,7 +135,14 @@ class Patient < ApplicationRecord
   end
 
   def titleize_names
-    self.given_name = given_name.mb_chars.titleize if given_name
-    self.middle_name = middle_name.mb_chars.titleize if middle_name
+    # XXX use titleize when it supports multibyte characters
+    if given_name
+      self.given_name[0] = given_name[0].upcase
+      self.given_name[1..] = given_name[1..].downcase
+    end
+    if middle_name
+      self.middle_name[0] = middle_name[0].upcase
+      self.middle_name[1..] = middle_name[1..].downcase
+    end
   end
 end
