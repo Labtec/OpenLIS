@@ -179,7 +179,7 @@ GEM
     dotenv (3.1.8)
     drb (2.2.3)
     ed25519 (1.4.0)
-    erb (5.1.3)
+    erb (6.0.0)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
@@ -489,7 +489,7 @@ GEM
     stackprof (0.2.27)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stringio (3.1.7)
+    stringio (3.1.8)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.4.0)
