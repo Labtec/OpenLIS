@@ -101,10 +101,16 @@ class Observation < ApplicationRecord
       Range.new(Regexp.last_match(3).to_i, Regexp.last_match(5).to_i)
     elsif lab_test.fraction?
       value =~ %r{\A(\d+)/(\d+)\z}
-      Rational(Regexp.last_match(1).to_i, Regexp.last_match(2).to_i)
+      numerator = Regexp.last_match(1).to_i
+      denominator = Regexp.last_match(2).to_i
+
+      Rational(numerator, denominator) if numerator && denominator && !denominator.zero?
     elsif lab_test.ratio? # XXX: titer only
       value =~ /\A(\d+):(\d+)\z/
-      Rational(Regexp.last_match(2).to_i, Regexp.last_match(1).to_i)
+      numerator = Regexp.last_match(2).to_i
+      denominator = Regexp.last_match(1).to_i
+
+      Rational(numerator, denominator) if numerator && denominator && !denominator.zero?
     else
       value.gsub(/[^\d.]/, "").to_d.round(lab_test_decimals.to_i)
     end
