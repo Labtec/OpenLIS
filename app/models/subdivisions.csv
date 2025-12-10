@@ -17,7 +17,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 1-3-4,1,Bocas del Toro,3,Chiriquí Grande,4,Punta Robalo,0
 1-3-5,1,Bocas del Toro,3,Chiriquí Grande,5,Rambala,0
 1-3-6,1,Bocas del Toro,3,Chiriquí Grande,6,Bajo del Cedro,0
-1-4-1,1,Bocas del Toro,4,Almirante,1,Almirante,0
+1-4-1,1,Bocas del Toro,4,Almirante,1,Almirante,1
 1-4-2,1,Bocas del Toro,4,Almirante,2,Barriada Guaymí,0
 1-4-3,1,Bocas del Toro,4,Almirante,3,Barrio Francés,0
 1-4-4,1,Bocas del Toro,4,Almirante,4,Nance de Riscó,0
@@ -51,7 +51,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 2-4-5,2,Coclé,4,Natá,5,Las Huacas,0
 2-4-6,2,Coclé,4,Natá,6,Toza,0
 2-5-1,2,Coclé,5,Olá,1,Olá,1
-2-5-2,2,Coclé,5,Olá,2,El Cope,0
+2-5-2,2,Coclé,5,Olá,2,El Copé,0
 2-5-3,2,Coclé,5,Olá,3,El Palmar,0
 2-5-4,2,Coclé,5,Olá,4,El Picacho,0
 2-5-5,2,Coclé,5,Olá,5,La Pava,0
@@ -144,7 +144,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 4-5-8,4,Chiriquí,5,Bugaba,8,Santa Marta,0
 4-5-9,4,Chiriquí,5,Bugaba,9,Santa Rosa,0
 4-5-10,4,Chiriquí,5,Bugaba,10,Santo Domingo,0
-4-5-11,4,Chiriquí,5,Bugaba,11,Sortova,0
+4-5-11,4,Chiriquí,5,Bugaba,11,Sortová,0
 4-5-12,4,Chiriquí,5,Bugaba,12,Inactivo,0
 4-5-13,4,Chiriquí,5,Bugaba,13,El Bongo,0
 4-6-1,4,Chiriquí,6,David,1,David,1
@@ -210,7 +210,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 5-1-1,5,Darién,1,Chepigana,1,La Palma,1
 5-1-2,5,Darién,1,Chepigana,2,Camogantí,0
 5-1-3,5,Darién,1,Chepigana,3,Chepigana,0
-5-1-4,5,Darién,1,Chepigana,4,Garachine,0
+5-1-4,5,Darién,1,Chepigana,4,Garachiné,0
 5-1-5,5,Darién,1,Chepigana,5,Jaqué,0
 5-1-6,5,Darién,1,Chepigana,6,Puerto Piña,0
 5-1-7,5,Darién,1,Chepigana,7,Inactivo,0
@@ -320,7 +320,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 7-2-21,7,Los Santos,2,Las Tablas,21,Santo Domingo,0
 7-2-22,7,Los Santos,2,Las Tablas,22,Sesteadero,0
 7-2-23,7,Los Santos,2,Las Tablas,23,Valle Rico,0
-7-2-24,7,Los Santos,2,Las Tablas,24,Valleriquito,0
+7-2-24,7,Los Santos,2,Las Tablas,24,Vallerriquito,0
 7-3-1,7,Los Santos,3,Los Santos,1,La Villa de Los Santos,1
 7-3-2,7,Los Santos,3,Los Santos,2,El Guásimo,0
 7-3-3,7,Los Santos,3,Los Santos,3,La Colorada,0
@@ -412,7 +412,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 8-8-24,8,Panamá,8,Panamá,24,Caimitillo,0
 8-8-25,8,Panamá,8,Panamá,25,Don Bosco,0
 8-8-26,8,Panamá,8,Panamá,26,Las Garzas,0
-8-10-1,8,Panamá,10,San Miguelito,1,Amelia Denis de Icaza,0
+8-10-1,8,Panamá,10,San Miguelito,1,Amelia Denis De Icaza,0
 8-10-2,8,Panamá,10,San Miguelito,2,Belisario Porras,0
 8-10-3,8,Panamá,10,San Miguelito,3,José Domingo Espinar,0
 8-10-4,8,Panamá,10,San Miguelito,4,Mateo Iturralde,0
@@ -530,7 +530,7 @@ id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabe
 11-1-1,11,Comarca Emberá-Wounaan,1,Cémaco,1,Cirilo Guaynora,1
 11-1-2,11,Comarca Emberá-Wounaan,1,Cémaco,2,Lajas Blancas,0
 11-1-3,11,Comarca Emberá-Wounaan,1,Cémaco,3,Manuel Ortega,0
-11-2-1,11,Comarca Emberá-Wounaan,2,Sambú,1,Río Sabalo,0
+11-2-1,11,Comarca Emberá-Wounaan,2,Sambú,1,Río Sábalo,0
 11-2-2,11,Comarca Emberá-Wounaan,2,Sambú,2,Jingurudó,0
 12-1-1,12,Comarca Ngäbe-Buglé,1,Besikó,1,Soloy,1
 12-1-2,12,Comarca Ngäbe-Buglé,1,Besikó,2,Boca de Balsa,0

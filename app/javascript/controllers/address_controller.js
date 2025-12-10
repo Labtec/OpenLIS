@@ -10,7 +10,7 @@ export default class extends Controller {
 
     // If an address field and its predecessor are empty, disable it
     // Otherwise, filter the next selection based upon it
-    if ((this.districtTarget.value === "" && this.provinceTarget.value === "") || this.provinceTarget.value === "Guna Yala") {
+    if ((this.districtTarget.value === "" && this.provinceTarget.value === "") || this.provinceTarget.value === "Kuna Yala") {
       this.districtTarget.disabled = true
     } else {
       if (this.districtTarget.value === "") {
@@ -22,7 +22,7 @@ export default class extends Controller {
       }
     }
 
-    if (this.corregimientoTarget.value === "" && this.districtTarget.value === "" && this.provinceTarget.value != "Guna Yala") {
+    if (this.corregimientoTarget.value === "" && this.districtTarget.value === "" && this.provinceTarget.value != "Kuna Yala") {
       this.corregimientoTarget.disabled = true
     } else {
       if (this.corregimientoTarget.value === "") {
@@ -45,9 +45,9 @@ export default class extends Controller {
     }
   }
 
-  // Before submitting the form, enable disabled fields (in the case of Guna Yala).
+  // Before submitting the form, enable disabled fields (in the case of Kuna Yala).
   submit() {
-    if (this.provinceTarget.value === "Guna Yala") {
+    if (this.provinceTarget.value === "Kuna Yala") {
       this.districtTarget.disabled = false
     }
   }
@@ -75,8 +75,8 @@ export default class extends Controller {
       this.mapTarget.hidden = true
     } else {
       // When a province is selected:
-      // If the province is Guna Yala:
-      if (this.provinceTarget.value === "Guna Yala") {
+      // If the province is Kuna Yala:
+      if (this.provinceTarget.value === "Kuna Yala") {
         // Clear and disable the selection of a district
         this.districtTarget.add(document.createElement("option"), this.districtTarget[0])
         this.districtTarget.value = ""
@@ -150,9 +150,9 @@ export default class extends Controller {
   }
 
   // Filters districts based upon the selected province
-  // All but Guna Yala have districts
+  // All but Kuna Yala have districts
   filterDistricts() {
-    if (this.provinceTarget.value === "" || this.provinceTarget.value === "Guna Yala") {
+    if (this.provinceTarget.value === "" || this.provinceTarget.value === "Kuna Yala") {
       this.districtTarget.value = ""
     } else {
       let allDistricts = this.allDistricts
@@ -161,12 +161,12 @@ export default class extends Controller {
   }
 
   // Filter corregimientos based upon the selected district,
-  // or province, in the case of Guna Yala
+  // or province, in the case of Kuna Yala
   filterCorregimientos() {
     let allCorregimientos = this.allCorregimientos
     if (this.districtTarget.value === "") {
-      if (this.provinceTarget.value === "Guna Yala") {
-        this.corregimientoTarget.innerHTML = allCorregimientos.find((province) => province.label === "Guna Yala").innerHTML
+      if (this.provinceTarget.value === "Kuna Yala") {
+        this.corregimientoTarget.innerHTML = allCorregimientos.find((province) => province.label === "Kuna Yala").innerHTML
       } else {
         this.corregimientoTarget.value = ""
       }

@@ -1,9 +1,9 @@
 ---
+# DO NOT EDIT - This file is generated from subdivisions.csv
 # https://www.iso.org/obp/ui/#iso:code:3166:PA
 provinces:
   pa_1:
     name: Bocas del Toro
-    capital: Bocas del Toro
     districts:
       -
         name: Bocas del Toro
@@ -29,7 +29,7 @@ provinces:
         corregimientos:
           - Chiriquí Grande
           - Miramar
-          - Puente Peña
+          - Punta Peña
           - Punta Robalo
           - Rambala
           - Bajo del Cedro
@@ -45,7 +45,6 @@ provinces:
           - Valle de Riscó
   pa_2:
     name: Coclé
-    capital: Penonomé
     districts:
       -
         name: Aguadulce
@@ -115,11 +114,9 @@ provinces:
           - Tulú
   pa_3:
     name: Colón
-    capital: Colón
     districts:
       -
         name: Colón
-        cabecera: Colón
         corregimientos:
           - Barrio Norte
           - Barrio Sur
@@ -180,7 +177,6 @@ provinces:
           - Viento Frío
   pa_4:
     name: Chiriquí
-    capital: David
     districts:
       -
         name: Alanje
@@ -340,7 +336,6 @@ provinces:
           - Volcán
   pa_5:
     name: Darién
-    capital: La Palma
     districts:
       -
         name: Chepigana
@@ -371,7 +366,6 @@ provinces:
           - Comarca Kuna de Wargandí
       -
         name: Santa Fe
-        cabecera: Santa Fe
         corregimientos:
           - Agua Fría
           - Cucunatí
@@ -382,7 +376,6 @@ provinces:
           - Zapallal
   pa_6:
     name: Herrera
-    capital: Chitré
     districts:
       -
         name: Chitré
@@ -462,7 +455,6 @@ provinces:
           - Los Canelos
   pa_7:
     name: Los Santos
-    capital: Las Tablas
     districts:
       -
         name: Guararé
@@ -550,7 +542,6 @@ provinces:
           - Oria Arriba
       -
         name: Pocrí
-        cabecera: Pocrí
         corregimientos:
           - Pocrí
           - El Cañafístulo
@@ -574,7 +565,6 @@ provinces:
           - Isla de Cañas
   pa_8:
     name: Panamá
-    capital: Panamá
     districts:
       -
         name: Balboa
@@ -609,7 +599,6 @@ provinces:
           - Unión Santeña
       -
         name: Panamá
-        cabecera: Panamá
         corregimientos:
           - San Felipe
           - El Chorrillo
@@ -639,7 +628,6 @@ provinces:
           - Las Garzas
       -
         name: San Miguelito
-        cabecera: San Miguelito
         corregimientos:
           - Amelia Denis De Icaza
           - Belisario Porras
@@ -659,7 +647,6 @@ provinces:
           - Otoque Occidente
   pa_9:
     name: Veraguas
-    capital: Santiago
     districts:
       -
         name: Atalaya
@@ -797,6 +784,7 @@ provinces:
           - Guarumal
           - La Soledad
           - Quebrada de Oro
+          - Río Grande
           - Rodeo Viejo
       -
         name: Mariato
@@ -809,7 +797,6 @@ provinces:
           - Tebario
   pa_10:
     name: Panamá Oeste
-    capital: La Chorrera
     districts:
       -
         name: Arraiján
@@ -857,7 +844,6 @@ provinces:
           - Sorá
       -
         name: La Chorrera
-        cabecera: La Chorrera
         corregimientos:
           - Barrio Balboa
           - Barrio Colón
@@ -891,30 +877,27 @@ provinces:
           - Los Llanitos
           - San José
   pa_em:
-    name: Emberá
-    capital: Unión Chocó
+    name: Emberá-Wounaan
     indigenous_region: true
     districts:
       -
         name: Cémaco
-        cabecera: Unión Chocó
+        cabecera: Cirilo Guaynora
         corregimientos:
           - Cirilo Guaynora
           - Lajas Blancas
           - Manuel Ortega
       -
         name: Sambú
-        cabecera: Puerto Indio
         corregimientos:
-          - Río Sabalo
-          - Jingurundó
+          - Río Sábalo
+          - Jingurudó
   pa_ky:
-    name: Guna Yala
-    capital: Gaigirgordub
+    name: Kuna Yala
     indigenous_region: true
     districts:
       -
-        name: Guna Yala
+        name: Kuna Yala
         cabecera: Narganá
         corregimientos:
           - Narganá
@@ -923,13 +906,11 @@ provinces:
           - Tubualá
   pa_nb:
     name: Ngäbe-Buglé
-    capital: Llano Tugrí
     indigenous_region: true
     districts:
       -
         name: Besikó
         cabecera: Soloy
-        region: Nedrini
         corregimientos:
           - Soloy
           - Boca de Balsa
@@ -942,7 +923,6 @@ provinces:
       -
         name: Mironó
         cabecera: Hato Pilón
-        region: Nedrini
         corregimientos:
           - Hato Pilón
           - Cascabel
@@ -955,7 +935,6 @@ provinces:
       -
         name: Müna
         cabecera: Chichica
-        region: Kädriri
         corregimientos:
           - Chichica
           - Alto Caballero
@@ -972,7 +951,6 @@ provinces:
       -
         name: Nole Düima
         cabecera: Cerro Iglesias
-        region: Nedrini
         corregimientos:
           - Cerro Iglesias
           - Hato Chamí
@@ -982,7 +960,6 @@ provinces:
       -
         name: Ñürüm
         cabecera: Buenos Aires
-        region: Kädriri
         corregimientos:
           - Buenos Aires
           - Agua de Salud
@@ -996,7 +973,6 @@ provinces:
       -
         name: Kankintú
         cabecera: Bisira
-        region: Ñö Kribo
         corregimientos:
           - Bisira
           - Burí
@@ -1010,7 +986,6 @@ provinces:
       -
         name: Kusapín
         cabecera: Kusapín
-        region: Ñö Kribo
         corregimientos:
           - Kusapín
           - Bahía Azul
@@ -1021,7 +996,6 @@ provinces:
           - Valle Bonito
       -
         name: Jirondai
-        region: Ñö Kribo
         corregimientos:
           - Samboa
           - Burí
@@ -1031,23 +1005,9 @@ provinces:
       -
         name: Santa Catalina o Calovébora (Bledeshia)
         cabecera: Santa Catalina o Calovébora (Bledeshia)
-        region: Ñö Kribo
         corregimientos:
           - Santa Catalina o Calovébora (Bledeshia)
           - Alto Bilingüe (Gdogueshia)
           - Loma Yuca (Ijuicho)
           - San Pedrito
           - Valle Bonito (Dogata)
-  pa_nt:
-    name: Naso Tjër Di
-    capital: Sieyic
-    indigenous_region: true
-    districts:
-      -
-        name: Naso Tjër Di
-        cabecera: Sieyic
-        especial: true
-        corregimientos:
-          - Bonyik
-          - San San Drui
-          - Teribe

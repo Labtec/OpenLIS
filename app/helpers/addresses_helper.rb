@@ -30,7 +30,7 @@ module AddressesHelper
 
     (Address::PROVINCES + Address::COMARCAS).each do |id|
       Address::SUBDIVISIONS["provinces"]["pa_#{id}"]["districts"].each do |d|
-        # Handle Guna Yala's special case, where there are no
+        # Handle Kuna Yala's special case, where there are no
         # districts, only corregimientos
         districts << if d["name"]
                        [ d["name"], d["corregimientos"].sort ]
