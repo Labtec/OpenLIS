@@ -162,7 +162,7 @@ GEM
       addressable
     csv (3.3.5)
     dalli (3.2.8)
-    date (3.5.0)
+    date (3.5.1)
     date_time_precision (0.8.1)
     debug (1.11.0)
       irb (~> 1.10)
@@ -335,7 +335,7 @@ GEM
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
-    psych (5.2.6)
+    psych (5.3.0)
       date
       stringio
     public_suffix (7.0.0)
