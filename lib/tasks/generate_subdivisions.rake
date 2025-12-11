@@ -26,6 +26,7 @@ namespace :subdivisions do
       corregimiento_id = subdivision["corregimiento_id"]
       corregimiento_name = subdivision["corregimiento"]
       cabecera = subdivision["cabecera"] == "1" ? corregimiento_name : nil
+      inactive = subdivision["inactive"] == "1" ? true : false
 
       # Create provinces
       unless provinces.key?(province_id)
@@ -54,7 +55,7 @@ namespace :subdivisions do
       # Add cabecera to district
       provinces[province_id][:districts][district_id][:cabecera] = cabecera if cabecera
 
-      unless corregimiento_name == "Inactivo"
+      unless inactive
         provinces[province_id][:districts][district_id][:corregimientos] << corregimiento_data
       end
     end

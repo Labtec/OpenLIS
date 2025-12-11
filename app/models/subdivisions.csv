@@ -1,661 +1,660 @@
-id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabecera
-1-1-1,1,Bocas del Toro,1,Bocas del Toro,1,Bocas del Toro,1
-1-1-2,1,Bocas del Toro,1,Bocas del Toro,2,Bastimentos,0
-1-1-3,1,Bocas del Toro,1,Bocas del Toro,3,Cauchero,0
-1-1-4,1,Bocas del Toro,1,Bocas del Toro,4,Punta Laurel,0
-1-1-5,1,Bocas del Toro,1,Bocas del Toro,5,Tierra Oscura,0
-1-2-1,1,Bocas del Toro,2,Changuinola,1,Changuinola,1
-1-2-2,1,Bocas del Toro,2,Changuinola,2,Inactivo,0
-1-2-3,1,Bocas del Toro,2,Changuinola,3,Guabito,0
-1-2-4,1,Bocas del Toro,2,Changuinola,4,Teribe,0
-1-2-5,1,Bocas del Toro,2,Changuinola,5,Inactivo,0
-1-2-6,1,Bocas del Toro,2,Changuinola,6,El Empalme,0
-1-2-7,1,Bocas del Toro,2,Changuinola,7,Las Tablas,0
-1-3-1,1,Bocas del Toro,3,Chiriquí Grande,1,Chiriquí Grande,1
-1-3-2,1,Bocas del Toro,3,Chiriquí Grande,2,Miramar,0
-1-3-3,1,Bocas del Toro,3,Chiriquí Grande,3,Punta Peña,0
-1-3-4,1,Bocas del Toro,3,Chiriquí Grande,4,Punta Robalo,0
-1-3-5,1,Bocas del Toro,3,Chiriquí Grande,5,Rambala,0
-1-3-6,1,Bocas del Toro,3,Chiriquí Grande,6,Bajo del Cedro,0
-1-4-1,1,Bocas del Toro,4,Almirante,1,Almirante,1
-1-4-2,1,Bocas del Toro,4,Almirante,2,Barriada Guaymí,0
-1-4-3,1,Bocas del Toro,4,Almirante,3,Barrio Francés,0
-1-4-4,1,Bocas del Toro,4,Almirante,4,Nance de Riscó,0
-1-4-5,1,Bocas del Toro,4,Almirante,5,Valle de Aguas Arriba,0
-1-4-6,1,Bocas del Toro,4,Almirante,6,Valle de Riscó,0
-2-1-1,2,Coclé,1,Aguadulce,1,Aguadulce,1
-2-1-2,2,Coclé,1,Aguadulce,2,El Cristo,0
-2-1-3,2,Coclé,1,Aguadulce,3,El Roble,0
-2-1-4,2,Coclé,1,Aguadulce,4,Pocrí,0
-2-1-5,2,Coclé,1,Aguadulce,5,Barrios Unidos,0
-2-2-1,2,Coclé,2,Antón,1,Antón,1
-2-2-2,2,Coclé,2,Antón,2,Cabuya,0
-2-2-3,2,Coclé,2,Antón,3,El Chirú,0
-2-2-4,2,Coclé,2,Antón,4,El Retiro,0
-2-2-5,2,Coclé,2,Antón,5,El Valle,0
-2-2-6,2,Coclé,2,Antón,6,Juan Díaz,0
-2-2-7,2,Coclé,2,Antón,7,Río Hato,0
-2-2-8,2,Coclé,2,Antón,8,San Juan de Dios,0
-2-2-9,2,Coclé,2,Antón,9,Santa Rita,0
-2-2-10,2,Coclé,2,Antón,10,Caballero,0
-2-3-1,2,Coclé,3,La Pintada,1,La Pintada,1
-2-3-2,2,Coclé,3,La Pintada,2,El Harino,0
-2-3-3,2,Coclé,3,La Pintada,3,El Potrero,0
-2-3-4,2,Coclé,3,La Pintada,4,Llano Grande,0
-2-3-5,2,Coclé,3,La Pintada,5,Piedras Gordas,0
-2-3-6,2,Coclé,3,La Pintada,6,Las Lomas,0
-2-4-1,2,Coclé,4,Natá,1,Natá,1
-2-4-2,2,Coclé,4,Natá,2,Capellanía,0
-2-4-3,2,Coclé,4,Natá,3,El Caño,0
-2-4-4,2,Coclé,4,Natá,4,Guzmán,0
-2-4-5,2,Coclé,4,Natá,5,Las Huacas,0
-2-4-6,2,Coclé,4,Natá,6,Toza,0
-2-5-1,2,Coclé,5,Olá,1,Olá,1
-2-5-2,2,Coclé,5,Olá,2,El Copé,0
-2-5-3,2,Coclé,5,Olá,3,El Palmar,0
-2-5-4,2,Coclé,5,Olá,4,El Picacho,0
-2-5-5,2,Coclé,5,Olá,5,La Pava,0
-2-6-1,2,Coclé,6,Penonomé,1,Penonomé,1
-2-6-2,2,Coclé,6,Penonomé,2,Cañaveral,0
-2-6-3,2,Coclé,6,Penonomé,3,Coclé,0
-2-6-4,2,Coclé,6,Penonomé,4,Chiguirí Arriba,0
-2-6-5,2,Coclé,6,Penonomé,5,El Coco,0
-2-6-6,2,Coclé,6,Penonomé,6,Pajonal,0
-2-6-7,2,Coclé,6,Penonomé,7,Río Grande,0
-2-6-8,2,Coclé,6,Penonomé,8,Río Indio,0
-2-6-9,2,Coclé,6,Penonomé,9,Toabré,0
-2-6-10,2,Coclé,6,Penonomé,10,Tulú,0
-3-1-1,3,Colón,1,Colón,1,Barrio Norte,0
-3-1-2,3,Colón,1,Colón,2,Barrio Sur,0
-3-1-3,3,Colón,1,Colón,3,Buena Vista,0
-3-1-4,3,Colón,1,Colón,4,Cativá,0
-3-1-5,3,Colón,1,Colón,5,Ciricito,0
-3-1-6,3,Colón,1,Colón,6,Cristóbal,0
-3-1-7,3,Colón,1,Colón,7,Escobal,0
-3-1-8,3,Colón,1,Colón,8,Limón,0
-3-1-9,3,Colón,1,Colón,9,Nueva Providencia,0
-3-1-10,3,Colón,1,Colón,10,Puerto Pilón,0
-3-1-11,3,Colón,1,Colón,11,Sabanitas,0
-3-1-12,3,Colón,1,Colón,12,Salamanca,0
-3-1-13,3,Colón,1,Colón,13,San Juan,0
-3-1-14,3,Colón,1,Colón,14,Santa Rosa,0
-3-1-15,3,Colón,1,Colón,15,Cristóbal Este,0
-3-2-1,3,Colón,2,Chagres,1,Nuevo Chagres,1
-3-2-2,3,Colón,2,Chagres,2,Achiote,0
-3-2-3,3,Colón,2,Chagres,3,El Guabo,0
-3-2-4,3,Colón,2,Chagres,4,La Encantada,0
-3-2-5,3,Colón,2,Chagres,5,Palmas Bellas,0
-3-2-6,3,Colón,2,Chagres,6,Piña,0
-3-2-7,3,Colón,2,Chagres,7,Salud,0
-3-3-1,3,Colón,3,Donoso,1,Miguel de La Borda,1
-3-3-2,3,Colón,3,Donoso,2,Coclé del Norte,0
-3-3-3,3,Colón,3,Donoso,3,El Guásimo,0
-3-3-4,3,Colón,3,Donoso,4,Gobea,0
-3-3-5,3,Colón,3,Donoso,5,Río Indio,0
-3-3-6,3,Colón,3,Donoso,6,San José del General,0
-3-4-1,3,Colón,4,Portobelo,1,Portobelo,1
-3-4-2,3,Colón,4,Portobelo,2,Cacique,0
-3-4-3,3,Colón,4,Portobelo,3,Garrote,0
-3-4-4,3,Colón,4,Portobelo,4,Isla Grande,0
-3-4-5,3,Colón,4,Portobelo,5,María Chiquita,0
-3-5-1,3,Colón,5,Santa Isabel,1,Palenque,1
-3-5-2,3,Colón,5,Santa Isabel,2,Cuango,0
-3-5-3,3,Colón,5,Santa Isabel,3,Miramar,0
-3-5-4,3,Colón,5,Santa Isabel,4,Nombre de Dios,0
-3-5-5,3,Colón,5,Santa Isabel,5,Palmira,0
-3-5-6,3,Colón,5,Santa Isabel,6,Playa Chiquita,0
-3-5-7,3,Colón,5,Santa Isabel,7,Santa Isabel,0
-3-5-8,3,Colón,5,Santa Isabel,8,Viento Frío,0
-4-1-1,4,Chiriquí,1,Alanje,1,Alanje,1
-4-1-2,4,Chiriquí,1,Alanje,2,Divalá,0
-4-1-3,4,Chiriquí,1,Alanje,3,El Tejar,0
-4-1-4,4,Chiriquí,1,Alanje,4,Guarumal,0
-4-1-5,4,Chiriquí,1,Alanje,5,Palo Grande,0
-4-1-6,4,Chiriquí,1,Alanje,6,Querévalo,0
-4-1-7,4,Chiriquí,1,Alanje,7,Santo Tomás,0
-4-1-8,4,Chiriquí,1,Alanje,8,Canta Gallo,0
-4-1-9,4,Chiriquí,1,Alanje,9,Nuevo México,0
-4-2-1,4,Chiriquí,2,Barú,1,Puerto Armuelles,1
-4-2-2,4,Chiriquí,2,Barú,2,Limones,0
-4-2-3,4,Chiriquí,2,Barú,3,Progreso,0
-4-2-4,4,Chiriquí,2,Barú,4,Baco,0
-4-2-5,4,Chiriquí,2,Barú,5,Rodolfo Aguilar Delgado,0
-4-3-1,4,Chiriquí,3,Boquerón,1,Boquerón,1
-4-3-2,4,Chiriquí,3,Boquerón,2,Bágala,0
-4-3-3,4,Chiriquí,3,Boquerón,3,Cordillera,0
-4-3-4,4,Chiriquí,3,Boquerón,4,Guabal,0
-4-3-5,4,Chiriquí,3,Boquerón,5,Guayabal,0
-4-3-6,4,Chiriquí,3,Boquerón,6,Paraíso,0
-4-3-7,4,Chiriquí,3,Boquerón,7,Pedregal,0
-4-3-8,4,Chiriquí,3,Boquerón,8,Tijeras,0
-4-4-1,4,Chiriquí,4,Boquete,1,Bajo Boquete,1
-4-4-2,4,Chiriquí,4,Boquete,2,Caldera,0
-4-4-3,4,Chiriquí,4,Boquete,3,Palmira,0
-4-4-4,4,Chiriquí,4,Boquete,4,Alto Boquete,0
-4-4-5,4,Chiriquí,4,Boquete,5,Jaramillo,0
-4-4-6,4,Chiriquí,4,Boquete,6,Los Naranjos,0
-4-5-1,4,Chiriquí,5,Bugaba,1,La Concepción,1
-4-5-2,4,Chiriquí,5,Bugaba,2,Aserrío de Gariché,0
-4-5-3,4,Chiriquí,5,Bugaba,3,Bugaba,0
-4-5-4,4,Chiriquí,5,Bugaba,4,Cerro Punta,0
-4-5-5,4,Chiriquí,5,Bugaba,5,Gómez,0
-4-5-6,4,Chiriquí,5,Bugaba,6,La Estrella,0
-4-5-7,4,Chiriquí,5,Bugaba,7,San Andrés,0
-4-5-8,4,Chiriquí,5,Bugaba,8,Santa Marta,0
-4-5-9,4,Chiriquí,5,Bugaba,9,Santa Rosa,0
-4-5-10,4,Chiriquí,5,Bugaba,10,Santo Domingo,0
-4-5-11,4,Chiriquí,5,Bugaba,11,Sortová,0
-4-5-12,4,Chiriquí,5,Bugaba,12,Inactivo,0
-4-5-13,4,Chiriquí,5,Bugaba,13,El Bongo,0
-4-6-1,4,Chiriquí,6,David,1,David,1
-4-6-2,4,Chiriquí,6,David,2,Bijagual,0
-4-6-3,4,Chiriquí,6,David,3,Cochea,0
-4-6-4,4,Chiriquí,6,David,4,Chiriquí,0
-4-6-5,4,Chiriquí,6,David,5,Guacá,0
-4-6-6,4,Chiriquí,6,David,6,Las Lomas,0
-4-6-7,4,Chiriquí,6,David,7,Pedregal,0
-4-6-8,4,Chiriquí,6,David,8,San Carlos,0
-4-6-9,4,Chiriquí,6,David,9,San Pablo Nuevo,0
-4-6-10,4,Chiriquí,6,David,10,San Pablo Viejo,0
-4-7-1,4,Chiriquí,7,Dolega,1,Dolega,1
-4-7-2,4,Chiriquí,7,Dolega,2,Dos Ríos,0
-4-7-3,4,Chiriquí,7,Dolega,3,Los Anastacios,0
-4-7-4,4,Chiriquí,7,Dolega,4,Potrerillos,0
-4-7-5,4,Chiriquí,7,Dolega,5,Potrerillos Abajo,0
-4-7-6,4,Chiriquí,7,Dolega,6,Rovira,0
-4-7-7,4,Chiriquí,7,Dolega,7,Tinajas,0
-4-7-8,4,Chiriquí,7,Dolega,8,Los Algarrobos,0
-4-8-1,4,Chiriquí,8,Gualaca,1,Gualaca,1
-4-8-2,4,Chiriquí,8,Gualaca,2,Hornito,0
-4-8-3,4,Chiriquí,8,Gualaca,3,Los Ángeles,0
-4-8-4,4,Chiriquí,8,Gualaca,4,Paja de Sombrero,0
-4-8-5,4,Chiriquí,8,Gualaca,5,Rincón,0
-4-9-1,4,Chiriquí,9,Remedios,1,Remedios,1
-4-9-2,4,Chiriquí,9,Remedios,2,El Nancito,0
-4-9-3,4,Chiriquí,9,Remedios,3,El Porvenir,0
-4-9-4,4,Chiriquí,9,Remedios,4,El Puerto,0
-4-9-5,4,Chiriquí,9,Remedios,5,Santa Lucía,0
-4-10-1,4,Chiriquí,10,Renacimiento,1,Río Sereno,1
-4-10-2,4,Chiriquí,10,Renacimiento,2,Breñón,0
-4-10-3,4,Chiriquí,10,Renacimiento,3,Cañas Gordas,0
-4-10-4,4,Chiriquí,10,Renacimiento,4,Monte Lirio,0
-4-10-5,4,Chiriquí,10,Renacimiento,5,Plaza Caisán,0
-4-10-6,4,Chiriquí,10,Renacimiento,6,Santa Cruz,0
-4-10-7,4,Chiriquí,10,Renacimiento,7,Dominical,0
-4-10-8,4,Chiriquí,10,Renacimiento,8,Santa Clara,0
-4-11-1,4,Chiriquí,11,San Félix,1,Las Lajas,1
-4-11-2,4,Chiriquí,11,San Félix,2,Juay,0
-4-11-3,4,Chiriquí,11,San Félix,3,Lajas Adentro,0
-4-11-4,4,Chiriquí,11,San Félix,4,San Félix,0
-4-11-5,4,Chiriquí,11,San Félix,5,Santa Cruz,0
-4-12-1,4,Chiriquí,12,San Lorenzo,1,Horconcitos,1
-4-12-2,4,Chiriquí,12,San Lorenzo,2,Boca Chica,0
-4-12-3,4,Chiriquí,12,San Lorenzo,3,Boca del Monte,0
-4-12-4,4,Chiriquí,12,San Lorenzo,4,San Juan,0
-4-12-5,4,Chiriquí,12,San Lorenzo,5,San Lorenzo,0
-4-13-1,4,Chiriquí,13,Tolé,1,Tolé,1
-4-13-2,4,Chiriquí,13,Tolé,2,Bella Vista,0
-4-13-3,4,Chiriquí,13,Tolé,3,Cerro Viejo,0
-4-13-4,4,Chiriquí,13,Tolé,4,El Cristo,0
-4-13-5,4,Chiriquí,13,Tolé,5,Justo Fidel Palacios,0
-4-13-6,4,Chiriquí,13,Tolé,6,Lajas de Tolé,0
-4-13-7,4,Chiriquí,13,Tolé,7,Potrero de Caña,0
-4-13-8,4,Chiriquí,13,Tolé,8,Quebrada de Piedra,0
-4-13-9,4,Chiriquí,13,Tolé,9,Veladero,0
-4-15-1,4,Chiriquí,15,Tierras Altas,1,Cerro Punta,0
-4-15-2,4,Chiriquí,15,Tierras Altas,2,Cuesta de Piedra,0
-4-15-3,4,Chiriquí,15,Tierras Altas,3,Nueva California,0
-4-15-4,4,Chiriquí,15,Tierras Altas,4,Paso Ancho,0
-4-15-5,4,Chiriquí,15,Tierras Altas,5,Volcán,1
-5-1-1,5,Darién,1,Chepigana,1,La Palma,1
-5-1-2,5,Darién,1,Chepigana,2,Camogantí,0
-5-1-3,5,Darién,1,Chepigana,3,Chepigana,0
-5-1-4,5,Darién,1,Chepigana,4,Garachiné,0
-5-1-5,5,Darién,1,Chepigana,5,Jaqué,0
-5-1-6,5,Darién,1,Chepigana,6,Puerto Piña,0
-5-1-7,5,Darién,1,Chepigana,7,Inactivo,0
-5-1-8,5,Darién,1,Chepigana,8,Inactivo,0
-5-1-9,5,Darién,1,Chepigana,9,Sambú,0
-5-1-10,5,Darién,1,Chepigana,10,Setegantí,0
-5-1-11,5,Darién,1,Chepigana,11,Taimatí,0
-5-1-12,5,Darién,1,Chepigana,12,Tucutí,0
-5-1-13,5,Darién,1,Chepigana,13,Inactivo,0
-5-1-14,5,Darién,1,Chepigana,14,Inactivo,0
-5-1-15,5,Darién,1,Chepigana,15,Inactivo,0
-5-1-16,5,Darién,1,Chepigana,16,Inactivo,0
-5-2-1,5,Darién,2,Pinogana,1,El Real de Santa María,1
-5-2-2,5,Darién,2,Pinogana,2,Boca de Cupe,0
-5-2-3,5,Darién,2,Pinogana,3,Paya,0
-5-2-4,5,Darién,2,Pinogana,4,Pinogana,0
-5-2-5,5,Darién,2,Pinogana,5,Púcuro,0
-5-2-6,5,Darién,2,Pinogana,6,Yape,0
-5-2-7,5,Darién,2,Pinogana,7,Yaviza,0
-5-2-8,5,Darién,2,Pinogana,8,Metetí,0
-5-2-9,5,Darién,2,Pinogana,9,Comarca Kuna de Wargandí,0
-5-3-1,5,Darién,3,Santa Fe,1,Agua Fría,0
-5-3-2,5,Darién,3,Santa Fe,2,Cucunatí,0
-5-3-3,5,Darién,3,Santa Fe,3,Río Congo,0
-5-3-4,5,Darién,3,Santa Fe,4,Río Congo Arriba,0
-5-3-5,5,Darién,3,Santa Fe,5,Río Iglesias,0
-5-3-6,5,Darién,3,Santa Fe,6,Santa Fe,0
-5-3-7,5,Darién,3,Santa Fe,7,Zapallal,0
-6-1-1,6,Herrera,1,Chitré,1,Chitré,1
-6-1-2,6,Herrera,1,Chitré,2,La Arena,0
-6-1-3,6,Herrera,1,Chitré,3,Monagrillo,0
-6-1-4,6,Herrera,1,Chitré,4,Llano Bonito,0
-6-1-5,6,Herrera,1,Chitré,5,San Juan Bautista,0
-6-2-1,6,Herrera,2,Las Minas,1,Las Minas,1
-6-2-2,6,Herrera,2,Las Minas,2,Chepo,0
-6-2-3,6,Herrera,2,Las Minas,3,Chumical,0
-6-2-4,6,Herrera,2,Las Minas,4,El Toro,0
-6-2-5,6,Herrera,2,Las Minas,5,Leones,0
-6-2-6,6,Herrera,2,Las Minas,6,Quebrada del Rosario,0
-6-2-7,6,Herrera,2,Las Minas,7,Quebrada El Ciprián,0
-6-3-1,6,Herrera,3,Los Pozos,1,Los Pozos,1
-6-3-2,6,Herrera,3,Los Pozos,2,Capurí,0
-6-3-3,6,Herrera,3,Los Pozos,3,El Calabacito,0
-6-3-4,6,Herrera,3,Los Pozos,4,El Cedro,0
-6-3-5,6,Herrera,3,Los Pozos,5,La Arena,0
-6-3-6,6,Herrera,3,Los Pozos,6,La Pitalosa,0
-6-3-7,6,Herrera,3,Los Pozos,7,Los Cerritos,0
-6-3-8,6,Herrera,3,Los Pozos,8,Los Cerros de Paja,0
-6-3-9,6,Herrera,3,Los Pozos,9,Las Llanas,0
-6-4-1,6,Herrera,4,Ocú,1,Ocú,1
-6-4-2,6,Herrera,4,Ocú,2,Cerro Largo,0
-6-4-3,6,Herrera,4,Ocú,3,Los Llanos,0
-6-4-4,6,Herrera,4,Ocú,4,Llano Grande,0
-6-4-5,6,Herrera,4,Ocú,5,Peñas Chatas,0
-6-4-6,6,Herrera,4,Ocú,6,El Tijera,0
-6-4-7,6,Herrera,4,Ocú,7,Menchaca,0
-6-5-1,6,Herrera,5,Parita,1,Parita,1
-6-5-2,6,Herrera,5,Parita,2,Cabuya,0
-6-5-3,6,Herrera,5,Parita,3,Los Castillos,0
-6-5-4,6,Herrera,5,Parita,4,Llano de La Cruz,0
-6-5-5,6,Herrera,5,Parita,5,París,0
-6-5-6,6,Herrera,5,Parita,6,Portobelillo,0
-6-5-7,6,Herrera,5,Parita,7,Potuga,0
-6-6-1,6,Herrera,6,Pesé,1,Pesé,1
-6-6-2,6,Herrera,6,Pesé,2,Las Cabras,0
-6-6-3,6,Herrera,6,Pesé,3,El Pájaro,0
-6-6-4,6,Herrera,6,Pesé,4,El Barrero,0
-6-6-5,6,Herrera,6,Pesé,5,El Pedregoso,0
-6-6-6,6,Herrera,6,Pesé,6,El Ciruelo,0
-6-6-7,6,Herrera,6,Pesé,7,Sabanagrande,0
-6-6-8,6,Herrera,6,Pesé,8,Rincón Hondo,0
-6-7-1,6,Herrera,7,Santa María,1,Santa María,1
-6-7-2,6,Herrera,7,Santa María,2,Chupampa,0
-6-7-3,6,Herrera,7,Santa María,3,El Rincón,0
-6-7-4,6,Herrera,7,Santa María,4,El Limón,0
-6-7-5,6,Herrera,7,Santa María,5,Los Canelos,0
-7-1-1,7,Los Santos,1,Guararé,1,Guararé,1
-7-1-2,7,Los Santos,1,Guararé,2,El Espinal,0
-7-1-3,7,Los Santos,1,Guararé,3,El Macano,0
-7-1-4,7,Los Santos,1,Guararé,4,Guararé Arriba,0
-7-1-5,7,Los Santos,1,Guararé,5,La Enea,0
-7-1-6,7,Los Santos,1,Guararé,6,La Pasera,0
-7-1-7,7,Los Santos,1,Guararé,7,Las Trancas,0
-7-1-8,7,Los Santos,1,Guararé,8,Llano Abajo,0
-7-1-9,7,Los Santos,1,Guararé,9,El Hato,0
-7-1-10,7,Los Santos,1,Guararé,10,Perales,0
-7-2-1,7,Los Santos,2,Las Tablas,1,Las Tablas,1
-7-2-2,7,Los Santos,2,Las Tablas,2,Bajo Corral,0
-7-2-3,7,Los Santos,2,Las Tablas,3,Bayano,0
-7-2-4,7,Los Santos,2,Las Tablas,4,El Carate,0
-7-2-5,7,Los Santos,2,Las Tablas,5,El Cocal,0
-7-2-6,7,Los Santos,2,Las Tablas,6,El Manantial,0
-7-2-7,7,Los Santos,2,Las Tablas,7,El Muñoz,0
-7-2-8,7,Los Santos,2,Las Tablas,8,El Pedregoso,0
-7-2-9,7,Los Santos,2,Las Tablas,9,La Laja,0
-7-2-10,7,Los Santos,2,Las Tablas,10,La Miel,0
-7-2-11,7,Los Santos,2,Las Tablas,11,La Palma,0
-7-2-12,7,Los Santos,2,Las Tablas,12,La Tiza,0
-7-2-13,7,Los Santos,2,Las Tablas,13,Las Palmitas,0
-7-2-14,7,Los Santos,2,Las Tablas,14,Las Tablas Abajo,0
-7-2-15,7,Los Santos,2,Las Tablas,15,Nuario,0
-7-2-16,7,Los Santos,2,Las Tablas,16,Palmira,0
-7-2-17,7,Los Santos,2,Las Tablas,17,Peña Blanca,0
-7-2-18,7,Los Santos,2,Las Tablas,18,Río Hondo,0
-7-2-19,7,Los Santos,2,Las Tablas,19,San José,0
-7-2-20,7,Los Santos,2,Las Tablas,20,San Miguel,0
-7-2-21,7,Los Santos,2,Las Tablas,21,Santo Domingo,0
-7-2-22,7,Los Santos,2,Las Tablas,22,Sesteadero,0
-7-2-23,7,Los Santos,2,Las Tablas,23,Valle Rico,0
-7-2-24,7,Los Santos,2,Las Tablas,24,Vallerriquito,0
-7-3-1,7,Los Santos,3,Los Santos,1,La Villa de Los Santos,1
-7-3-2,7,Los Santos,3,Los Santos,2,El Guásimo,0
-7-3-3,7,Los Santos,3,Los Santos,3,La Colorada,0
-7-3-4,7,Los Santos,3,Los Santos,4,La Espigadilla,0
-7-3-5,7,Los Santos,3,Los Santos,5,Las Cruces,0
-7-3-6,7,Los Santos,3,Los Santos,6,Las Guabas,0
-7-3-7,7,Los Santos,3,Los Santos,7,Los Ángeles,0
-7-3-8,7,Los Santos,3,Los Santos,8,Los Olivos,0
-7-3-9,7,Los Santos,3,Los Santos,9,Llano Largo,0
-7-3-10,7,Los Santos,3,Los Santos,10,Sabanagrande,0
-7-3-11,7,Los Santos,3,Los Santos,11,Santa Ana,0
-7-3-12,7,Los Santos,3,Los Santos,12,Tres Quebradas,0
-7-3-13,7,Los Santos,3,Los Santos,13,Agua Buena,0
-7-3-14,7,Los Santos,3,Los Santos,14,Villa Lourdes,0
-7-4-1,7,Los Santos,4,Macaracas,1,Macaracas,1
-7-4-2,7,Los Santos,4,Macaracas,2,Bahía Honda,0
-7-4-3,7,Los Santos,4,Macaracas,3,Bajos de Güera,0
-7-4-4,7,Los Santos,4,Macaracas,4,Corozal,0
-7-4-5,7,Los Santos,4,Macaracas,5,Chupá,0
-7-4-6,7,Los Santos,4,Macaracas,6,El Cedro,0
-7-4-7,7,Los Santos,4,Macaracas,7,Espino Amarillo,0
-7-4-8,7,Los Santos,4,Macaracas,8,La Mesa,0
-7-4-9,7,Los Santos,4,Macaracas,9,Las Palmas,0
-7-4-10,7,Los Santos,4,Macaracas,10,Llano de Piedra,0
-7-4-11,7,Los Santos,4,Macaracas,11,Mogollón,0
-7-5-1,7,Los Santos,5,Pedasí,1,Pedasí,1
-7-5-2,7,Los Santos,5,Pedasí,2,Los Asientos,0
-7-5-3,7,Los Santos,5,Pedasí,3,Mariabé,0
-7-5-4,7,Los Santos,5,Pedasí,4,Purio,0
-7-5-5,7,Los Santos,5,Pedasí,5,Oria Arriba,0
-7-6-1,7,Los Santos,6,Pocrí,1,Pocrí,0
-7-6-2,7,Los Santos,6,Pocrí,2,El Cañafístulo,0
-7-6-3,7,Los Santos,6,Pocrí,3,Lajamina,0
-7-6-4,7,Los Santos,6,Pocrí,4,Paraíso,0
-7-6-5,7,Los Santos,6,Pocrí,5,Paritilla,0
-7-7-1,7,Los Santos,7,Tonosí,1,Tonosí,1
-7-7-2,7,Los Santos,7,Tonosí,2,Altos de Güera,0
-7-7-3,7,Los Santos,7,Tonosí,3,Cañas,0
-7-7-4,7,Los Santos,7,Tonosí,4,El Bebedero,0
-7-7-5,7,Los Santos,7,Tonosí,5,El Cacao,0
-7-7-6,7,Los Santos,7,Tonosí,6,El Cortezo,0
-7-7-7,7,Los Santos,7,Tonosí,7,Flores,0
-7-7-8,7,Los Santos,7,Tonosí,8,Guánico,0
-7-7-9,7,Los Santos,7,Tonosí,9,La Tronosa,0
-7-7-10,7,Los Santos,7,Tonosí,10,Cambutal,0
-7-7-11,7,Los Santos,7,Tonosí,11,Isla de Cañas,0
-8-2-1,8,Panamá,2,Balboa,1,San Miguel,1
-8-2-2,8,Panamá,2,Balboa,2,La Ensenada,0
-8-2-3,8,Panamá,2,Balboa,3,La Esmeralda,0
-8-2-4,8,Panamá,2,Balboa,4,La Guinea,0
-8-2-5,8,Panamá,2,Balboa,5,Pedro González,0
-8-2-6,8,Panamá,2,Balboa,6,Saboga,0
-8-5-1,8,Panamá,5,Chepo,1,Chepo,1
-8-5-2,8,Panamá,5,Chepo,2,Cañita,0
-8-5-3,8,Panamá,5,Chepo,3,Chepillo,0
-8-5-4,8,Panamá,5,Chepo,4,El Llano,0
-8-5-5,8,Panamá,5,Chepo,5,Las Margaritas,0
-8-5-6,8,Panamá,5,Chepo,6,Santa Cruz de Chinina,0
-8-5-7,8,Panamá,5,Chepo,7,Comarca Kuna de Madungandí,0
-8-5-8,8,Panamá,5,Chepo,8,Tortí,0
-8-6-1,8,Panamá,6,Chimán,1,Chimán,1
-8-6-2,8,Panamá,6,Chimán,2,Brujas,0
-8-6-3,8,Panamá,6,Chimán,3,Gonzalo Vásquez,0
-8-6-4,8,Panamá,6,Chimán,4,Pásiga,0
-8-6-5,8,Panamá,6,Chimán,5,Unión Santeña,0
-8-8-1,8,Panamá,8,Panamá,1,San Felipe,0
-8-8-2,8,Panamá,8,Panamá,2,El Chorrillo,0
-8-8-3,8,Panamá,8,Panamá,3,Santa Ana,0
-8-8-4,8,Panamá,8,Panamá,4,La Exposición o Calidonia,0
-8-8-5,8,Panamá,8,Panamá,5,Curundú,0
-8-8-6,8,Panamá,8,Panamá,6,Betania,0
-8-8-7,8,Panamá,8,Panamá,7,Bella Vista,0
-8-8-8,8,Panamá,8,Panamá,8,Pueblo Nuevo,0
-8-8-9,8,Panamá,8,Panamá,9,San Francisco,0
-8-8-10,8,Panamá,8,Panamá,10,Parque Lefevre,0
-8-8-11,8,Panamá,8,Panamá,11,Río Abajo,0
-8-8-12,8,Panamá,8,Panamá,12,Juan Díaz,0
-8-8-13,8,Panamá,8,Panamá,13,Pedregal,0
-8-8-14,8,Panamá,8,Panamá,14,Ancón,0
-8-8-15,8,Panamá,8,Panamá,15,Chilibre,0
-8-8-16,8,Panamá,8,Panamá,16,Las Cumbres,0
-8-8-17,8,Panamá,8,Panamá,17,Pacora,0
-8-8-18,8,Panamá,8,Panamá,18,San Martín,0
-8-8-19,8,Panamá,8,Panamá,19,Tocumen,0
-8-8-20,8,Panamá,8,Panamá,20,Las Mañanitas,0
-8-8-21,8,Panamá,8,Panamá,21,24 de Diciembre,0
-8-8-22,8,Panamá,8,Panamá,22,Ernesto Córdoba Campos,0
-8-8-23,8,Panamá,8,Panamá,23,Alcalde Díaz,0
-8-8-24,8,Panamá,8,Panamá,24,Caimitillo,0
-8-8-25,8,Panamá,8,Panamá,25,Don Bosco,0
-8-8-26,8,Panamá,8,Panamá,26,Las Garzas,0
-8-10-1,8,Panamá,10,San Miguelito,1,Amelia Denis De Icaza,0
-8-10-2,8,Panamá,10,San Miguelito,2,Belisario Porras,0
-8-10-3,8,Panamá,10,San Miguelito,3,José Domingo Espinar,0
-8-10-4,8,Panamá,10,San Miguelito,4,Mateo Iturralde,0
-8-10-5,8,Panamá,10,San Miguelito,5,Victoriano Lorenzo,0
-8-10-6,8,Panamá,10,San Miguelito,6,Arnulfo Arias,0
-8-10-7,8,Panamá,10,San Miguelito,7,Belisario Frías,0
-8-10-8,8,Panamá,10,San Miguelito,8,Omar Torrijos,0
-8-10-9,8,Panamá,10,San Miguelito,9,Rufina Alfaro,0
-8-11-1,8,Panamá,11,Taboga,1,Taboga,1
-8-11-2,8,Panamá,11,Taboga,2,Otoque Oriente,0
-8-11-3,8,Panamá,11,Taboga,3,Otoque Occidente,0
-9-1-1,9,Veraguas,1,Atalaya,1,Atalaya,1
-9-1-2,9,Veraguas,1,Atalaya,2,El Barrito,0
-9-1-3,9,Veraguas,1,Atalaya,3,La Montañuela,0
-9-1-4,9,Veraguas,1,Atalaya,4,La Carrillo,0
-9-1-5,9,Veraguas,1,Atalaya,5,San Antonio,0
-9-2-1,9,Veraguas,2,Calobre,1,Calobre,1
-9-2-2,9,Veraguas,2,Calobre,2,Barnizal,0
-9-2-3,9,Veraguas,2,Calobre,3,Chitra,0
-9-2-4,9,Veraguas,2,Calobre,4,El Cocla,0
-9-2-5,9,Veraguas,2,Calobre,5,El Potrero,0
-9-2-6,9,Veraguas,2,Calobre,6,La Laguna,0
-9-2-7,9,Veraguas,2,Calobre,7,La Raya de Calobre,0
-9-2-8,9,Veraguas,2,Calobre,8,La Tetilla,0
-9-2-9,9,Veraguas,2,Calobre,9,La Yeguada,0
-9-2-10,9,Veraguas,2,Calobre,10,Las Guías,0
-9-2-11,9,Veraguas,2,Calobre,11,Monjarás,0
-9-2-12,9,Veraguas,2,Calobre,12,San José,0
-9-3-1,9,Veraguas,3,Cañazas,1,Cañazas,1
-9-3-2,9,Veraguas,3,Cañazas,2,Cerro Plata,0
-9-3-3,9,Veraguas,3,Cañazas,3,El Picador,0
-9-3-4,9,Veraguas,3,Cañazas,4,Los Valles,0
-9-3-5,9,Veraguas,3,Cañazas,5,San José,0
-9-3-6,9,Veraguas,3,Cañazas,6,San Marcelo,0
-9-3-7,9,Veraguas,3,Cañazas,7,El Aromillo,0
-9-3-8,9,Veraguas,3,Cañazas,8,Las Cruces,0
-9-4-1,9,Veraguas,4,La Mesa,1,La Mesa,1
-9-4-2,9,Veraguas,4,La Mesa,2,Bisvalles,0
-9-4-3,9,Veraguas,4,La Mesa,3,Boró,0
-9-4-4,9,Veraguas,4,La Mesa,4,Llano Grande,0
-9-4-5,9,Veraguas,4,La Mesa,5,San Bartolo,0
-9-4-6,9,Veraguas,4,La Mesa,6,Los Milagros,0
-9-5-1,9,Veraguas,5,Las Palmas,1,Las Palmas,1
-9-5-2,9,Veraguas,5,Las Palmas,2,Cerro de Casa,0
-9-5-3,9,Veraguas,5,Las Palmas,3,Corozal,0
-9-5-4,9,Veraguas,5,Las Palmas,4,El María,0
-9-5-5,9,Veraguas,5,Las Palmas,5,El Prado,0
-9-5-6,9,Veraguas,5,Las Palmas,6,El Rincón,0
-9-5-7,9,Veraguas,5,Las Palmas,7,Lolá,0
-9-5-8,9,Veraguas,5,Las Palmas,8,Pixvae,0
-9-5-9,9,Veraguas,5,Las Palmas,9,Puerto Vidal,0
-9-5-10,9,Veraguas,5,Las Palmas,10,San Martín de Porres,0
-9-5-11,9,Veraguas,5,Las Palmas,11,Viguí,0
-9-5-12,9,Veraguas,5,Las Palmas,12,Zapotillo,0
-9-5-13,9,Veraguas,5,Las Palmas,13,Altamira,0
-9-6-1,9,Veraguas,6,Montijo,1,Montijo,1
-9-6-2,9,Veraguas,6,Montijo,2,Arenas,0
-9-6-3,9,Veraguas,6,Montijo,3,Gobernadora,0
-9-6-4,9,Veraguas,6,Montijo,4,La Garceana,0
-9-6-5,9,Veraguas,6,Montijo,5,Leones,0
-9-6-6,9,Veraguas,6,Montijo,6,Cébaco,0
-9-6-7,9,Veraguas,6,Montijo,7,Costa Hermosa,0
-9-6-8,9,Veraguas,6,Montijo,8,Unión del Norte,0
-9-6-9,9,Veraguas,6,Montijo,9,Tebario,0
-9-6-10,9,Veraguas,6,Montijo,10,El Pilón,0
-9-7-1,9,Veraguas,7,Río de Jesús,1,Río de Jesús,1
-9-7-2,9,Veraguas,7,Río de Jesús,2,Las Huacas,0
-9-7-3,9,Veraguas,7,Río de Jesús,3,Los Castillos,0
-9-7-4,9,Veraguas,7,Río de Jesús,4,Utira,0
-9-7-5,9,Veraguas,7,Río de Jesús,5,Catorce de Noviembre,0
-9-8-1,9,Veraguas,8,San Francisco,1,San Francisco,1
-9-8-2,9,Veraguas,8,San Francisco,2,Corral Falso,0
-9-8-3,9,Veraguas,8,San Francisco,3,Los Hatillos,0
-9-8-4,9,Veraguas,8,San Francisco,4,Remance,0
-9-8-5,9,Veraguas,8,San Francisco,5,San Juan,0
-9-8-6,9,Veraguas,8,San Francisco,6,San José,0
-9-9-1,9,Veraguas,9,Santa Fe,1,Santa Fe,1
-9-9-2,9,Veraguas,9,Santa Fe,2,Calovébora,0
-9-9-3,9,Veraguas,9,Santa Fe,3,El Alto,0
-9-9-4,9,Veraguas,9,Santa Fe,4,El Cuay,0
-9-9-5,9,Veraguas,9,Santa Fe,5,El Pantano,0
-9-9-6,9,Veraguas,9,Santa Fe,6,Gatú o Gatucito,0
-9-9-7,9,Veraguas,9,Santa Fe,7,Río Luis,0
-9-10-1,9,Veraguas,10,Santiago,1,Santiago,1
-9-10-2,9,Veraguas,10,Santiago,2,La Colorada,0
-9-10-3,9,Veraguas,10,Santiago,3,La Peña,0
-9-10-4,9,Veraguas,10,Santiago,4,La Raya de Santa María,0
-9-10-5,9,Veraguas,10,Santiago,5,Ponuga,0
-9-10-6,9,Veraguas,10,Santiago,6,San Pedro del Espino,0
-9-10-7,9,Veraguas,10,Santiago,7,Canto del Llano,0
-9-10-8,9,Veraguas,10,Santiago,8,Los Algarrobos,0
-9-10-9,9,Veraguas,10,Santiago,9,Carlos Santana Ávila,0
-9-10-10,9,Veraguas,10,Santiago,10,Edwin Fábrega,0
-9-10-11,9,Veraguas,10,Santiago,11,San Martín de Porres,0
-9-10-12,9,Veraguas,10,Santiago,12,Urracá,0
-9-11-1,9,Veraguas,11,Soná,1,Soná,1
-9-11-2,9,Veraguas,11,Soná,2,Bahía Honda,0
-9-11-3,9,Veraguas,11,Soná,3,Calidonia,0
-9-11-4,9,Veraguas,11,Soná,4,Cativé,0
-9-11-5,9,Veraguas,11,Soná,5,El Marañón,0
-9-11-6,9,Veraguas,11,Soná,6,Guarumal,0
-9-11-7,9,Veraguas,11,Soná,7,La Soledad,0
-9-11-8,9,Veraguas,11,Soná,8,Quebrada de Oro,0
-9-11-9,9,Veraguas,11,Soná,9,Río Grande,0
-9-11-10,9,Veraguas,11,Soná,10,Rodeo Viejo,0
-9-12-1,9,Veraguas,12,Mariato,1,Llano de Catival o Mariato,1
-9-12-2,9,Veraguas,12,Mariato,2,Arenas,0
-9-12-3,9,Veraguas,12,Mariato,3,El Cacao,0
-9-12-4,9,Veraguas,12,Mariato,4,Quebro,0
-9-12-5,9,Veraguas,12,Mariato,5,Tebario,0
-10-1-1,10,Comarca Kuna Yala,1,Comarca Kuna Yala,1,Narganá,1
-10-1-2,10,Comarca Kuna Yala,1,Comarca Kuna Yala,2,Ailigandí,0
-10-1-3,10,Comarca Kuna Yala,1,Comarca Kuna Yala,3,Puerto Obaldía,0
-10-1-4,10,Comarca Kuna Yala,1,Comarca Kuna Yala,4,Tubualá,0
-11-1-1,11,Comarca Emberá-Wounaan,1,Cémaco,1,Cirilo Guaynora,1
-11-1-2,11,Comarca Emberá-Wounaan,1,Cémaco,2,Lajas Blancas,0
-11-1-3,11,Comarca Emberá-Wounaan,1,Cémaco,3,Manuel Ortega,0
-11-2-1,11,Comarca Emberá-Wounaan,2,Sambú,1,Río Sábalo,0
-11-2-2,11,Comarca Emberá-Wounaan,2,Sambú,2,Jingurudó,0
-12-1-1,12,Comarca Ngäbe-Buglé,1,Besikó,1,Soloy,1
-12-1-2,12,Comarca Ngäbe-Buglé,1,Besikó,2,Boca de Balsa,0
-12-1-3,12,Comarca Ngäbe-Buglé,1,Besikó,3,Camarón Arriba,0
-12-1-4,12,Comarca Ngäbe-Buglé,1,Besikó,4,Cerro Banco,0
-12-1-5,12,Comarca Ngäbe-Buglé,1,Besikó,5,Cerro de Patena,0
-12-1-6,12,Comarca Ngäbe-Buglé,1,Besikó,6,Emplanada de Chorcha,0
-12-1-7,12,Comarca Ngäbe-Buglé,1,Besikó,7,Nämnoní,0
-12-1-8,12,Comarca Ngäbe-Buglé,1,Besikó,8,Niba,0
-12-2-1,12,Comarca Ngäbe-Buglé,2,Mironó,1,Hato Pilón,1
-12-2-2,12,Comarca Ngäbe-Buglé,2,Mironó,2,Cascabel,0
-12-2-3,12,Comarca Ngäbe-Buglé,2,Mironó,3,Hato Corotú,0
-12-2-4,12,Comarca Ngäbe-Buglé,2,Mironó,4,Hato Culantro,0
-12-2-5,12,Comarca Ngäbe-Buglé,2,Mironó,5,Hato Jobo,0
-12-2-6,12,Comarca Ngäbe-Buglé,2,Mironó,6,Hato Julí,0
-12-2-7,12,Comarca Ngäbe-Buglé,2,Mironó,7,Quebrada de Loro,0
-12-2-8,12,Comarca Ngäbe-Buglé,2,Mironó,8,Salto Dupí,0
-12-3-1,12,Comarca Ngäbe-Buglé,3,Müna,1,Chichica,1
-12-3-2,12,Comarca Ngäbe-Buglé,3,Müna,2,Alto Caballero,0
-12-3-3,12,Comarca Ngäbe-Buglé,3,Müna,3,Bakama,0
-12-3-4,12,Comarca Ngäbe-Buglé,3,Müna,4,Cerro Caña,0
-12-3-5,12,Comarca Ngäbe-Buglé,3,Müna,5,Cerro Puerco,0
-12-3-6,12,Comarca Ngäbe-Buglé,3,Müna,6,Krüa,0
-12-3-7,12,Comarca Ngäbe-Buglé,3,Müna,7,Maraca,0
-12-3-8,12,Comarca Ngäbe-Buglé,3,Müna,8,Nibra,0
-12-3-9,12,Comarca Ngäbe-Buglé,3,Müna,9,Peña Blanca,0
-12-3-10,12,Comarca Ngäbe-Buglé,3,Müna,10,Roka,0
-12-3-11,12,Comarca Ngäbe-Buglé,3,Müna,11,Sitio Prado,0
-12-3-12,12,Comarca Ngäbe-Buglé,3,Müna,12,Umaní,0
-12-4-1,12,Comarca Ngäbe-Buglé,4,Nole Düima,1,Cerro Iglesias,1
-12-4-2,12,Comarca Ngäbe-Buglé,4,Nole Düima,2,Hato Chamí,0
-12-4-3,12,Comarca Ngäbe-Buglé,4,Nole Düima,3,Jädeberi,0
-12-4-4,12,Comarca Ngäbe-Buglé,4,Nole Düima,4,Lajero,0
-12-4-5,12,Comarca Ngäbe-Buglé,4,Nole Düima,5,Susama,0
-12-5-1,12,Comarca Ngäbe-Buglé,5,Ñürüm,1,Buenos Aires,1
-12-5-2,12,Comarca Ngäbe-Buglé,5,Ñürüm,2,Agua de Salud,0
-12-5-3,12,Comarca Ngäbe-Buglé,5,Ñürüm,3,Alto de Jesús,0
-12-5-4,12,Comarca Ngäbe-Buglé,5,Ñürüm,4,Cerro Pelado,0
-12-5-5,12,Comarca Ngäbe-Buglé,5,Ñürüm,5,El Bale,0
-12-5-6,12,Comarca Ngäbe-Buglé,5,Ñürüm,6,El Paredón,0
-12-5-7,12,Comarca Ngäbe-Buglé,5,Ñürüm,7,El Piro,0
-12-5-8,12,Comarca Ngäbe-Buglé,5,Ñürüm,8,Guayabito,0
-12-5-9,12,Comarca Ngäbe-Buglé,5,Ñürüm,9,Güibale,0
-12-6-1,12,Comarca Ngäbe-Buglé,6,Kankintú,1,Bisira,1
-12-6-2,12,Comarca Ngäbe-Buglé,6,Kankintú,2,Burí,0
-12-6-3,12,Comarca Ngäbe-Buglé,6,Kankintú,3,Guariviara,0
-12-6-4,12,Comarca Ngäbe-Buglé,6,Kankintú,4,Guoroní,0
-12-6-5,12,Comarca Ngäbe-Buglé,6,Kankintú,5,Kankintú,0
-12-6-6,12,Comarca Ngäbe-Buglé,6,Kankintú,6,Mününí,0
-12-6-7,12,Comarca Ngäbe-Buglé,6,Kankintú,7,Piedra Roja,0
-12-6-8,12,Comarca Ngäbe-Buglé,6,Kankintú,8,Tuwai,0
-12-6-9,12,Comarca Ngäbe-Buglé,6,Kankintú,9,Man Creek,0
-12-7-1,12,Comarca Ngäbe-Buglé,7,Kusapín,1,Kusapín,1
-12-7-2,12,Comarca Ngäbe-Buglé,7,Kusapín,2,Bahía Azul,0
-12-7-3,12,Comarca Ngäbe-Buglé,7,Kusapín,3,Calovébora o Santa Catalina,0
-12-7-4,12,Comarca Ngäbe-Buglé,7,Kusapín,4,Loma Yuca,0
-12-7-5,12,Comarca Ngäbe-Buglé,7,Kusapín,5,Río Chiriquí,0
-12-7-6,12,Comarca Ngäbe-Buglé,7,Kusapín,6,Tobobé,0
-12-7-7,12,Comarca Ngäbe-Buglé,7,Kusapín,7,Valle Bonito,0
-12-8-1,12,Comarca Ngäbe-Buglé,8,Jirondai,1,Samboa,0
-12-8-2,12,Comarca Ngäbe-Buglé,8,Jirondai,2,Burí,0
-12-8-3,12,Comarca Ngäbe-Buglé,8,Jirondai,3,Guariviara,0
-12-8-4,12,Comarca Ngäbe-Buglé,8,Jirondai,4,Man Creek,0
-12-8-5,12,Comarca Ngäbe-Buglé,8,Jirondai,5,Tuwai,0
-12-9-1,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),1,Santa Catalina o Calovébora (Bledeshia),1
-12-9-2,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),2,Alto Bilingüe (Gdogueshia),0
-12-9-3,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),3,Loma Yuca (Ijuicho),0
-12-9-4,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),4,San Pedrito,0
-12-9-5,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),5,Valle Bonito (Dogata),0
-13-1-1,13,Panamá Oeste,1,Arraiján,1,Arraiján,1
-13-1-2,13,Panamá Oeste,1,Arraiján,2,Burunga,0
-13-1-3,13,Panamá Oeste,1,Arraiján,3,Cerro Silvestre,0
-13-1-4,13,Panamá Oeste,1,Arraiján,4,Juan Demóstenes Arosemena,0
-13-1-5,13,Panamá Oeste,1,Arraiján,5,Nuevo Emperador,0
-13-1-6,13,Panamá Oeste,1,Arraiján,6,Santa Clara,0
-13-1-7,13,Panamá Oeste,1,Arraiján,7,Veracruz,0
-13-1-8,13,Panamá Oeste,1,Arraiján,8,Vista Alegre,0
-13-2-1,13,Panamá Oeste,2,Capira,1,Capira,1
-13-2-2,13,Panamá Oeste,2,Capira,2,Caimito,0
-13-2-3,13,Panamá Oeste,2,Capira,3,Campana,0
-13-2-4,13,Panamá Oeste,2,Capira,4,Cermeño,0
-13-2-5,13,Panamá Oeste,2,Capira,5,Cirí de Los Sotos,0
-13-2-6,13,Panamá Oeste,2,Capira,6,Cirí Grande,0
-13-2-7,13,Panamá Oeste,2,Capira,7,El Cacao,0
-13-2-8,13,Panamá Oeste,2,Capira,8,La Trinidad,0
-13-2-9,13,Panamá Oeste,2,Capira,9,Las Ollas Arriba,0
-13-2-10,13,Panamá Oeste,2,Capira,10,Lídice,0
-13-2-11,13,Panamá Oeste,2,Capira,11,Villa Carmen,0
-13-2-12,13,Panamá Oeste,2,Capira,12,Villa Rosario,0
-13-2-13,13,Panamá Oeste,2,Capira,13,Santa Rosa,0
-13-3-1,13,Panamá Oeste,3,Chame,1,Chame,1
-13-3-2,13,Panamá Oeste,3,Chame,2,Bejuco,0
-13-3-3,13,Panamá Oeste,3,Chame,3,Buenos Aires,0
-13-3-4,13,Panamá Oeste,3,Chame,4,Cabuya,0
-13-3-5,13,Panamá Oeste,3,Chame,5,Chicá,0
-13-3-6,13,Panamá Oeste,3,Chame,6,El Líbano,0
-13-3-7,13,Panamá Oeste,3,Chame,7,Las Lajas,0
-13-3-8,13,Panamá Oeste,3,Chame,8,Nueva Gorgona,0
-13-3-9,13,Panamá Oeste,3,Chame,9,Punta Chame,0
-13-3-10,13,Panamá Oeste,3,Chame,10,Sajalices,0
-13-3-11,13,Panamá Oeste,3,Chame,11,Sorá,0
-13-4-1,13,Panamá Oeste,4,La Chorrera,1,Barrio Balboa,0
-13-4-2,13,Panamá Oeste,4,La Chorrera,2,Barrio Colón,0
-13-4-3,13,Panamá Oeste,4,La Chorrera,3,Amador,0
-13-4-4,13,Panamá Oeste,4,La Chorrera,4,Arosemena,0
-13-4-5,13,Panamá Oeste,4,La Chorrera,5,El Arado,0
-13-4-6,13,Panamá Oeste,4,La Chorrera,6,El Coco,0
-13-4-7,13,Panamá Oeste,4,La Chorrera,7,Feuillet,0
-13-4-8,13,Panamá Oeste,4,La Chorrera,8,Guadalupe,0
-13-4-9,13,Panamá Oeste,4,La Chorrera,9,Herrera,0
-13-4-10,13,Panamá Oeste,4,La Chorrera,10,Hurtado,0
-13-4-11,13,Panamá Oeste,4,La Chorrera,11,Iturralde,0
-13-4-12,13,Panamá Oeste,4,La Chorrera,12,La Represa,0
-13-4-13,13,Panamá Oeste,4,La Chorrera,13,Los Díaz,0
-13-4-14,13,Panamá Oeste,4,La Chorrera,14,Mendoza,0
-13-4-15,13,Panamá Oeste,4,La Chorrera,15,Obaldía,0
-13-4-16,13,Panamá Oeste,4,La Chorrera,16,Playa Leona,0
-13-4-17,13,Panamá Oeste,4,La Chorrera,17,Puerto Caimito,0
-13-4-18,13,Panamá Oeste,4,La Chorrera,18,Santa Rita,0
-13-5-1,13,Panamá Oeste,5,San Carlos,1,San Carlos,1
-13-5-2,13,Panamá Oeste,5,San Carlos,2,El Espino,0
-13-5-3,13,Panamá Oeste,5,San Carlos,3,El Higo,0
-13-5-4,13,Panamá Oeste,5,San Carlos,4,Guayabito,0
-13-5-5,13,Panamá Oeste,5,San Carlos,5,La Ermita,0
-13-5-6,13,Panamá Oeste,5,San Carlos,6,La Laguna,0
-13-5-7,13,Panamá Oeste,5,San Carlos,7,Las Uvas,0
-13-5-8,13,Panamá Oeste,5,San Carlos,8,Los Llanitos,0
-13-5-9,13,Panamá Oeste,5,San Carlos,9,San José,0
+id,province_id,province,district_id,district,corregimiento_id,corregimiento,cabecera,inactive
+1-1-1,1,Bocas del Toro,1,Bocas del Toro,1,Bocas del Toro,1,0
+1-1-2,1,Bocas del Toro,1,Bocas del Toro,2,Bastimentos,0,0
+1-1-3,1,Bocas del Toro,1,Bocas del Toro,3,Cauchero,0,0
+1-1-4,1,Bocas del Toro,1,Bocas del Toro,4,Punta Laurel,0,0
+1-1-5,1,Bocas del Toro,1,Bocas del Toro,5,Tierra Oscura,0,0
+1-2-1,1,Bocas del Toro,2,Changuinola,1,Changuinola,1,0
+1-2-3,1,Bocas del Toro,2,Changuinola,3,Guabito,0,0
+1-2-4,1,Bocas del Toro,2,Changuinola,4,Teribe,0,0
+1-2-5,1,Bocas del Toro,2,Changuinola,5,Valle de Riscó,0,1
+1-2-6,1,Bocas del Toro,2,Changuinola,6,El Empalme,0,0
+1-2-7,1,Bocas del Toro,2,Changuinola,7,Las Tablas,0,0
+1-3-1,1,Bocas del Toro,3,Chiriquí Grande,1,Chiriquí Grande,1,0
+1-3-2,1,Bocas del Toro,3,Chiriquí Grande,2,Miramar,0,0
+1-3-3,1,Bocas del Toro,3,Chiriquí Grande,3,Punta Peña,0,0
+1-3-4,1,Bocas del Toro,3,Chiriquí Grande,4,Punta Robalo,0,0
+1-3-5,1,Bocas del Toro,3,Chiriquí Grande,5,Rambala,0,0
+1-3-6,1,Bocas del Toro,3,Chiriquí Grande,6,Bajo del Cedro,0,0
+1-4-1,1,Bocas del Toro,4,Almirante,1,Almirante,1,0
+1-4-2,1,Bocas del Toro,4,Almirante,2,Barriada Guaymí,0,0
+1-4-3,1,Bocas del Toro,4,Almirante,3,Barrio Francés,0,0
+1-4-4,1,Bocas del Toro,4,Almirante,4,Nance de Riscó,0,0
+1-4-5,1,Bocas del Toro,4,Almirante,5,Valle de Aguas Arriba,0,0
+1-4-6,1,Bocas del Toro,4,Almirante,6,Valle de Riscó,0,0
+2-1-1,2,Coclé,1,Aguadulce,1,Aguadulce,1,0
+2-1-2,2,Coclé,1,Aguadulce,2,El Cristo,0,0
+2-1-3,2,Coclé,1,Aguadulce,3,El Roble,0,0
+2-1-4,2,Coclé,1,Aguadulce,4,Pocrí,0,0
+2-1-5,2,Coclé,1,Aguadulce,5,Barrios Unidos,0,0
+2-2-1,2,Coclé,2,Antón,1,Antón,1,0
+2-2-2,2,Coclé,2,Antón,2,Cabuya,0,0
+2-2-3,2,Coclé,2,Antón,3,El Chirú,0,0
+2-2-4,2,Coclé,2,Antón,4,El Retiro,0,0
+2-2-5,2,Coclé,2,Antón,5,El Valle,0,0
+2-2-6,2,Coclé,2,Antón,6,Juan Díaz,0,0
+2-2-7,2,Coclé,2,Antón,7,Río Hato,0,0
+2-2-8,2,Coclé,2,Antón,8,San Juan de Dios,0,0
+2-2-9,2,Coclé,2,Antón,9,Santa Rita,0,0
+2-2-10,2,Coclé,2,Antón,10,Caballero,0,0
+2-3-1,2,Coclé,3,La Pintada,1,La Pintada,1,0
+2-3-2,2,Coclé,3,La Pintada,2,El Harino,0,0
+2-3-3,2,Coclé,3,La Pintada,3,El Potrero,0,0
+2-3-4,2,Coclé,3,La Pintada,4,Llano Grande,0,0
+2-3-5,2,Coclé,3,La Pintada,5,Piedras Gordas,0,0
+2-3-6,2,Coclé,3,La Pintada,6,Las Lomas,0,0
+2-4-1,2,Coclé,4,Natá,1,Natá,1,0
+2-4-2,2,Coclé,4,Natá,2,Capellanía,0,0
+2-4-3,2,Coclé,4,Natá,3,El Caño,0,0
+2-4-4,2,Coclé,4,Natá,4,Guzmán,0,0
+2-4-5,2,Coclé,4,Natá,5,Las Huacas,0,0
+2-4-6,2,Coclé,4,Natá,6,Toza,0,0
+2-5-1,2,Coclé,5,Olá,1,Olá,1,0
+2-5-2,2,Coclé,5,Olá,2,El Copé,0,0
+2-5-3,2,Coclé,5,Olá,3,El Palmar,0,0
+2-5-4,2,Coclé,5,Olá,4,El Picacho,0,0
+2-5-5,2,Coclé,5,Olá,5,La Pava,0,0
+2-6-1,2,Coclé,6,Penonomé,1,Penonomé,1,0
+2-6-2,2,Coclé,6,Penonomé,2,Cañaveral,0,0
+2-6-3,2,Coclé,6,Penonomé,3,Coclé,0,0
+2-6-4,2,Coclé,6,Penonomé,4,Chiguirí Arriba,0,0
+2-6-5,2,Coclé,6,Penonomé,5,El Coco,0,0
+2-6-6,2,Coclé,6,Penonomé,6,Pajonal,0,0
+2-6-7,2,Coclé,6,Penonomé,7,Río Grande,0,0
+2-6-8,2,Coclé,6,Penonomé,8,Río Indio,0,0
+2-6-9,2,Coclé,6,Penonomé,9,Toabré,0,0
+2-6-10,2,Coclé,6,Penonomé,10,Tulú,0,0
+3-1-1,3,Colón,1,Colón,1,Barrio Norte,0,0
+3-1-2,3,Colón,1,Colón,2,Barrio Sur,0,0
+3-1-3,3,Colón,1,Colón,3,Buena Vista,0,0
+3-1-4,3,Colón,1,Colón,4,Cativá,0,0
+3-1-5,3,Colón,1,Colón,5,Ciricito,0,0
+3-1-6,3,Colón,1,Colón,6,Cristóbal,0,0
+3-1-7,3,Colón,1,Colón,7,Escobal,0,0
+3-1-8,3,Colón,1,Colón,8,Limón,0,0
+3-1-9,3,Colón,1,Colón,9,Nueva Providencia,0,0
+3-1-10,3,Colón,1,Colón,10,Puerto Pilón,0,0
+3-1-11,3,Colón,1,Colón,11,Sabanitas,0,0
+3-1-12,3,Colón,1,Colón,12,Salamanca,0,0
+3-1-13,3,Colón,1,Colón,13,San Juan,0,0
+3-1-14,3,Colón,1,Colón,14,Santa Rosa,0,0
+3-1-15,3,Colón,1,Colón,15,Cristóbal Este,0,0
+3-2-1,3,Colón,2,Chagres,1,Nuevo Chagres,1,0
+3-2-2,3,Colón,2,Chagres,2,Achiote,0,0
+3-2-3,3,Colón,2,Chagres,3,El Guabo,0,0
+3-2-4,3,Colón,2,Chagres,4,La Encantada,0,0
+3-2-5,3,Colón,2,Chagres,5,Palmas Bellas,0,0
+3-2-6,3,Colón,2,Chagres,6,Piña,0,0
+3-2-7,3,Colón,2,Chagres,7,Salud,0,0
+3-3-1,3,Colón,3,Donoso,1,Miguel de La Borda,1,0
+3-3-2,3,Colón,3,Donoso,2,Coclé del Norte,0,0
+3-3-3,3,Colón,3,Donoso,3,El Guásimo,0,0
+3-3-4,3,Colón,3,Donoso,4,Gobea,0,0
+3-3-5,3,Colón,3,Donoso,5,Río Indio,0,0
+3-3-6,3,Colón,3,Donoso,6,San José del General,0,0
+3-4-1,3,Colón,4,Portobelo,1,Portobelo,1,0
+3-4-2,3,Colón,4,Portobelo,2,Cacique,0,0
+3-4-3,3,Colón,4,Portobelo,3,Garrote,0,0
+3-4-4,3,Colón,4,Portobelo,4,Isla Grande,0,0
+3-4-5,3,Colón,4,Portobelo,5,María Chiquita,0,0
+3-5-1,3,Colón,5,Santa Isabel,1,Palenque,1,0
+3-5-2,3,Colón,5,Santa Isabel,2,Cuango,0,0
+3-5-3,3,Colón,5,Santa Isabel,3,Miramar,0,0
+3-5-4,3,Colón,5,Santa Isabel,4,Nombre de Dios,0,0
+3-5-5,3,Colón,5,Santa Isabel,5,Palmira,0,0
+3-5-6,3,Colón,5,Santa Isabel,6,Playa Chiquita,0,0
+3-5-7,3,Colón,5,Santa Isabel,7,Santa Isabel,0,0
+3-5-8,3,Colón,5,Santa Isabel,8,Viento Frío,0,0
+4-1-1,4,Chiriquí,1,Alanje,1,Alanje,1,0
+4-1-2,4,Chiriquí,1,Alanje,2,Divalá,0,0
+4-1-3,4,Chiriquí,1,Alanje,3,El Tejar,0,0
+4-1-4,4,Chiriquí,1,Alanje,4,Guarumal,0,0
+4-1-5,4,Chiriquí,1,Alanje,5,Palo Grande,0,0
+4-1-6,4,Chiriquí,1,Alanje,6,Querévalo,0,0
+4-1-7,4,Chiriquí,1,Alanje,7,Santo Tomás,0,0
+4-1-8,4,Chiriquí,1,Alanje,8,Canta Gallo,0,0
+4-1-9,4,Chiriquí,1,Alanje,9,Nuevo México,0,0
+4-2-1,4,Chiriquí,2,Barú,1,Puerto Armuelles,1,0
+4-2-2,4,Chiriquí,2,Barú,2,Limones,0,0
+4-2-3,4,Chiriquí,2,Barú,3,Progreso,0,0
+4-2-4,4,Chiriquí,2,Barú,4,Baco,0,0
+4-2-5,4,Chiriquí,2,Barú,5,Rodolfo Aguilar Delgado,0,0
+4-3-1,4,Chiriquí,3,Boquerón,1,Boquerón,1,0
+4-3-2,4,Chiriquí,3,Boquerón,2,Bágala,0,0
+4-3-3,4,Chiriquí,3,Boquerón,3,Cordillera,0,0
+4-3-4,4,Chiriquí,3,Boquerón,4,Guabal,0,0
+4-3-5,4,Chiriquí,3,Boquerón,5,Guayabal,0,0
+4-3-6,4,Chiriquí,3,Boquerón,6,Paraíso,0,0
+4-3-7,4,Chiriquí,3,Boquerón,7,Pedregal,0,0
+4-3-8,4,Chiriquí,3,Boquerón,8,Tijeras,0,0
+4-4-1,4,Chiriquí,4,Boquete,1,Bajo Boquete,1,0
+4-4-2,4,Chiriquí,4,Boquete,2,Caldera,0,0
+4-4-3,4,Chiriquí,4,Boquete,3,Palmira,0,0
+4-4-4,4,Chiriquí,4,Boquete,4,Alto Boquete,0,0
+4-4-5,4,Chiriquí,4,Boquete,5,Jaramillo,0,0
+4-4-6,4,Chiriquí,4,Boquete,6,Los Naranjos,0,0
+4-5-1,4,Chiriquí,5,Bugaba,1,La Concepción,1,0
+4-5-2,4,Chiriquí,5,Bugaba,2,Aserrío de Gariché,0,0
+4-5-3,4,Chiriquí,5,Bugaba,3,Bugaba,0,0
+4-5-4,4,Chiriquí,5,Bugaba,4,Cerro Punta,0,1
+4-5-5,4,Chiriquí,5,Bugaba,5,Gómez,0,0
+4-5-6,4,Chiriquí,5,Bugaba,6,La Estrella,0,0
+4-5-7,4,Chiriquí,5,Bugaba,7,San Andrés,0,0
+4-5-8,4,Chiriquí,5,Bugaba,8,Santa Marta,0,0
+4-5-9,4,Chiriquí,5,Bugaba,9,Santa Rosa,0,0
+4-5-10,4,Chiriquí,5,Bugaba,10,Santo Domingo,0,0
+4-5-11,4,Chiriquí,5,Bugaba,11,Sortová,0,0
+4-5-12,4,Chiriquí,5,Bugaba,12,Volcán,0,1
+4-5-13,4,Chiriquí,5,Bugaba,13,El Bongo,0,0
+4-6-1,4,Chiriquí,6,David,1,David,1,0
+4-6-2,4,Chiriquí,6,David,2,Bijagual,0,0
+4-6-3,4,Chiriquí,6,David,3,Cochea,0,0
+4-6-4,4,Chiriquí,6,David,4,Chiriquí,0,0
+4-6-5,4,Chiriquí,6,David,5,Guacá,0,0
+4-6-6,4,Chiriquí,6,David,6,Las Lomas,0,0
+4-6-7,4,Chiriquí,6,David,7,Pedregal,0,0
+4-6-8,4,Chiriquí,6,David,8,San Carlos,0,0
+4-6-9,4,Chiriquí,6,David,9,San Pablo Nuevo,0,0
+4-6-10,4,Chiriquí,6,David,10,San Pablo Viejo,0,0
+4-7-1,4,Chiriquí,7,Dolega,1,Dolega,1,0
+4-7-2,4,Chiriquí,7,Dolega,2,Dos Ríos,0,0
+4-7-3,4,Chiriquí,7,Dolega,3,Los Anastacios,0,0
+4-7-4,4,Chiriquí,7,Dolega,4,Potrerillos,0,0
+4-7-5,4,Chiriquí,7,Dolega,5,Potrerillos Abajo,0,0
+4-7-6,4,Chiriquí,7,Dolega,6,Rovira,0,0
+4-7-7,4,Chiriquí,7,Dolega,7,Tinajas,0,0
+4-7-8,4,Chiriquí,7,Dolega,8,Los Algarrobos,0,0
+4-8-1,4,Chiriquí,8,Gualaca,1,Gualaca,1,0
+4-8-2,4,Chiriquí,8,Gualaca,2,Hornito,0,0
+4-8-3,4,Chiriquí,8,Gualaca,3,Los Ángeles,0,0
+4-8-4,4,Chiriquí,8,Gualaca,4,Paja de Sombrero,0,0
+4-8-5,4,Chiriquí,8,Gualaca,5,Rincón,0,0
+4-9-1,4,Chiriquí,9,Remedios,1,Remedios,1,0
+4-9-2,4,Chiriquí,9,Remedios,2,El Nancito,0,0
+4-9-3,4,Chiriquí,9,Remedios,3,El Porvenir,0,0
+4-9-4,4,Chiriquí,9,Remedios,4,El Puerto,0,0
+4-9-5,4,Chiriquí,9,Remedios,5,Santa Lucía,0,0
+4-10-1,4,Chiriquí,10,Renacimiento,1,Río Sereno,1,0
+4-10-2,4,Chiriquí,10,Renacimiento,2,Breñón,0,0
+4-10-3,4,Chiriquí,10,Renacimiento,3,Cañas Gordas,0,0
+4-10-4,4,Chiriquí,10,Renacimiento,4,Monte Lirio,0,0
+4-10-5,4,Chiriquí,10,Renacimiento,5,Plaza Caisán,0,0
+4-10-6,4,Chiriquí,10,Renacimiento,6,Santa Cruz,0,0
+4-10-7,4,Chiriquí,10,Renacimiento,7,Dominical,0,0
+4-10-8,4,Chiriquí,10,Renacimiento,8,Santa Clara,0,0
+4-11-1,4,Chiriquí,11,San Félix,1,Las Lajas,1,0
+4-11-2,4,Chiriquí,11,San Félix,2,Juay,0,0
+4-11-3,4,Chiriquí,11,San Félix,3,Lajas Adentro,0,0
+4-11-4,4,Chiriquí,11,San Félix,4,San Félix,0,0
+4-11-5,4,Chiriquí,11,San Félix,5,Santa Cruz,0,0
+4-12-1,4,Chiriquí,12,San Lorenzo,1,Horconcitos,1,0
+4-12-2,4,Chiriquí,12,San Lorenzo,2,Boca Chica,0,0
+4-12-3,4,Chiriquí,12,San Lorenzo,3,Boca del Monte,0,0
+4-12-4,4,Chiriquí,12,San Lorenzo,4,San Juan,0,0
+4-12-5,4,Chiriquí,12,San Lorenzo,5,San Lorenzo,0,0
+4-13-1,4,Chiriquí,13,Tolé,1,Tolé,1,0
+4-13-2,4,Chiriquí,13,Tolé,2,Bella Vista,0,0
+4-13-3,4,Chiriquí,13,Tolé,3,Cerro Viejo,0,0
+4-13-4,4,Chiriquí,13,Tolé,4,El Cristo,0,0
+4-13-5,4,Chiriquí,13,Tolé,5,Justo Fidel Palacios,0,0
+4-13-6,4,Chiriquí,13,Tolé,6,Lajas de Tolé,0,0
+4-13-7,4,Chiriquí,13,Tolé,7,Potrero de Caña,0,0
+4-13-8,4,Chiriquí,13,Tolé,8,Quebrada de Piedra,0,0
+4-13-9,4,Chiriquí,13,Tolé,9,Veladero,0,0
+4-15-1,4,Chiriquí,15,Tierras Altas,1,Cerro Punta,0,0
+4-15-2,4,Chiriquí,15,Tierras Altas,2,Cuesta de Piedra,0,0
+4-15-3,4,Chiriquí,15,Tierras Altas,3,Nueva California,0,0
+4-15-4,4,Chiriquí,15,Tierras Altas,4,Paso Ancho,0,0
+4-15-5,4,Chiriquí,15,Tierras Altas,5,Volcán,1,0
+5-1-1,5,Darién,1,Chepigana,1,La Palma,1,0
+5-1-2,5,Darién,1,Chepigana,2,Camogantí,0,0
+5-1-3,5,Darién,1,Chepigana,3,Chepigana,0,0
+5-1-4,5,Darién,1,Chepigana,4,Garachiné,0,0
+5-1-5,5,Darién,1,Chepigana,5,Jaqué,0,0
+5-1-6,5,Darién,1,Chepigana,6,Puerto Piña,0,0
+5-1-7,5,Darién,1,Chepigana,7,Río Congo,0,1
+5-1-8,5,Darién,1,Chepigana,8,Río Iglesias,0,1
+5-1-9,5,Darién,1,Chepigana,9,Sambú,0,0
+5-1-10,5,Darién,1,Chepigana,10,Setegantí,0,0
+5-1-11,5,Darién,1,Chepigana,11,Taimatí,0,0
+5-1-12,5,Darién,1,Chepigana,12,Tucutí,0,0
+5-1-13,5,Darién,1,Chepigana,13,Agua Fría,0,1
+5-1-14,5,Darién,1,Chepigana,14,Cucunatí,0,1
+5-1-15,5,Darién,1,Chepigana,15,Río Congo Arriba,0,1
+5-1-16,5,Darién,1,Chepigana,16,Santa Fe,0,1
+5-2-1,5,Darién,2,Pinogana,1,El Real de Santa María,1,0
+5-2-2,5,Darién,2,Pinogana,2,Boca de Cupe,0,0
+5-2-3,5,Darién,2,Pinogana,3,Paya,0,0
+5-2-4,5,Darién,2,Pinogana,4,Pinogana,0,0
+5-2-5,5,Darién,2,Pinogana,5,Púcuro,0,0
+5-2-6,5,Darién,2,Pinogana,6,Yape,0,0
+5-2-7,5,Darién,2,Pinogana,7,Yaviza,0,0
+5-2-8,5,Darién,2,Pinogana,8,Metetí,0,0
+5-2-9,5,Darién,2,Pinogana,9,Comarca Kuna de Wargandí,0,0
+5-3-1,5,Darién,3,Santa Fe,1,Agua Fría,0,0
+5-3-2,5,Darién,3,Santa Fe,2,Cucunatí,0,0
+5-3-3,5,Darién,3,Santa Fe,3,Río Congo,0,0
+5-3-4,5,Darién,3,Santa Fe,4,Río Congo Arriba,0,0
+5-3-5,5,Darién,3,Santa Fe,5,Río Iglesias,0,0
+5-3-6,5,Darién,3,Santa Fe,6,Santa Fe,0,0
+5-3-7,5,Darién,3,Santa Fe,7,Zapallal,0,0
+6-1-1,6,Herrera,1,Chitré,1,Chitré,1,0
+6-1-2,6,Herrera,1,Chitré,2,La Arena,0,0
+6-1-3,6,Herrera,1,Chitré,3,Monagrillo,0,0
+6-1-4,6,Herrera,1,Chitré,4,Llano Bonito,0,0
+6-1-5,6,Herrera,1,Chitré,5,San Juan Bautista,0,0
+6-2-1,6,Herrera,2,Las Minas,1,Las Minas,1,0
+6-2-2,6,Herrera,2,Las Minas,2,Chepo,0,0
+6-2-3,6,Herrera,2,Las Minas,3,Chumical,0,0
+6-2-4,6,Herrera,2,Las Minas,4,El Toro,0,0
+6-2-5,6,Herrera,2,Las Minas,5,Leones,0,0
+6-2-6,6,Herrera,2,Las Minas,6,Quebrada del Rosario,0,0
+6-2-7,6,Herrera,2,Las Minas,7,Quebrada El Ciprián,0,0
+6-3-1,6,Herrera,3,Los Pozos,1,Los Pozos,1,0
+6-3-2,6,Herrera,3,Los Pozos,2,Capurí,0,0
+6-3-3,6,Herrera,3,Los Pozos,3,El Calabacito,0,0
+6-3-4,6,Herrera,3,Los Pozos,4,El Cedro,0,0
+6-3-5,6,Herrera,3,Los Pozos,5,La Arena,0,0
+6-3-6,6,Herrera,3,Los Pozos,6,La Pitalosa,0,0
+6-3-7,6,Herrera,3,Los Pozos,7,Los Cerritos,0,0
+6-3-8,6,Herrera,3,Los Pozos,8,Los Cerros de Paja,0,0
+6-3-9,6,Herrera,3,Los Pozos,9,Las Llanas,0,0
+6-4-1,6,Herrera,4,Ocú,1,Ocú,1,0
+6-4-2,6,Herrera,4,Ocú,2,Cerro Largo,0,0
+6-4-3,6,Herrera,4,Ocú,3,Los Llanos,0,0
+6-4-4,6,Herrera,4,Ocú,4,Llano Grande,0,0
+6-4-5,6,Herrera,4,Ocú,5,Peñas Chatas,0,0
+6-4-6,6,Herrera,4,Ocú,6,El Tijera,0,0
+6-4-7,6,Herrera,4,Ocú,7,Menchaca,0,0
+6-5-1,6,Herrera,5,Parita,1,Parita,1,0
+6-5-2,6,Herrera,5,Parita,2,Cabuya,0,0
+6-5-3,6,Herrera,5,Parita,3,Los Castillos,0,0
+6-5-4,6,Herrera,5,Parita,4,Llano de La Cruz,0,0
+6-5-5,6,Herrera,5,Parita,5,París,0,0
+6-5-6,6,Herrera,5,Parita,6,Portobelillo,0,0
+6-5-7,6,Herrera,5,Parita,7,Potuga,0,0
+6-6-1,6,Herrera,6,Pesé,1,Pesé,1,0
+6-6-2,6,Herrera,6,Pesé,2,Las Cabras,0,0
+6-6-3,6,Herrera,6,Pesé,3,El Pájaro,0,0
+6-6-4,6,Herrera,6,Pesé,4,El Barrero,0,0
+6-6-5,6,Herrera,6,Pesé,5,El Pedregoso,0,0
+6-6-6,6,Herrera,6,Pesé,6,El Ciruelo,0,0
+6-6-7,6,Herrera,6,Pesé,7,Sabanagrande,0,0
+6-6-8,6,Herrera,6,Pesé,8,Rincón Hondo,0,0
+6-7-1,6,Herrera,7,Santa María,1,Santa María,1,0
+6-7-2,6,Herrera,7,Santa María,2,Chupampa,0,0
+6-7-3,6,Herrera,7,Santa María,3,El Rincón,0,0
+6-7-4,6,Herrera,7,Santa María,4,El Limón,0,0
+6-7-5,6,Herrera,7,Santa María,5,Los Canelos,0,0
+7-1-1,7,Los Santos,1,Guararé,1,Guararé,1,0
+7-1-2,7,Los Santos,1,Guararé,2,El Espinal,0,0
+7-1-3,7,Los Santos,1,Guararé,3,El Macano,0,0
+7-1-4,7,Los Santos,1,Guararé,4,Guararé Arriba,0,0
+7-1-5,7,Los Santos,1,Guararé,5,La Enea,0,0
+7-1-6,7,Los Santos,1,Guararé,6,La Pasera,0,0
+7-1-7,7,Los Santos,1,Guararé,7,Las Trancas,0,0
+7-1-8,7,Los Santos,1,Guararé,8,Llano Abajo,0,0
+7-1-9,7,Los Santos,1,Guararé,9,El Hato,0,0
+7-1-10,7,Los Santos,1,Guararé,10,Perales,0,0
+7-2-1,7,Los Santos,2,Las Tablas,1,Las Tablas,1,0
+7-2-2,7,Los Santos,2,Las Tablas,2,Bajo Corral,0,0
+7-2-3,7,Los Santos,2,Las Tablas,3,Bayano,0,0
+7-2-4,7,Los Santos,2,Las Tablas,4,El Carate,0,0
+7-2-5,7,Los Santos,2,Las Tablas,5,El Cocal,0,0
+7-2-6,7,Los Santos,2,Las Tablas,6,El Manantial,0,0
+7-2-7,7,Los Santos,2,Las Tablas,7,El Muñoz,0,0
+7-2-8,7,Los Santos,2,Las Tablas,8,El Pedregoso,0,0
+7-2-9,7,Los Santos,2,Las Tablas,9,La Laja,0,0
+7-2-10,7,Los Santos,2,Las Tablas,10,La Miel,0,0
+7-2-11,7,Los Santos,2,Las Tablas,11,La Palma,0,0
+7-2-12,7,Los Santos,2,Las Tablas,12,La Tiza,0,0
+7-2-13,7,Los Santos,2,Las Tablas,13,Las Palmitas,0,0
+7-2-14,7,Los Santos,2,Las Tablas,14,Las Tablas Abajo,0,0
+7-2-15,7,Los Santos,2,Las Tablas,15,Nuario,0,0
+7-2-16,7,Los Santos,2,Las Tablas,16,Palmira,0,0
+7-2-17,7,Los Santos,2,Las Tablas,17,Peña Blanca,0,0
+7-2-18,7,Los Santos,2,Las Tablas,18,Río Hondo,0,0
+7-2-19,7,Los Santos,2,Las Tablas,19,San José,0,0
+7-2-20,7,Los Santos,2,Las Tablas,20,San Miguel,0,0
+7-2-21,7,Los Santos,2,Las Tablas,21,Santo Domingo,0,0
+7-2-22,7,Los Santos,2,Las Tablas,22,Sesteadero,0,0
+7-2-23,7,Los Santos,2,Las Tablas,23,Valle Rico,0,0
+7-2-24,7,Los Santos,2,Las Tablas,24,Vallerriquito,0,0
+7-3-1,7,Los Santos,3,Los Santos,1,La Villa de Los Santos,1,0
+7-3-2,7,Los Santos,3,Los Santos,2,El Guásimo,0,0
+7-3-3,7,Los Santos,3,Los Santos,3,La Colorada,0,0
+7-3-4,7,Los Santos,3,Los Santos,4,La Espigadilla,0,0
+7-3-5,7,Los Santos,3,Los Santos,5,Las Cruces,0,0
+7-3-6,7,Los Santos,3,Los Santos,6,Las Guabas,0,0
+7-3-7,7,Los Santos,3,Los Santos,7,Los Ángeles,0,0
+7-3-8,7,Los Santos,3,Los Santos,8,Los Olivos,0,0
+7-3-9,7,Los Santos,3,Los Santos,9,Llano Largo,0,0
+7-3-10,7,Los Santos,3,Los Santos,10,Sabanagrande,0,0
+7-3-11,7,Los Santos,3,Los Santos,11,Santa Ana,0,0
+7-3-12,7,Los Santos,3,Los Santos,12,Tres Quebradas,0,0
+7-3-13,7,Los Santos,3,Los Santos,13,Agua Buena,0,0
+7-3-14,7,Los Santos,3,Los Santos,14,Villa Lourdes,0,0
+7-4-1,7,Los Santos,4,Macaracas,1,Macaracas,1,0
+7-4-2,7,Los Santos,4,Macaracas,2,Bahía Honda,0,0
+7-4-3,7,Los Santos,4,Macaracas,3,Bajos de Güera,0,0
+7-4-4,7,Los Santos,4,Macaracas,4,Corozal,0,0
+7-4-5,7,Los Santos,4,Macaracas,5,Chupá,0,0
+7-4-6,7,Los Santos,4,Macaracas,6,El Cedro,0,0
+7-4-7,7,Los Santos,4,Macaracas,7,Espino Amarillo,0,0
+7-4-8,7,Los Santos,4,Macaracas,8,La Mesa,0,0
+7-4-9,7,Los Santos,4,Macaracas,9,Las Palmas,0,0
+7-4-10,7,Los Santos,4,Macaracas,10,Llano de Piedra,0,0
+7-4-11,7,Los Santos,4,Macaracas,11,Mogollón,0,0
+7-5-1,7,Los Santos,5,Pedasí,1,Pedasí,1,0
+7-5-2,7,Los Santos,5,Pedasí,2,Los Asientos,0,0
+7-5-3,7,Los Santos,5,Pedasí,3,Mariabé,0,0
+7-5-4,7,Los Santos,5,Pedasí,4,Purio,0,0
+7-5-5,7,Los Santos,5,Pedasí,5,Oria Arriba,0,0
+7-6-1,7,Los Santos,6,Pocrí,1,Pocrí,0,0
+7-6-2,7,Los Santos,6,Pocrí,2,El Cañafístulo,0,0
+7-6-3,7,Los Santos,6,Pocrí,3,Lajamina,0,0
+7-6-4,7,Los Santos,6,Pocrí,4,Paraíso,0,0
+7-6-5,7,Los Santos,6,Pocrí,5,Paritilla,0,0
+7-7-1,7,Los Santos,7,Tonosí,1,Tonosí,1,0
+7-7-2,7,Los Santos,7,Tonosí,2,Altos de Güera,0,0
+7-7-3,7,Los Santos,7,Tonosí,3,Cañas,0,0
+7-7-4,7,Los Santos,7,Tonosí,4,El Bebedero,0,0
+7-7-5,7,Los Santos,7,Tonosí,5,El Cacao,0,0
+7-7-6,7,Los Santos,7,Tonosí,6,El Cortezo,0,0
+7-7-7,7,Los Santos,7,Tonosí,7,Flores,0,0
+7-7-8,7,Los Santos,7,Tonosí,8,Guánico,0,0
+7-7-9,7,Los Santos,7,Tonosí,9,La Tronosa,0,0
+7-7-10,7,Los Santos,7,Tonosí,10,Cambutal,0,0
+7-7-11,7,Los Santos,7,Tonosí,11,Isla de Cañas,0,0
+8-2-1,8,Panamá,2,Balboa,1,San Miguel,1,0
+8-2-2,8,Panamá,2,Balboa,2,La Ensenada,0,0
+8-2-3,8,Panamá,2,Balboa,3,La Esmeralda,0,0
+8-2-4,8,Panamá,2,Balboa,4,La Guinea,0,0
+8-2-5,8,Panamá,2,Balboa,5,Pedro González,0,0
+8-2-6,8,Panamá,2,Balboa,6,Saboga,0,0
+8-5-1,8,Panamá,5,Chepo,1,Chepo,1,0
+8-5-2,8,Panamá,5,Chepo,2,Cañita,0,0
+8-5-3,8,Panamá,5,Chepo,3,Chepillo,0,0
+8-5-4,8,Panamá,5,Chepo,4,El Llano,0,0
+8-5-5,8,Panamá,5,Chepo,5,Las Margaritas,0,0
+8-5-6,8,Panamá,5,Chepo,6,Santa Cruz de Chinina,0,0
+8-5-7,8,Panamá,5,Chepo,7,Comarca Kuna de Madungandí,0,0
+8-5-8,8,Panamá,5,Chepo,8,Tortí,0,0
+8-6-1,8,Panamá,6,Chimán,1,Chimán,1,0
+8-6-2,8,Panamá,6,Chimán,2,Brujas,0,0
+8-6-3,8,Panamá,6,Chimán,3,Gonzalo Vásquez,0,0
+8-6-4,8,Panamá,6,Chimán,4,Pásiga,0,0
+8-6-5,8,Panamá,6,Chimán,5,Unión Santeña,0,0
+8-8-1,8,Panamá,8,Panamá,1,San Felipe,0,0
+8-8-2,8,Panamá,8,Panamá,2,El Chorrillo,0,0
+8-8-3,8,Panamá,8,Panamá,3,Santa Ana,0,0
+8-8-4,8,Panamá,8,Panamá,4,La Exposición o Calidonia,0,0
+8-8-5,8,Panamá,8,Panamá,5,Curundú,0,0
+8-8-6,8,Panamá,8,Panamá,6,Betania,0,0
+8-8-7,8,Panamá,8,Panamá,7,Bella Vista,0,0
+8-8-8,8,Panamá,8,Panamá,8,Pueblo Nuevo,0,0
+8-8-9,8,Panamá,8,Panamá,9,San Francisco,0,0
+8-8-10,8,Panamá,8,Panamá,10,Parque Lefevre,0,0
+8-8-11,8,Panamá,8,Panamá,11,Río Abajo,0,0
+8-8-12,8,Panamá,8,Panamá,12,Juan Díaz,0,0
+8-8-13,8,Panamá,8,Panamá,13,Pedregal,0,0
+8-8-14,8,Panamá,8,Panamá,14,Ancón,0,0
+8-8-15,8,Panamá,8,Panamá,15,Chilibre,0,0
+8-8-16,8,Panamá,8,Panamá,16,Las Cumbres,0,0
+8-8-17,8,Panamá,8,Panamá,17,Pacora,0,0
+8-8-18,8,Panamá,8,Panamá,18,San Martín,0,0
+8-8-19,8,Panamá,8,Panamá,19,Tocumen,0,0
+8-8-20,8,Panamá,8,Panamá,20,Las Mañanitas,0,0
+8-8-21,8,Panamá,8,Panamá,21,24 de Diciembre,0,0
+8-8-22,8,Panamá,8,Panamá,22,Ernesto Córdoba Campos,0,0
+8-8-23,8,Panamá,8,Panamá,23,Alcalde Díaz,0,0
+8-8-24,8,Panamá,8,Panamá,24,Caimitillo,0,0
+8-8-25,8,Panamá,8,Panamá,25,Don Bosco,0,0
+8-8-26,8,Panamá,8,Panamá,26,Las Garzas,0,0
+8-10-1,8,Panamá,10,San Miguelito,1,Amelia Denis De Icaza,0,0
+8-10-2,8,Panamá,10,San Miguelito,2,Belisario Porras,0,0
+8-10-3,8,Panamá,10,San Miguelito,3,José Domingo Espinar,0,0
+8-10-4,8,Panamá,10,San Miguelito,4,Mateo Iturralde,0,0
+8-10-5,8,Panamá,10,San Miguelito,5,Victoriano Lorenzo,0,0
+8-10-6,8,Panamá,10,San Miguelito,6,Arnulfo Arias,0,0
+8-10-7,8,Panamá,10,San Miguelito,7,Belisario Frías,0,0
+8-10-8,8,Panamá,10,San Miguelito,8,Omar Torrijos,0,0
+8-10-9,8,Panamá,10,San Miguelito,9,Rufina Alfaro,0,0
+8-11-1,8,Panamá,11,Taboga,1,Taboga,1,0
+8-11-2,8,Panamá,11,Taboga,2,Otoque Oriente,0,0
+8-11-3,8,Panamá,11,Taboga,3,Otoque Occidente,0,0
+9-1-1,9,Veraguas,1,Atalaya,1,Atalaya,1,0
+9-1-2,9,Veraguas,1,Atalaya,2,El Barrito,0,0
+9-1-3,9,Veraguas,1,Atalaya,3,La Montañuela,0,0
+9-1-4,9,Veraguas,1,Atalaya,4,La Carrillo,0,0
+9-1-5,9,Veraguas,1,Atalaya,5,San Antonio,0,0
+9-2-1,9,Veraguas,2,Calobre,1,Calobre,1,0
+9-2-2,9,Veraguas,2,Calobre,2,Barnizal,0,0
+9-2-3,9,Veraguas,2,Calobre,3,Chitra,0,0
+9-2-4,9,Veraguas,2,Calobre,4,El Cocla,0,0
+9-2-5,9,Veraguas,2,Calobre,5,El Potrero,0,0
+9-2-6,9,Veraguas,2,Calobre,6,La Laguna,0,0
+9-2-7,9,Veraguas,2,Calobre,7,La Raya de Calobre,0,0
+9-2-8,9,Veraguas,2,Calobre,8,La Tetilla,0,0
+9-2-9,9,Veraguas,2,Calobre,9,La Yeguada,0,0
+9-2-10,9,Veraguas,2,Calobre,10,Las Guías,0,0
+9-2-11,9,Veraguas,2,Calobre,11,Monjarás,0,0
+9-2-12,9,Veraguas,2,Calobre,12,San José,0,0
+9-3-1,9,Veraguas,3,Cañazas,1,Cañazas,1,0
+9-3-2,9,Veraguas,3,Cañazas,2,Cerro Plata,0,0
+9-3-3,9,Veraguas,3,Cañazas,3,El Picador,0,0
+9-3-4,9,Veraguas,3,Cañazas,4,Los Valles,0,0
+9-3-5,9,Veraguas,3,Cañazas,5,San José,0,0
+9-3-6,9,Veraguas,3,Cañazas,6,San Marcelo,0,0
+9-3-7,9,Veraguas,3,Cañazas,7,El Aromillo,0,0
+9-3-8,9,Veraguas,3,Cañazas,8,Las Cruces,0,0
+9-4-1,9,Veraguas,4,La Mesa,1,La Mesa,1,0
+9-4-2,9,Veraguas,4,La Mesa,2,Bisvalles,0,0
+9-4-3,9,Veraguas,4,La Mesa,3,Boró,0,0
+9-4-4,9,Veraguas,4,La Mesa,4,Llano Grande,0,0
+9-4-5,9,Veraguas,4,La Mesa,5,San Bartolo,0,0
+9-4-6,9,Veraguas,4,La Mesa,6,Los Milagros,0,0
+9-5-1,9,Veraguas,5,Las Palmas,1,Las Palmas,1,0
+9-5-2,9,Veraguas,5,Las Palmas,2,Cerro de Casa,0,0
+9-5-3,9,Veraguas,5,Las Palmas,3,Corozal,0,0
+9-5-4,9,Veraguas,5,Las Palmas,4,El María,0,0
+9-5-5,9,Veraguas,5,Las Palmas,5,El Prado,0,0
+9-5-6,9,Veraguas,5,Las Palmas,6,El Rincón,0,0
+9-5-7,9,Veraguas,5,Las Palmas,7,Lolá,0,0
+9-5-8,9,Veraguas,5,Las Palmas,8,Pixvae,0,0
+9-5-9,9,Veraguas,5,Las Palmas,9,Puerto Vidal,0,0
+9-5-10,9,Veraguas,5,Las Palmas,10,San Martín de Porres,0,0
+9-5-11,9,Veraguas,5,Las Palmas,11,Viguí,0,0
+9-5-12,9,Veraguas,5,Las Palmas,12,Zapotillo,0,0
+9-5-13,9,Veraguas,5,Las Palmas,13,Altamira,0,0
+9-6-1,9,Veraguas,6,Montijo,1,Montijo,1,0
+9-6-2,9,Veraguas,6,Montijo,2,Arenas,0,0
+9-6-3,9,Veraguas,6,Montijo,3,Gobernadora,0,0
+9-6-4,9,Veraguas,6,Montijo,4,La Garceana,0,0
+9-6-5,9,Veraguas,6,Montijo,5,Leones,0,0
+9-6-6,9,Veraguas,6,Montijo,6,Cébaco,0,0
+9-6-7,9,Veraguas,6,Montijo,7,Costa Hermosa,0,0
+9-6-8,9,Veraguas,6,Montijo,8,Unión del Norte,0,0
+9-6-9,9,Veraguas,6,Montijo,9,Tebario,0,0
+9-6-10,9,Veraguas,6,Montijo,10,El Pilón,0,0
+9-7-1,9,Veraguas,7,Río de Jesús,1,Río de Jesús,1,0
+9-7-2,9,Veraguas,7,Río de Jesús,2,Las Huacas,0,0
+9-7-3,9,Veraguas,7,Río de Jesús,3,Los Castillos,0,0
+9-7-4,9,Veraguas,7,Río de Jesús,4,Utira,0,0
+9-7-5,9,Veraguas,7,Río de Jesús,5,Catorce de Noviembre,0,0
+9-8-1,9,Veraguas,8,San Francisco,1,San Francisco,1,0
+9-8-2,9,Veraguas,8,San Francisco,2,Corral Falso,0,0
+9-8-3,9,Veraguas,8,San Francisco,3,Los Hatillos,0,0
+9-8-4,9,Veraguas,8,San Francisco,4,Remance,0,0
+9-8-5,9,Veraguas,8,San Francisco,5,San Juan,0,0
+9-8-6,9,Veraguas,8,San Francisco,6,San José,0,0
+9-9-1,9,Veraguas,9,Santa Fe,1,Santa Fe,1,0
+9-9-2,9,Veraguas,9,Santa Fe,2,Calovébora,0,0
+9-9-3,9,Veraguas,9,Santa Fe,3,El Alto,0,0
+9-9-4,9,Veraguas,9,Santa Fe,4,El Cuay,0,0
+9-9-5,9,Veraguas,9,Santa Fe,5,El Pantano,0,0
+9-9-6,9,Veraguas,9,Santa Fe,6,Gatú o Gatucito,0,0
+9-9-7,9,Veraguas,9,Santa Fe,7,Río Luis,0,0
+9-10-1,9,Veraguas,10,Santiago,1,Santiago,1,0
+9-10-2,9,Veraguas,10,Santiago,2,La Colorada,0,0
+9-10-3,9,Veraguas,10,Santiago,3,La Peña,0,0
+9-10-4,9,Veraguas,10,Santiago,4,La Raya de Santa María,0,0
+9-10-5,9,Veraguas,10,Santiago,5,Ponuga,0,0
+9-10-6,9,Veraguas,10,Santiago,6,San Pedro del Espino,0,0
+9-10-7,9,Veraguas,10,Santiago,7,Canto del Llano,0,0
+9-10-8,9,Veraguas,10,Santiago,8,Los Algarrobos,0,0
+9-10-9,9,Veraguas,10,Santiago,9,Carlos Santana Ávila,0,0
+9-10-10,9,Veraguas,10,Santiago,10,Edwin Fábrega,0,0
+9-10-11,9,Veraguas,10,Santiago,11,San Martín de Porres,0,0
+9-10-12,9,Veraguas,10,Santiago,12,Urracá,0,0
+9-11-1,9,Veraguas,11,Soná,1,Soná,1,0
+9-11-2,9,Veraguas,11,Soná,2,Bahía Honda,0,0
+9-11-3,9,Veraguas,11,Soná,3,Calidonia,0,0
+9-11-4,9,Veraguas,11,Soná,4,Cativé,0,0
+9-11-5,9,Veraguas,11,Soná,5,El Marañón,0,0
+9-11-6,9,Veraguas,11,Soná,6,Guarumal,0,0
+9-11-7,9,Veraguas,11,Soná,7,La Soledad,0,0
+9-11-8,9,Veraguas,11,Soná,8,Quebrada de Oro,0,0
+9-11-9,9,Veraguas,11,Soná,9,Río Grande,0,0
+9-11-10,9,Veraguas,11,Soná,10,Rodeo Viejo,0,0
+9-12-1,9,Veraguas,12,Mariato,1,Llano de Catival o Mariato,1,0
+9-12-2,9,Veraguas,12,Mariato,2,Arenas,0,0
+9-12-3,9,Veraguas,12,Mariato,3,El Cacao,0,0
+9-12-4,9,Veraguas,12,Mariato,4,Quebro,0,0
+9-12-5,9,Veraguas,12,Mariato,5,Tebario,0,0
+10-1-1,10,Comarca Kuna Yala,1,Comarca Kuna Yala,1,Narganá,1,0
+10-1-2,10,Comarca Kuna Yala,1,Comarca Kuna Yala,2,Ailigandí,0,0
+10-1-3,10,Comarca Kuna Yala,1,Comarca Kuna Yala,3,Puerto Obaldía,0,0
+10-1-4,10,Comarca Kuna Yala,1,Comarca Kuna Yala,4,Tubualá,0,0
+11-1-1,11,Comarca Emberá-Wounaan,1,Cémaco,1,Cirilo Guaynora,1,0
+11-1-2,11,Comarca Emberá-Wounaan,1,Cémaco,2,Lajas Blancas,0,0
+11-1-3,11,Comarca Emberá-Wounaan,1,Cémaco,3,Manuel Ortega,0,0
+11-2-1,11,Comarca Emberá-Wounaan,2,Sambú,1,Río Sábalo,0,0
+11-2-2,11,Comarca Emberá-Wounaan,2,Sambú,2,Jingurudó,0,0
+12-1-1,12,Comarca Ngäbe-Buglé,1,Besikó,1,Soloy,1,0
+12-1-2,12,Comarca Ngäbe-Buglé,1,Besikó,2,Boca de Balsa,0,0
+12-1-3,12,Comarca Ngäbe-Buglé,1,Besikó,3,Camarón Arriba,0,0
+12-1-4,12,Comarca Ngäbe-Buglé,1,Besikó,4,Cerro Banco,0,0
+12-1-5,12,Comarca Ngäbe-Buglé,1,Besikó,5,Cerro de Patena,0,0
+12-1-6,12,Comarca Ngäbe-Buglé,1,Besikó,6,Emplanada de Chorcha,0,0
+12-1-7,12,Comarca Ngäbe-Buglé,1,Besikó,7,Nämnoní,0,0
+12-1-8,12,Comarca Ngäbe-Buglé,1,Besikó,8,Niba,0,0
+12-2-1,12,Comarca Ngäbe-Buglé,2,Mironó,1,Hato Pilón,1,0
+12-2-2,12,Comarca Ngäbe-Buglé,2,Mironó,2,Cascabel,0,0
+12-2-3,12,Comarca Ngäbe-Buglé,2,Mironó,3,Hato Corotú,0,0
+12-2-4,12,Comarca Ngäbe-Buglé,2,Mironó,4,Hato Culantro,0,0
+12-2-5,12,Comarca Ngäbe-Buglé,2,Mironó,5,Hato Jobo,0,0
+12-2-6,12,Comarca Ngäbe-Buglé,2,Mironó,6,Hato Julí,0,0
+12-2-7,12,Comarca Ngäbe-Buglé,2,Mironó,7,Quebrada de Loro,0,0
+12-2-8,12,Comarca Ngäbe-Buglé,2,Mironó,8,Salto Dupí,0,0
+12-3-1,12,Comarca Ngäbe-Buglé,3,Müna,1,Chichica,1,0
+12-3-2,12,Comarca Ngäbe-Buglé,3,Müna,2,Alto Caballero,0,0
+12-3-3,12,Comarca Ngäbe-Buglé,3,Müna,3,Bakama,0,0
+12-3-4,12,Comarca Ngäbe-Buglé,3,Müna,4,Cerro Caña,0,0
+12-3-5,12,Comarca Ngäbe-Buglé,3,Müna,5,Cerro Puerco,0,0
+12-3-6,12,Comarca Ngäbe-Buglé,3,Müna,6,Krüa,0,0
+12-3-7,12,Comarca Ngäbe-Buglé,3,Müna,7,Maraca,0,0
+12-3-8,12,Comarca Ngäbe-Buglé,3,Müna,8,Nibra,0,0
+12-3-9,12,Comarca Ngäbe-Buglé,3,Müna,9,Peña Blanca,0,0
+12-3-10,12,Comarca Ngäbe-Buglé,3,Müna,10,Roka,0,0
+12-3-11,12,Comarca Ngäbe-Buglé,3,Müna,11,Sitio Prado,0,0
+12-3-12,12,Comarca Ngäbe-Buglé,3,Müna,12,Umaní,0,0
+12-4-1,12,Comarca Ngäbe-Buglé,4,Nole Düima,1,Cerro Iglesias,1,0
+12-4-2,12,Comarca Ngäbe-Buglé,4,Nole Düima,2,Hato Chamí,0,0
+12-4-3,12,Comarca Ngäbe-Buglé,4,Nole Düima,3,Jädeberi,0,0
+12-4-4,12,Comarca Ngäbe-Buglé,4,Nole Düima,4,Lajero,0,0
+12-4-5,12,Comarca Ngäbe-Buglé,4,Nole Düima,5,Susama,0,0
+12-5-1,12,Comarca Ngäbe-Buglé,5,Ñürüm,1,Buenos Aires,1,0
+12-5-2,12,Comarca Ngäbe-Buglé,5,Ñürüm,2,Agua de Salud,0,0
+12-5-3,12,Comarca Ngäbe-Buglé,5,Ñürüm,3,Alto de Jesús,0,0
+12-5-4,12,Comarca Ngäbe-Buglé,5,Ñürüm,4,Cerro Pelado,0,0
+12-5-5,12,Comarca Ngäbe-Buglé,5,Ñürüm,5,El Bale,0,0
+12-5-6,12,Comarca Ngäbe-Buglé,5,Ñürüm,6,El Paredón,0,0
+12-5-7,12,Comarca Ngäbe-Buglé,5,Ñürüm,7,El Piro,0,0
+12-5-8,12,Comarca Ngäbe-Buglé,5,Ñürüm,8,Guayabito,0,0
+12-5-9,12,Comarca Ngäbe-Buglé,5,Ñürüm,9,Güibale,0,0
+12-6-1,12,Comarca Ngäbe-Buglé,6,Kankintú,1,Bisira,1,0
+12-6-2,12,Comarca Ngäbe-Buglé,6,Kankintú,2,Burí,0,0
+12-6-3,12,Comarca Ngäbe-Buglé,6,Kankintú,3,Guariviara,0,0
+12-6-4,12,Comarca Ngäbe-Buglé,6,Kankintú,4,Guoroní,0,0
+12-6-5,12,Comarca Ngäbe-Buglé,6,Kankintú,5,Kankintú,0,0
+12-6-6,12,Comarca Ngäbe-Buglé,6,Kankintú,6,Mününí,0,0
+12-6-7,12,Comarca Ngäbe-Buglé,6,Kankintú,7,Piedra Roja,0,0
+12-6-8,12,Comarca Ngäbe-Buglé,6,Kankintú,8,Tuwai,0,0
+12-6-9,12,Comarca Ngäbe-Buglé,6,Kankintú,9,Man Creek,0,0
+12-7-1,12,Comarca Ngäbe-Buglé,7,Kusapín,1,Kusapín,1,0
+12-7-2,12,Comarca Ngäbe-Buglé,7,Kusapín,2,Bahía Azul,0,0
+12-7-3,12,Comarca Ngäbe-Buglé,7,Kusapín,3,Calovébora o Santa Catalina,0,0
+12-7-4,12,Comarca Ngäbe-Buglé,7,Kusapín,4,Loma Yuca,0,0
+12-7-5,12,Comarca Ngäbe-Buglé,7,Kusapín,5,Río Chiriquí,0,0
+12-7-6,12,Comarca Ngäbe-Buglé,7,Kusapín,6,Tobobé,0,0
+12-7-7,12,Comarca Ngäbe-Buglé,7,Kusapín,7,Valle Bonito,0,0
+12-8-1,12,Comarca Ngäbe-Buglé,8,Jirondai,1,Samboa,0,0
+12-8-2,12,Comarca Ngäbe-Buglé,8,Jirondai,2,Burí,0,0
+12-8-3,12,Comarca Ngäbe-Buglé,8,Jirondai,3,Guariviara,0,0
+12-8-4,12,Comarca Ngäbe-Buglé,8,Jirondai,4,Man Creek,0,0
+12-8-5,12,Comarca Ngäbe-Buglé,8,Jirondai,5,Tuwai,0,0
+12-9-1,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),1,Santa Catalina o Calovébora (Bledeshia),1,0
+12-9-2,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),2,Alto Bilingüe (Gdogueshia),0,0
+12-9-3,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),3,Loma Yuca (Ijuicho),0,0
+12-9-4,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),4,San Pedrito,0,0
+12-9-5,12,Comarca Ngäbe-Buglé,9,Santa Catalina o Calovébora (Bledeshia),5,Valle Bonito (Dogata),0,0
+13-1-1,13,Panamá Oeste,1,Arraiján,1,Arraiján,1,0
+13-1-2,13,Panamá Oeste,1,Arraiján,2,Burunga,0,0
+13-1-3,13,Panamá Oeste,1,Arraiján,3,Cerro Silvestre,0,0
+13-1-4,13,Panamá Oeste,1,Arraiján,4,Juan Demóstenes Arosemena,0,0
+13-1-5,13,Panamá Oeste,1,Arraiján,5,Nuevo Emperador,0,0
+13-1-6,13,Panamá Oeste,1,Arraiján,6,Santa Clara,0,0
+13-1-7,13,Panamá Oeste,1,Arraiján,7,Veracruz,0,0
+13-1-8,13,Panamá Oeste,1,Arraiján,8,Vista Alegre,0,0
+13-2-1,13,Panamá Oeste,2,Capira,1,Capira,1,0
+13-2-2,13,Panamá Oeste,2,Capira,2,Caimito,0,0
+13-2-3,13,Panamá Oeste,2,Capira,3,Campana,0,0
+13-2-4,13,Panamá Oeste,2,Capira,4,Cermeño,0,0
+13-2-5,13,Panamá Oeste,2,Capira,5,Cirí de Los Sotos,0,0
+13-2-6,13,Panamá Oeste,2,Capira,6,Cirí Grande,0,0
+13-2-7,13,Panamá Oeste,2,Capira,7,El Cacao,0,0
+13-2-8,13,Panamá Oeste,2,Capira,8,La Trinidad,0,0
+13-2-9,13,Panamá Oeste,2,Capira,9,Las Ollas Arriba,0,0
+13-2-10,13,Panamá Oeste,2,Capira,10,Lídice,0,0
+13-2-11,13,Panamá Oeste,2,Capira,11,Villa Carmen,0,0
+13-2-12,13,Panamá Oeste,2,Capira,12,Villa Rosario,0,0
+13-2-13,13,Panamá Oeste,2,Capira,13,Santa Rosa,0,0
+13-3-1,13,Panamá Oeste,3,Chame,1,Chame,1,0
+13-3-2,13,Panamá Oeste,3,Chame,2,Bejuco,0,0
+13-3-3,13,Panamá Oeste,3,Chame,3,Buenos Aires,0,0
+13-3-4,13,Panamá Oeste,3,Chame,4,Cabuya,0,0
+13-3-5,13,Panamá Oeste,3,Chame,5,Chicá,0,0
+13-3-6,13,Panamá Oeste,3,Chame,6,El Líbano,0,0
+13-3-7,13,Panamá Oeste,3,Chame,7,Las Lajas,0,0
+13-3-8,13,Panamá Oeste,3,Chame,8,Nueva Gorgona,0,0
+13-3-9,13,Panamá Oeste,3,Chame,9,Punta Chame,0,0
+13-3-10,13,Panamá Oeste,3,Chame,10,Sajalices,0,0
+13-3-11,13,Panamá Oeste,3,Chame,11,Sorá,0,0
+13-4-1,13,Panamá Oeste,4,La Chorrera,1,Barrio Balboa,0,0
+13-4-2,13,Panamá Oeste,4,La Chorrera,2,Barrio Colón,0,0
+13-4-3,13,Panamá Oeste,4,La Chorrera,3,Amador,0,0
+13-4-4,13,Panamá Oeste,4,La Chorrera,4,Arosemena,0,0
+13-4-5,13,Panamá Oeste,4,La Chorrera,5,El Arado,0,0
+13-4-6,13,Panamá Oeste,4,La Chorrera,6,El Coco,0,0
+13-4-7,13,Panamá Oeste,4,La Chorrera,7,Feuillet,0,0
+13-4-8,13,Panamá Oeste,4,La Chorrera,8,Guadalupe,0,0
+13-4-9,13,Panamá Oeste,4,La Chorrera,9,Herrera,0,0
+13-4-10,13,Panamá Oeste,4,La Chorrera,10,Hurtado,0,0
+13-4-11,13,Panamá Oeste,4,La Chorrera,11,Iturralde,0,0
+13-4-12,13,Panamá Oeste,4,La Chorrera,12,La Represa,0,0
+13-4-13,13,Panamá Oeste,4,La Chorrera,13,Los Díaz,0,0
+13-4-14,13,Panamá Oeste,4,La Chorrera,14,Mendoza,0,0
+13-4-15,13,Panamá Oeste,4,La Chorrera,15,Obaldía,0,0
+13-4-16,13,Panamá Oeste,4,La Chorrera,16,Playa Leona,0,0
+13-4-17,13,Panamá Oeste,4,La Chorrera,17,Puerto Caimito,0,0
+13-4-18,13,Panamá Oeste,4,La Chorrera,18,Santa Rita,0,0
+13-5-1,13,Panamá Oeste,5,San Carlos,1,San Carlos,1,0
+13-5-2,13,Panamá Oeste,5,San Carlos,2,El Espino,0,0
+13-5-3,13,Panamá Oeste,5,San Carlos,3,El Higo,0,0
+13-5-4,13,Panamá Oeste,5,San Carlos,4,Guayabito,0,0
+13-5-5,13,Panamá Oeste,5,San Carlos,5,La Ermita,0,0
+13-5-6,13,Panamá Oeste,5,San Carlos,6,La Laguna,0,0
+13-5-7,13,Panamá Oeste,5,San Carlos,7,Las Uvas,0,0
+13-5-8,13,Panamá Oeste,5,San Carlos,8,Los Llanitos,0,0
+13-5-9,13,Panamá Oeste,5,San Carlos,9,San José,0,0
