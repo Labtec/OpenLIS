@@ -109,7 +109,7 @@ GEM
     base64 (0.3.0)
     bcp47 (0.3.3)
       i18n
-    bcrypt (3.1.20)
+    bcrypt (3.1.21)
     bcrypt_pbkdf (1.1.2)
     bigdecimal (3.3.1)
     bindata (2.5.1)
@@ -184,7 +184,7 @@ GEM
     et-orbi (1.4.0)
       tzinfo
     fast_blank (1.0.1)
-    ffi (1.17.2)
+    ffi (1.17.3)
     fhir_models (4.3.0)
       bcp47 (>= 0.3)
       date_time_precision (>= 0.8)
@@ -312,7 +312,7 @@ GEM
     parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
-    pg (1.6.2)
+    pg (1.6.3)
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
@@ -418,9 +418,9 @@ GEM
       rubocop-ast (>= 1.48.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.48.0)
+    rubocop-ast (1.49.0)
       parser (>= 3.3.7.2)
-      prism (~> 1.4)
+      prism (~> 1.7)
     rubocop-performance (1.26.1)
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
