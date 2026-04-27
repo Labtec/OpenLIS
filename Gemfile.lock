@@ -174,7 +174,7 @@ GEM
       railties (>= 7.0)
       responders
       warden (~> 1.2.3)
-    dmtx (0.2.0)
+    dmtx (1.0.1)
       builder
       chunky_png
     dotenv (3.2.0)
