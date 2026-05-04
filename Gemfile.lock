@@ -186,11 +186,11 @@ GEM
       tzinfo
     fast_blank (1.0.1)
     ffi (1.17.4)
-    fhir_models (4.3.0)
+    fhir_models (5.1.0)
       bcp47 (>= 0.3)
       date_time_precision (>= 0.8)
       mime-types (>= 3.0)
-      nokogiri (>= 1.11.4)
+      nokogiri (>= 1.19.1)
     flamegraph (0.9.5)
     fugit (1.12.1)
       et-orbi (~> 1.4)
@@ -568,7 +568,7 @@ DEPENDENCIES
   drb
   ed25519
   fast_blank
-  fhir_models (~> 4.3)
+  fhir_models (~> 5.1)
   flamegraph
   health_cards!
   i18n-tasks
