@@ -114,7 +114,7 @@ GEM
     bigdecimal (3.3.1)
     bindata (2.5.1)
     bindex (0.8.1)
-    bootsnap (1.24.2)
+    bootsnap (1.24.3)
       msgpack (~> 1.2)
     brakeman (8.0.4)
       racc
@@ -393,7 +393,7 @@ GEM
     rainbow (3.1.1)
     rake (13.4.2)
     rake-compiler-dock (1.12.0)
-    rb_sys (0.9.127)
+    rb_sys (0.9.128)
       rake-compiler-dock (= 1.12.0)
     rdoc (7.2.0)
       erb
