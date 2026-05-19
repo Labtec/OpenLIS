@@ -20,7 +20,7 @@ GEM
   specs:
     aasm (5.5.2)
       concurrent-ruby (~> 1.0)
-    action_text-trix (2.1.18)
+    action_text-trix (2.1.19)
       railties
     actioncable (8.1.3)
       actionpack (= 8.1.3)
@@ -114,7 +114,7 @@ GEM
     bigdecimal (3.3.1)
     bindata (2.5.1)
     bindex (0.8.1)
-    bootsnap (1.24.0)
+    bootsnap (1.24.4)
       msgpack (~> 1.2)
     brakeman (8.0.4)
       racc
@@ -122,7 +122,7 @@ GEM
     bundler-audit (0.9.3)
       bundler (>= 1.2.0)
       thor (~> 1.0)
-    capistrano (3.20.0)
+    capistrano (3.20.1)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -150,7 +150,7 @@ GEM
       xpath (~> 3.2)
     cbor (0.5.10.2)
     chunky_png (1.4.0)
-    commonmarker (2.8.1)
+    commonmarker (2.8.2)
       rb_sys (~> 0.9)
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
@@ -158,17 +158,17 @@ GEM
       cbor (~> 0.5.9)
       openssl-signature_algorithm (~> 1.0)
     crass (1.0.6)
-    css_parser (1.21.1)
+    css_parser (2.2.0)
       addressable
     csv (3.3.5)
-    dalli (5.0.2)
+    dalli (5.0.3)
       logger
     date (3.5.1)
     date_time_precision (0.8.1)
     debug (1.11.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    devise (5.0.3)
+    devise (5.0.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 7.0)
@@ -226,7 +226,7 @@ GEM
       prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    jbuilder (2.14.1)
+    jbuilder (2.15.0)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     jquery-rails (4.6.1)
@@ -235,8 +235,8 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (8.0.0)
       railties (>= 3.2.16)
-    json (2.19.4)
-    jwt (3.1.2)
+    json (2.19.5)
+    jwt (3.2.0)
       base64
     kamal (2.11.0)
       activesupport (>= 7.0)
@@ -283,7 +283,7 @@ GEM
       logger
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (6.0.5)
+    minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
     msgpack (1.8.0)
@@ -306,7 +306,7 @@ GEM
     nokogiri (1.19.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    openssl (4.0.1)
+    openssl (4.0.2)
     openssl-signature_algorithm (1.3.0)
       openssl (> 2.0)
     orm_adapter (0.5.0)
@@ -319,15 +319,15 @@ GEM
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
-    phonelib (0.10.18)
+    phonelib (0.10.20)
     pp (0.6.3)
       prettyprint
     prawn (2.5.0)
       matrix (~> 0.4)
       pdf-core (~> 0.10.0)
       ttfunk (~> 1.8)
-    prawn-svg (0.40.0)
-      css_parser (~> 1.6)
+    prawn-svg (0.40.2)
+      css_parser (>= 1.6, < 3)
       matrix (~> 0.4.2)
       prawn (>= 0.11.1, < 3)
       rexml (>= 3.4.2, < 4)
@@ -393,7 +393,7 @@ GEM
     rainbow (3.1.1)
     rake (13.4.2)
     rake-compiler-dock (1.12.0)
-    rb_sys (0.9.127)
+    rb_sys (0.9.128)
       rake-compiler-dock (= 1.12.0)
     rdoc (7.2.0)
       erb
@@ -410,7 +410,7 @@ GEM
       chunky_png (~> 1.0)
       rqrcode_core (~> 2.0)
     rqrcode_core (2.1.0)
-    rubocop (1.86.1)
+    rubocop (1.86.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -428,7 +428,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
-    rubocop-rails (2.34.3)
+    rubocop-rails (2.35.1)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -442,7 +442,7 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
-    rubyzip (3.2.2)
+    rubyzip (3.3.0)
     safety_net_attestation (0.5.0)
       jwt (>= 2.0, < 4.0)
     sassc (2.4.0)
@@ -454,7 +454,7 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.1)
-    selenium-webdriver (4.43.0)
+    selenium-webdriver (4.44.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -498,7 +498,7 @@ GEM
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.5.0)
-    thruster (0.1.20)
+    thruster (0.1.21)
     tilt (2.7.0)
     timeout (0.6.1)
     tpm-key_attestation (0.14.1)
@@ -609,7 +609,7 @@ DEPENDENCIES
   webauthn
 
 RUBY VERSION
-  ruby 4.0.3
+  ruby 4.0.4
 
 BUNDLED WITH
-  4.0.10
+  4.0.11
