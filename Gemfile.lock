@@ -282,7 +282,7 @@ GEM
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
-    msgpack (1.8.2)
+    msgpack (1.8.3)
     mutex_m (0.3.0)
     net-imap (0.6.4.1)
       date
@@ -605,4 +605,4 @@ RUBY VERSION
   ruby 4.0.5
 
 BUNDLED WITH
-  4.0.13
+  4.0.14
