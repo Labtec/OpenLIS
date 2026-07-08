@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Labtec/pdf-core.git
-  revision: 60cb92d993f1c0e47800ef9e317d1251e65a0b0d
+  revision: 0c7e07897d3798e8f2eed6c79973972c89442f91
   branch: pdfa-1b
   specs:
     pdf-core (0.10.0)
@@ -409,7 +409,7 @@ GEM
       chunky_png (~> 1.0)
       rqrcode_core (~> 2.0)
     rqrcode_core (2.1.0)
-    rubocop (1.88.1)
+    rubocop (1.88.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -495,7 +495,7 @@ GEM
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.5.0)
     thruster (0.1.22)
-    tilt (2.7.0)
+    tilt (2.8.0)
     timeout (0.6.1)
     tpm-key_attestation (0.14.1)
       bindata (~> 2.4)
