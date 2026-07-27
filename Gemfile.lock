@@ -161,7 +161,7 @@ GEM
     css_parser (3.0.0)
       addressable
       ssrf_filter (~> 1.5)
-    csv (3.3.5)
+    csv (3.3.6)
     dalli (5.0.5)
       logger
     date (3.5.1)
