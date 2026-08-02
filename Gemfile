@@ -15,7 +15,6 @@ gem "bcrypt"
 gem "bootsnap", require: false
 gem "commonmarker"
 gem "csv"
-gem "dalli"
 gem "devise"
 gem "dmtx"
 gem "drb"
@@ -23,7 +22,6 @@ gem "ed25519"
 gem "fast_blank"
 gem "fhir_models", "~> 4.3"
 gem "health_cards", github: "jlduran/health_cards", branch: "development"
-gem "image_processing"
 gem "importmap-rails"
 gem "jbuilder"
 gem "jquery-rails"
@@ -51,7 +49,6 @@ gem "stimulus-rails"
 gem "thruster", require: false
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
-gem "ruby-vips"
 gem "webauthn"
 
 group :development, :test do
