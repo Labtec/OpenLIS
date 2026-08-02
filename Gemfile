@@ -15,7 +15,6 @@ gem "bcrypt"
 gem "bootsnap", require: false
 gem "commonmarker"
 gem "csv"
-gem "dalli"
 gem "devise"
 gem "dmtx"
 gem "drb"
