@@ -316,6 +316,7 @@ module Derivable
       ralb1tl = result_value_quantity_for "RALB1TL"
       ralb1 = ralb1tl if ralb1.blank?
       crtfr = result_value_quantity_for "CRTFR"
+      crtfrsl = result_value_quantity_for "CRTFRSL"
       crtfrtl = result_value_quantity_for "CRTFRTL"
       crtfr = crtfrtl if crtfr.blank?
       ralb1 / crtfr * 100
