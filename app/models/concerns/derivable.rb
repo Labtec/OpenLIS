@@ -314,11 +314,11 @@ module Derivable
     when "uACR"
       ralb1 = result_value_quantity_for "RALB1"
       ralb1tl = result_value_quantity_for "RALB1TL"
-      ralb1 = ralb1tl if ralb1.blank?
+      ralb1 ||= ralb1tl
       crtfr = result_value_quantity_for "CRTFR"
       crtfrsl = result_value_quantity_for "CRTFRSL"
       crtfrtl = result_value_quantity_for "CRTFRTL"
-      crtfr = crtfrtl if crtfr.blank?
+      crtfr = crtfr || crtfrsl || crtfrtl
       ralb1 / crtfr * 100
     end
   rescue StandardError
