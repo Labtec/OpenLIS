@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class QuoteLineItem < ApplicationRecord
-  RETIREE_PERCENTAGE_DISCOUNT = 20
+  # https://www.gacetaoficial.gob.pa/storage/gacetas/2009/06/26314_A/18494.pdf
+  # 6. Descuento de 15% de la cuenta total por servicios de hospitales y clínicas privadas.
+  # 6. Descuento de 15% de la cuenta total por servlclOs de hospitales, clínicas,
+  # laboratorios privados, centros de imagenología y otros establecimientos que
+  # brinden servicios de salud.
+  RETIREE_PERCENTAGE_DISCOUNT = 15
 
   enum :discount_unit, { percentage: 0, currency: 1 }, prefix: :discount, default: :percentage
   include DiscountUnitEnumValidation
