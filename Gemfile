@@ -26,7 +26,7 @@ gem "importmap-rails"
 gem "jbuilder"
 gem "jquery-rails"
 gem "jquery-ui-rails"
-gem "json", "~> 2.21"
+gem "json", "~> 3.0"
 gem "kamal", require: false
 gem "kaminari"
 gem "mutex_m"
