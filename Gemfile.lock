@@ -232,7 +232,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (8.0.1)
       railties (>= 3.2.16)
-    json (2.21.2)
+    json (3.1.0)
     jwt (3.3.0)
       base64
     kamal (2.12.0)
@@ -568,7 +568,6 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   jquery-ui-rails
-  json (~> 2.21)
   kamal
   kaminari
   mutex_m
