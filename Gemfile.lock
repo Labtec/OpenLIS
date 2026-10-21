@@ -184,7 +184,6 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.2)
       tzinfo
-    fast_blank (1.0.1)
     ffi (1.17.4)
     fhir_models (4.3.0)
       bcp47 (>= 0.3)
@@ -275,7 +274,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.1013)
+    mime-types-data (3.2026.1020)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (6.0.6)
@@ -314,7 +313,7 @@ GEM
     pg_search (2.4.0)
       activerecord (>= 8.0)
       activesupport (>= 8.0)
-    phonelib (0.10.27)
+    phonelib (0.10.28)
     pp (0.6.4)
       prettyprint
     prawn (2.5.0)
@@ -559,7 +558,6 @@ DEPENDENCIES
   dmtx
   drb
   ed25519
-  fast_blank
   fhir_models (~> 4.3)
   flamegraph
   health_cards!
