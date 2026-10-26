@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "~> 4.0.7"
+ruby "~> 4.0.9"
 
 gem "rails", "8.1.4"
 
@@ -19,14 +19,12 @@ gem "devise"
 gem "dmtx"
 gem "drb"
 gem "ed25519"
-gem "fast_blank"
 gem "fhir_models", "~> 4.3"
 gem "health_cards", github: "jlduran/health_cards", branch: "development"
 gem "importmap-rails"
 gem "jbuilder"
 gem "jquery-rails"
 gem "jquery-ui-rails"
-gem "json", "~> 2.21"
 gem "kamal", require: false
 gem "kaminari"
 gem "mutex_m"
