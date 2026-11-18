@@ -276,7 +276,7 @@ class PDFQuote < Prawn::Document
       text "Los pagos correspondientes deben realizarse a nombre de:"
       indent PADDING do
         text "LABTEC, S.A."
-        text "RUC 299497-1-409892 DV 13"
+        text "RUC 299497-1-409892 DV: 13"
       end
     end
     bounding_box([ bounds.left + (bounds.width / 2), payment_position ], width: bounds.width / 4, height: payment_info_box_height) do
@@ -389,7 +389,7 @@ class PDFQuote < Prawn::Document
 
   def digito_verificador
     dv = Cedula.new(@quote&.patient&.identifier).dv
-    "DV #{dv}" if dv
+    "DV: #{dv}" if dv
   end
 
   def header_height
